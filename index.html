@@ -10,17 +10,17 @@
         html { scroll-behavior: auto !important; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; padding: 0; }
         
-        /* شريط الأخبار - يبدأ فوراً ويعيد فوراً */
-        .ticker { background: var(--red); padding: 12px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 1.1em; overflow: hidden; }
-        .ticker-inner { display: inline-block; white-space: nowrap; animation: t 70s linear infinite; padding-right: 20px; }
-        .ticker-text { direction: rtl; display: inline-block; padding-left: 100%; } /* جعل النص يبدأ من خارج الشاشة ليدخل فوراً */
+        /* شريط الأخبار المستمر - صفر انتظار */
+        .ticker { background: var(--red); padding: 12px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 1.1em; overflow: hidden; white-space: nowrap; }
+        .ticker-inner { display: inline-block; animation: t 60s linear infinite; }
+        .ticker-text { display: inline-block; padding-left: 50px; direction: rtl; }
         
         @keyframes t { 
             0% { transform: translateX(0); } 
-            100% { transform: translateX(100%); } 
+            100% { transform: translateX(50%); } /* التحرك لنصف المسافة فقط لأن النص مكرر */
         }
 
-        /* شريط التواصل - مجمع في اليسار */
+        /* شريط التواصل - اليسار */
         .top-nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 50px; width: 90%; z-index: 999; border-bottom: 1px solid var(--gold); display: flex; justify-content: flex-start; align-items: center; gap: 15px; }
         .contact-links a { color: var(--gold); text-decoration: none; font-size: 1.3em; display: flex; align-items: center; }
         .whatsapp-btn { background: var(--gold); color: #000 !important; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.85em; }
@@ -63,6 +63,9 @@
 
     <div class="ticker">
         <div class="ticker-inner">
+            <span class="ticker-text">
+                • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم • خسائر اقتصادية تقدر بـ ١٥ مليار جنيه سنوياً • ٩٣ ألف حالة طلاق سنوياً مرتبطة بالمنصات الرقمية • ٤٠% من بلاغات العنف الأسري أسبابها إلكترونية • 
+            </span>
             <span class="ticker-text">
                 • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم • خسائر اقتصادية تقدر بـ ١٥ مليار جنيه سنوياً • ٩٣ ألف حالة طلاق سنوياً مرتبطة بالمنصات الرقمية • ٤٠% من بلاغات العنف الأسري أسبابها إلكترونية • 
             </span>
