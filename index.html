@@ -5,107 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CiviStories - وعي مجتمعي</title>
     <style>
-        /* تنسيق عام للصفحة */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             text-align: center; 
-            padding: 20px; 
-            background-color: #f0f2f5; 
-            color: #333; 
-            line-height: 1.6; 
+            background-color: #0b0b0b; 
+            color: #f1f1f1; 
             margin: 0;
+            padding: 0;
         }
-        /* الحاوية الرئيسية */
+        .header {
+            background: #000;
+            padding: 40px 0;
+            border-bottom: 3px solid #d4af37;
+        }
+        .logo {
+            width: 200px; /* حجم الشعار */
+            height: auto;
+            border-radius: 50%;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
         .container { 
             max-width: 900px; 
-            margin: 40px auto; 
-            background: white; 
+            margin: 30px auto; 
+            background: #181818; 
             padding: 40px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
         }
-        /* العناوين */
-        h1 { 
-            color: #1a73e8; 
-            border-bottom: 3px solid #1a73e8; 
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-        h2 { 
-            color: #d93025; 
-            margin-top: 40px;
-            font-size: 1.8em;
-        }
-        /* قسم الأهداف */
-        .goals-list {
-            text-align: right;
-            display: inline-block;
-            background: #fff8f0;
-            padding: 20px 40px;
-            border-right: 5px solid #e67e22;
-            border-radius: 5px;
-            width: 80%;
-        }
-        /* قسم الإحصائيات */
-        .stats-grid { 
-            display: flex; 
-            justify-content: space-around; 
-            margin-top: 30px; 
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .stat-item { 
-            background: #1a73e8; 
-            color: white; 
-            padding: 25px; 
-            border-radius: 12px; 
-            flex: 1;
-            min-width: 200px;
+        h1 { color: #d4af37; font-size: 2.5em; margin-bottom: 10px; }
+        h2 { color: #d4af37; border-bottom: 1px solid #333; padding-bottom: 15px; margin-top: 40px; }
+        
+        /* قسم اليوتيوب */
+        .youtube-section {
+            background: #c4302b;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 35px 0;
+            text-decoration: none;
+            display: block;
             transition: transform 0.3s;
         }
-        .stat-item:hover {
-            transform: translateY(-10px);
+        .youtube-section:hover { transform: scale(1.02); }
+        .yt-button {
+            background: #fff;
+            color: #c4302b;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
         }
-        .stat-number { 
-            font-size: 2.5em; 
-            font-weight: bold; 
-            display: block; 
-            margin-bottom: 5px;
+
+        .goals-box { 
+            text-align: right; 
+            background: #222; 
+            padding: 25px 40px; 
+            border-right: 6px solid #d4af37; 
+            border-radius: 10px; 
+            line-height: 1.8;
         }
-        .footer {
-            margin-top: 50px;
-            font-size: 0.9em;
-            color: #777;
-        }
+        .stats-container { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+        .stat-card { background: #d4af37; color: #000; padding: 25px; border-radius: 15px; flex: 1; min-width: 220px; font-weight: bold; }
+        .stat-number { font-size: 2.8em; display: block; margin-bottom: 5px; }
+        
+        .footer { padding: 50px 0; color: #666; font-size: 0.9em; }
     </style>
 </head>
 <body>
+
+    <div class="header">
+        <img src="Civis%20%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA.png" alt="CiviStories Logo" class="logo">
+    </div>
+
     <div class="container">
-        <h1>مرحباً بك في مشروع CiviStories</h1>
-        <p style="font-size: 1.3em;">مشروع توعوي يسلط الضوء على أخطار سوء استخدام السوشيال ميديا وتأثيراتها المدمرة على الفرد والمجتمع.</p>
+        <h1>مشروع CiviStories</h1>
+        <p style="font-size: 1.25em; color: #ccc;">مبادرة توعوية لتسليط الضوء على أخطار سوء استخدام السوشيال ميديا وتأثيراتها الاجتماعية.</p>
+
+        <a href="https://www.youtube.com/@CiviStories" target="_blank" class="youtube-section">
+            <h3 style="margin:0; font-size: 1.6em;">🎥 اشترك في قناتنا الرسمية</h3>
+            <p style="margin:10px 0;">تابع أقوى القصص التوعوية والمحتوى الهادف</p>
+            <div class="yt-button">انتقل إلى YouTube الآن</div>
+        </a>
 
         <h2>أهداف المشروع</h2>
-        <div class="goals-list">
-            <ul>
-                <li><strong>الوعي الرقمي:</strong> تثقيف المجتمع حول الاستخدام المسؤول للمنصات.</li>
-                <li><strong>الترابط الأسري:</strong> الحد من الانعزال الناتج عن الإدمان الإلكتروني.</li>
-                <li><strong>الصحة النفسية:</strong> حماية الأجيال الناشئة من المقارنات الزائفة والتنمر.</li>
+        <div class="goals-box">
+            <ul style="list-style-type: '🔸 '; padding-right: 20px;">
+                <li>نشر الوعي بمخاطر الإدمان الرقمي على الفرد والمجتمع.</li>
+                <li>حماية الروابط الأسرية من التفكك الناتج عن الانعزال الإلكتروني.</li>
+                <li>تقديم قصص واقعية توضح عواقب سوء استخدام المنصات.</li>
             </ul>
         </div>
 
-        <h2>حقائق وإحصائيات</h2>
-        <div class="stats-grid">
-            <div class="stat-item">
+        <h2>حقائق رقمية</h2>
+        <div class="stats-container">
+            <div class="stat-card">
                 <span class="stat-number">70%</span>
-                <span>من النزاعات الأسرية تعود لأسباب رقمية</span>
+                <span>من المشاكل الأسرية تبدأ رقمياً</span>
             </div>
-            <div class="stat-item">
-                <span class="stat-number">5+</span>
-                <span>ساعات هو متوسط الاستخدام اليومي للفرد</span>
-            </div>
-            <div class="stat-item" style="background: #34a853;">
+            <div class="stat-card">
                 <span class="stat-number">40%</span>
-                <span>زيادة في معدلات الشعور بالوحدة الاجتماعية</span>
+                <span>زيادة في معدلات العزلة الاجتماعية</span>
             </div>
         </div>
 
@@ -113,5 +115,6 @@
             <p>&copy; 2026 CiviStories - جميع الحقوق محفوظة</p>
         </div>
     </div>
+
 </body>
 </html>
