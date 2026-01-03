@@ -10,17 +10,22 @@
         html { scroll-behavior: auto !important; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; padding: 0; }
         
-        /* شريط الأخبار - سرعة هادئة */
-        .ticker { background: var(--red); padding: 12px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 0.95em; }
-        .ticker-inner { display: inline-block; animation: t 45s linear infinite; white-space: nowrap; padding-right: 50%; }
-        @keyframes t { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        /* ضبط شريط الأخبار ليعمل من اليمين لليسار بشكل صحيح */
+        .ticker { background: var(--red); padding: 12px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 1em; overflow: hidden; }
+        .ticker-inner { display: inline-block; white-space: nowrap; animation: t 60s linear infinite; padding-left: 100%; direction: ltr; }
+        .ticker-text { direction: rtl; display: inline-block; }
+        
+        @keyframes t { 
+            0% { transform: translateX(-100%); } 
+            100% { transform: translateX(100%); } 
+        }
 
-        /* شريط تواصل ثابت وواضح */
-        .top-nav { background: rgba(0,0,0,0.9); padding: 10px 5%; position: fixed; top: 45px; width: 90%; z-index: 999; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
-        .contact-links a { color: var(--gold); margin-right: 15px; text-decoration: none; font-size: 1.2em; }
-        .whatsapp-btn { background: var(--gold); color: #000 !important; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em; text-decoration: none; }
+        /* شريط التواصل - مجمع في اليسار */
+        .top-nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 48px; width: 90%; z-index: 999; border-bottom: 1px solid var(--gold); display: flex; justify-content: flex-start; align-items: center; gap: 20px; }
+        .contact-links a { color: var(--gold); text-decoration: none; font-size: 1.3em; display: flex; align-items: center; }
+        .whatsapp-btn { background: var(--gold); color: #000 !important; padding: 4px 15px; border-radius: 20px; font-weight: bold; font-size: 0.85em; }
 
-        .header { padding-top: 130px; padding-bottom: 20px; }
+        .header { padding-top: 140px; padding-bottom: 20px; }
         .logo { width: 90px; border-radius: 50%; border: 2px solid var(--gold); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
@@ -45,7 +50,7 @@
         @media (max-width: 600px) {
             .gallery { grid-template-columns: repeat(2, 1fr); }
             .stats-grid { grid-template-columns: 1fr; }
-            .header { padding-top: 120px; }
+            .header { padding-top: 130px; }
         }
     </style>
 </head>
@@ -58,27 +63,25 @@
 
     <div class="ticker">
         <div class="ticker-inner">
-            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك • خسائر اقتصادية تقدر بـ ١٥ مليار جنيه سنوياً • ٩٣ ألف حالة طلاق سنوياً مرتبطة بالمنصات •
+            <span class="ticker-text">
+                • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم • خسائر اقتصادية تقدر بـ ١٥ مليار جنيه سنوياً • ٩٣ ألف حالة طلاق سنوياً مرتبطة بالمنصات الرقمية • ٤٠% من بلاغات العنف الأسري أسبابها إلكترونية • 
+            </span>
         </div>
     </div>
 
     <div class="top-nav">
-        <div class="contact-links">
-            <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="mailto:anabileg@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        <a href="https://wa.me/201009995015" class="whatsapp-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> تواصل معنا
-        </a>
+        <a href="https://wa.me/201009995015" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i> تواصل</a>
+        <a href="https://www.youtube.com/@CiviStories" target="_blank" style="color:var(--gold); font-size:1.3em;"><i class="fab fa-youtube"></i></a>
+        <a href="mailto:anabileg@gmail.com" style="color:var(--gold); font-size:1.3em;"><i class="fas fa-envelope"></i></a>
     </div>
 
     <div class="header">
-        <img src="logo.png" class="logo" alt="Logo">
+        <img src="logo.png" class="logo">
     </div>
 
     <div class="container">
         <h2 class="title">مبادرة CiviStories</h2>
-        <p style="margin-bottom: 30px;">صرخة وعي وطنية لحماية البيوت المصرية من "التسونامي الرقمي".</p>
+        <p>صرخة وعي وطنية لحماية البيوت المصرية من "التسونامي الرقمي".</p>
 
         <div class="gallery">
             <img src="img1.png">
@@ -103,7 +106,7 @@
 
         <div class="info-card">
             <h3>الأزهر الشريف</h3>
-            <p>٣٠% من حالات الطلاق (٩٣ ألف حالة سنوياً) سببها السوشيال ميديا.</p>
+            <p>٣٠% من حالات الطلاق (٩٣ ألف حالة سنوياً) بسبب السوشيال ميديا.</p>
         </div>
 
         <div class="info-card">
@@ -113,7 +116,7 @@
     </div>
 
     <footer>
-        <p>CiviStories | 00201009995015 | جميع الحقوق محفوظة 2024</p>
+        <p>CiviStories | 00201009995015 | جميع الحقوق محفوظة 2026</p>
     </footer>
 
 </body>
