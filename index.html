@@ -12,66 +12,79 @@
             color: #f1f1f1; 
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* يمنع التمرير الجانبي في الهواتف */
         }
         .header {
             background: #000;
-            padding: 40px 0;
+            padding: 20px 0;
             border-bottom: 3px solid #d4af37;
         }
         .logo {
-            width: 200px; /* حجم الشعار */
+            width: 150px; /* حجم أصغر قليلاً ليناسب الموبايل */
+            max-width: 40%; /* لا يتجاوز 40% من عرض الشاشة */
             height: auto;
             border-radius: 50%;
             border: 2px solid #d4af37;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
         }
         .container { 
-            max-width: 900px; 
-            margin: 30px auto; 
+            max-width: 90%; /* يشغل معظم الشاشة في الهواتف */
+            width: 900px; 
+            margin: 20px auto; 
             background: #181818; 
-            padding: 40px; 
-            border-radius: 20px; 
+            padding: 20px; 
+            border-radius: 15px; 
             box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
         }
-        h1 { color: #d4af37; font-size: 2.5em; margin-bottom: 10px; }
-        h2 { color: #d4af37; border-bottom: 1px solid #333; padding-bottom: 15px; margin-top: 40px; }
+        h1 { color: #d4af37; font-size: 1.8em; margin-bottom: 10px; }
         
-        /* قسم اليوتيوب */
+        /* قسم اليوتيوب المتجاوب */
         .youtube-section {
             background: #c4302b;
             color: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
-            margin: 35px 0;
+            margin: 25px 0;
             text-decoration: none;
             display: block;
-            transition: transform 0.3s;
         }
-        .youtube-section:hover { transform: scale(1.02); }
         .yt-button {
             background: #fff;
             color: #c4302b;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 30px;
             font-weight: bold;
             display: inline-block;
-            margin-top: 15px;
-            text-decoration: none;
+            margin-top: 10px;
         }
 
         .goals-box { 
             text-align: right; 
             background: #222; 
-            padding: 25px 40px; 
-            border-right: 6px solid #d4af37; 
+            padding: 15px 25px; 
+            border-right: 5px solid #d4af37; 
             border-radius: 10px; 
-            line-height: 1.8;
+            font-size: 0.95em;
         }
-        .stats-container { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
-        .stat-card { background: #d4af37; color: #000; padding: 25px; border-radius: 15px; flex: 1; min-width: 220px; font-weight: bold; }
-        .stat-number { font-size: 2.8em; display: block; margin-bottom: 5px; }
+
+        /* شبكة الإحصائيات المتجاوبة */
+        .stats-container { 
+            display: flex; 
+            flex-direction: column; /* ترتيب رأسي للهواتف */
+            gap: 15px; 
+            margin-top: 25px; 
+        }
         
-        .footer { padding: 50px 0; color: #666; font-size: 0.9em; }
+        /* التحول للترتيب العرضي في الشاشات الكبيرة */
+        @media (min-width: 600px) {
+            .stats-container { flex-direction: row; }
+            h1 { font-size: 2.5em; }
+            .container { padding: 40px; }
+            .logo { width: 200px; }
+        }
+
+        .stat-card { background: #d4af37; color: #000; padding: 20px; border-radius: 15px; flex: 1; font-weight: bold; }
+        .stat-number { font-size: 2.2em; display: block; }
+        .footer { padding: 30px 0; color: #666; font-size: 0.8em; }
     </style>
 </head>
 <body>
@@ -82,32 +95,29 @@
 
     <div class="container">
         <h1>مشروع CiviStories</h1>
-        <p style="font-size: 1.25em; color: #ccc;">مبادرة توعوية لتسليط الضوء على أخطار سوء استخدام السوشيال ميديا وتأثيراتها الاجتماعية.</p>
+        <p style="color: #ccc;">مبادرة توعوية ضد أخطار سوء استخدام السوشيال ميديا</p>
 
         <a href="https://www.youtube.com/@CiviStories" target="_blank" class="youtube-section">
-            <h3 style="margin:0; font-size: 1.6em;">🎥 اشترك في قناتنا الرسمية</h3>
-            <p style="margin:10px 0;">تابع أقوى القصص التوعوية والمحتوى الهادف</p>
-            <div class="yt-button">انتقل إلى YouTube الآن</div>
+            <h3 style="margin:0;">🎥 اشترك في قناتنا الرسمية</h3>
+            <div class="yt-button">YouTube</div>
         </a>
 
-        <h2>أهداف المشروع</h2>
         <div class="goals-box">
-            <ul style="list-style-type: '🔸 '; padding-right: 20px;">
-                <li>نشر الوعي بمخاطر الإدمان الرقمي على الفرد والمجتمع.</li>
-                <li>حماية الروابط الأسرية من التفكك الناتج عن الانعزال الإلكتروني.</li>
-                <li>تقديم قصص واقعية توضح عواقب سوء استخدام المنصات.</li>
+            <h3 style="color: #d4af37; margin-top: 0;">أهدافنا:</h3>
+            <ul style="padding-right: 20px; margin-bottom: 0;">
+                <li>نشر الوعي بمخاطر الإدمان الرقمي.</li>
+                <li>حماية الروابط الأسرية من التفكك.</li>
             </ul>
         </div>
 
-        <h2>حقائق رقمية</h2>
         <div class="stats-container">
             <div class="stat-card">
                 <span class="stat-number">70%</span>
-                <span>من المشاكل الأسرية تبدأ رقمياً</span>
+                <span>خلافات أسرية</span>
             </div>
             <div class="stat-card">
                 <span class="stat-number">40%</span>
-                <span>زيادة في معدلات العزلة الاجتماعية</span>
+                <span>عزلة اجتماعية</span>
             </div>
         </div>
 
