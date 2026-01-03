@@ -1,96 +1,25 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories - وعي مجتمعي</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --gold: #d4af37; --dark: #0b0b0b; --gray: #181818; }
-        body { font-family: 'Segoe UI', sans-serif; text-align: center; background-color: var(--dark); color: #f1f1f1; margin: 0; overflow-x: hidden; }
+/* تنسيق معرض الصور المطور */
+.image-gallery {
+    display: grid;
+    /* ثلاث صور في الصف للكمبيوتر، وصورة واحدة للموبايل */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px;
+    margin: 30px 0;
+}
 
-        /* شريط الأخبار المتحرك */
-        .news-ticker {
-            background: #8b0000; color: white; padding: 10px 0; font-weight: bold;
-            position: relative; overflow: hidden; white-space: nowrap;
-        }
-        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.gallery-item {
+    width: 100%;
+    /* جعل الصور بنسبة 3:4 (طولية موحدة) أو يمكنك تغييرها لـ 1/1 لتصبح مربعة */
+    aspect-ratio: 3 / 4; 
+    object-fit: cover; /* لقص الزوائد دون تمطيط الصورة */
+    border-radius: 15px;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, border-color 0.3s;
+    background-color: #000;
+}
 
-        /* شريط التنقل */
-        .navbar {
-            background: rgba(0,0,0,0.95); display: flex; justify-content: space-between;
-            align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--gold);
-        }
-        .nav-links a { color: white; text-decoration: none; margin: 0 10px; font-size: 0.9em; }
-        .btn-contact { background: var(--gold); color: black !important; padding: 5px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; }
-
-        .header { padding: 20px 0; background: black; }
-        /* تحديث اسم اللوجو ليتطابق مع ملفك */
-        .logo { width: 150px; border-radius: 50%; border: 2px solid var(--gold); }
-
-        .container { max-width: 1000px; margin: 20px auto; background: var(--gray); padding: 25px; border-radius: 20px; }
-
-        /* توحيد أحجام الصور برمجياً */
-        .image-gallery {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;
-        }
-        .gallery-item { 
-            width: 100%; height: 350px; /* طول موحد */
-            object-fit: cover; /* لضمان عدم تمطط الصورة */
-            border-radius: 15px; border: 1px solid #333; transition: 0.3s; 
-        }
-        .gallery-item:hover { transform: scale(1.02); border-color: var(--gold); }
-
-        .youtube-card {
-            background: #c4302b; color: white; padding: 25px; border-radius: 15px;
-            text-decoration: none; display: block; margin: 20px 0;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="news-ticker">
-        <div class="ticker-content">
-             &nbsp; • &nbsp; 70% من النزاعات الأسرية تعود لأسباب رقمية &nbsp; • &nbsp; 40% زيادة في معدلات العزلة الاجتماعية &nbsp; • &nbsp; متوسط الاستخدام اليومي للفرد يتجاوز 5 ساعات &nbsp; • &nbsp; CiviStories مبادرة تهدف لحماية الترابط الأسري
-        </div>
-    </div>
-
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#about"><i class="fas fa-info-circle"></i> من نحن</a>
-            <a href="#goals"><i class="fas fa-bullseye"></i> أهدافنا</a>
-        </div>
-        <div style="display: flex; gap: 15px; align-items: center;">
-            <a href="mailto:anabileg@gmail.com" style="color:white;"><i class="fas fa-envelope"></i></a>
-            <a href="https://www.youtube.com/@CiviStories" target="_blank" style="color:white;"><i class="fab fa-youtube"></i></a>
-            <a href="https://wa.me/201009995015" target="_blank" class="btn-contact"><i class="fab fa-whatsapp"></i> تواصل معنا</a>
-        </div>
-    </nav>
-
-    <div class="header">
-        <img src="Civis%20%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA.png" alt="CiviStories" class="logo">
-    </div>
-
-    <div class="container">
-        <h1>CiviStories - وعي مجتمعي</h1>
-        
-        <div class="image-gallery">
-            <img src="img1.png" class="gallery-item" alt="إدمان الهاتف">
-            <img src="img2.png" class="gallery-item" alt="سباق الوقت">
-            <img src="img3.png" class="gallery-item" alt="انعزال الشباب">
-            <img src="img4.png" class="gallery-item" alt="تأثير السوشيال ميديا">
-        </div>
-
-        <a href="https://www.youtube.com/@CiviStories" target="_blank" class="youtube-card">
-            <h3><i class="fab fa-youtube"></i> اشترك في قناتنا الرسمية</h3>
-            <p>تابع أقوى القصص التوعوية والمحتوى الهادف</p>
-        </a>
-    </div>
-
-    <footer style="padding: 20px; color: #666;">
-        &copy; 2026 CiviStories | anabileg@gmail.com
-    </footer>
-
-</body>
-</html>
+.gallery-item:hover {
+    transform: scale(1.05);
+    border-color: var(--gold);
+    z-index: 10;
+}
