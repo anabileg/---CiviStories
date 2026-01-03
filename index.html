@@ -3,114 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories | حماية النسيج الاجتماعي</title>
+    <title>CiviStories | حماية النسيج الاجتماعي المصري</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --dark: #0b0b0b; --red: #b30000; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; padding: 0; visibility: hidden; } /* إخفاء الجسم حتى التحميل لمنع القفز */
         
-        .ticker { background: var(--red); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 0.9em; }
-        .ticker-inner { display: inline-block; animation: t 35s linear infinite; white-space: nowrap; }
+        /* منع القفز والاهتزاز */
+        html { scroll-behavior: auto !important; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; padding: 0; }
+        
+        /* شريط الأخبار العلوي (Ticker) - نظيف تماماً */
+        .ticker { background: var(--red); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 0.9em; box-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .ticker-inner { display: inline-block; animation: t 40s linear infinite; white-space: nowrap; padding-right: 100%; }
         @keyframes t { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
+        /* الهيدر واللوجو */
         .header { padding-top: 100px; padding-bottom: 20px; }
-        .logo { width: 90px; border-radius: 50%; border: 2px solid var(--gold); }
+        .logo { width: 90px; border-radius: 50%; border: 2px solid var(--gold); background: #000; }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-        .title { color: var(--gold); font-size: 1.5em; margin: 15px 0; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
+        .title { color: var(--gold); font-size: 1.6em; margin: 15px 0; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
 
-        .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
-        .gallery img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; border: 1px solid #333; }
+        /* معرض الصور - يظهر فوراً في الشاشة الأولى */
+        .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; min-height: 200px; }
+        .gallery img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; border: 1px solid #333; background: #1a1a1a; transition: 0.3s; }
+        .gallery img:hover { border-color: var(--gold); transform: scale(1.03); }
 
-        .eco-box { background: linear-gradient(45deg, #330000, #111); padding: 25px; border-radius: 20px; border: 1px solid var(--red); margin: 30px 0; }
+        /* قسم النزيف الاقتصادي - اللمسة الاحترافية */
+        .eco-box { background: linear-gradient(45deg, #330000, #111); padding: 30px; border-radius: 20px; border: 1px solid var(--red); margin: 30px 0; box-shadow: 0 10px 30px rgba(179,0,0,0.2); }
         .eco-grid { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
         .eco-val { color: #ff4d4d; font-size: 1.8em; font-weight: bold; display: block; }
+        .eco-label { color: #ccc; font-size: 0.9em; margin-top: 5px; }
 
+        /* شبكة الإحصائيات الصادمة */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
-        .stat-card { background: #181818; padding: 20px; border-radius: 15px; border-bottom: 3px solid var(--gold); }
+        .stat-card { background: #181818; padding: 20px; border-radius: 15px; border-bottom: 4px solid var(--gold); }
         .stat-card b { font-size: 1.6em; color: var(--gold); display: block; }
+        .stat-card p { font-size: 0.85em; margin-top: 10px; color: #bbb; }
 
+        /* كروت المؤسسات الرسمية */
         .info-card { background: #181818; padding: 25px; border-radius: 20px; border: 1px solid #333; text-align: right; margin-bottom: 20px; }
-        .info-card h3 { color: var(--gold); margin: 0 0 12px 0; border-right: 4px solid var(--gold); padding-right: 15px; }
+        .info-card h3 { color: var(--gold); margin-top: 0; border-right: 5px solid var(--gold); padding-right: 15px; }
 
-        .yt-btn { background: var(--red); color: white; padding: 25px; border-radius: 20px; text-decoration: none; display: block; margin: 40px 0; font-weight: bold; }
-        footer { padding: 40px; color: #555; font-size: 0.8em; border-top: 1px solid #222; }
+        /* زر اليوتيوب الكبير */
+        .yt-btn { background: var(--red); color: white; padding: 25px; border-radius: 20px; text-decoration: none; display: block; margin: 40px 0; font-weight: bold; font-size: 1.2em; transition: 0.3s; }
+        .yt-btn:hover { background: #e60000; transform: translateY(-3px); }
 
-        @media (max-width: 600px) { .gallery { grid-template-columns: repeat(2, 1fr); } .stats-grid { grid-template-columns: 1fr; } }
+        footer { padding: 40px; color: #666; font-size: 0.85em; border-top: 1px solid #222; }
+
+        /* توافق الموبايل */
+        @media (max-width: 600px) {
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: 1fr; }
+            .header { padding-top: 80px; }
+            .title { font-size: 1.3em; }
+        }
     </style>
 </head>
 <body>
-    <div id="start"></div>
 
     <script>
-        // إجبار المتصفح على البقاء في الأعلى قبل أي شيء
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
-        
-        window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
-            document.body.style.visibility = 'visible'; // إظهار الصفحة بعد التأكد من وجودها في الأعلى
-        });
     </script>
 
     <div class="ticker">
         <div class="ticker-inner">
-            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك •
+            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك • خسائر اقتصادية تقدر بـ ١٥ مليار جنيه سنوياً • ٩٣ ألف حالة طلاق سنوياً مرتبطة مباشرة بالمنصات • ٤٠% من بلاغات العنف الأسري أسبابها إلكترونية •
         </div>
     </div>
 
     <div class="header">
-        <img src="logo.png" class="logo" alt="CiviStories">
+        <img src="logo.png" class="logo" alt="CiviStories Logo">
     </div>
 
     <div class="container">
-        <h2 class="title">مبادرة CiviStories - وعي مجتمعي</h2>
-        <p>صرخة وعي وطنية تكشف "التسونامي الرقمي" الذي يهدد استقرار البيوت المصرية.</p>
+        <section>
+            <h2 class="title">مبادرة CiviStories - صرخة وعي</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">نكشف "التسونامي الرقمي" الذي يهدد استقرار البيوت المصرية بأرقام وحقائق من أرض الواقع.</p>
+        </section>
 
         <div class="gallery">
-            <img src="img1.png">
-            <img src="img2.png">
-            <img src="img3.png">
-            <img src="img4.png">
+            <img src="img1.png" alt="إدمان رقمي">
+            <img src="img2.png" alt="سباق مع الزمن">
+            <img src="img3.png" alt="عزلة أسرية">
+            <img src="img4.png" alt="تأثير المنصات">
         </div>
 
         <section id="economy">
             <div class="eco-box">
-                <h3 style="margin-top:0; color: var(--gold);">النزيف الاقتصادي</h3>
+                <h3 style="margin-top:0; color: var(--gold); font-size: 1.4em;">النزيف الاقتصادي</h3>
                 <div class="eco-grid">
-                    <div><span class="eco-val">١٥ مليار جنيه</span><p>خسارة إنتاجية سنوية</p></div>
-                    <div><span class="eco-val">٢.١ مليار جنيه</span><p>نصب إلكتروني أسرى</p></div>
+                    <div>
+                        <span class="eco-val">١٥ مليار جنيه</span>
+                        <p class="eco-label">خسارة إنتاجية سنوية بسبب المشاكل الرقمية</p>
+                    </div>
+                    <div>
+                        <span class="eco-val">٢.١ مليار جنيه</span>
+                        <p class="eco-label">خسائر الأسر من عمليات النصب الإلكتروني</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="stats">
             <div class="stats-grid">
-                <div class="stat-card"><b>٣ دقائق</b><p>حالة طلاق بسبب خلاف رقمي</p></div>
-                <div class="stat-card"><b>٥٧%</b><p>زيادة في معدلات الطلاق</p></div>
-                <div class="stat-card"><b>٤٠%</b><p>عنف أسري إلكتروني</p></div>
+                <div class="stat-card"><b>٣ دقائق</b><p>حالة طلاق رقمي جديدة في مصر</p></div>
+                <div class="stat-card"><b>٥٧%</b><p>زيادة في حالات الطلاق آخر ٥ سنوات</p></div>
+                <div class="stat-card"><b>٤٠%</b><p>من حالات العنف الأسري بدأت إلكترونياً</p></div>
             </div>
         </section>
 
         <section id="institutions">
-            <h2 class="title">موقف المؤسسات</h2>
+            <h2 class="title">شهادات المؤسسات الرسمية</h2>
             <div class="info-card">
                 <h3>الأزهر الشريف</h3>
-                <p>يرصد تسبب السوشيال ميديا في ٣٠% من حالات الطلاق المباشرة (٩٣,٣٠٠ حالة سنوياً).</p>
+                <p>يؤكد أن السوشيال ميديا مسؤولة عن ٣٠% من حالات الطلاق المباشرة، ما يعادل أكثر من ٩٣,٠٠٠ أسرة محطمة سنوياً.</p>
             </div>
             <div class="info-card">
                 <h3>الكنيسة المصرية</h3>
-                <p>٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالاستخدام الرقمي الخاطئ.</p>
+                <p>تشير الدراسات الكنسية إلى أن ٦٠% من النزاعات الأسرية داخل المجتمع القبطي تعود لإساءة استخدام المنصات الرقمية.</p>
             </div>
         </section>
 
-        <a href="https://www.youtube.com/@CiviStories" class="yt-btn">
-            اشترك في قناتنا الرسمية لإنقاذ بيت مصري
+        <a href="https://www.youtube.com/@CiviStories" class="yt-btn" target="_blank">
+            <i class="fab fa-youtube"></i> اشترك في قناتنا الرسمية وكن جزءاً من الحل
         </a>
     </div>
 
-    <footer>CiviStories | مبادرة وطنية للوعي | 2024</footer>
+    <footer>
+        <p>CiviStories | مبادرة وطنية لحماية النسيج الاجتماعي المصري | جميع الحقوق محفوظة 2024</p>
+        <p style="margin-top: 10px; color: #444;">المصدر: تقرير "تسونامي رقمي" - دراسة ميدانية وإحصائية</p>
+    </footer>
 
+    <script>
+        // إجبار المتصفح على البقاء في الأعلى عند إعادة التحميل
+        window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+        };
+    </script>
 </body>
 </html>
