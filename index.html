@@ -8,102 +8,106 @@
     <style>
         :root { --gold: #d4af37; --dark: #0b0b0b; --gray: #181818; --red: #b30000; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; line-height: 1.4; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; line-height: 1.4; }
 
-        /* شريط الإنذار المدمج */
+        /* شريط الإنذار */
         .ticker { background: var(--red); padding: 8px 0; position: fixed; width: 100%; top: 0; z-index: 2000; font-weight: bold; font-size: 0.85em; }
         .ticker-inner { display: inline-block; animation: t 35s linear infinite; white-space: nowrap; }
         @keyframes t { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* نافبار نحيف جداً لتوفير مساحة */
+        /* نافبار */
         .nav { background: rgba(0,0,0,0.95); display: flex; justify-content: space-between; align-items: center; padding: 5px 5%; position: fixed; top: 35px; width: 90%; z-index: 1000; border-bottom: 1px solid var(--gold); }
-        .nav a { color: #ddd; text-decoration: none; font-size: 0.8em; margin: 0 5px; }
-        .btn-w { background: var(--gold); color: #000 !important; padding: 4px 12px; border-radius: 15px; font-weight: bold; font-size: 0.75em !important; }
+        .nav a { color: #ddd; text-decoration: none; font-size: 0.85em; margin: 0 10px; }
+        .btn-w { background: var(--gold); color: #000 !important; padding: 5px 15px; border-radius: 15px; font-weight: bold; }
 
-        /* تقليل حجم الهيدر بشكل كبير */
-        .header { padding-top: 85px; padding-bottom: 10px; }
-        .logo { width: 70px; border-radius: 50%; border: 1px solid var(--gold); transition: 0.3s; }
+        /* الهيدر المحسن */
+        .header { padding-top: 100px; padding-bottom: 10px; }
+        .logo { width: 80px; border-radius: 50%; border: 1px solid var(--gold); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; }
-        .title { color: var(--gold); font-size: 1.4em; margin: 10px 0; border-bottom: 1px solid var(--gold); display: inline-block; }
+        .title { color: var(--gold); font-size: 1.3em; margin: 15px 0; border-bottom: 1px solid var(--gold); display: inline-block; }
 
-        /* معرض الصور - محسّن ليظهر كاملاً فور الفتح */
+        /* معرض الصور - يظهر في أول الشاشة */
         .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0; }
         .gallery img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 10px; border: 1px solid #333; }
 
-        /* قسم النزيف الاقتصادي مدمج */
-        .eco { background: linear-gradient(45deg, #2c0000, #111); padding: 15px; border-radius: 15px; border: 1px solid var(--red); margin: 15px 0; }
+        /* النزيف الاقتصادي */
+        .eco { background: linear-gradient(45deg, #2c0000, #111); padding: 15px; border-radius: 15px; border: 1px solid var(--red); margin: 20px 0; }
         .eco-grid { display: flex; justify-content: space-around; gap: 10px; }
-        .eco-item h4 { font-size: 1.1em; color: #ff4d4d; margin: 0; }
-        .eco-item p { font-size: 0.75em; margin: 2px 0; }
+        .eco-item h4 { font-size: 1.2em; color: #ff4d4d; margin: 0; }
+        .eco-item p { font-size: 0.8em; margin: 5px 0; }
 
-        /* إحصائيات سريعة */
+        /* الإحصائيات */
         .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
         .stat { background: #1a1a1a; padding: 10px; border-radius: 10px; border-bottom: 2px solid var(--gold); }
-        .stat b { font-size: 1.1em; color: var(--gold); display: block; }
-        .stat p { font-size: 0.7em; margin: 0; }
+        .stat b { font-size: 1.2em; color: var(--gold); display: block; }
+        .stat p { font-size: 0.75em; margin: 0; }
 
-        .card { background: var(--gray); padding: 15px; border-radius: 15px; border: 1px solid #333; text-align: right; margin-bottom: 15px; }
-        .card h3 { color: var(--gold); font-size: 1.1em; margin-top: 0; }
-        .card p { font-size: 0.85em; }
+        .card { background: var(--gray); padding: 20px; border-radius: 15px; border: 1px solid #333; text-align: right; margin-bottom: 15px; }
+        .card h3 { color: var(--gold); font-size: 1.2em; margin: 0 0 10px 0; }
 
-        .yt { background: var(--red); color: #fff; padding: 20px; border-radius: 15px; text-decoration: none; display: block; margin: 20px 0; }
-        footer { padding: 20px; color: #666; font-size: 0.75em; }
+        .yt { background: var(--red); color: #fff; padding: 25px; border-radius: 15px; text-decoration: none; display: block; margin: 25px 0; }
+        footer { padding: 30px; color: #666; font-size: 0.8em; }
 
-        /* ضبط الموبايل لضمان ظهور الصور */
         @media (max-width: 600px) {
             .gallery { grid-template-columns: repeat(2, 1fr); }
             .nav { width: 100%; padding: 5px 2%; }
-            .logo { width: 50px; }
-            .header { padding-top: 75px; }
+            .header { padding-top: 90px; }
         }
     </style>
 </head>
 <body>
 
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 10);
+        };
+    </script>
+
     <div class="ticker">
         <div class="ticker-inner">
-            [cite_start]• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة [cite: 5, 118] [cite_start]• ١٠٤ مليون محمول بوابات للجحيم الأسري [cite: 4] [cite_start]• ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم [cite: 126, 137] •
+            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا [cite: 142] • ١٠٤ مليون محمول بوابات للجحيم الأسري [cite: 141] • ٥٠% من الأسر المصرية معرضة للتفكك [cite: 263] •
         </div>
     </div>
 
     <nav class="nav">
         <div><a href="#about">الرسالة</a> <a href="#stats">الأرقام</a></div>
-        <a href="https://wa.me/201009995015" class="btn-w"><i class="fab fa-whatsapp"></i> تواصل</a>
+        <a href="https://wa.me/201009995015" class="btn-w">تواصل</a>
     </nav>
 
-    <div class="header">
+    <div class="header" id="top">
         <img src="logo.png" class="logo">
     </div>
 
     <div class="container">
-        
         <section id="about">
-            <h2 class="title" style="font-size: 1.1em;">مبادرة CiviStories</h2>
-            [cite_start]<p style="font-size: 0.85em; margin: 5px 0;">صرخة وعي وطنية تكشف "التسونامي الرقمي" الذي يهدد استقرار بيوتنا[cite: 1, 6].</p>
+            <h2 class="title">مبادرة CiviStories</h2>
+            <p style="font-size: 0.9em; margin-bottom: 20px;">صرخة وعي وطنية تكشف "التسونامي الرقمي" الذي يهدد استقرار بيوتنا[cite: 143].</p>
         </section>
 
         <div class="gallery">
-            <img src="img1.png" alt="إدمان الهاتف">
-            <img src="img2.png" alt="سباق الوقت">
-            <img src="img3.png" alt="انعزال الشباب">
-            <img src="img4.png" alt="تأثير السوشيال ميديا">
+            <img src="img1.png" loading="lazy">
+            <img src="img2.png" loading="lazy">
+            <img src="img3.png" loading="lazy">
+            <img src="img4.png" loading="lazy">
         </div>
 
         <section id="economy">
             <div class="eco">
                 <div class="eco-grid">
-                    [cite_start]<div class="eco-item"><h4>١٥ مليار جنيه</h4><p>خسارة إنتاجية سنوية [cite: 45]</p></div>
-                    [cite_start]<div class="eco-item"><h4>٢.١ مليار جنيه</h4><p>نصب إلكتروني أسرى [cite: 106]</p></div>
+                    <div class="eco-item"><h4>١٥ مليار جنيه</h4><p>خسارة إنتاجية سنوية </p></div>
+                    <div class="eco-item"><h4>٢.١ مليار جنيه</h4><p>نصب إلكتروني أسرى </p></div>
                 </div>
             </div>
         </section>
 
         <section id="stats">
             <div class="stats">
-                [cite_start]<div class="stat"><b>٣ دقائق</b><p>حالة طلاق [cite: 5]</p></div>
-                [cite_start]<div class="stat"><b>٥٧%</b><p>زيادة طلاق [cite: 24]</p></div>
-                [cite_start]<div class="stat"><b>٤٠%</b><p>عنف أسري [cite: 31]</p></div>
+                <div class="stat"><b>٣ دقائق</b><p>حالة طلاق [cite: 255]</p></div>
+                <div class="stat"><b>٥٧%</b><p>زيادة طلاق [cite: 161]</p></div>
+                <div class="stat"><b>٤٠%</b><p>عنف أسري [cite: 168]</p></div>
             </div>
         </section>
 
@@ -111,17 +115,17 @@
             <h2 class="title">موقف المؤسسات</h2>
             <div class="card">
                 <h3>الأزهر الشريف</h3>
-                [cite_start]<p>يرصد تسبب السوشيال ميديا في ٣٠% من حالات الطلاق المباشرة (٩٣ ألف حالة سنوياً)[cite: 10, 11].</p>
+                <p>يرصد تسبب السوشيال ميديا في ٣٠% من حالات الطلاق المباشرة (٩٣ ألف حالة سنوياً)[cite: 147, 148].</p>
             </div>
             <div class="card">
                 <h3>الكنيسة المصرية</h3>
-                [cite_start]<p>٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالمنصات الرقمية[cite: 20].</p>
+                <p>٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالمنصات الرقمية[cite: 157].</p>
             </div>
         </section>
 
         <a href="https://www.youtube.com/@CiviStories" class="yt">
             <h3 style="margin:0">قناة اليوتيوب الرسمية</h3>
-            <p style="margin:5px 0">شاهد قصصنا لإنقاذ النسيج الاجتماعي</p>
+            <p style="margin:5px 0">ساهم في إنقاذ النسيج الاجتماعي المصري</p>
         </a>
     </div>
 
