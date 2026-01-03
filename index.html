@@ -9,58 +9,64 @@
         :root { --gold: #d4af37; --dark: #0b0b0b; --red: #b30000; }
         html { scroll-behavior: smooth; }
         body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background: var(--dark); color: #f1f1f1; margin: 0; padding: 0; }
-
+        
         /* شريط الإنذار العلوي */
-        .ticker { background: var(--red); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 0.9em; }
-        .ticker-inner { display: inline-block; animation: t 40s linear infinite; white-space: nowrap; }
+        .ticker { background: var(--red); padding: 10px 0; position: fixed; width: 100%; top: 0; z-index: 9999; font-weight: bold; font-size: 0.9em; border-bottom: 1px solid rgba(255,255,255,0.2); }
+        .ticker-inner { display: inline-block; animation: t 35s linear infinite; white-space: nowrap; }
         @keyframes t { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* الهيدر المحسن لعدم شغل مساحة */
-        .header { padding-top: 80px; padding-bottom: 20px; background: linear-gradient(to bottom, #1a1a1a, var(--dark)); }
-        .logo { width: 90px; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); }
+        /* الهيدر واللوجو */
+        .header { padding-top: 100px; padding-bottom: 20px; }
+        .logo { width: 90px; border-radius: 50%; border: 2px solid var(--gold); }
 
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
         .title { color: var(--gold); font-size: 1.5em; margin: 15px 0; border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 5px; }
 
-        /* معرض الصور - البطل الرئيسي للشاشة الأولى */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
+        /* معرض الصور - الشاشة الأولى */
+        .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
         .gallery img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; border: 1px solid #333; transition: 0.3s; }
-        .gallery img:hover { transform: translateY(-5px); border-color: var(--gold); }
+        .gallery img:hover { border-color: var(--gold); transform: scale(1.02); }
 
-        [cite_start]/* النزيف الاقتصادي بصياغة التقرير [cite: 1] */
+        /* قسم النزيف الاقتصادي */
         .eco-box { background: linear-gradient(45deg, #330000, #111); padding: 25px; border-radius: 20px; border: 1px solid var(--red); margin: 30px 0; }
-        .eco-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .eco-grid { display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
         .eco-val { color: #ff4d4d; font-size: 1.8em; font-weight: bold; display: block; }
-        .cite-tag { font-size: 0.7em; color: var(--gold); vertical-align: super; margin-left: 5px; }
+        .eco-label { font-size: 0.9em; color: #ccc; margin-top: 5px; }
 
-        /* الإحصائيات */
+        /* شبكة الإحصائيات */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
-        .stat-card { background: #181818; padding: 15px; border-radius: 15px; border-bottom: 3px solid var(--gold); }
-        .stat-card b { font-size: 1.5em; color: var(--gold); display: block; }
+        .stat-card { background: #181818; padding: 20px; border-radius: 15px; border-bottom: 3px solid var(--gold); }
+        .stat-card b { font-size: 1.6em; color: var(--gold); display: block; }
+        .stat-card p { font-size: 0.85em; margin: 10px 0 0; color: #aaa; }
 
+        /* كروت المؤسسات */
         .info-card { background: #181818; padding: 25px; border-radius: 20px; border: 1px solid #333; text-align: right; margin-bottom: 20px; }
-        .info-card h3 { color: var(--gold); margin-top: 0; border-right: 4px solid var(--gold); padding-right: 15px; }
+        .info-card h3 { color: var(--gold); margin: 0 0 12px 0; border-right: 4px solid var(--gold); padding-right: 15px; }
+        .info-card p { line-height: 1.6; font-size: 0.95em; }
 
-        .yt-btn { background: var(--red); color: white; padding: 25px; border-radius: 20px; text-decoration: none; display: block; margin: 40px 0; font-weight: bold; }
+        /* زر اليوتيوب */
+        .yt-btn { background: var(--red); color: white; padding: 25px; border-radius: 20px; text-decoration: none; display: block; margin: 40px 0; font-weight: bold; font-size: 1.1em; transition: 0.3s; }
+        .yt-btn:hover { background: #e60000; box-shadow: 0 5px 15px rgba(179, 0, 0, 0.4); }
+
         footer { padding: 40px; color: #555; font-size: 0.8em; border-top: 1px solid #222; }
 
         @media (max-width: 600px) {
             .gallery { grid-template-columns: repeat(2, 1fr); }
             .stats-grid { grid-template-columns: 1fr; }
+            .header { padding-top: 80px; }
         }
     </style>
 </head>
 <body>
 
     <script>
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
-        window.onload = function() { setTimeout(function() { window.scrollTo(0, 0); }, 10); };
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
     </script>
 
     <div class="ticker">
         <div class="ticker-inner">
-            [cite_start]• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة [cite: 142] [cite_start]• ١٠٤ مليون محمول بوابات للجحيم الأسري [cite: 141] [cite_start]• ٥٠% من الأسر المصرية معرضة للتفكك [cite: 263] •
+            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا [cite: 142, 255] • ١٠٤ مليون محمول بوابات للجحيم الأسري [cite: 141] • ٥٠% من الأسر المصرية معرضة للتفكك [cite: 263, 274] •
         </div>
     </div>
 
@@ -69,29 +75,27 @@
     </div>
 
     <div class="container">
-        <section id="hero">
-            <h2 class="title">مبادرة CiviStories - وعي مجتمعي</h2>
-            [cite_start]<p>صرخة وعي وطنية تكشف "التسونامي الرقمي" الذي يهدد استقرار البيوت المصرية بأرقام وصور صادمة[cite: 138, 140].</p>
-        </section>
+        <h2 class="title">مبادرة CiviStories - وعي مجتمعي</h2>
+        <p style="margin-bottom: 30px;">صرخة وعي وطنية تكشف "التسونامي الرقمي" الذي يهدد استقرار البيوت المصرية[cite: 138, 165].</p>
 
         <div class="gallery">
-            <img src="img1.png" alt="الواقع">
-            <img src="img2.png" alt="الواقع">
-            <img src="img3.png" alt="الواقع">
-            <img src="img4.png" alt="الواقع">
+            <img src="img1.png" alt="الواقع المر">
+            <img src="img2.png" alt="سباق الوقت">
+            <img src="img3.png" alt="العزلة الرقمية">
+            <img src="img4.png" alt="تأثير المنصات">
         </div>
 
         <section id="economy">
             <div class="eco-box">
-                [cite_start]<h3 style="margin-top:0">النزيف الاقتصادي <span class="cite-tag">[cite: 179]</span></h3>
+                <h3 style="margin-top:0; color: var(--gold);">النزيف الاقتصادي</h3>
                 <div class="eco-grid">
                     <div>
                         <span class="eco-val">١٥ مليار جنيه</span>
-                        [cite_start]<p>خسارة إنتاجية سنوية بسبب المشاكل الرقمية [cite: 182]</p>
+                        <p class="eco-label">خسارة إنتاجية سنوية </p>
                     </div>
                     <div>
                         <span class="eco-val">٢.١ مليار جنيه</span>
-                        [cite_start]<p>خسائر أسرية بسبب النصب الإلكتروني [cite: 243]</p>
+                        <p class="eco-label">خسائر النصب الإلكتروني الأسرى </p>
                     </div>
                 </div>
             </div>
@@ -99,21 +103,21 @@
 
         <section id="stats">
             <div class="stats-grid">
-                [cite_start]<div class="stat-card"><b>٣ دقائق</b><p>حالة طلاق رقمي [cite: 255]</p></div>
-                [cite_start]<div class="stat-card"><b>٥٧%</b><p>زيادة في الطلاق [cite: 161]</p></div>
-                [cite_start]<div class="stat-card"><b>٤٠%</b><p>عنف أسري إلكتروني [cite: 168]</p></div>
+                <div class="stat-card"><b>٣ دقائق</b><p>حالة طلاق بسبب خلاف رقمي [cite: 142, 255]</p></div>
+                <div class="stat-card"><b>٥٧%</b><p>زيادة في معدلات الطلاق (٢٠١٨-٢٠٢٣) [cite: 161]</p></div>
+                <div class="stat-card"><b>٤٠%</b><p>من بلاغات العنف الأسري أسبابها إلكترونية [cite: 168]</p></div>
             </div>
         </section>
 
         <section id="institutions">
             <h2 class="title">موقف المؤسسات</h2>
             <div class="info-card">
-                [cite_start]<h3>الأزهر الشريف <span class="cite-tag">[cite: 146]</span></h3>
-                [cite_start]<p>يرصد تسبب السوشيال ميديا في ٣٠% من حالات الطلاق المباشرة، ما يعادل ٩٣ ألف حالة سنوياً[cite: 147, 148].</p>
+                <h3>الأزهر الشريف</h3>
+                <p>يرصد تسبب السوشيال ميديا في ٣٠% من حالات الطلاق المباشرة، ما يعادل ٩٣,٣٠٠ حالة سنوياً[cite: 147, 148].</p>
             </div>
             <div class="info-card">
-                [cite_start]<h3>الكنيسة المصرية <span class="cite-tag">[cite: 155]</span></h3>
-                [cite_start]<p>٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالاستخدام الرقمي الخاطئ[cite: 157].</p>
+                <h3>الكنيسة المصرية</h3>
+                <p>٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالاستخدام الرقمي الخاطئ[cite: 157].</p>
             </div>
         </section>
 
@@ -123,8 +127,8 @@
     </div>
 
     <footer>
-        <p>CiviStories | مبادرة وطنية للوعي | 2024</p>
-    </div>
+        <p>CiviStories | مبادرة وطنية للوعي | جميع الحقوق محفوظة 2024</p>
+    </footer>
 
 </body>
 </html>
