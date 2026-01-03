@@ -3,59 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories - وعي مجتمعي</title>
+    <title>CiviStories - مبادرة الوعي المجتمعي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --dark: #0b0b0b; --gray: #181818; --red: #c4302b; }
-        body { font-family: 'Segoe UI', sans-serif; text-align: center; background-color: var(--dark); color: #f1f1f1; margin: 0; padding: 0; overflow-x: hidden; }
+        :root { --gold: #d4af37; --dark: #0b0b0b; --gray: #181818; --red: #8b0000; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; text-align: center; background-color: var(--dark); color: #f1f1f1; margin: 0; padding: 0; }
 
         /* شريط الأخبار المتحرك */
-        .news-ticker { background: #8b0000; color: white; padding: 10px 0; font-weight: bold; overflow: hidden; white-space: nowrap; }
-        .ticker-content { display: inline-block; animation: ticker 25s linear infinite; }
+        .news-ticker { background: var(--red); color: white; padding: 12px 0; font-weight: bold; overflow: hidden; white-space: nowrap; position: fixed; width: 100%; top: 0; z-index: 2000; }
+        .ticker-content { display: inline-block; animation: ticker 40s linear infinite; }
         @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
         /* شريط التنقل */
-        .navbar { background: rgba(0,0,0,0.95); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 0; z-index: 1000; border-bottom: 2px solid var(--gold); }
-        .nav-links a { color: white; text-decoration: none; margin: 0 10px; font-size: 0.9em; }
-        .btn-contact { background: var(--gold); color: black !important; padding: 5px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px; }
+        .navbar { background: rgba(0,0,0,0.95); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; position: sticky; top: 43px; z-index: 1000; border-bottom: 2px solid var(--gold); }
+        .nav-links a { color: white; text-decoration: none; margin: 0 12px; font-size: 0.95em; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .btn-contact { background: var(--gold); color: black !important; padding: 7px 18px; border-radius: 20px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px; }
 
-        .header { padding: 30px 0; background: black; }
-        .logo { width: 140px; border-radius: 50%; border: 2px solid var(--gold); }
+        .header { padding: 50px 0 20px; background: black; }
+        .logo { width: 140px; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212,175,55,0.2); }
 
-        .container { max-width: 1100px; margin: 20px auto; background: var(--gray); padding: 25px; border-radius: 20px; }
+        .container { max-width: 1100px; margin: 20px auto; background: var(--gray); padding: 40px 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        section { margin-bottom: 60px; padding-top: 20px; }
+        h2 { color: var(--gold); border-bottom: 2px solid var(--gold); display: inline-block; padding-bottom: 10px; margin-bottom: 30px; }
 
-        /* تنسيق الصور الموحد */
-        .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0; }
-        .gallery-item { 
-            width: 100%; 
-            aspect-ratio: 2 / 3; /* توحيد المقاس بشكل طولي */
-            object-fit: cover; 
-            border-radius: 15px; 
-            border: 1px solid #333; 
-            transition: 0.4s ease; 
+        /* تنسيق الصور */
+        .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin: 40px 0; }
+        .gallery-item { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 15px; border: 1px solid #333; transition: 0.4s; }
+        .gallery-item:hover { transform: scale(1.03); border-color: var(--gold); }
+
+        /* صناديق الإحصائيات */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .stat-box { background: #222; padding: 25px; border-radius: 15px; border-top: 4px solid var(--gold); }
+        .stat-number { display: block; font-size: 2.2em; font-weight: bold; color: var(--gold); margin-bottom: 5px; }
+        .stat-text { font-size: 0.9em; color: #ccc; line-height: 1.6; }
+
+        /* قسم من نحن والأهداف */
+        .info-card { text-align: right; background: #222; padding: 30px; border-radius: 15px; line-height: 1.8; margin-bottom: 20px; border-right: 5px solid var(--gold); }
+
+        .youtube-card { background: #c4302b; color: white; padding: 30px; border-radius: 15px; text-decoration: none; display: block; transition: 0.3s; }
+        .youtube-card:hover { transform: translateY(-5px); }
+
+        footer { padding: 40px 0; color: #666; font-size: 0.9em; background: #050505; }
+
+        @media (max-width: 600px) {
+            .nav-links { display: none; }
+            .stat-number { font-size: 1.8em; }
         }
-        .gallery-item:hover { transform: translateY(-10px); border-color: var(--gold); }
-
-        .youtube-card { background: var(--red); color: white; padding: 25px; border-radius: 15px; text-decoration: none; display: block; margin: 30px 0; }
-        footer { padding: 40px 0; color: #666; font-size: 0.9em; }
     </style>
 </head>
 <body>
 
     <div class="news-ticker">
         <div class="ticker-content">
-             &nbsp; • &nbsp; 70% من النزاعات الأسرية تعود لأسباب رقمية &nbsp; • &nbsp; 40% زيادة في معدلات العزلة الاجتماعية &nbsp; • &nbsp; مبادرة CiviStories تهدف لحماية الترابط الأسري في العصر الرقمي
+             &nbsp; • إنذار أحمر: ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم &nbsp; • كل ٣ دقائق حالة طلاق بسبب خلاف رقمي &nbsp; • ١٠٤ مليون محمول بوابات للجحيم الأسري &nbsp; • ٧١% من المصريين يبدأون يومهم بالسوشيال ميديا &nbsp; •
         </div>
     </div>
 
     <nav class="navbar">
         <div class="nav-links">
-            <a href="#"><i class="fas fa-info-circle"></i> من نحن</a>
-            <a href="#"><i class="fas fa-bullseye"></i> أهدافنا</a>
+            <a href="#about">من نحن</a>
+            <a href="#goals">أهدافنا</a>
+            <a href="#stats">إحصائيات</a>
         </div>
         <div style="display: flex; gap: 15px; align-items: center;">
-            <a href="mailto:anabileg@gmail.com"><i class="fas fa-envelope" style="color: white;"></i></a>
-            <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube" style="color: white;"></i></a>
+            <a href="mailto:anabileg@gmail.com" title="راسلنا"><i class="fas fa-envelope" style="color: white; font-size: 1.2em;"></i></a>
+            <a href="https://www.youtube.com/@CiviStories" target="_blank" title="يوتيوب"><i class="fab fa-youtube" style="color: white; font-size: 1.2em;"></i></a>
             <a href="https://wa.me/201009995015" target="_blank" class="btn-contact"><i class="fab fa-whatsapp"></i> تواصل معنا</a>
         </div>
     </nav>
@@ -65,8 +80,36 @@
     </div>
 
     <div class="container">
-        <h1>CiviStories - وعي مجتمعي</h1>
         
+        <section id="about">
+            <h2>من نحن</h2>
+            <div class="info-card">
+                نحن في <strong>CiviStories</strong> صرخة وعي تنطلق من قلب غيور على الوطن والدين والإنسانية. نحن مبادرة مجتمعية مستقلة تهدف إلى كشف القناع عن "التسونامي الرقمي" الذي يهدد استقرار البيوت المصرية. نؤمن أن الشاشات التي صُنعت للتقريب، أصبحت قنابل موقوتة تنفجر داخل منازلنا، لذا قررنا توظيف الفن البصري والبيانات الحقيقية لنعيد للمجتمع توازنه ونحمي النسيج الاجتماعي من التفكك.
+            </div>
+        </section>
+
+        <section id="stats">
+            <h2>إحصائيات صادمة</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-number">٣ دقائق</span>
+                    <span class="stat-text">تنفجر فيها أسرة مصرية بحالة طلاق جديدة</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">٥٧%</span>
+                    <span class="stat-text">زيادة في معدلات الطلاق خلال ٥ سنوات فقط</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">٤٠%</span>
+                    <span class="stat-text">من بلاغات العنف الأسري سببها "السوشيال ميديا"</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">٦ ساعات</span>
+                    <span class="stat-text">متوسط الوقت الضائع يومياً خلف الشاشات</span>
+                </div>
+            </div>
+        </section>
+
         <div class="image-gallery">
             <img src="img1.png" class="gallery-item" alt="إدمان الهاتف">
             <img src="img2.png" class="gallery-item" alt="سباق الوقت">
@@ -74,15 +117,8 @@
             <img src="img4.png" class="gallery-item" alt="تأثير السوشيال ميديا">
         </div>
 
-        <a href="https://www.youtube.com/@CiviStories" target="_blank" class="youtube-card">
-            <h3><i class="fab fa-youtube"></i> اشترك في قناتنا الرسمية</h3>
-            <p>انضم إلينا لمتابعة المحتوى التوعوي الهادف</p>
-        </a>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 CiviStories | anabileg@gmail.com</p>
-    </footer>
-
-</body>
-</html>
+        <section id="goals">
+            <h2>أهدافنا</h2>
+            <div class="info-card">
+                <ul>
+                    <li><strong>الاستيقاظ من الغيبوبة الرقمية:</strong> تنبيه الأسر لخطورة ١٠٤ مليون سلاح فتاك (محمول) يحملونه
