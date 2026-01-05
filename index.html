@@ -20,11 +20,11 @@
             100% { transform: translateX(50%); } 
         }
 
-        /* شريط التواصل العلوي - تم تعديل المسافات لتناسب الأيقونة الجديدة */
-        .top-nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 50px; width: 90%; z-index: 999; border-bottom: 1px solid var(--gold); display: flex; justify-content: flex-start; align-items: center; gap: 10px; }
-        .top-nav a { color: var(--gold); text-decoration: none; font-size: 1.2em; display: flex; align-items: center; transition: 0.3s; }
+        /* شريط التواصل العلوي - تم ضغط المسافات (gap: 8px) لتناسب 8 أيقونات وزر التواصل */
+        .top-nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 50px; width: 90%; z-index: 999; border-bottom: 1px solid var(--gold); display: flex; justify-content: flex-start; align-items: center; gap: 8px; }
+        .top-nav a { color: var(--gold); text-decoration: none; font-size: 1.15em; display: flex; align-items: center; transition: 0.3s; }
         .top-nav a:hover { color: #fff; }
-        .whatsapp-btn { background: var(--gold); color: #000 !important; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.75em; display: flex; align-items: center; gap: 5px; }
+        .whatsapp-btn { background: var(--gold); color: #000 !important; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.75em; display: flex; align-items: center; gap: 5px; margin-left: 5px; }
 
         .header { padding-top: 150px; padding-bottom: 20px; }
         .logo { width: 90px; border-radius: 50%; border: 2px solid var(--gold); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
@@ -53,8 +53,9 @@
             .gallery { grid-template-columns: repeat(2, 1fr); }
             .stats-grid { grid-template-columns: 1fr; }
             .header { padding-top: 140px; }
-            .top-nav { gap: 6px; padding: 10px 2%; }
-            .top-nav a { font-size: 1.05em; }
+            .top-nav { gap: 5px; padding: 10px 1%; }
+            .top-nav a { font-size: 1em; }
+            .whatsapp-btn { padding: 4px 6px; font-size: 0.65em; }
         }
     </style>
 </head>
@@ -99,6 +100,10 @@
 
         <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" title="إنستجرام">
             <i class="fab fa-instagram"></i>
+        </a>
+
+        <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" title="لينكد إن">
+            <i class="fab fa-linkedin"></i>
         </a>
 
         <a href="https://www.youtube.com/@CiviStories" target="_blank" title="يوتيوب">
