@@ -19,24 +19,28 @@
             font-size: 1.2em; cursor: pointer; z-index: 9999999; border: 2px solid #fff;
         }
 
-        /* شريط الأخبار المتحرك */
+        /* شريط الأخبار */
         .ticker-bar { background: var(--accent-red); height: 40px; position: fixed; top: 0; width: 100%; z-index: 10002; display: flex; align-items: center; overflow: hidden; }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 60s linear infinite; font-weight: bold; font-size: 0.95em; color: #fff; }
         @keyframes moveTicker { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 
         /* الناف بار */
         .top-nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
-        .social-links { display: flex; gap: 12px; align-items: center; }
         
-        /* ألوان السوشيال ميديا الرسمية */
-        .social-links a { font-size: 1.3em; transition: 0.3s; text-decoration: none; }
+        /* ميديا بالألوان الرسمية */
+        .social-links { display: flex; gap: 15px; align-items: center; }
+        .social-links a { font-size: 1.3em; text-decoration: none; transition: 0.3s; }
         .fa-facebook { color: #1877F2; }
         .fa-x-twitter { color: #fff; }
         .fa-instagram { color: #E4405F; }
         .fa-tiktok { color: #fff; }
         .fa-youtube { color: #FF0000; }
         .fa-linkedin { color: #0A66C2; }
-        .fa-whatsapp { color: #25D366; }
+        
+        /* قسم التواصل السريع (واتساب + إيميل) */
+        .quick-contact { display: flex; gap: 15px; align-items: center; border-right: 1px solid #333; padding-right: 15px; }
+        .fa-whatsapp { color: #25D366; font-size: 1.5em; }
+        .fa-envelope { color: var(--gold); font-size: 1.3em; }
 
         .nav-links { display: flex; gap: 20px; list-style: none; }
         .nav-links a { color: #fff; text-decoration: none; font-size: 0.85em; font-weight: bold; cursor: pointer; }
@@ -47,9 +51,8 @@
         .cover-box { flex: 0 0 300px; text-align: center; }
         .cover-img { width: 100%; border-radius: 8px; border: 1px solid #333; margin-bottom: 15px; }
         
-        /* أزرار التحميل والطباعة */
         .book-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-        .btn-action { background: #222; color: var(--gold); border: 1px solid var(--gold); padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.3s; text-decoration: none; }
+        .btn-action { background: #222; color: var(--gold); border: 1px solid var(--gold); padding: 10px 18px; border-radius: 5px; cursor: pointer; font-size: 0.85em; font-weight: bold; transition: 0.3s; text-decoration: none; display: flex; align-items: center; gap: 8px; }
         .btn-action:hover { background: var(--gold); color: #000; }
 
         /* السلايدر */
@@ -58,16 +61,24 @@
         .photo-track img { height: 350px; margin: 0 10px; border: 1px solid var(--gold); border-radius: 5px; }
         @keyframes continuousScroll { from { left: 0; } to { left: -12000px; } }
 
-        /* الأقسام */
+        /* الأقسام الإحصائية */
         section { padding: 60px 8%; border-bottom: 1px solid #1a1a1a; }
         .data-header { color: var(--gold); font-size: 1.8em; margin-bottom: 30px; border-right: 5px solid var(--gold); padding-right: 15px; font-weight: bold; }
         .grid-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         .card { background: #151515; padding: 30px; border-radius: 10px; border-bottom: 3px solid var(--gold); }
         .economy-warn { background: linear-gradient(to bottom, #200, #000); padding: 50px; border: 1px solid var(--accent-red); text-align: center; border-radius: 20px; }
         
-        /* تعديلات اللغة الإنجليزية */
+        /* وضع الطباعة الاحترافي */
+        @media print {
+            .ticker-bar, .top-nav, .book-actions, #backToTop, .social-links, .lang-switch { display: none !important; }
+            body { background: white; color: black; }
+            .card, .economy-warn { border: 1px solid #ccc; background: white; color: black; page-break-inside: avoid; }
+            .data-header { color: black; border-color: black; }
+        }
+
         .en-mode { direction: ltr !important; }
         .en-mode .data-header { border-right: none; border-left: 5px solid var(--gold); padding-left: 15px; text-align: left; }
+        .en-mode .quick-contact { border-right: none; border-left: 1px solid #333; padding-left: 15px; }
         .en-mode .ticker-container { animation: moveTickerEN 60s linear infinite; }
         @keyframes moveTickerEN { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
     </style>
@@ -91,23 +102,27 @@
             <a href="#"><i class="fab fa-tiktok"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
+        
         <ul class="nav-links">
             <li><a onclick="document.getElementById('about-sec').scrollIntoView()" id="link1">الرؤية الاستراتيجية</a></li>
             <li><a onclick="document.getElementById('reports-sec').scrollIntoView()" id="link2">التقارير السيادية</a></li>
             <li><a onclick="document.getElementById('stats-sec').scrollIntoView()" id="link3">المرصد الإحصائي</a></li>
             <li><a onclick="document.getElementById('eco-sec').scrollIntoView()" id="link4">التكلفة القومية</a></li>
         </ul>
-        <div class="quick-contact"><a href="mailto:civistories@gmail.com" style="color:var(--gold);"><i class="fas fa-envelope"></i></a></div>
+
+        <div class="quick-contact">
+            <a href="https://wa.me/201009995015" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:civistories@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        </div>
     </nav>
 
     <div class="main-hero">
         <div class="cover-box">
-            <img src="CIVISTORIES Book.png" class="cover-img">
+            <img src="CIVISTORIES Book.png" class="cover-img" id="bookCover">
             <h1 id="mainTitle" style="color:var(--gold); font-size: 1.4em;">تسونامي الوهم الرقمي</h1>
             <div class="book-actions">
-                <a href="CIVISTORIES Book.png" download class="btn-action" id="btnDownload"><i class="fas fa-download"></i> تنزيل</a>
+                <a href="CIVISTORIES Book.png" download="CiviStories_Book" class="btn-action" id="btnDownload"><i class="fas fa-file-download"></i> تنزيل</a>
                 <button onclick="window.print()" class="btn-action" id="btnPrint"><i class="fas fa-print"></i> طباعة</button>
                 <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-action" id="btnRead"><i class="fas fa-book-open"></i> قراءة</a>
             </div>
@@ -157,14 +172,12 @@
     </footer>
 
     <script>
-        // سهم الصعود
         window.onscroll = function() {
             const btn = document.getElementById("backToTop");
             if (document.documentElement.scrollTop > 500) { btn.style.display = "flex"; } 
             else { btn.style.display = "none"; }
         };
 
-        // تحميل الصور
         const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
         const track = document.getElementById('imageTrack');
         function loadImgs() {
@@ -177,7 +190,6 @@
         }
         loadImgs();
 
-        // العدادات
         const startCounters = () => {
             document.querySelectorAll('.counter').forEach(counter => {
                 const target = +counter.getAttribute('data-target');
@@ -194,7 +206,6 @@
         };
         new IntersectionObserver((entries) => { if(entries[0].isIntersecting) startCounters(); }, { threshold: 0.5 }).observe(document.querySelector('#stats-sec'));
 
-        // الترجمة
         let currentLang = 'ar';
         const trans = {
             en: {
