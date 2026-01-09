@@ -14,85 +14,92 @@
             --accent-red: #b30000; 
             --white-text: #f1f1f1;
             --card-bg: #181818;
-            --shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
         body { 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
-            text-align: center; 
             background: var(--dark-bg); 
             color: var(--white-text); 
-            line-height: 1.8;
+            text-align: center;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* 1. شريط الأخبار العاجلة */
+        /* 1. شريط الأخبار العاجلة المتحرك */
         .ticker-bar { 
             background: var(--accent-red); padding: 12px 0; position: fixed; 
-            width: 100%; top: 0; z-index: 10002; font-weight: bold; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            top: 0; width: 100%; z-index: 10002; font-weight: bold; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
         }
-        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 70s linear infinite; }
-        .ticker-item { display: inline-block; padding-left: 100px; font-size: 1.1em; }
-        @keyframes moveTicker { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
+        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; }
+        .ticker-item { display: inline-block; padding-left: 60px; font-size: 1.1em; color: #fff; }
+        @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* 2. شريط التنقل والسوشيال ميديا */
+        /* 2. شريط السوشيال ميديا والتواصل (كامل) */
         .main-nav { 
             background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            padding: 15px 5%; position: fixed; top: 45px; width: 100%; 
+            padding: 12px 5%; position: fixed; top: 45px; width: 100%; 
             z-index: 10001; border-bottom: 1px solid var(--gold);
-            display: flex; justify-content: center; align-items: center; gap: 20px; 
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .main-nav a { color: var(--gold); text-decoration: none; font-size: 1.3em; transition: 0.3s; }
-        .main-nav a:hover { transform: scale(1.2); color: #fff; }
+        .social-group { display: flex; gap: 12px; align-items: center; }
+        .social-group a { color: var(--gold); text-decoration: none; font-size: 1.3em; transition: 0.3s; }
+        .social-group a:hover { color: #fff; transform: translateY(-3px); }
         
-        .contact-center-btn { 
-            background: var(--gold); color: #000 !important;
-            padding: 8px 20px; border-radius: 50px; font-weight: 800; font-size: 0.9em;
-            display: flex; align-items: center; gap: 8px; box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        .contact-btn { 
+            background: var(--gold); color: #000 !important; padding: 6px 15px; 
+            border-radius: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px;
+            text-decoration: none; font-size: 0.9em;
         }
 
-        /* 3. قسم الكتاب الاحترافي (الجديد) */
-        .book-showcase { padding: 100px 20px 60px; max-width: 1000px; margin: 0 auto; }
-        .book-container { 
-            display: inline-block; transition: 0.5s; cursor: pointer; text-decoration: none; 
+        /* 3. قسم الكتاب التفاعلي (الغلاف المرفوع) */
+        .book-hero { padding: 160px 20px 60px; position: relative; }
+        .book-wrapper { 
+            display: inline-block; position: relative; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); 
+            cursor: pointer; text-decoration: none;
         }
-        .book-cover-img {
-            width: 280px; border-radius: 5px 15px 15px 5px; border-left: 4px solid #222;
-            box-shadow: -15px 15px 40px rgba(0,0,0,0.8), 0 0 20px rgba(212, 175, 55, 0.2);
-            transition: 0.5s;
+        .book-img { 
+            width: 320px; border-radius: 5px 15px 15px 5px; 
+            box-shadow: -15px 20px 50px rgba(0,0,0,0.9); 
+            border-left: 3px solid #333;
         }
-        .book-container:hover .book-cover-img { transform: rotateY(-10deg) scale(1.05); }
-        .book-title { color: var(--gold); font-size: 2.2em; margin-top: 20px; display: block; font-weight: bold; }
-        .book-desc { color: #aaa; max-width: 600px; margin: 15px auto; font-size: 1.1em; }
+        .book-wrapper:hover { transform: perspective(1000px) rotateY(-10deg) translateY(-10px); }
+        .book-wrapper:hover .book-img { box-shadow: -25px 30px 60px rgba(212, 175, 55, 0.3); }
 
-        /* 4. قسم الإحصائيات الصادم */
-        .stats-section { padding: 60px 5%; background: #0f0f0f; }
-        .grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-        .card-stat { 
-            background: var(--card-bg); padding: 30px; border-radius: 20px; 
-            border-bottom: 5px solid var(--gold); transition: 0.3s; 
-        }
-        .card-stat b { font-size: 2.5em; color: var(--gold); display: block; }
+        .gold-title { color: var(--gold); font-size: 2.5em; margin: 25px 0 10px; font-weight: 900; }
+        .description { color: #aaa; max-width: 750px; margin: 0 auto 30px; font-size: 1.1em; padding: 0 20px; }
 
-        /* 5. النزيف الاقتصادي */
-        .economy-section { 
-            background: linear-gradient(135deg, #300 0%, #111 100%); 
-            padding: 40px; border-radius: 30px; border: 1px solid var(--accent-red); margin: 40px 5%; 
-        }
-        .eco-stat { color: #ff4d4d; font-size: 2.5em; font-weight: 900; }
+        /* 4. الإحصائيات والنزيف الاقتصادي */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px 10%; }
+        .stat-card { background: var(--card-bg); padding: 35px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
+        .stat-card h2 { color: var(--gold); font-size: 2.8em; margin-bottom: 10px; }
 
-        /* 6. معرض الصور */
-        .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 40px 5%; }
-        .image-gallery img { width: 100%; border-radius: 15px; border: 2px solid #222; transition: 0.4s; }
-        .image-gallery img:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .economy-alert { 
+            background: linear-gradient(135deg, #400 0%, #111 100%); 
+            margin: 40px 10%; padding: 50px; border-radius: 30px; border: 1px solid var(--accent-red);
+        }
+        .eco-value { color: #ff3333; font-size: 3em; font-weight: 900; display: block; }
+
+        /* 5. معرض الصور الميدانية */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 40px 5%; }
+        .gallery-grid img { width: 100%; border-radius: 15px; border: 2px solid #222; transition: 0.5s; }
+        .gallery-grid img:hover { border-color: var(--gold); transform: scale(1.02); }
+
+        /* الأيقونات العائمة الجانبية */
+        .floating-social { position: fixed; left: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 15px; z-index: 9999; }
+        .floating-social a { 
+            width: 45px; height: 45px; background: rgba(255,255,255,0.1); 
+            display: flex; align-items: center; justify-content: center; 
+            border-radius: 50%; color: #fff; text-decoration: none; font-size: 1.2em;
+        }
+        .whatsapp-float { background: #25d366 !important; }
+        .facebook-float { background: #1877f2 !important; }
 
         @media (max-width: 768px) {
-            .main-nav { top: 40px; padding: 10px; gap: 10px; }
-            .book-cover-img { width: 200px; }
+            .main-nav { flex-direction: column; gap: 10px; top: 40px; }
+            .book-img { width: 250px; }
+            .ticker-bar { height: 40px; }
         }
     </style>
 </head>
@@ -106,52 +113,74 @@
     </div>
 
     <nav class="main-nav">
-        <div style="display: flex; gap: 15px;">
+        <div class="social-group">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="mailto:info@civistories.com"><i class="fas fa-envelope"></i></a>
         </div>
-        <a href="https://wa.me/201009995015" class="contact-center-btn" target="_blank">
-            <i class="fab fa-whatsapp"></i> تواصل معنا
+        
+        <a href="https://wa.me/201009995015" class="contact-btn" target="_blank">
+            تواصل الآن <i class="fab fa-whatsapp"></i>
         </a>
     </nav>
 
-    <section class="book-showcase">
-        <i class="fas fa-book-open" style="font-size: 3em; color: var(--gold); margin-bottom: 20px;"></i>
-        <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-container">
-            <img src="https://anabileg.github.io/---CiviStories/img1.png" alt="غلاف الكتاب" class="book-cover-img">
-            <span class="book-title">تسونامي الوهم الرقمي</span>
-            <p class="book-desc">إصدار تفاعلي يستعرض صرخة وعي لحماية الأسرة المصرية من مخاطر التفكك الرقمي. تصفح الإحصائيات والحلول الآن.</p>
-            <div style="color: var(--gold); border: 1px solid var(--gold); display: inline-block; padding: 5px 20px; border-radius: 20px;">اضغط للتصفح التفاعلي <i class="fas fa-arrow-left"></i></div>
+    <div class="floating-social">
+        <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="facebook-float"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" style="background:#000;"><i class="fab fa-x-twitter"></i></a>
+    </div>
+
+    <section class="book-hero">
+        <div style="margin-bottom: 25px;"><i class="fas fa-book-open" style="font-size: 3.5em; color: var(--gold); filter: drop-shadow(0 0 10px var(--gold));"></i></div>
+        
+        <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-wrapper">
+            <img src="CIVISTORIES Book.png" alt="تسونامي الوهم الرقمي" class="book-img">
+            
+            <h1 class="gold-title">تسونامي الوهم الرقمي</h1>
+            <p class="description">
+                مبادرة توعوية تسعى لاستعادة دفء البيوت وأمان النسيج الاجتماعي. 
+                تصفح الإصدار التفاعلي الآن واستكشف الحقائق التي تهدد استقرار الأسرة المصرية.
+            </p>
+            <div style="display:inline-block; border:1px solid var(--gold); color:var(--gold); padding:10px 30px; border-radius:30px; font-weight:bold;">
+                اضغط لتصفح الكتاب التفاعلي <i class="fas fa-arrow-left" style="margin-right:10px;"></i>
+            </div>
         </a>
     </section>
 
-    <div class="image-gallery">
-        <img src="https://anabileg.github.io/---CiviStories/img1.png" alt="CiviStories 1">
-        <img src="https://anabileg.github.io/---CiviStories/img2.png" alt="CiviStories 2">
-        <img src="https://anabileg.github.io/---CiviStories/img3.png" alt="CiviStories 3">
-        <img src="https://anabileg.github.io/---CiviStories/img4.png" alt="CiviStories 4">
+    <div class="gallery-grid">
+        <img src="img1.png" alt="ميداني 1">
+        <img src="img2.png" alt="ميداني 2">
+        <img src="img3.png" alt="ميداني 3">
+        <img src="img4.png" alt="ميداني 4">
     </div>
 
-    <section class="economy-section">
-        <h2 style="color: var(--gold); margin-bottom: 20px;">النزيف الاقتصادي الرقمي</h2>
-        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
-            <div><span class="eco-stat">١٥ مليار جنيه</span><p>خسارة سنوية بسبب الجرائم الرقمية</p></div>
-            <div><span class="eco-stat">٣.١ مليار جنيه</span><p>خسائر التجارة الإلكترونية الزائفة</p></div>
+    <section class="economy-alert">
+        <h2 style="color:var(--gold); margin-bottom:25px; font-size:2em;">النزيف الاقتصادي الرقمي</h2>
+        <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:30px;">
+            <div>
+                <span class="eco-value">١٥ مليار جنيه</span>
+                <p>خسارة سنوية بسبب الجرائم الرقمية</p>
+            </div>
+            <div>
+                <span class="eco-value">٣.١ مليار جنيه</span>
+                <p>خسائر التجارة الإلكترونية الزائفة</p>
+            </div>
         </div>
     </section>
 
-    <section class="stats-section">
-        <div class="grid-stats">
-            <div class="card-stat"><b>٣ دقائق</b><p>متوسط الوقت بين حالات الطلاق</p></div>
-            <div class="card-stat"><b>٢٥٥ حالة</b><p>إجمالي حالات الطلاق اليومية</p></div>
-            <div class="card-stat"><b>٤٠%</b><p>نسبة النزاع بسبب السوشيال ميديا</p></div>
-        </div>
+    <section class="stats-grid">
+        <div class="stat-card"><h2>٣ دقائق</h2><p>متوسط الوقت بين حالات الطلاق</p></div>
+        <div class="stat-card"><h2>٢٥٥ حالة</h2><p>إجمالي حالات الطلاق اليومية</p></div>
+        <div class="stat-card"><h2>٤٠%</h2><p>نسبة النزاع بسبب السوشيال ميديا</p></div>
     </section>
 
-    <footer style="padding: 40px; color: #555; border-top: 1px solid #222;">
-        <p>© 2024 CiviStories - مبادرة حماية النسيج الاجتماعي المصري</p>
+    <footer style="padding: 60px; border-top: 1px solid #222; opacity: 0.6;">
+        <p>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</p>
     </footer>
 
 </body>
