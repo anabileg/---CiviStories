@@ -4,98 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CiviStories | حماية النسيج الاجتماعي المصري</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        :root { 
-            --gold: #d4af37;
-            --dark-bg: #0b0b0b;
-            --accent-red: #b30000;
-            --white-text: #f1f1f1;
-            --card-bg: #181818;
-        }
-        
+        :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; --card-bg: #181818; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background: var(--dark-bg);
-            color: var(--white-text);
-            text-align: center;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); text-align: center; overflow-x: hidden; }
 
-        /* 1. شريط الأخبار العاجلة */
-        .ticker-bar { 
-            background: var(--accent-red); padding: 12px 0;
-            position: fixed; 
-            top: 0; width: 100%; z-index: 10002; font-weight: bold; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
-        }
+        /* شريط الأخبار العلوي */
+        .ticker-bar { background: var(--accent-red); padding: 12px 0; position: fixed; top: 0; width: 100%; z-index: 10002; font-weight: bold; }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; }
         .ticker-item { display: inline-block; padding-left: 60px; font-size: 1.1em; color: #fff; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* 2. الأيقونات العائمة الجانبية (شاملة ومحدثة) */
-        .floating-social { 
-            position: fixed; left: 15px; top: 55%; transform: translateY(-50%); 
-            display: flex; flex-direction: column; gap: 8px; z-index: 9999; 
-        }
-        .floating-social a { 
-            width: 42px; height: 42px; 
-            display: flex; align-items: center; justify-content: center; 
-            border-radius: 50%; color: #fff; text-decoration: none; font-size: 1.2em;
-            transition: 0.3s;
-        }
-        .floating-social a:hover { transform: scale(1.1); filter: brightness(1.2); }
-        
-        /* ألوان المنصات */
-        .wa-f { background: #25d366; }
-        .em-f { background: #ea4335; }
-        .yt-f { background: #ff0000; }
-        .fb-f { background: #1877f2; }
-        .tw-f { background: #000000; }
-        .li-f { background: #0077b5; }
-        .pn-f { background: #bd081c; }
-        .in-f { background: #e4405f; }
-        .tk-f { background: #000000; }
+        /* الأيقونات الجانبية فقط - تفتح في صفحة جديدة */
+        .floating-social { position: fixed; left: 15px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+        .floating-social a { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; text-decoration: none; font-size: 1.2em; transition: 0.3s; }
+        .wa-f { background: #25d366; } .em-f { background: #ea4335; } .yt-f { background: #ff0000; }
+        .fb-f { background: #1877f2; } .tw-f { background: #000; } .li-f { background: #0077b5; }
+        .pn-f { background: #bd081c; } .in-f { background: #e4405f; } .tk-f { background: #000; }
 
-        /* 3. قسم الكتاب */
-        .book-hero { padding: 140px 20px 40px; }
-        .book-wrapper { 
-            display: inline-block; position: relative; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); 
-            cursor: pointer; text-decoration: none;
-        }
-        .book-img { 
-            width: 300px; border-radius: 5px 15px 15px 5px; 
-            box-shadow: -15px 20px 50px rgba(0,0,0,0.9); 
-            border-left: 3px solid #333;
-        }
-        .book-wrapper:hover { transform: perspective(1000px) rotateY(-10deg) translateY(-5px); }
+        /* قسم الغلاف - بدون خط أزرق وبدون نصوص مساعدة */
+        .book-section { padding: 140px 20px 40px; }
+        .book-link { text-decoration: none; display: inline-block; color: inherit; } /* حذف الخط الأزرق */
+        .book-img { width: 300px; border-radius: 5px 15px 15px 5px; box-shadow: -15px 20px 50px #000; border-left: 3px solid #333; transition: 0.5s; }
+        .book-link:hover .book-img { transform: scale(1.03); }
+        .gold-title { color: var(--gold); font-size: 2.5em; margin-top: 20px; font-weight: 900; text-decoration: none; }
 
-        /* 4. السلايدر (بديل الجاليري الميداني بملفاتك الـ 82) */
-        .slider-section { padding: 40px 0; background: #000; margin: 20px 0; overflow: hidden; position: relative; }
-        .photo-track { display: flex; animation: slidePhotos 120s linear infinite; width: max-content; }
-        .photo-track img { height: 300px; margin: 0 10px; border-radius: 10px; border: 1px solid #333; }
+        /* السلايدر التلقائي لصور المبادرة */
+        .slider-wrap { background: #000; padding: 30px 0; margin: 30px 0; overflow: hidden; position: relative; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+        .photo-track { display: flex; width: max-content; animation: slidePhotos 120s linear infinite; }
+        .photo-track img { height: 320px; margin: 0 12px; border-radius: 10px; border: 1px solid #333; }
         @keyframes slidePhotos { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* 5. الإحصائيات */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px 10%; }
-        .stat-card { background: var(--card-bg); padding: 30px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
-        .stat-card h2 { color: var(--gold); font-size: 2.5em; margin-bottom: 5px; }
+        /* قسم الإحصائيات الثابت */
+        .stats-container { padding: 40px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .stat-card { background: var(--card-bg); padding: 35px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
+        .stat-card h2 { color: var(--gold); font-size: 2.8em; margin-bottom: 10px; }
 
-        .economy-alert { 
-            background: linear-gradient(135deg, #400 0%, #111 100%); 
-            margin: 20px 10%; padding: 40px; border-radius: 30px; border: 1px solid var(--accent-red);
-        }
-        .eco-value { color: #ff3333; font-size: 2.5em; font-weight: 900; display: block; }
+        .economy-box { background: linear-gradient(135deg, #400 0%, #111 100%); margin: 20px 10%; padding: 45px; border-radius: 30px; border: 1px solid var(--accent-red); }
+        .eco-num { color: #ff3333; font-size: 2.8em; font-weight: 900; display: block; }
 
-        @media (max-width: 768px) {
-            .book-img { width: 220px; }
-            .floating-social { left: 10px; }
-            .floating-social a { width: 35px; height: 35px; font-size: 1em; }
-        }
+        footer { padding: 50px; opacity: 0.5; font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -103,68 +52,57 @@
     <div class="ticker-bar">
         <div class="ticker-container">
             <span class="ticker-item">• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ٢٥٥ حالة طلاق يومية • ٤٠% نسبة النزاع بسبب الوهم الرقمي • ١٠٤ مليون محمول بوابات للجحيم الأسري •</span>
-            <span class="ticker-item">• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ٢٥٥ حالة طلاق يومية • ٤٠% نسبة النزاع بسبب الوهم الرقمي • ١٠٤ مليون محمول بوابات للجحيم الأسري •</span>
         </div>
     </div>
 
     <div class="floating-social">
-        <a href="https://wa.me/201009995015" class="wa-f"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:info@civistories.com" class="em-f"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.youtube.com/@CiviStories" class="yt-f"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=100093677167187" class="fb-f"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com" class="tw-f"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" class="li-f"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.pinterest.com" class="pn-f"><i class="fab fa-pinterest-p"></i></a>
-        <a href="https://www.instagram.com/civistoriesarabic/" class="in-f"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@civistoriesarabic" class="tk-f"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/201009995015" target="_blank" class="wa-f"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:info@civistories.com" target="_blank" class="em-f"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.youtube.com/@CiviStories" target="_blank" class="yt-f"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="fb-f"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com" target="_blank" class="tw-f"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank" class="li-f"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.pinterest.com" target="_blank" class="pn-f"><i class="fab fa-pinterest-p"></i></a>
+        <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="in-f"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="tk-f"><i class="fab fa-tiktok"></i></a>
     </div>
 
-    <section class="book-hero">
-        <a href="https://heyzine.com/flip-book/48ab3792ec.html" class="book-wrapper">
-            <img src="CIVISTORIES Book.png" alt="تسونامي الوهم الرقمي" class="book-img">
-            <h1 class="gold-title" style="color:var(--gold); margin-top:20px;">تسونامي الوهم الرقمي</h1>
-            <p style="color:#aaa; margin-bottom:15px;">اضغط لتصفح الكتاب التفاعلي</p>
+    <section class="book-section">
+        <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-link">
+            <img src="CIVISTORIES Book.png" alt="الغلاف" class="book-img">
+            <h1 class="gold-title">تسونامي الوهم الرقمي</h1>
         </a>
     </section>
 
-    <div class="slider-section">
-        <div class="photo-track" id="photoTrack">
-            </div>
+    <div class="slider-wrap">
+        <div class="photo-track" id="pTrack"></div>
     </div>
 
-    <section class="stats-grid">
+    <div class="stats-container">
         <div class="stat-card"><h2>٣ دقائق</h2><p>بين حالات الطلاق</p></div>
         <div class="stat-card"><h2>٢٥٥ حالة</h2><p>طلاق يومياً في مصر</p></div>
         <div class="stat-card"><h2>٤٠%</h2><p>بسبب السوشيال ميديا</p></div>
-    </section>
+    </div>
 
-    <section class="economy-alert">
+    <section class="economy-box">
         <h2 style="color:var(--gold); margin-bottom:20px;">النزيف الاقتصادي الرقمي</h2>
         <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
-            <div><span class="eco-value">١٥ مليار جنيه</span><p>خسارة سنوية (جرائم رقمية)</p></div>
-            <div><span class="eco-value">٣.١ مليار جنيه</span><p>خسائر التجارة الزائفة</p></div>
+            <div><span class="eco-num">١٥ مليار جنيه</span><p>خسارة سنوية (جرائم رقمية)</p></div>
+            <div><span class="eco-num">٣.١ مليار جنيه</span><p>خسائر التجارة الزائفة</p></div>
         </div>
     </section>
 
-    <footer style="padding: 40px; border-top: 1px solid #222; opacity: 0.6; font-size: 0.8em;">
-        <p>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</p>
-    </footer>
+    <footer>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        // مصفوفة الصور التي تنتهي بـ png بناءً على القائمة التي أرسلتها
         const pngs = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
-        const track = document.getElementById('photoTrack');
-        
-        let content = '';
-        // توليد الصور من 1 إلى 82 مع مراعاة الامتداد الصحيح
+        const track = document.getElementById('pTrack');
+        let html = '';
         for(let i=1; i<=82; i++) {
             let ext = pngs.includes(i) ? 'png' : 'jpg';
-            content += `<img src="${i}.${ext}" alt="صورة ${i}" onerror="this.style.display='none'">`;
+            html += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
         }
-        
-        // مضاعفة الصور لضمان سلاسة الحركة الدائرية
-        track.innerHTML = content + content;
+        track.innerHTML = html + html;
     </script>
-
 </body>
 </html>
