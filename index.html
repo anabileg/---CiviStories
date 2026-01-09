@@ -25,34 +25,27 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .social-links { display: flex; gap: 15px; align-items: center; }
-        .social-links a { color: var(--gold); font-size: 1.3em; text-decoration: none; }
+        .social-links a { color: var(--gold); font-size: 1.3em; text-decoration: none; transition: 0.3s; }
+        .social-links a:hover { color: #fff; transform: scale(1.1); }
+        
         .lang-switch {
             background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 4px 12px; border-radius: 5px; cursor: pointer; font-weight: bold;
+            padding: 4px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 10px;
         }
-        .wa-gold { color: var(--gold); font-size: 1.8em; }
 
-        /* زر الصعود للأعلى (ظاهر دائماً الآن) */
+        /* حاوية أيقونات التواصل السريع (واتساب + إيميل) */
+        .quick-contact { display: flex; gap: 20px; align-items: center; }
+        .quick-contact a { color: var(--gold); font-size: 1.8em; text-decoration: none; transition: 0.3s; }
+        .quick-contact a:hover { color: #fff; transform: scale(1.1); }
+
+        /* زر الصعود للأعلى */
         #backToTop {
-            position: fixed; 
-            bottom: 30px; 
-            left: 30px; 
-            background: var(--gold); 
-            color: #000; 
-            width: 50px; 
-            height: 50px;
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-size: 1.5em; 
-            cursor: pointer; 
-            z-index: 999999; /* قيمة فائقة للظهور فوق كل شيء */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8); 
-            transition: 0.3s;
-            border: 2px solid #fff;
+            position: fixed; bottom: 30px; left: 30px; 
+            background: var(--gold); color: #000; width: 50px; height: 50px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5em; cursor: pointer; z-index: 999999; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8); border: 2px solid #fff;
         }
-        #backToTop:hover { transform: translateY(-5px); background: #fff; color: var(--gold); }
 
         /* الهيرو والسلايدر */
         .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 200px 5% 40px; flex-wrap: wrap; }
@@ -84,9 +77,7 @@
 </head>
 <body>
 
-    <div id="backToTop" title="Go to top" onclick="window.scrollTo(0,0)">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+    <div id="backToTop" title="Go to top" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></div>
 
     <div class="ticker-bar">
         <div class="ticker-container" id="tickerText">
@@ -104,7 +95,11 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
-        <a href="https://wa.me/201009995015" target="_blank" class="wa-gold"><i class="fab fa-whatsapp"></i></a>
+        
+        <div class="quick-contact">
+            <a href="mailto:civistories@gmail.com" title="Email Us"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/201009995015" target="_blank" title="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
+        </div>
     </nav>
 
     <div class="main-hero">
@@ -187,7 +182,6 @@
             const d = translations[currentLang];
             html.dir = currentLang === 'en' ? 'ltr' : 'rtl';
             currentLang === 'en' ? html.classList.add('en-mode') : html.classList.remove('en-mode');
-
             document.getElementById('tickerText').innerText = d.ticker;
             document.getElementById('langBtn').innerText = d.langBtn;
             document.getElementById('mainTitle').innerText = d.mainTitle;
