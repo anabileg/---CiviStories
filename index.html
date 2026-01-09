@@ -1,124 +1,119 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="mainHtml">
+<html lang="ar" id="mainHtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories | حماية النسيج الاجتماعي</title>
+    <title>CiviStories | المبادرة الوطنية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        
-        body { 
-            background-color: var(--dark-bg);
-            /* الخلفية الكربونية مع حركة بانورامية خفيفة */
-            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('image_390e08.jpg'); 
-            background-attachment: fixed;
-            background-size: 150% 150%; 
-            color: var(--white-text); 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            overflow-x: hidden;
-            animation: bgMove 40s linear infinite alternate;
+        /* إعدادات الألوان والحركة */
+        :root { 
+            --gold: #d4af37; 
+            --dark-bg: #0b0b0b; 
+            --accent-red: #b30000; 
         }
 
-        @keyframes bgMove {
-            from { background-position: 0% 0%; }
-            to { background-position: 100% 100%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { 
+            background-color: var(--dark-bg);
+            /* صورة الخلفية مع تأثير الحركة */
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('image_390e08.jpg');
+            background-attachment: fixed;
+            background-size: 110% 110%;
+            animation: moveBG 20s ease-in-out infinite alternate;
+            color: #fff;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* أنيميشن حركة الخلفية لكسر الجمود */
+        @keyframes moveBG {
+            0% { background-position: center; }
+            100% { background-position: right bottom; }
         }
 
         /* شريط الأخبار */
-        .ticker-bar { background: var(--accent-red); height: 40px; position: fixed; top: 0; width: 100%; z-index: 10005; display: flex; align-items: center; overflow: hidden; }
-        .ticker-wrapper { display: flex; width: max-content; }
-        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 95s linear infinite; font-weight: bold; font-size: 1.1em; padding-right: 60px; }
-        @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        .ticker { 
+            background: var(--accent-red); 
+            height: 35px; 
+            position: fixed; top: 0; width: 100%; 
+            z-index: 2000; display: flex; align-items: center; overflow: hidden;
+        }
+        .ticker-text { display: inline-block; white-space: nowrap; animation: slide 60s linear infinite; font-weight: bold; }
+        @keyframes slide { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* الناف بار الثابت هندسياً */
-        .top-nav { 
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); 
-            position: fixed; top: 40px; width: 100%; height: 85px; 
-            z-index: 10001; border-bottom: 2px solid var(--gold);
+        /* الناف بار - توزيع هندسي ثابت */
+        .navbar {
+            position: fixed; top: 35px; width: 100%; height: 80px;
+            background: rgba(0,0,0,0.9);
+            border-bottom: 2px solid var(--gold);
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0 20px;
-            direction: ltr !important; /* تثبيت الاتجاه لليسار دائماً لضمان أماكن العناصر */
+            padding: 0 25px; z-index: 1000;
+            direction: ltr !important; /* لضمان ثبات الأماكن هندسياً */
         }
 
-        /* اليسار: اللوجو والتواصل */
-        .nav-left-zone { display: flex; align-items: center; gap: 15px; flex: 1; }
-        .nav-logo img { height: 60px; }
-        .contact-group { display: flex; gap: 12px; border-left: 1px solid #444; padding-left: 15px; }
-
-        /* المنتصف: الروابط */
-        .nav-center-zone { display: flex; gap: 30px; justify-content: center; flex: 2; }
-        .nav-center-zone a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; font-size: 1.05em; transition: 0.3s; }
-        .nav-center-zone a:hover { color: #fff; }
-
-        /* اليمين: اللغة والميديا */
-        .nav-right-zone { display: flex; align-items: center; gap: 15px; flex: 1; justify-content: flex-end; }
-        .social-group { display: flex; gap: 10px; border-right: 1px solid #444; padding-right: 15px; }
-        .lang-btn { background: var(--gold); border: none; color: #000; padding: 6px 14px; border-radius: 5px; cursor: pointer; font-weight: bold; min-width: 80px; }
-
-        /* ألوان الأيقونات */
+        /* 1. الجانب الأيسر: اللوجو + تواصل */
+        .nav-left { display: flex; align-items: center; gap: 20px; flex: 1; }
+        .nav-left img { height: 60px; }
+        .contact-icons { display: flex; gap: 15px; border-left: 1px solid #444; padding-left: 15px; }
         .icon-wa { color: #25D366; } .icon-mail { color: #EA4335; }
-        .social-group a { color: #fff; font-size: 1.1em; }
-        .social-group a:hover { color: var(--gold); }
+
+        /* 2. المنتصف: الروابط */
+        .nav-center { flex: 2; display: flex; justify-content: center; gap: 30px; }
+        .nav-center a { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 1.1em; cursor: pointer; transition: 0.3s; }
+        .nav-center a:hover { color: #fff; }
+
+        /* 3. الجانب الأيمن: ميديا + لغة */
+        .nav-right { flex: 1; display: flex; align-items: center; justify-content: flex-end; gap: 15px; }
+        .social-icons { display: flex; gap: 12px; border-right: 1px solid #444; padding-right: 15px; }
+        .social-icons a { color: #fff; font-size: 1.1em; }
+        .lang-btn { background: var(--gold); border: none; padding: 5px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; }
 
         /* الهيرو سكشن */
-        .main-hero { 
-            display: flex; align-items: center; justify-content: center; gap: 50px; padding: 200px 5% 100px; 
-            background: url('image_390e68.png') no-repeat center bottom; background-size: contain;
+        .hero {
+            padding-top: 180px; text-align: center;
+            background: url('image_390e68.png') no-repeat center bottom;
+            background-size: contain;
+            min-height: 80vh;
         }
+        .hero-img { width: 300px; border-radius: 15px; box-shadow: 0 0 40px #000; border: 1px solid #333; }
+        .hero h1 { color: var(--gold); margin-top: 20px; font-size: 2.5em; }
 
-        .cover-box { flex: 0 0 320px; text-align: center; }
-        .cover-img { width: 100%; border-radius: 15px; box-shadow: 0 20px 50px #000; border: 1px solid #333; }
-        .action-btns { margin-top: 25px; display: flex; flex-direction: column; gap: 12px; }
-        .btn-main { padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; border: none; cursor: pointer; }
-        .btn-read { background: var(--gold); color: #000; }
-        .btn-down { border: 2px solid var(--gold); color: var(--gold); background: rgba(0,0,0,0.6); }
-
-        section { padding: 80px 10%; }
-        .data-header { color: var(--gold); border-bottom: 2px solid var(--gold); margin-bottom: 50px; padding-bottom: 10px; font-size: 2.2em; }
+        /* الأقسام */
+        section { padding: 60px 10%; }
+        .section-title { color: var(--gold); border-bottom: 2px solid var(--gold); display: inline-block; margin-bottom: 30px; padding-bottom: 5px; }
         
-        #backToTop { position: fixed; bottom: 30px; left: 30px; background: var(--gold); color: #000; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 1000000; cursor: pointer; }
+        .vision-container { text-align: center; background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; backdrop-filter: blur(10px); }
 
-        /* الحفاظ على اتجاه محتوى الصفحة الداخلي حسب اللغة */
-        .content-ar { direction: rtl; text-align: right; }
-        .content-en { direction: ltr; text-align: left; }
+        #backToTop { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; cursor: pointer; display: none; }
     </style>
 </head>
-<body id="bodyTag">
+<body>
 
-    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
-    <div class="ticker-bar">
-        <div class="ticker-wrapper">
-            <div class="ticker-container" id="news-text">
-                • الأزهر الشريف والكنيسة المصرية: السوشيال ميديا تهدد استقرار الأسرة وتسبب تفكك النسيج الاجتماعي المصري • إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة •
-            </div>
-            <div class="ticker-container" id="news-text-copy">
-                • الأزهر الشريف والكنيسة المصرية: السوشيال ميديا تهدد استقرار الأسرة وتسبب تفكك النسيج الاجتماعي المصري • إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة •
-            </div>
+    <div class="ticker">
+        <div class="ticker-text" id="ticker-content">
+            • الأزهر الشريف والكنيسة المصرية: السوشيال ميديا تهدد استقرار الأسرة وتسبب تفكك النسيج الاجتماعي • تسونامي الوهم الرقمي •
         </div>
     </div>
 
-    <nav class="top-nav">
-        <div class="nav-left-zone">
-            <div class="nav-logo">
-                <img src="logo.png" alt="Logo">
-            </div>
-            <div class="contact-group">
+    <nav class="navbar">
+        <div class="nav-left">
+            <img src="logo.png" alt="Logo">
+            <div class="contact-icons">
                 <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp icon-wa"></i></a>
                 <a href="mailto:info@civistories.com"><i class="fas fa-envelope icon-mail"></i></a>
             </div>
         </div>
 
-        <div class="nav-center-zone nav-links">
-            <a onclick="document.getElementById('about-sec').scrollIntoView()" id="nav1">رؤيتنا</a>
-            <a onclick="document.getElementById('stats-sec').scrollIntoView()" id="nav2">الإحصائيات</a>
-            <a onclick="document.getElementById('eco-sec').scrollIntoView()" id="nav3">الخسائر</a>
+        <div class="nav-center">
+            <a onclick="scrollToSec('about')" id="nav-v">رؤيتنا</a>
+            <a onclick="scrollToSec('stats')" id="nav-s">الإحصائيات</a>
+            <a onclick="scrollToSec('eco')" id="nav-e">الخسائر</a>
         </div>
 
-        <div class="nav-right-zone">
-            <div class="social-group">
+        <div class="nav-right">
+            <div class="social-icons">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-tiktok"></i></a>
@@ -126,72 +121,66 @@
                 <a href="#"><i class="fab fa-x-twitter"></i></a>
                 <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
-            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+            <button class="lang-btn" onclick="toggleLang()" id="l-btn">English</button>
         </div>
     </nav>
 
-    <div id="pageContent" class="content-ar">
-        <div class="main-hero">
-            <div class="cover-box">
-                <img src="CIVISTORIES Book.png" class="cover-img">
-                <h1 id="main-title" style="color:var(--gold); margin-top:20px; font-size: 2em;">تسونامي الوهم الرقمي</h1>
-                <div class="action-btns">
-                    <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-main btn-read" id="btn1">تصفح الكتاب</a>
-                    <a href="Tsunami-Book.pdf" download class="btn-main btn-down" id="btn2">تحميل PDF</a>
-                </div>
-            </div>
+    <div class="hero">
+        <img src="CIVISTORIES Book.png" class="hero-img">
+        <h1 id="m-title">تسونامي الوهم الرقمي</h1>
+        <div style="margin-top: 20px;">
+            <a href="#" style="background:var(--gold); color:#000; padding: 12px 25px; text-decoration:none; border-radius:5px; font-weight:bold; margin: 10px; display:inline-block;">تصفح الكتاب</a>
+            <a href="#" style="border:1px solid var(--gold); color:var(--gold); padding: 12px 25px; text-decoration:none; border-radius:5px; font-weight:bold; margin: 10px; display:inline-block;">تحميل PDF</a>
         </div>
-
-        <section id="about-sec">
-            <div class="data-header" id="h-vision">رؤيتنا</div>
-            <p id="v-desc" style="font-size: 1.2em; line-height: 1.8;">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.</p>
-        </section>
     </div>
 
+    <section id="about">
+        <div class="vision-container">
+            <h2 class="section-title" id="h-v">رؤيتنا</h2>
+            <p id="v-text" style="font-size: 1.3em; line-height: 1.8;">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار في عصر التحول الرقمي.</p>
+        </div>
+    </section>
+
+    <div id="backToTop" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></div>
+
     <script>
-        // زر الصعود
-        window.onscroll = function() {
-            const btn = document.getElementById("backToTop");
-            if (document.documentElement.scrollTop > 400) btn.style.display = "flex";
-            else btn.style.display = "none";
+        // تثبيت حركة السكرول والزر
+        window.onscroll = () => {
+            document.getElementById('backToTop').style.display = (window.scrollY > 400) ? 'flex' : 'none';
         };
 
-        // نظام اللغة (تغيير النصوص فقط مع بقاء الأماكن ثابتة)
-        let currentLang = 'ar';
-        const trans = {
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // نظام اللغة
+        let lang = 'ar';
+        const data = {
             en: {
-                langBtn: "العربية", nav1: "Vision", nav2: "Stats", nav3: "Losses",
-                mainTitle: "Digital Illusion Tsunami", btn1: "Read Book", btn2: "Download PDF",
-                hVision: "Our Vision", vDesc: "Protecting Egyptian social fabric from digital disintegration risks.",
-                ticker: "• Al-Azhar & The Church: Social Media threatens family stability • Red Alert: Digital Illusion Tsunami •"
+                v: "Vision", s: "Stats", e: "Losses", title: "Digital Illusion Tsunami",
+                hv: "Our Vision", vt: "Protecting Egyptian social fabric from digital disintegration risks.",
+                btn: "العربية"
             },
             ar: {
-                langBtn: "English", nav1: "رؤيتنا", nav2: "الإحصائيات", nav3: "الخسائر",
-                mainTitle: "تسونامي الوهم الرقمي", btn1: "تصفح الكتاب", btn2: "تحميل PDF",
-                hVision: "رؤيتنا", vDesc: "حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.",
-                ticker: "• الأزهر الشريف والكنيسة المصرية: السوشيال ميديا تهدد استقرار الأسرة وتسبب تفكك النسيج الاجتماعي المصري • إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة •"
+                v: "رؤيتنا", s: "الإحصائيات", e: "الخسائر", title: "تسونامي الوهم الرقمي",
+                hv: "رؤيتنا", vt: "حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار في عصر التحول الرقمي.",
+                btn: "English"
             }
         };
 
-        function toggleLanguage() {
-            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-            const d = trans[currentLang];
-            const content = document.getElementById('pageContent');
+        function toggleLang() {
+            lang = (lang === 'ar') ? 'en' : 'ar';
+            const d = data[lang];
+            document.getElementById('nav-v').innerText = d.v;
+            document.getElementById('nav-s').innerText = d.s;
+            document.getElementById('nav-e').innerText = d.e;
+            document.getElementById('m-title').innerText = d.title;
+            document.getElementById('h-v').innerText = d.hv;
+            document.getElementById('v-text').innerText = d.vt;
+            document.getElementById('l-btn').innerText = d.btn;
             
-            // تغيير اتجاه نصوص المحتوى فقط وليس الناف بار
-            content.className = (currentLang === 'en') ? 'content-en' : 'content-ar';
-            
-            document.getElementById('langBtn').innerText = d.langBtn;
-            document.getElementById('nav1').innerText = d.nav1;
-            document.getElementById('nav2').innerText = d.nav2;
-            document.getElementById('nav3').innerText = d.nav3;
-            document.getElementById('main-title').innerText = d.mainTitle;
-            document.getElementById('btn1').innerText = d.btn1;
-            document.getElementById('btn2').innerText = d.btn2;
-            document.getElementById('h-vision').innerText = d.hVision;
-            document.getElementById('v-desc').innerText = d.vDesc;
-            document.getElementById('news-text').innerText = d.ticker;
-            document.getElementById('news-text-copy').innerText = d.ticker;
+            // تغيير اتجاه النصوص فقط دون تغيير أماكن اللوجو والميديا
+            document.body.style.direction = (lang === 'en') ? 'ltr' : 'rtl';
         }
     </script>
 </body>
