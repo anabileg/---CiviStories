@@ -10,16 +10,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); overflow-x: hidden; }
 
-        /* شريط الأخبار - سرعة هادئة جداً (70 ثانية) */
+        /* شريط الأخبار - سرعة هادئة جداً */
         .ticker-bar { 
             background: var(--accent-red); padding: 12px 0; position: fixed; 
             top: 0; width: 100%; z-index: 10002; font-weight: bold; overflow: hidden;
         }
-        .ticker-container { 
-            display: inline-block; white-space: nowrap; 
-            animation: moveTicker 70s linear infinite; 
-        }
-        .ticker-item { display: inline-block; padding-left: 20px; font-size: 1.1em; color: #fff; }
+        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 70s linear infinite; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(33.33%); } }
 
         /* شريط الأيقونات العلوي */
@@ -27,18 +23,25 @@
             background: rgba(0,0,0,0.95); padding: 12px 5%; position: fixed; top: 45px; 
             width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold);
             display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 10px;
         }
-        .social-links { display: flex; gap: 15px; }
+        .social-links { display: flex; gap: 15px; align-items: center; }
         .social-links a { color: var(--gold); text-decoration: none; font-size: 1.4em; transition: 0.3s; }
         .wa-btn { background: var(--gold); color: #000; padding: 6px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+
+        /* تنسيق أداة ترجمة جوجل */
+        #google_translate_element { margin-left: 15px; }
+        .goog-te-gadget-simple { background-color: transparent !important; border: 1px solid var(--gold) !important; padding: 5px !important; border-radius: 5px !important; }
+        .goog-te-gadget-simple span { color: var(--gold) !important; }
+        .goog-te-banner-frame.skiptranslate { display: none !important; } 
+        body { top: 0px !important; }
 
         /* القسم الرئيسي: الغلاف والسلايدر */
         .main-hero { 
             display: flex; align-items: center; justify-content: center; gap: 30px; 
-            padding: 180px 5% 40px; flex-wrap: wrap; 
+            padding: 200px 5% 40px; flex-wrap: wrap; 
         }
         .cover-box { flex: 0 0 320px; text-align: center; }
-        .cover-link { text-decoration: none; color: inherit; display: block; }
         .cover-img { width: 100%; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); border: 1px solid #333; }
         .press-here { display: block; margin-top: 15px; color: var(--gold); font-weight: bold; font-size: 1.2em; animation: flash 1.5s infinite; }
         @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
@@ -49,21 +52,20 @@
         .photo-track img { height: 380px; margin: 0 10px; border-radius: 8px; border: 1px solid var(--gold); }
         @keyframes scrollPhotos { 0% { left: 0; } 100% { left: -6000px; } }
 
-        /* أقسام البيانات الجديدة */
+        /* أقسام البيانات */
         .data-header { color: var(--gold); padding: 40px 10% 10px; font-size: 2em; text-align: right; border-bottom: 2px solid #222; margin: 0 10% 20px; }
         .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px 10% 40px; }
         .stat-item { background: var(--card-bg); padding: 30px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--gold); }
         .stat-item h2 { color: var(--gold); font-size: 2.2em; margin-bottom: 10px; }
-        .church-azhar { border-bottom-color: #008000; } /* تمييز بصري خفيف */
 
         .economy-warn { background: linear-gradient(135deg, #400 0%, #111 100%); margin: 20px 10% 50px; padding: 45px; border-radius: 30px; border: 1px solid var(--accent-red); text-align: center; }
         .eco-val { color: #ff3333; font-size: 3em; font-weight: 900; display: block; }
 
-        footer { padding: 40px; text-align: center; opacity: 0.6; border-top: 1px solid #222; }
+        footer { padding: 40px; text-align: center; opacity: 0.6; }
 
         @media (max-width: 768px) {
-            .main-hero { flex-direction: column; padding-top: 240px; }
-            .top-nav { flex-direction: column; gap: 10px; }
+            .main-hero { padding-top: 260px; }
+            .top-nav { flex-direction: column; height: auto; padding: 15px; }
         }
     </style>
 </head>
@@ -78,17 +80,17 @@
             <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
             <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="mailto:info@civistories.com" target="_blank"><i class="fas fa-envelope"></i></a>
+            
+            <div id="google_translate_element"></div>
         </div>
         <a href="https://wa.me/201009995015" target="_blank" class="wa-btn">تواصل الآن <i class="fab fa-whatsapp"></i></a>
     </nav>
 
     <div class="main-hero">
         <div class="cover-box">
-            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="cover-link">
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none;">
                 <img src="CIVISTORIES Book.png" class="cover-img">
                 <h1 style="color:var(--gold); margin-top:15px; font-size: 1.8em;">تسونامي الوهم الرقمي</h1>
                 <span class="press-here">مطلوب الضغط هنا <i class="fas fa-mouse-pointer"></i></span>
@@ -101,18 +103,8 @@
 
     <div class="data-header">تقارير المؤسسات الدينية</div>
     <section class="stats-section">
-        <div class="stat-item church-azhar">
-            <h2>الأزهر الشريف</h2>
-            <p>السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة المعاصرة</p>
-        </div>
-        <div class="stat-item church-azhar">
-            <h2>الكنيسة المصرية</h2>
-            <p>رصد زيادة في حالات التباعد الأسري والطلاق بسبب الإدمان الرقمي</p>
-        </div>
-        <div class="stat-item">
-            <h2>فتوى رسمية</h2>
-            <p>إفشاء الأسرار الزوجية عبر المنصات الرقمية "خيانة شرعية"</p>
-        </div>
+        <div class="stat-item"><h2>الأزهر الشريف</h2><p>السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة المعاصرة</p></div>
+        <div class="stat-item"><h2>الكنيسة المصرية</h2><p>رصد زيادة في حالات التباعد الأسري والطلاق بسبب الإدمان الرقمي</p></div>
     </section>
 
     <div class="data-header">مؤشرات الخطر الاجتماعي</div>
@@ -122,20 +114,31 @@
         <div class="stat-item"><h2>٤٠%</h2><p>من حالات الانفصال تبدأ بنزاع إلكتروني</p></div>
     </section>
 
-    <div class="data-header">النزيف الاقتصادي</div>
     <section class="economy-warn">
+        <h2 style="color:var(--gold); margin-bottom:20px;">النزيف الاقتصادي</h2>
         <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:30px;">
-            <div><span class="eco-val">١٥ مليار جنيه</span><p>خسائر سنوية بسبب الجرائم الرقمية</p></div>
+            <div><span class="eco-val">١٥ مليار جنيه</span><p>خسارة سنوية بسبب الجرائم الرقمية</p></div>
             <div><span class="eco-val">٣.١ مليار جنيه</span><p>خسائر الاحتيال والتجارة الزائفة</p></div>
-            <div><span class="eco-val">٨٠٠ مليون</span><p>تكلفة علاج آثار العنف الإلكتروني</p></div>
         </div>
     </section>
 
     <footer>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'en,ar', // اللغات المتاحة (العربية والإنجليزية)
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script>
-        // تكرار الأخبار - سرعة هادئة
-        const newsText = " • إنذار أحمر: السوشيال ميديا تهدد استقرار الأسرة • الأزهر الشريف: التفكك الرقمي خطر داهم • الكنيسة المصرية تدعو لاستعادة دفء المنازل • كل ٣ دقائق حالة طلاق جديدة • ١٠٤ مليون محمول بوابات للخطر • ";
+        // تكرار الأخبار
+        const newsText = " • إنذار أحمر: السوشيال ميديا تهدد استقرار الأسرة • الأزهر الشريف: التفكك الرقمي خطر داهم • الكنيسة المصرية تدعو لاستعادة دفء المنازل • كل ٣ دقائق حالة طلاق جديدة • ";
         document.getElementById('tickerContent').innerHTML = newsText.repeat(5);
 
         // السلايدر الميداني
