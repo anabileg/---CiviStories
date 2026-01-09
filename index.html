@@ -10,52 +10,53 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background: var(--dark-bg); color: var(--white-text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
 
-        /* سهم الصعود */
-        #backToTop { position: fixed; bottom: 30px; left: 30px; background: var(--gold); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 10006; border: 2px solid #fff; cursor: pointer; }
-
-        /* شريط الأخبار - حركة عربية صحيحة */
+        /* شريط الأخبار - حركة دائرية مستمرة بدون توقف */
         .ticker-bar { background: var(--accent-red); height: 40px; position: fixed; top: 0; width: 100%; z-index: 10005; display: flex; align-items: center; overflow: hidden; }
-        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTickerAR 180s linear infinite; font-weight: bold; padding-left: 100%; }
-        @keyframes moveTickerAR { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-
-        /* الناف بار المعدل كلياً */
-        .top-nav { background: rgba(0,0,0,0.95); padding: 0 2%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; height: 70px; }
+        .ticker-wrapper { display: flex; width: max-content; }
+        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTickerAR 60s linear infinite; font-weight: bold; font-size: 1.1em; padding-left: 50px; }
         
-        /* يمين: التواصل */
-        .nav-right-contact { display: flex; gap: 15px; align-items: center; min-width: 120px; }
-        .icon-wa { color: #25D366; font-size: 1.4em; }
-        .icon-mail { color: #EA4335; font-size: 1.4em; }
+        @keyframes moveTickerAR {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); } /* حركة تضمن التكرار الفوري */
+        }
 
-        /* منتصف: اللوجو والروابط */
-        .nav-center-main { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .nav-center-main img { height: 40px; }
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.85em; font-weight: bold; cursor: pointer; }
+        /* الناف بار المحدث */
+        .top-nav { background: rgba(0,0,0,0.95); padding: 0 3%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: space-between; height: 70px; }
+        
+        /* يمين: التواصل واختيار اللغة */
+        .nav-right-box { display: flex; gap: 20px; align-items: center; }
+        .contact-icons { display: flex; gap: 15px; }
+        .lang-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 0.8em; font-weight: bold; transition: 0.3s; }
+        .lang-btn:hover { background: var(--gold); color: #000; }
 
-        /* يسار: السوشيال ميديا */
-        .nav-left-social { display: flex; gap: 12px; align-items: center; }
-        .nav-left-social a { font-size: 1.1em; transition: 0.2s; }
-        .icon-fb { color: #1877F2; }
-        .icon-ig { color: #E4405F; }
-        .icon-tk { color: #fff; }
-        .icon-yt { color: #FF0000; }
-        .icon-tw { color: #1DA1F2; } /* Twitter/X Blue */
-        .icon-pin { color: #BD081C; } /* Pinterest Red */
+        /* منتصف: الروابط */
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-size: 0.9em; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .nav-links a:hover { color: #fff; }
+
+        /* يسار (الشمال): اللوجو ثابت */
+        .nav-logo-left { display: flex; align-items: center; }
+        .nav-logo-left img { height: 50px; }
+
+        /* أيقونات ملونة */
+        .icon-wa { color: #25D366; } .icon-mail { color: #EA4335; }
+        .icon-fb { color: #1877F2; } .icon-ig { color: #E4405F; }
+        .icon-tk { color: #fff; } .icon-yt { color: #FF0000; }
+        .icon-tw { color: #1DA1F2; } .icon-pin { color: #BD081C; }
 
         /* الهيرو سكشن */
         .main-hero { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 200px 5% 60px; flex-wrap: wrap; }
         .cover-box { flex: 0 0 320px; text-align: center; }
         .cover-img { width: 100%; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.8); border: 1px solid #333; }
-        
         .action-btns { margin-top: 25px; display: flex; flex-direction: column; gap: 12px; }
-        .btn-main { padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; }
+        .btn-main { padding: 14px; border-radius: 8px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s; border: none; cursor: pointer; }
         .btn-read { background: var(--gold); color: #000; }
-        .btn-down { border: 2px solid var(--gold); color: var(--gold); }
+        .btn-down { border: 2px solid var(--gold); color: var(--gold); background: transparent; }
         .btn-main:hover { transform: scale(1.03); }
 
-        /* الصور */
-        .slider-area { flex: 1; min-width: 320px; height: 480px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; }
-        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: continuousScroll 140s linear infinite; width: max-content; }
+        /* شريط الصور */
+        .slider-area { flex: 1; min-width: 320px; height: 480px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; background: #000; }
+        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: continuousScroll 120s linear infinite; width: max-content; }
         .photo-track img { height: 400px; margin: 0 15px; border-radius: 10px; border: 1px solid #333; }
         @keyframes continuousScroll { 0% { right: 0; } 100% { right: -5000px; } }
 
@@ -67,36 +68,42 @@
 </head>
 <body>
 
-    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
     <div class="ticker-bar">
-        <div class="ticker-container">
-            • إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة المصرية • كل ٣ دقائق حالة طلاق جديدة في مصر • الأزهر الشريف: السوشيال ميديا تتسبب في ٦٠٪ من النزاعات الأسرية • ١٠٤ ملايين هاتف محمول بوابات لتفكك الأسر •
+        <div class="ticker-wrapper">
+            <div class="ticker-container" id="news-text">
+                • إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة المصرية • الأزهر الشريف والكنيسة المصرية: السوشيال ميديا تتسبب في تفكك النسيج الاجتماعي • كل ٣ دقائق حالة طلاق جديدة في مصر • ١٠٤ ملايين هاتف محمول بوابات للوهم •
+            </div>
+            <div class="ticker-container">
+                • إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة المصرية • الأزهر الشريف والكنيسة المصرية: السوشيال ميديا تتسبب في تفكك النسيج الاجتماعي • كل ٣ دقائق حالة طلاق جديدة في مصر • ١٠٤ ملايين هاتف محمول بوابات للوهم •
+            </div>
         </div>
     </div>
 
     <nav class="top-nav">
-        <div class="nav-right-contact">
-            <a href="https://wa.me/201009995015" target="_blank" title="واتساب"><i class="fab fa-whatsapp icon-wa"></i></a>
-            <a href="mailto:info@civistories.com" title="إيميل"><i class="fas fa-envelope icon-mail"></i></a>
+        <div class="nav-right-box">
+            <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">English</button>
+            <div class="contact-icons">
+                <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp icon-wa" style="font-size:1.5em;"></i></a>
+                <a href="mailto:info@civistories.com"><i class="fas fa-envelope icon-mail" style="font-size:1.5em;"></i></a>
+            </div>
+            <div style="display:flex; gap:10px; margin-right:10px; border-right:1px solid #333; padding-right:15px;">
+                <a href="#"><i class="fab fa-facebook-f icon-fb"></i></a>
+                <a href="#"><i class="fab fa-instagram icon-ig"></i></a>
+                <a href="#"><i class="fab fa-tiktok icon-tk"></i></a>
+                <a href="#"><i class="fab fa-youtube icon-yt"></i></a>
+                <a href="#"><i class="fab fa-x-twitter icon-tw"></i></a>
+                <a href="#"><i class="fab fa-pinterest icon-pin"></i></a>
+            </div>
         </div>
 
-        <div class="nav-center-main">
+        <ul class="nav-links">
+            <li><a onclick="document.getElementById('about-sec').scrollIntoView()">رؤيتنا</a></li>
+            <li><a onclick="document.getElementById('stats-sec').scrollIntoView()">الإحصائيات</a></li>
+            <li><a onclick="document.getElementById('eco-sec').scrollIntoView()">الخسائر</a></li>
+        </ul>
+
+        <div class="nav-logo-left">
             <img src="logo.png" alt="Logo">
-            <ul class="nav-links">
-                <li><a onclick="document.getElementById('about-sec').scrollIntoView()">رؤيتنا</a></li>
-                <li><a onclick="document.getElementById('stats-sec').scrollIntoView()">الإحصائيات</a></li>
-                <li><a onclick="document.getElementById('eco-sec').scrollIntoView()">الخسائر</a></li>
-            </ul>
-        </div>
-
-        <div class="nav-left-social">
-            <a href="#"><i class="fab fa-facebook-f icon-fb"></i></a>
-            <a href="#"><i class="fab fa-instagram icon-ig"></i></a>
-            <a href="#"><i class="fab fa-tiktok icon-tk"></i></a>
-            <a href="#"><i class="fab fa-youtube icon-yt"></i></a>
-            <a href="#"><i class="fab fa-x-twitter icon-tw"></i></a>
-            <a href="#"><i class="fab fa-pinterest icon-pin"></i></a>
         </div>
     </nav>
 
@@ -105,11 +112,11 @@
             <img src="CIVISTORIES Book.png" class="cover-img" alt="Tsunami Book">
             <h1 style="color:var(--gold); margin-top:20px; font-size: 1.8em;">تسونامي الوهم الرقمي</h1>
             <div class="action-btns">
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" rel="noopener" class="btn-main btn-read">
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-main btn-read">
                     <i class="fas fa-book-open"></i> <span>قراءة النسخة التفاعلية</span>
                 </a>
                 <a href="Tsunami-Book.pdf" download class="btn-main btn-down">
-                    <i class="fas fa-download"></i> <span>تنزيل نسخة PDF للطباعة</span>
+                    <i class="fas fa-download"></i> <span>تنزيل نسخة PDF</span>
                 </a>
             </div>
         </div>
@@ -150,12 +157,6 @@
     </footer>
 
     <script>
-        window.onscroll = function() {
-            let b = document.getElementById("backToTop");
-            if (document.documentElement.scrollTop > 400) b.style.display = "flex";
-            else b.style.display = "none";
-        };
-
         const pngFiles = [12, 23];
         const track = document.getElementById('imageTrack');
         window.onload = function() {
@@ -180,6 +181,11 @@
         };
         const observer = new IntersectionObserver((e) => { if(e[0].isIntersecting) startCounters(); }, { threshold: 0.5 });
         observer.observe(document.querySelector('#stats-sec'));
+
+        function toggleLanguage() {
+            // وظيفة تبديل اللغة اختيارية لتعمل مع النصوص
+            alert("Switching Language...");
+        }
     </script>
 </body>
 </html>
