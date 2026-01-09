@@ -22,94 +22,107 @@
             background: var(--dark-bg);
             color: var(--white-text);
             text-align: center;
-            overflow-x: hidden;
             line-height: 1.4;
         }
 
-        /* 1. شريط الأخبار العاجلة */
+        /* 1. شريط الأخبار */
         .ticker-bar { 
             background: var(--accent-red); padding: 10px 0;
             position: fixed; top: 0; width: 100%; z-index: 10002; font-weight: bold; 
-            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
         }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; }
-        .ticker-item { display: inline-block; padding-left: 60px; font-size: 1em; color: #fff; }
+        .ticker-item { display: inline-block; padding-left: 60px; font-size: 0.95em; color: #fff; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         /* 2. شريط التنقل العلوي */
         .main-nav { 
             background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            padding: 10px 5%; position: fixed; top: 40px; width: 100%; 
+            padding: 8px 5%; position: fixed; top: 38px; width: 100%; 
             z-index: 10001; border-bottom: 1px solid var(--gold);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .social-group { display: flex; gap: 15px; align-items: center; }
-        .social-group a { color: var(--gold); text-decoration: none; font-size: 1.2em; transition: 0.3s; }
-        .social-group a:hover { color: #fff; transform: translateY(-3px); }
-        .contact-btn { 
-            background: var(--gold); color: #000 !important; padding: 5px 15px; 
-            border-radius: 20px; font-weight: 800; text-decoration: none; font-size: 0.85em;
+        .social-group { display: flex; gap: 12px; }
+        .social-group a { color: var(--gold); text-decoration: none; font-size: 1.1em; transition: 0.3s; }
+        .social-group a:hover { color: #fff; transform: translateY(-2px); }
+        .contact-btn { background: var(--gold); color: #000 !important; padding: 4px 12px; border-radius: 20px; font-weight: 800; text-decoration: none; font-size: 0.8em; }
+
+        /* 3. الهيكل الرئيسي (الكتاب بجانب الصور) */
+        .hero-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 25px;
+            padding: 120px 5% 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        /* 3. القسم المدمج (الكتاب + المعرض) */
-        .main-content {
-            padding: 130px 5% 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        /* تصميم الكتاب المصغر */
-        .book-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 600px;
-        }
-        .book-wrapper { 
-            display: inline-block; transition: 0.5s; cursor: pointer; text-decoration: none;
+        /* قسم الكتاب */
+        .book-box {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            text-align: center;
         }
         .book-img { 
-            width: 220px; /* تم تصغير الحجم هنا */
+            width: 100%; 
+            max-width: 240px;
             border-radius: 5px 15px 15px 5px; 
             box-shadow: -10px 10px 30px rgba(0,0,0,0.8); 
             border-left: 2px solid #333;
+            transition: 0.4s;
         }
-        .book-wrapper:hover { transform: scale(1.05); }
+        .book-img:hover { transform: perspective(1000px) rotateY(-5deg); }
 
-        .gold-title { color: var(--gold); font-size: 1.8em; margin: 15px 0 5px; font-weight: 900; }
-        .description { color: #aaa; font-size: 0.95em; margin-bottom: 20px; }
-
-        /* 4. معرض الصور المدمج في نفس الصفحة */
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 15px; width: 100%; max-width: 1000px;
+        .browse-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: 0.3s;
         }
-        .gallery-grid img { 
-            width: 100%; height: 150px; object-fit: cover; 
-            border-radius: 10px; border: 1px solid #222; transition: 0.4s; 
-        }
-        .gallery-grid img:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .browse-btn:hover { background: var(--gold); color: #000; }
 
-        /* 5. الإحصائيات والأرقام */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px 10%; }
-        .stat-card { background: var(--card-bg); padding: 20px; border-radius: 15px; border-bottom: 3px solid var(--gold); }
-        .stat-card h2 { color: var(--gold); font-size: 2em; }
+        /* قسم معرض الصور */
+        .gallery-box {
+            flex: 2;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .gallery-box img { 
+            width: 100%; height: 160px; object-fit: cover; 
+            border-radius: 10px; border: 1px solid #222; 
+        }
+
+        /* 4. الإحصائيات */
+        .stats-strip {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: var(--card-bg);
+            padding: 20px;
+            margin: 20px 5%;
+            border-radius: 15px;
+            border-top: 2px solid var(--gold);
+        }
+        .stat-item h3 { color: var(--gold); font-size: 1.8em; }
+        .stat-item p { font-size: 0.85em; opacity: 0.8; }
 
         /* الأيقونات العائمة */
-        .floating-social { position: fixed; left: 15px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 9999; }
-        .floating-social a { 
-            width: 40px; height: 40px; background: rgba(255,255,255,0.1); 
-            display: flex; align-items: center; justify-content: center; 
-            border-radius: 50%; color: #fff; text-decoration: none; font-size: 1.1em;
-        }
+        .floating-social { position: fixed; left: 15px; top: 55%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
+        .floating-social a { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; text-decoration: none; font-size: 1em; }
 
         @media (max-width: 768px) {
-            .main-nav { flex-direction: column; gap: 10px; top: 35px; }
-            .main-content { padding-top: 180px; }
-            .book-img { width: 180px; }
+            .hero-container { padding-top: 160px; flex-direction: column; align-items: center; }
+            .gallery-box { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -131,34 +144,33 @@
             <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
             <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:info@civistories.com"><i class="fas fa-envelope"></i></a>
         </div>
         <a href="https://wa.me/201009995015" class="contact-btn" target="_blank">تواصل الآن <i class="fab fa-whatsapp"></i></a>
     </nav>
 
-    <div class="main-content">
-        
-        <section class="book-section">
-            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-wrapper">
+    <div class="hero-container">
+        <div class="book-box">
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration: none;">
                 <img src="CIVISTORIES Book.png" alt="تسونامي الوهم الرقمي" class="book-img">
-                <h1 class="gold-title">تسونامي الوهم الرقمي</h1>
-                <p class="description">مبادرة توعوية لاستعادة أمان النسيج الاجتماعي المصري.</p>
+                <h2 style="color:var(--gold); margin-top:10px; font-size:1.4em;">تسونامي الوهم الرقمي</h2>
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="browse-btn">
+                    تصفح الإصدار التفاعلي <i class="fas fa-external-link-alt" style="margin-right:5px; font-size: 0.8em;"></i>
+                </a>
             </a>
-        </section>
-
-        <div class="gallery-grid">
-            <img src="img1.png" alt="ميداني 1">
-            <img src="img2.png" alt="ميداني 2">
-            <img src="img3.png" alt="ميداني 3">
-            <img src="img4.png" alt="ميداني 4">
         </div>
 
+        <div class="gallery-box">
+            <img src="img1.png" alt="1">
+            <img src="img2.png" alt="2">
+            <img src="img3.png" alt="3">
+            <img src="img4.png" alt="4">
+        </div>
     </div>
 
-    <section class="stats-grid">
-        <div class="stat-card"><h2>٣ دقائق</h2><p>بين حالات الطلاق</p></div>
-        <div class="stat-card"><h2>٢٥٥ حالة</h2><p>طلاق يومياً</p></div>
-        <div class="stat-card"><h2>٤٠%</h2><p>بسبب السوشيال ميديا</p></div>
+    <section class="stats-strip">
+        <div class="stat-item"><h3>٣ دقائق</h3><p>بين حالات الطلاق</p></div>
+        <div class="stat-item"><h3>٢٥٥ حالة</h3><p>طلاق يومياً</p></div>
+        <div class="stat-item"><h3>٤٠%</h3><p>بسبب السوشيال ميديا</p></div>
     </section>
 
     <div class="floating-social">
@@ -167,7 +179,7 @@
         <a href="https://x.com/civistories" style="background:#000;" target="_blank"><i class="fab fa-x-twitter"></i></a>
     </div>
 
-    <footer style="padding: 30px; border-top: 1px solid #222; opacity: 0.6; font-size: 0.8em;">
+    <footer style="padding: 20px; opacity: 0.5; font-size: 0.75em;">
         <p>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</p>
     </footer>
 
