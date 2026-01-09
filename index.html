@@ -4,292 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CiviStories | تسونامي الوهم الرقمي</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <style>
-        :root { 
-            --gold: #d4af37;
-            --dark-bg: #0b0b0b;
-            --accent-red: #b30000;
-            --white-text: #f1f1f1;
-            --card-bg: #181818;
-        }
-        
+        :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background: var(--dark-bg);
-            color: var(--white-text);
-            line-height: 1.4;
-            overflow-x: hidden;
-            text-align: center; /* لتوسيط المحتوى الرئيسي */
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); overflow-x: hidden; }
 
-        /* شريط الأخبار العلوي */
-        .ticker-bar { 
-            background: var(--accent-red); padding: 10px 0;
-            position: fixed; top: 0; width: 100%; z-index: 10005; font-weight: bold; 
-        }
+        /* شريط الأخبار */
+        .ticker-bar { background: var(--accent-red); padding: 10px 0; position: fixed; top: 0; width: 100%; z-index: 2000; font-weight: bold; }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 60s linear infinite; }
-        .ticker-item { display: inline-block; padding-left: 60px; font-size: 0.95em; color: #fff; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* شريط التنقل */
-        .main-nav { 
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            padding: 8px 5%; position: fixed; top: 38px; width: 100%; 
-            z-index: 10004; border-bottom: 1px solid var(--gold);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .social-group { display: flex; gap: 12px; }
-        .social-group a { color: var(--gold); text-decoration: none; font-size: 1.1em; transition: 0.3s; }
-        .social-group a:hover { color: #fff; transform: translateY(-2px); }
-        .contact-btn { background: var(--gold); color: #000 !important; padding: 5px 15px; border-radius: 20px; font-weight: 800; text-decoration: none; font-size: 0.8em; }
+        /* الناف بار */
+        .main-nav { background: rgba(0,0,0,0.9); padding: 10px 5%; position: fixed; top: 38px; width: 100%; z-index: 1900; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
+        .contact-btn { background: var(--gold); color: #000; padding: 5px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; }
 
-        /* الحاوية الرئيسية (الكتاب + الشريط) */
-        .hero-section {
-            display: flex;
-            align-items: center; /* توسيط العناصر رأسياً */
-            justify-content: center;
-            gap: 50px;
-            padding: 160px 5% 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        /* القسم الرئيسي */
+        .hero-section { display: flex; align-items: center; gap: 30px; padding: 150px 5% 50px; flex-wrap: wrap; justify-content: center; }
+        .static-book { flex: 0 0 280px; text-align: center; }
+        .book-img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.8); border-left: 3px solid #333; }
 
-        /* قسم الكتاب الثابت */
-        .static-book {
-            flex: 0 0 300px; /* حجم ثابت للكتاب */
-            text-align: center;
-            z-index: 10;
-        }
-        .book-img { 
-            width: 100%;
-            max-width: 260px;
-            border-radius: 5px 15px 15px 5px; 
-            box-shadow: -15px 15px 40px rgba(0,0,0,0.9); 
-            border-left: 3px solid #333;
-            transition: 0.5s;
-        }
-        .book-img:hover { transform: perspective(1000px) rotateY(-5deg) scale(1.02); }
-        
-        .browse-btn {
-            display: inline-block; margin-top: 20px; padding: 10px 25px;
-            border: 2px solid var(--gold); color: var(--gold);
-            text-decoration: none; border-radius: 30px; font-weight: bold;
-            transition: 0.3s;
-        }
-        .browse-btn:hover { background: var(--gold); color: #000; }
-
-        /* شريط الصور المتحرك (Slider) */
-        .slider-window {
-            flex: 1; /* يأخذ المساحة المتبقية */
-            overflow: hidden;
-            position: relative;
-            /* تأثير التلاشي عند الأطراف */
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            background: rgba(255,255,255,0.03); /* خلفية خفيفة للشريط */
-            border-radius: 15px;
-            padding: 20px 0;
-            border: 1px dashed rgba(212, 175, 55, 0.3);
-            height: 400px; /* ارتفاع ثابت للشريط */
-        }
-
-        .slider-track {
-            display: flex;
-            width: calc(250px * 82 * 2); /* (عرض الصورة + المسافة) * عدد الصور * 2 للتكرار اللانهائي */
-            animation: infiniteScroll 160s linear infinite; /* سرعة هادئة جداً لـ 82 صورة */
-        }
-
+        /* شريط الصور السلس */
+        .slider-window { flex: 1; min-width: 300px; overflow: hidden; position: relative; height: 350px; background: #111; border-radius: 15px; }
+        .slider-track { display: flex; width: max-content; animation: scroll 120s linear infinite; }
         .slider-track:hover { animation-play-state: paused; }
+        .slider-track img { height: 320px; margin: 15px 10px; border-radius: 8px; border: 1px solid #222; loading: lazy; } /* Lazy Loading للسرعة */
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .slider-track img {
-            height: 350px; /* ارتفاع الصورة داخل الشريط */
-            width: auto; /* يحافظ على نسبة العرض للارتفاع */
-            margin: 0 10px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            transition: 0.3s;
-        }
+        /* إعادة بيانات صفحة 2 و 3 (الجهات والمبادرة) */
+        .content-section { padding: 50px 10%; background: #111; margin-top: 20px; border-top: 2px solid var(--gold); text-align: center; }
+        .partners-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-top: 30px; }
+        .partner-box { background: #181818; padding: 20px; border-radius: 15px; border: 1px solid #222; }
+        .partner-box i { font-size: 2.5em; color: var(--gold); margin-bottom: 15px; }
 
-        @keyframes infiniteScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-250px * 82)); } /* تحريك لنصف عدد الصور الفعلية */
-        }
+        .stats-bar { display: flex; justify-content: space-around; flex-wrap: wrap; padding: 40px; background: var(--dark-bg); border-bottom: 3px solid var(--gold); }
+        .stat-item h3 { color: var(--gold); font-size: 2em; }
 
-        /* قسم الإحصائيات */
-        .stats-bar {
-            background: var(--card-bg);
-            padding: 30px;
-            margin: 40px 5%;
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            border-bottom: 4px solid var(--gold);
-        }
-        .stat-card { text-align: center; margin: 10px; }
-        .stat-card h3 { color: var(--gold); font-size: 2.2em; margin-bottom: 5px; }
-        .stat-card p { font-size: 0.9em; opacity: 0.8; }
-
-        /* الأيقونات العائمة */
-        .floating-social { 
-            position: fixed; left: 20px; top: 50%; transform: translateY(-50%); 
-            display: flex; flex-direction: column; gap: 12px; z-index: 10006; 
-        }
-        .floating-social a { 
-            width: 45px; height: 45px; display: flex; align-items: center; 
-            justify-content: center; border-radius: 50%; color: #fff; text-decoration: none; 
-            font-size: 1.2em;
-        }
-        .whatsapp-float { background: #25d366 !important; }
-        .facebook-float { background: #1877f2 !important; }
-        .x-float { background: #000 !important; }
-
-
-        @media (max-width: 1024px) {
-            .hero-section { 
-                flex-direction: column; 
-                padding-top: 180px; 
-                gap: 30px; /* تقليل المسافة عند تكدس العناصر */
-            }
-            .static-book { flex: none; width: 90%; max-width: 300px; } /* ليتناسب مع الشاشات الصغيرة */
-            .book-img { max-width: 220px; } /* تصغير الكتاب قليلاً للموبايل */
-
-            .slider-window { 
-                width: 90%; /* يأخذ عرضاً أكبر على الموبايل */
-                height: 280px; /* ارتفاع أقل للشريط على الموبايل */
-                padding: 15px 0;
-            }
-            .slider-track img { height: 220px; margin: 0 8px; } /* تصغير الصور أكثر */
-
-            .stats-bar { margin: 20px 2%; padding: 20px; }
-            .stat-card h3 { font-size: 1.8em; }
-        }
-        @media (max-width: 480px) {
-             .main-nav { flex-direction: column; top: 30px; padding: 5px 2%; }
-             .contact-btn { margin-top: 5px; }
-             .ticker-bar { padding: 8px 0; }
-             .ticker-item { font-size: 0.85em; }
-             .floating-social { left: 10px; gap: 8px; }
-             .floating-social a { width: 35px; height: 35px; font-size: 1em; }
-        }
+        .floating-social { position: fixed; left: 20px; top: 50%; display: flex; flex-direction: column; gap: 10px; z-index: 2100; }
+        .floating-social a { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; }
     </style>
 </head>
 <body>
 
     <div class="ticker-bar">
         <div class="ticker-container">
-            <span class="ticker-item">• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم •</span>
-            <span class="ticker-item">• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم الأسري • ٥٠% من الأسر المصرية معرضة للتفكك خلال العقد القادم •</span>
+            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة • ١٠٤ مليون محمول بوابات للجحيم • ٥٠% من الأسر مهددة •</span>
+            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة • ١٠٤ مليون محمول بوابات للجحيم • ٥٠% من الأسر مهددة •</span>
         </div>
     </div>
 
     <nav class="main-nav">
         <div class="social-group">
-            <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://x.com/civistories" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.pinterest.com/civistories/" target="_blank"><i class="fab fa-pinterest"></i></a>
-            <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" style="color:var(--gold); margin-left:10px;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color:var(--gold);"><i class="fab fa-instagram"></i></a>
         </div>
-        <a href="https://wa.me/201009995015" class="contact-btn" target="_blank">تواصل الآن <i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/201009995015" class="contact-btn">تواصل معنا <i class="fab fa-whatsapp"></i></a>
     </nav>
 
     <div class="hero-section">
-        
         <div class="static-book">
-            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration: none;">
-                <img src="CIVISTORIES Book.png" alt="تسونامي الوهم الرقمي" class="book-img">
-                <h2 style="color:var(--gold); margin-top:15px; font-size:1.6em;">تسونامي الوهم الرقمي</h2>
-                <span class="browse-btn">تصفح الإصدار التفاعلي <i class="fas fa-arrow-left"></i></span>
-            </a>
+            <img src="CIVISTORIES Book.png" class="book-img">
+            <h2 style="color:var(--gold); margin-top:10px;">تسونامي الوهم الرقمي</h2>
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" class="contact-btn" style="display:inline-block; margin-top:10px;">تصفح الآن</a>
         </div>
 
         <div class="slider-window">
-            <div class="slider-track">
-                <img src="1.jpg" alt="صورة 1"> <img src="2.jpg" alt="صورة 2"> <img src="3.jpg" alt="صورة 3">
-                <img src="4.jpg" alt="صورة 4"> <img src="5.jpg" alt="صورة 5"> <img src="6.jpg" alt="صورة 6">
-                <img src="7.jpg" alt="صورة 7"> <img src="8.jpg" alt="صورة 8"> <img src="9.jpg" alt="صورة 9">
-                <img src="10.jpg" alt="صورة 10"> <img src="11.jpg" alt="صورة 11"> <img src="12.png" alt="صورة 12">
-                <img src="13.jpg" alt="صورة 13"> <img src="14.png" alt="صورة 14"> <img src="15.jpg" alt="صورة 15">
-                <img src="16.jpg" alt="صورة 16"> <img src="17.jpg" alt="صورة 17"> <img src="18.jpg" alt="صورة 18">
-                <img src="19.png" alt="صورة 19"> <img src="20.jpg" alt="صورة 20"> <img src="21.jpg" alt="صورة 21">
-                <img src="22.jpg" alt="صورة 22"> <img src="23.jpg" alt="صورة 23"> <img src="24.jpg" alt="صورة 24">
-                <img src="25.jpg" alt="صورة 25"> <img src="26.jpg" alt="صورة 26"> <img src="27.jpg" alt="صورة 27">
-                <img src="28.jpg" alt="صورة 28"> <img src="29.jpg" alt="صورة 29"> <img src="30.jpg" alt="صورة 30">
-                <img src="31.jpg" alt="صورة 31"> <img src="32.jpg" alt="صورة 32"> <img src="33.jpg" alt="صورة 33">
-                <img src="34.jpg" alt="صورة 34"> <img src="35.jpg" alt="صورة 35"> <img src="36.jpg" alt="صورة 36">
-                <img src="37.jpg" alt="صورة 37"> <img src="38.jpg" alt="صورة 38"> <img src="39.jpg" alt="صورة 39">
-                <img src="40.jpg" alt="صورة 40"> <img src="41.jpg" alt="صورة 41"> <img src="42.jpg" alt="صورة 42">
-                <img src="43.jpg" alt="صورة 43"> <img src="44.jpg" alt="صورة 44"> <img src="45.jpg" alt="صورة 45">
-                <img src="46.jpg" alt="صورة 46"> <img src="47.jpg" alt="صورة 47"> <img src="48.jpg" alt="صورة 48">
-                <img src="49.jpg" alt="صورة 49"> <img src="50.jpg" alt="صورة 50"> <img src="51.jpg" alt="صورة 51">
-                <img src="52.jpg" alt="صورة 52"> <img src="53.jpg" alt="صورة 53"> <img src="54.jpg" alt="صورة 54">
-                <img src="55.jpg" alt="صورة 55"> <img src="56.jpg" alt="صورة 56"> <img src="57.jpg" alt="صورة 57">
-                <img src="58.jpg" alt="صورة 58"> <img src="59.jpg" alt="صورة 59"> <img src="60.jpg" alt="صورة 60">
-                <img src="61.jpg" alt="صورة 61"> <img src="62.jpg" alt="صورة 62"> <img src="63.jpg" alt="صورة 63">
-                <img src="64.jpg" alt="صورة 64"> <img src="65.jpg" alt="صورة 65"> <img src="66.jpg" alt="صورة 66">
-                <img src="67.jpg" alt="صورة 67"> <img src="68.jpg" alt="صورة 68"> <img src="69.jpg" alt="صورة 69">
-                <img src="70.jpg" alt="صورة 70"> <img src="71.jpg" alt="صورة 71"> <img src="72.jpg" alt="صورة 72">
-                <img src="73.jpg" alt="صورة 73"> <img src="74.jpg" alt="صورة 74"> <img src="75.jpg" alt="صورة 75">
-                <img src="76.jpg" alt="صورة 76"> <img src="77.jpg" alt="صورة 77"> <img src="78.jpg" alt="صورة 78">
-                <img src="79.jpg" alt="صورة 79"> <img src="80.jpg" alt="صورة 80"> <img src="81.jpg" alt="صورة 81">
-                <img src="82.jpg" alt="صورة 82">
-
-                <img src="1.jpg" alt="صورة 1 مكررة"> <img src="2.jpg" alt="صورة 2 مكررة"> <img src="3.jpg" alt="صورة 3 مكررة">
-                <img src="4.jpg" alt="صورة 4 مكررة"> <img src="5.jpg" alt="صورة 5 مكررة"> <img src="6.jpg" alt="صورة 6 مكررة">
-                <img src="7.jpg" alt="صورة 7 مكررة"> <img src="8.jpg" alt="صورة 8 مكررة"> <img src="9.jpg" alt="صورة 9 مكررة">
-                <img src="10.jpg" alt="صورة 10 مكررة"> <img src="11.jpg" alt="صورة 11 مكررة"> <img src="12.png" alt="صورة 12 مكررة">
-                <img src="13.jpg" alt="صورة 13 مكررة"> <img src="14.png" alt="صورة 14 مكررة"> <img src="15.jpg" alt="صورة 15 مكررة">
-                <img src="16.jpg" alt="صورة 16 مكررة"> <img src="17.jpg" alt="صورة 17 مكررة"> <img src="18.jpg" alt="صورة 18 مكررة">
-                <img src="19.png" alt="صورة 19 مكررة"> <img src="20.jpg" alt="صورة 20 مكررة"> <img src="21.jpg" alt="صورة 21 مكررة">
-                <img src="22.jpg" alt="صورة 22 مكررة"> <img src="23.jpg" alt="صورة 23 مكررة"> <img src="24.jpg" alt="صورة 24 مكررة">
-                <img src="25.jpg" alt="صورة 25 مكررة"> <img src="26.jpg" alt="صورة 26 مكررة"> <img src="27.jpg" alt="صورة 27 مكررة">
-                <img src="28.jpg" alt="صورة 28 مكررة"> <img src="29.jpg" alt="صورة 29 مكررة"> <img src="30.jpg" alt="صورة 30 مكررة">
-                <img src="31.jpg" alt="صورة 31 مكررة"> <img src="32.jpg" alt="صورة 32 مكررة"> <img src="33.jpg" alt="صورة 33 مكررة">
-                <img src="34.jpg" alt="صورة 34 مكررة"> <img src="35.jpg" alt="صورة 35 مكررة"> <img src="36.jpg" alt="صورة 36 مكررة">
-                <img src="37.jpg" alt="صورة 37 مكررة"> <img src="38.jpg" alt="صورة 38 مكررة"> <img src="39.jpg" alt="صورة 39 مكررة">
-                <img src="40.jpg" alt="صورة 40 مكررة"> <img src="41.jpg" alt="صورة 41 مكررة"> <img src="42.jpg" alt="صورة 42 مكررة">
-                <img src="43.jpg" alt="صورة 43 مكررة"> <img src="44.jpg" alt="صورة 44 مكررة"> <img src="45.jpg" alt="صورة 45 مكررة">
-                <img src="46.jpg" alt="صورة 46 مكررة"> <img src="47.jpg" alt="صورة 47 مكررة"> <img src="48.jpg" alt="صورة 48 مكررة">
-                <img src="49.jpg" alt="صورة 49 مكررة"> <img src="50.jpg" alt="صورة 50 مكررة"> <img src="51.jpg" alt="صورة 51 مكررة">
-                <img src="52.jpg" alt="صورة 52 مكررة"> <img src="53.jpg" alt="صورة 53 مكررة"> <img src="54.jpg" alt="صورة 54 مكررة">
-                <img src="55.jpg" alt="صورة 55 مكررة"> <img src="56.jpg" alt="صورة 56 مكررة"> <img src="57.jpg" alt="صورة 57 مكررة">
-                <img src="58.jpg" alt="صورة 58 مكررة"> <img src="59.jpg" alt="صورة 59 مكررة"> <img src="60.jpg" alt="صورة 60 مكررة">
-                <img src="61.jpg" alt="صورة 61 مكررة"> <img src="62.jpg" alt="صورة 62 مكررة"> <img src="63.jpg" alt="صورة 63 مكررة">
-                <img src="64.jpg" alt="صورة 64 مكررة"> <img src="65.jpg" alt="صورة 65 مكررة"> <img src="66.jpg" alt="صورة 66 مكررة">
-                <img src="67.jpg" alt="صورة 67 مكررة"> <img src="68.jpg" alt="صورة 68 مكررة"> <img src="69.jpg" alt="صورة 69 مكررة">
-                <img src="70.jpg" alt="صورة 70 مكررة"> <img src="71.jpg" alt="صورة 71 مكررة"> <img src="72.jpg" alt="صورة 72 مكررة">
-                <img src="73.jpg" alt="صورة 73 مكررة"> <img src="74.jpg" alt="صورة 74 مكررة"> <img src="75.jpg" alt="صورة 75 مكررة">
-                <img src="76.jpg" alt="صورة 76 مكررة"> <img src="77.jpg" alt="صورة 77 مكررة"> <img src="78.jpg" alt="صورة 78 مكررة">
-                <img src="79.jpg" alt="صورة 79 مكررة"> <img src="80.jpg" alt="صورة 80 مكررة"> <img src="81.jpg" alt="صورة 81 مكررة">
-                <img src="82.jpg" alt="صورة 82 مكررة">
-            </div>
+            <div class="slider-track" id="photoTrack">
+                </div>
         </div>
-
     </div>
 
+    <section class="content-section">
+        <h2 style="color:var(--gold);">عن المبادرة والداعمين</h2>
+        <div class="partners-grid">
+            <div class="partner-box">
+                <i class="fas fa-mosque"></i>
+                <h3>رؤية الأزهر الشريف</h3>
+                <p>دعم الترابط الأسري ومواجهة التفكك الناتج عن الاستخدام الخاطئ للتكنولوجيا.</p>
+            </div>
+            <div class="partner-box">
+                <i class="fas fa-church"></i>
+                <h3>رؤية الكنيسة المصرية</h3>
+                <p>الحفاظ على النسيج المجتمعي وحماية القيم الأسرية الأصيلة.</p>
+            </div>
+            <div class="partner-box">
+                <i class="fas fa-shield-alt"></i>
+                <h3>هدف المبادرة</h3>
+                <p>توعية المجتمع بمخاطر "الوهم الرقمي" واستعادة دفء البيوت المصرية.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="stats-bar">
-        <div class="stat-card"><h3>٣ دقائق</h3><p>بين حالات الطلاق</p></div>
-        <div class="stat-card"><h3>٢٥٥ حالة</h3><p>طلاق يومياً في مصر</p></div>
-        <div class="stat-card"><h3>٤٠%</h3><p>بسبب مخاطر السوشيال ميديا</p></div>
+        <div class="stat-item"><h3>٣ دقائق</h3><p>بين كل حالة طلاق</p></div>
+        <div class="stat-item"><h3>٢٥٥ حالة</h3><p>طلاق يومياً</p></div>
+        <div class="stat-item"><h3>٤٠%</h3><p>بسبب السوشيال ميديا</p></div>
     </section>
 
     <div class="floating-social">
-        <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=100093677167187" class="facebook-float" target="_blank"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com/civistories" class="x-float" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" style="background:#25d366;"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
     </div>
 
-    <footer style="padding: 40px; text-align: center; border-top: 1px solid #222; opacity: 0.6;">
-        <p>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</p>
-    </footer>
-
+    <script>
+        // كود ذكي لتوليد الصور الـ 82 دون إبطاء المتصفح
+        const track = document.getElementById('photoTrack');
+        const totalPhotos = 82;
+        
+        function loadImages() {
+            let imagesHtml = '';
+            for (let i = 1; i <= totalPhotos; i++) {
+                // نستخدم الامتداد المناسب (jpg أو png) حسب ما رفعت
+                let ext = (i === 12 || i === 14 || i === 19) ? 'png' : 'jpg';
+                imagesHtml += `<img src="${i}.${ext}" alt="صورة ${i}" loading="lazy">`;
+            }
+            track.innerHTML = imagesHtml + imagesHtml; // تكرار الصور مرتين للحركة اللانهائية
+        }
+        loadImages();
+    </script>
 </body>
 </html>
