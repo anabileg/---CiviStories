@@ -10,12 +10,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background: var(--dark-bg); color: var(--white-text); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
 
-        /* شريط الأخبار */
+        /* شريط الأخبار - تحسين الحركة لضمان التساوي في السرعة */
         .ticker-bar { 
             background: var(--accent-red); height: 45px; position: fixed; 
             top: 0; width: 100%; z-index: 10002; display: flex; align-items: center; overflow: hidden;
         }
-        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 80s linear infinite; }
+        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 85s linear infinite; will-change: transform; }
         @keyframes moveTicker { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         /* الشريط العلوي */
@@ -26,19 +26,16 @@
         }
         .social-links { display: flex; gap: 15px; align-items: center; }
         .social-links a { color: var(--gold); font-size: 1.3em; text-decoration: none; transition: 0.3s; }
-        .social-links a:hover { color: #fff; transform: scale(1.1); }
         
         .lang-switch {
             background: transparent; border: 1px solid var(--gold); color: var(--gold);
             padding: 4px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 10px;
         }
 
-        /* حاوية أيقونات التواصل السريع (واتساب + إيميل) */
         .quick-contact { display: flex; gap: 20px; align-items: center; }
         .quick-contact a { color: var(--gold); font-size: 1.8em; text-decoration: none; transition: 0.3s; }
-        .quick-contact a:hover { color: #fff; transform: scale(1.1); }
 
-        /* زر الصعود للأعلى */
+        /* زر الصعود للأعلى الذهبي */
         #backToTop {
             position: fixed; bottom: 30px; left: 30px; 
             background: var(--gold); color: #000; width: 50px; height: 50px;
@@ -47,15 +44,25 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.8); border: 2px solid #fff;
         }
 
-        /* الهيرو والسلايدر */
+        /* تحسين أداء السلايدر ليكون متساوياً في اللغتين */
         .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 200px 5% 40px; flex-wrap: wrap; }
         .cover-box { flex: 0 0 320px; text-align: center; }
         .cover-img { width: 100%; border-radius: 10px; border: 1px solid #333; }
         
-        .slider-area { flex: 1; min-width: 350px; height: 450px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; }
-        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: scrollPhotos 140s linear infinite; }
+        .slider-area { flex: 1; min-width: 350px; height: 450px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; background: #000; }
+        .photo-track { 
+            display: flex; position: absolute; top: 50%; 
+            /* استخدام transform بدلاً من left لسرعة متساوية */
+            transform: translateY(-50%); 
+            animation: scrollPhotos 150s linear infinite; 
+            will-change: transform;
+        }
         .photo-track img { height: 380px; margin: 0 10px; border-radius: 8px; border: 1px solid var(--gold); }
-        @keyframes scrollPhotos { 0% { left: 0; } 100% { left: -6000px; } }
+        
+        @keyframes scrollPhotos { 
+            0% { transform: translateY(-50%) translateX(0); } 
+            100% { transform: translateY(-50%) translateX(-5000px); } 
+        }
 
         /* الإحصائيات */
         .data-header { color: var(--gold); padding: 40px 10% 10px; font-size: 2em; text-align: right; border-bottom: 2px solid #222; margin: 0 10% 20px; }
@@ -68,7 +75,7 @@
 
         /* تعديلات الإنجليزية */
         .en-mode { direction: ltr !important; }
-        .en-mode .ticker-container { animation: moveTickerEN 80s linear infinite; }
+        .en-mode .ticker-container { animation: moveTickerEN 85s linear infinite; }
         @keyframes moveTickerEN { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .en-mode .data-header { text-align: left; }
 
@@ -95,7 +102,6 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
-        
         <div class="quick-contact">
             <a href="mailto:civistories@gmail.com" title="Email Us"><i class="fas fa-envelope"></i></a>
             <a href="https://wa.me/201009995015" target="_blank" title="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
@@ -139,17 +145,16 @@
     <footer id="footerText">© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        // السلايدر
+        // تحسين تحميل السلايدر
         const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
         const track = document.getElementById('imageTrack');
         let sliderHtml = '';
         for(let i=1; i<=82; i++) {
             let ext = pngFiles.includes(i) ? 'png' : 'jpg';
-            sliderHtml += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
+            sliderHtml += `<img src="${i}.${ext}" loading="lazy" onerror="this.style.display='none'">`;
         }
         track.innerHTML = sliderHtml + sliderHtml;
 
-        // نظام الترجمة
         let currentLang = 'ar';
         const translations = {
             en: {
@@ -182,6 +187,7 @@
             const d = translations[currentLang];
             html.dir = currentLang === 'en' ? 'ltr' : 'rtl';
             currentLang === 'en' ? html.classList.add('en-mode') : html.classList.remove('en-mode');
+            
             document.getElementById('tickerText').innerText = d.ticker;
             document.getElementById('langBtn').innerText = d.langBtn;
             document.getElementById('mainTitle').innerText = d.mainTitle;
