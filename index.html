@@ -3,75 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories | حماية النسيج الاجتماعي</title>
+    <title>CiviStories | حماية النسيج الاجتماعي المصري</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; --card-bg: #181818; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); overflow-x: hidden; }
 
-        /* 1. شريط الأخبار العلوي */
+        /* شريط الأخبار المتحرك */
         .ticker-bar { background: var(--accent-red); padding: 12px 0; position: fixed; top: 0; width: 100%; z-index: 10002; font-weight: bold; }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; }
         .ticker-item { display: inline-block; padding-left: 60px; font-size: 1.1em; color: #fff; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* 2. شريط السوشيال ميديا العلوي (كامل) */
-        .main-nav { 
+        /* شريط السوشيال ميديا العلوي (المطلوب إعادة تفعيله) */
+        .top-nav { 
             background: rgba(0,0,0,0.95); padding: 12px 5%; position: fixed; top: 45px; 
             width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold);
             display: flex; justify-content: space-between; align-items: center;
         }
-        .social-group { display: flex; gap: 15px; flex-wrap: wrap; }
-        .social-group a { color: var(--gold); text-decoration: none; font-size: 1.4em; transition: 0.3s; }
-        .social-group a:hover { color: #fff; transform: scale(1.2); }
-        .contact-btn { background: var(--gold); color: #000; padding: 6px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { color: var(--gold); text-decoration: none; font-size: 1.4em; transition: 0.3s; }
+        .social-links a:hover { color: #fff; transform: translateY(-3px); }
+        .wa-btn { background: var(--gold); color: #000; padding: 6px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-        /* 3. القسم الرئيسي (الغلاف + السلايدر جنباً إلى جنب) */
-        .hero-flex { 
-            display: flex; align-items: center; justify-content: center; gap: 30px; 
-            padding: 160px 5% 40px; flex-wrap: wrap;
+        /* القسم الرئيسي: الغلاف بجانب السلايدر */
+        .main-hero { 
+            display: flex; align-items: flex-start; justify-content: center; gap: 40px; 
+            padding: 160px 5% 40px; flex-wrap: wrap; 
         }
 
-        .book-container { flex: 0 0 300px; text-align: center; }
-        .book-link { text-decoration: none; color: inherit; display: block; }
-        .book-img { 
-            width: 100%; border-radius: 5px 15px 15px 5px; 
-            box-shadow: -15px 20px 50px rgba(0,0,0,0.9); 
-            border-left: 3px solid #333; transition: 0.5s; 
+        .cover-box { flex: 0 0 300px; text-align: center; }
+        .cover-link { text-decoration: none; color: inherit; display: block; }
+        .cover-img { 
+            width: 100%; border-radius: 10px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
+            border: 1px solid #333; transition: 0.5s; 
         }
-        .book-link:hover .book-img { transform: perspective(1000px) rotateY(-10deg); }
-        .click-hint { 
-            display: inline-block; margin-top: 15px; padding: 8px 20px; 
-            border: 1px solid var(--gold); color: var(--gold); border-radius: 25px;
-            font-size: 0.9em; animation: pulse 2s infinite;
+        .cover-link:hover .cover-img { transform: scale(1.02); border-color: var(--gold); }
+        
+        /* نص الضغط المطلوب */
+        .press-here { 
+            display: block; margin-top: 15px; color: var(--gold); 
+            font-weight: bold; font-size: 1.2em; animation: flash 1.5s infinite;
         }
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
+        @keyframes flash { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
 
-        /* 4. السلايدر بجانب الكتاب */
-        .slider-window { 
-            flex: 1; min-width: 320px; height: 400px; overflow: hidden; 
-            position: relative; background: #111; border-radius: 20px; border: 1px solid #222;
+        /* سلايدر الصور بجانب الغلاف */
+        .slider-area { 
+            flex: 1; min-width: 320px; height: 420px; overflow: hidden; 
+            position: relative; background: #000; border-radius: 15px; border: 1px solid #222;
         }
-        .track { display: flex; position: absolute; left: 0; top: 25px; will-change: transform; }
-        .track img { height: 350px; margin: 0 10px; border-radius: 10px; border: 1px solid var(--gold); }
+        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: scroll 120s linear infinite; }
+        .photo-track img { height: 350px; margin: 0 10px; border-radius: 8px; border: 1px solid #222; }
+        @keyframes scroll { 0% { left: 0; } 100% { left: -5000px; } }
 
-        /* 5. الإحصائيات والبيانات */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 10%; }
-        .stat-card { background: var(--card-bg); padding: 30px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
-        .stat-card h2 { color: var(--gold); font-size: 2.5em; margin-bottom: 5px; }
+        /* الإحصائيات (الثابتة بالبيانات) */
+        .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 10%; }
+        .stat-item { background: var(--card-bg); padding: 35px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
+        .stat-item h2 { color: var(--gold); font-size: 2.8em; margin-bottom: 10px; }
 
-        .economy-alert { 
+        .economy-warn { 
             background: linear-gradient(135deg, #400 0%, #111 100%); 
-            margin: 20px 10%; padding: 40px; border-radius: 30px; border: 1px solid var(--accent-red); 
+            margin: 20px 10%; padding: 45px; border-radius: 30px; border: 1px solid var(--accent-red);
         }
-        .eco-num { color: #ff3333; font-size: 2.5em; font-weight: 900; display: block; }
+        .eco-val { color: #ff3333; font-size: 3em; font-weight: 900; display: block; }
 
-        footer { padding: 40px; opacity: 0.6; font-size: 0.9em; }
+        footer { padding: 40px; text-align: center; opacity: 0.6; }
 
         @media (max-width: 768px) {
-            .hero-flex { flex-direction: column; padding-top: 220px; }
-            .main-nav { flex-direction: column; height: auto; padding: 10px; }
+            .main-hero { flex-direction: column; align-items: center; padding-top: 220px; }
+            .top-nav { flex-direction: column; gap: 10px; height: auto; }
         }
     </style>
 </head>
@@ -83,8 +85,8 @@
         </div>
     </div>
 
-    <nav class="main-nav">
-        <div class="social-group">
+    <nav class="top-nav">
+        <div class="social-links">
             <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -94,62 +96,52 @@
             <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:info@civistories.com" target="_blank"><i class="fas fa-envelope"></i></a>
         </div>
-        <a href="https://wa.me/201009995015" target="_blank" class="contact-btn">تواصل واتساب <i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/201009995015" target="_blank" class="wa-btn">تواصل الآن <i class="fab fa-whatsapp"></i></a>
     </nav>
 
-    <div class="hero-flex">
-        <div class="book-container">
-            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-link">
-                <img src="CIVISTORIES Book.png" alt="غلاف الكتاب" class="book-img">
-                <h2 style="color:var(--gold); margin-top:15px;">تسونامي الوهم الرقمي</h2>
-                <div class="click-hint">انقر هنا لتصفح الكتاب التفاعلي <i class="fas fa-hand-pointer"></i></div>
+    <div class="main-hero">
+        <div class="cover-box">
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="cover-link">
+                <img src="CIVISTORIES Book.png" alt="تسونامي الوهم الرقمي" class="cover-img">
+                <h1 style="color:var(--gold); margin-top:15px; font-size: 1.8em;">تسونامي الوهم الرقمي</h1>
+                <span class="press-here">مطلوب الضغط هنا <i class="fas fa-mouse-pointer"></i></span>
             </a>
         </div>
 
-        <div class="slider-window">
-            <div class="track" id="mainTrack"></div>
+        <div class="slider-area">
+            <div class="photo-track" id="dynamicTrack"></div>
         </div>
     </div>
 
-    <section class="stats-grid">
-        <div class="stat-card"><h2>٣ دقائق</h2><p>بين حالات الطلاق</p></div>
-        <div class="stat-card"><h2>٢٥٥ حالة</h2><p>طلاق يومياً في مصر</p></div>
-        <div class="stat-card"><h2>٤٠%</h2><p>بسبب السوشيال ميديا</p></div>
+    <section class="stats-section">
+        <div class="stat-item"><h2>٣ دقائق</h2><p>بين كل حالة طلاق وأخرى</p></div>
+        <div class="stat-item"><h2>٢٥٥ حالة</h2><p>إجمالي حالات الطلاق يومياً</p></div>
+        <div class="stat-item"><h2>٤٠%</h2><p>من حالات الانفصال بسبب السوشيال ميديا</p></div>
     </section>
 
-    <section class="economy-alert">
+    <section class="economy-warn">
         <h2 style="color:var(--gold); margin-bottom:20px;">النزيف الاقتصادي الرقمي</h2>
-        <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
-            <div><span class="eco-num">١٥ مليار جنيه</span><p>خسارة سنوية (جرائم رقمية)</p></div>
-            <div><span class="eco-num">٣.١ مليار جنيه</span><p>خسائر التجارة الزائفة</p></div>
+        <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:30px;">
+            <div><span class="eco-val">١٥ مليار جنيه</span><p>خسارة سنوية بسبب الجرائم الرقمية</p></div>
+            <div><span class="eco-val">٣.١ مليار جنيه</span><p>خسائر التجارة الإلكترونية الزائفة</p></div>
         </div>
     </section>
 
     <footer>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        const track = document.getElementById('mainTrack');
-        const pngs = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
+        // مصفوفة صور الـ png بناءً على ملفاتك المرفقة
+        const pngList = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
+        const track = document.getElementById('dynamicTrack');
         
-        function init() {
-            let html = '';
-            for(let i=1; i<=82; i++) {
-                let ext = pngs.includes(i) ? 'png' : 'jpg';
-                html += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
-            }
-            track.innerHTML = html + html;
+        let content = '';
+        // توليد 82 صورة بناءً على الأرقام والامتدادات الصحيحة في ملفاتك
+        for(let i=1; i<=82; i++) {
+            let ext = pngList.includes(i) ? 'png' : 'jpg';
+            content += `<img src="${i}.${ext}" alt="ميداني ${i}" onerror="this.style.display='none'">`;
         }
-
-        let x = 0;
-        function animate() {
-            x -= 0.8;
-            if (Math.abs(x) >= track.scrollWidth / 2) x = 0;
-            track.style.transform = `translateX(${x}px)`;
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
+        // تكرار المحتوى لضمان انسيابية السلايدر
+        track.innerHTML = content + content;
     </script>
 </body>
 </html>
