@@ -10,48 +10,45 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background: var(--dark-bg); color: var(--white-text); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
 
-        /* شريط الأخبار */
         .ticker-bar { background: var(--accent-red); height: 40px; position: fixed; top: 0; width: 100%; z-index: 10002; display: flex; align-items: center; overflow: hidden; }
-        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 85s linear infinite; }
+        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 85s linear infinite; font-weight: bold; }
         @keyframes moveTicker { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        /* الشريط العلوي */
-        .top-nav { background: rgba(0,0,0,0.95); padding: 5px 5%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .top-nav { background: rgba(0,0,0,0.95); padding: 5px 5%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
         
         .nav-links { display: flex; gap: 15px; list-style: none; }
-        .nav-links a { color: var(--white-text); text-decoration: none; font-size: 0.85em; font-weight: bold; transition: 0.3s; cursor: pointer; }
-        .nav-links a:hover { color: var(--gold); }
-
+        .nav-links a { color: var(--white-text); text-decoration: none; font-size: 0.85em; font-weight: bold; cursor: pointer; }
+        
         .social-links { display: flex; gap: 10px; align-items: center; }
         .social-links a { color: var(--gold); font-size: 1.1em; transition: 0.3s; }
-        .social-links a:hover { color: #fff; transform: translateY(-3px); }
         
         .lang-switch { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 3px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.8em; }
 
-        #backToTop { position: fixed; bottom: 30px; left: 30px; background: var(--gold); color: #000; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3em; cursor: pointer; z-index: 999999; border: 2px solid #fff; display: none; }
+        .quick-contact { display: flex; gap: 15px; align-items: center; }
+        .quick-contact a { color: var(--gold); font-size: 1.4em; }
 
-        /* الأقسام */
+        #backToTop { position: fixed; bottom: 30px; left: 30px; background: var(--gold); color: #000; width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 999999; border: 2px solid #fff; cursor: pointer; }
+
         .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 180px 5% 40px; flex-wrap: wrap; }
         .cover-box { flex: 0 0 300px; text-align: center; }
         .cover-img { width: 100%; border-radius: 10px; border: 1px solid #333; animation: pulse-gold 3s infinite; }
         @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
 
-        .slider-area { flex: 1; min-width: 320px; height: 400px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; }
-        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: scrollPhotos 120s linear infinite; }
+        .slider-area { flex: 1; min-width: 320px; height: 400px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; background: #000; }
+        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: scrollPhotos 150s linear infinite; will-change: transform; }
         .photo-track img { height: 350px; margin: 0 10px; border-radius: 8px; border: 1px solid var(--gold); }
-        @keyframes scrollPhotos { 0% { transform: translateY(-50%) translateX(0); } 100% { transform: translateY(-50%) translateX(-5000px); } }
+        @keyframes scrollPhotos { 0% { transform: translateY(-50%) translateX(0); } 100% { transform: translateY(-50%) translateX(-10000px); } }
 
         #about-sec { background: #111; border-radius: 30px; margin: 40px 10%; padding: 40px; border: 1px inset #222; }
         .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
         .data-header { color: var(--gold); padding: 20px 0; font-size: 1.8em; text-align: right; border-bottom: 2px solid #222; margin-bottom: 20px; }
         .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 0 10% 40px; }
         .stat-item { background: var(--card-bg); padding: 25px; border-radius: 15px; text-align: center; border-bottom: 4px solid var(--gold); }
-        .stat-item h2 { color: var(--gold); font-size: 2.5em; margin-bottom: 5px; }
+        .stat-item h2 { color: var(--gold); font-size: 2.5em; }
 
         .economy-warn { background: linear-gradient(135deg, #300 0%, #111 100%); padding: 40px; border-radius: 25px; border: 1px solid var(--accent-red); text-align: center; margin: 0 10% 50px; }
-        .eco-val { color: #ff3333; font-size: 2.5em; font-weight: 900; display: block; margin-bottom: 10px; }
+        .eco-val { color: #ff3333; font-size: 2.5em; font-weight: 900; display: block; }
 
-        /* أوضاع اللغات */
         .en-mode { direction: ltr !important; }
         .en-mode .ticker-container { animation: moveTickerEN 85s linear infinite; }
         @keyframes moveTickerEN { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
@@ -60,7 +57,7 @@
         footer { padding: 30px; text-align: center; opacity: 0.5; font-size: 0.8em; border-top: 1px solid #222; }
     </style>
 </head>
-<body id="bodyTag">
+<body>
 
     <div id="backToTop" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></div>
 
@@ -89,7 +86,8 @@
         </ul>
 
         <div class="quick-contact">
-            <a href="https://wa.me/201009995015" target="_blank" style="color:var(--gold); font-size:1.5em;"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:civistories@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
     </nav>
 
@@ -114,7 +112,7 @@
         </div>
     </section>
 
-    <section id="reports-sec" style="padding-top:20px;">
+    <section id="reports-sec">
         <div class="data-header" id="secTitle1" style="margin: 0 10% 20px;">تقارير المؤسسات</div>
         <div class="stats-section">
             <div class="stat-item"><h2 id="azharName">الأزهر الشريف</h2><p id="azharDesc">السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة.</p></div>
@@ -142,12 +140,18 @@
     <footer id="footerText">© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        // زر الصعود
-        window.onscroll = function() {
-            document.getElementById("backToTop").style.display = (window.pageYOffset > 400) ? "flex" : "none";
-        };
+        // تحميل الصور مرة واحدة فقط لضمان عدم الاختفاء
+        const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
+        const track = document.getElementById('imageTrack');
+        let imgs = '';
+        for(let i=1; i<=82; i++) {
+            let ext = pngFiles.includes(i) ? 'png' : 'jpg';
+            imgs += `<img src="${i}.${ext}" loading="lazy" onerror="this.style.display='none'">`;
+        }
+        track.innerHTML = imgs + imgs;
 
-        // العدادات
+        window.onscroll = function() { document.getElementById("backToTop").style.display = (window.pageYOffset > 400) ? "flex" : "none"; };
+
         const startCounters = () => {
             document.querySelectorAll('.counter').forEach(counter => {
                 const target = +counter.getAttribute('data-target');
@@ -164,21 +168,12 @@
         };
         new IntersectionObserver((entries) => { if(entries[0].isIntersecting) startCounters(); }, { threshold: 0.5 }).observe(document.querySelector('#stats-sec'));
 
-        // السلايدر (ثابت لا يتأثر بالترجمة)
-        const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
-        const track = document.getElementById('imageTrack');
-        let imgs = '';
-        for(let i=1; i<=82; i++) {
-            let ext = pngFiles.includes(i) ? 'png' : 'jpg';
-            imgs += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
-        }
-        track.innerHTML = imgs + imgs;
-
         let currentLang = 'ar';
         const trans = {
             en: {
-                langBtn: "العربية", link1: "Our Vision", link2: "Reports", link3: "Statistics", link4: "Losses",
-                mainTitle: "Digital Illusion Tsunami", clickPrompt: "Click to Read", bil: "Billion",
+                ticker: " • Red Alert: Digital Illusion Tsunami threatens Egyptian family stability • New divorce every 3 mins • Al-Azhar: Social Media causes 60% of family disputes • 104M mobiles are gateways to family hell • ",
+                langBtn: "العربية", link1: "Our Vision", link2: "Reports", link3: "Statistics", link4: "Losses", bil: "Billion",
+                mainTitle: "Digital Illusion Tsunami", clickPrompt: "Click to Read",
                 h_about: "Vision & Mission", v_title: "Vision", v_text: "Protecting Egyptian society from digital disintegration.",
                 m_title: "Mission", m_text: "Raising awareness and providing practical stability solutions.",
                 secTitle1: "Institutional Reports", azharName: "Al-Azhar", azharDesc: "Social media causes 60% of family disputes.",
@@ -189,14 +184,15 @@
                 ecoDesc2: "Electronic fraud losses.", footer: "© 2024 CiviStories"
             },
             ar: {
-                langBtn: "English", link1: "رؤيتنا", link2: "التقارير", link3: "الإحصائيات", link4: "الخسائر",
-                mainTitle: "تسونامي الوهم الرقمي", clickPrompt: "إضغط للقراءة", bil: "مليار",
+                ticker: "• إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة المصرية • كل ٣ دقائق حالة طلاق جديدة في مصر • الأزهر الشريف: السوشيال ميديا سبب ٦٠٪ من النزاعات الأسرية • ١٠٤ مليون محمول بوابات للجحيم الأسري •",
+                langBtn: "English", link1: "رؤيتنا", link2: "التقارير", link3: "الإحصائيات", link4: "الخسائر", bil: "مليار",
+                mainTitle: "تسونامي الوهم الرقمي", clickPrompt: "إضغط للقراءة",
                 h_about: "رؤيتنا وهدفنا", v_title: "الرؤية", v_text: "حماية النسيج الاجتماعي المصري من مخاطر التفكك والوهم الإلكتروني.",
                 m_title: "الرسالة", m_text: "توعية الأسرة المصرية بمخاطر الإدمان الرقمي وتقديم حلول عملية.",
                 secTitle1: "تقارير المؤسسات", azharName: "الأزهر الشريف", azharDesc: "السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة.",
                 churchName: "الكنيسة المصرية", churchDesc: "رصد زيادة في حالات التباعد الأسري بسبب الإدمان الرقمي.",
                 secTitle2: "مؤشرات الخطر", stat1P: "دقائق بين كل حالة طلاق وأخرى.",
-                stat2P: "متوسط حالات الطلاق اليومية.", stat3P: "% من الانفصال تبدأ بنزاع إلكتروني.",
+                stat2P: "متوسط حالات الطلاق اليومية.", stat3P: "% من الانفصال يبدأ بنزاع إلكتروني.",
                 ecoTitle: "النزيف الاقتصادي", ecoDesc1: "خسائر الجرائم الرقمية.",
                 ecoDesc2: "خسائر الاحتيال الإلكتروني.", footer: "© 2024 CiviStories - حماية النسيج الاجتماعي المصري"
             }
@@ -206,10 +202,10 @@
             currentLang = (currentLang === 'ar') ? 'en' : 'ar';
             const d = trans[currentLang];
             const html = document.getElementById('mainHtml');
-            
             html.dir = (currentLang === 'en') ? 'ltr' : 'rtl';
             (currentLang === 'en') ? html.classList.add('en-mode') : html.classList.remove('en-mode');
 
+            document.getElementById('tickerText').innerText = d.ticker;
             document.getElementById('langBtn').innerText = d.langBtn;
             document.getElementById('link1').innerText = d.link1; document.getElementById('link2').innerText = d.link2;
             document.getElementById('link3').innerText = d.link3; document.getElementById('link4').innerText = d.link4;
