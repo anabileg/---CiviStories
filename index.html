@@ -12,74 +12,79 @@
 
         /* شريط الأخبار */
         .ticker-bar { 
-            background: var(--accent-red); height: 45px; position: fixed; 
+            background: var(--accent-red); height: 40px; position: fixed; 
             top: 0; width: 100%; z-index: 10002; display: flex; align-items: center; overflow: hidden;
         }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 85s linear infinite; will-change: transform; }
         @keyframes moveTicker { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        /* الشريط العلوي */
+        /* الشريط العلوي المطور */
         .top-nav { 
-            background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; 
-            top: 45px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold);
-            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0,0,0,0.95); padding: 5px 5%; position: fixed; 
+            top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold);
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
         }
-        .social-links { display: flex; gap: 15px; align-items: center; }
-        .social-links a { color: var(--gold); font-size: 1.3em; text-decoration: none; transition: 0.3s; }
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+        .nav-links a { color: var(--white-text); text-decoration: none; font-size: 0.9em; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .nav-links a:hover { color: var(--gold); }
+
+        .social-links { display: flex; gap: 12px; align-items: center; }
+        .social-links a { color: var(--gold); font-size: 1.1em; text-decoration: none; transition: 0.3s; }
         .lang-switch {
             background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 4px 12px; border-radius: 5px; cursor: pointer; font-weight: bold;
+            padding: 3px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 0.8em;
         }
 
-        .quick-contact { display: flex; gap: 20px; align-items: center; }
-        .quick-contact a { color: var(--gold); font-size: 1.8em; text-decoration: none; transition: 0.3s; }
+        .quick-contact { display: flex; gap: 15px; align-items: center; }
+        .quick-contact a { color: var(--gold); font-size: 1.5em; text-decoration: none; }
 
-        /* زر الصعود للأعلى */
+        /* زر الصعود */
         #backToTop {
             position: fixed; bottom: 30px; left: 30px; 
-            background: var(--gold); color: #000; width: 50px; height: 50px;
+            background: var(--gold); color: #000; width: 45px; height: 45px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5em; cursor: pointer; z-index: 999999; 
+            font-size: 1.3em; cursor: pointer; z-index: 999999; 
             box-shadow: 0 5px 20px rgba(0,0,0,0.8); border: 2px solid #fff;
         }
 
-        /* الهيرو والسلايدر */
-        .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 200px 5% 40px; flex-wrap: wrap; }
-        .cover-box { flex: 0 0 320px; text-align: center; }
-        .cover-img { 
-            width: 100%; border-radius: 10px; border: 1px solid #333; 
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            animation: pulse-gold 3s infinite;
-        }
-        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+        /* الأقسام */
+        .section-padding { padding: 100px 10% 40px; }
+        .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding-top: 180px; flex-wrap: wrap; }
         
-        .slider-area { flex: 1; min-width: 350px; height: 450px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; }
-        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: scrollPhotos 150s linear infinite; will-change: transform; }
-        .photo-track img { height: 380px; margin: 0 10px; border-radius: 8px; border: 1px solid var(--gold); }
+        .cover-box { flex: 0 0 300px; text-align: center; }
+        .cover-img { width: 100%; border-radius: 10px; border: 1px solid #333; animation: pulse-gold 3s infinite; }
+        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+
+        .slider-area { flex: 1; min-width: 320px; height: 400px; overflow: hidden; position: relative; border-radius: 15px; border: 1px solid #222; }
+        .photo-track { display: flex; position: absolute; top: 50%; transform: translateY(-50%); animation: scrollPhotos 150s linear infinite; }
+        .photo-track img { height: 350px; margin: 0 10px; border-radius: 8px; border: 1px solid var(--gold); }
         @keyframes scrollPhotos { 0% { transform: translateY(-50%) translateX(0); } 100% { transform: translateY(-50%) translateX(-5000px); } }
 
-        /* الإحصائيات مع تأثير العداد */
-        .data-header { color: var(--gold); padding: 40px 10% 10px; font-size: 2em; text-align: right; border-bottom: 2px solid #222; margin: 0 10% 20px; }
-        .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px 10% 40px; }
-        .stat-item { background: var(--card-bg); padding: 30px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--gold); transition: 0.4s; }
-        .stat-item:hover { transform: translateY(-10px); background: #222; }
-        .stat-item h2 { color: var(--gold); font-size: 2.8em; margin-bottom: 10px; }
+        /* قسم رؤيتنا */
+        #about-sec { background: #111; border-radius: 30px; margin: 40px 10%; padding: 40px; border: 1px inset #222; }
+        .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        @media (max-width: 768px) { .vision-grid { grid-template-columns: 1fr; } }
 
-        .economy-warn { background: linear-gradient(135deg, #400 0%, #111 100%); margin: 20px 10% 50px; padding: 45px; border-radius: 30px; border: 1px solid var(--accent-red); text-align: center; }
-        .eco-val { color: #ff3333; font-size: 3em; font-weight: 900; display: block; }
+        .data-header { color: var(--gold); padding: 20px 0; font-size: 1.8em; text-align: right; border-bottom: 2px solid #222; margin-bottom: 20px; }
+        .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .stat-item { background: var(--card-bg); padding: 25px; border-radius: 15px; text-align: center; border-bottom: 4px solid var(--gold); transition: 0.3s; }
+        .stat-item:hover { transform: translateY(-10px); }
+        .stat-item h2 { color: var(--gold); font-size: 2.5em; margin-bottom: 5px; }
 
-        /* تعديلات الإنجليزية */
+        .economy-warn { background: linear-gradient(135deg, #300 0%, #111 100%); padding: 40px; border-radius: 25px; border: 1px solid var(--accent-red); text-align: center; margin-top: 40px; }
+        .eco-val { color: #ff3333; font-size: 2.5em; font-weight: 900; display: block; }
+
         .en-mode { direction: ltr !important; }
         .en-mode .ticker-container { animation: moveTickerEN 85s linear infinite; }
         @keyframes moveTickerEN { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .en-mode .data-header { text-align: left; }
 
-        footer { padding: 40px; text-align: center; opacity: 0.6; border-top: 1px solid #222; margin-top: 50px; }
+        footer { padding: 30px; text-align: center; opacity: 0.5; font-size: 0.8em; margin-top: 50px; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
 
-    <div id="backToTop" title="Go to top" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></div>
+    <div id="backToTop" onclick="window.scrollTo(0,0)"><i class="fas fa-arrow-up"></i></div>
 
     <div class="ticker-bar">
         <div class="ticker-container" id="tickerText">
@@ -91,24 +96,29 @@
         <div class="social-links">
             <button class="lang-switch" onclick="toggleLanguage()" id="langBtn">English</button>
             <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
         </div>
+
+        <ul class="nav-links">
+            <li><a onclick="document.getElementById('about-sec').scrollIntoView()" id="link1">من نحن</a></li>
+            <li><a onclick="document.getElementById('reports-sec').scrollIntoView()" id="link2">التقارير</a></li>
+            <li><a onclick="document.getElementById('stats-sec').scrollIntoView()" id="link3">الإحصائيات</a></li>
+            <li><a onclick="document.getElementById('eco-sec').scrollIntoView()" id="link4">الخسائر</a></li>
+        </ul>
+
         <div class="quick-contact">
-            <a href="mailto:civistories@gmail.com" title="Email Us"><i class="fas fa-envelope"></i></a>
-            <a href="https://wa.me/201009995015" target="_blank" title="WhatsApp Us"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:civistories@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
     </nav>
 
     <div class="main-hero">
         <div class="cover-box">
-            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none;">
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank">
                 <img src="CIVISTORIES Book.png" class="cover-img">
-                <h1 id="mainTitle" style="color:var(--gold); margin-top:15px; font-size: 1.8em;">تسونامي الوهم الرقمي</h1>
-                <p id="clickPrompt" style="color:var(--gold); font-weight:bold; margin-top:10px;">إضغط هنا لقراءة الكتاب</p>
+                <h1 id="mainTitle" style="color:var(--gold); margin-top:10px; font-size: 1.5em;">تسونامي الوهم الرقمي</h1>
+                <p id="clickPrompt" style="color:var(--gold); font-weight:bold; font-size:0.9em;">إضغط للقراءة</p>
             </a>
         </div>
         <div class="slider-area">
@@ -116,66 +126,68 @@
         </div>
     </div>
 
-    <div class="data-header" id="secTitle1">تقارير المؤسسات الدينية</div>
-    <section class="stats-section">
-        <div class="stat-item"><h2 id="azharName">الأزهر الشريف</h2><p id="azharDesc">السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة المعاصرة.</p></div>
-        <div class="stat-item"><h2 id="churchName">الكنيسة المصرية</h2><p id="churchDesc">رصد زيادة في حالات التباعد الأسري والطلاق بسبب الإدمان الرقمي.</p></div>
-    </section>
-
-    <div class="data-header" id="secTitle2">مؤشرات الخطر الاجتماعي</div>
-    <section class="stats-section">
-        <div class="stat-item">
-            <h2 id="stat1H" class="counter" data-target="3">0</h2>
-            <p id="stat1P">دقائق بين كل حالة طلاق وأخرى.</p>
-        </div>
-        <div class="stat-item">
-            <h2 id="stat2H" class="counter" data-target="255">0</h2>
-            <p id="stat2P">متوسط حالات الطلاق اليومية.</p>
-        </div>
-        <div class="stat-item">
-            <h2 id="stat3H" class="counter" data-target="40">0</h2>
-            <p id="stat3P">% من حالات الانفصال تبدأ بنزاع إلكتروني.</p>
+    <section id="about-sec">
+        <div class="data-header" id="h-about">رؤيتنا وهدفنا</div>
+        <div class="vision-grid">
+            <div>
+                <h3 style="color:var(--gold)" id="v-title">الرؤية</h3>
+                <p id="v-text">خلق مجتمع رقمي آمن يحمي النسيج الاجتماعي المصري من مخاطر التفكك والوهم الإلكتروني.</p>
+            </div>
+            <div>
+                <h3 style="color:var(--gold)" id="m-title">الرسالة</h3>
+                <p id="m-text">توعية الأسرة المصرية بمخاطر الإدمان الرقمي وتقديم حلول عملية لاستعادة الاستقرار الأسري.</p>
+            </div>
         </div>
     </section>
 
-    <section class="economy-warn">
-        <h2 id="ecoTitle" style="color:var(--gold); margin-bottom:20px;">النزيف الاقتصادي الوطني</h2>
-        <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:30px;">
-            <div><span class="eco-val"><span class="counter" data-target="15">0</span> مليار</span><p id="ecoDesc1">خسائر سنوية بسبب الجرائم الرقمية.</p></div>
-            <div><span class="eco-val"><span class="counter" data-target="3.1" data-float="true">0</span> مليار</span><p id="ecoDesc2">خسائر الاحتيال والتجارة الزائفة.</p></div>
+    <section id="reports-sec" class="section-padding">
+        <div class="data-header" id="secTitle1">تقارير المؤسسات الدينية</div>
+        <div class="stats-section">
+            <div class="stat-item"><h2 id="azharName">الأزهر الشريف</h2><p id="azharDesc">السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة.</p></div>
+            <div class="stat-item"><h2 id="churchName">الكنيسة المصرية</h2><p id="churchDesc">رصد زيادة في حالات التباعد الأسري بسبب الإدمان الرقمي.</p></div>
+        </div>
+    </section>
+
+    <section id="stats-sec" class="section-padding" style="padding-top:0;">
+        <div class="data-header" id="secTitle2">مؤشرات الخطر الاجتماعي</div>
+        <div class="stats-section">
+            <div class="stat-item"><h2 class="counter" data-target="3">0</h2><p id="stat1P">دقائق بين كل حالة طلاق وأخرى.</p></div>
+            <div class="stat-item"><h2 class="counter" data-target="255">0</h2><p id="stat2P">متوسط حالات الطلاق اليومية.</p></div>
+            <div class="stat-item"><h2 class="counter" data-target="40">0</h2><p id="stat3P">% من الانفصال يبدأ بنزاع إلكتروني.</p></div>
+        </div>
+    </section>
+
+    <section id="eco-sec" class="section-padding" style="padding-top:0;">
+        <div class="economy-warn">
+            <h2 id="ecoTitle" style="color:var(--gold); margin-bottom:20px;">النزيف الاقتصادي الوطني</h2>
+            <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
+                <div><span class="eco-val"><span class="counter" data-target="15">0</span> مليار</span><p id="ecoDesc1">خسائر سنوية بسبب الجرائم الرقمية.</p></div>
+                <div><span class="eco-val"><span class="counter" data-target="3.1" data-float="true">0</span> مليار</span><p id="ecoDesc2">خسائر الاحتيال والتجارة الزائفة.</p></div>
+            </div>
         </div>
     </section>
 
     <footer id="footerText">© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        // سكريبت العداد الذكي
+        // سكريبت العداد
         const counters = document.querySelectorAll('.counter');
-        const speed = 100;
-
         const startCounters = () => {
             counters.forEach(counter => {
                 const updateCount = () => {
                     const target = +counter.getAttribute('data-target');
                     const count = +counter.innerText;
-                    const inc = target / speed;
-
+                    const inc = target / 50;
                     if (count < target) {
                         counter.innerText = (count + inc).toFixed(counter.getAttribute('data-float') ? 1 : 0);
                         setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
+                    } else { counter.innerText = target; }
                 };
                 updateCount();
             });
         };
-
-        // تشغيل العداد عند الوصول إليه فقط
-        const observer = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) startCounters();
-        }, { threshold: 0.5 });
-        observer.observe(document.querySelector('.stats-section'));
+        const observer = new IntersectionObserver((entries) => { if(entries[0].isIntersecting) startCounters(); }, { threshold: 0.5 });
+        observer.observe(document.querySelector('#stats-sec'));
 
         // السلايدر
         const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
@@ -190,30 +202,28 @@
         let currentLang = 'ar';
         const translations = {
             en: {
-                ticker: "• Red Alert: Digital Illusion Tsunami threatens family stability • New divorce every 3 min • Al-Azhar: Social Media causes 60% of family conflicts • 104M mobiles: Gateways to distress •",
-                langBtn: "العربية", mainTitle: "Digital Illusion Tsunami", clickPrompt: "Click here to read the book",
-                secTitle1: "Reports from religious institutions", azharName: "Al-Azhar Al-Sharif", azharDesc: "Social media is the main cause of 60% of contemporary family conflicts.",
-                churchName: "Egyptian Church", churchDesc: "Increase in cases of family estrangement and divorce due to digital addiction.",
-                secTitle2: "Social risk indicators", 
-                stat1P: "Minutes between each divorce case.",
-                stat2P: "Average number of daily divorces.", 
-                stat3P: "% of divorces originate from digital disputes.",
-                ecoTitle: "National Economic Drain", ecoDesc1: "Annual losses due to digital crimes.",
-                ecoDesc2: "Losses from fraud and counterfeit trading.",
-                footer: "© 2024 CiviStories - Protecting the Egyptian Social Fabric"
+                langBtn: "العربية", link1: "Who We Are", link2: "Reports", link3: "Statistics", link4: "Losses",
+                mainTitle: "Digital Illusion Tsunami", clickPrompt: "Click to read",
+                h_about: "Our Vision & Mission", v_title: "Vision", v_text: "Creating a safe digital society that protects Egyptian social fabric.",
+                m_title: "Mission", m_text: "Educating families about digital risks and providing stability solutions.",
+                secTitle1: "Religious Reports", azharName: "Al-Azhar", azharDesc: "Social media causes 60% of family conflicts.",
+                churchName: "The Church", churchDesc: "Recorded increase in estrangement due to digital addiction.",
+                secTitle2: "Social Risk Indicators", stat1P: "Mins between each divorce case.",
+                stat2P: "Daily divorce cases average.", stat3P: "% of divorces start digitally.",
+                ecoTitle: "National Economic Drain", ecoDesc1: "Annual losses from digital crimes.",
+                ecoDesc2: "Losses from fraud/fake trade.", footer: "© 2024 CiviStories - Protecting Social Fabric"
             },
             ar: {
-                ticker: "• إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة المصرية • كل ٣ دقائق حالة طلاق جديدة في مصر • الأزهر الشريف: السوشيال ميديا سبب ٦٠٪ من النزاعات الأسرية • ١٠٤ مليون محمول بوابات للجحيم الأسري •",
-                langBtn: "English", mainTitle: "تسونامي الوهم الرقمي", clickPrompt: "إضغط هنا لقراءة الكتاب",
-                secTitle1: "تقارير المؤسسات الدينية", azharName: "الأزهر الشريف", azharDesc: "السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة المعاصرة.",
-                churchName: "الكنيسة المصرية", churchDesc: "رصد زيادة في حالات التباعد الأسري والطلاق بسبب الإدمان الرقمي.",
-                secTitle2: "مؤشرات الخطر الاجتماعي", 
-                stat1P: "دقائق بين كل حالة طلاق وأخرى.",
-                stat2P: "متوسط حالات الطلاق اليومية.", 
-                stat3P: "% من حالات الانفصال تبدأ بنزاع إلكتروني.",
+                langBtn: "English", link1: "من نحن", link2: "التقارير", link3: "الإحصائيات", link4: "الخسائر",
+                mainTitle: "تسونامي الوهم الرقمي", clickPrompt: "إضغط للقراءة",
+                h_about: "رؤيتنا وهدفنا", v_title: "الرؤية", v_text: "خلق مجتمع رقمي آمن يحمي النسيج الاجتماعي المصري من مخاطر التفكك والوهم الإلكتروني.",
+                m_title: "الرسالة", m_text: "توعية الأسرة المصرية بمخاطر الإدمان الرقمي وتقديم حلول عملية لاستعادة الاستقرار الأسري.",
+                secTitle1: "تقارير المؤسسات الدينية", azharName: "الأزهر الشريف", azharDesc: "السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة.",
+                churchName: "الكنيسة المصرية", churchDesc: "رصد زيادة في حالات التباعد الأسري بسبب الإدمان الرقمي.",
+                secTitle2: "مؤشرات الخطر الاجتماعي", stat1P: "دقائق بين كل حالة طلاق وأخرى.",
+                stat2P: "متوسط حالات الطلاق اليومية.", stat3P: "% من الانفصال تبدأ بنزاع إلكتروني.",
                 ecoTitle: "النزيف الاقتصادي الوطني", ecoDesc1: "خسائر سنوية بسبب الجرائم الرقمية.",
-                ecoDesc2: "خسائر الاحتيال والتجارة الزائفة.",
-                footer: "© 2024 CiviStories - حماية النسيج الاجتماعي المصري"
+                ecoDesc2: "خسائر الاحتيال والتجارة الزائفة.", footer: "© 2024 CiviStories - حماية النسيج الاجتماعي المصري"
             }
         };
 
@@ -224,10 +234,18 @@
             html.dir = currentLang === 'en' ? 'ltr' : 'rtl';
             currentLang === 'en' ? html.classList.add('en-mode') : html.classList.remove('en-mode');
             
-            document.getElementById('tickerText').innerText = d.ticker;
             document.getElementById('langBtn').innerText = d.langBtn;
+            document.getElementById('link1').innerText = d.link1;
+            document.getElementById('link2').innerText = d.link2;
+            document.getElementById('link3').innerText = d.link3;
+            document.getElementById('link4').innerText = d.link4;
             document.getElementById('mainTitle').innerText = d.mainTitle;
             document.getElementById('clickPrompt').innerText = d.clickPrompt;
+            document.getElementById('h-about').innerText = d.h_about;
+            document.getElementById('v-title').innerText = d.v_title;
+            document.getElementById('v-text').innerText = d.v_text;
+            document.getElementById('m-title').innerText = d.m_title;
+            document.getElementById('m-text').innerText = d.m_text;
             document.getElementById('secTitle1').innerText = d.secTitle1;
             document.getElementById('azharName').innerText = d.azharName;
             document.getElementById('azharDesc').innerText = d.azharDesc;
@@ -241,7 +259,7 @@
             document.getElementById('ecoDesc1').innerText = d.ecoDesc1;
             document.getElementById('ecoDesc2').innerText = d.ecoDesc2;
             document.getElementById('footerText').innerText = d.footer;
-            startCounters(); // إعادة تشغيل العداد عند تغيير اللغة
+            startCounters();
         }
     </script>
 </body>
