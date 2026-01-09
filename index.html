@@ -9,9 +9,9 @@
     
     <style>
         :root { 
-            --gold: #d4af37; 
-            --dark-bg: #0b0b0b; 
-            --accent-red: #b30000; 
+            --gold: #d4af37;
+            --dark-bg: #0b0b0b;
+            --accent-red: #b30000;
             --white-text: #f1f1f1;
             --card-bg: #181818;
         }
@@ -19,8 +19,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background: var(--dark-bg); 
-            color: var(--white-text); 
+            background: var(--dark-bg);
+            color: var(--white-text);
             text-align: center;
             overflow-x: hidden;
             line-height: 1.6;
@@ -28,7 +28,8 @@
 
         /* 1. شريط الأخبار العاجلة المتحرك */
         .ticker-bar { 
-            background: var(--accent-red); padding: 12px 0; position: fixed; 
+            background: var(--accent-red); padding: 12px 0;
+            position: fixed; 
             top: 0; width: 100%; z-index: 10002; font-weight: bold; 
             box-shadow: 0 2px 15px rgba(0,0,0,0.5);
         }
@@ -36,7 +37,7 @@
         .ticker-item { display: inline-block; padding-left: 60px; font-size: 1.1em; color: #fff; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* 2. شريط السوشيال ميديا والتواصل (كامل) */
+        /* 2. شريط السوشيال ميديا والتواصل */
         .main-nav { 
             background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
             padding: 12px 5%; position: fixed; top: 45px; width: 100%; 
@@ -53,7 +54,7 @@
             text-decoration: none; font-size: 0.9em;
         }
 
-        /* 3. قسم الكتاب التفاعلي (الغلاف المرفوع) */
+        /* 3. قسم الكتاب التفاعلي */
         .book-hero { padding: 160px 20px 60px; position: relative; }
         .book-wrapper { 
             display: inline-block; position: relative; transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); 
@@ -70,7 +71,7 @@
         .gold-title { color: var(--gold); font-size: 2.5em; margin: 25px 0 10px; font-weight: 900; }
         .description { color: #aaa; max-width: 750px; margin: 0 auto 30px; font-size: 1.1em; padding: 0 20px; }
 
-        /* 4. الإحصائيات والنزيف الاقتصادي */
+        /* 4. الإحصائيات */
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 40px 10%; }
         .stat-card { background: var(--card-bg); padding: 35px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
         .stat-card h2 { color: var(--gold); font-size: 2.8em; margin-bottom: 10px; }
@@ -81,7 +82,7 @@
         }
         .eco-value { color: #ff3333; font-size: 3em; font-weight: 900; display: block; }
 
-        /* 5. معرض الصور الميدانية */
+        /* 5. معرض الصور */
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 40px 5%; }
         .gallery-grid img { width: 100%; border-radius: 15px; border: 2px solid #222; transition: 0.5s; }
         .gallery-grid img:hover { border-color: var(--gold); transform: scale(1.02); }
@@ -114,13 +115,13 @@
 
     <nav class="main-nav">
         <div class="social-group">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/civistories" target="_blank"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.pinterest.com/civistories/" target="_blank"><i class="fab fa-pinterest"></i></a>
             <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="mailto:info@civistories.com"><i class="fas fa-envelope"></i></a>
         </div>
         
@@ -131,8 +132,8 @@
 
     <div class="floating-social">
         <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="facebook-float"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" style="background:#000;"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100093677167187" class="facebook-float" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/civistories" style="background:#000;" target="_blank"><i class="fab fa-x-twitter"></i></a>
     </div>
 
     <section class="book-hero">
