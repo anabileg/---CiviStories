@@ -3,88 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories | حماية النسيج الاجتماعي المصري</title>
+    <title>CiviStories | حماية النسيج الاجتماعي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; --card-bg: #181818; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); text-align: center; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); overflow-x: hidden; }
 
-        /* شريط الأخبار العلوي */
+        /* 1. شريط الأخبار العلوي */
         .ticker-bar { background: var(--accent-red); padding: 12px 0; position: fixed; top: 0; width: 100%; z-index: 10002; font-weight: bold; }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; }
         .ticker-item { display: inline-block; padding-left: 60px; font-size: 1.1em; color: #fff; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* الأيقونات الجانبية فقط - تفتح في صفحة جديدة */
-        .floating-social { position: fixed; left: 15px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 9999; }
-        .floating-social a { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 50%; color: #fff; text-decoration: none; font-size: 1.2em; transition: 0.3s; }
-        .wa-f { background: #25d366; } .em-f { background: #ea4335; } .yt-f { background: #ff0000; }
-        .fb-f { background: #1877f2; } .tw-f { background: #000; } .li-f { background: #0077b5; }
-        .pn-f { background: #bd081c; } .in-f { background: #e4405f; } .tk-f { background: #000; }
+        /* 2. شريط السوشيال ميديا العلوي (كامل) */
+        .main-nav { 
+            background: rgba(0,0,0,0.95); padding: 12px 5%; position: fixed; top: 45px; 
+            width: 100%; z-index: 10001; border-bottom: 1px solid var(--gold);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .social-group { display: flex; gap: 15px; flex-wrap: wrap; }
+        .social-group a { color: var(--gold); text-decoration: none; font-size: 1.4em; transition: 0.3s; }
+        .social-group a:hover { color: #fff; transform: scale(1.2); }
+        .contact-btn { background: var(--gold); color: #000; padding: 6px 15px; border-radius: 20px; font-weight: bold; text-decoration: none; }
 
-        /* قسم الغلاف - بدون خط أزرق وبدون نصوص مساعدة */
-        .book-section { padding: 140px 20px 40px; }
-        .book-link { text-decoration: none; display: inline-block; color: inherit; } /* حذف الخط الأزرق */
-        .book-img { width: 300px; border-radius: 5px 15px 15px 5px; box-shadow: -15px 20px 50px #000; border-left: 3px solid #333; transition: 0.5s; }
-        .book-link:hover .book-img { transform: scale(1.03); }
-        .gold-title { color: var(--gold); font-size: 2.5em; margin-top: 20px; font-weight: 900; text-decoration: none; }
+        /* 3. القسم الرئيسي (الغلاف + السلايدر جنباً إلى جنب) */
+        .hero-flex { 
+            display: flex; align-items: center; justify-content: center; gap: 30px; 
+            padding: 160px 5% 40px; flex-wrap: wrap;
+        }
 
-        /* السلايدر التلقائي لصور المبادرة */
-        .slider-wrap { background: #000; padding: 30px 0; margin: 30px 0; overflow: hidden; position: relative; border-top: 1px solid #222; border-bottom: 1px solid #222; }
-        .photo-track { display: flex; width: max-content; animation: slidePhotos 120s linear infinite; }
-        .photo-track img { height: 320px; margin: 0 12px; border-radius: 10px; border: 1px solid #333; }
-        @keyframes slidePhotos { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        .book-container { flex: 0 0 300px; text-align: center; }
+        .book-link { text-decoration: none; color: inherit; display: block; }
+        .book-img { 
+            width: 100%; border-radius: 5px 15px 15px 5px; 
+            box-shadow: -15px 20px 50px rgba(0,0,0,0.9); 
+            border-left: 3px solid #333; transition: 0.5s; 
+        }
+        .book-link:hover .book-img { transform: perspective(1000px) rotateY(-10deg); }
+        .click-hint { 
+            display: inline-block; margin-top: 15px; padding: 8px 20px; 
+            border: 1px solid var(--gold); color: var(--gold); border-radius: 25px;
+            font-size: 0.9em; animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
-        /* قسم الإحصائيات الثابت */
-        .stats-container { padding: 40px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .stat-card { background: var(--card-bg); padding: 35px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
-        .stat-card h2 { color: var(--gold); font-size: 2.8em; margin-bottom: 10px; }
+        /* 4. السلايدر بجانب الكتاب */
+        .slider-window { 
+            flex: 1; min-width: 320px; height: 400px; overflow: hidden; 
+            position: relative; background: #111; border-radius: 20px; border: 1px solid #222;
+        }
+        .track { display: flex; position: absolute; left: 0; top: 25px; will-change: transform; }
+        .track img { height: 350px; margin: 0 10px; border-radius: 10px; border: 1px solid var(--gold); }
 
-        .economy-box { background: linear-gradient(135deg, #400 0%, #111 100%); margin: 20px 10%; padding: 45px; border-radius: 30px; border: 1px solid var(--accent-red); }
-        .eco-num { color: #ff3333; font-size: 2.8em; font-weight: 900; display: block; }
+        /* 5. الإحصائيات والبيانات */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 10%; }
+        .stat-card { background: var(--card-bg); padding: 30px; border-radius: 20px; border-bottom: 5px solid var(--gold); }
+        .stat-card h2 { color: var(--gold); font-size: 2.5em; margin-bottom: 5px; }
 
-        footer { padding: 50px; opacity: 0.5; font-size: 0.9em; }
+        .economy-alert { 
+            background: linear-gradient(135deg, #400 0%, #111 100%); 
+            margin: 20px 10%; padding: 40px; border-radius: 30px; border: 1px solid var(--accent-red); 
+        }
+        .eco-num { color: #ff3333; font-size: 2.5em; font-weight: 900; display: block; }
+
+        footer { padding: 40px; opacity: 0.6; font-size: 0.9em; }
+
+        @media (max-width: 768px) {
+            .hero-flex { flex-direction: column; padding-top: 220px; }
+            .main-nav { flex-direction: column; height: auto; padding: 10px; }
+        }
     </style>
 </head>
 <body>
 
     <div class="ticker-bar">
         <div class="ticker-container">
-            <span class="ticker-item">• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ٢٥٥ حالة طلاق يومية • ٤٠% نسبة النزاع بسبب الوهم الرقمي • ١٠٤ مليون محمول بوابات للجحيم الأسري •</span>
+            <span class="ticker-item">• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ٢٥٥ حالة طلاق يومية • ٤٠% بسبب الوهم الرقمي • ١٠٤ مليون محمول بوابات للجحيم الأسري •</span>
         </div>
     </div>
 
-    <div class="floating-social">
-        <a href="https://wa.me/201009995015" target="_blank" class="wa-f"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:info@civistories.com" target="_blank" class="em-f"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.youtube.com/@CiviStories" target="_blank" class="yt-f"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="fb-f"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://x.com" target="_blank" class="tw-f"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank" class="li-f"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://www.pinterest.com" target="_blank" class="pn-f"><i class="fab fa-pinterest-p"></i></a>
-        <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="in-f"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="tk-f"><i class="fab fa-tiktok"></i></a>
+    <nav class="main-nav">
+        <div class="social-group">
+            <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.pinterest.com" target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:info@civistories.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+        <a href="https://wa.me/201009995015" target="_blank" class="contact-btn">تواصل واتساب <i class="fab fa-whatsapp"></i></a>
+    </nav>
+
+    <div class="hero-flex">
+        <div class="book-container">
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-link">
+                <img src="CIVISTORIES Book.png" alt="غلاف الكتاب" class="book-img">
+                <h2 style="color:var(--gold); margin-top:15px;">تسونامي الوهم الرقمي</h2>
+                <div class="click-hint">انقر هنا لتصفح الكتاب التفاعلي <i class="fas fa-hand-pointer"></i></div>
+            </a>
+        </div>
+
+        <div class="slider-window">
+            <div class="track" id="mainTrack"></div>
+        </div>
     </div>
 
-    <section class="book-section">
-        <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="book-link">
-            <img src="CIVISTORIES Book.png" alt="الغلاف" class="book-img">
-            <h1 class="gold-title">تسونامي الوهم الرقمي</h1>
-        </a>
-    </section>
-
-    <div class="slider-wrap">
-        <div class="photo-track" id="pTrack"></div>
-    </div>
-
-    <div class="stats-container">
+    <section class="stats-grid">
         <div class="stat-card"><h2>٣ دقائق</h2><p>بين حالات الطلاق</p></div>
         <div class="stat-card"><h2>٢٥٥ حالة</h2><p>طلاق يومياً في مصر</p></div>
         <div class="stat-card"><h2>٤٠%</h2><p>بسبب السوشيال ميديا</p></div>
-    </div>
+    </section>
 
-    <section class="economy-box">
+    <section class="economy-alert">
         <h2 style="color:var(--gold); margin-bottom:20px;">النزيف الاقتصادي الرقمي</h2>
         <div style="display:flex; justify-content:space-around; flex-wrap:wrap; gap:20px;">
             <div><span class="eco-num">١٥ مليار جنيه</span><p>خسارة سنوية (جرائم رقمية)</p></div>
@@ -95,14 +128,28 @@
     <footer>© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
+        const track = document.getElementById('mainTrack');
         const pngs = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
-        const track = document.getElementById('pTrack');
-        let html = '';
-        for(let i=1; i<=82; i++) {
-            let ext = pngs.includes(i) ? 'png' : 'jpg';
-            html += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
+        
+        function init() {
+            let html = '';
+            for(let i=1; i<=82; i++) {
+                let ext = pngs.includes(i) ? 'png' : 'jpg';
+                html += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
+            }
+            track.innerHTML = html + html;
         }
-        track.innerHTML = html + html;
+
+        let x = 0;
+        function animate() {
+            x -= 0.8;
+            if (Math.abs(x) >= track.scrollWidth / 2) x = 0;
+            track.style.transform = `translateX(${x}px)`;
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
     </script>
 </body>
 </html>
