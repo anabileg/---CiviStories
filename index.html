@@ -10,46 +10,62 @@
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background: var(--dark-bg); color: var(--white-text); font-family: 'Segoe UI', Tahoma, sans-serif; overflow-x: hidden; }
 
+        /* اللوجو الثابت على الشمال */
+        .fixed-logo {
+            position: fixed;
+            top: 55px; /* تحت شريط الأخبار */
+            left: 20px;
+            width: 80px;
+            z-index: 10005;
+            transition: 0.3s;
+        }
+
         /* شريط الأخبار العلوي */
         .ticker-bar { background: var(--accent-red); height: 40px; position: fixed; top: 0; width: 100%; z-index: 10002; display: flex; align-items: center; overflow: hidden; border-bottom: 1px solid var(--gold); }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 60s linear infinite; font-weight: bold; color: #fff; padding-right: 100%; }
         @keyframes moveTicker { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        /* الناف بار */
-        .top-nav { background: rgba(0,0,0,0.98); padding: 10px 5%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+        /* القائمة العلوية */
+        .top-nav { background: rgba(0,0,0,0.98); padding: 10px 5%; position: fixed; top: 40px; width: 100%; z-index: 10001; border-bottom: 1px solid #333; display: flex; justify-content: flex-end; align-items: center; gap: 20px; }
         .nav-right { display: flex; align-items: center; gap: 15px; }
         .lang-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .social-links { display: flex; gap: 10px; border-left: 1px solid #333; padding-left: 10px; }
-        .social-links a { color: #fff; text-decoration: none; font-size: 1.1em; }
+        .social-links { display: flex; gap: 12px; }
+        .social-links a { color: #fff; text-decoration: none; font-size: 1.1em; transition: 0.3s; }
+        .social-links a:hover { color: var(--gold); }
 
-        .nav-links { display: flex; gap: 20px; list-style: none; }
-        .nav-links a { color: #fff; text-decoration: none; font-size: 0.85em; font-weight: bold; cursor: pointer; }
-
-        /* الهيرو */
+        /* منطقة العنوان والكتاب */
         .hero { padding: 180px 5% 60px; text-align: center; }
-        .main-title { color: var(--gold); font-size: clamp(2em, 5vw, 3.5em); font-weight: 900; margin-bottom: 30px; text-shadow: 2px 2px 10px #000; }
-        .hero-content { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }
-        .book-img { width: 300px; border: 1px solid var(--gold); border-radius: 8px; box-shadow: 0 10px 30px #000; }
+        .main-title { color: var(--gold); font-size: clamp(2.5em, 6vw, 4em); font-weight: 900; margin-bottom: 40px; text-shadow: 2px 2px 15px #000; letter-spacing: 1px; }
+        .hero-content { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; }
+        .book-img { width: 320px; border: 1px solid var(--gold); border-radius: 8px; box-shadow: 0 15px 40px rgba(0,0,0,0.9); transition: 0.5s; }
+        .book-img:hover { transform: scale(1.02); border-color: #fff; }
         
-        .actions { display: flex; flex-direction: column; gap: 15px; }
-        .btn { padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid var(--gold); transition: 0.3s; }
+        .actions { display: flex; flex-direction: column; gap: 18px; min-width: 250px; }
+        .btn { padding: 15px 30px; border-radius: 6px; text-decoration: none; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 12px; border: 1px solid var(--gold); transition: 0.4s; font-size: 1em; }
         .btn-gold { background: var(--gold); color: #000; }
         .btn-out { background: transparent; color: var(--gold); }
-        .btn:hover { background: #fff; color: #000; transform: translateY(-2px); }
+        .btn:hover { background: #fff; color: #000; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4); }
 
-        /* الإحصائيات */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 60px 8%; }
-        .stat-item { background: #161616; padding: 40px; border-radius: 15px; text-align: center; border-top: 3px solid var(--gold); }
-        .stat-num { font-size: 3em; font-weight: 900; color: var(--gold); margin-bottom: 10px; display: block; }
+        /* الإحصائيات - العودة للتصميم المستقر */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 80px 8%; background: #080808; }
+        .stat-item { background: #121212; padding: 45px; border-radius: 15px; text-align: center; border-top: 4px solid var(--gold); transition: 0.3s; }
+        .stat-item:hover { background: #1a1a1a; }
+        .stat-num { font-size: 3.5em; font-weight: 900; color: var(--gold); margin-bottom: 10px; display: block; }
+        .stat-item p { font-size: 1.1em; line-height: 1.6; color: #ccc; }
 
         /* وضعية الانجليزي */
         .en-mode { direction: ltr !important; }
-        .en-mode .social-links { border-left: none; border-right: 1px solid #333; padding-left: 0; padding-right: 10px; }
+        .en-mode .fixed-logo { left: auto; right: 20px; }
+        .en-mode .top-nav { justify-content: flex-start; }
         .en-mode .ticker-container { animation: moveTickerEN 60s linear infinite; padding-left: 100%; padding-right: 0; }
         @keyframes moveTickerEN { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+
+        footer { text-align: center; padding: 60px; opacity: 0.4; font-size: 0.9em; border-top: 1px solid #222; letter-spacing: 1px; }
     </style>
 </head>
 <body id="bodyTag">
+
+    <img src="logo.png" alt="CiviStories Logo" class="fixed-logo">
 
     <div class="ticker-bar">
         <div class="ticker-container" id="t-text">
@@ -64,42 +80,46 @@
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366"></i></a>
+                <a href="mailto:civistories@gmail.com"><i class="fas fa-envelope" style="color:var(--gold)"></i></a>
             </div>
         </div>
-        <ul class="nav-links">
-            <li><a id="n1">الرؤية الاستراتيجية</a></li>
-            <li><a id="n2">التقارير السيادية</a></li>
-            <li><a id="n3">المرصد الإحصائي</a></li>
-        </ul>
-        <a href="mailto:civistories@gmail.com" style="color:var(--gold); text-decoration:none;"><i class="fas fa-envelope"></i></a>
     </nav>
 
     <section class="hero">
         <h1 class="main-title" id="m-title">تسونامي الوهم الرقمي</h1>
         <div class="hero-content">
-            <img src="CIVISTORIES Book.png" class="book-img">
+            <img src="CIVISTORIES Book.png" class="book-img" id="bookImg">
             <div class="actions">
-                <a href="https://1drv.ms/b/c/dc8912cdac5bbf6c/IQCHsOxMW5A6TrTxekA2VOK3AXtBbejVNHYvjWqHpxbzh60?e=dxjnUJ" target="_blank" class="btn btn-gold" id="b-down">
+                <a href="Tsunami-Book.pdf" download="Tsunami-Book.pdf" class="btn btn-gold" id="b-down">
                     <i class="fas fa-download"></i> تنزيل الكتاب PDF
                 </a>
-                <a href="https://1drv.ms/b/c/dc8912cdac5bbf6c/IQCHsOxMW5A6TrTxekA2VOK3AXtBbejVNHYvjWqHpxbzh60?e=dxjnUJ" target="_blank" class="btn btn-out" id="b-print">
-                    <i class="fas fa-print"></i> طباعة الكتاب
+                <a href="Tsunami-Book.pdf" target="_blank" class="btn btn-out" id="b-print">
+                    <i class="fas fa-print"></i> طباعة النسخة الكاملة
                 </a>
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn btn-out" id="b-read">
-                    <i class="fas fa-book-open"></i> قراءة أونلاين
+                <a href="Tsunami-Book.pdf" target="_blank" class="btn btn-out" id="b-read">
+                    <i class="fas fa-book-open"></i> قراءة تفاعلية الآن
                 </a>
             </div>
         </div>
     </section>
 
     <section class="stats-grid" id="stats">
-        <div class="stat-item"><span class="stat-num">3</span><p id="s1">دقائق تفصل بين كل حالة طلاق وأخرى</p></div>
-        <div class="stat-item"><span class="stat-num">60%</span><p id="s2">من المشاكل الأسرية منشؤها السوشيال ميديا</p></div>
-        <div class="stat-item"><span class="stat-num">104M</span><p id="s3">هاتف محمول تفتح أبواب الوهم الرقمي</p></div>
+        <div class="stat-item">
+            <span class="stat-num">3</span>
+            <p id="s1">دقائق تفصل بين كل حالة طلاق وأخرى في المجتمع</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">60%</span>
+            <p id="s2">من النزاعات الأسرية سببها المباشر "الوهم الرقمي"</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">104M</span>
+            <p id="s3">هاتف محمول تفتح أبواباً خلفية لاختراق النسيج الاجتماعي</p>
+        </div>
     </section>
 
-    <footer id="f-text" style="text-align:center; padding:40px; opacity:0.5; font-size:0.8em; border-top:1px solid #222;">
-        COPYRIGHT © 2024 CIVISTORIES | المبادرة الوطنية لحماية النسيج الاجتماعي
+    <footer id="f-text">
+        COPYRIGHT © 2024 CIVISTORIES | المبادرة الوطنية لحماية النسيج الاجتماعي المصري
     </footer>
 
     <script>
@@ -108,26 +128,31 @@
             isAr = !isAr;
             const b = document.getElementById('bodyTag');
             const btn = document.getElementById('l-btn');
+            
             if(!isAr) {
-                b.classList.add('en-mode'); btn.innerText = "العربية";
+                b.classList.add('en-mode');
+                btn.innerText = "العربية";
                 document.getElementById('m-title').innerText = "Digital Illusion Tsunami";
                 document.getElementById('t-text').innerText = "• STRATEGIC ALERT: THE DIGITAL ILLUSION TSUNAMI THREATENS NATIONAL SECURITY • DIVORCE EVERY 3 MINUTES •";
-                document.getElementById('b-down').innerHTML = '<i class="fas fa-download"></i> Download PDF';
-                document.getElementById('b-print').innerHTML = '<i class="fas fa-print"></i> Print Book';
-                document.getElementById('b-read').innerHTML = '<i class="fas fa-book-open"></i> Read Online';
-                document.getElementById('n1').innerText = "Strategic Vision"; document.getElementById('n2').innerText = "Official Reports"; document.getElementById('n3').innerText = "Statistical Hub";
-                document.getElementById('s1').innerText = "Minutes between each divorce case"; document.getElementById('s2').innerText = "Social media caused disputes"; document.getElementById('s3').innerText = "Mobile portals of digital illusion";
-                document.getElementById('f-text').innerText = "COPYRIGHT © 2024 CIVISTORIES | NATIONAL INITIATIVE";
+                document.getElementById('b-down').innerHTML = '<i class="fas fa-download"></i> Download PDF Book';
+                document.getElementById('b-print').innerHTML = '<i class="fas fa-print"></i> Print Full Copy';
+                document.getElementById('b-read').innerHTML = '<i class="fas fa-book-open"></i> Read Interactive Version';
+                document.getElementById('s1').innerText = "Minutes between each divorce case in society";
+                document.getElementById('s2').innerText = "Of family disputes caused by 'Digital Illusion'";
+                document.getElementById('s3').innerText = "Mobile phones opening backdoors to social fabric";
+                document.getElementById('f-text').innerText = "COPYRIGHT © 2024 CIVISTORIES | NATIONAL STRATEGIC INITIATIVE";
             } else {
-                b.classList.remove('en-mode'); btn.innerText = "English";
+                b.classList.remove('en-mode');
+                btn.innerText = "English";
                 document.getElementById('m-title').innerText = "تسونامي الوهم الرقمي";
                 document.getElementById('t-text').innerText = "• إنذار استراتيجي: تسونامي الوهم الرقمي يهدد ركائز الأمن المجتمعي المصري • رصد حالة طلاق كل ٣ دقائق •";
                 document.getElementById('b-down').innerHTML = '<i class="fas fa-download"></i> تنزيل الكتاب PDF';
-                document.getElementById('b-print').innerHTML = '<i class="fas fa-print"></i> طباعة الكتاب';
-                document.getElementById('b-read').innerHTML = '<i class="fas fa-book-open"></i> قراءة أونلاين';
-                document.getElementById('n1').innerText = "الرؤية الاستراتيجية"; document.getElementById('n2').innerText = "التقارير السيادية"; document.getElementById('n3').innerText = "المرصد الإحصائي";
-                document.getElementById('s1').innerText = "دقائق تفصل بين كل حالة طلاق وأخرى"; document.getElementById('s2').innerText = "من المشاكل الأسرية منشؤها السوشيال ميديا"; document.getElementById('s3').innerText = "هاتف محمول تفتح أبواب الوهم الرقمي";
-                document.getElementById('f-text').innerText = "COPYRIGHT © 2024 CIVISTORIES | المبادرة الوطنية لحماية النسيج الاجتماعي";
+                document.getElementById('b-print').innerHTML = '<i class="fas fa-print"></i> طباعة النسخة الكاملة';
+                document.getElementById('b-read').innerHTML = '<i class="fas fa-book-open"></i> قراءة تفاعلية الآن';
+                document.getElementById('s1').innerText = "دقائق تفصل بين كل حالة طلاق وأخرى في المجتمع";
+                document.getElementById('s2').innerText = "من النزاعات الأسرية سببها المباشر 'الوهم الرقمي'";
+                document.getElementById('s3').innerText = "هاتف محمول تفتح أبواباً خلفية لاختراق النسيج الاجتماعي";
+                document.getElementById('f-text').innerText = "COPYRIGHT © 2024 CIVISTORIES | المبادرة الوطنية لحماية النسيج الاجتماعي المصري";
             }
         }
     </script>
