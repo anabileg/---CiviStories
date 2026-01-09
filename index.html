@@ -7,16 +7,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; --card-bg: #181818; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background: var(--dark-bg); color: var(--white-text); font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
 
-        /* شريط الأخبار - إصلاح الاتجاه */
+        /* شريط الأخبار */
         .ticker-bar { 
             background: var(--accent-red); height: 45px; position: fixed; 
             top: 0; width: 100%; z-index: 10002; display: flex; align-items: center; overflow: hidden;
         }
         .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 80s linear infinite; }
-        /* الاتجاه العربي: يخرج من اليسار لليمين ليُقرأ من اليمين */
         @keyframes moveTicker { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         /* الشريط العلوي */
@@ -33,6 +32,17 @@
         }
         .wa-gold { color: var(--gold); font-size: 1.8em; }
 
+        /* زر الصعود للأعلى (المطلوب) */
+        #backToTop {
+            position: fixed; bottom: 30px; left: 30px; 
+            background: var(--gold); color: #000; width: 45px; height: 45px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5em; cursor: pointer; z-index: 10005; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        #backToTop.show { opacity: 1; visibility: visible; }
+        #backToTop:hover { transform: scale(1.1); background: #fff; }
+
         /* منطقة الهيرو والسلايدر */
         .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 200px 5% 40px; flex-wrap: wrap; }
         .cover-box { flex: 0 0 320px; text-align: center; }
@@ -47,21 +57,25 @@
         .data-header { color: var(--gold); padding: 40px 10% 10px; font-size: 2em; text-align: right; border-bottom: 2px solid #222; margin: 0 10% 20px; }
         .stats-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px 10% 40px; }
         .stat-item { background: var(--card-bg); padding: 30px; border-radius: 20px; text-align: center; border-bottom: 5px solid var(--gold); }
-        .stat-item h2 { color: var(--gold); font-size: 2.2em; margin-bottom: 10px; }
+        .stat-item h2 { color: var(--gold); font-size: 2.2em; }
 
         .economy-warn { background: linear-gradient(135deg, #400 0%, #111 100%); margin: 20px 10% 50px; padding: 45px; border-radius: 30px; border: 1px solid var(--accent-red); text-align: center; }
         .eco-val { color: #ff3333; font-size: 3em; font-weight: 900; display: block; }
 
-        /* تعديلات اللغة الإنجليزية */
+        /* تعديلات الإنجليزية */
         .en-mode { direction: ltr !important; }
         .en-mode .ticker-container { animation: moveTickerEN 80s linear infinite; }
         @keyframes moveTickerEN { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .en-mode .data-header { text-align: left; }
+        /* الحفاظ على مكان زر الصعود في اليسار حتى في الإنجليزية */
+        .en-mode #backToTop { left: 30px; right: auto; }
 
         footer { padding: 40px; text-align: center; opacity: 0.6; }
     </style>
 </head>
-<body>
+<body onscroll="handleScroll()">
+
+    <div id="backToTop" onclick="window.scrollTo(0,0)"><i class="fas fa-chevron-up"></i></div>
 
     <div class="ticker-bar">
         <div class="ticker-container" id="tickerText">
@@ -119,7 +133,14 @@
     <footer id="footerText">© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        // نظام السلايدر
+        // إظهار وإخفاء زر الصعود عند التمرير
+        function handleScroll() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 300) { btn.classList.add('show'); } 
+            else { btn.classList.remove('show'); }
+        }
+
+        // السلايدر
         const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
         const track = document.getElementById('imageTrack');
         let sliderHtml = '';
@@ -134,50 +155,24 @@
         const translations = {
             en: {
                 ticker: "• Red Alert: Digital Illusion Tsunami threatens family stability • New divorce every 3 min • Al-Azhar: Social Media causes 60% of family conflicts • 104M mobiles: Gateways to distress •",
-                langBtn: "العربية",
-                mainTitle: "Digital Illusion Tsunami",
-                clickPrompt: "Click here to read the book",
-                secTitle1: "Reports from religious institutions",
-                azharName: "Al-Azhar Al-Sharif",
-                azharDesc: "Social media is the main cause of 60% of contemporary family conflicts.",
-                churchName: "Egyptian Church",
-                churchDesc: "Increase in cases of family estrangement and divorce due to digital addiction.",
-                secTitle2: "Social risk indicators",
-                stat1H: "3 minutes",
-                stat1P: "Between each divorce case in Egypt.",
-                stat2H: "255 cases",
-                stat2P: "Average number of daily divorces.",
-                stat3H: "40%",
-                stat3P: "Of divorces originate from digital disputes.",
-                ecoTitle: "National Economic Drain",
-                ecoVal1: "15 Billion EGP",
-                ecoDesc1: "Annual losses due to digital crimes.",
-                ecoVal2: "3.1 Billion EGP",
-                ecoDesc2: "Losses from fraud and counterfeit trading.",
+                langBtn: "العربية", mainTitle: "Digital Illusion Tsunami", clickPrompt: "Click here to read the book",
+                secTitle1: "Reports from religious institutions", azharName: "Al-Azhar Al-Sharif", azharDesc: "Social media is the main cause of 60% of contemporary family conflicts.",
+                churchName: "Egyptian Church", churchDesc: "Increase in cases of family estrangement and divorce due to digital addiction.",
+                secTitle2: "Social risk indicators", stat1H: "3 minutes", stat1P: "Between each divorce case in Egypt.",
+                stat2H: "255 cases", stat2P: "Average number of daily divorces.", stat3H: "40%", stat3P: "Of divorces originate from digital disputes.",
+                ecoTitle: "National Economic Drain", ecoVal1: "15 Billion EGP", ecoDesc1: "Annual losses due to digital crimes.",
+                ecoVal2: "3.1 Billion EGP", ecoDesc2: "Losses from fraud and counterfeit trading.",
                 footer: "© 2024 CiviStories - Protecting the Egyptian Social Fabric"
             },
             ar: {
                 ticker: "• إنذار أحمر: تسونامي الوهم الرقمي يهدد استقرار الأسرة المصرية • كل ٣ دقائق حالة طلاق جديدة في مصر • الأزهر الشريف: السوشيال ميديا سبب ٦٠٪ من النزاعات الأسرية • ١٠٤ مليون محمول بوابات للجحيم الأسري •",
-                langBtn: "English",
-                mainTitle: "تسونامي الوهم الرقمي",
-                clickPrompt: "إضغط هنا لقراءة الكتاب",
-                secTitle1: "تقارير المؤسسات الدينية",
-                azharName: "الأزهر الشريف",
-                azharDesc: "السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة المعاصرة.",
-                churchName: "الكنيسة المصرية",
-                churchDesc: "رصد زيادة في حالات التباعد الأسري والطلاق بسبب الإدمان الرقمي.",
-                secTitle2: "مؤشرات الخطر الاجتماعي",
-                stat1H: "٣ دقائق",
-                stat1P: "بين كل حالة طلاق وأخرى في مصر.",
-                stat2H: "٢٥٥ حالة",
-                stat2P: "متوسط حالات الطلاق اليومية.",
-                stat3H: "٤٠٪",
-                stat3P: "من حالات الانفصال تبدأ بنزاع إلكتروني.",
-                ecoTitle: "النزيف الاقتصادي الوطني",
-                ecoVal1: "١٥ مليار جنيه",
-                ecoDesc1: "خسائر سنوية بسبب الجرائم الرقمية.",
-                ecoVal2: "٣.١ مليار جنيه",
-                ecoDesc2: "خسائر الاحتيال والتجارة الزائفة.",
+                langBtn: "English", mainTitle: "تسونامي الوهم الرقمي", clickPrompt: "إضغط هنا لقراءة الكتاب",
+                secTitle1: "تقارير المؤسسات الدينية", azharName: "الأزهر الشريف", azharDesc: "السوشيال ميديا السبب الرئيسي في ٦٠٪ من نزاعات الأسرة المعاصرة.",
+                churchName: "الكنيسة المصرية", churchDesc: "رصد زيادة في حالات التباعد الأسري والطلاق بسبب الإدمان الرقمي.",
+                secTitle2: "مؤشرات الخطر الاجتماعي", stat1H: "٣ دقائق", stat1P: "بين كل حالة طلاق وأخرى في مصر.",
+                stat2H: "٢٥٥ حالة", stat2P: "متوسط حالات الطلاق اليومية.", stat3H: "٤٠٪", stat3P: "من حالات الانفصال تبدأ بنزاع إلكتروني.",
+                ecoTitle: "النزيف الاقتصادي الوطني", ecoVal1: "١٥ مليار جنيه", ecoDesc1: "خسائر سنوية بسبب الجرائم الرقمية.",
+                ecoVal2: "٣.١ مليار جنيه", ecoDesc2: "خسائر الاحتيال والتجارة الزائفة.",
                 footer: "© 2024 CiviStories - حماية النسيج الاجتماعي المصري"
             }
         };
@@ -186,7 +181,6 @@
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             const html = document.getElementById('mainHtml');
             const d = translations[currentLang];
-
             html.dir = currentLang === 'en' ? 'ltr' : 'rtl';
             currentLang === 'en' ? html.classList.add('en-mode') : html.classList.remove('en-mode');
 
