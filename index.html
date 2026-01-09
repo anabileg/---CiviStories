@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسونامي الوهم الرقمي</title>
+    <title>CiviStories | تسونامي الوهم الرقمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --dark: #0b0b0b; --red: #b30000; }
@@ -11,100 +11,109 @@
         body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
 
         /* شريط التنبيه العلوي */
-        .ticker { background: var(--red); padding: 10px 0; position: fixed; top: 0; width: 100%; z-index: 2000; font-weight: bold; overflow: hidden; }
-        .ticker-move { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; }
+        .ticker { background: var(--red); padding: 10px 0; position: fixed; top: 0; width: 100%; z-index: 2000; overflow: hidden; }
+        .ticker-move { display: inline-block; white-space: nowrap; animation: moveTicker 50s linear infinite; font-weight: bold; }
         @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* الناف بار */
-        .nav { background: rgba(0,0,0,0.9); padding: 10px 5%; position: fixed; top: 40px; width: 100%; z-index: 1500; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
-        .btn-call { background: var(--gold); color: #000; padding: 8px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; }
+        /* الناف بار المحدث */
+        .nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 40px; width: 100%; z-index: 1500; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
+        .nav-social a { color: var(--gold); margin-left: 12px; font-size: 1.2em; text-decoration: none; }
+        .btn-contact { background: var(--gold); color: #000; padding: 6px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-size: 0.9em; }
 
-        /* منطقة العرض الرئيسية */
-        .hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 160px 5% 40px; flex-wrap: wrap; }
-        .book-box { flex: 0 0 280px; text-align: center; }
-        .book-img { width: 100%; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        /* القسم الرئيسي */
+        .main { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 160px 5% 40px; flex-wrap: wrap; }
+        .book-side { flex: 0 0 260px; text-align: center; }
+        .book-img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px #000; cursor: pointer; transition: 0.3s; }
+        .book-img:hover { transform: scale(1.02); }
 
-        /* السلايدر المحسن */
-        .slider-wrap { flex: 1; min-width: 320px; height: 400px; overflow: hidden; position: relative; background: #111; border-radius: 15px; border: 1px solid #222; }
-        .track { display: flex; position: absolute; left: 0; top: 25px; will-change: transform; }
-        .track img { height: 350px; margin: 0 10px; border-radius: 10px; border: 1px solid var(--gold); background: #000; }
+        /* السلايدر الذكي */
+        .slider-box { flex: 1; min-width: 320px; height: 380px; overflow: hidden; position: relative; background: #111; border-radius: 15px; border: 1px solid #222; }
+        .track { display: flex; position: absolute; left: 0; top: 15px; will-change: transform; }
+        .track img { height: 340px; margin: 0 10px; border-radius: 10px; border: 1px solid var(--gold); background: #000; }
 
-        /* البيانات الإحصائية (صفحة 3) */
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 10%; }
-        .stat-card { background: #181818; padding: 30px; border-radius: 15px; text-align: center; border-bottom: 3px solid var(--gold); }
-        .stat-card h2 { color: var(--gold); font-size: 2.5em; margin-bottom: 10px; }
+        /* البيانات الإحصائية */
+        .info-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 40px 8%; }
+        .card { background: #181818; padding: 25px; border-radius: 15px; text-align: center; border-top: 3px solid var(--gold); }
+        .card h2 { color: var(--gold); font-size: 2.2em; margin-bottom: 10px; }
 
-        /* أيقونات التواصل */
-        .social-sidebar { position: fixed; left: 20px; top: 50%; display: flex; flex-direction: column; gap: 15px; z-index: 2000; }
-        .social-sidebar a { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.2em; }
+        /* شريط السوشيال ميديا الجانبي (كامل ومحدث) */
+        .side-social { position: fixed; left: 15px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 2000; }
+        .side-social a { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; transition: 0.3s; font-size: 1.1em; }
+        .side-social a:hover { transform: scale(1.15); filter: brightness(1.2); }
     </style>
 </head>
 <body>
 
     <div class="ticker">
         <div class="ticker-move">
-            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة • ٢٥٥ حالة طلاق يومياً • ٤٠٪ بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم •</span>
-            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة • ٢٥٥ حالة طلاق يومياً • ٤٠٪ بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم •</span>
+            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ٢٥٥ حالة طلاق يومياً • ٤٠٪ بسبب الوهم الرقمي • ١٠٤ مليون محمول بوابات للجحيم •</span>
         </div>
     </div>
 
     <nav class="nav">
-        <div class="icons">
-            <a href="#" style="color:var(--gold); margin-left:15px;"><i class="fab fa-instagram"></i></a>
-            <a href="#" style="color:var(--gold);"><i class="fab fa-facebook"></i></a>
+        <div class="nav-social">
+            <a href="https://www.facebook.com/profile.php?id=100093677167187"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/civistoriesarabic/"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-        <a href="https://wa.me/201009995015" class="btn-call">تواصل الآن <i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/201009995015" class="btn-contact">واتساب <i class="fab fa-whatsapp"></i></a>
     </nav>
 
-    <div class="hero">
-        <div class="book-box">
-            <img src="CIVISTORIES Book.png" class="book-img" alt="الغلاف">
-            <h2 style="color:var(--gold); margin-top:15px;">تسونامي الوهم الرقمي</h2>
+    <div class="main">
+        <div class="book-side">
+            <a href="https://heyzine.com/flip-book/48ab3792ec.html">
+                <img src="CIVISTORIES Book.png" class="book-img" alt="كتاب تسونامي الوهم الرقمي">
+                <h3 style="color:var(--gold); margin-top:10px;">تسونامي الوهم الرقمي</h3>
+            </a>
         </div>
-
-        <div class="slider-wrap">
-            <div class="track" id="photoTrack">
-                </div>
+        <div class="slider-box">
+            <div class="track" id="photoTrack"></div>
         </div>
     </div>
 
-    <div class="stats-grid">
-        <div class="stat-card"><h2>٣ دقائق</h2><p>بين كل حالة طلاق وأخرى</p></div>
-        <div class="stat-card"><h2>٢٥٥ حالة</h2><p>إجمالي حالات الطلاق يومياً</p></div>
-        <div class="stat-card"><h2>٤٠٪</h2><p>من الانفصال سببه السوشيال ميديا</p></div>
+    <div class="info-cards">
+        <div class="card"><h2>٣ دقائق</h2><p>بين كل حالة طلاق وأخرى</p></div>
+        <div class="card"><h2>٢٥٥ حالة</h2><p>إجمالي حالات الطلاق يومياً</p></div>
+        <div class="card"><h2>٤٠٪</h2><p>من حالات الانفصال بسبب السوشيال ميديا</p></div>
     </div>
 
-    <div class="social-sidebar">
-        <a href="#" style="background:#25d366;"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
+    <div class="side-social">
+        <a href="https://wa.me/201009995015" style="background:#25d366;"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:info@civistories.com" style="background:#ea4335;"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.facebook.com/profile.php?id=100093677167187" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/civistoriesarabic/" style="background:#e4405f;"><i class="fab fa-instagram"></i></a>
+        <a href="#" style="background:#000;"><i class="fab fa-tiktok"></i></a>
+        <a href="#" style="background:#ff0000;"><i class="fab fa-youtube"></i></a>
         <a href="#" style="background:#000;"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" style="background:#0077b5;"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" style="background:#bd081c;"><i class="fab fa-pinterest"></i></a>
     </div>
 
     <script>
         const track = document.getElementById('photoTrack');
-        
-        // القائمة الدقيقة للصور بناءً على ملفاتك المرفوعة
+        // مطابقة الامتدادات بناءً على ملفاتك (PNG لـ 12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82)
         const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
 
-        function loadImages() {
-            let content = '';
+        function initSlider() {
+            let html = '';
             for (let i = 1; i <= 82; i++) {
                 let ext = pngFiles.includes(i) ? 'png' : 'jpg';
-                content += `<img src="${i}.${ext}" alt="صورة ${i}" onerror="this.style.display='none'">`;
+                html += `<img src="${i}.${ext}" onerror="this.style.display='none'">`;
             }
-            track.innerHTML = content + content; // مضاعفة الصور لحركة مستمرة
+            track.innerHTML = html + html; 
         }
 
-        let x = 0;
-        function animate() {
-            x -= 0.8; 
-            if (Math.abs(x) >= track.scrollWidth / 2) x = 0;
-            track.style.transform = `translateX(${x}px)`;
-            requestAnimationFrame(animate);
+        let pos = 0;
+        function play() {
+            pos -= 0.8;
+            if (Math.abs(pos) >= track.scrollWidth / 2) pos = 0;
+            track.style.transform = `translateX(${pos}px)`;
+            requestAnimationFrame(play);
         }
 
-        loadImages();
-        animate();
+        initSlider();
+        play();
     </script>
 </body>
 </html>
