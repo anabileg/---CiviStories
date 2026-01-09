@@ -3,157 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CiviStories | حماية النسيج الاجتماعي</title>
+    <title>تسونامي الوهم الرقمي | CiviStories</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --dark-bg: #0b0b0b; --accent-red: #b30000; --white-text: #f1f1f1; }
+        :root { --gold: #d4af37; --dark: #0b0b0b; --red: #b30000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--dark-bg); color: var(--white-text); overflow-x: hidden; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--dark); color: #fff; overflow-x: hidden; }
 
-        /* شريط الأخبار */
-        .ticker-bar { background: var(--accent-red); padding: 10px 0; position: fixed; top: 0; width: 100%; z-index: 9999; font-weight: bold; text-align: center; }
-        .ticker-container { display: inline-block; white-space: nowrap; animation: moveTicker 60s linear infinite; }
-        @keyframes moveTicker { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        /* شريط الأخبار العلوي */
+        .top-ticker { background: var(--red); padding: 12px 0; position: fixed; top: 0; width: 100%; z-index: 1000; font-weight: bold; overflow: hidden; }
+        .ticker-content { display: inline-block; white-space: nowrap; animation: tickerMove 40s linear infinite; }
+        @keyframes tickerMove { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* الناف بار */
-        .main-nav { background: rgba(0,0,0,0.95); padding: 10px 5%; position: fixed; top: 40px; width: 100%; z-index: 9000; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
-        .contact-btn { background: var(--gold); color: #000; padding: 6px 18px; border-radius: 20px; text-decoration: none; font-weight: bold; }
+        /* القائمة العلوية */
+        .navbar { background: rgba(0,0,0,0.9); padding: 10px 5%; position: fixed; top: 45px; width: 100%; z-index: 999; border-bottom: 1px solid var(--gold); display: flex; justify-content: space-between; align-items: center; }
+        .contact-link { background: var(--gold); color: #000; padding: 7px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .contact-link:hover { background: #fff; transform: scale(1.05); }
 
-        /* القسم الرئيسي (الكتاب + السلايدر) */
-        .hero-section { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 160px 5% 40px; flex-wrap: wrap; }
+        /* القسم الرئيسي */
+        .hero-section { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 180px 5% 60px; flex-wrap: wrap; }
         
-        .static-book { flex: 0 0 260px; text-align: center; position: relative; }
-        .book-img { width: 100%; border-radius: 10px; box-shadow: 0 15px 40px rgba(0,0,0,0.9); border-left: 3px solid #333; }
+        .book-container { flex: 0 0 280px; text-align: center; }
+        .main-book { width: 100%; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); border-left: 4px solid #333; transition: 0.5s; }
+        .main-book:hover { transform: rotateY(-10deg); }
 
-        /* سلايدر متطور لا ينكسر */
-        .slider-window { 
-            flex: 1; min-width: 320px; height: 380px; overflow: hidden; position: relative; 
-            background: #111; border-radius: 20px; border: 1px solid #222;
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        /* سلايدر الصور الذكي */
+        .slider-viewport { 
+            flex: 1; min-width: 300px; height: 420px; 
+            overflow: hidden; position: relative; 
+            background: #111; border-radius: 20px; 
+            border: 1px solid #222; display: flex; align-items: center;
         }
 
-        .slider-track { 
-            display: flex; width: max-content; 
-            animation: moveSlider 150s linear infinite; /* حركة بطيئة جداً لضمان التحميل */
-        }
-        
-        .slider-track:hover { animation-play-state: paused; }
-
-        .slider-track img { 
-            height: 320px; width: auto; margin: 30px 15px; 
-            border-radius: 12px; border: 1px solid var(--gold); 
-            background: #000; display: block;
+        .photo-track { 
+            display: flex; position: absolute; left: 0; 
+            will-change: transform; 
         }
 
-        @keyframes moveSlider { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(-50%); } 
+        .photo-track img { 
+            height: 350px; width: auto; margin: 0 15px; 
+            border-radius: 15px; border: 1px solid var(--gold); 
+            background: #000; transition: 0.3s;
         }
 
-        /* أقسام البيانات المختفية (صفحة 2 و 3) */
-        .data-container { padding: 60px 8%; background: #0b0b0b; position: relative; z-index: 5; }
-        .info-card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #181818; padding: 35px; border-radius: 20px; border-top: 4px solid var(--gold); text-align: right; }
-        .card i { font-size: 2.5em; color: var(--gold); margin-bottom: 20px; display: block; }
-        .card h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.5em; }
-        .card p { line-height: 1.8; color: #ccc; font-size: 1em; }
+        /* أقسام البيانات (الأزهر والكنيسة والمبادرة) */
+        .info-section { padding: 80px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .data-card { background: #181818; padding: 40px; border-radius: 20px; border-top: 5px solid var(--gold); transition: 0.3s; }
+        .data-card:hover { transform: translateY(-10px); background: #222; }
+        .data-card i { font-size: 3em; color: var(--gold); margin-bottom: 20px; display: block; }
+        .data-card h3 { color: var(--gold); font-size: 1.6em; margin-bottom: 15px; }
+        .data-card p { color: #ccc; line-height: 1.8; font-size: 1.1em; }
 
-        .stats-strip { display: flex; justify-content: space-around; flex-wrap: wrap; padding: 50px 5%; background: #111; border-top: 1px solid #222; }
-        .stat-item h2 { color: var(--gold); font-size: 2.8em; }
+        /* شريط الإحصائيات */
+        .stat-bar { display: flex; justify-content: space-around; flex-wrap: wrap; padding: 60px 5%; background: #000; border-top: 1px solid #222; text-align: center; }
+        .stat-box h2 { color: var(--gold); font-size: 3em; margin-bottom: 5px; }
+        .stat-box p { font-size: 1.2em; color: #fff; }
 
-        .floating-social { position: fixed; left: 20px; top: 50%; display: flex; flex-direction: column; gap: 15px; z-index: 10000; }
-        .floating-social a { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.3em; }
+        /* التواصل الاجتماعي الثابت */
+        .social-float { position: fixed; left: 20px; top: 50%; display: flex; flex-direction: column; gap: 15px; z-index: 1001; }
+        .social-float a { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 1.3em; transition: 0.3s; }
+        .social-float a:hover { transform: scale(1.2); }
 
         @media (max-width: 768px) {
-            .hero-section { flex-direction: column; padding-top: 200px; }
-            .slider-window { height: 300px; }
-            .slider-track img { height: 240px; }
+            .hero-section { padding-top: 220px; }
+            .slider-viewport { height: 320px; }
+            .photo-track img { height: 260px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ticker-bar">
-        <div class="ticker-container">
-            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم • ٥٠% من الأسر مهددة •</span>
-            <span>• إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة بسبب السوشيال ميديا • ١٠٤ مليون محمول بوابات للجحيم • ٥٠% من الأسر مهددة •</span>
+    <div class="top-ticker">
+        <div class="ticker-content">
+            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة • ١٠٤ مليون محمول بوابات للجحيم • ٥٠% من الأسر المصرية معرضة للتفكك • ٤٠% من الحالات بسبب الوهم الرقمي •
+            • إنذار أحمر: كل ٣ دقائق حالة طلاق جديدة • ١٠٤ مليون محمول بوابات للجحيم • ٥٠% من الأسر المصرية معرضة للتفكك • ٤٠% من الحالات بسبب الوهم الرقمي •
         </div>
     </div>
 
-    <nav class="main-nav">
-        <div class="social-links">
-            <a href="https://www.instagram.com/civistoriesarabic/" style="color:var(--gold); margin-left:15px;"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/profile.php?id=100093677167187" style="color:var(--gold);"><i class="fab fa-facebook"></i></a>
+    <nav class="navbar">
+        <div class="brand-social">
+            <a href="https://www.instagram.com/civistoriesarabic/" style="color:var(--gold); font-size:1.5em; margin-left:20px;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100093677167187" style="color:var(--gold); font-size:1.5em;"><i class="fab fa-facebook"></i></a>
         </div>
-        <a href="https://wa.me/201009995015" class="contact-btn">تواصل الآن <i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/201009995015" class="contact-link">تواصل معنا الآن <i class="fab fa-whatsapp"></i></a>
     </nav>
 
     <div class="hero-section">
-        <div class="static-book">
+        <div class="book-container">
             <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank">
-                <img src="CIVISTORIES Book.png" class="book-img" alt="غلاف الكتاب">
-                <h2 style="color:var(--gold); margin-top:15px;">تسونامي الوهم الرقمي</h2>
-                <p style="color:var(--gold); font-size:0.8em; border:1px solid var(--gold); display:inline-block; padding:3px 10px; border-radius:15px; margin-top:5px;">انقر للتصفح</p>
+                <img src="CIVISTORIES Book.png" class="main-book" alt="تسونامي الوهم الرقمي">
+                <h2 style="color:var(--gold); margin-top:20px;">تسونامي الوهم الرقمي</h2>
+                <p style="color:#888; margin-top:5px;">اضغط لتصفح الكتاب التفاعلي</p>
             </a>
         </div>
 
-        <div class="slider-window">
-            <div class="slider-track" id="mainSlider">
+        <div class="slider-viewport">
+            <div class="photo-track" id="ui-track">
                 </div>
         </div>
     </div>
 
-    <section class="data-container">
-        <div class="info-card-grid">
-            <div class="card">
-                <i class="fas fa-landmark"></i>
-                <h3>رؤية المؤسسات الوطنية</h3>
-                <p>بتأييد ودعم من <strong>الأزهر الشريف</strong> و<strong>الكنيسة المصرية</strong>، نطلق هذه الصرخة التوعوية لحماية الأسرة من التفكك الناتج عن إدمان العالم الافتراضي.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-exclamation-triangle"></i>
-                <h3>خطر الوهم الرقمي</h3>
-                <p>نواجه اليوم تسونامي رقمي يهدد ١٠٤ مليون مستخدم محمول في مصر، حيث تحولت الهواتف إلى بوابات للهدم الأسري والنزيف القومي الاجتماعي.</p>
-            </div>
-            <div class="card">
-                <i class="fas fa-heart"></i>
-                <h3>رسالتنا</h3>
-                <p>استعادة "دفء البيوت" المفقود، وتوعية الآباء والأبناء بمخاطر السوشيال ميديا، وبناء وعي مجتمعي يحافظ على النسيج المصري الأصيل.</p>
-            </div>
+    <section class="info-section">
+        <div class="data-card">
+            <i class="fas fa-mosque"></i>
+            <h3>رؤية الأزهر الشريف</h3>
+            <p>دعم كامل لحماية كيان الأسرة المصرية، والتوعية بمخاطر الانفصال الصامت والهروب إلى العوالم الافتراضية التي تهدم البيوت.</p>
+        </div>
+        <div class="data-card">
+            <i class="fas fa-church"></i>
+            <h3>رؤية الكنيسة المصرية</h3>
+            <p>رسالة مشتركة لترسيخ القيم الأسرية، ومواجهة "الوهم الرقمي" الذي سرق دفء اللقاءات الحقيقية واستبدلها بشاشات باردة.</p>
+        </div>
+        <div class="data-card">
+            <i class="fas fa-bullhorn"></i>
+            <h3>رسالة المبادرة</h3>
+            <p>مبادرة توعوية تسعى لاستعادة الأمان الاجتماعي، واستكشاف الحقائق الصادمة التي تهدد استقرار ١٠٤ مليون مستخدم للهواتف في مصر.</p>
         </div>
     </section>
 
-    <section class="stats-strip">
-        <div class="stat-item"><h2>٣ دقائق</h2><p>بين حالات الطلاق</p></div>
-        <div class="stat-item"><h2>٢٥٥ حالة</h2><p>طلاق يومياً</p></div>
-        <div class="stat-item"><h2>٤٠%</h2><p>بسبب السوشيال ميديا</p></div>
-    </section>
+    <div class="stat-bar">
+        <div class="stat-box"><h2>٣ دقائق</h2><p>بين حالات الطلاق</p></div>
+        <div class="stat-box"><h2>٢٥٥ حالة</h2><p>طلاق يومياً</p></div>
+        <div class="stat-box"><h2>٤٠%</h2><p>بسبب السوشيال ميديا</p></div>
+    </div>
 
-    <div class="floating-social">
+    <div class="social-float">
         <a href="https://wa.me/201009995015" style="background:#25d366;"><i class="fab fa-whatsapp"></i></a>
         <a href="https://www.facebook.com/profile.php?id=100093677167187" style="background:#1877f2;"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/civistoriesarabic/" style="background:#e4405f;"><i class="fab fa-instagram"></i></a>
     </div>
 
     <script>
-        // نظام تحميل الصور الذكي لمنع انكسار الصفحة
-        const slider = document.getElementById('mainSlider');
-        const total = 82;
+        const track = document.getElementById('ui-track');
+        const totalPhotos = 82;
         
-        function buildSlider() {
-            let html = '';
-            for(let i=1; i<=total; i++) {
-                let ext = (i===12 || i===14 || i===19) ? 'png' : 'jpg';
-                // إضافةloading="lazy" ضروري جداً هنا لمنع البطء
-                html += `<img src="${i}.${ext}" alt="صورة ${i}" loading="lazy" onerror="this.style.display='none'">`;
+        // بناء الشريط بناءً على الامتدادات الصحيحة في صورك (jpg/png)
+        function buildGallery() {
+            let imagesHtml = '';
+            // مصفوفة الصور التي امتدادها png بناءً على قائمة ملفاتك
+            const pngImages = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
+
+            for (let i = 1; i <= totalPhotos; i++) {
+                let ext = pngImages.includes(i) ? 'png' : 'jpg';
+                imagesHtml += `<img src="${i}.${ext}" alt="Slide ${i}" loading="lazy" onerror="this.src='logo.png'">`;
             }
-            // نكرر الصور مرتين لضمان استمرار الحركة بدون فجوات
-            slider.innerHTML = html + html;
+            // تكرار الصور لضمان حركة دائرية سلسة
+            track.innerHTML = imagesHtml + imagesHtml;
         }
 
-        // يبدأ التحميل بعد ثوانٍ بسيطة من فتح الصفحة لضمان ظهور النصوص أولاً
-        window.addEventListener('load', () => {
-            setTimeout(buildSlider, 500);
-        });
+        let position = 0;
+        function animate() {
+            position -= 0.7; // سرعة انسيابية (يمكنك زيادتها لـ 1.0 لجعلها أسرع قليلاً)
+            if (Math.abs(position) >= track.scrollWidth / 2) {
+                position = 0;
+            }
+            track.style.transform = `translateX(${position}px)`;
+            requestAnimationFrame(animate);
+        }
+
+        buildGallery();
+        // بدء الحركة بعد ثانية لضمان تحميل المتصفح للبيانات الأساسية
+        setTimeout(animate, 1000);
     </script>
 </body>
 </html>
