@@ -32,18 +32,29 @@
         }
         .wa-gold { color: var(--gold); font-size: 1.8em; }
 
-        /* زر الصعود للأعلى (المطلوب) */
+        /* زر الصعود للأعلى (ظاهر دائماً الآن) */
         #backToTop {
-            position: fixed; bottom: 30px; left: 30px; 
-            background: var(--gold); color: #000; width: 45px; height: 45px;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 1.5em; cursor: pointer; z-index: 10005; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: 0.3s;
+            position: fixed; 
+            bottom: 30px; 
+            left: 30px; 
+            background: var(--gold); 
+            color: #000; 
+            width: 50px; 
+            height: 50px;
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            font-size: 1.5em; 
+            cursor: pointer; 
+            z-index: 999999; /* قيمة فائقة للظهور فوق كل شيء */
+            box-shadow: 0 5px 20px rgba(0,0,0,0.8); 
+            transition: 0.3s;
+            border: 2px solid #fff;
         }
-        #backToTop.show { opacity: 1; visibility: visible; }
-        #backToTop:hover { transform: scale(1.1); background: #fff; }
+        #backToTop:hover { transform: translateY(-5px); background: #fff; color: var(--gold); }
 
-        /* منطقة الهيرو والسلايدر */
+        /* الهيرو والسلايدر */
         .main-hero { display: flex; align-items: center; justify-content: center; gap: 30px; padding: 200px 5% 40px; flex-wrap: wrap; }
         .cover-box { flex: 0 0 320px; text-align: center; }
         .cover-img { width: 100%; border-radius: 10px; border: 1px solid #333; }
@@ -67,15 +78,15 @@
         .en-mode .ticker-container { animation: moveTickerEN 80s linear infinite; }
         @keyframes moveTickerEN { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         .en-mode .data-header { text-align: left; }
-        /* الحفاظ على مكان زر الصعود في اليسار حتى في الإنجليزية */
-        .en-mode #backToTop { left: 30px; right: auto; }
 
         footer { padding: 40px; text-align: center; opacity: 0.6; }
     </style>
 </head>
-<body onscroll="handleScroll()">
+<body>
 
-    <div id="backToTop" onclick="window.scrollTo(0,0)"><i class="fas fa-chevron-up"></i></div>
+    <div id="backToTop" title="Go to top" onclick="window.scrollTo(0,0)">
+        <i class="fas fa-arrow-up"></i>
+    </div>
 
     <div class="ticker-bar">
         <div class="ticker-container" id="tickerText">
@@ -133,13 +144,6 @@
     <footer id="footerText">© 2024 CiviStories - حماية النسيج الاجتماعي المصري</footer>
 
     <script>
-        // إظهار وإخفاء زر الصعود عند التمرير
-        function handleScroll() {
-            const btn = document.getElementById('backToTop');
-            if (window.scrollY > 300) { btn.classList.add('show'); } 
-            else { btn.classList.remove('show'); }
-        }
-
         // السلايدر
         const pngFiles = [12, 14, 19, 23, 24, 32, 59, 60, 70, 73, 81, 82];
         const track = document.getElementById('imageTrack');
