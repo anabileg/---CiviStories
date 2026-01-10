@@ -15,6 +15,9 @@
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* إجبار الصفحة على البدء من الأعلى */
+        html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
         /* حركة الخلفية السينمائية */
@@ -45,11 +48,13 @@
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-youtube { color: #FF0000; }
         .fa-tiktok, .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; }
 
-        /* شريط الأخبار */
+        /* شريط الأخبار المتصل (بدون توقف) */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 50s linear infinite; }
-        .ticker-track span { padding: 0 50px; font-size: 1.1rem; font-weight: bold; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 30s linear infinite; }
+        .ticker-track span { display: inline-block; padding-left: 100px; font-size: 1.1rem; font-weight: bold; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        [dir="ltr"] .ticker-track { animation: marquee-ltr 30s linear infinite; }
+        @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* الهيرو */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
@@ -88,7 +93,7 @@
         .stat-num { font-size: 4rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
         .loss-num { color: var(--red-num) !important; }
 
-        /* شاركنا برأيك */
+        /* زر واتساب */
         .btn-whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: #fff;
             padding: 15px 25px; border-radius: 50px; font-weight: bold; text-decoration: none;
@@ -96,7 +101,7 @@
             transition: 0.3s;
         }
 
-        /* نظام اللغة */
+        /* اللغات */
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
         [dir="ltr"] .lang-en { display: inline; }
@@ -105,7 +110,7 @@
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 10002; }
     </style>
 </head>
-<body>
+<body onload="initPage()">
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
@@ -253,20 +258,38 @@
     </footer>
 
     <script>
-        // فتح الصفحة دائماً من الأعلى
-        window.history.scrollRestoration = 'manual';
-        window.scrollTo(0, 0);
-        window.onload = () => { window.scrollTo(0, 0); updateTicker(); };
+        // إجبار المتصفح على الفتح من الأعلى
+        function initPage() {
+            if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+            window.scrollTo(0, 0);
+            updateTicker();
+        }
 
         const news = {
-            ar: ["• الأزهر: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• الأوقاف: الهواتف سبب للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد المجتمع"],
-            en: ["• Al-Azhar: One divorce every 2 minutes digitally", "• Red Alert: Family disintegration threatens Egypt", "• Awqaf: Smartphones cause marital silence", "• Stats: 7 hours daily average usage in Egypt", "• Emergency: Digital addiction rising among youth"]
+            ar: [
+                "• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", 
+                "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", 
+                "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري",
+                "• قصة حضارة: مبادرة وطنية لحماية النسيج المجتمعي من الوهم الرقمي",
+                "• إحصائيات: 7 ساعات يومياً هو متوسط استخدام المصريين للمنصات",
+                "• تحذير: إدمان الأطفال للشاشات يهدد القدرات الذهنية والاجتماعية"
+            ],
+            en: [
+                "• Al-Azhar: One divorce every 2 minutes due to digital addiction", 
+                "• Red Alert: Family disintegration threatens Egypt's social stability", 
+                "• Awqaf: Smartphones are a major cause of marital silence", 
+                "• Stats: 7 hours daily average usage of social media in Egypt", 
+                "• Warning: Screen addiction threatens children's mental development",
+                "• CiviStories: A national initiative to restore family awareness"
+            ]
         };
 
         function updateTicker() {
             const lang = document.documentElement.dir === "rtl" ? 'ar' : 'en';
-            const content = news[lang].join('   ') + '   ' + news[lang].join('   ') + '   ' + news[lang].join('   ');
-            document.getElementById('tickerTrack').innerHTML = `<span>${content}</span>`;
+            // نظام التكرار اللانهائي (مضاعفة النص 4 مرات لضمان عدم وجود فراغ)
+            const content = news[lang].join('   ---   ');
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = `<span>${content}</span><span>${content}</span><span>${content}</span><span>${content}</span>`;
         }
 
         function toggleLanguage() {
