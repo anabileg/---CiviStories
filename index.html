@@ -33,16 +33,14 @@
         .nav-left-fixed { position: absolute; left: 20px; display: flex; align-items: center; gap: 15px; direction: ltr !important; }
         .nav-logo-img { height: 50px; width: auto; }
         .fa-whatsapp { color: #25D366; font-size: 1.8rem; }
-        .fa-envelope { color: #FF0000; font-size: 1.8rem; }
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; color: #000; }
 
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
-        .social-right-fixed a { color: inherit; text-decoration: none; }
+        .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
         
-        /* شريط الأخبار المحدث بالتكرار اللانهائي */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
         .ticker-item { display: flex; white-space: nowrap; animation: marquee-scroll 80s linear infinite; }
@@ -97,8 +95,7 @@
             <img src="logo.png" class="nav-logo-img">
             <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
             <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:civistories@gmail.com?bcc=anabileg@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
+            </div>
         <div class="nav-links">
             <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></a>
             <a onclick="scrollToSec('stats')"><span class="lang-ar">الإحصائيات</span><span class="lang-en">Stats</span></a>
@@ -212,7 +209,7 @@
     </div>
 
     <script>
-        // إجبار الصفحة على البقاء في الأعلى عند التحميل
+        // منع التمرير التلقائي عند التحميل لضمان الثبات في الأعلى
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
