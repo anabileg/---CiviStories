@@ -9,18 +9,19 @@
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; overflow-x: hidden; background: #000; }
+        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
-        /* حركة الخلفية السينمائية المستمرة (Ken Burns) */
+        /* إعادة تفعيل الخلفية المتحركة (Ken Burns Effect) */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('image_390e08.jpg') center center no-repeat;
-            background-size: cover; z-index: -1;
-            animation: kenBurnsAnimation 40s ease-in-out infinite alternate;
+            background-image: url('image_390e08.jpg');
+            background-position: center; background-repeat: no-repeat; background-size: cover;
+            z-index: -1;
+            animation: kenBurns 40s ease-in-out infinite alternate;
         }
-        @keyframes kenBurnsAnimation {
+        @keyframes kenBurns {
             0% { transform: scale(1); filter: brightness(0.5); }
-            100% { transform: scale(1.15); filter: brightness(0.7); }
+            100% { transform: scale(1.18); filter: brightness(0.7); }
         }
 
         .navbar {
@@ -39,17 +40,14 @@
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
-        .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
+        .social-right-fixed a { color: inherit; text-decoration: none; }
         
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee-scroll 80s linear infinite; }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee 90s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
         
-        @keyframes marquee-scroll { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(100%); } 
-        }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
@@ -68,8 +66,9 @@
 
         .section { padding: 80px 10%; }
         
+        /* قسم رؤيتنا بعد إزالة الحرف الزائد وضبط الخلفية */
         .vision-section { 
-            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%), url('image_3a7328.jpg');
+            background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 100%), url('image_3a7328.jpg');
             background-size: cover; background-position: center;
             padding: 80px 10%; border-radius: 30px; margin: 20px 5%; border: 1px solid var(--gold);
         }
@@ -95,7 +94,7 @@
             <img src="logo.png" class="nav-logo-img">
             <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
             <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
+        </div>
         <div class="nav-links">
             <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></a>
             <a onclick="scrollToSec('stats')"><span class="lang-ar">الإحصائيات</span><span class="lang-en">Stats</span></a>
@@ -118,15 +117,10 @@
             <div class="ticker-item">
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
                 <span class="lang-ar">• الأزهر: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
-                <span class="lang-ar">• دار الإفتاء: ٣٠٪ من النزاعات الأسرية سببها الفضاء الإلكتروني</span>
                 <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
                 <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
                 <span class="lang-ar">• الأزهر: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
-                
-                <span class="lang-en">• Red Alert: One family dissolves every 3 minutes due to digital conflict</span>
-                <span class="lang-en">• Al-Azhar: 255 daily divorce cases linked to social media</span>
-                <span class="lang-en">• Health Ministry: 3 million psychiatric visits due to digital addiction</span>
             </div>
         </div>
     </div>
@@ -177,22 +171,6 @@
             </div>
         </section>
 
-        <section id="inst" class="section">
-            <div class="glass-box">
-                <h2 class="section-title"><span class="lang-ar">المؤسسات الدينية</span><span class="lang-en">Institutions</span></h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
-                        <p class="lang-ar">٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا.</p>
-                    </div>
-                    <div class="card">
-                        <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
-                        <p class="lang-ar">٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="loss" class="section">
             <div class="glass-box">
                 <h2 class="section-title"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></h2>
@@ -209,8 +187,7 @@
     </div>
 
     <script>
-        // منع التمرير التلقائي عند التحميل لضمان الثبات في الأعلى
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        // ضمان البدء من الأعلى
         window.scrollTo(0, 0);
 
         function toggleLanguage() {
