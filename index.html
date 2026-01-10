@@ -66,12 +66,11 @@
         .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
         
         .book-btns { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
-        .btn-book-read { background: var(--gold); color: #000; }
-        .btn-book-down { background: transparent; color: var(--gold); }
+        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
+        .btn-book-read { background: var(--gold); color: #000; width: 100%; }
 
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; }
-        .track { display: flex; width: max-content; animation: infiniteSlide 90s linear infinite; }
+        .track { display: flex; width: max-content; animation: infiniteSlide 60s linear infinite; }
         .track img { width: 500px; height: 450px; object-fit: cover; }
         
         @keyframes infiniteSlide { 
@@ -140,9 +139,6 @@
                         <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-book btn-book-read">
                             <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Now</span>
                         </a>
-                        <a href="https://onedrive.live.com/download?cid=DC8912CDAC5BBF6C&resid=DC8912CDAC5BBF6C%21109&authkey=AHew7ExbljpOtPE" target="_blank" class="btn-book btn-book-down">
-                            <i class="fas fa-download"></i> <span class="lang-ar">تحميل الكتاب</span><span class="lang-en">Download</span>
-                        </a>
                     </div>
                 </div>
                 <div class="carousel-wide">
@@ -153,7 +149,7 @@
                         <img src="18.jpg"> <img src="20.jpg"> <img src="21.jpg"> <img src="25.jpg"> <img src="31.jpg">
                         <img src="35.jpg"> <img src="45.jpg"> <img src="47.jpg"> <img src="48.jpg"> <img src="64.jpg">
                         <img src="75.jpg"> <img src="79.jpg"> <img src="23.png"> <img src="82.png">
-                        <img src="1.jpg"> <img src="12.png"> <img src="23.png"> <img src="82.png">
+                        <img src="1.jpg"> <img src="2.jpg"> <img src="12.png"> <img src="23.png"> <img src="82.png">
                     </div>
                 </div>
             </div>
@@ -212,17 +208,17 @@
     </div>
 
     <script>
-        // إجبار المتصفح على البدء من أعلى الصفحة وحذف سجل التمرير
+        // إجبار المتصفح على البدء من أعلى الصفحة
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        window.scrollTo(0, 0);
+        window.scrollTo(0,0);
         document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
             if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
             else { html.dir = "rtl"; btn.innerText = "English"; }
+            window.scrollTo(0,0);
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -248,4 +244,10 @@
 
         document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
         window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
-        function scrollToSec(
+        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
+
+        // تأكيد إضافي للبدء من الأعلى
+        window.addEventListener('load', () => { setTimeout(() => window.scrollTo(0,0), 10); });
+    </script>
+</body>
+</html>
