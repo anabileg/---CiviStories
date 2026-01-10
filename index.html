@@ -47,12 +47,12 @@
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-youtube { color: #FF0000; }
         .fa-tiktok, .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; }
 
-        /* شريط الأخبار المتصل (سرعة هادئة جداً 90 ثانية) */
+        /* شريط الأخبار (سرعة هادئة جداً 180 ثانية للدورة الواحدة) */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 90s linear infinite; }
-        .ticker-track span { display: inline-block; padding-left: 100px; font-size: 1.1rem; font-weight: bold; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
+        .ticker-track span { display: inline-block; padding-left: 150px; font-size: 1.1rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-        [dir="ltr"] .ticker-track { animation: marquee-ltr 90s linear infinite; }
+        [dir="ltr"] .ticker-track { animation: marquee-ltr 180s linear infinite; }
         @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* الهيرو */
@@ -92,7 +92,7 @@
         .stat-num { font-size: 4rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
         .loss-num { color: var(--red-num) !important; }
 
-        /* زر واتساب العائم */
+        /* واتساب */
         .btn-whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: #fff;
             padding: 15px 25px; border-radius: 50px; font-weight: bold; text-decoration: none;
@@ -256,7 +256,6 @@
     </footer>
 
     <script>
-        // إجبار المتصفح على الفتح من الأعلى
         function initPage() {
             if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
             window.scrollTo(0, 0);
@@ -284,7 +283,6 @@
             const lang = document.documentElement.dir === "rtl" ? 'ar' : 'en';
             const content = news[lang].join('   ---   ');
             const track = document.getElementById('tickerTrack');
-            // مضاعفة المحتوى 4 مرات لضمان اتصال الحلقة بدون فراغات
             track.innerHTML = `<span>${content}</span><span>${content}</span><span>${content}</span><span>${content}</span>`;
         }
 
