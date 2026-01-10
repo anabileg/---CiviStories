@@ -8,7 +8,11 @@
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
+        
+        /* لضمان عدم وجود قفزات عند التحميل */
+        html, body { height: 100%; margin: 0; padding: 0; background: #000; }
+        
+        body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; }
 
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -18,7 +22,7 @@
         }
         @keyframes slowWave { 0% { background-position: 0% 50%; filter: brightness(0.6); } 100% { background-position: 100% 50%; filter: brightness(0.8); } }
 
-        /* --- الهيدر الاحترافي المثبت --- */
+        /* --- الهيدر الثابت جغرافياً --- */
         .navbar {
             height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 10001;
@@ -26,7 +30,7 @@
             display: flex; align-items: center; justify-content: center;
         }
 
-        /* كتلة اليسار: مثبتة جغرافياً في اليسار دائماً */
+        /* كتلة اليسار: لوجو -> لغة -> واتساب -> إيميل (ثابتة يسار دائماً) */
         .nav-left-fixed { 
             position: absolute; left: 20px; 
             display: flex; align-items: center; gap: 15px; 
@@ -44,8 +48,9 @@
         /* روابط المنتصف */
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .nav-links a:hover { text-shadow: 0 0 10px var(--gold); }
 
-        /* السوشيال ميديا: مثبتة جغرافياً في اليمين دائماً */
+        /* السوشيال ميديا: (ثابتة يمين دائماً) */
         .social-right-fixed { 
             position: absolute; right: 20px; 
             display: flex; gap: 12px; align-items: center; 
@@ -55,27 +60,37 @@
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-tiktok { color: #fff; }
         .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; } .fa-pinterest { color: #BD081C; }
 
-        /* باقي مكونات الصفحة */
-        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
+        /* شريط الأخبار */
+        .news-ticker { 
+            background: var(--red-news); color: white; height: 45px; 
+            position: fixed; top: 80px; width: 100%; z-index: 1000; 
+            display: flex; align-items: center; overflow: hidden; font-weight: bold; 
+        }
         .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
+        /* الصفحة الأولى (البداية) */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 60px; }
         .hero-container { display: flex; align-items: stretch; gap: 40px; width: 100%; }
-        .book-static { flex: 0 0 320px; text-align: center; }
-        .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
-        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; }
+        
+        .book-static { flex: 0 0 320px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+        .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); box-shadow: 0 0 20px rgba(212,175,55,0.3); }
+        
+        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: rgba(0,0,0,0.5); }
         .track { display: flex; width: max-content; animation: slowSlide 120s linear infinite; }
-        .track img { width: 500px; height: 450px; object-fit: cover; }
+        .track img { width: 500px; height: 450px; object-fit: cover; border-right: 1px solid rgba(212,175,55,0.2); }
         @keyframes slowSlide { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        .section { padding: 60px 10%; }
-        .glass-box { background: rgba(0,0,0,0.8); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
+        /* الأقسام الأخرى */
+        .section { padding: 80px 10%; min-height: 60vh; }
+        .glass-box { background: rgba(0,0,0,0.8); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.04); border-radius: 20px; border-bottom: 5px solid var(--gold); }
-        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
-        #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
+        .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.04); border-radius: 20px; border-bottom: 5px solid var(--gold); transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.07); }
+        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
+
+        #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -87,8 +102,8 @@
         <div class="nav-left-fixed">
             <img src="logo.png" class="nav-logo-img" alt="Logo">
             <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/yournumber" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:info@example.com"><i class="fas fa-envelope"></i></a>
         </div>
 
         <div class="nav-links">
@@ -112,23 +127,24 @@
         <div class="ticker-wrap">
             <div class="ticker-item">
                 <span>• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
-                <span>• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول</span>
-                <span>• خسائر اقتصادية: 15 مليار جنيه سنوياً خسارة إنتاجية بسبب الإدمان الرقمي</span>
+                <span>• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول بوابات للجحيم الأسري</span>
+                <span>• خسائر اقتصادية: 15 مليار جنيه سنوياً خسارة إنتاجية بسبب الإدمان الرقمي المفرط</span>
             </div>
         </div>
     </div>
 
     <div id="wrapper" class="content-ar">
-        <section class="hero">
+        <section class="hero" id="home">
             <div class="hero-container">
                 <div class="book-static">
                     <img src="CIVISTORIES Book.png" alt="تسونامي الوهم الرقمي">
-                    <h1 id="hero-title" style="color:var(--gold); margin-top:15px; font-size: 1.8rem;">تسونامي الوهم الرقمي</h1>
+                    <h1 id="hero-title" style="color:var(--gold); margin-top:20px; font-size: 1.8rem;">تسونامي الوهم الرقمي</h1>
                 </div>
                 <div class="carousel-wide">
                     <div class="track">
                         <img src="1.jpg"> <img src="2.jpg"> <img src="3.jpg"> <img src="4.jpg">
-                        <img src="5.jpg"> <img src="6.jpg"> <img src="1.jpg"> <img src="2.jpg">
+                        <img src="5.jpg"> <img src="6.jpg"> <img src="7.jpg"> <img src="8.jpg">
+                        <img src="1.jpg"> <img src="2.jpg">
                     </div>
                 </div>
             </div>
@@ -137,12 +153,13 @@
         <section id="about" class="section">
             <div class="glass-box">
                 <h2 id="about-h" style="color:var(--gold); font-size: 2.8rem; border-right: 5px solid var(--gold); padding-right: 20px;">رؤيتنا</h2>
-                <p id="about-p" style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px; text-align: justify;">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.</p>
+                <p id="about-p" style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px; text-align: justify;">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار في مواجهة زحف السوشيال ميديا، عبر تسليط الضوء على الأرقام الحقيقية للكارثة التي نعيشها يومياً خلف الشاشات.</p>
             </div>
         </section>
 
         <section id="stats" class="section">
             <div class="glass-box">
+                <h2 id="stats-h" style="color:var(--gold); text-align: center; font-size: 2.5rem;">الأرقام تتحدث</h2>
                 <div class="grid">
                     <div class="card">
                         <span class="stat-num" data-val="311000">0</span>
@@ -158,6 +175,18 @@
     </div>
 
     <script>
+        // ضمان فتح الصفحة من الأعلى تماماً عند كل تحميل
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 10);
+        };
+
+        // منع المتصفح من العودة لآخر مكان كان فيه (History Scroll Restoration)
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
         function toggleLanguage() {
             const wrap = document.getElementById('wrapper');
             const btn = document.getElementById('langBtn');
@@ -171,6 +200,7 @@
                 document.getElementById('link-stats').innerText = "Statistics";
                 document.getElementById('hero-title').innerText = "Digital Illusion Tsunami";
                 document.getElementById('about-h').innerText = "Our Vision";
+                document.getElementById('about-p').innerText = "Protecting the Egyptian social fabric from the growing risks of electronic disintegration and raising family awareness to restore stability.";
             } else {
                 wrap.classList.replace('content-en', 'content-ar');
                 document.documentElement.dir = "rtl";
@@ -179,6 +209,7 @@
                 document.getElementById('link-stats').innerText = "الإحصائيات";
                 document.getElementById('hero-title').innerText = "تسونامي الوهم الرقمي";
                 document.getElementById('about-h').innerText = "رؤيتنا";
+                document.getElementById('about-p').innerText = "حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.";
             }
         }
 
@@ -201,11 +232,24 @@
                     observer.unobserve(el);
                 }
             });
-        });
+        }, { threshold: 0.5 });
         document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
 
         window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
+        
+        function scrollToSec(id) { 
+            const element = document.getElementById(id);
+            const offset = 120;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = element.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 </html>
