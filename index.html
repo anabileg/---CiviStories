@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
+        
+        /* إيقاف التمرير التلقائي للمتصفح تماماً */
         html { scroll-behavior: auto !important; } 
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
 
@@ -52,9 +55,11 @@
         .fa-pinterest { color: #BD081C; }
         .fa-x-twitter { color: #ffffff; }
 
+        /* شريط الأخبار المطور واللانهائي */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
-        .ticker-item span { padding: 0 50px; font-size: 1.1rem; }
+        .ticker-wrap { display: flex; width: 100%; }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee 120s linear infinite; }
+        .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 2px solid rgba(255,255,255,0.2); }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
         .lang-en { display: none; }
@@ -70,19 +75,11 @@
         .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
         .btn-book-read { background: var(--gold); color: #000; width: 100%; }
 
+        /* شريط الصور الهادئ */
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
-        
-        .track { 
-            display: flex; 
-            width: max-content; 
-            animation: infiniteSlide 300s linear infinite; 
-        }
+        .track { display: flex; width: max-content; animation: infiniteSlide 300s linear infinite; }
         .track img { width: 500px; height: 450px; object-fit: cover; }
-        
-        @keyframes infiniteSlide { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(calc(-500px * 29)); } 
-        }
+        @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-500px * 29)); } }
 
         .section { padding: 80px 10%; }
         .glass-box { background: rgba(0,0,0,0.8); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
@@ -92,9 +89,12 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: #ff0000 !important; }
 
-        #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
-        
         .section-title { color:var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
+        
+        /* تذييل حقوق الملكية */
+        .footer-credits { padding: 30px 0; text-align: center; font-size: 0.85rem; color: rgba(212,175,55,0.6); letter-spacing: 1px; }
+
+        #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
     </style>
 </head>
 <body>
@@ -126,11 +126,19 @@
     </nav>
 
     <div class="news-ticker">
-        <div class="ticker-item">
-            <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
-            <span class="lang-ar">• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول</span>
-            <span class="lang-en">• Red Alert: An Egyptian family explodes every 3 minutes due to digital conflicts</span>
-            <span class="lang-en">• Shocking Stats: 311k divorce cases annually and 104M mobile phones</span>
+        <div class="ticker-wrap">
+            <div class="ticker-item">
+                <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
+                <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بالسوشيال ميديا</span>
+                <span class="lang-ar">• الكنيسة المصرية: ٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الرقمي</span>
+                <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
+                <span class="lang-ar">• الداخلية: ٤٣ ألف و ٥٠٠ بلاغ عنف أسري سنوياً لأسباب إلكترونية</span>
+                <span class="lang-ar">• البنك الدولي: ٤ مليار و ٥٠٠ ألف جنيه تكلفة علاج الاضطرابات المرتبطة</span>
+                <span class="lang-ar">• انتحار كل ٦ ساعات بمصر بسبب التنمر الرقمي أو القطيعة</span>
+                <span class="lang-ar">• إحصائيات صادمة: ٣١١ ألف حالة طلاق سنوياً و١٠٤ مليون هاتف محمول</span>
+                <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
+                <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بالسوشيال ميديا</span>
+            </div>
         </div>
     </div>
 
@@ -157,7 +165,6 @@
                         <img src="18.jpg"> <img src="20.jpg"> <img src="21.jpg"> <img src="25.jpg"> <img src="31.jpg">
                         <img src="35.jpg"> <img src="45.jpg"> <img src="47.jpg"> <img src="48.jpg"> <img src="64.jpg">
                         <img src="75.jpg"> <img src="79.jpg"> <img src="23.png"> <img src="82.png">
-                        <img src="1.jpg"> <img src="2.jpg"> <img src="12.png"> <img src="23.png"> <img src="82.png">
                     </div>
                 </div>
             </div>
@@ -170,7 +177,7 @@
                 </h2>
                 <p style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px;">
                     <span class="lang-ar">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار.</span>
-                    <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and raising family awareness.</span>
+                    <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and raising awareness.</span>
                 </p>
             </div>
         </section>
@@ -179,8 +186,8 @@
             <div class="glass-box">
                 <h2 class="section-title"><span class="lang-ar">الأرقام تتحدث</span><span class="lang-en">Numbers Talk</span></h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق سنوي (2023)</p><p class="lang-en">Divorce Cases (2023)</p></div>
-                    <div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول بمصر</p><p class="lang-en">Million Mobile Phones</p></div>
+                    <div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق سنوياً (٢٠٢٣)</p><p class="lang-en">Divorce Cases (2023)</p></div>
+                    <div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول بمصر</p><p class="lang-en">Million Mobiles in Egypt</p></div>
                 </div>
             </div>
         </section>
@@ -197,12 +204,12 @@
                     <div class="card">
                         <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Coptic Church</span></h3>
                         <p class="lang-ar">٦٠٪ من المشاكل الأسرية مرتبطة بالسوشيال ميديا و٥٠ ألف أسرة تعاني سنوياً.</p>
-                        <p class="lang-en">60% of family issues are linked to social media; 50k families suffer annually.</p>
+                        <p class="lang-en">60% of family issues are social media related; 50k families affected.</p>
                     </div>
                     <div class="card">
                         <h3><span class="lang-ar">دار الإفتاء</span><span class="lang-en">Dar Al-Ifta</span></h3>
-                        <p class="lang-ar">١٠٠ ألف فتوى سنوياً لمشاكل أسرية، ٣٠٪ منها بسبب التواصل الاجتماعي.</p>
-                        <p class="lang-en">100k annual fatwas for family issues, 30% due to social media.</p>
+                        <p class="lang-ar">١٠٠ ألف فتوى سنوياً لنزاعات أسرية، ٣٠٪ منها بسبب التواصل الاجتماعي.</p>
+                        <p class="lang-en">100k annual fatwas, 30% due to social media conflicts.</p>
                     </div>
                 </div>
             </div>
@@ -217,18 +224,24 @@
                 </div>
             </div>
         </section>
+
+        <footer class="footer-credits">
+            <p>© جميع الحقوق محفوظة لـ <strong>CiviStories - تسونامي الوهم الرقمي</strong> ٢٠٢٤-٢٠٢٥</p>
+        </footer>
     </div>
 
     <script>
+        // إيقاف ذاكرة التمرير وإجبار البداية من الصفر
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        function instantScrollToTop() { window.scrollTo({top: 0, left: 0, behavior: 'instant'}); }
-        instantScrollToTop();
+        window.scrollTo(0, 0);
 
         window.addEventListener('DOMContentLoaded', () => {
-            instantScrollToTop();
+            window.scrollTo(0, 0);
             setTimeout(() => {
                 document.getElementById('mainHtml').style.opacity = "1";
-            }, 50);
+                // تمكين التمرير السلس فقط بعد التحميل والاستقرار
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 100);
         });
 
         function toggleLanguage() {
@@ -236,18 +249,17 @@
             const btn = document.getElementById('langBtn');
             if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
             else { html.dir = "rtl"; btn.innerText = "English"; }
-            instantScrollToTop();
+            window.scrollTo({top: 0, behavior: 'instant'});
         }
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                const el = entry.target;
                 if (entry.isIntersecting) {
-                    const el = entry.target;
                     const target = parseFloat(el.getAttribute('data-val'));
                     animateValue(el, 0, target, 2000);
                 } else {
-                    // تصفير العداد عند الخروج من الشاشة ليعيد الحركة عند الدخول مرة أخرى
-                    entry.target.innerText = "0";
+                    el.innerText = "0"; // تصفير العداد لإعادة الحركة عند العودة للقسم
                 }
             });
         }, { threshold: 0.1 });
@@ -269,7 +281,8 @@
         window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
         function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
         
-        window.onload = () => { setTimeout(instantScrollToTop, 10); };
+        // تأكيد نهائي للبقاء في الأعلى عند إعادة التحميل
+        window.onbeforeunload = () => { window.scrollTo(0, 0); };
     </script>
 </body>
 </html>
