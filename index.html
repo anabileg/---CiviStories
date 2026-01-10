@@ -11,101 +11,98 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
-        /* الخلفية السينمائية المتحركة */
+        /* الخلفية المتحركة العامة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg');
             background-position: center; background-repeat: no-repeat; background-size: cover;
-            z-index: -1;
-            animation: kenBurns 45s ease-in-out infinite alternate;
+            z-index: -1; animation: kenBurns 45s ease-in-out infinite alternate;
         }
-        @keyframes kenBurns {
-            0% { transform: scale(1); filter: brightness(0.5); }
-            100% { transform: scale(1.18); filter: brightness(0.7); }
-        }
+        @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.5); } 100% { transform: scale(1.18); filter: brightness(0.7); } }
 
+        /* الهيدر والقائمة */
         .navbar {
             height: 80px; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 10001;
-            border-bottom: 1px solid var(--gold);
-            display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
         }
-
         .nav-left-fixed { position: absolute; left: 20px; display: flex; align-items: center; gap: 15px; direction: ltr !important; }
-        .nav-logo-img { height: 50px; width: auto; }
+        .nav-logo-img { height: 50px; }
         .fa-whatsapp { color: #25D366; font-size: 1.8rem; }
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 6px; cursor: pointer; font-weight: bold; color: #000; }
-
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
-
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
-        .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
-        
-        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
+
+        /* شريط الأخبار اللانهائي المستمر */
+        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-wrap { display: flex; width: 100%; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee 90s linear infinite; }
-        .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
+        .ticker-item span { padding: 0 40px; font-size: 1.05rem; font-weight: bold; border-left: 1px solid rgba(255,255,255,0.3); }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        .lang-en { display: none; }
+        /* تأثير التلاشي للغات */
+        .lang-ar, .lang-en { transition: opacity 0.4s ease; }
+        .lang-en { display: none; opacity: 0; }
         [dir="ltr"] .lang-ar { display: none; }
-        [dir="ltr"] .lang-en { display: inline-block; }
+        [dir="ltr"] .lang-en { display: inline-block; opacity: 1; }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 60px; }
-        .hero-container { display: flex; align-items: stretch; gap: 40px; width: 100%; }
-        .book-static { flex: 0 0 320px; text-align: center; }
-        .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
-        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; background: var(--gold); color: #000; margin-top: 20px; transition: 0.3s; }
-
-        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
-        .track { display: flex; width: max-content; animation: infiniteSlide 250s linear infinite; }
-        .track img { width: 500px; height: 450px; object-fit: cover; }
-        @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-500px * 29)); } }
-
-        .section { padding: 80px 10%; }
-        
-        /* قسم رؤيتنا - تم تعديله للتوسيط الكامل وتنظيف العنوان */
+        /* قسم رؤيتنا مع شبكة خلية النحل الذهبية الواضحة */
         .vision-section { 
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('image_3a7328.jpg');
-            background-size: cover; background-position: center;
-            padding: 100px 10%; border-radius: 30px; margin: 20px 5%; border: 1px solid var(--gold);
-            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://www.transparenttextures.com/patterns/gold-scale.png'), /* نمط خلية النحل الذهبية */
+                        url('image_3a7328.jpg');
+            background-size: auto, auto, cover; 
+            padding: 100px 10%; border-radius: 30px; margin: 40px 5%; border: 2px solid var(--gold);
+            text-align: center; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
         }
-        .vision-section h2 { color: var(--gold); font-size: 3rem; margin-bottom: 30px; }
-        .vision-section p { font-size: 1.6rem; line-height: 1.8; max-width: 800px; margin: 0 auto; }
+        .vision-section h2 { color: var(--gold); font-size: 3.2rem; margin-bottom: 20px; text-shadow: 0 0 10px rgba(0,0,0,0.8); }
+        .vision-section p { font-size: 1.7rem; line-height: 1.8; max-width: 900px; margin: 0 auto; }
 
+        /* التفاعلية للأرقام والبطاقات */
+        .section { padding: 60px 10%; }
         .glass-box { background: rgba(0,0,0,0.85); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        
-        /* التفاعلية للأرقام */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
         .card { 
             text-align: center; padding: 40px; background: rgba(255,255,255,0.03); 
-            border-radius: 20px; border-bottom: 5px solid var(--gold);
-            transition: all 0.4s ease; position: relative;
+            border-radius: 20px; border-bottom: 5px solid var(--gold); transition: 0.4s; position: relative;
         }
-        .card:hover { 
-            transform: translateY(-10px); 
-            background: rgba(212, 175, 55, 0.1); 
-            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
-        }
+        .card:hover { transform: translateY(-10px); background: rgba(212, 175, 55, 0.1); }
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; transition: 0.3s; }
-        .card:hover .stat-num { text-shadow: 0 0 15px var(--gold); transform: scale(1.05); }
-        .loss-num { color: #ff0000 !important; }
+        .card:hover .stat-num { transform: scale(1.1); text-shadow: 0 0 15px var(--gold); }
 
-        /* كود الـ Tooltip الأنيق */
+        /* Tooltip - يظهر دائماً بالعربي */
         .tooltip-container { position: relative; display: inline-block; }
         .tooltip-text {
-            visibility: hidden; width: 220px; background-color: #000; color: var(--gold);
+            visibility: hidden; width: 220px; background: #d4af37; color: #000;
             text-align: center; border-radius: 6px; padding: 10px; position: absolute;
-            z-index: 10; bottom: 125%; left: 50%; transform: translateX(-50%);
-            opacity: 0; transition: opacity 0.4s; border: 1px solid var(--gold); font-size: 0.9rem;
-            pointer-events: none;
+            bottom: 125%; left: 50%; transform: translateX(-50%); opacity: 0; 
+            transition: 0.4s; font-weight: bold; z-index: 100;
         }
         .card:hover .tooltip-text { visibility: visible; opacity: 1; }
 
-        .section-title { color:var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
+        /* قسم المؤسسات */
+        .inst-card { background: rgba(20,20,20,0.95); border: 1px solid var(--gold); }
+        .inst-icon { font-size: 2.8rem; color: var(--gold); margin-bottom: 20px; }
+
+        /* زر التحرك CTA */
+        .btn-cta { 
+            display: inline-flex; align-items: center; gap: 15px; padding: 20px 45px; 
+            background: var(--gold); color: #000; text-decoration: none; 
+            font-size: 1.8rem; font-weight: bold; border-radius: 50px; transition: 0.4s;
+        }
+        .btn-cta:hover { background: #fff; transform: scale(1.1); }
+
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
+        
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 60px; }
+        .hero-container { display: flex; gap: 40px; width: 100%; }
+        .book-static { flex: 0 0 320px; text-align: center; }
+        .book-static img { width: 100%; height: 450px; border-radius: 12px; border: 2px solid var(--gold); }
+        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; direction: ltr !important; }
+        .track { display: flex; width: max-content; animation: infiniteSlide 250s linear infinite; }
+        .track img { width: 500px; height: 450px; object-fit: cover; }
+        @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-500px * 29)); } }
     </style>
 </head>
 <body>
@@ -131,7 +128,6 @@
             <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank"><i class="fab fa-tiktok"></i></a>
             <a href="https://x.com/civistories" target="_blank"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.pinterest.com/civistories/" target="_blank"><i class="fab fa-pinterest"></i></a>
             <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
     </nav>
@@ -139,10 +135,14 @@
     <div class="news-ticker">
         <div class="ticker-wrap">
             <div class="ticker-item">
-                <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
-                <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
-                <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
-                <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
+                <span>• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
+                <span>• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بالسوشيال ميديا</span>
+                <span>• وزارة الأوقاف: تطلق حملات توعية لحماية النسيج الأسري من مخاطر العالم الرقمي</span>
+                <span>• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
+                <span>• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
+                <span>• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
+                <span>• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بالسوشيال ميديا</span>
+                <span>• وزارة الأوقاف: تطلق حملات توعية لحماية النسيج الأسري من مخاطر العالم الرقمي</span>
             </div>
         </div>
     </div>
@@ -152,11 +152,9 @@
             <div class="hero-container">
                 <div class="book-static">
                     <img src="CIVISTORIES Book.png">
-                    <div class="book-btns">
-                        <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-book">
-                            <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Book</span>
-                        </a>
-                    </div>
+                    <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-book">
+                        <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Book</span>
+                    </a>
                 </div>
                 <div class="carousel-wide">
                     <div class="track">
@@ -188,15 +186,22 @@
 
         <section id="inst" class="section">
             <div class="glass-box">
-                <h2 class="section-title"><span class="lang-ar">المؤسسات الدينية</span><span class="lang-en">Institutions</span></h2>
+                <h2 class="section-title"><span class="lang-ar">الموقف المؤسسي</span><span class="lang-en">Institutional Stance</span></h2>
                 <div class="grid">
-                    <div class="card">
+                    <div class="card inst-card">
+                        <i class="fas fa-mosque inst-icon"></i>
                         <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
-                        <p class="lang-ar" style="margin-top:15px;">٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا.</p>
+                        <p class="lang-ar">٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا.</p>
                     </div>
-                    <div class="card">
+                    <div class="card inst-card">
+                        <i class="fas fa-hand-holding-heart inst-icon"></i>
+                        <h3><span class="lang-ar">وزارة الأوقاف</span><span class="lang-en">Awqaf Ministry</span></h3>
+                        <p class="lang-ar">إطلاق مبادرات "سكن ومودة" لمواجهة التفكك الرقمي.</p>
+                    </div>
+                    <div class="card inst-card">
+                        <i class="fas fa-church inst-icon"></i>
                         <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
-                        <p class="lang-ar" style="margin-top:15px;">٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني.</p>
+                        <p class="lang-ar">٦٠٪ من نزاعات الأسرة مرتبطة بالعالم الرقمي.</p>
                     </div>
                 </div>
             </div>
@@ -208,15 +213,15 @@
                 <div class="grid">
                     <div class="card">
                         <div class="tooltip-container">
-                            <span class="stat-num loss-num" data-val="15">0</span>
-                            <span class="tooltip-text">هذه الأرقام مبنية على تقارير البنك الدولي</span>
+                            <span class="stat-num" style="color:#ff0000" data-val="15">0</span>
+                            <span class="tooltip-text">بيانات مبنية على تقارير البنك الدولي</span>
                         </div>
                         <p class="lang-ar">مليار جنيه خسارة إنتاجية</p>
                     </div>
                     <div class="card">
                         <div class="tooltip-container">
-                            <span class="stat-num loss-num" data-val="4.5">0</span>
-                            <span class="tooltip-text">بمعدل مليار جنيه شهرياً تكلفة تقريبية</span>
+                            <span class="stat-num" style="color:#ff0000" data-val="4.5">0</span>
+                            <span class="tooltip-text">تقديرات تكلفة العلاج النفسي سنوياً</span>
                         </div>
                         <p class="lang-ar">مليار تكلفة العلاج النفسي</p>
                     </div>
@@ -224,28 +229,44 @@
             </div>
         </section>
 
-        <footer style="text-align: center; padding: 40px; color: var(--gold);">
+        <section style="text-align: center; padding: 60px;">
+            <a href="https://wa.me/201009995015" target="_blank" class="btn-cta">
+                <i class="fab fa-whatsapp"></i> <span class="lang-ar">شاركنا في نشر الوعي</span><span class="lang-en">Join Our Awareness</span>
+            </a>
+        </section>
+
+        <footer style="text-align: center; padding: 40px; color: var(--gold); background: rgba(0,0,0,0.8);">
             <p>© جميع الحقوق محفوظة لـ CiviStories ٢٠٢٤-٢٠٢٥</p>
         </footer>
     </div>
 
     <script>
-        // منع التمرير التلقائي عند التحميل
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
         function toggleLanguage() {
             const h = document.documentElement;
             const b = document.getElementById('langBtn');
-            if (h.dir === "rtl") { h.dir = "ltr"; b.innerText = "عربي"; } 
-            else { h.dir = "rtl"; b.innerText = "English"; }
+            const elements = document.querySelectorAll('.lang-ar, .lang-en');
+            
+            elements.forEach(el => el.style.opacity = '0');
+            
+            setTimeout(() => {
+                if (h.dir === "rtl") {
+                    h.dir = "ltr";
+                    b.innerText = "عربي";
+                } else {
+                    h.dir = "rtl";
+                    b.innerText = "English";
+                }
+                elements.forEach(el => el.style.opacity = '1');
+            }, 300);
         }
 
         const obs = new IntersectionObserver((es) => {
             es.forEach(e => {
                 if (e.isIntersecting) {
                     const t = parseFloat(e.target.getAttribute('data-val'));
-                    ani(e.target, 0, t, 1200);
+                    ani(e.target, 0, t, 1500);
                 }
             });
         }, { threshold: 0.1 });
