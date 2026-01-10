@@ -44,7 +44,6 @@
             direction: ltr !important;
         }
         
-        /* أيقونات الميديا الملونة */
         .fa-facebook { color: #1877F2; }
         .fa-instagram { color: #E4405F; }
         .fa-tiktok { color: #ffffff; }
@@ -71,15 +70,13 @@
         .btn-book-read { background: var(--gold); color: #000; }
         .btn-book-down { background: transparent; color: var(--gold); }
 
-        /* شريط الصور المتحرك اللانهائي مع الحفاظ على الحجم والسرعة */
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; }
-        .track { display: flex; width: max-content; animation: infiniteSlide 60s linear infinite; }
+        .track { display: flex; width: max-content; animation: infiniteSlide 80s linear infinite; }
         .track img { width: 500px; height: 450px; object-fit: cover; }
         
-        /* تكرار الحركة بناءً على عرض الصور الإجمالي */
         @keyframes infiniteSlide { 
             0% { transform: translateX(0); } 
-            100% { transform: translateX(calc(-500px * 12)); } 
+            100% { transform: translateX(calc(-500px * 29)); } 
         }
 
         .section { padding: 80px 10%; }
@@ -152,10 +149,13 @@
                     <div class="track">
                         <img src="1.jpg"> <img src="2.jpg"> <img src="3.jpg"> <img src="4.jpg">
                         <img src="5.jpg"> <img src="6.jpg"> <img src="7.jpg"> <img src="8.jpg">
-                        <img src="9.jpg"> <img src="10.jpg"> <img src="11.jpg"> <img src="12.jpg">
-                        <img src="1.jpg"> <img src="2.jpg"> <img src="3.jpg"> <img src="4.jpg">
-                        <img src="5.jpg"> <img src="6.jpg"> <img src="7.jpg"> <img src="8.jpg">
-                        <img src="9.jpg"> <img src="10.jpg"> <img src="11.jpg"> <img src="12.jpg">
+                        <img src="9.jpg"> <img src="10.jpg"> <img src="11.jpg"> <img src="12.png">
+                        <img src="13.jpg"> <img src="15.jpg"> <img src="17.jpg"> <img src="18.jpg">
+                        <img src="20.jpg"> <img src="21.jpg"> <img src="25.jpg"> <img src="31.jpg">
+                        <img src="35.jpg"> <img src="45.jpg"> <img src="47.jpg"> <img src="48.jpg">
+                        <img src="64.jpg"> <img src="75.jpg"> <img src="79.jpg"> <img src="23.png">
+                        <img src="82.png">
+                        <img src="1.jpg"> <img src="2.jpg"> <img src="12.png"> <img src="23.png">
                     </div>
                 </div>
             </div>
@@ -214,8 +214,10 @@
     </div>
 
     <script>
-        window.history.scrollRestoration = 'manual';
+        // ضمان فتح الصفحة من الأعلى وحذف أي سجل تمرير سابق
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0,0);
+        window.addEventListener('load', () => { window.scrollTo(0, 0); });
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
