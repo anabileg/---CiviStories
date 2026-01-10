@@ -57,7 +57,6 @@
         .book-static { flex: 0 0 320px; text-align: center; }
         .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
         .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; background: var(--gold); color: #000; margin-top: 20px; transition: 0.3s; }
-        .btn-book:hover { transform: scale(1.05); background: #fff; }
 
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
         .track { display: flex; width: max-content; animation: infiniteSlide 250s linear infinite; }
@@ -66,38 +65,46 @@
 
         .section { padding: 80px 10%; }
         
+        /* قسم رؤيتنا - تم تعديله للتوسيط الكامل وتنظيف العنوان */
         .vision-section { 
-            background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 100%), url('image_3a7328.jpg');
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('image_3a7328.jpg');
             background-size: cover; background-position: center;
-            padding: 80px 10%; border-radius: 30px; margin: 20px 5%; border: 1px solid var(--gold);
+            padding: 100px 10%; border-radius: 30px; margin: 20px 5%; border: 1px solid var(--gold);
+            text-align: center;
         }
+        .vision-section h2 { color: var(--gold); font-size: 3rem; margin-bottom: 30px; }
+        .vision-section p { font-size: 1.6rem; line-height: 1.8; max-width: 800px; margin: 0 auto; }
 
         .glass-box { background: rgba(0,0,0,0.85); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         
-        /* تأثير التفاعلية (Interactivity) للأرقام */
+        /* التفاعلية للأرقام */
         .card { 
             text-align: center; padding: 40px; background: rgba(255,255,255,0.03); 
             border-radius: 20px; border-bottom: 5px solid var(--gold);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: default;
+            transition: all 0.4s ease; position: relative;
         }
         .card:hover { 
-            transform: translateY(-10px) scale(1.03); 
+            transform: translateY(-10px); 
             background: rgba(212, 175, 55, 0.1); 
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
         }
-        .card:hover .stat-num {
-            text-shadow: 0 0 15px var(--gold);
-            color: #fff;
-        }
-        
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; transition: 0.3s; }
+        .card:hover .stat-num { text-shadow: 0 0 15px var(--gold); transform: scale(1.05); }
         .loss-num { color: #ff0000 !important; }
-        .card:hover .loss-num { text-shadow: 0 0 15px #ff0000; }
-        
+
+        /* كود الـ Tooltip الأنيق */
+        .tooltip-container { position: relative; display: inline-block; }
+        .tooltip-text {
+            visibility: hidden; width: 220px; background-color: #000; color: var(--gold);
+            text-align: center; border-radius: 6px; padding: 10px; position: absolute;
+            z-index: 10; bottom: 125%; left: 50%; transform: translateX(-50%);
+            opacity: 0; transition: opacity 0.4s; border: 1px solid var(--gold); font-size: 0.9rem;
+            pointer-events: none;
+        }
+        .card:hover .tooltip-text { visibility: visible; opacity: 1; }
+
         .section-title { color:var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
-        
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
     </style>
 </head>
@@ -136,7 +143,6 @@
                 <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
                 <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
                 <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
-                <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
             </div>
         </div>
     </div>
@@ -166,15 +172,8 @@
         </section>
 
         <section id="about" class="vision-section">
-            <div style="max-width: 600px;">
-                <h2 style="color:var(--gold); font-size: 2.8rem; border-right: 5px solid var(--gold); padding-right: 20px;">
-                    <span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span>
-                </h2>
-                <p style="font-size: 1.5rem; line-height: 1.8; margin-top: 30px;">
-                    <span class="lang-ar">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار والأمان.</span>
-                    <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration.</span>
-                </p>
-            </div>
+            <h2><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></h2>
+            <p><span class="lang-ar">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار والأمان.</span><span class="lang-en">Protecting the Egyptian social fabric from digital disintegration.</span></p>
         </section>
 
         <section id="stats" class="section">
@@ -207,8 +206,20 @@
             <div class="glass-box">
                 <h2 class="section-title"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num loss-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية</p></div>
-                    <div class="card"><span class="stat-num loss-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة العلاج النفسي</p></div>
+                    <div class="card">
+                        <div class="tooltip-container">
+                            <span class="stat-num loss-num" data-val="15">0</span>
+                            <span class="tooltip-text">هذه الأرقام مبنية على تقارير البنك الدولي</span>
+                        </div>
+                        <p class="lang-ar">مليار جنيه خسارة إنتاجية</p>
+                    </div>
+                    <div class="card">
+                        <div class="tooltip-container">
+                            <span class="stat-num loss-num" data-val="4.5">0</span>
+                            <span class="tooltip-text">بمعدل مليار جنيه شهرياً تكلفة تقريبية</span>
+                        </div>
+                        <p class="lang-ar">مليار تكلفة العلاج النفسي</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -219,7 +230,7 @@
     </div>
 
     <script>
-        // ضمان ثبات الصفحة في الأعلى عند الفتح
+        // منع التمرير التلقائي عند التحميل
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
