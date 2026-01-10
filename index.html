@@ -18,7 +18,6 @@
         }
         @keyframes slowWave { 0% { background-position: 0% 50%; filter: brightness(0.6); } 100% { background-position: 100% 50%; filter: brightness(0.8); } }
 
-        /* الهيدر الثابت جغرافياً */
         .navbar {
             height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 10001;
@@ -44,22 +43,26 @@
             display: flex; gap: 12px; align-items: center; 
             direction: ltr !important;
         }
-        .social-right-fixed a { font-size: 1.3rem; transition: 0.3s; text-decoration: none; color: white; }
-        .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-pinterest { color: #BD081C; }
+        
+        /* تلوين الأيقونات الـ 6 */
+        .fa-facebook { color: #1877F2; }
+        .fa-instagram { color: #E4405F; }
+        .fa-tiktok { color: #ffffff; }
+        .fa-linkedin { color: #0A66C2; }
+        .fa-pinterest { color: #BD081C; }
+        /* أيقونة X بفريم أبيض */
+        .x-frame { border: 1px solid #fff; border-radius: 4px; padding: 2px; display: flex; align-items: center; justify-content: center; }
+        .fa-x-twitter { color: #ffffff; font-size: 1.1rem; }
 
-        /* شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-        /* تحكم اللغة */
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
         [dir="ltr"] .lang-en { display: inline-block; }
-        [dir="ltr"] .grid .lang-en { display: block; }
 
-        /* الأقسام */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 60px; }
         .hero-container { display: flex; align-items: stretch; gap: 40px; width: 100%; }
         .book-static { flex: 0 0 320px; text-align: center; }
@@ -79,7 +82,11 @@
         .glass-box { background: rgba(0,0,0,0.8); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
         .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.04); border-radius: 20px; border-bottom: 5px solid var(--gold); }
+        
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
+        /* أرقام الخسائر باللون الأحمر */
+        .loss-num { color: #ff0000 !important; }
+
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
     </style>
 </head>
@@ -105,7 +112,7 @@
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="x-frame"><i class="fab fa-x-twitter"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="fab fa-pinterest"></i></a>
         </div>
@@ -192,8 +199,8 @@
                     <span class="lang-ar">النزيف الاقتصادي</span><span class="lang-en">Economic Loss</span>
                 </h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية</p><p class="lang-en">Billion EGP Losses</p></div>
-                    <div class="card"><span class="stat-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة علاج نفسية</p><p class="lang-en">Billion Therapy Costs</p></div>
+                    <div class="card"><span class="stat-num loss-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية</p><p class="lang-en">Billion EGP Losses</p></div>
+                    <div class="card"><span class="stat-num loss-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة علاج نفسية</p><p class="lang-en">Billion Therapy Costs</p></div>
                 </div>
             </div>
         </section>
@@ -206,13 +213,8 @@
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
-            if (html.dir === "rtl") {
-                html.dir = "ltr";
-                btn.innerText = "عربي";
-            } else {
-                html.dir = "rtl";
-                btn.innerText = "English";
-            }
+            if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
+            else { html.dir = "rtl"; btn.innerText = "English"; }
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -221,15 +223,21 @@
                     const el = entry.target;
                     const target = parseFloat(el.getAttribute('data-val'));
                     let curr = 0;
+                    const step = target / 100;
                     const animate = () => {
-                        curr += target / 100;
-                        if (curr < target) { el.innerText = Math.ceil(curr).toLocaleString(); requestAnimationFrame(animate); }
-                        else el.innerText = target.toLocaleString();
+                        curr += step;
+                        if (curr < target) {
+                            el.innerText = target % 1 === 0 ? Math.ceil(curr).toLocaleString() : curr.toFixed(1);
+                            requestAnimationFrame(animate);
+                        } else {
+                            el.innerText = target.toLocaleString();
+                        }
                     };
                     animate(); observer.unobserve(el);
                 }
             });
-        });
+        }, { threshold: 0.1 });
+
         document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
         window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
         function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
