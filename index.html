@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="mainHtml">
+<html lang="ar" dir="rtl" id="mainHtml" style="opacity: 0;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +14,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
 
-        /* خلفية سينمائية محسنة لسرعة التحميل */
+        /* حركة الخلفية السينمائية المحدثة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('image_390e08.jpg') center center no-repeat;
             background-size: cover; z-index: -1;
-            transform: scale(1);
             animation: kenBurns 60s ease-in-out infinite alternate;
-            will-change: transform; /* تسريع المعالجة */
         }
         @keyframes kenBurns {
             0% { transform: scale(1); filter: brightness(0.6); }
-            100% { transform: scale(1.1); filter: brightness(0.8); }
+            100% { transform: scale(1.15); filter: brightness(0.8); }
         }
 
         .navbar {
@@ -137,6 +135,7 @@
                 <span class="lang-ar">• خسائر اقتصادية: ١٥ مليار جنيه خسارة إنتاجية و ٤.٥ مليار جنيه تكلفة علاج</span>
                 <span class="lang-en">• Red Alert: One Egyptian family dissolves every 3 minutes due to digital conflicts</span>
                 <span class="lang-en">• Productivity Loss: 15 Billion EGP annually due to social media addiction</span>
+                <span class="lang-en">• Al-Azhar: 255 divorce cases daily linked to social networking</span>
             </div>
         </div>
     </div>
@@ -230,14 +229,15 @@
     </div>
 
     <script>
-        // تثبيت فوري
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
-        // إظهار المحتوى فوراً لسرعة الفتح
         window.addEventListener('load', () => {
             window.scrollTo(0, 0);
-            document.documentElement.style.scrollBehavior = 'smooth';
+            setTimeout(() => {
+                document.getElementById('mainHtml').style.opacity = "1";
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 150);
         });
 
         function toggleLanguage() {
