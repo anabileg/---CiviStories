@@ -18,6 +18,7 @@
         }
         @keyframes slowWave { 0% { background-position: 0% 50%; filter: brightness(0.6); } 100% { background-position: 100% 50%; filter: brightness(0.8); } }
 
+        /* الهيدر الثابت جغرافياً */
         .navbar {
             height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 10001;
@@ -46,11 +47,19 @@
         .social-right-fixed a { font-size: 1.3rem; transition: 0.3s; text-decoration: none; color: white; }
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-pinterest { color: #BD081C; }
 
+        /* شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
+        /* تحكم اللغة */
+        .lang-en { display: none; }
+        [dir="ltr"] .lang-ar { display: none; }
+        [dir="ltr"] .lang-en { display: inline-block; }
+        [dir="ltr"] .grid .lang-en { display: block; }
+
+        /* الأقسام */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 60px; }
         .hero-container { display: flex; align-items: stretch; gap: 40px; width: 100%; }
         .book-static { flex: 0 0 320px; text-align: center; }
@@ -87,10 +96,10 @@
             <a href="#"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="nav-links">
-            <a onclick="scrollToSec('about')" id="n1">رؤيتنا</a>
-            <a onclick="scrollToSec('stats')" id="n2">الإحصائيات</a>
-            <a onclick="scrollToSec('inst')" id="n3">المؤسسات</a>
-            <a onclick="scrollToSec('loss')" id="n4">الخسائر</a>
+            <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></a>
+            <a onclick="scrollToSec('stats')"><span class="lang-ar">الإحصائيات</span><span class="lang-en">Stats</span></a>
+            <a onclick="scrollToSec('inst')"><span class="lang-ar">المؤسسات</span><span class="lang-en">Institutions</span></a>
+            <a onclick="scrollToSec('loss')"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></a>
         </div>
         <div class="social-right-fixed">
             <a href="#"><i class="fab fa-facebook"></i></a>
@@ -103,9 +112,11 @@
     </nav>
 
     <div class="news-ticker">
-        <div class="ticker-item" id="ticker">
-            <span>• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
-            <span>• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول</span>
+        <div class="ticker-item">
+            <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
+            <span class="lang-ar">• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول</span>
+            <span class="lang-en">• Red Alert: An Egyptian family explodes every 3 minutes due to digital conflicts</span>
+            <span class="lang-en">• Shocking Stats: 311k divorce cases annually and 104M mobile phones</span>
         </div>
     </div>
 
@@ -114,10 +125,17 @@
             <div class="hero-container">
                 <div class="book-static">
                     <img src="CIVISTORIES Book.png">
-                    <h1 style="color:var(--gold); margin-top:15px; font-size: 1.5rem;" id="h1_title">تسونامي الوهم الرقمي</h1>
+                    <h1 style="color:var(--gold); margin-top:15px; font-size: 1.5rem;">
+                        <span class="lang-ar">تسونامي الوهم الرقمي</span>
+                        <span class="lang-en">Digital Illusion Tsunami</span>
+                    </h1>
                     <div class="book-btns">
-                        <a href="book.pdf" target="_blank" class="btn-book btn-book-read" id="b1">قراءة الكتاب</a>
-                        <a href="book.pdf" download class="btn-book btn-book-down" id="b2">تحميل الكتاب</a>
+                        <a href="book.pdf" target="_blank" class="btn-book btn-book-read">
+                            <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Now</span>
+                        </a>
+                        <a href="book.pdf" download class="btn-book btn-book-down">
+                            <i class="fas fa-download"></i> <span class="lang-ar">تحميل الكتاب</span><span class="lang-en">Download</span>
+                        </a>
                     </div>
                 </div>
                 <div class="carousel-wide">
@@ -131,35 +149,51 @@
 
         <section id="about" class="section">
             <div class="glass-box">
-                <h2 style="color:var(--gold); font-size: 2.8rem; border-right: 5px solid var(--gold); padding-right: 20px;" id="s1_t">رؤيتنا</h2>
-                <p style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px;" id="s1_p">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.</p>
+                <h2 style="color:var(--gold); font-size: 2.8rem; border-right: 5px solid var(--gold); padding-right: 20px;">
+                    <span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span>
+                </h2>
+                <p style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px;">
+                    <span class="lang-ar">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.</span>
+                    <span class="lang-en">Protecting the Egyptian social fabric from the growing risks of electronic disintegration and family awareness.</span>
+                </p>
             </div>
         </section>
 
         <section id="stats" class="section">
             <div class="glass-box">
-                <h2 style="color:var(--gold); text-align: center; font-size: 2.5rem;" id="s2_t">الأرقام تتحدث</h2>
+                <h2 style="color:var(--gold); text-align: center; font-size: 2.5rem;">
+                    <span class="lang-ar">الأرقام تتحدث</span><span class="lang-en">Numbers Talk</span>
+                </h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num" data-val="311000">0</span><p id="c1">حالة طلاق موثقة</p></div>
-                    <div class="card"><span class="stat-num" data-val="104">0</span><p id="c2">مليون هاتف محمول</p></div>
+                    <div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق موثقة</p><p class="lang-en">Divorce Cases</p></div>
+                    <div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول</p><p class="lang-en">Million Mobiles</p></div>
                 </div>
             </div>
         </section>
 
         <section id="inst" class="section">
             <div class="grid">
-                <div class="card"><h3 id="i1_t">الأزهر الشريف</h3><p id="i1_p">رصد 255 حالة طلاق يومياً بسبب السوشيال ميديا.</p></div>
-                <div class="card"><h3 id="i2_t">دار الإفتاء</h3><p id="i2_p">أكثر من 100 ألف فتوى سنوياً لنزاعات الوهم الرقمي.</p></div>
-                <div class="card"><h3 id="i3_t">الكنيسة المصرية</h3><p id="i3_p">60% من حالات الانفصال تعود للاستخدام الخاطئ للإنترنت.</p></div>
+                <div class="card">
+                    <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar Al-Sharif</span></h3>
+                    <p class="lang-ar">رصد 255 حالة طلاق يومياً بسبب السوشيال ميديا.</p>
+                    <p class="lang-en">Recorded 255 divorce cases daily due to social media.</p>
+                </div>
+                <div class="card">
+                    <h3><span class="lang-ar">دار الإفتاء</span><span class="lang-en">Dar Al-Ifta</span></h3>
+                    <p class="lang-ar">أكثر من 100 ألف فتوى سنوياً لنزاعات الوهم الرقمي.</p>
+                    <p class="lang-en">Over 100,000 annual fatwas for digital conflicts.</p>
+                </div>
             </div>
         </section>
 
         <section id="loss" class="section">
             <div class="glass-box">
-                <h2 style="color:var(--gold); text-align: center; font-size: 2.5rem;" id="s3_t">النزيف الاقتصادي</h2>
+                <h2 style="color:var(--gold); text-align: center; font-size: 2.5rem;">
+                    <span class="lang-ar">النزيف الاقتصادي</span><span class="lang-en">Economic Loss</span>
+                </h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num" data-val="15">0</span><p id="l1">مليار جنيه خسارة إنتاجية</p></div>
-                    <div class="card"><span class="stat-num" data-val="4.5">0</span><p id="l2">مليار تكلفة علاج نفسية</p></div>
+                    <div class="card"><span class="stat-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية</p><p class="lang-en">Billion EGP Losses</p></div>
+                    <div class="card"><span class="stat-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة علاج نفسية</p><p class="lang-en">Billion Therapy Costs</p></div>
                 </div>
             </div>
         </section>
@@ -170,26 +204,14 @@
         window.scrollTo(0,0);
 
         function toggleLanguage() {
-            const isAr = document.documentElement.dir === "rtl";
+            const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
-            
-            if (isAr) {
-                document.documentElement.dir = "ltr";
+            if (html.dir === "rtl") {
+                html.dir = "ltr";
                 btn.innerText = "عربي";
-                // نصوص الإنجليزية
-                document.getElementById('n1').innerText = "Vision"; document.getElementById('n2').innerText = "Stats";
-                document.getElementById('n3').innerText = "Institutions"; document.getElementById('n4').innerText = "Losses";
-                document.getElementById('h1_title').innerText = "Digital Illusion Tsunami";
-                document.getElementById('b1').innerText = "Read Now"; document.getElementById('b2').innerText = "Download";
-                document.getElementById('s1_t').innerText = "Our Vision";
-                document.getElementById('s1_p').innerText = "Protecting the Egyptian social fabric from electronic disintegration.";
-                document.getElementById('s2_t').innerText = "Numbers Speak";
-                document.getElementById('c1').innerText = "Divorce Cases"; document.getElementById('c2').innerText = "Million Mobiles";
-                document.getElementById('i1_t').innerText = "Al-Azhar"; document.getElementById('i2_t').innerText = "Dar Al-Ifta"; document.getElementById('i3_t').innerText = "The Church";
-                document.getElementById('s3_t').innerText = "Economic Impact";
-                document.getElementById('l1').innerText = "Billion EGP Losses"; document.getElementById('l2').innerText = "Billion Therapy Cost";
             } else {
-                location.reload(); // العودة للأصل العربي
+                html.dir = "rtl";
+                btn.innerText = "English";
             }
         }
 
