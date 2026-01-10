@@ -11,17 +11,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; overflow-x: hidden; background: #000; }
 
-        /* حركة الخلفية السينمائية المحدثة (Ken Burns) */
+        /* حركة الخلفية السينمائية المستمرة (Ken Burns) */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('image_390e08.jpg') center center no-repeat;
             background-size: cover; z-index: -1;
             animation: kenBurnsAnimation 40s ease-in-out infinite alternate;
-            will-change: transform;
         }
         @keyframes kenBurnsAnimation {
             0% { transform: scale(1); filter: brightness(0.5); }
-            100% { transform: scale(1.2) translate(1%, 1%); filter: brightness(0.7); }
+            100% { transform: scale(1.15); filter: brightness(0.7); }
         }
 
         .navbar {
@@ -41,14 +40,18 @@
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
-        .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
+        .social-right-fixed a { color: inherit; text-decoration: none; }
         
+        /* شريط الأخبار المحدث بالتكرار اللانهائي */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee-scroll 100s linear infinite; }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee-scroll 80s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
         
-        @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        @keyframes marquee-scroll { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(100%); } 
+        }
 
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
@@ -67,9 +70,8 @@
 
         .section { padding: 80px 10%; }
         
-        /* قسم رؤيتنا مع الخلفية المخصصة وتخفيف الإضاءة */
         .vision-section { 
-            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%), url('image_3a7328.jpg');
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%), url('image_3a7328.jpg');
             background-size: cover; background-position: center;
             padding: 80px 10%; border-radius: 30px; margin: 20px 5%; border: 1px solid var(--gold);
         }
@@ -79,13 +81,13 @@
         .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px; border-bottom: 5px solid var(--gold); }
         
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
-        .loss-num { color: #ff0000 !important; } /* العودة للون الأحمر */
+        .loss-num { color: #ff0000 !important; }
         .section-title { color:var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
         
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
     </style>
 </head>
-<body id="top">
+<body>
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
@@ -119,10 +121,15 @@
             <div class="ticker-item">
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
                 <span class="lang-ar">• الأزهر: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
-                <span class="lang-ar">• خسائر اقتصادية: ١٥ مليار جنيه خسارة إنتاجية سنوية</span>
+                <span class="lang-ar">• دار الإفتاء: ٣٠٪ من النزاعات الأسرية سببها الفضاء الإلكتروني</span>
+                <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
+                <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
+                <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
+                <span class="lang-ar">• الأزهر: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
                 
                 <span class="lang-en">• Red Alert: One family dissolves every 3 minutes due to digital conflict</span>
                 <span class="lang-en">• Al-Azhar: 255 daily divorce cases linked to social media</span>
+                <span class="lang-en">• Health Ministry: 3 million psychiatric visits due to digital addiction</span>
             </div>
         </div>
     </div>
@@ -191,7 +198,7 @@
 
         <section id="loss" class="section">
             <div class="glass-box">
-                <h2 class="section-title"><span class="lang-ar">النزيف الاقتصادي</span><span class="lang-en">Economic Losses</span></h2>
+                <h2 class="section-title"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></h2>
                 <div class="grid">
                     <div class="card"><span class="stat-num loss-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية</p></div>
                     <div class="card"><span class="stat-num loss-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة العلاج النفسي</p></div>
@@ -205,12 +212,9 @@
     </div>
 
     <script>
-        // لضمان فتح الصفحة من الأعلى دائماً وبسرعة
-        window.onload = function() {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-            }, 10);
-        };
+        // إجبار الصفحة على البقاء في الأعلى عند التحميل
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+        window.scrollTo(0, 0);
 
         function toggleLanguage() {
             const h = document.documentElement;
@@ -223,7 +227,7 @@
             es.forEach(e => {
                 if (e.isIntersecting) {
                     const t = parseFloat(e.target.getAttribute('data-val'));
-                    ani(e.target, 0, t, 1000); // سرعة عد الأرقام
+                    ani(e.target, 0, t, 1200);
                 }
             });
         }, { threshold: 0.1 });
