@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        /* منع الاهتزاز عند التحميل */
+        html { scroll-behavior: auto !important; } 
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
 
         .site-bg {
@@ -71,8 +75,13 @@
 
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; }
         
-        /* تقليل السرعة بشكل كبير جداً (120 ثانية) لجعلها مريحة جداً للعين */
-        .track { display: flex; width: max-content; animation: infiniteSlide 120s linear infinite; }
+        /* سرعة هادئة جداً (200 ثانية) وحل مشكلة العرض في العربي */
+        .track { 
+            display: flex; 
+            width: max-content; 
+            animation: infiniteSlide 200s linear infinite; 
+            direction: ltr !important; /* لضمان أن الشريط يبدأ دائماً من اليسار لليمين في النسختين */
+        }
         .track img { width: 500px; height: 450px; object-fit: cover; }
         
         @keyframes infiniteSlide { 
@@ -210,22 +219,29 @@
     </div>
 
     <script>
-        // حل نهائي لمشكلة "القفزة" والبدء من الأعلى
+        // كود صارم لإجبار الصفحة على البدء من الصفر 0,0
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         
-        // إجبار الصفحة على البقاء في الأعلى تماماً قبل وبعد التحميل
-        window.onbeforeunload = function() { window.scrollTo(0,0); };
-        window.scrollTo(0, 0);
+        function forceTop() {
+            window.scrollTo(0, 0);
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+        // تنفيذ الإجبار عند كل لحظة تحميل
+        forceTop();
+        window.addEventListener('load', forceTop);
+        window.addEventListener('DOMContentLoaded', forceTop);
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
             if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
             else { html.dir = "rtl"; btn.innerText = "English"; }
-            // المحافظة على المكان العلوي عند التغيير
-            window.scrollTo(0,0);
+            forceTop();
         }
 
+        // الإحصائيات
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -248,12 +264,15 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
         
-        // تأكيد أخير بعد انتهاء تحميل كل العناصر
-        document.addEventListener('DOMContentLoaded', () => { window.scrollTo(0,0); });
-        window.addEventListener('load', () => { setTimeout(() => window.scrollTo(0,0), 1); });
+        window.onscroll = () => { 
+            document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; 
+        };
+        
+        function scrollToSec(id) { 
+            const sec = document.getElementById(id);
+            window.scrollTo({ top: sec.offsetTop - 120, behavior: 'smooth' }); 
+        }
     </script>
 </body>
 </html>
