@@ -13,22 +13,21 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
+        :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-loss: #ff4d4d; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
+        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; transition: opacity 0.5s; }
 
-        /* حركة الخلفية الفخمة */
+        /* خلفية ثابتة تماماً وفخمة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg');
             background-position: center; background-repeat: no-repeat; background-size: cover;
-            z-index: -1; animation: kenBurns 40s ease-in-out infinite alternate;
+            z-index: -1; filter: brightness(0.4);
         }
-        @keyframes kenBurns { 0% { transform: scale(1) brightness(0.4); } 100% { transform: scale(1.15) brightness(0.6); } }
 
         /* الهيدر والميديا */
         .navbar {
-            height: 80px; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+            height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 10001;
             border-bottom: 2px solid var(--gold); display: flex; align-items: center; justify-content: center;
         }
@@ -42,63 +41,49 @@
 
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-youtube { color: #FF0000; }
-        .fa-linkedin { color: #0A66C2; } .fa-tiktok, .fa-x-twitter { color: #fff; }
+        .fa-tiktok, .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; }
 
-        /* شريط الأخبار المتواصل */
+        /* شريط الأخبار المتواصل (عربي + إنجليزي) */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 50s linear infinite; }
-        .ticker-track span { padding: 0 50px; font-size: 1.1rem; font-weight: bold; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
+        .ticker-track span { padding: 0 40px; font-size: 1.1rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         /* الهيرو وشريط الصور */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 30px; width: 100%; align-items: center; }
         .book-static { flex: 0 0 320px; text-align: center; }
-        .book-static img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); }
+        .book-static img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 20px var(--gold); }
         
-        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; direction: ltr !important; }
-        .track { display: flex; width: max-content; animation: infiniteSlide 160s linear infinite; }
-        .track img { width: 450px; height: 450px; object-fit: cover; }
+        .carousel-wide { flex: 1; height: 480px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; direction: ltr !important; }
+        .track { display: flex; width: max-content; animation: infiniteSlide 150s linear infinite; }
+        .track img { width: 480px; height: 480px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* رؤيتنا */
-        .vision-section { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://www.transparenttextures.com/patterns/gold-scale.png');
-            background-color: #111; padding: 100px 10%; border-radius: 35px; margin: 40px 5%; border: 4px solid var(--gold);
-            text-align: center; box-shadow: 0 0 50px rgba(212, 175, 55, 0.4);
-        }
-        .vision-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 20px; }
-        .vision-section p { font-size: 1.8rem; line-height: 1.6; }
-
-        /* المؤسسات والإحصائيات */
+        /* الأقسام */
         .section { padding: 60px 8%; }
         .glass-box { background: rgba(0,0,0,0.85); padding: 50px; border-radius: 30px; border: 1px solid var(--gold); }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .vision-section { text-align: center; margin: 40px 5%; border: 4px solid var(--gold); background: rgba(0,0,0,0.7); border-radius: 35px; padding: 80px 10%; }
         
-        .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.03); border-radius: 20px; border-bottom: 5px solid var(--gold); transition: 0.4s; position: relative; }
-        .card:hover { transform: translateY(-10px); background: rgba(212,175,55,0.1); }
+        /* الإحصائيات والخسائر */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .card { text-align: center; padding: 30px; background: rgba(255,255,255,0.05); border-radius: 20px; border-bottom: 4px solid var(--gold); transition: 0.3s; }
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
-        
-        /* الشرح عند الوقوف (Tooltip) */
-        .tooltip-text {
-            visibility: hidden; width: 200px; background: var(--gold); color: #000; text-align: center;
-            border-radius: 6px; padding: 10px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
-            opacity: 0; transition: 0.3s; font-weight: bold; z-index: 100;
-        }
-        .card:hover .tooltip-text { visibility: visible; opacity: 1; }
+        .loss-num { color: var(--red-loss) !important; }
 
-        .inst-img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 20px; object-fit: cover; background: #fff; }
+        /* المؤسسات */
+        .inst-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--gold); margin-bottom: 20px; background: #fff; }
 
-        /* مفتاح اللغة */
+        /* نظام اللغة */
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
-        [dir="ltr"] .lang-en { display: inline-block; }
+        [dir="ltr"] .lang-en { display: inline; }
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; }
     </style>
 </head>
-<body id="top">
+<body>
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
@@ -112,8 +97,8 @@
         </div>
         <div class="nav-links">
             <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></a>
+            <a onclick="scrollToSec('stats')"><span class="lang-ar">الإحصائيات</span><span class="lang-en">Stats</span></a>
             <a onclick="scrollToSec('inst')"><span class="lang-ar">المؤسسات</span><span class="lang-en">Institutions</span></a>
-            <a onclick="scrollToSec('loss')"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></a>
         </div>
         <div class="social-right-fixed">
             <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank"><i class="fab fa-facebook"></i></a>
@@ -127,11 +112,12 @@
 
     <div class="news-ticker">
         <div class="ticker-track">
-            <span>• <span class="lang-ar">الأزهر الشريف: ٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا</span><span class="lang-en">Al-Azhar: 255 divorce cases daily due to social media</span></span>
-            <span>• <span class="lang-ar">إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب الخلاف الرقمي</span><span class="lang-en">Red Alert: A family breaks up every 3 mins digitally</span></span>
-            <span>• <span class="lang-ar">وزارة الأوقاف: تطلق حملات "سكن ومودة" لحماية النسيج الأسري</span><span class="lang-en">Awqaf Ministry: Launches "Sakan & Mawadda" campaigns</span></span>
-            <span>• <span class="lang-ar">الأزهر الشريف: ٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا</span><span class="lang-en">Al-Azhar: 255 divorce cases daily due to social media</span></span>
-            <span>• <span class="lang-ar">إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب الخلاف الرقمي</span><span class="lang-en">Red Alert: A family breaks up every 3 mins digitally</span></span>
+            <span>• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبط بالسوشيال ميديا</span>
+            <span>• Al-Azhar: 255 divorce cases daily due to social media addiction</span>
+            <span>• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب الخلاف الرقمي</span>
+            <span>• Red Alert: An Egyptian family disintegrates every 3 minutes digitally</span>
+            <span>• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبط بالسوشيال ميديا</span>
+            <span>• Al-Azhar: 255 divorce cases daily due to social media addiction</span>
         </div>
     </div>
 
@@ -139,7 +125,7 @@
         <div class="hero-container">
             <div class="book-static">
                 <img src="CIVISTORIES Book.png" alt="Book">
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:15px; border-radius:8px; font-weight:bold;">
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:15px; border-radius:10px; font-weight:bold;">
                     <span class="lang-ar">تصفح الكتاب</span><span class="lang-en">Read Book</span>
                 </a>
             </div>
@@ -153,97 +139,84 @@
     </section>
 
     <section id="about" class="vision-section">
-        <h2><span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span></h2>
+        <h2><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></h2>
         <p><span class="lang-ar">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار والأمان.</span>
-           <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and restoring family stability.</span></p>
+           <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and restoring stability.</span></p>
+    </section>
+
+    <section id="stats" class="section">
+        <div class="glass-box">
+            <h2 style="text-align:center; color:var(--gold);"><span class="lang-ar">إحصائيات وخسائر</span><span class="lang-en">Stats & Losses</span></h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="stat-num" data-val="311">0</span>
+                    <p><span class="lang-ar">ألف حالة طلاق سنوياً</span><span class="lang-en">Thousand Divorces Yearly</span></p>
+                </div>
+                <div class="card">
+                    <span class="stat-num loss-num" data-val="15">0</span>
+                    <p><span class="lang-ar">مليار جنيه خسائر إنتاجية</span><span class="lang-en">Billion EGP Productivity Loss</span></p>
+                </div>
+                <div class="card">
+                    <span class="stat-num loss-num" data-val="4.5">0</span>
+                    <p><span class="lang-ar">مليار جنيه تكلفة علاج نفسي</span><span class="lang-en">Billion Therapy Costs</span></p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="inst" class="section">
         <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); margin-bottom:30px;"><span class="lang-ar">الموقف المؤسسي</span><span class="lang-en">Institutional Stance</span></h2>
+            <h2 style="text-align:center; color:var(--gold); margin-bottom: 30px;"><span class="lang-ar">الموقف المؤسسي</span><span class="lang-en">Institutions</span></h2>
             <div class="grid">
                 <div class="card">
                     <img src="100.png" class="inst-img" loading="eager">
                     <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
-                    <p><span class="lang-ar">٢٥٥ حالة طلاق يومياً</span><span class="lang-en">255 divorce cases daily</span></p>
+                    <p><span class="lang-ar">٢٥٥ حالة طلاق يومياً</span><span class="lang-en">255 Cases Daily</span></p>
                 </div>
                 <div class="card">
                     <img src="300.png" class="inst-img" loading="eager">
                     <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
-                    <p><span class="lang-ar">٦٠٪ من النزاعات سببها رقمي</span><span class="lang-en">60% of disputes are digital</span></p>
+                    <p><span class="lang-ar">٦٠٪ نزاعات رقمية</span><span class="lang-en">60% Digital Disputes</span></p>
                 </div>
                 <div class="card">
                     <img src="200.png" class="inst-img" loading="eager">
                     <h3><span class="lang-ar">وزارة الأوقاف</span><span class="lang-en">Awqaf Ministry</span></h3>
-                    <p><span class="lang-ar">مبادرات لحماية الأسرة</span><span class="lang-en">Family protection initiatives</span></p>
+                    <p><span class="lang-ar">مبادرات حماية الأسرة</span><span class="lang-en">Protection Initiatives</span></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="loss" class="section">
-        <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); margin-bottom:30px;"><span class="lang-ar">الخسائر</span><span class="lang-en">The Losses</span></h2>
-            <div class="grid">
-                <div class="card">
-                    <span class="stat-num" data-val="15">0</span>
-                    <span class="tooltip-text"><span class="lang-ar">خسارة الإنتاجية بسبب الإدمان</span><span class="lang-en">Productivity loss due to addiction</span></span>
-                    <p><span class="lang-ar">مليار جنيه سنوياً</span><span class="lang-en">Billion EGP Annually</span></p>
-                </div>
-                <div class="card">
-                    <span class="stat-num" data-val="4.5">0</span>
-                    <span class="tooltip-text"><span class="lang-ar">تكلفة علاج الاكتئاب الرقمي</span><span class="lang-en">Digital depression therapy cost</span></span>
-                    <p><span class="lang-ar">مليار تكلفة العلاج</span><span class="lang-en">Billion Therapy Cost</span></p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer style="text-align:center; padding:50px; color:var(--gold);">
-        <p>© <span class="lang-ar">جميع الحقوق محفوظة لـ CiviStories ٢٠٢٥</span><span class="lang-en">All Rights Reserved to CiviStories 2025</span></p>
+    <footer style="text-align:center; padding:40px; color:var(--gold);">
+        <p>© <span class="lang-ar">جميع الحقوق محفوظة لـ CiviStories ٢٠٢٥</span><span class="lang-en">All Rights Reserved 2025</span></p>
     </footer>
 
     <script>
-        // تثبيت البداية
-        window.onload = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+        window.onload = () => { window.scrollTo({ top: 0 }); };
 
-        // تبديل اللغة
         function toggleLanguage() {
-            const html = document.documentElement;
-            const btn = document.getElementById('langBtn');
-            if (html.dir === "rtl") {
-                html.dir = "ltr";
-                btn.innerText = "عربي";
-            } else {
-                html.dir = "rtl";
-                btn.innerText = "English";
-            }
+            const h = document.documentElement;
+            const b = document.getElementById('langBtn');
+            if (h.dir === "rtl") { h.dir = "ltr"; b.innerText = "عربي"; }
+            else { h.dir = "rtl"; b.innerText = "English"; }
         }
 
-        // تضخم الأرقام
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const target = parseFloat(entry.target.getAttribute('data-val'));
-                    animateCount(entry.target, 0, target, 2000);
+                    let count = 0;
+                    const timer = setInterval(() => {
+                        count += target/50;
+                        if (count >= target) { entry.target.innerText = target; clearInterval(timer); }
+                        else { entry.target.innerText = Math.floor(count); }
+                    }, 300);
                 }
             });
         }, { threshold: 0.5 });
-
-        function animateCount(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const current = progress * (end - start) + start;
-                obj.innerText = end % 1 === 0 ? Math.floor(current) : current.toFixed(1);
-                if (progress < 1) window.requestAnimationFrame(step);
-            };
-            window.requestAnimationFrame(step);
-        }
         document.querySelectorAll('.stat-num').forEach(el => observer.observe(el));
 
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
+        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 400 ? 'flex' : 'none'; };
         function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 100, behavior: 'smooth' }); }
     </script>
 </body>
