@@ -16,7 +16,6 @@
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* إجبار الصفحة على البدء من الأعلى */
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
@@ -43,17 +42,17 @@
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; }
 
-        /* أيقونات التواصل الستة على اليمين */
+        /* أيقونات التواصل الستة */
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-youtube { color: #FF0000; }
         .fa-tiktok, .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; }
 
-        /* شريط الأخبار المتصل (بدون توقف) */
+        /* شريط الأخبار المتصل بالسرعة المطلوبة */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 30s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 50s linear infinite; }
         .ticker-track span { display: inline-block; padding-left: 100px; font-size: 1.1rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-        [dir="ltr"] .ticker-track { animation: marquee-ltr 30s linear infinite; }
+        [dir="ltr"] .ticker-track { animation: marquee-ltr 50s linear infinite; }
         @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* الهيرو */
@@ -93,7 +92,7 @@
         .stat-num { font-size: 4rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
         .loss-num { color: var(--red-num) !important; }
 
-        /* زر واتساب */
+        /* شاركنا برأيك */
         .btn-whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: #fff;
             padding: 15px 25px; border-radius: 50px; font-weight: bold; text-decoration: none;
@@ -258,7 +257,6 @@
     </footer>
 
     <script>
-        // إجبار المتصفح على الفتح من الأعلى
         function initPage() {
             if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
             window.scrollTo(0, 0);
@@ -271,22 +269,19 @@
                 "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", 
                 "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري",
                 "• قصة حضارة: مبادرة وطنية لحماية النسيج المجتمعي من الوهم الرقمي",
-                "• إحصائيات: 7 ساعات يومياً هو متوسط استخدام المصريين للمنصات",
-                "• تحذير: إدمان الأطفال للشاشات يهدد القدرات الذهنية والاجتماعية"
+                "• إحصائيات: 7 ساعات يومياً هو متوسط استخدام المصريين للمنصات"
             ],
             en: [
                 "• Al-Azhar: One divorce every 2 minutes due to digital addiction", 
                 "• Red Alert: Family disintegration threatens Egypt's social stability", 
                 "• Awqaf: Smartphones are a major cause of marital silence", 
                 "• Stats: 7 hours daily average usage of social media in Egypt", 
-                "• Warning: Screen addiction threatens children's mental development",
                 "• CiviStories: A national initiative to restore family awareness"
             ]
         };
 
         function updateTicker() {
             const lang = document.documentElement.dir === "rtl" ? 'ar' : 'en';
-            // نظام التكرار اللانهائي (مضاعفة النص 4 مرات لضمان عدم وجود فراغ)
             const content = news[lang].join('   ---   ');
             const track = document.getElementById('tickerTrack');
             track.innerHTML = `<span>${content}</span><span>${content}</span><span>${content}</span><span>${content}</span>`;
