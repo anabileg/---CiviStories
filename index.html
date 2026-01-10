@@ -13,17 +13,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
 
-        /* تأثير الحركة السينمائية البطيئة جداً للخلفية */
+        /* حركة الخلفية السينمائية المحدثة - Ken Burns */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('image_390e08.jpg') center center no-repeat;
             background-size: cover; z-index: -1;
-            animation: kenBurnsEffect 80s linear infinite alternate;
+            animation: kenBurnsEffect 60s ease-in-out infinite alternate;
         }
         @keyframes kenBurnsEffect {
-            0% { transform: scale(1) translate(0, 0); filter: brightness(0.5); }
-            50% { transform: scale(1.1) translate(-1%, -1%); filter: brightness(0.7); }
-            100% { transform: scale(1.2) translate(1%, 1%); filter: brightness(0.6); }
+            0% { transform: scale(1); filter: brightness(0.6); }
+            100% { transform: scale(1.15) translate(1%, 1%); filter: brightness(0.8); }
         }
 
         .navbar {
@@ -51,20 +50,27 @@
             display: flex; gap: 12px; align-items: center; 
             direction: ltr !important;
         }
+        .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
+        .social-right-fixed a:hover { opacity: 0.7; transform: scale(1.1); }
         
-        .social-right-fixed i { font-size: 1.2rem; transition: 0.3s; }
         .fa-facebook { color: #1877F2; }
         .fa-instagram { color: #E4405F; }
         .fa-tiktok { color: #ffffff; }
         .fa-linkedin { color: #0A66C2; }
         .fa-pinterest { color: #BD081C; }
         .fa-x-twitter { color: #ffffff; }
+        .fa-youtube { color: #FF0000; }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee 160s linear infinite; }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee 120s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        
+        /* اتجاه الحركة يعتمد على اللغة لضمان عملها في الانجليزية */
+        [dir="rtl"] @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        [dir="ltr"] @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        /* تصحيح الانيميشن للغتين */
+        .ticker-item { animation: marquee 120s linear infinite; }
 
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
@@ -107,8 +113,8 @@
         <div class="nav-left-fixed">
             <img src="logo.png" class="nav-logo-img">
             <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
-            <a href="#"><i class="fab fa-whatsapp"></i></a>
-            <a href="#"><i class="fas fa-envelope"></i></a>
+            <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:civistories@gmail.com?bcc=anabileg@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="nav-links">
             <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></a>
@@ -117,34 +123,29 @@
             <a onclick="scrollToSec('loss')"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></a>
         </div>
         <div class="social-right-fixed">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-x-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/civistories" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.pinterest.com/civistories/" target="_blank"><i class="fab fa-pinterest"></i></a>
+            <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
     </nav>
 
     <div class="news-ticker">
         <div class="ticker-wrap">
-            <div class="ticker-item" id="tickerContent">
+            <div class="ticker-item">
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
                 <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
                 <span class="lang-ar">• الكنيسة المصرية: ٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني</span>
-                <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة سنوياً للعيادات النفسية بسبب إدمان التواصل</span>
-                <span class="lang-ar">• وزارة الداخلية: ٤٠٪ من بلاغات العنف الأسري بدأت بمشاجرات إلكترونية</span>
-                <span class="lang-ar">• دار الإفتاء: ١٠٠ ألف فتوى سنوياً عن مشاكل أسرية منها ٣٠٪ بسبب الفضاء الإلكتروني</span>
-                <span class="lang-ar">• اليونيسف: ٤٧٪ من الأطفال تعرضوا للتنمر الإلكتروني و٦٣٪ لمحتوى غير لائق</span>
-                <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي تصل إلى ٢.٣٪ من الناتج المحلي</span>
-                <span class="lang-ar">• انتباه: كل ٦ ساعات محاولة انتحار بسبب التنمر الرقمي أو القطيعة</span>
+                <span class="lang-ar">• المترددون على العيادات النفسية: ٣ مليون زيارة سنوياً بسبب إدمان التواصل</span>
+                <span class="lang-ar">• خسائر اقتصادية: ١٥ مليار جنيه خسارة إنتاجية و ٤.٥ مليار جنيه تكلفة علاج</span>
                 
                 <span class="lang-en">• Red Alert: One Egyptian family dissolves every 3 minutes due to digital conflicts</span>
-                <span class="lang-en">• Al-Azhar: 255 daily divorce cases linked to social networking platforms</span>
-                <span class="lang-en">• Ministry of Interior: 40% of domestic violence reports start with digital disputes</span>
-                <span class="lang-en">• Ministry of Health: 3 million annual psychiatric visits due to digital addiction</span>
-                <span class="lang-en">• UNICEF: 47% of children exposed to cyberbullying, 63% to inappropriate content</span>
-                <span class="lang-en">• World Bank: Digital addiction causes productivity loss equal to 2.3% of GDP</span>
+                <span class="lang-en">• Al-Azhar: 255 daily divorce cases linked to social networking</span>
+                <span class="lang-en">• Egyptian Church: 60% of family issues are linked to cyberspace</span>
+                <span class="lang-en">• Productivity Loss: 15 Billion EGP annually due to social media addiction</span>
             </div>
         </div>
     </div>
@@ -232,33 +233,30 @@
             </div>
         </section>
 
-        <footer class="footer-credits" id="footerCredits">
-            <p class="lang-ar">© جميع الحقوق محفوظة لـ <strong>CiviStories - تسونامي الوهم الرقمي</strong> ٢٠٢٤-٢٠٢٥</p>
-            <p class="lang-en">© All Rights Reserved to <strong>CiviStories - Digital Illusion Tsunami</strong> 2024-2025</p>
+        <footer class="footer-credits">
+            <p>© جميع الحقوق محفوظة لـ <strong>CiviStories - تسونامي الوهم الرقمي</strong> ٢٠٢٤-٢٠٢٥</p>
         </footer>
     </div>
 
     <script>
+        // تحسين سرعة الفتح والتحميل
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
         window.addEventListener('load', () => {
-            window.scrollTo(0, 0);
-            setTimeout(() => {
-                document.getElementById('mainHtml').style.opacity = "1";
-                document.documentElement.style.scrollBehavior = 'smooth';
-            }, 100);
+            document.getElementById('mainHtml').style.opacity = "1";
+            document.documentElement.style.scrollBehavior = 'smooth';
         });
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
-            if (html.dir === "rtl") { 
-                html.dir = "ltr"; 
-                btn.innerText = "عربي"; 
-            } else { 
-                html.dir = "rtl"; 
-                btn.innerText = "English"; 
+            if (html.dir === "rtl") {
+                html.dir = "ltr";
+                btn.innerText = "عربي";
+            } else {
+                html.dir = "rtl";
+                btn.innerText = "English";
             }
             window.scrollTo({top: 0, behavior: 'instant'});
         }
