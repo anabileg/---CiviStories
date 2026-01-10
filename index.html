@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="mainHtml" style="opacity: 0;">
+<html lang="ar" dir="rtl" id="mainHtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +8,32 @@
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         
-        html { scroll-behavior: auto !important; } 
-        
+        /* تحسينات لسرعة الاستجابة */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
+        body { color: var(--white); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; background: #000; }
 
-        /* حركة الخلفية السينمائية المحدثة - Ken Burns */
+        /* تفعيل حركة الخلفية السينمائية البطيئة جداً */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('image_390e08.jpg') center center no-repeat;
             background-size: cover; z-index: -1;
-            animation: kenBurnsEffect 60s ease-in-out infinite alternate;
+            animation: kenBurnsAnimation 50s ease-in-out infinite alternate;
+            will-change: transform;
+            backface-visibility: hidden;
         }
-        @keyframes kenBurnsEffect {
-            0% { transform: scale(1); filter: brightness(0.6); }
-            100% { transform: scale(1.15) translate(1%, 1%); filter: brightness(0.8); }
+        @keyframes kenBurnsAnimation {
+            0% { transform: scale(1); filter: brightness(0.5); }
+            100% { transform: scale(1.15) translate(1%, 1%); filter: brightness(0.7); }
         }
 
         .navbar {
-            height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
+            height: 80px; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 10001;
             border-bottom: 1px solid var(--gold);
             display: flex; align-items: center; justify-content: center;
         }
 
-        .nav-left-fixed { 
-            position: absolute; left: 20px; 
-            display: flex; align-items: center; gap: 15px; 
-            direction: ltr !important; 
-        }
+        .nav-left-fixed { position: absolute; left: 20px; display: flex; align-items: center; gap: 15px; direction: ltr !important; }
         .nav-logo-img { height: 50px; width: auto; }
         .fa-whatsapp { color: #25D366; font-size: 1.8rem; }
         .fa-envelope { color: #FF0000; font-size: 1.8rem; }
@@ -45,32 +42,25 @@
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
-        .social-right-fixed { 
-            position: absolute; right: 20px; 
-            display: flex; gap: 12px; align-items: center; 
-            direction: ltr !important;
-        }
+        .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
         .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
-        .social-right-fixed a:hover { opacity: 0.7; transform: scale(1.1); }
+        .social-right-fixed a:hover { transform: scale(1.1); }
         
-        .fa-facebook { color: #1877F2; }
-        .fa-instagram { color: #E4405F; }
-        .fa-tiktok { color: #ffffff; }
-        .fa-linkedin { color: #0A66C2; }
-        .fa-pinterest { color: #BD081C; }
-        .fa-x-twitter { color: #ffffff; }
-        .fa-youtube { color: #FF0000; }
-
+        /* شريط الأخبار المتحرك باستمرار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee 120s linear infinite; }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee-move 90s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
         
-        /* اتجاه الحركة يعتمد على اللغة لضمان عملها في الانجليزية */
-        [dir="rtl"] @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-        [dir="ltr"] @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
-        /* تصحيح الانيميشن للغتين */
-        .ticker-item { animation: marquee 120s linear infinite; }
+        @keyframes marquee-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+        [dir="ltr"] .ticker-item { animation: marquee-move-en 90s linear infinite; }
+        @keyframes marquee-move-en {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
 
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
@@ -80,34 +70,38 @@
         .hero-container { display: flex; align-items: stretch; gap: 40px; width: 100%; }
         .book-static { flex: 0 0 320px; text-align: center; }
         .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
-        
-        .book-btns { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
-        .btn-book-read { background: var(--gold); color: #000; width: 100%; }
+        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; background: var(--gold); color: #000; margin-top: 20px; transition: 0.3s; }
 
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
-        .track { display: flex; width: max-content; animation: infiniteSlide 300s linear infinite; }
+        .track { display: flex; width: max-content; animation: infiniteSlide 250s linear infinite; }
         .track img { width: 500px; height: 450px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-500px * 29)); } }
 
-        .section { padding: 80px 10%; }
+        /* قسم رؤيتنا مع الخلفية الجديدة وتخفيف الإضاءة جهة اليسار */
+        .vision-section { 
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%), url('image_3a7328.jpg');
+            background-size: cover; background-position: center;
+            padding: 80px 10%; border-radius: 30px; margin: 20px 5%;
+            border: 1px solid var(--gold);
+        }
+
         .glass-box { background: rgba(0,0,0,0.8); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.04); border-radius: 20px; border-bottom: 5px solid var(--gold); }
+        .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px; border-bottom: 5px solid var(--gold); }
         
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: #ff0000 !important; }
         .section-title { color:var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
         
-        .footer-credits { padding: 30px 0; text-align: center; font-size: 0.85rem; color: rgba(212,175,55,0.6); }
+        .footer-credits { padding: 40px 0; text-align: center; font-size: 0.9rem; color: var(--gold); }
 
-        #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
+        #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
     </style>
 </head>
 <body>
 
     <div class="site-bg"></div>
-    <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up fa-lg"></i></div>
+    <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
     <nav class="navbar">
         <div class="nav-left-fixed">
@@ -138,14 +132,14 @@
             <div class="ticker-item">
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
                 <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
-                <span class="lang-ar">• الكنيسة المصرية: ٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني</span>
-                <span class="lang-ar">• المترددون على العيادات النفسية: ٣ مليون زيارة سنوياً بسبب إدمان التواصل</span>
-                <span class="lang-ar">• خسائر اقتصادية: ١٥ مليار جنيه خسارة إنتاجية و ٤.٥ مليار جنيه تكلفة علاج</span>
+                <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
+                <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
+                <span class="lang-ar">• دار الإفتاء: ٣٠٪ من النزاعات الأسرية سببها الفضاء الإلكتروني</span>
                 
-                <span class="lang-en">• Red Alert: One Egyptian family dissolves every 3 minutes due to digital conflicts</span>
+                <span class="lang-en">• One Egyptian family dissolves every 3 minutes due to digital conflict</span>
                 <span class="lang-en">• Al-Azhar: 255 daily divorce cases linked to social networking</span>
-                <span class="lang-en">• Egyptian Church: 60% of family issues are linked to cyberspace</span>
-                <span class="lang-en">• Productivity Loss: 15 Billion EGP annually due to social media addiction</span>
+                <span class="lang-en">• Health Ministry: 3 million psychiatric visits due to digital addiction</span>
+                <span class="lang-en">• World Bank: Digital addiction causes 2.3% GDP productivity loss</span>
             </div>
         </div>
     </div>
@@ -155,15 +149,13 @@
             <div class="hero-container">
                 <div class="book-static">
                     <img src="CIVISTORIES Book.png">
-                    <h1 style="color:var(--gold); margin-top:15px; font-size: 1.4rem;">
-                        <span class="lang-ar">تسونامي رقمي.. كارثة التواصل الاجتماعي تهدد النسيج المجتمعي المصري</span>
-                        <span class="lang-en">Digital Tsunami: Social Media Threats to Egyptian Social Fabric</span>
+                    <h1 style="color:var(--gold); margin-top:15px; font-size: 1.3rem;">
+                        <span class="lang-ar">تسونامي رقمي.. كارثة تهدد النسيج المجتمعي المصري</span>
+                        <span class="lang-en">Digital Tsunami: Threats to Egyptian Social Fabric</span>
                     </h1>
-                    <div class="book-btns">
-                        <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-book btn-book-read">
-                            <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Now</span>
-                        </a>
-                    </div>
+                    <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-book">
+                        <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Book</span>
+                    </a>
                 </div>
                 <div class="carousel-wide">
                     <div class="track">
@@ -178,57 +170,40 @@
             </div>
         </section>
 
-        <section id="about" class="section">
-            <div class="glass-box">
+        <section id="about" class="vision-section">
+            <div style="max-width: 600px;">
                 <h2 style="color:var(--gold); font-size: 2.8rem; border-right: 5px solid var(--gold); padding-right: 20px;">
                     <span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span>
                 </h2>
-                <p style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px;">
+                <p style="font-size: 1.5rem; line-height: 1.8; margin-top: 30px; text-shadow: 2px 2px 4px #000;">
                     <span class="lang-ar">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار والأمان.</span>
-                    <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and fostering family stability.</span>
+                    <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and restoring family stability.</span>
                 </p>
             </div>
         </section>
 
         <section id="stats" class="section">
             <div class="glass-box">
-                <h2 class="section-title"><span class="lang-ar">الأرقام تتحدث</span><span class="lang-en">Shocking Statistics</span></h2>
+                <h2 class="section-title"><span class="lang-ar">الأرقام تتحدث</span><span class="lang-en">Statistics</span></h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق سنوياً (٢٠٢٣)</p><p class="lang-en">Annual Divorce Cases</p></div>
-                    <div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول بمصر</p><p class="lang-en">Million Mobile Devices</p></div>
+                    <div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق سنوياً (٢٠٢٣)</p></div>
+                    <div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول بمصر</p></div>
                 </div>
             </div>
         </section>
 
         <section id="inst" class="section">
             <div class="glass-box">
-                <h2 class="section-title"><span class="lang-ar">المؤسسات الدينية</span><span class="lang-en">Religious Institutions</span></h2>
+                <h2 class="section-title"><span class="lang-ar">المؤسسات الدينية</span><span class="lang-en">Institutions</span></h2>
                 <div class="grid">
                     <div class="card">
-                        <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar Al-Sharif</span></h3>
-                        <p class="lang-ar">٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي.</p>
-                        <p class="lang-en">255 daily divorce cases linked to social networking platforms.</p>
+                        <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
+                        <p class="lang-ar">٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا.</p>
                     </div>
                     <div class="card">
-                        <h3><span class="lang-ar">الأسر المسيحية</span><span class="lang-en">Christian Families</span></h3>
-                        <p class="lang-ar">٦٠٪ من المشاكل الأسرية مرتبطة بالسوشيال ميديا و٥٠ ألف أسرة تعاني سنوياً.</p>
-                        <p class="lang-en">60% of family issues are digital-related; 50,000 families suffer annually.</p>
+                        <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
+                        <p class="lang-ar">٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني.</p>
                     </div>
-                    <div class="card">
-                        <h3><span class="lang-ar">دار الإفتاء</span><span class="lang-en">Dar Al-Ifta</span></h3>
-                        <p class="lang-ar">١٠٠ ألف فتوى سنوياً لنزاعات أسرية، ٣٠٪ منها بسبب الفضاء الإلكتروني.</p>
-                        <p class="lang-en">100k annual fatwas, 30% triggered by electronic social conflicts.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="loss" class="section">
-            <div class="glass-box">
-                <h2 class="section-title"><span class="lang-ar">النزيف الاقتصادي</span><span class="lang-en">Economic Hemorrhage</span></h2>
-                <div class="grid">
-                    <div class="card"><span class="stat-num loss-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية سنوياً</p><p class="lang-en">Billion EGP Productivity Loss</p></div>
-                    <div class="card"><span class="stat-num loss-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة علاج المترددين على العيادات النفسية</p><p class="lang-en">Billion EGP Psychiatric Treatment Costs</p></div>
                 </div>
             </div>
         </section>
@@ -239,56 +214,42 @@
     </div>
 
     <script>
-        // تحسين سرعة الفتح والتحميل
-        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        window.scrollTo(0, 0);
-
-        window.addEventListener('load', () => {
-            document.getElementById('mainHtml').style.opacity = "1";
+        // تفعيل الصفحة فوراً لتحسين السرعة
+        document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.style.scrollBehavior = 'smooth';
         });
 
         function toggleLanguage() {
-            const html = document.getElementById('mainHtml');
-            const btn = document.getElementById('langBtn');
-            if (html.dir === "rtl") {
-                html.dir = "ltr";
-                btn.innerText = "عربي";
-            } else {
-                html.dir = "rtl";
-                btn.innerText = "English";
-            }
-            window.scrollTo({top: 0, behavior: 'instant'});
+            const h = document.getElementById('mainHtml');
+            const b = document.getElementById('langBtn');
+            if (h.dir === "rtl") { h.dir = "ltr"; b.innerText = "عربي"; } 
+            else { h.dir = "rtl"; b.innerText = "English"; }
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const el = entry.target;
-                if (entry.isIntersecting) {
-                    const target = parseFloat(el.getAttribute('data-val'));
-                    animateValue(el, 0, target, 2000);
-                } else {
-                    el.innerText = "0";
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => {
+                if (e.isIntersecting) {
+                    const t = parseFloat(e.target.getAttribute('data-val'));
+                    ani(e.target, 0, t, 1500);
                 }
             });
         }, { threshold: 0.1 });
 
-        function animateValue(obj, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const current = progress * (end - start) + start;
-                obj.innerText = end % 1 === 0 ? Math.floor(current).toLocaleString() : current.toFixed(1);
-                if (progress < 1) { window.requestAnimationFrame(step); }
-                else { obj.innerText = end.toLocaleString(); }
+        function ani(o, s, e, d) {
+            let st = null;
+            const f = (ts) => {
+                if (!st) st = ts;
+                const p = Math.min((ts - st) / d, 1);
+                const c = p * (e - s) + s;
+                o.innerText = e % 1 === 0 ? Math.floor(c).toLocaleString() : c.toFixed(1);
+                if (p < 1) requestAnimationFrame(f);
             };
-            window.requestAnimationFrame(step);
+            requestAnimationFrame(f);
         }
 
-        document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
+        document.querySelectorAll('.stat-num').forEach(n => obs.observe(n));
+        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
+        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 100, behavior: 'smooth' }); }
     </script>
 </body>
 </html>
