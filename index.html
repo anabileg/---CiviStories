@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIVISTORIES | تسونامي الوَهْم الرَّقْمِي</title>
+    <title>CiviStories | تسونامي الوَهْم الرَّقْمِي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --red-alert: #ff0000; --bg-dark: #000; }
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--bg-dark); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; }
+        :root { 
+            --gold: #d4af37; 
+            --red-alert: #ff0000; 
+            --bg-dark: #000; 
+        }
 
-        /* حركة التناغم العام لكل ما هو ملون بالصفحة لراحة العين */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        /* حركة التناغم العام الموحدة لكل عناصر الصفحة */
         @keyframes subtleHarmony {
             0% { filter: brightness(0.8) saturate(1); }
             50% { filter: brightness(1.1) saturate(1.2); }
@@ -18,12 +29,27 @@
         }
 
         .navbar {
-            height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 5%; position: fixed; top: 0; width: 100%; z-index: 10001;
+            height: 80px; 
+            background: rgba(0,0,0,0.95); 
+            backdrop-filter: blur(15px);
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 0 5%; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            z-index: 10001;
             border-bottom: 1px solid var(--gold);
         }
-        .logo { font-size: 1.6rem; font-weight: bold; color: var(--gold); letter-spacing: 2px; animation: subtleHarmony 8s infinite ease-in-out; }
+
+        .logo { 
+            font-size: 1.6rem; 
+            font-weight: bold; 
+            color: var(--gold); 
+            letter-spacing: 2px; 
+            animation: subtleHarmony 8s infinite ease-in-out; 
+        }
         
         .social-icons a { margin-left: 15px; font-size: 1.4rem; transition: 0.3s; display: inline-block; }
         .social-icons a:hover { transform: translateY(-3px); }
@@ -31,30 +57,93 @@
         .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; } .fa-pinterest { color: #BD081C; }
 
         .news-ticker {
-            background: #b30000; height: 45px; position: fixed; top: 80px; width: 100%;
-            z-index: 1000; display: flex; align-items: center; overflow: hidden;
+            background: #b30000; 
+            height: 45px; 
+            position: fixed; 
+            top: 80px; 
+            width: 100%;
+            z-index: 1000; 
+            display: flex; 
+            align-items: center; 
+            overflow: hidden;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
+
+        .ticker-item { 
+            display: flex; 
+            white-space: nowrap; 
+            animation: marquee 60s linear infinite; 
+        }
+
         .ticker-item span { padding: 0 40px; font-weight: bold; font-size: 1rem; color: white; }
+
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
         .hero { min-height: 100vh; padding: 180px 5% 50px; display: flex; flex-direction: column; align-items: center; }
+        
         .hero-layout { display: flex; align-items: stretch; gap: 30px; width: 100%; max-width: 1300px; }
         
         .book-container { flex: 0 0 350px; display: flex; flex-direction: column; }
-        .book-img { width: 100%; height: 500px; object-fit: cover; border: 2px solid var(--gold); border-radius: 15px; box-shadow: 0 0 40px rgba(212,175,55,0.2); animation: subtleHarmony 12s infinite; }
+
+        .book-img { 
+            width: 100%; 
+            height: 500px; 
+            object-fit: cover; 
+            border: 2px solid var(--gold); 
+            border-radius: 15px; 
+            box-shadow: 0 0 40px rgba(212,175,55,0.2); 
+            animation: subtleHarmony 12s infinite; 
+        }
         
         .action-btns { margin-top: auto; padding-top: 20px; display: flex; gap: 15px; justify-content: center; }
-        .btn { flex: 1; padding: 12px; border-radius: 8px; border: 1px solid var(--gold); background: rgba(212,175,55,0.05); color: var(--gold); cursor: pointer; font-weight: bold; transition: 0.3s; text-decoration: none; text-align: center; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+        .btn { 
+            flex: 1; 
+            padding: 12px; 
+            border-radius: 8px; 
+            border: 1px solid var(--gold); 
+            background: rgba(212,175,55,0.05); 
+            color: var(--gold); 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            text-decoration: none; 
+            text-align: center; 
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
         .btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
 
-        .carousel-wide { flex: 1; height: 500px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; background: rgba(0,0,0,0.6); position: relative; }
-        .track { display: flex; width: max-content; animation: slowSlide 180s linear infinite; }
-        .track img { width: 600px; height: 500px; object-fit: cover; border-left: 1px solid rgba(212,175,55,0.2); }
+        .carousel-wide { 
+            flex: 1; 
+            height: 500px; 
+            overflow: hidden; 
+            border: 2px solid var(--gold); 
+            border-radius: 20px; 
+            background: rgba(0,0,0,0.6); 
+            position: relative; 
+        }
+
+        .track { 
+            display: flex; 
+            width: max-content; 
+            animation: slowSlide 180s linear infinite; 
+        }
+
+        .track img { 
+            width: 600px; 
+            height: 500px; 
+            object-fit: cover; 
+            border-left: 1px solid rgba(212,175,55,0.2); 
+        }
+
         @keyframes slowSlide { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        /* قسم رؤيتنا - الوحيد الذي يحتوي على خلفية خلية النحل */
+        /* قسم رؤيتنا - الخلفية المطلوبة فقط هنا */
         .vision-section { 
             padding: 100px 10%; 
             background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('image_43e127.jpg') center/cover repeat;
@@ -63,23 +152,71 @@
             border-bottom: 1px solid rgba(212,175,55,0.2);
             animation: subtleHarmony 15s infinite ease-in-out;
         }
-        .vision-title { color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; border-right: 5px solid var(--gold); padding-right: 15px; display: inline-block; }
+
+        .vision-title { 
+            color: var(--gold); 
+            font-size: 2.5rem; 
+            margin-bottom: 25px; 
+            border-right: 5px solid var(--gold); 
+            padding-right: 15px; 
+            display: inline-block; 
+        }
+
         .vision-text { font-size: 1.4rem; line-height: 1.8; color: #eee; max-width: 900px; margin: 0 auto; }
 
         .section { padding: 60px 10%; }
-        .stat-card { background: rgba(0,0,0,0.85); padding: 50px; border-radius: 30px; border: 1px solid var(--gold); position: relative; overflow: hidden; animation: subtleHarmony 15s infinite; }
+
+        .stat-card { 
+            background: rgba(0,0,0,0.85); 
+            padding: 50px; 
+            border-radius: 30px; 
+            border: 1px solid var(--gold); 
+            position: relative; 
+            overflow: hidden; 
+            animation: subtleHarmony 15s infinite; 
+        }
         
-        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; position: relative; z-index: 1; }
+        .stat-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px; 
+            margin-top: 40px; 
+            position: relative; 
+            z-index: 1; 
+        }
+
         .num-gold { font-size: 4rem; color: var(--gold); font-weight: bold; display: block; animation: subtleHarmony 10s infinite; }
         .num-red { font-size: 4rem; color: var(--red-alert); font-weight: bold; display: block; animation: subtleHarmony 10s infinite; }
 
-        .footer { padding: 60px 5% 20px; background: rgba(0,0,0,0.95); border-top: 1px solid var(--gold); text-align: center; }
+        .footer { 
+            padding: 60px 5% 20px; 
+            background: rgba(0,0,0,0.95); 
+            border-top: 1px solid var(--gold); 
+            text-align: center; 
+        }
+
         .contact-icons { margin-bottom: 30px; }
         .contact-icons a { margin: 0 20px; font-size: 2.2rem; transition: 0.3s; display: inline-block; }
         .fa-whatsapp { color: #25D366; } .fa-phone { color: #34B7F1; } .fa-envelope { color: #EA4335; }
         
-        .copyright { font-size: 0.9rem; color: #aaa; margin-top: 30px; border-top: 1px solid rgba(212,175,55,0.1); padding-top: 20px; font-family: 'Arial', sans-serif; }
-        .lang-btn { background: var(--gold); color: #000; border: none; padding: 8px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .copyright { 
+            font-size: 0.9rem; 
+            color: #aaa; 
+            margin-top: 30px; 
+            border-top: 1px solid rgba(212,175,55,0.1); 
+            padding-top: 20px; 
+        }
+
+        .lang-btn { 
+            background: var(--gold); 
+            color: #000; 
+            border: none; 
+            padding: 8px 20px; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            transition: 0.3s; 
+        }
         .lang-btn:hover { background: #fff; }
     </style>
 </head>
@@ -95,7 +232,7 @@
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="fab fa-pinterest"></i></a>
         </div>
-        <button class="lang-btn">English Version</button>
+        <button class="lang-btn">English</button>
     </nav>
 
     <div class="news-ticker">
@@ -171,28 +308,19 @@
                     let current = 0;
                     const duration = 2500; 
                     const start = performance.now();
-
                     const animate = (time) => {
                         const progress = Math.min((time - start) / duration, 1);
                         current = progress * target;
-                        if (target > 100) {
-                            el.innerText = Math.floor(current).toLocaleString();
-                        } else {
-                            el.innerText = current.toFixed(1);
-                        }
-                        if (progress < 1) {
-                            requestAnimationFrame(animate);
-                        } else {
-                            el.innerText = target.toLocaleString();
-                        }
+                        el.innerText = target > 100 ? Math.floor(current).toLocaleString() : current.toFixed(1);
+                        if (progress < 1) requestAnimationFrame(animate);
+                        else el.innerText = target.toLocaleString();
                     };
                     requestAnimationFrame(animate);
                     countObserver.unobserve(el);
                 }
             });
         }, { threshold: 0.3 });
-
         document.querySelectorAll('[data-val]').forEach(num => countObserver.observe(num));
     </script>
 </body>
-</html>```
+</html>
