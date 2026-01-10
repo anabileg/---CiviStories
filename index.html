@@ -50,9 +50,7 @@
         .fa-tiktok { color: #ffffff; }
         .fa-linkedin { color: #0A66C2; }
         .fa-pinterest { color: #BD081C; }
-        /* أيقونة X بفريم أبيض */
-        .x-frame { border: 1px solid #fff; border-radius: 4px; padding: 2px; display: flex; align-items: center; justify-content: center; }
-        .fa-x-twitter { color: #ffffff; font-size: 1.1rem; }
+        .fa-x-twitter { color: #ffffff; }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-item { display: flex; white-space: nowrap; animation: marquee 60s linear infinite; }
@@ -69,7 +67,7 @@
         .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
         
         .book-btns { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); }
+        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
         .btn-book-read { background: var(--gold); color: #000; }
         .btn-book-down { background: transparent; color: var(--gold); }
 
@@ -84,7 +82,6 @@
         .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.04); border-radius: 20px; border-bottom: 5px solid var(--gold); }
         
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
-        /* أرقام الخسائر باللون الأحمر */
         .loss-num { color: #ff0000 !important; }
 
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
@@ -112,7 +109,7 @@
             <a href="#"><i class="fab fa-facebook"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#" class="x-frame"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
             <a href="#"><i class="fab fa-pinterest"></i></a>
         </div>
@@ -140,7 +137,7 @@
                         <a href="book.pdf" target="_blank" class="btn-book btn-book-read">
                             <i class="fas fa-book-open"></i> <span class="lang-ar">قراءة الكتاب</span><span class="lang-en">Read Now</span>
                         </a>
-                        <a href="book.pdf" download class="btn-book btn-book-down">
+                        <a href="book.pdf" download="CiviStories_Book.pdf" class="btn-book btn-book-down">
                             <i class="fas fa-download"></i> <span class="lang-ar">تحميل الكتاب</span><span class="lang-en">Download</span>
                         </a>
                     </div>
