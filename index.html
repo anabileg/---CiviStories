@@ -8,7 +8,7 @@
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         
-        /* منع الاهتزاز عند التحميل */
+        /* منع أي حركة تنقل تلقائية عند الفتح */
         html { scroll-behavior: auto !important; } 
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -73,16 +73,15 @@
         .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
         .btn-book-read { background: var(--gold); color: #000; width: 100%; }
 
-        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; }
+        /* تعديلات الشريط لضمان العمل في العربي وبسرعة فائقة البطء */
+        .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
         
-        /* سرعة هادئة جداً (200 ثانية) وحل مشكلة العرض في العربي */
         .track { 
             display: flex; 
             width: max-content; 
-            animation: infiniteSlide 200s linear infinite; 
-            direction: ltr !important; /* لضمان أن الشريط يبدأ دائماً من اليسار لليمين في النسختين */
+            animation: infiniteSlide 300s linear infinite; 
         }
-        .track img { width: 500px; height: 450px; object-fit: cover; }
+        .track img { width: 500px; height: 450px; object-fit: cover; pointer-events: none; }
         
         @keyframes infiniteSlide { 
             0% { transform: translateX(0); } 
@@ -219,29 +218,18 @@
     </div>
 
     <script>
-        // كود صارم لإجبار الصفحة على البدء من الصفر 0,0
+        // تثبيت فوري للصفحة عند الصفر ومنع التمرير السلس مؤقتاً
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        
-        function forceTop() {
-            window.scrollTo(0, 0);
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
-        }
-
-        // تنفيذ الإجبار عند كل لحظة تحميل
-        forceTop();
-        window.addEventListener('load', forceTop);
-        window.addEventListener('DOMContentLoaded', forceTop);
+        window.scrollTo(0, 0);
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
             if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
             else { html.dir = "rtl"; btn.innerText = "English"; }
-            forceTop();
+            window.scrollTo(0, 0);
         }
 
-        // الإحصائيات
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -273,6 +261,14 @@
             const sec = document.getElementById(id);
             window.scrollTo({ top: sec.offsetTop - 120, behavior: 'smooth' }); 
         }
+
+        // إجبار المتصفح على البقاء في الأعلى عند اكتمال التحميل تماماً
+        window.onload = function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 10);
+        };
     </script>
 </body>
 </html>
