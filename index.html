@@ -11,13 +11,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
-        /* إعادة تفعيل الخلفية المتحركة (Ken Burns Effect) */
+        /* الخلفية السينمائية المتحركة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg');
             background-position: center; background-repeat: no-repeat; background-size: cover;
             z-index: -1;
-            animation: kenBurns 40s ease-in-out infinite alternate;
+            animation: kenBurns 45s ease-in-out infinite alternate;
         }
         @keyframes kenBurns {
             0% { transform: scale(1); filter: brightness(0.5); }
@@ -40,13 +40,12 @@
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
-        .social-right-fixed a { color: inherit; text-decoration: none; }
+        .social-right-fixed a { color: inherit; text-decoration: none; transition: 0.3s; }
         
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
         .ticker-item { display: flex; white-space: nowrap; animation: marquee 90s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
-        
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
         .lang-en { display: none; }
@@ -57,7 +56,8 @@
         .hero-container { display: flex; align-items: stretch; gap: 40px; width: 100%; }
         .book-static { flex: 0 0 320px; text-align: center; }
         .book-static img { width: 100%; height: 450px; object-fit: cover; border-radius: 12px; border: 2px solid var(--gold); }
-        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; background: var(--gold); color: #000; margin-top: 20px; }
+        .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; background: var(--gold); color: #000; margin-top: 20px; transition: 0.3s; }
+        .btn-book:hover { transform: scale(1.05); background: #fff; }
 
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
         .track { display: flex; width: max-content; animation: infiniteSlide 250s linear infinite; }
@@ -66,19 +66,36 @@
 
         .section { padding: 80px 10%; }
         
-        /* قسم رؤيتنا بعد إزالة الحرف الزائد وضبط الخلفية */
         .vision-section { 
-            background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 100%), url('image_3a7328.jpg');
+            background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.5) 100%), url('image_3a7328.jpg');
             background-size: cover; background-position: center;
             padding: 80px 10%; border-radius: 30px; margin: 20px 5%; border: 1px solid var(--gold);
         }
 
-        .glass-box { background: rgba(0,0,0,0.8); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
+        .glass-box { background: rgba(0,0,0,0.85); padding: 50px; border-radius: 30px; border: 1px solid rgba(212,175,55,0.3); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
-        .card { text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px; border-bottom: 5px solid var(--gold); }
         
-        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
+        /* تأثير التفاعلية (Interactivity) للأرقام */
+        .card { 
+            text-align: center; padding: 40px; background: rgba(255,255,255,0.03); 
+            border-radius: 20px; border-bottom: 5px solid var(--gold);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: default;
+        }
+        .card:hover { 
+            transform: translateY(-10px) scale(1.03); 
+            background: rgba(212, 175, 55, 0.1); 
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+        .card:hover .stat-num {
+            text-shadow: 0 0 15px var(--gold);
+            color: #fff;
+        }
+        
+        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; transition: 0.3s; }
         .loss-num { color: #ff0000 !important; }
+        .card:hover .loss-num { text-shadow: 0 0 15px #ff0000; }
+        
         .section-title { color:var(--gold); font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
         
         #btnUp { position: fixed; bottom: 30px; left: 30px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 9999; }
@@ -116,11 +133,10 @@
         <div class="ticker-wrap">
             <div class="ticker-item">
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
-                <span class="lang-ar">• الأزهر: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
+                <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
                 <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب إدمان التواصل</span>
                 <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي ٢.٣٪ من الناتج المحلي</span>
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
-                <span class="lang-ar">• الأزهر: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
             </div>
         </div>
     </div>
@@ -171,6 +187,22 @@
             </div>
         </section>
 
+        <section id="inst" class="section">
+            <div class="glass-box">
+                <h2 class="section-title"><span class="lang-ar">المؤسسات الدينية</span><span class="lang-en">Institutions</span></h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
+                        <p class="lang-ar" style="margin-top:15px;">٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا.</p>
+                    </div>
+                    <div class="card">
+                        <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
+                        <p class="lang-ar" style="margin-top:15px;">٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="loss" class="section">
             <div class="glass-box">
                 <h2 class="section-title"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></h2>
@@ -187,7 +219,8 @@
     </div>
 
     <script>
-        // ضمان البدء من الأعلى
+        // ضمان ثبات الصفحة في الأعلى عند الفتح
+        if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
         window.scrollTo(0, 0);
 
         function toggleLanguage() {
