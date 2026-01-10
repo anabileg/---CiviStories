@@ -8,22 +8,22 @@
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         
-        /* منع التمرير التلقائي لضمان الثبات */
         html { scroll-behavior: auto !important; } 
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { color: var(--white); font-family: 'Segoe UI', Roboto, sans-serif; overflow-x: hidden; background: #000; }
 
-        /* حركة الخلفية السينمائية المحدثة */
+        /* تأثير الحركة السينمائية البطيئة جداً للخلفية */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('image_390e08.jpg') center center no-repeat;
             background-size: cover; z-index: -1;
-            animation: kenBurns 60s ease-in-out infinite alternate;
+            animation: kenBurnsEffect 80s linear infinite alternate;
         }
-        @keyframes kenBurns {
-            0% { transform: scale(1); filter: brightness(0.6); }
-            100% { transform: scale(1.15); filter: brightness(0.8); }
+        @keyframes kenBurnsEffect {
+            0% { transform: scale(1) translate(0, 0); filter: brightness(0.5); }
+            50% { transform: scale(1.1) translate(-1%, -1%); filter: brightness(0.7); }
+            100% { transform: scale(1.2) translate(1%, 1%); filter: brightness(0.6); }
         }
 
         .navbar {
@@ -52,6 +52,7 @@
             direction: ltr !important;
         }
         
+        .social-right-fixed i { font-size: 1.2rem; transition: 0.3s; }
         .fa-facebook { color: #1877F2; }
         .fa-instagram { color: #E4405F; }
         .fa-tiktok { color: #ffffff; }
@@ -61,7 +62,7 @@
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; font-weight: bold; }
         .ticker-wrap { display: flex; width: 100%; }
-        .ticker-item { display: flex; white-space: nowrap; animation: marquee 120s linear infinite; }
+        .ticker-item { display: flex; white-space: nowrap; animation: marquee 160s linear infinite; }
         .ticker-item span { padding: 0 50px; font-size: 1.1rem; border-left: 1px solid rgba(255,255,255,0.2); }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
@@ -127,15 +128,23 @@
 
     <div class="news-ticker">
         <div class="ticker-wrap">
-            <div class="ticker-item">
+            <div class="ticker-item" id="tickerContent">
                 <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تتفكك أسرة مصرية بسبب خلاف رقمي</span>
                 <span class="lang-ar">• الأزهر الشريف: ٢٥٥ حالة طلاق يومياً مرتبطة بوسائل التواصل الاجتماعي</span>
                 <span class="lang-ar">• الكنيسة المصرية: ٦٠٪ من المشاكل الأسرية مرتبطة بالفضاء الإلكتروني</span>
-                <span class="lang-ar">• المترددون على العيادات النفسية: ٣ مليون زيارة سنوياً بسبب إدمان التواصل</span>
-                <span class="lang-ar">• خسائر اقتصادية: ١٥ مليار جنيه خسارة إنتاجية و ٤.٥ مليار جنيه تكلفة علاج</span>
+                <span class="lang-ar">• وزارة الصحة: ٣ مليون زيارة سنوياً للعيادات النفسية بسبب إدمان التواصل</span>
+                <span class="lang-ar">• وزارة الداخلية: ٤٠٪ من بلاغات العنف الأسري بدأت بمشاجرات إلكترونية</span>
+                <span class="lang-ar">• دار الإفتاء: ١٠٠ ألف فتوى سنوياً عن مشاكل أسرية منها ٣٠٪ بسبب الفضاء الإلكتروني</span>
+                <span class="lang-ar">• اليونيسف: ٤٧٪ من الأطفال تعرضوا للتنمر الإلكتروني و٦٣٪ لمحتوى غير لائق</span>
+                <span class="lang-ar">• البنك الدولي: خسائر الإنتاجية بسبب الإدمان الرقمي تصل إلى ٢.٣٪ من الناتج المحلي</span>
+                <span class="lang-ar">• انتباه: كل ٦ ساعات محاولة انتحار بسبب التنمر الرقمي أو القطيعة</span>
+                
                 <span class="lang-en">• Red Alert: One Egyptian family dissolves every 3 minutes due to digital conflicts</span>
-                <span class="lang-en">• Productivity Loss: 15 Billion EGP annually due to social media addiction</span>
-                <span class="lang-en">• Al-Azhar: 255 divorce cases daily linked to social networking</span>
+                <span class="lang-en">• Al-Azhar: 255 daily divorce cases linked to social networking platforms</span>
+                <span class="lang-en">• Ministry of Interior: 40% of domestic violence reports start with digital disputes</span>
+                <span class="lang-en">• Ministry of Health: 3 million annual psychiatric visits due to digital addiction</span>
+                <span class="lang-en">• UNICEF: 47% of children exposed to cyberbullying, 63% to inappropriate content</span>
+                <span class="lang-en">• World Bank: Digital addiction causes productivity loss equal to 2.3% of GDP</span>
             </div>
         </div>
     </div>
@@ -223,8 +232,9 @@
             </div>
         </section>
 
-        <footer class="footer-credits">
-            <p>© جميع الحقوق محفوظة لـ <strong>CiviStories - تسونامي الوهم الرقمي</strong> ٢٠٢٤-٢٠٢٥</p>
+        <footer class="footer-credits" id="footerCredits">
+            <p class="lang-ar">© جميع الحقوق محفوظة لـ <strong>CiviStories - تسونامي الوهم الرقمي</strong> ٢٠٢٤-٢٠٢٥</p>
+            <p class="lang-en">© All Rights Reserved to <strong>CiviStories - Digital Illusion Tsunami</strong> 2024-2025</p>
         </footer>
     </div>
 
@@ -237,14 +247,19 @@
             setTimeout(() => {
                 document.getElementById('mainHtml').style.opacity = "1";
                 document.documentElement.style.scrollBehavior = 'smooth';
-            }, 150);
+            }, 100);
         });
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
-            if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
-            else { html.dir = "rtl"; btn.innerText = "English"; }
+            if (html.dir === "rtl") { 
+                html.dir = "ltr"; 
+                btn.innerText = "عربي"; 
+            } else { 
+                html.dir = "rtl"; 
+                btn.innerText = "English"; 
+            }
             window.scrollTo({top: 0, behavior: 'instant'});
         }
 
