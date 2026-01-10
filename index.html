@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" id="mainHtml">
-<head>
+<html lang="ar" dir="rtl" id="mainHtml" style="opacity: 0;"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CiviStories | تسونامي الوهم الرقمي</title>
@@ -8,7 +7,7 @@
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
         
-        /* منع أي حركة تنقل تلقائية عند الفتح */
+        /* إيقاف أي تمرير سلس تلقائي تماماً */
         html { scroll-behavior: auto !important; } 
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -73,7 +72,7 @@
         .btn-book { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; border: 1px solid var(--gold); cursor: pointer; }
         .btn-book-read { background: var(--gold); color: #000; width: 100%; }
 
-        /* تعديلات الشريط لضمان العمل في العربي وبسرعة فائقة البطء */
+        /* شريط الصور: سرعة فائقة البطء (300 ثانية) ودعم كامل للعربي */
         .carousel-wide { flex: 1; height: 450px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; position: relative; background: #000; direction: ltr !important; }
         
         .track { 
@@ -81,7 +80,7 @@
             width: max-content; 
             animation: infiniteSlide 300s linear infinite; 
         }
-        .track img { width: 500px; height: 450px; object-fit: cover; pointer-events: none; }
+        .track img { width: 500px; height: 450px; object-fit: cover; }
         
         @keyframes infiniteSlide { 
             0% { transform: translateX(0); } 
@@ -129,10 +128,10 @@
 
     <div class="news-ticker">
         <div class="ticker-item">
-            <span class="lang-ar">• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي</span>
-            <span class="lang-ar">• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول</span>
-            <span class="lang-en">• Red Alert: An Egyptian family explodes every 3 minutes due to digital conflicts</span>
-            <span class="lang-en">• Shocking Stats: 311k divorce cases annually and 104M mobile phones</span>
+            [cite_start]<span class="lang-ar">• إنذار أحمر: كل 3 دقائق تنفجر أسرة مصرية بسبب خلاف رقمي [cite: 5]</span>
+            [cite_start]<span class="lang-ar">• إحصائيات صادمة: 311 ألف حالة طلاق سنوياً و104 مليون هاتف محمول [cite: 4, 26]</span>
+            [cite_start]<span class="lang-en">• Red Alert: An Egyptian family explodes every 3 minutes due to digital conflicts [cite: 5]</span>
+            [cite_start]<span class="lang-en">• Shocking Stats: 311k divorce cases annually and 104M mobile phones [cite: 4, 26]</span>
         </div>
     </div>
 
@@ -171,8 +170,8 @@
                     <span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span>
                 </h2>
                 <p style="font-size: 1.5rem; line-height: 1.9; margin-top: 30px;">
-                    <span class="lang-ar">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار.</span>
-                    <span class="lang-en">Protecting the Egyptian social fabric from the growing risks of electronic disintegration and family awareness.</span>
+                    [cite_start]<span class="lang-ar">حماية النسيج الاجتماعي المصري من مخاطر التفكك الإلكتروني المتزايدة وتوعية الأسرة لاستعادة الاستقرار[cite: 6, 133].</span>
+                    [cite_start]<span class="lang-en">Protecting the Egyptian social fabric from the growing risks of electronic disintegration and family awareness[cite: 6, 133].</span>
                 </p>
             </div>
         </section>
@@ -183,8 +182,8 @@
                     <span class="lang-ar">الأرقام تتحدث</span><span class="lang-en">Numbers Talk</span>
                 </h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق موثقة</p><p class="lang-en">Divorce Cases</p></div>
-                    <div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول</p><p class="lang-en">Million Mobiles</p></div>
+                    [cite_start]<div class="card"><span class="stat-num" data-val="311000">0</span><p class="lang-ar">حالة طلاق موثقة [cite: 26][cite_start]</p><p class="lang-en">Divorce Cases [cite: 26]</p></div>
+                    [cite_start]<div class="card"><span class="stat-num" data-val="104">0</span><p class="lang-ar">مليون هاتف محمول [cite: 4][cite_start]</p><p class="lang-en">Million Mobiles [cite: 4]</p></div>
                 </div>
             </div>
         </section>
@@ -193,13 +192,13 @@
             <div class="grid">
                 <div class="card">
                     <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar Al-Sharif</span></h3>
-                    <p class="lang-ar">رصد 255 حالة طلاق يومياً بسبب السوشيال ميديا.</p>
-                    <p class="lang-en">Recorded 255 divorce cases daily due to social media.</p>
+                    [cite_start]<p class="lang-ar">رصد ٢٥٥ حالة طلاق يومياً بسبب السوشيال ميديا[cite: 11].</p>
+                    [cite_start]<p class="lang-en">Recorded 255 divorce cases daily due to social media[cite: 11].</p>
                 </div>
                 <div class="card">
                     <h3><span class="lang-ar">دار الإفتاء</span><span class="lang-en">Dar Al-Ifta</span></h3>
-                    <p class="lang-ar">أكثر من 100 ألف فتوى سنوياً لنزاعات الوهم الرقمي.</p>
-                    <p class="lang-en">Over 100,000 annual fatwas for digital conflicts.</p>
+                    [cite_start]<p class="lang-ar">أكثر من ١٠٠ ألف فتوى سنوياً لنزاعات الوهم الرقمي[cite: 14].</p>
+                    [cite_start]<p class="lang-en">Over 100,000 annual fatwas for digital conflicts[cite: 14].</p>
                 </div>
             </div>
         </section>
@@ -210,24 +209,40 @@
                     <span class="lang-ar">النزيف الاقتصادي</span><span class="lang-en">Economic Loss</span>
                 </h2>
                 <div class="grid">
-                    <div class="card"><span class="stat-num loss-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية</p><p class="lang-en">Billion EGP Losses</p></div>
-                    <div class="card"><span class="stat-num loss-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة علاج نفسية</p><p class="lang-en">Billion Therapy Costs</p></div>
+                    [cite_start]<div class="card"><span class="stat-num loss-num" data-val="15">0</span><p class="lang-ar">مليار جنيه خسارة إنتاجية [cite: 45][cite_start]</p><p class="lang-en">Billion EGP Losses [cite: 45]</p></div>
+                    [cite_start]<div class="card"><span class="stat-num loss-num" data-val="4.5">0</span><p class="lang-ar">مليار تكلفة علاج نفسية [cite: 55][cite_start]</p><p class="lang-en">Billion Therapy Costs [cite: 55]</p></div>
                 </div>
             </div>
         </section>
     </div>
 
     <script>
-        // تثبيت فوري للصفحة عند الصفر ومنع التمرير السلس مؤقتاً
+        // كود التحكم الصارم في البداية
         if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
-        window.scrollTo(0, 0);
+
+        // وظيفة الإجبار على الصفر
+        function instantScrollToTop() {
+            window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+        }
+
+        // تنفيذ الإجبار فوراً وقبل أي شيء
+        instantScrollToTop();
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            instantScrollToTop();
+            // إظهار الصفحة بعد التأكد من وضعية التمرير
+            setTimeout(() => {
+                document.getElementById('mainHtml').style.opacity = "1";
+                document.documentElement.style.scrollBehavior = 'smooth';
+            }, 50);
+        });
 
         function toggleLanguage() {
             const html = document.getElementById('mainHtml');
             const btn = document.getElementById('langBtn');
             if (html.dir === "rtl") { html.dir = "ltr"; btn.innerText = "عربي"; } 
             else { html.dir = "rtl"; btn.innerText = "English"; }
-            window.scrollTo(0, 0);
+            instantScrollToTop();
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -242,9 +257,7 @@
                         if (curr < target) {
                             el.innerText = target % 1 === 0 ? Math.ceil(curr).toLocaleString() : curr.toFixed(1);
                             requestAnimationFrame(animate);
-                        } else {
-                            el.innerText = target.toLocaleString();
-                        }
+                        } else { el.innerText = target.toLocaleString(); }
                     };
                     animate(); observer.unobserve(el);
                 }
@@ -252,23 +265,8 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.stat-num').forEach(n => observer.observe(n));
-        
-        window.onscroll = () => { 
-            document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; 
-        };
-        
-        function scrollToSec(id) { 
-            const sec = document.getElementById(id);
-            window.scrollTo({ top: sec.offsetTop - 120, behavior: 'smooth' }); 
-        }
-
-        // إجبار المتصفح على البقاء في الأعلى عند اكتمال التحميل تماماً
-        window.onload = function() {
-            setTimeout(function() {
-                window.scrollTo(0, 0);
-                document.documentElement.style.scrollBehavior = 'smooth';
-            }, 10);
-        };
+        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 600 ? 'flex' : 'none'; };
+        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
     </script>
 </body>
 </html>
