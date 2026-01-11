@@ -6,9 +6,12 @@
     
     <title>CiviStories | تسونامي الوهم الرقمي</title>
     <meta name="description" content="مبادرة حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني">
+    
     <meta property="og:title" content="CiviStories | تسونامي الوهم الرقمي">
     <meta property="og:description" content="مبادرة حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني">
-    <meta property="og:image" content="CIVISTORIES Book.png">
+    <meta property="og:image" content="https://anabileg.github.io/--CiviStories/CIVISTORIES Book.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -19,7 +22,6 @@
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
-        /* حركة الخلفية السينمائية */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg');
@@ -28,7 +30,6 @@
         }
         @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35); } 100% { transform: scale(1.18); filter: brightness(0.55); } }
 
-        /* الهيدر */
         .navbar {
             height: 80px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -42,12 +43,11 @@
         .nav-links { display: flex; gap: 20px; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; }
 
-        /* أيقونات التواصل */
         .social-right-fixed { position: absolute; right: 20px; display: flex; gap: 12px; align-items: center; direction: ltr !important; }
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-youtube { color: #FF0000; }
         .fa-tiktok, .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; } .fa-pinterest { color: #E60023; }
 
-        /* شريط الأخبار - تم إبطاء السرعة جداً إلى 500 ثانية */
+        /* شريط الأخبار بطيء جداً (500 ثانية) */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 500s linear infinite; }
         .ticker-track span { display: inline-block; padding-left: 150px; font-size: 1.1rem; font-weight: bold; }
@@ -55,18 +55,16 @@
         [dir="ltr"] .ticker-track { animation: marquee-ltr 500s linear infinite; }
         @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* الهيرو */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 30px; width: 100%; align-items: center; }
         .book-static { flex: 0 0 320px; text-align: center; }
         .book-static img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px var(--gold); }
         .carousel-wide { flex: 1; height: 480px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; direction: ltr !important; }
-        /* شريط الصور - تم إبطاء السرعة جداً إلى 400 ثانية */
+        /* شريط الصور بطيء جداً (400 ثانية) */
         .track { display: flex; width: max-content; animation: infiniteSlide 400s linear infinite; }
         .track img { width: 480px; height: 480px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* رؤيتنا */
         .vision-section { 
             text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 80px 10%; margin: 40px 5%; 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image_3a7328.jpg');
@@ -75,7 +73,6 @@
         .vision-section h2 { color: var(--gold); font-size: 3.5rem; margin-bottom: 25px; }
         .vision-section p { font-size: 2.2rem; font-weight: 900; line-height: 1.8; color: #fff; }
 
-        /* الجداول */
         .section { padding: 50px 8%; }
         .glass-box { background: rgba(0,0,0,0.88); padding: 50px; border-radius: 35px; border: 1px solid var(--gold); margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
@@ -93,7 +90,6 @@
         .stat-num { font-size: 4rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
         .loss-num { color: var(--red-num) !important; }
 
-        /* واتساب */
         .btn-whatsapp-float {
             position: fixed; bottom: 30px; right: 30px; background: #25D366; color: #fff;
             padding: 15px 25px; border-radius: 50px; font-weight: bold; text-decoration: none;
