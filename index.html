@@ -45,11 +45,18 @@
         }
 
         .nav-container { width: 95%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-left-fixed { display: flex; align-items: center; gap: 15px; }
-        .nav-logo-img { height: 50px; }
-        .nav-links { display: flex; gap: 20px; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .social-right-fixed { display: flex; gap: 12px; align-items: center; }
+        
+        /* تثبيت اللوجو واللغة يساراً */
+        .nav-left-fixed { display: flex; align-items: center; gap: 20px; flex: 1; justify-content: flex-start; }
+        .nav-logo-img { height: 55px; }
+        
+        .nav-links { display: flex; gap: 20px; flex: 2; justify-content: center; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+        
+        /* تثبيت السوشيال ميديا يميناً */
+        .social-right-fixed { display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-end; }
+        .social-right-fixed a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; }
+        .social-right-fixed a:hover { color: var(--white); transform: scale(1.2); }
 
         .news-ticker { 
             background: var(--red-news); color: white; height: 45px; position: fixed; 
@@ -90,12 +97,13 @@
         
         .card { text-align: center; padding: 40px 25px; background: rgba(255,255,255,0.03); border-radius: 25px; border: 1px solid rgba(212, 175, 55, 0.2); border-bottom: 5px solid var(--gold); transition: 0.4s; position: relative; }
         
+        /* نافذة المعلومات عند الوقوف على الكارت */
         .info-popup { 
             visibility: hidden; width: 280px; background: var(--gold); color: #000; 
             text-align: center; border-radius: 12px; padding: 15px; position: absolute; 
             z-index: 100; bottom: 110%; left: 50%; transform: translateX(-50%); 
             opacity: 0; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
-            font-weight: bold; border: 2px solid #fff; 
+            font-weight: bold; border: 2px solid #fff; line-height: 1.4;
         }
         .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 
@@ -107,17 +115,11 @@
         #btnUp { position: fixed; bottom: 30px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 10002; }
 
         @media (max-width: 992px) {
-            .navbar { height: auto; padding: 15px 0; }
             .nav-container { flex-direction: column; gap: 15px; }
-            .news-ticker { top: 160px; } 
-            .hero { padding-top: 220px; }
-            .hero-container { flex-direction: column; }
-            .carousel-wide { width: 100%; height: 300px; }
+            .nav-left-fixed, .social-right-fixed { justify-content: center; width: 100%; }
+            .news-ticker { top: 180px; } 
+            .hero { padding-top: 240px; }
         }
-
-        .lang-en { display: none; }
-        [dir="ltr"] .lang-ar { display: none; }
-        [dir="ltr"] .lang-en { display: inline; }
     </style>
 </head>
 <body onload="initPage()">
@@ -132,18 +134,25 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-left-fixed">
-                <img src="logo.png" class="nav-logo-img">
+                <img src="logo.png" class="nav-logo-img" alt="Logo">
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
             </div>
+
             <div class="nav-links">
-                <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span></a>
-                <a onclick="scrollToSec('inst')"><span class="lang-ar">الشركاء</span></a>
-                <a onclick="scrollToSec('stats')"><span class="lang-ar">إحصائيات</span></a>
-                <a onclick="scrollToSec('losses')"><span class="lang-ar">خسائر</span></a>
+                <a onclick="scrollToSec('about')">رؤيتنا</a>
+                <a onclick="scrollToSec('inst')">الشركاء</a>
+                <a onclick="scrollToSec('stats')">إحصائيات</a>
+                <a onclick="scrollToSec('losses')">خسائر</a>
             </div>
+
             <div class="social-right-fixed">
                 <a href="https://www.facebook.com/people/Civistories" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:info@civistories.com"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </nav>
@@ -157,7 +166,7 @@
                     <img src="CIVISTORIES Book.png" alt="Book Cover">
                 </div>
                 <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold;">
-                    <span class="lang-ar">تصفح الكتاب</span>
+                    تصفح الكتاب
                 </a>
             </div>
             
@@ -173,33 +182,33 @@
     </section>
 
     <section id="about" class="vision-section">
-        <h2><span class="lang-ar">رؤيتنا الاستراتيجية</span></h2>
-        <p><span class="lang-ar">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</span></p>
+        <h2>رؤيتنا الاستراتيجية</h2>
+        <p>نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
     </section>
 
     <section id="inst" class="section">
         <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); font-size: 2.8rem; margin-bottom: 40px;"><span class="lang-ar">شركاء الوعي الوطني</span></h2>
+            <h2 style="text-align:center; color:var(--gold); font-size: 2.8rem; margin-bottom: 40px;">شركاء الوعي الوطني</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup">٢٥٥ حالة طلاق يومياً - حالة طلاق كل دقيقتين</div>
+                    <div class="info-popup">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً</div>
                     <img src="100.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3>الأزهر الشريف</h3>
-                    <p style="font-size: 1rem; color: #ccc; margin-top:15px; line-height:1.6;">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة والتوعية الميدانية الشاملة في كافة المحافظات.</p>
+                    <p style="font-size: 1rem; color: #ccc; margin-top:15px; line-height:1.6;">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
                 </div>
 
                 <div class="card">
-                    <div class="info-popup">٦٠٪ نزاعات الفضاء الرقمي</div>
+                    <div class="info-popup">المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي</div>
                     <img src="300.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3>الكنيسة المصرية</h3>
-                    <p style="font-size: 1rem; color: #ccc; margin-top:15px; line-height:1.6;">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة الأسرية والروحية والندوات التفاعلية المستمرة.</p>
+                    <p style="font-size: 1rem; color: #ccc; margin-top:15px; line-height:1.6;">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد.</p>
                 </div>
 
                 <div class="card">
-                    <div class="info-popup">مبادرة سكن ومودة لحماية البيت المصري</div>
+                    <div class="info-popup">المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت</div>
                     <img src="200.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3>وزارة الأوقاف</h3>
-                    <p style="font-size: 1rem; color: #ccc; margin-top:15px; line-height:1.6;">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي والاجتماعي وتعزيز قيم المودة والرحمة في البيوت.</p>
+                    <p style="font-size: 1rem; color: #ccc; margin-top:15px; line-height:1.6;">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم.</p>
                 </div>
             </div>
         </div>
@@ -210,10 +219,12 @@
             <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem;">إحصائيات</h2>
             <div class="grid">
                 <div class="card">
+                    <div class="info-popup">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية</div>
                     <span class="stat-num counter" data-target="311">0</span>
                     <p>ألف حالة طلاق سنوياً</p>
                 </div>
                 <div class="card">
+                    <div class="info-popup">المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة</div>
                     <span class="stat-num counter" data-target="104">0</span>
                     <p>مليون هاتف محمول</p>
                 </div>
@@ -226,10 +237,12 @@
             <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem;">الخسائر</h2>
             <div class="grid">
                 <div class="card" style="border-bottom-color: var(--red-num);">
+                    <div class="info-popup">المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت الرقمي</div>
                     <span class="stat-num loss-num counter" data-target="15">0</span>
                     <p style="color:var(--gold); font-weight:bold;">مليار جنيه خسائر إنتاجية</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
+                    <div class="info-popup">المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات الرقمية</div>
                     <span class="stat-num loss-num counter" data-target="4">0</span>
                     <p style="color:var(--gold); font-weight:bold;">مليارات تكلفة العلاج</p>
                 </div>
