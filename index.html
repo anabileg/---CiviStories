@@ -47,12 +47,12 @@
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-youtube { color: #FF0000; }
         .fa-tiktok, .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; } .fa-pinterest { color: #E60023; }
 
-        /* شريط الأخبار - تم إبطاء السرعة إلى 300 ثانية */
+        /* شريط الأخبار - تم إبطاء السرعة جداً إلى 500 ثانية */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 80px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 300s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 500s linear infinite; }
         .ticker-track span { display: inline-block; padding-left: 150px; font-size: 1.1rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-        [dir="ltr"] .ticker-track { animation: marquee-ltr 300s linear infinite; }
+        [dir="ltr"] .ticker-track { animation: marquee-ltr 500s linear infinite; }
         @keyframes marquee-ltr { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         /* الهيرو */
@@ -61,8 +61,8 @@
         .book-static { flex: 0 0 320px; text-align: center; }
         .book-static img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 25px var(--gold); }
         .carousel-wide { flex: 1; height: 480px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; direction: ltr !important; }
-        /* شريط الصور - تم إبطاء السرعة إلى 250 ثانية */
-        .track { display: flex; width: max-content; animation: infiniteSlide 250s linear infinite; }
+        /* شريط الصور - تم إبطاء السرعة جداً إلى 400 ثانية */
+        .track { display: flex; width: max-content; animation: infiniteSlide 400s linear infinite; }
         .track img { width: 480px; height: 480px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
