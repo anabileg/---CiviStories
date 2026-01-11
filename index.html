@@ -2,100 +2,97 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>CiviStories | النسخة النهائية للكمبيوتر</title>
+    <title>CiviStories | النسخة الشاملة والمطورة</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; }
+        :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Segoe UI', sans-serif; background: #000; overflow-x: hidden; }
+        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('image_390e08.jpg') center/cover no-repeat;
-            z-index: -1;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('image_390e08.jpg') center/cover no-repeat;
+            z-index: 1;
         }
 
-        /* هيدر اللاب توب: عرض كامل وتوزيع دقيق */
+        /* الهيدر الثابت */
         .navbar {
             height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
-            display: flex; align-items: center; padding: 0 40px; /* مسافة جانبية مريحة */
+            display: flex; align-items: center; padding: 0 30px;
         }
 
-        .nav-container { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+        .nav-left-fixed { position: absolute; left: 30px; display: flex; align-items: center; gap: 15px; z-index: 10002; direction: ltr !important; }
+        .nav-logo-img { height: 55px; }
+        .lang-toggle { background: var(--gold); border: none; padding: 6px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
+        .icon-wa { color: #25D366; font-size: 1.6rem; }
+        .icon-mail { color: #fff; font-size: 1.5rem; }
 
-        /* العناصر في اليسار ثابتة */
-        .nav-left { display: flex; align-items: center; gap: 25px; }
-        .nav-logo-img { height: 60px; transition: 0.3s; }
-        .nav-logo-img:hover { filter: drop-shadow(0 0 10px var(--gold)); }
-        
-        .lang-toggle { background: var(--gold); border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
-        .icon-wa { color: #25D366; font-size: 1.8rem; }
-        .icon-mail { color: #fff; font-size: 1.6rem; }
+        .nav-center-links { width: 100%; display: flex; justify-content: center; gap: 30px; }
+        .nav-center-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
 
-        /* الروابط في المنتصف */
-        .nav-links { display: flex; gap: 35px; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px var(--gold); }
-
-        /* العناصر في اليمين: أيقونات التواصل الاجتماعي */
-        .nav-social-right { display: flex; gap: 18px; align-items: center; }
-        .nav-social-right a { font-size: 1.5rem; text-decoration: none; transition: 0.3s; }
-        .nav-social-right a:hover { transform: translateY(-5px); }
+        .nav-right-fixed { position: absolute; right: 30px; display: flex; align-items: center; gap: 12px; z-index: 10002; direction: ltr !important; }
+        .nav-right-fixed a { font-size: 1.4rem; transition: 0.3s; }
         .fa-facebook { color: #1877F2; } .fa-instagram { color: #E4405F; } .fa-tiktok { color: #fff; }
         .fa-x-twitter { color: #fff; } .fa-youtube { color: #FF0000; } .fa-linkedin { color: #0A66C2; }
         .fa-pinterest { color: #E60023; }
 
-        /* شريط الأخبار العريض */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 150s linear infinite; }
-        .ticker-track span { padding-left: 120px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track span { padding-left: 100px; font-weight: bold; font-size: 1.1rem; }
 
-        /* قسم الهيرو المخصص للاب توب */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 5% 60px; }
-        .hero-container { display: flex; gap: 60px; width: 100%; justify-content: center; align-items: center; }
+        /* الأقسام */
+        .main-content { position: relative; z-index: 10; padding-top: 180px; }
+        .section { padding: 60px 10%; }
+        .glass-box { background: rgba(0,0,0,0.85); padding: 40px; border-radius: 30px; border: 1px solid var(--gold); margin-bottom: 40px; text-align: center; }
         
+        /* الهيرو */
+        .hero-container { display: flex; justify-content: center; align-items: center; gap: 50px; }
         .book-static { flex: 0 0 350px; text-align: center; }
-        .book-static img { width: 100%; border-radius: 20px; border: 3px solid var(--gold); box-shadow: 0 0 40px rgba(212,175,55,0.4); }
-        
-        .carousel-wide { flex: 1; max-width: 900px; height: 550px; overflow: hidden; border: 2px solid var(--gold); border-radius: 25px; }
-        .track { display: flex; width: max-content; animation: infiniteSlide 140s linear infinite; }
-        .track img { width: 733px; height: 550px; object-fit: cover; border-right: 2px solid var(--gold); }
+        .book-static img { width: 100%; border-radius: 15px; border: 3px solid var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.4); }
+        .carousel-wide { flex: 1; max-width: 850px; height: 500px; overflow: hidden; border: 2px solid var(--gold); border-radius: 20px; }
+        .track { display: flex; width: max-content; animation: infiniteSlide 120s linear infinite; }
+        .track img { width: 666px; height: 500px; object-fit: cover; border-right: 2px solid var(--gold); }
 
-        .btn-read { text-decoration:none; color:#000; background:var(--gold); padding:18px 30px; display:inline-block; margin-top:25px; border-radius:12px; font-weight:bold; font-size: 1.2rem; }
+        /* الكروت */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .card { padding: 30px; background: rgba(255,255,255,0.03); border-radius: 25px; border-bottom: 5px solid var(--gold); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); background: rgba(212,175,55,0.1); }
+        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
+        .loss-num { color: var(--red-num) !important; }
+
+        .btn-read { text-decoration:none; color:#000; background:var(--gold); padding:15px 30px; display:inline-block; margin-top:20px; border-radius:10px; font-weight:bold; font-size: 1.2rem; }
 
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
-<body onload="initPage()">
+<body onload="initAll()">
 
     <div class="site-bg"></div>
 
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-left">
-                <img src="logo.png" class="nav-logo-img">
-                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
-                <a href="https://wa.me/201009995015" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:civistories@gmail.com" class="icon-mail"><i class="fas fa-envelope"></i></a>
-            </div>
+        <div class="nav-left-fixed">
+            <img src="logo.png" class="nav-logo-img">
+            <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
+            <a href="https://wa.me/201009995015" target="_blank" class="icon-wa"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:civistories@gmail.com" class="icon-mail"><i class="fas fa-envelope"></i></a>
+        </div>
 
-            <div class="nav-links">
-                <a onclick="scrollSection('about')">رؤيتنا</a>
-                <a onclick="scrollSection('stats')">إحصائيات وواقع</a>
-                <a onclick="scrollSection('impact')">تأثيرنا المجتمعي</a>
-            </div>
+        <div class="nav-center-links">
+            <a onclick="scrollSection('about')">رؤيتنا</a>
+            <a onclick="scrollSection('inst')">المؤسسات</a>
+            <a onclick="scrollSection('stats')">إحصائيات</a>
+        </div>
 
-            <div class="nav-social-right">
-                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="#" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="#" title="Pinterest"><i class="fab fa-pinterest"></i></a>
-            </div>
+        <div class="nav-right-fixed">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
         </div>
     </nav>
 
@@ -104,36 +101,106 @@
             <span>• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي</span>
             <span>• الكنيسة المصرية: 60% من النزاعات الأسرية سببها الفضاء الرقمي</span>
             <span>• إحصائيات: 7 ساعات يومياً هو متوسط استخدام المصريين للمنصات</span>
-            <span>• مبادرة سكن ومودة: حماية البيت المصري من التفكك الإلكتروني</span>
         </div>
     </div>
 
-    <section class="hero">
-        <div class="hero-container">
-            <div class="book-static">
-                <img src="CIVISTORIES Book.png" alt="Book">
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-read">تصفح الكتاب التفاعلي</a>
+    <div class="main-content">
+        <section class="hero" style="padding: 0 5% 60px;">
+            <div class="hero-container">
+                <div class="book-static">
+                    <img src="CIVISTORIES Book.png" alt="Book">
+                    <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-read">تصفح الكتاب التفاعلي</a>
+                </div>
+                <div class="carousel-wide">
+                    <div class="track" id="imageTrack"></div>
+                </div>
             </div>
-            <div class="carousel-wide">
-                <div class="track" id="imageTrack"></div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="glass-box">
+                <h2 style="color:var(--gold); font-size: 2.5rem; margin-bottom: 20px;">رؤيتنا</h2>
+                <p style="font-size: 1.5rem; line-height: 1.8;">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار والأمان في ظل تسونامي الوهم الرقمي.</p>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="inst" class="section">
+            <div class="glass-box">
+                <h2 style="color:var(--gold); margin-bottom: 30px;">الموقف المؤسسي</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>الأزهر الشريف</h3>
+                        <p>٢٥٥ حالة طلاق يومياً</p>
+                    </div>
+                    <div class="card">
+                        <h3>الكنيسة المصرية</h3>
+                        <p>٦٠٪ نزاعات بسبب الفضاء الرقمي</p>
+                    </div>
+                    <div class="card">
+                        <h3>وزارة الأوقاف</h3>
+                        <p>مبادرة سكن ومودة لحماية الأسرة</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="stats" class="section">
+            <div class="glass-box">
+                <h2 style="color:var(--gold); margin-bottom: 30px;">إحصائيات وواقع</h2>
+                <div class="grid">
+                    <div class="card">
+                        <span class="stat-num counter" data-target="311">0</span>
+                        <p>ألف حالة طلاق سنوياً</p>
+                    </div>
+                    <div class="card">
+                        <span class="stat-num counter" data-target="104">0</span>
+                        <p>مليون هاتف محمول نشط</p>
+                    </div>
+                    <div class="card">
+                        <span class="stat-num loss-num counter" data-target="15">0</span>
+                        <p>مليار جنيه خسائر إنتاجية</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <script>
-        function initPage() {
+        function initAll() {
+            // تحميل الصور
             const imgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg"]; 
             const track = document.getElementById('imageTrack');
             imgs.concat(imgs).forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                track.appendChild(img);
+                const img = document.createElement('img'); img.src = src; track.appendChild(img);
             });
+
+            // تفعيل العدادات
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = +el.getAttribute('data-target');
+                        let count = 0;
+                        const inc = target / 50;
+                        const update = setInterval(() => {
+                            count += inc;
+                            if (count >= target) { el.innerText = target; clearInterval(update); }
+                            else { el.innerText = Math.floor(count); }
+                        }, 30);
+                    }
+                });
+            }, { threshold: 0.5 });
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
         }
+
         function toggleLanguage() {
             const h = document.documentElement;
             h.dir = (h.dir === "rtl") ? "ltr" : "rtl";
             document.getElementById('langBtn').innerText = (h.dir === "rtl") ? "English" : "عربي";
+        }
+
+        function scrollSection(id) {
+            window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' });
         }
     </script>
 </body>
