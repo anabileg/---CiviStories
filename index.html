@@ -53,6 +53,7 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
+        /* شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
@@ -76,8 +77,8 @@
 
         .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr !important; }
         
-        /* تم تعديل السرعة هنا لتكون أبطأ (300 ثانية بدلاً من 150 ثانية) */
-        .track { display: flex; width: max-content; animation: infiniteSlide 300s linear infinite; }
+        /* تم تعديل السرعة هنا لتكون بطيئة جداً (500 ثانية) لتناسب شريط الأخبار */
+        .track { display: flex; width: max-content; animation: infiniteSlide 500s linear infinite; }
         
         .track img { width: 480px; height: 480px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
