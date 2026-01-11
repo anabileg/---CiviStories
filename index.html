@@ -67,7 +67,19 @@
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
         
         .book-static { flex: 0 0 320px; text-align: center; }
-        .book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); }
+
+        /* --- تعديل حركة الكتاب فقط --- */
+        .book-wrapper img { 
+            width: 100%; border-radius: 15px; border: 2px solid var(--gold); 
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+            animation: bookFloat 3s ease-in-out infinite; 
+        }
+
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        /* --------------------------- */
 
         .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr !important; }
         .track { display: flex; width: max-content; animation: infiniteSlide 150s linear infinite; }
