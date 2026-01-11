@@ -13,7 +13,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
-
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -220,7 +220,7 @@
             100% { transform: translateX(-50%); } 
         }
 
-        /* القسم المطلوب تعديله (رؤيتنا ورسالتنا) */
+        /* القسم (رؤيتنا ورسالتنا) بناءً على التعديل المطلوب */
         .vision-section { 
             text-align: center; 
             border: 4px solid var(--gold); 
@@ -239,9 +239,11 @@
         .section { padding: 40px 5%; }
         .glass-box { background: rgba(0,0,0,0.88); padding: 40px 20px; border-radius: 35px; border: 1px solid var(--gold); margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        
+        /* كارت المؤسسة مع تعديل البوب أب */
         .card { text-align: center; padding: 30px; background: rgba(255,255,255,0.04); border-radius: 25px; border-bottom: 5px solid var(--gold); transition: 0.4s; position: relative; }
         
-        .info-popup { visibility: hidden; width: 260px; background: var(--gold); color: #000; text-align: center; border-radius: 12px; padding: 15px; position: absolute; z-index: 100; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.6); font-weight: bold; border: 2px solid #fff; }
+        .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; text-align: center; border-radius: 15px; padding: 15px; position: absolute; z-index: 100; bottom: 115%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.6); font-weight: bold; border: 2px solid #fff; line-height: 1.4; }
         .card:hover .info-popup { visibility: visible; opacity: 1; }
 
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
@@ -326,13 +328,9 @@
     </section>
 
     <section id="about" class="vision-section">
-        <h2><span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span></h2>
-        <p><span class="lang-ar">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني</span>
-           <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration</span></p>
-        
-        <h3><span class="lang-ar">رسالتنا</span><span class="lang-en">Our Mission</span></h3>
-        <p><span class="lang-ar">توعية الأسرة المصرية بمخاطر الإدمان الرقمي واستعادة الاستقرار الأسري من خلال مبادرة قصص الحضارات</span>
-           <span class="lang-en">Raising awareness about digital addiction and restoring family stability through Civilization Stories Initiative</span></p>
+        <h2><span class="lang-ar">رؤيتنا الاستراتيجية</span><span class="lang-en">Our Vision</span></h2>
+        <p><span class="lang-ar">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</span>
+           <span class="lang-en">We aim through the Civilization Stories initiative to protect the Egyptian social fabric from digital disintegration.</span></p>
     </section>
 
     <section id="inst" class="section">
@@ -340,22 +338,24 @@
             <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom: 25px;"><span class="lang-ar">الموقف المؤسسي</span><span class="lang-en">Official Stance</span></h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup"><span class="lang-ar">المصدر: الأزهر الشريف - حالة طلاق كل دقيقتين</span></div>
+                    <div class="info-popup"><span class="lang-ar">٢٥٥ حالة طلاق يومياً - حالة طلاق كل دقيقتين</span></div>
                     <img src="100.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
-                    <p><b>٢٥٥ <span class="lang-ar">حالة طلاق يومياً</span></b></p>
+                    <p style="font-size: 0.95rem; margin-top:10px; line-height:1.5;"><span class="lang-ar">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة والتوعية الميدانية الشاملة في كافة المحافظات.</span></p>
                 </div>
+
                 <div class="card">
-                    <div class="info-popup"><span class="lang-ar">المصدر: معهد المشورة - نزاعات الفضاء الرقمي</span></div>
+                    <div class="info-popup"><span class="lang-ar">٦٠٪ نزاعات الفضاء الرقمي</span></div>
                     <img src="300.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
-                    <p><b>٦٠٪<span class="lang-ar">نزاعات رقمية</span></b></p>
+                    <p style="font-size: 0.95rem; margin-top:10px; line-height:1.5;"><span class="lang-ar">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة الأسرية والروحية والندوات التفاعلية المستمرة.</span></p>
                 </div>
+
                 <div class="card">
-                    <div class="info-popup"><span class="lang-ar">مبادرة "سكن ومودة" لحماية البيت المصري</span></div>
+                    <div class="info-popup"><span class="lang-ar">مبادرة سكن ومودة لحماية البيت المصري</span></div>
                     <img src="200.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3><span class="lang-ar">وزارة الأوقاف</span><span class="lang-en">Awqaf Ministry</span></h3>
-                    <p><b><span class="lang-ar">حماية الأسرة</span></b></p>
+                    <p style="font-size: 0.95rem; margin-top:10px; line-height:1.5;"><span class="lang-ar">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي والاجتماعي وتعزيز قيم المودة والرحمة في البيوت.</span></p>
                 </div>
             </div>
         </div>
