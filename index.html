@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
-    <title>CiviStories | تسونامي الوهم الرقمي</title>
+    <title>قصص الحضارات | تسونامي الوهم الرقمي</title>
     
     <meta name="description" content="مبادرة حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني">
-    <meta property="og:title" content="CiviStories | تسونامي الوهم الرقمي">
+    <meta property="og:title" content="قصص الحضارات | تسونامي الوهم الرقمي">
     <meta property="og:description" content="مبادرة حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني">
     <meta property="og:image" content="https://anabileg.github.io/---CiviStories/CIVISTORIES%20Book.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -148,11 +146,11 @@
             100% { transform: translateX(100%); } 
         }
 
-        /* [إضافة: حركة غلاف الكتاب المتطورة] */
+        /* حركة غلاف الكتاب */
         .book-static { 
             flex: 0 0 320px; 
             text-align: center; 
-            perspective: 1000px; /* يعطي عمق للحركة */
+            perspective: 1000px; 
         }
 
         .book-wrapper {
@@ -163,7 +161,7 @@
         }
 
         .book-wrapper:hover {
-            transform: rotateY(-15deg) rotateX(5deg) scale(1.05); /* حركة إمالة عند الوقوف عليها */
+            transform: rotateY(-15deg) rotateX(5deg) scale(1.05);
         }
 
         .book-static img { 
@@ -174,8 +172,31 @@
             transition: box-shadow 0.5s;
         }
 
-        .book-wrapper:hover img {
-            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.6);
+        /* قسم الرؤية الاستراتيجية الجديد */
+        .vision-container {
+            width: 90%;
+            margin: 60px auto;
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        .vision-image-box {
+            width: 100%;
+            border: 2px solid var(--gold);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .vision-image-box img {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s;
+        }
+
+        .vision-image-box:hover img {
+            transform: scale(1.02);
         }
 
         /* الهيرو */
@@ -220,21 +241,6 @@
             100% { transform: translateX(-50%); } 
         }
 
-        /* رؤيتنا والمؤسسات وباقي الأقسام */
-        .vision-section { 
-            text-align: center; 
-            border: 4px solid var(--gold); 
-            border-radius: 40px; 
-            padding: 60px 5%; 
-            margin: 40px 5%; 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('image_3a7328.jpg');
-            background-size: cover; 
-            background-position: center;
-        }
-
-        .vision-section h2 { color: var(--gold); font-size: 3rem; margin-bottom: 25px; }
-        .vision-section p { font-size: 1.8rem; font-weight: 800; line-height: 1.6; color: #fff; }
-
         .section { padding: 40px 5%; }
         .glass-box { background: rgba(0,0,0,0.88); padding: 40px 20px; border-radius: 35px; border: 1px solid var(--gold); margin-bottom: 40px; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
@@ -246,8 +252,7 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 10px; }
         .loss-num { color: var(--red-num) !important; }
 
-        .btn-whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; z-index: 10002; box-shadow: 0 5px 20px rgba(0,0,0,0.5); }
-        .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; color: #000; }
+        .btn-whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: #fff; padding: 12px 20px; border-radius: 50px; font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 10px; z-index: 10002; }
         #btnUp { position: fixed; bottom: 30px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; color: #000; z-index: 10002; }
 
         @media (max-width: 992px) {
@@ -259,10 +264,6 @@
             .book-static { flex: 0 0 auto; width: 260px; }
             .carousel-wide { width: 100%; height: 300px; }
         }
-
-        .lang-en { display: none; }
-        [dir="ltr"] .lang-ar { display: none; }
-        [dir="ltr"] .lang-en { display: inline; }
     </style>
 </head>
 <body onload="initPage()">
@@ -272,30 +273,29 @@
     
     <a href="https://wa.me/201009995015" class="btn-whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
-        <span class="lang-ar">شاركنا برأيك</span><span class="lang-en">Share Your Feedback</span>
+        <span>شاركنا برأيك</span>
     </a>
 
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-left-fixed">
                 <img src="logo.png" class="nav-logo-img">
-                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <a href="https://wa.me/201009995015" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:civistories@gmail.com?bcc=anabileg@gmail.com"><i class="fas fa-envelope"></i></a>
+                <a href="mailto:civistories@gmail.com"><i class="fas fa-envelope"></i></a>
             </div>
             <div class="nav-links">
-                <a onclick="scrollToSec('about')"><span class="lang-ar">رؤيتنا</span><span class="lang-en">Vision</span></a>
-                <a onclick="scrollToSec('inst')"><span class="lang-ar">المؤسسات</span><span class="lang-en">Institutions</span></a>
-                <a onclick="scrollToSec('stats')"><span class="lang-ar">إحصائيات</span><span class="lang-en">Stats</span></a>
-                <a onclick="scrollToSec('losses')"><span class="lang-ar">خسائر</span><span class="lang-en">Losses</span></a>
+                <a onclick="scrollToSec('vision')">رؤيتنا الاستراتيجية</a>
+                <a onclick="scrollToSec('inst')">المؤسسات</a>
+                <a onclick="scrollToSec('stats')">إحصائيات</a>
+                <a onclick="scrollToSec('losses')">خسائر</a>
             </div>
             <div class="social-right-fixed">
-                <a href="https://www.facebook.com/people/Civistories" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com/civistoriesarabic/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/civistories" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/civistories" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.youtube.com/@CiviStories" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </nav>
@@ -308,9 +308,7 @@
                 <div class="book-wrapper">
                     <img src="CIVISTORIES Book.png" alt="Book Cover">
                 </div>
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold;">
-                    <span class="lang-ar">تصفح الكتاب</span><span class="lang-en">Read Book</span>
-                </a>
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold;">تصفح الكتاب</a>
             </div>
             
             <div class="carousel-wide">
@@ -324,33 +322,33 @@
         </div>
     </section>
 
-    <section id="about" class="vision-section">
-        <h2><span class="lang-ar">رؤيتنا</span><span class="lang-en">Our Vision</span></h2>
-        <p><span class="lang-ar">حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني وتوعية الأسرة لاستعادة الاستقرار والأمان</span>
-           <span class="lang-en">Protecting the Egyptian social fabric from digital disintegration and restoring family stability</span></p>
+    <section id="vision" class="vision-container">
+        <div class="vision-image-box">
+            <img src="vision_image.jpg" alt="رؤيتنا الاستراتيجية - قصص الحضارات">
+        </div>
     </section>
 
     <section id="inst" class="section">
         <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom: 25px;"><span class="lang-ar">الموقف المؤسسي</span><span class="lang-en">Official Stance</span></h2>
+            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom: 25px;">الموقف المؤسسي</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup"><span class="lang-ar">المصدر: الأزهر الشريف - حالة طلاق كل دقيقتين</span></div>
+                    <div class="info-popup">المصدر: الأزهر الشريف - حالة طلاق كل دقيقتين</div>
                     <img src="100.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-                    <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar</span></h3>
-                    <p><b>٢٥٥ <span class="lang-ar">حالة طلاق يومياً</span></b></p>
+                    <h3>الأزهر الشريف</h3>
+                    <p><b>٢٥٥ حالة طلاق يومياً</b></p>
                 </div>
                 <div class="card">
-                    <div class="info-popup"><span class="lang-ar">المصدر: معهد المشورة - نزاعات الفضاء الرقمي</span></div>
+                    <div class="info-popup">المصدر: معهد المشورة - نزاعات الفضاء الرقمي</div>
                     <img src="300.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-                    <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">The Church</span></h3>
-                    <p><b>٦٠٪<span class="lang-ar">نزاعات رقمية</span></b></p>
+                    <h3>الكنيسة المصرية</h3>
+                    <p><b>٦٠٪ نزاعات رقمية</b></p>
                 </div>
                 <div class="card">
-                    <div class="info-popup"><span class="lang-ar">مبادرة "سكن ومودة" لحماية البيت المصري</span></div>
+                    <div class="info-popup">مبادرة "سكن ومودة" لحماية البيت المصري</div>
                     <img src="200.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-                    <h3><span class="lang-ar">وزارة الأوقاف</span><span class="lang-en">Awqaf Ministry</span></h3>
-                    <p><b><span class="lang-ar">حماية الأسرة</span></b></p>
+                    <h3>وزارة الأوقاف</h3>
+                    <p><b>حماية الأسرة</b></p>
                 </div>
             </div>
         </div>
@@ -358,15 +356,15 @@
 
     <section id="stats" class="section">
         <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem;"><span class="lang-ar">إحصائيات</span><span class="lang-en">Statistics</span></h2>
+            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem;">إحصائيات</h2>
             <div class="grid">
                 <div class="card">
                     <span class="stat-num counter" data-target="311">0</span>
-                    <p><span class="lang-ar">ألف حالة طلاق سنوياً</span></p>
+                    <p>ألف حالة طلاق سنوياً</p>
                 </div>
                 <div class="card">
                     <span class="stat-num counter" data-target="104">0</span>
-                    <p><span class="lang-ar">مليون هاتف محمول</span></p>
+                    <p>مليون هاتف محمول</p>
                 </div>
             </div>
         </div>
@@ -374,50 +372,40 @@
 
     <section id="losses" class="section">
         <div class="glass-box" style="border-color: var(--red-num);">
-            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem;"><span class="lang-ar">الخسائر</span><span class="lang-en">Losses</span></h2>
+            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem;">الخسائر</h2>
             <div class="grid">
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <span class="stat-num loss-num counter" data-target="15">0</span>
-                    <p style="color:var(--gold); font-weight:bold;"><span class="lang-ar">مليار جنيه خسائر إنتاجية</span></p>
+                    <p style="color:var(--gold); font-weight:bold;">مليار جنيه خسائر إنتاجية</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <span class="stat-num loss-num counter" data-target="4">0</span>
-                    <p style="color:var(--gold); font-weight:bold;"><span class="lang-ar">مليارات تكلفة العلاج</span></p>
+                    <p style="color:var(--gold); font-weight:bold;">مليارات تكلفة العلاج</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer style="text-align:center; padding:60px; color:var(--gold); background: rgba(0,0,0,0.9);">
-        <p>© 2026 CiviStories | جميع الحقوق محفوظة</p>
+        <p>© 2026 قصص الحضارات | جميع الحقوق محفوظة</p>
     </footer>
 
     <script>
         function initPage() {
-            if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
             window.scrollTo(0, 0);
             updateTicker();
         }
 
-        const news = {
-            ar: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري"],
-            en: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Red Alert: Family disintegration threatens Egypt's stability"]
-        };
+        const newsAr = [
+            "• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي من خلال مبادرة قصص الحضارات", 
+            "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي - قصص الحضارات", 
+            "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري"
+        ];
 
         function updateTicker() {
-            const lang = document.documentElement.dir === "rtl" ? 'ar' : 'en';
-            const content = news[lang].join('   ---   ');
+            const content = newsAr.join('   ---   ');
             const track = document.getElementById('tickerTrack');
-            track.innerHTML = `<span>${content}</span><span>${content}</span><span>${content}</span>`;
-        }
-
-        function toggleLanguage() {
-            const h = document.documentElement;
-            const b = document.getElementById('langBtn');
-            h.dir = (h.dir === "rtl") ? "ltr" : "rtl";
-            b.innerText = (h.dir === "rtl") ? "English" : "عربي";
-            updateTicker();
-            resetCounters();
+            track.innerHTML = `<span>${content}</span><span>${content}</span>`;
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -435,7 +423,6 @@
             });
         }, { threshold: 0.5 });
 
-        function resetCounters() { document.querySelectorAll('.counter').forEach(c => { c.innerText = "0"; observer.observe(c); }); }
         document.querySelectorAll('.counter').forEach(c => observer.observe(c));
         window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
         function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
