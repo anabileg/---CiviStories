@@ -38,22 +38,24 @@
             align-items: center; 
         }
         
+        /* اليمين: لوجو، لغة، وأيقونات التواصل المحددة */
         .nav-right-fixed { display: flex; align-items: center; gap: 20px; flex: 1; justify-content: flex-end; }
         .nav-logo-img { height: 60px; }
         
+        /* المنتصف: روابط */
         .nav-links { display: flex; gap: 20px; flex: 1; justify-content: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
 
+        /* اليسار: باقي أيقونات التواصل */
         .social-left-fixed { display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start; }
         .social-left-fixed a { font-size: 1.4rem; transition: 0.3s; }
         
         .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
-        .ic-in { color: var(--in); } .ic-em { color: var(--gold); } .ic-wa { color: #25D366; }
+        .ic-in { color: var(--in); } .ic-em { color: var(--gold); font-size: 1.4rem; } .ic-wa { color: #25D366; font-size: 1.4rem; }
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
-        /* شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
@@ -76,10 +78,7 @@
         }
 
         .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr !important; }
-        
-        /* تم تعديل السرعة هنا لتكون بطيئة جداً (500 ثانية) لتناسب شريط الأخبار */
         .track { display: flex; width: max-content; animation: infiniteSlide 500s linear infinite; }
-        
         .track img { width: 480px; height: 480px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
@@ -113,6 +112,8 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-right-fixed">
+                <a href="https://wa.me/201009995015" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:info@civistories.com" class="ic-em"><i class="fas fa-envelope"></i></a>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <img src="logo.png" class="nav-logo-img" alt="Logo">
             </div>
@@ -125,8 +126,6 @@
             </div>
 
             <div class="social-left-fixed">
-                <a href="https://wa.me/201009995015" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
-                <a href="mailto:info@civistories.com" class="ic-em"><i class="fas fa-envelope"></i></a>
                 <a href="#" class="ic-in"><i class="fab fa-linkedin"></i></a>
                 <a href="#" class="ic-pr"><i class="fab fa-pinterest"></i></a>
                 <a href="#" class="ic-tk"><i class="fab fa-tiktok"></i></a>
