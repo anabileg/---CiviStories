@@ -5,99 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CiviStories | تسونامي الوهم الرقمي</title>
     
+    <meta property="og:title" content="CiviStories | تسونامي الوهم الرقمي">
+    <meta property="og:image" content="https://anabileg.github.io/---CiviStories/CIVISTORIES%20Book.png">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
+        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
 
-        /* الخلفية الثابتة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg'); background-position: center; background-size: cover;
             z-index: -1; filter: brightness(0.3);
         }
 
-        /* الهيدر المطور - حل مشكلة التداخل */
+        /* الهيدر - العودة للتنسيق المعتمد وحل التداخل */
         .navbar {
-            background: rgba(0,0,0,0.98); position: fixed; top: 0; width: 100%; z-index: 10001;
-            border-bottom: 2px solid var(--gold); padding: 10px 0;
+            background: rgba(0,0,0,0.96); position: fixed; top: 0; width: 100%; z-index: 10001;
+            border-bottom: 2px solid var(--gold); padding: 8px 0;
         }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 15px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0 10px; }
         
-        .nav-top-row { display: flex; width: 100%; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-        .nav-logo-img { height: 45px; }
+        .nav-top-row { display: flex; width: 100%; justify-content: space-between; align-items: center; }
+        .nav-logo-img { height: 40px; }
         
-        /* أيقونات التواصل الـ 7 كاملة */
-        .social-icons { display: flex; gap: 12px; font-size: 1.2rem; }
-        .social-icons a { color: var(--white); text-decoration: none; transition: 0.3s; }
+        /* الأيقونات الـ 7 كاملة */
+        .social-icons { display: flex; gap: 10px; font-size: 1.1rem; }
+        .social-icons a { color: #fff; text-decoration: none; }
         .fa-facebook { color: #1877F2; } .fa-whatsapp { color: #25D366; } .fa-instagram { color: #E4405F; }
         .fa-tiktok { color: #fff; } .fa-x-twitter { color: #fff; } .fa-linkedin { color: #0A66C2; } .fa-pinterest { color: #E60023; }
 
-        .nav-links { display: flex; gap: 20px; font-weight: bold; justify-content: center; width: 100%; }
-        .nav-links a { color: var(--gold); text-decoration: none; cursor: pointer; font-size: 0.95rem; }
+        .nav-links { display: flex; gap: 18px; font-weight: bold; justify-content: center; width: 100%; }
+        .nav-links a { color: var(--gold); text-decoration: none; cursor: pointer; font-size: 0.9rem; }
 
-        .lang-toggle { background: var(--gold); border: none; padding: 6px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; color: #000; }
+        .lang-toggle { background: var(--gold); border: none; padding: 5px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; color: #000; }
 
-        /* شريط الأخبار - حل مشكلة الإفراغ نائياً */
-        .news-ticker { background: var(--red-news); color: white; height: 40px; position: relative; margin-top: 125px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 40s linear infinite; }
-        .ticker-track span { padding-left: 60px; font-size: 1rem; font-weight: bold; }
+        /* شريط الأخبار - حل مشكلة الفراغ نهائياً */
+        .news-ticker { background: var(--red-news); color: white; height: 35px; position: relative; margin-top: 110px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 50s linear infinite; }
+        .ticker-track span { padding-left: 50px; font-size: 0.95rem; font-weight: bold; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-        [dir="ltr"] .ticker-track { animation: marquee-en 40s linear infinite; }
+        [dir="ltr"] .ticker-track { animation: marquee-en 50s linear infinite; }
         @keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-        /* شريط الصور - حل مشكلة الظهور */
-        .carousel-container { width: 95%; max-width: 1100px; height: 380px; margin: 30px auto; overflow: hidden; border: 3px solid var(--gold); border-radius: 20px; position: relative; }
+        /* شريط الصور - المعتمد */
+        .hero-carousel { width: 95%; max-width: 1100px; height: 380px; margin: 25px auto; overflow: hidden; border: 3px solid var(--gold); border-radius: 20px; position: relative; }
         .track { display: flex; width: max-content; animation: slide 80s linear infinite; }
         .track img { height: 380px; width: auto; border-right: 2px solid var(--gold); }
         @keyframes slide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* تصفح الكتاب */
-        .book-section { text-align: center; margin-bottom: 40px; }
-        .book-img { width: 250px; border: 2px solid var(--gold); border-radius: 15px; box-shadow: 0 0 25px var(--gold); margin-bottom: 20px; }
-        .btn-main { background: var(--gold); color: #000 !important; padding: 14px 40px; border-radius: 12px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 1.1rem; }
+        /* الكتاب */
+        .book-section { text-align: center; margin-bottom: 30px; }
+        .book-img { width: 230px; border: 2px solid var(--gold); border-radius: 15px; box-shadow: 0 0 20px var(--gold); margin-bottom: 15px; }
+        .btn-main { background: var(--gold); color: #000 !important; padding: 12px 35px; border-radius: 10px; text-decoration: none; font-weight: bold; display: inline-block; }
 
-        /* الأقسام - العناوين في المنتصف تماماً */
-        .glass-box { background: rgba(0,0,0,0.88); padding: 40px 20px; border-radius: 25px; border: 1px solid var(--gold); margin: 30px auto; max-width: 1100px; width: 92%; }
-        .section-title { color: var(--gold); text-align: center; font-size: 2.2rem; margin-bottom: 30px; display: block; width: 100%; }
+        /* العناوين في المنتصف تماماً */
+        .glass-box { background: rgba(0,0,0,0.85); padding: 30px 15px; border-radius: 25px; border: 1px solid var(--gold); margin: 25px auto; max-width: 1100px; width: 94%; text-align: center; }
+        .section-title { color: var(--gold); font-size: 2rem; margin-bottom: 25px; display: block; width: 100%; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        
-        /* صناديق المعلومات - حل مشكلة الانجليزي */
-        .card { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 20px; border-bottom: 5px solid var(--gold); text-align: center; position: relative; overflow: visible; cursor: pointer; }
-        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; border-bottom: 4px solid var(--gold); position: relative; cursor: pointer; }
+        .stat-num { font-size: 3rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num); }
 
+        /* صناديق المعلومات - حل بيانات الإنجليزي */
         .info-tip { 
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%) translateY(-100%);
-            background: var(--gold); color: #000; padding: 10px 15px; border-radius: 8px;
-            font-size: 0.9rem; font-weight: bold; width: 90%; visibility: hidden; opacity: 0; transition: 0.3s; z-index: 100;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            position: absolute; top: -5px; left: 50%; transform: translateX(-50%) translateY(-100%);
+            background: var(--gold); color: #000; padding: 10px; border-radius: 8px; font-size: 0.85rem;
+            width: 85%; visibility: hidden; opacity: 0; transition: 0.3s; z-index: 100;
         }
-        .card:hover .info-tip { visibility: visible; opacity: 1; top: -15px; }
+        .card:hover .info-tip { visibility: visible; opacity: 1; top: -10px; }
 
-        /* الأزرار الطافية - حل التغطية */
-        .float-nav { position: fixed; bottom: 25px; width: 100%; display: flex; justify-content: space-between; padding: 0 30px; z-index: 10002; pointer-events: none; }
+        /* الأزرار الطافية - حل مشكلة التغطية */
+        .float-nav { position: fixed; bottom: 20px; width: 100%; display: flex; justify-content: space-between; padding: 0 20px; z-index: 10002; pointer-events: none; }
         .float-nav * { pointer-events: auto; }
-        .wa-float { background: #25D366; color: white !important; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .up-float { background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; cursor: pointer; }
+        .wa-float { background: #25D366; color: white !important; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+        .up-float { background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; }
 
         .lang-en { display: none; }
         [dir="ltr"] .lang-ar { display: none; }
         [dir="ltr"] .lang-en { display: inline; }
 
         @media (max-width: 768px) {
-            .nav-top-row { justify-content: center; gap: 15px; }
-            .nav-links { gap: 12px; font-size: 0.8rem; }
-            .carousel-container { height: 280px; }
-            .track img { height: 280px; }
-            .news-ticker { margin-top: 150px; }
-            .stat-num { font-size: 2.5rem; }
+            .nav-top-row { justify-content: center; gap: 10px; }
+            .nav-links { gap: 10px; font-size: 0.75rem; }
+            .hero-carousel { height: 260px; }
+            .track img { height: 260px; }
+            .news-ticker { margin-top: 135px; }
         }
     </style>
 </head>
-<body onload="initPage()">
+<body onload="startSite()">
 
     <div class="site-bg"></div>
 
@@ -126,12 +125,12 @@
     </nav>
 
     <div class="news-ticker">
-        <div class="ticker-track" id="tickerBox"></div>
+        <div class="ticker-track" id="newsTrack"></div>
     </div>
 
     <section class="hero">
-        <div class="carousel-container">
-            <div class="track" id="imgTrack"></div>
+        <div class="hero-carousel">
+            <div class="track" id="photoTrack"></div>
         </div>
         <div class="book-section">
             <img src="CIVISTORIES Book.png" class="book-img">
@@ -147,21 +146,21 @@
         <div class="grid">
             <div class="card">
                 <div class="info-tip">
-                    <span class="lang-ar">المصدر: الأزهر - حالة طلاق كل دقيقتين</span>
-                    <span class="lang-en">Source: Al-Azhar - Divorce every 2 mins</span>
+                    <span class="lang-ar">الأزهر: حالة طلاق كل دقيقتين بسبب الإدمان</span>
+                    <span class="lang-en">Al-Azhar: Divorce every 2 mins due to addiction</span>
                 </div>
-                <img src="100.png" style="width:80px; margin-bottom:15px; border-radius:50%; border:2px solid var(--gold);">
+                <img src="100.png" style="width:70px; border-radius:50%; border:2px solid var(--gold); margin-bottom:10px;">
                 <h3><span class="lang-ar">الأزهر الشريف</span><span class="lang-en">Al-Azhar Al-Sharif</span></h3>
                 <p>٢٥٥ <span class="lang-ar">حالة طلاق يومياً</span><span class="lang-en">Cases Daily</span></p>
             </div>
             <div class="card">
                 <div class="info-tip">
-                    <span class="lang-ar">المصدر: الكنيسة - ٦٠٪ نزاعات رقمية</span>
-                    <span class="lang-en">Source: Church - 60% Digital Conflicts</span>
+                    <span class="lang-ar">الأوقاف: الموبايل سبب رئيسي للخرس الزوجي</span>
+                    <span class="lang-en">Awqaf: Mobile is a main cause of marital silence</span>
                 </div>
-                <img src="300.png" style="width:80px; margin-bottom:15px; border-radius:50%; border:2px solid var(--gold);">
-                <h3><span class="lang-ar">الكنيسة المصرية</span><span class="lang-en">Egyptian Church</span></h3>
-                <p>٦٠٪ <span class="lang-ar">نزاعات بسبب الفضاء الرقمي</span><span class="lang-en">Conflicts via Digital Space</span></p>
+                <img src="300.png" style="width:70px; border-radius:50%; border:2px solid var(--gold); margin-bottom:10px;">
+                <h3><span class="lang-ar">وزارة الأوقاف</span><span class="lang-en">Ministry of Awqaf</span></h3>
+                <p><span class="lang-ar">تحذير من الخرس الزوجي</span><span class="lang-en">Warning: Marital Silence</span></p>
             </div>
         </div>
     </section>
@@ -179,8 +178,8 @@
             </div>
             <div class="card">
                 <div class="info-tip">
-                    <span class="lang-ar">المصدر: وزارة الاتصالات</span>
-                    <span class="lang-en">Source: Ministry of ICT</span>
+                    <span class="lang-ar">المصدر: وزارة الاتصالات - عدد المشتركين</span>
+                    <span class="lang-en">Source: Ministry of ICT - Subscribers</span>
                 </div>
                 <span class="stat-num">104</span>
                 <p><span class="lang-ar">مليون هاتف محمول</span><span class="lang-en">Million Mobile Phones</span></p>
@@ -193,16 +192,16 @@
         <div class="grid">
             <div class="card" style="border-color: var(--red-num);">
                 <div class="info-tip">
-                    <span class="lang-ar">خسائر وقت العمل والإنتاج المهدر</span>
-                    <span class="lang-en">Loss of productivity and work time</span>
+                    <span class="lang-ar">خسائر الإنتاجية بسبب إهدار الوقت رقمياً</span>
+                    <span class="lang-en">Productivity loss due to digital time waste</span>
                 </div>
                 <span class="stat-num loss-num">15</span>
                 <p><span class="lang-ar">مليار جنيه خسائر إنتاجية</span><span class="lang-en">Billion EGP Prod. Loss</span></p>
             </div>
             <div class="card" style="border-color: var(--red-num);">
                 <div class="info-tip">
-                    <span class="lang-ar">تكاليف مراكز العلاج النفسي والإدمان</span>
-                    <span class="lang-en">Psychological & Addiction Therapy Costs</span>
+                    <span class="lang-ar">تكاليف علاج الإدمان الرقمي والاضطرابات</span>
+                    <span class="lang-en">Cost of digital addiction & disorder therapy</span>
                 </div>
                 <span class="stat-num loss-num">4</span>
                 <p><span class="lang-ar">مليارات تكلفة العلاج</span><span class="lang-en">Billions Therapy Cost</span></p>
@@ -218,23 +217,24 @@
     </div>
 
     <script>
-        const newsItems = {
+        const news = {
             ar: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب للخرس الزوجي", "• إحصائيات: 7 ساعات يومياً هو متوسط الاستخدام"],
             en: ["• Al-Azhar: Divorce every 2 mins due to digital addiction", "• Ministry of Awqaf: Smartphones cause marital silence", "• Stats: 7 hours daily average usage"]
         };
 
-        function initPage() {
+        function startSite() {
             updateTicker();
             const imgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.png","13.jpg","15.jpg","17.jpg","18.jpg","20.jpg","21.jpg","25.jpg","31.jpg","35.jpg","45.jpg","47.jpg","48.jpg","64.jpg","75.jpg","79.jpg","23.png","82.png"];
-            const track = document.getElementById('imgTrack');
+            const track = document.getElementById('photoTrack');
             const content = imgs.map(i => `<img src="${i}" loading="lazy">`).join('');
             track.innerHTML = content + content;
         }
 
         function updateTicker() {
-            const lang = document.documentElement.dir === "rtl" ? 'ar' : 'en';
-            const text = newsItems[lang].join('    ---    ');
-            document.getElementById('tickerBox').innerHTML = `<span>${text}</span><span>${text}</span>`;
+            const isRTL = document.documentElement.dir === "rtl";
+            const lang = isRTL ? 'ar' : 'en';
+            const text = news[lang].join('    ---    ');
+            document.getElementById('newsTrack').innerHTML = `<span>${text}</span><span>${text}</span>`;
         }
 
         function toggleLang() {
