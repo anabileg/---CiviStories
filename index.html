@@ -38,17 +38,14 @@
             align-items: center; 
         }
         
-        /* اليمين: لوجو، لغة، وأيقونات التواصل المحددة */
         .nav-right-fixed { display: flex; align-items: center; gap: 20px; flex: 1; justify-content: flex-end; }
         .nav-logo-img { height: 60px; }
         
-        /* المنتصف: روابط */
         .nav-links { display: flex; gap: 20px; flex: 1; justify-content: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
 
-        /* اليسار: باقي أيقونات التواصل */
         .social-left-fixed { display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start; }
-        .social-left-fixed a { font-size: 1.4rem; transition: 0.3s; }
+        .social-left-fixed a { font-size: 1.4rem; transition: 0.3s; text-decoration: none; }
         
         .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
@@ -112,7 +109,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-right-fixed">
-                <a href="https://wa.me/201009995015" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/201009995015" target="_blank" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
                 <a href="mailto:info@civistories.com" class="ic-em"><i class="fas fa-envelope"></i></a>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <img src="logo.png" class="nav-logo-img" alt="Logo">
@@ -126,13 +123,13 @@
             </div>
 
             <div class="social-left-fixed">
-                <a href="#" class="ic-in"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="ic-pr"><i class="fab fa-pinterest"></i></a>
-                <a href="#" class="ic-tk"><i class="fab fa-tiktok"></i></a>
-                <a href="#" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/people/Civistories" class="ic-fb"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.youtube.com/@CiviStories" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.linkedin.com/company/civistories/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
+                <a href="https://www.tiktok.com/@civistories" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.instagram.com/civistories/" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/people/Civistories/61556673190886/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
     </nav>
