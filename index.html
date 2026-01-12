@@ -54,11 +54,12 @@
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
+        
+        /* السرعة البطيئة (500 ثانية) لضمان انسيابية هادئة كما طلبت */
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 500s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
-        /* تعديل اتجاه الانيميشن ليكون متوافق مع الـ RTL/LTR بشكل تلقائي عبر الجافاسكريبت */
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
@@ -70,10 +71,7 @@
             animation: bookFloat 3s ease-in-out infinite; 
         }
 
-        @keyframes bookFloat {
-            0%, 100% { transform: translateY(0) rotate(0); }
-            50% { transform: translateY(-15px) rotate(2deg); }
-        }
+        @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-15px) rotate(2deg); } }
 
         .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr !important; }
         .track { display: flex; width: max-content; animation: infiniteSlide 500s linear infinite; }
@@ -303,25 +301,23 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // شريط الأخبار: نجمع النصوص بفاصل مسافة (كما طلبت)
+            const tickerTrack = document.getElementById('tickerTrack');
+            // استخدام مسافة عادية كفواصل كما طلبت
             const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
-            // تكرار النص مرتين لضمان حلقة وصل مستمرة (Seamless Loop)
-            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
             
-            // ضبط اتجاه الأنيميشن بناءً على اللغة
+            // ضبط اتجاه الحركة حسب اللغة مع الحفاظ على زمن 500 ثانية
             const track = document.getElementById('tickerTrack');
             if (currentLang === 'ar') {
-                track.style.animation = "marquee 180s linear infinite";
+                track.style.animation = "marquee 500s linear infinite";
             } else {
-                track.style.animation = "marquee-en 180s linear infinite";
+                track.style.animation = "marquee-en 500s linear infinite";
             }
         }
 
-        // إضافة Keyframe للانجليزي لضمان الاتجاه الصحيح
+        // إضافة ستايل إضافي للنسخة الإنجليزية لضمان صحة الاتجاه
         const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        `;
+        style.innerHTML = `@keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }`;
         document.head.appendChild(style);
 
         function initPage() {
