@@ -55,8 +55,8 @@
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         
-        /* السرعة البطيئة (700 ثانية) لضمان انسيابية هادئة كما طلبت */
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 700s linear infinite; }
+        /* السرعة البطيئة (900 ثانية) لضمان انسيابية هادئة جداً */
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
@@ -302,20 +302,18 @@
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
             const tickerTrack = document.getElementById('tickerTrack');
-            // استخدام مسافة عادية كفواصل كما طلبت
             const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
             tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
             
-            // ضبط اتجاه الحركة حسب اللغة مع الحفاظ على زمن 500 ثانية
             const track = document.getElementById('tickerTrack');
+            // تم ضبط زمن الحركة هنا إلى 900 ثانية لتكون أبطأ وأهدأ
             if (currentLang === 'ar') {
-                track.style.animation = "marquee 500s linear infinite";
+                track.style.animation = "marquee 900s linear infinite";
             } else {
-                track.style.animation = "marquee-en 500s linear infinite";
+                track.style.animation = "marquee-en 900s linear infinite";
             }
         }
 
-        // إضافة ستايل إضافي للنسخة الإنجليزية لضمان صحة الاتجاه
         const style = document.createElement('style');
         style.innerHTML = `@keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }`;
         document.head.appendChild(style);
