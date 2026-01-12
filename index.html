@@ -54,8 +54,6 @@
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        
-        /* السرعة البطيئة (900 ثانية) لضمان انسيابية هادئة جداً */
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
@@ -66,7 +64,7 @@
         
         .book-static { flex: 0 0 320px; text-align: center; }
         .book-wrapper img { 
-            width: 100%; border-radius: 15px; border: 2px solid var(--gold); 
+            width: 100%; border-radius: 15px; border: 2px solid var(--gold);
             box-shadow: 0 10px 30px rgba(212,175,55,0.3);
             animation: bookFloat 3s ease-in-out infinite; 
         }
@@ -122,12 +120,12 @@
             </div>
 
             <div class="social-left-fixed">
-                <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.linkedin.com/..." target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
                 <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
                 <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
                 <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com/..." target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
                 <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
@@ -225,10 +223,13 @@
                 vision: "رؤيتنا", partners: "الشركاء", stats: "إحصائيات", losses: "خسائر", browse: "تصفح الكتاب",
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
-                p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.",
-                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
-                p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
-                st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
+                p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
+                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
+                p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.", p3src: "المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت",
+                st1: "ألف حالة طلاق سنوياً", st1src: "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية",
+                st2: "مليون هاتف محمول", st2src: "المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة",
+                ls1: "مليار جنيه خسائر إنتاجية", ls1src: "المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت",
+                ls2: "مليارات تكلفة العلاج", ls2src: "المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات",
                 ticker: [
                     "• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي",
                     "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي",
@@ -243,7 +244,6 @@
                     "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً",
                     "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة",
                     "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي",
-                    "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي",
                     "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"
                 ]
             },
@@ -251,10 +251,13 @@
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
                 visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation by empowering families and restoring balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.",
-                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home through counseling.",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks to their stability.",
-                st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Production Loss", ls2: "Billions Treatment Cost",
+                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Fatwa Center - 255 divorce cases daily",
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home through counseling.", p2src: "Source: Church Counseling Report - 60% due to digital space conflicts",
+                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks to their stability.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
+                st1: "Thousand Divorces Annually", st1src: "Source: CAPMAS - Annual Divorce Rates",
+                st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Total Registered Mobile Lines",
+                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility - Productivity Loss due to Distraction",
+                ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Mental Health Treatment Budget",
                 ticker: [
                     "• Al-Azhar: One divorce every 2 minutes due to digital addiction",
                     "• Ministry of Awqaf: Smartphones are a primary cause of marital silence",
@@ -268,8 +271,6 @@
                     "• Ministry of Interior: 40% of domestic violence reports caused by social apps",
                     "• World Bank: 4.5B EGP annual cost for treating digital mental disorders",
                     "• National Security: 870 organized electronic groups detected spreading discord",
-                    "• Study: 85% of high school students suffer from cyberbullying effects",
-                    "• Ministry of Finance: 15B EGP annual productivity loss due to digital addiction",
                     "• Disaster: 2.1B EGP annual losses due to electronic fraud"
                 ]
             }
@@ -295,22 +296,37 @@
             document.getElementById('st-title').innerText = c.stTitle;
             document.getElementById('ls-title').innerText = c.lsTitle;
             document.getElementById('footer-txt').innerText = c.footer;
-            document.getElementById('p1-name').innerText = c.p1n; document.getElementById('p1-desc').innerText = c.p1d;
-            document.getElementById('p2-name').innerText = c.p2n; document.getElementById('p2-desc').innerText = c.p2d;
-            document.getElementById('p3-name').innerText = c.p3n; document.getElementById('p3-desc').innerText = c.p3d;
-            document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
-            document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
+            // Partners Section
+            document.getElementById('p1-name').innerText = c.p1n; 
+            document.getElementById('p1-desc').innerText = c.p1d;
+            document.getElementById('p1-src').innerText = c.p1src;
+            document.getElementById('p2-name').innerText = c.p2n; 
+            document.getElementById('p2-desc').innerText = c.p2d;
+            document.getElementById('p2-src').innerText = c.p2src;
+            document.getElementById('p3-name').innerText = c.p3n; 
+            document.getElementById('p3-desc').innerText = c.p3d;
+            document.getElementById('p3-src').innerText = c.p3src;
+            
+            // Stats & Losses Section
+            document.getElementById('st1-txt').innerText = c.st1;
+            document.getElementById('st1-src').innerText = c.st1src;
+            document.getElementById('st2-txt').innerText = c.st2;
+            document.getElementById('st2-src').innerText = c.st2src;
+            document.getElementById('ls1-txt').innerText = c.ls1;
+            document.getElementById('ls1-src').innerText = c.ls1src;
+            document.getElementById('ls2-txt').innerText = c.ls2;
+            document.getElementById('ls2-src').innerText = c.ls2src;
+            
+            // Ticker
             const tickerTrack = document.getElementById('tickerTrack');
             const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
             tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
             
-            const track = document.getElementById('tickerTrack');
-            // تم ضبط زمن الحركة هنا إلى 900 ثانية لتكون أبطأ وأهدأ
             if (currentLang === 'ar') {
-                track.style.animation = "marquee 900s linear infinite";
+                tickerTrack.style.animation = "marquee 900s linear infinite";
             } else {
-                track.style.animation = "marquee-en 900s linear infinite";
+                tickerTrack.style.animation = "marquee-en 900s linear infinite";
             }
         }
 
