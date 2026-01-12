@@ -53,11 +53,13 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
+        /* تعديل شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
-        .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 250s linear infinite; }
+        .ticker-track span { padding-right: 150px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
 
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        /* اتجاه الحركة من اليسار لليمين لضمان الاستمرارية للغة العربية */
+        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(0%); } }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
@@ -231,7 +233,7 @@
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
                 ticker: [
-                    "• الأزهر الشريف: حالة طلاق كل 3 دقائق تنفجر بسبب خلاف رقمي",
+                    "• الأزهر الشريف: حالة طلاق كل 3 دقائق بسبب خلاف رقمي",
                     "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي ودمار البيوت",
                     "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة",
                     "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل",
@@ -250,9 +252,9 @@
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
                 visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation by empowering families and restoring balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.",
-                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home through counseling.",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks to their stability.",
+                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized committees.",
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home.",
+                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks.",
                 st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Production Loss", ls2: "Billions Treatment Cost",
                 ticker: [
                     "• Al-Azhar: One divorce every 3 minutes due to digital addiction",
@@ -291,9 +293,9 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // Re-doubling the content for a smooth continuous loop
-            const tickerHtml = c.ticker.join('   ---   ');
-            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            // جعل الشريط يعيد نفسه بسلاسة عبر تكرار المحتوى 4 مرات
+            const tickerHtml = c.ticker.join('   &nbsp;&nbsp;&nbsp;   ');
+            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span><span>${tickerHtml}</span><span>${tickerHtml}</span>`;
         }
 
         function initPage() {
