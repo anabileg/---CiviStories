@@ -54,12 +54,11 @@
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        
-        /* التعديل هنا: الشريط سيعتمد على الانيميشن المباشر */
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 500s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        /* تعديل اتجاه الانيميشن ليكون متوافق مع الـ RTL/LTR بشكل تلقائي عبر الجافاسكريبت */
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
@@ -71,7 +70,10 @@
             animation: bookFloat 3s ease-in-out infinite; 
         }
 
-        @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-15px) rotate(2deg); } }
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
 
         .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr !important; }
         .track { display: flex; width: max-content; animation: infiniteSlide 500s linear infinite; }
@@ -229,7 +231,23 @@
                 p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
-                ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي"]
+                ticker: [
+                    "• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي",
+                    "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي",
+                    "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري",
+                    "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا",
+                    "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي",
+                    "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي",
+                    "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي",
+                    "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم",
+                    "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة",
+                    "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل",
+                    "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً",
+                    "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة",
+                    "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي",
+                    "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي",
+                    "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"
+                ]
             },
             en: {
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
@@ -239,7 +257,23 @@
                 p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home through counseling.",
                 p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks to their stability.",
                 st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Production Loss", ls2: "Billions Treatment Cost",
-                ticker: ["• Al-Azhar: One divorce every two minutes due to digital addiction", "• Awqaf: Smartphones are a primary cause of marital silence"]
+                ticker: [
+                    "• Al-Azhar: One divorce every 2 minutes due to digital addiction",
+                    "• Ministry of Awqaf: Smartphones are a primary cause of marital silence",
+                    "• Red Alert: Family breakdown threatens Egyptian societal stability",
+                    "• Ministry of Health: 3M psychiatric visits due to social media disorders",
+                    "• Egyptian Church: 60% of family problems linked to digital isolation",
+                    "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying",
+                    "• Ministry of Finance: 15B EGP annual production loss due to digital addiction",
+                    "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying",
+                    "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases",
+                    "• Ministry of Interior: 40% of domestic violence reports caused by social apps",
+                    "• World Bank: 4.5B EGP annual cost for treating digital mental disorders",
+                    "• National Security: 870 organized electronic groups detected spreading discord",
+                    "• Study: 85% of high school students suffer from cyberbullying effects",
+                    "• Ministry of Finance: 15B EGP annual productivity loss due to digital addiction",
+                    "• Disaster: 2.1B EGP annual losses due to electronic fraud"
+                ]
             }
         };
 
@@ -269,11 +303,26 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // تم حذف السطر القديم واستبداله بتوزيع مباشر للأخبار لضمان الأداء
-            const tickerTrack = document.getElementById('tickerTrack');
-            const tickerItems = c.ticker.map(item => `<span>${item}</span>`).join('');
-            tickerTrack.innerHTML = tickerItems + tickerItems; // التكرار مرتين للـ Loop
+            // شريط الأخبار: نجمع النصوص بفاصل مسافة (كما طلبت)
+            const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
+            // تكرار النص مرتين لضمان حلقة وصل مستمرة (Seamless Loop)
+            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            
+            // ضبط اتجاه الأنيميشن بناءً على اللغة
+            const track = document.getElementById('tickerTrack');
+            if (currentLang === 'ar') {
+                track.style.animation = "marquee 180s linear infinite";
+            } else {
+                track.style.animation = "marquee-en 180s linear infinite";
+            }
         }
+
+        // إضافة Keyframe للانجليزي لضمان الاتجاه الصحيح
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        `;
+        document.head.appendChild(style);
 
         function initPage() {
             window.scrollTo(0, 0);
