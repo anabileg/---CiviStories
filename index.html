@@ -53,16 +53,16 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
-        /* شريط الأخبار المعدل */
+        /* إعدادات شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; width: max-content; }
+        .ticker-track { display: flex; white-space: nowrap; width: max-content; will-change: transform; }
         
-        /* العربي يبدأ من اليسار بطيء جداً */
-        .ar-anim { animation: marquee-rtl 300s linear infinite !important; }
-        /* الإنجليزي يبدأ من اليمين بطيء جداً */
-        .en-anim { animation: marquee-ltr 300s linear infinite !important; }
+        /* العربي يبدأ من اليسار (Left) وبسرعة هادئة جداً */
+        .ar-anim { animation: marquee-rtl 320s linear infinite !important; }
+        /* الإنجليزي يبدأ من اليمين وبسرعة هادئة جداً */
+        .en-anim { animation: marquee-ltr 320s linear infinite !important; }
         
-        .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
+        .ticker-track span { padding: 0 60px; font-weight: bold; font-size: 1.15rem; display: inline-block; }
 
         @keyframes marquee-rtl { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
         @keyframes marquee-ltr { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
@@ -142,7 +142,9 @@
         </div>
     </nav>
 
-    <div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+    <div class="news-ticker">
+        <div class="ticker-track" id="tickerTrack"></div>
+    </div>
 
     <section class="hero" id="home">
         <div class="hero-container">
@@ -256,17 +258,17 @@
             },
             en: {
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
-                visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric.",
+                visTitle: "Strategic Vision", visDesc: "Protecting the Egyptian social fabric from digital fragmentation.",
                 partTitle: "Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
                 p1n: "Al-Azhar", p1d: "Monitoring family disintegration caused by digital addiction.",
                 p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation.",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative for couples.",
+                p3n: "Ministry of Awqaf", p3d: "Educating couples about technology risks.",
                 st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Loss", ls2: "Billions Treatment Cost",
                 ticker: [
                     "• Al-Azhar: One divorce every 3 minutes due to digital addiction",
                     "• CAPMAS: 57% increase in divorce rates over 5 years",
                     "• Ministry of Health: 3 million psychiatric visits",
-                    "• World Bank: 4.5 billion EGP for treatment",
+                    "• World Bank: 4.5 billion EGP for treatments",
                     "• UNICEF: 47% of children experienced cyberbullying"
                 ]
             }
@@ -299,22 +301,28 @@
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
             const track = document.getElementById('tickerTrack');
+            // تعيين اتجاه الحركة
             track.className = 'ticker-track ' + (currentLang === 'ar' ? 'ar-anim' : 'en-anim');
+            
+            // بناء نصوص الأخبار وتكرارها 3 مرات لضمان حركة سلسة جداً
             const tickerHtml = c.ticker.map(t => `<span>${t}</span>`).join('');
             track.innerHTML = tickerHtml + tickerHtml + tickerHtml;
         }
 
         function initPage() {
             window.scrollTo(0, 0);
+            
+            // ملء صور المعرض
             const imgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.png","13.jpg","15.jpg","17.jpg","18.jpg","20.jpg","21.jpg","25.jpg","31.jpg","35.jpg","45.jpg","47.jpg","48.jpg","64.jpg","75.jpg","79.jpg","23.png","82.png"];
             const track = document.getElementById('track-imgs');
             const imgHtml = imgs.map(i => `<img src="${i}" loading="lazy">`).join('');
             track.innerHTML = imgHtml + imgHtml;
             
-            // تشغيل التحديث فوراً لضمان ظهور المحتوى العربي عند التحميل
+            // استدعاء تحديث الواجهة فوراً عند التشغيل لضمان عمل الأخبار العربية
             updateUI();
         }
 
+        // عدادات الأرقام
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
