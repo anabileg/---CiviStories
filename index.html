@@ -10,6 +10,7 @@
         :root { 
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
             --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
+            --wa-color: #25D366;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,8 +52,7 @@
         .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
         .ic-in { color: var(--in); } 
-        .ic-em { color: #ffffff !important; font-size: 1.4rem; } 
-        .ic-wa { color: #25D366; font-size: 1.4rem; }
+        .ic-wa { color: var(--wa-color); font-size: 1.4rem; }
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
@@ -91,7 +91,22 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
-        #btnUp { position: fixed; bottom: 30px; left: 20px; background: var(--gold); width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; }
+        /* تعديل أزرار التحكم والواتساب العائم */
+        #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
+        
+        .whatsapp-float {
+            position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color);
+            color: #FFF; border-radius: 50px; text-align: center; font-size: 30px;
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+            animation: pulse-wa 2s infinite;
+        }
+
+        @keyframes pulse-wa {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         @media (max-width: 992px) {
             .nav-container { flex-direction: column-reverse !important; gap: 15px; }
@@ -100,7 +115,6 @@
             .hero { padding-top: 280px; }
         }
 
-        /* تنسيق مخصص لزر تصفح الكتاب لجعله يشبه أزرار الموقع الاحترافية */
         .btn-action {
             text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s;
         }
@@ -112,7 +126,12 @@
 <body onload="initPage()">
 
     <div class="site-bg"></div>
+    
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+
+    <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank" title="دردشة الآن">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <nav class="navbar">
         <div class="nav-container">
@@ -135,7 +154,6 @@
             </div>
 
             <div class="nav-right-fixed">
-                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" class="ic-em"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/201009995015" target="_blank" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <img src="logo.png" class="nav-logo-img" alt="Logo">
@@ -340,12 +358,12 @@
             }
         }
 
-        const style = document.createElement('style');
-        style.innerHTML = `
+        const styleSheet = document.createElement('style');
+        styleSheet.innerHTML = `
             @keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
             @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
         `;
-        document.head.appendChild(style);
+        document.head.appendChild(styleSheet);
 
         function initPage() {
             window.scrollTo(0, 0);
@@ -372,7 +390,11 @@
         }, { threshold: 0.5 });
 
         document.querySelectorAll('.counter').forEach(c => observer.observe(c));
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
+        
+        window.onscroll = () => { 
+            document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; 
+        };
+
         function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
     </script>
 </body>
