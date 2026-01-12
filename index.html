@@ -34,27 +34,29 @@
         .nav-container { 
             width: 95%; max-width: 1400px; 
             display: flex; 
-            flex-direction: row !important; 
+            flex-direction: row; 
             justify-content: space-between; 
             align-items: center; 
-            direction: rtl !important; 
+            direction: rtl; 
         }
         
-        .nav-right-fixed { display: flex; align-items: center; gap: 20px; flex: 1; justify-content: flex-end; }
-        .nav-logo-img { height: 60px; }
+        /* القسم الأيمن: اللوجو + زر اللغة + السوشيال ميديا */
+        .nav-right-group { display: flex; align-items: center; gap: 20px; }
+        .nav-logo-img { height: 65px; }
         
-        .nav-links { display: flex; gap: 20px; flex: 1; justify-content: center; }
+        .social-icons { display: flex; gap: 12px; align-items: center; }
+        .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
+        
+        /* القسم الأيسر: روابط التنقل */
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+        .nav-links a:hover { color: #fff; }
 
-        .social-left-fixed { display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start; }
-        .social-left-fixed a { font-size: 1.4rem; transition: 0.3s; text-decoration: none; }
-        
         .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
         .ic-in { color: var(--in); } 
-        .ic-wa { color: var(--wa-color); font-size: 1.4rem; }
 
-        .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
+        .lang-toggle { background: var(--gold); border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; font-size: 0.9rem; }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
@@ -74,7 +76,7 @@
 
         @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-15px) rotate(2deg); } }
 
-        .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr !important; }
+        .carousel-wide { flex: 1; height: 480px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; direction: ltr; }
         .track { display: flex; width: max-content; animation: infiniteSlide 500s linear infinite; }
         .track img { width: 480px; height: 480px; object-fit: cover; }
         @keyframes infiniteSlide { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -91,7 +93,6 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
-        /* تعديل أزرار التحكم والواتساب العائم */
         #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
         
         .whatsapp-float {
@@ -109,24 +110,19 @@
         }
 
         @media (max-width: 992px) {
-            .nav-container { flex-direction: column-reverse !important; gap: 15px; }
-            .hero-container { flex-direction: column; }
-            .news-ticker { top: 220px; }
-            .hero { padding-top: 280px; }
+            .nav-container { flex-direction: column; gap: 15px; padding: 10px 0; }
+            .nav-right-group, .nav-links { justify-content: center; width: 100%; }
+            .news-ticker { top: 160px; }
+            .hero { padding-top: 220px; }
         }
 
-        .btn-action {
-            text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s;
-        }
-        .btn-action:hover {
-            background: #fff; transform: scale(1.05);
-        }
+        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
+        .btn-action:hover { background: #fff; transform: scale(1.05); }
     </style>
 </head>
 <body onload="initPage()">
 
     <div class="site-bg"></div>
-    
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
     <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank" title="دردشة الآن">
@@ -135,16 +131,6 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            <div class="social-left-fixed">
-                <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
-                <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
-            </div>
-
             <div class="nav-links">
                 <a onclick="scrollToSec('about')" id="lnk-vision">رؤيتنا</a>
                 <a onclick="scrollToSec('inst')" id="lnk-partners">الشركاء</a>
@@ -153,8 +139,16 @@
                 <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" id="lnk-feedback">رأيك يهمنا</a>
             </div>
 
-            <div class="nav-right-fixed">
-                <a href="https://wa.me/201009995015" target="_blank" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
+            <div class="nav-right-group">
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
+                    <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                </div>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <img src="logo.png" class="nav-logo-img" alt="Logo">
             </div>
