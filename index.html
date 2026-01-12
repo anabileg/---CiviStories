@@ -36,23 +36,24 @@
             flex-direction: row !important; 
             justify-content: space-between; 
             align-items: center; 
-            direction: rtl !important; /* إجبار الشريط على اتجاه العربي دائماً لمنع التغير */
+            direction: rtl !important; /* ثابت لضمان بقاء الميديا يميناً واللوجو يساراً */
         }
         
+        /* جهة اليسار: ايميل ابيض، واتس، لغة، لوجو */
         .nav-right-fixed { display: flex; align-items: center; gap: 20px; flex: 1; justify-content: flex-end; }
         .nav-logo-img { height: 60px; }
         
         .nav-links { display: flex; gap: 20px; flex: 1; justify-content: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
 
+        /* جهة اليمين: أيقونات الميديا */
         .social-left-fixed { display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-start; }
         .social-left-fixed a { font-size: 1.4rem; transition: 0.3s; text-decoration: none; }
         
         .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
         .ic-in { color: var(--in); } 
-        /* تعديل لون الإيميل للأبيض والواتس كما هو */
-        .ic-em { color: #ffffff !important; font-size: 1.4rem; } 
+        .ic-em { color: #ffffff !important; font-size: 1.4rem; } /* الايميل ابيض */
         .ic-wa { color: #25D366; font-size: 1.4rem; }
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
@@ -124,6 +125,7 @@
                 <a onclick="scrollToSec('inst')" id="lnk-partners">الشركاء</a>
                 <a onclick="scrollToSec('stats')" id="lnk-stats">إحصائيات</a>
                 <a onclick="scrollToSec('losses')" id="lnk-losses">خسائر</a>
+                <a href="mailto:info@civistories.com" id="lnk-feedback">رأيك يهمنا</a>
             </div>
 
             <div class="nav-right-fixed">
@@ -224,7 +226,7 @@
         let currentLang = 'ar';
         const content = {
             ar: {
-                vision: "رؤيتنا", partners: "الشركاء", stats: "إحصائيات", losses: "خسائر", browse: "تصفح الكتاب",
+                vision: "رؤيتنا", partners: "الشركاء", stats: "إحصائيات", losses: "خسائر", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
                 p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
@@ -252,7 +254,7 @@
                 ]
             },
             en: {
-                vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
+                vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", feedback: "Feedback", browse: "Browse Book",
                 visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation by empowering families and restoring balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
                 p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Fatwa Center - 255 divorce cases daily",
@@ -293,6 +295,7 @@
             document.getElementById('lnk-partners').innerText = c.partners;
             document.getElementById('lnk-stats').innerText = c.stats;
             document.getElementById('lnk-losses').innerText = c.losses;
+            document.getElementById('lnk-feedback').innerText = c.feedback;
             document.getElementById('btn-browse').innerText = c.browse;
             document.getElementById('vis-title').innerText = c.visTitle;
             document.getElementById('vis-desc').innerText = c.visDesc;
