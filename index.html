@@ -99,6 +99,14 @@
             .news-ticker { top: 220px; }
             .hero { padding-top: 280px; }
         }
+
+        /* تنسيق مخصص لزر تصفح الكتاب لجعله يشبه أزرار الموقع الاحترافية */
+        .btn-action {
+            text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s;
+        }
+        .btn-action:hover {
+            background: #fff; transform: scale(1.05);
+        }
     </style>
 </head>
 <body onload="initPage()">
@@ -123,11 +131,11 @@
                 <a onclick="scrollToSec('inst')" id="lnk-partners">الشركاء</a>
                 <a onclick="scrollToSec('stats')" id="lnk-stats">إحصائيات</a>
                 <a onclick="scrollToSec('losses')" id="lnk-losses">خسائر</a>
-                <a href="mailto:info@civistories.com" id="lnk-feedback">رأيك يهمنا</a>
+                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" id="lnk-feedback">رأيك يهمنا</a>
             </div>
 
             <div class="nav-right-fixed">
-                <a href="mailto:info@civistories.com" class="ic-em"><i class="fas fa-envelope"></i></a>
+                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" class="ic-em"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/201009995015" target="_blank" class="ic-wa"><i class="fab fa-whatsapp"></i></a>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <img src="logo.png" class="nav-logo-img" alt="Logo">
@@ -141,7 +149,7 @@
         <div class="hero-container">
             <div class="book-static">
                 <div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book Cover"></div>
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold;">تصفح الكتاب</a>
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" class="btn-action">تصفح الكتاب</a>
             </div>
             <div class="carousel-wide">
                 <div class="track" id="track-imgs"></div>
