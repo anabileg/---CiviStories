@@ -297,7 +297,6 @@
             document.getElementById('ls-title').innerText = c.lsTitle;
             document.getElementById('footer-txt').innerText = c.footer;
             
-            // Partners Section
             document.getElementById('p1-name').innerText = c.p1n; 
             document.getElementById('p1-desc').innerText = c.p1d;
             document.getElementById('p1-src').innerText = c.p1src;
@@ -308,7 +307,6 @@
             document.getElementById('p3-desc').innerText = c.p3d;
             document.getElementById('p3-src').innerText = c.p3src;
             
-            // Stats & Losses Section
             document.getElementById('st1-txt').innerText = c.st1;
             document.getElementById('st1-src').innerText = c.st1src;
             document.getElementById('st2-txt').innerText = c.st2;
@@ -318,11 +316,11 @@
             document.getElementById('ls2-txt').innerText = c.ls2;
             document.getElementById('ls2-src').innerText = c.ls2src;
             
-            // Ticker
             const tickerTrack = document.getElementById('tickerTrack');
             const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
             tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
             
+            // توحيد السرعة لكلتا اللغتين لتكون 900 ثانية
             if (currentLang === 'ar') {
                 tickerTrack.style.animation = "marquee 900s linear infinite";
             } else {
@@ -331,7 +329,10 @@
         }
 
         const style = document.createElement('style');
-        style.innerHTML = `@keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }`;
+        style.innerHTML = `
+            @keyframes marquee-en { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        `;
         document.head.appendChild(style);
 
         function initPage() {
