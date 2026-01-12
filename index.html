@@ -53,11 +53,12 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
+        /* News Ticker Loop Fixed */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 250s linear infinite; }
-        .ticker-track span { padding-left: 100px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track { display: flex; white-space: nowrap; width: max-content; animation: marquee 200s linear infinite; }
+        .ticker-track span { padding-left: 100px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
 
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
@@ -231,18 +232,19 @@
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
                 ticker: [
-                    [cite_start]"• الأزهر الشريف: حالة طلاق كل دقيقتين مرتبطة بالسوشيال ميديا [cite: 5, 11]",
+                    [cite_start]"• الأزهر الشريف: كل ٣ دقائق تنفجر أسرة مصرية بسبب السوشيال ميديا [cite: 3, 5, 11]",
                     "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي",
-                    [cite_start]"• الجهاز المركزي للتعبئة: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات [cite: 24]",
+                    [cite_start]"• الجهاز المركزي للتعبئة: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل إلى ٣١١ ألف حالة [cite: 24, 26]",
+                    [cite_start]"• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالاستخدام العشوائي للمنصات [cite: 20]",
                     [cite_start]"• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على التواصل [cite: 31]",
-                    [cite_start]"• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا [cite: 38]",
-                    [cite_start]"• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالفضاء الرقمي [cite: 20]",
-                    [cite_start]"• النيابة العامة: ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب منشورات [cite: 35]",
-                    [cite_start]"• وزارة المالية: ١٥ مليار جنيه خسارة إنتاجية بسبب الإدمان الرقمي [cite: 45]",
-                    [cite_start]"• جامعة عين شمس: ٨٥% من الطلاب يعانون من التنمر الرقمي [cite: 61]",
-                    [cite_start]"• اليونيسف: ٤٧% من الأطفال تعرضوا للتنمر الإلكتروني في مصر [cite: 49]",
-                    [cite_start]"• الجمعية المصرية لرعاية المسنين: ٢ مليون مسن يعيشون في عزلة رقمية [cite: 75]",
-                    [cite_start]"• البنك الدولي: تكلفة علاج الاضطرابات النفسية المرتبطة ٤,٥ مليار جنيه سنوياً [cite: 55]"
+                    [cite_start]"• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات مرتبطة بالسوشيال ميديا [cite: 38]",
+                    [cite_start]"• دار الإفتاء: ١٠٠ ألف فتوى سنوياً لمشاكل أسرية ربعها بسبب التواصل الاجتماعي [cite: 14]",
+                    [cite_start]"• وزارة المالية: خسارة إنتاجية تقدر بـ ١٥ مليار جنيه سنوياً بسبب الإدمان الرقمي [cite: 45]",
+                    [cite_start]"• اليونيسف: ٤٧% من الأطفال في مصر تعرضوا للتنمر الإلكتروني [cite: 49]",
+                    [cite_start]"• البنك الدولي: تكلفة علاج الاضطرابات النفسية المرتبطة تصل لـ ٤.٥ مليار جنيه سنوياً [cite: 55]",
+                    [cite_start]"• جامعة عين شمس: ٨٥% من طلاب الثانوي يعانون من التنمر الرقمي [cite: 61]",
+                    [cite_start]"• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة [cite: 70]",
+                    [cite_start]"• الجمعية المصرية للمسنين: ٢ مليون مسن يعيشون في عزلة رقمية [cite: 75]"
                 ]
             },
             en: {
@@ -254,12 +256,10 @@
                 p3n: "Ministry of Awqaf", p3d: "Educating couples about technology risks to their stability.",
                 st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Production Loss", ls2: "Billions Treatment Cost",
                 ticker: [
-                    [cite_start]"• Al-Azhar: One divorce every 2 minutes due to social media [cite: 5, 11]",
+                    [cite_start]"• Al-Azhar: One divorce every 3 minutes due to digital conflicts [cite: 5, 118]",
                     "• Ministry of Awqaf: Smartphones are a primary cause of marital silence",
                     [cite_start]"• CAPMAS: 57% increase in divorce rates over 5 years [cite: 24]",
-                    [cite_start]"• Ministry of Interior: 40% of domestic violence reports start on social media [cite: 31]",
-                    [cite_start]"• Ministry of Health: 3 million psychiatric clinic visits due to digital addiction [cite: 38]",
-                    [cite_start]"• Egyptian Church: 60% of family issues are linked to digital space [cite: 20]",
+                    [cite_start]"• Ministry of Health: 3 million psychiatric clinic visits linked to social media [cite: 38]",
                     [cite_start]"• World Bank: 4.5 billion EGP annual cost for treating digital-related disorders [cite: 55]"
                 ]
             }
@@ -291,9 +291,9 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // تحديث شريط الأخبار مع تكرار المحتوى لضمان استمرارية الحركة
+            // Loop functionality: Double the content to ensure seamless repeat
             const tickerHtml = c.ticker.join('   ---   ');
-            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
         }
 
         function initPage() {
