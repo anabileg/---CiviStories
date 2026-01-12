@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -53,23 +54,21 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
-        /* إعدادات شريط الأخبار */
         .news-ticker { 
             background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; 
-            z-index: 1000; display: flex; align-items: center; overflow: hidden; 
+            z-index: 1000; display: flex; align-items: center; overflow: hidden !important;
         }
         .ticker-track { 
-            display: flex; white-space: nowrap; width: max-content; will-change: transform; 
+            display: flex; white-space: nowrap; width: max-content; will-change: transform;
         }
         
-        /* تحسينات الحركة */
         .ar-anim { 
-            animation: marquee-rtl 200s linear infinite !important;
-            transform: translateX(-50%); /* بداية من خارج الشاشة على اليسار */
+            animation: marquee-rtl 120s linear infinite !important;
+            transform: translateX(-100%) !important;
         }
         .en-anim { 
-            animation: marquee-ltr 200s linear infinite !important;
-            transform: translateX(0%); /* بداية من خارج الشاشة على اليمين */
+            animation: marquee-ltr 120s linear infinite !important;
+            transform: translateX(0%) !important;
         }
         
         .ticker-track span { 
@@ -78,12 +77,12 @@
         }
 
         @keyframes marquee-rtl { 
-            0% { transform: translateX(-50%); } 
-            100% { transform: translateX(0%); } 
+            0% { transform: translateX(-100%); } 
+            100% { transform: translateX(100%); } 
         }
         @keyframes marquee-ltr { 
             0% { transform: translateX(0%); } 
-            100% { transform: translateX(-50%); } 
+            100% { transform: translateX(-200%); } 
         }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
@@ -303,7 +302,6 @@
         function updateUI() {
             const c = content[currentLang];
             
-            // تحديث النصوص في الواجهة
             document.getElementById('lnk-vision').innerText = c.vision;
             document.getElementById('lnk-partners').innerText = c.partners;
             document.getElementById('lnk-stats').innerText = c.stats;
@@ -321,18 +319,14 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // تحديث شريط الأخبار - الإصلاح الرئيسي
             const track = document.getElementById('tickerTrack');
             if (!track) return;
             
-            // 1. إزالة أي فئات حركة سابقة
             track.classList.remove('ar-anim', 'en-anim');
             
-            // 2. بناء محتوى الأخبار وتكراره 4 مرات للتأكد من طول كافٍ
             const tickerHtml = c.ticker.map(t => `<span>${t}</span>`).join('');
             track.innerHTML = tickerHtml + tickerHtml + tickerHtml + tickerHtml;
             
-            // 3. إضافة الفئة المناسبة للحركة بعد فترة قصيرة لضمان التطبيق
             setTimeout(() => {
                 track.classList.add(currentLang === 'ar' ? 'ar-anim' : 'en-anim');
             }, 10);
@@ -341,17 +335,27 @@
         function initPage() {
             window.scrollTo(0, 0);
             
-            // ملء صور المعرض
             const imgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.png","13.jpg","15.jpg","17.jpg","18.jpg","20.jpg","21.jpg","25.jpg","31.jpg","35.jpg","45.jpg","47.jpg","48.jpg","64.jpg","75.jpg","79.jpg","23.png","82.png"];
             const track = document.getElementById('track-imgs');
             const imgHtml = imgs.map(i => `<img src="${i}" loading="lazy" alt="Gallery image">`).join('');
             track.innerHTML = imgHtml + imgHtml;
             
-            // استدعاء تحديث الواجهة فوراً عند التشغيل
             updateUI();
+            
+            setTimeout(() => {
+                const tickerTrack = document.getElementById('tickerTrack');
+                if (tickerTrack) {
+                    tickerTrack.style.animation = 'none';
+                    setTimeout(() => {
+                        tickerTrack.style.animation = '';
+                        if (currentLang === 'ar') {
+                            tickerTrack.classList.add('ar-anim');
+                        }
+                    }, 50);
+                }
+            }, 200);
         }
 
-        // عدادات الأرقام
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -386,3 +390,4 @@
     </script>
 </body>
 </html>
+```
