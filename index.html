@@ -56,9 +56,11 @@
         /* شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
-        /* أنيميشن افتراضي للعربي (من الشمال لليمين) بطيء جداً */
-        .ticker-track.ar-anim { animation: marquee-rtl 300s linear infinite; }
-        .ticker-track.en-anim { animation: marquee-ltr 300s linear infinite; }
+        
+        /* الأنيميشن العربي (من الشمال لليمين) بطيء جداً */
+        .ar-anim { animation: marquee-rtl 300s linear infinite !important; }
+        /* الأنيميشن الإنجليزي (من اليمين للشمال) بطيء جداً */
+        .en-anim { animation: marquee-ltr 300s linear infinite !important; }
         
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
 
@@ -297,7 +299,7 @@
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
             const track = document.getElementById('tickerTrack');
-            // ضبط كلاس الأنيميشن حسب اللغة
+            // ضبط اتجاه الحركة حسب اللغة
             track.className = 'ticker-track ' + (currentLang === 'ar' ? 'ar-anim' : 'en-anim');
             
             const tickerHtml = c.ticker.map(t => `<span>${t}</span>`).join('');
