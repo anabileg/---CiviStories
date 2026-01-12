@@ -25,6 +25,7 @@
 
         @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35); } 100% { transform: scale(1.18); filter: brightness(0.55); } }
 
+        /* Navbar Layout Fixes */
         .navbar {
             min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -34,20 +35,35 @@
         .nav-container { 
             width: 95%; max-width: 1400px; 
             display: flex; 
+            /* نستخدم flex-direction: row-reverse دائماً لجعل اللوجو يسار واللغة يمين بغض النظر عن dir */
+            flex-direction: row-reverse !important; 
             justify-content: space-between; 
             align-items: center; 
         }
         
-        /* القسم الأيمن: اللوجو والروابط */
-        .nav-right-side { display: flex; align-items: center; gap: 30px; flex: 2; }
+        /* القسم الذي يحتوي على الروابط واللغة (سيكون جهة اليمين) */
+        .nav-right-side { 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            flex-direction: row !important; /* الحفاظ على ترتيب العناصر داخلياً */
+        }
+        
         .nav-logo-img { height: 65px; cursor: pointer; }
-        .nav-links { display: flex; gap: 20px; }
+        
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
         .nav-links a:hover { color: var(--white); }
 
-        /* القسم الأيسر: أيقونات الميديا واللغة */
-        .nav-left-side { display: flex; gap: 15px; align-items: center; flex: 1; justify-content: flex-end; }
-        .social-icons { display: flex; gap: 12px; align-items: center; border-right: 1px solid rgba(212,175,55,0.3); padding-right: 15px; }
+        /* القسم الذي يحتوي على السوشيال ميديا (سيكون جهة اليسار بجانب اللوجو) */
+        .nav-left-side { 
+            display: flex; 
+            gap: 15px; 
+            align-items: center; 
+            flex-direction: row !important;
+        }
+
+        .social-icons { display: flex; gap: 12px; align-items: center; border-left: 1px solid rgba(212,175,55,0.3); padding-left: 15px; }
         .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
         .social-icons a:hover { transform: translateY(-3px); }
         
@@ -66,14 +82,15 @@
 
         /* تنسيقات الموبايل */
         @media (max-width: 992px) {
-            .nav-container { flex-direction: column; gap: 10px; padding: 10px 0; }
-            .nav-right-side { flex-direction: column; gap: 10px; }
-            .nav-links { font-size: 0.9rem; gap: 10px; }
-            .news-ticker { top: 180px; }
-            .hero { padding-top: 240px !important; }
+            .nav-container { flex-direction: column-reverse !important; gap: 10px; padding: 10px 0; }
+            .nav-right-side { flex-direction: column !important; gap: 10px; }
+            .nav-links { font-size: 0.9rem; gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .social-icons { border: none; padding: 0; }
+            .news-ticker { top: 210px; }
+            .hero { padding-top: 280px !important; }
         }
 
-        /* باقي التنسيقات ثابتة 100% */
+        /* باقي التنسيقات */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
         .book-static { flex: 0 0 320px; text-align: center; }
@@ -114,9 +131,17 @@
 
     <nav class="navbar">
         <div class="nav-container">
-            
-            <div class="nav-right-side">
+            <div class="nav-left-side">
                 <img src="logo.png" class="nav-logo-img" alt="Logo" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <div class="social-icons">
+                    <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/people/Civistories" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                    <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="nav-right-side">
+                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
                 <div class="nav-links">
                     <a onclick="scrollToSec('about')" id="lnk-vision">رؤيتنا</a>
                     <a onclick="scrollToSec('inst')" id="lnk-partners">الشركاء</a>
@@ -125,20 +150,6 @@
                     <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" id="lnk-feedback">رأيك يهمنا</a>
                 </div>
             </div>
-
-            <div class="nav-left-side">
-                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
-                <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
-                    <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
         </div>
     </nav>
 
@@ -231,7 +242,7 @@
                 p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
-                ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري", "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا", "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي"]
+                ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري"]
             },
             en: {
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", feedback: "Feedback", browse: "Browse Book",
