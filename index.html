@@ -53,13 +53,15 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
-        /* تعديل شريط الأخبار */
+        /* تعديلات شريط الأخبار المطلوبة */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 250s linear infinite; }
-        .ticker-track span { padding-right: 150px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee-rtl 280s linear infinite; width: max-content; }
+        .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
 
-        /* اتجاه الحركة من اليسار لليمين لضمان الاستمرارية للغة العربية */
-        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(0%); } }
+        /* أنيميشن للعربي: يبدأ من اليسار لليمين */
+        @keyframes marquee-rtl { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+        /* أنيميشن للإنجليزي: يبدأ من اليمين لليسار */
+        @keyframes marquee-ltr { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
@@ -233,7 +235,7 @@
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
                 ticker: [
-                    "• الأزهر الشريف: حالة طلاق كل 3 دقائق بسبب خلاف رقمي",
+                    "• الأزهر الشريف: حالة طلاق كل 3 دقائق تنفجر بسبب خلاف رقمي",
                     "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي ودمار البيوت",
                     "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة",
                     "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل",
@@ -250,15 +252,14 @@
             },
             en: {
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
-                visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation by empowering families and restoring balance.",
+                visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized committees.",
-                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home.",
+                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction.",
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation.",
                 p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks.",
                 st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Production Loss", ls2: "Billions Treatment Cost",
                 ticker: [
                     "• Al-Azhar: One divorce every 3 minutes due to digital addiction",
-                    "• Awqaf: Smartphones are a primary cause of marital silence",
                     "• CAPMAS: 57% increase in divorce rates over 5 years",
                     "• Ministry of Health: 3 million psychiatric visits due to social media",
                     "• World Bank: 4.5 billion EGP annual cost for treating digital disorders",
@@ -271,6 +272,11 @@
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+            
+            // تغيير اتجاه الأنيميشن حسب اللغة
+            const track = document.getElementById('tickerTrack');
+            track.style.animationName = currentLang === 'ar' ? 'marquee-rtl' : 'marquee-ltr';
+            
             updateUI();
         }
 
@@ -293,9 +299,9 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // جعل الشريط يعيد نفسه بسلاسة عبر تكرار المحتوى 4 مرات
-            const tickerHtml = c.ticker.join('   &nbsp;&nbsp;&nbsp;   ');
-            document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span><span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            // تكرار النصوص لضمان استمرارية الشريط بدون فجوات
+            const tickerHtml = c.ticker.map(t => `<span>${t}</span>`).join('');
+            document.getElementById('tickerTrack').innerHTML = tickerHtml + tickerHtml;
         }
 
         function initPage() {
