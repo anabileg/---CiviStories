@@ -35,18 +35,17 @@
         .nav-container { 
             width: 95%; max-width: 1400px; 
             display: flex; 
-            /* نستخدم flex-direction: row-reverse دائماً لجعل اللوجو يسار واللغة يمين بغض النظر عن dir */
+            /* التعديل المطلوب: جعل اللوجو دائماً يسار واللغة يمين */
             flex-direction: row-reverse !important; 
             justify-content: space-between; 
             align-items: center; 
         }
         
-        /* القسم الذي يحتوي على الروابط واللغة (سيكون جهة اليمين) */
         .nav-right-side { 
             display: flex; 
             align-items: center; 
             gap: 20px; 
-            flex-direction: row !important; /* الحفاظ على ترتيب العناصر داخلياً */
+            flex-direction: row !important; 
         }
         
         .nav-logo-img { height: 65px; cursor: pointer; }
@@ -55,7 +54,6 @@
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
         .nav-links a:hover { color: var(--white); }
 
-        /* القسم الذي يحتوي على السوشيال ميديا (سيكون جهة اليسار بجانب اللوجو) */
         .nav-left-side { 
             display: flex; 
             gap: 15px; 
@@ -73,14 +71,12 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; font-size: 0.9rem; }
 
-        /* الشريط الإخباري */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
-        /* تنسيقات الموبايل */
         @media (max-width: 992px) {
             .nav-container { flex-direction: column-reverse !important; gap: 10px; padding: 10px 0; }
             .nav-right-side { flex-direction: column !important; gap: 10px; }
@@ -90,7 +86,6 @@
             .hero { padding-top: 280px !important; }
         }
 
-        /* باقي التنسيقات */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
         .book-static { flex: 0 0 320px; text-align: center; }
