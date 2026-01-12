@@ -53,12 +53,11 @@
 
         .lang-toggle { background: var(--gold); border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; }
 
-        /* News Ticker Loop Fixed */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; width: max-content; animation: marquee 200s linear infinite; }
-        .ticker-track span { padding-left: 100px; font-weight: bold; font-size: 1.1rem; display: inline-block; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 180s linear infinite; }
+        .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
@@ -232,35 +231,36 @@
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليارات تكلفة العلاج",
                 ticker: [
-                    [cite_start]"• الأزهر الشريف: كل ٣ دقائق تنفجر أسرة مصرية بسبب السوشيال ميديا [cite: 3, 5, 11]",
-                    "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي",
-                    [cite_start]"• الجهاز المركزي للتعبئة: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل إلى ٣١١ ألف حالة [cite: 24, 26]",
-                    [cite_start]"• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالاستخدام العشوائي للمنصات [cite: 20]",
-                    [cite_start]"• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على التواصل [cite: 31]",
-                    [cite_start]"• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات مرتبطة بالسوشيال ميديا [cite: 38]",
-                    [cite_start]"• دار الإفتاء: ١٠٠ ألف فتوى سنوياً لمشاكل أسرية ربعها بسبب التواصل الاجتماعي [cite: 14]",
-                    [cite_start]"• وزارة المالية: خسارة إنتاجية تقدر بـ ١٥ مليار جنيه سنوياً بسبب الإدمان الرقمي [cite: 45]",
-                    [cite_start]"• اليونيسف: ٤٧% من الأطفال في مصر تعرضوا للتنمر الإلكتروني [cite: 49]",
-                    [cite_start]"• البنك الدولي: تكلفة علاج الاضطرابات النفسية المرتبطة تصل لـ ٤.٥ مليار جنيه سنوياً [cite: 55]",
-                    [cite_start]"• جامعة عين شمس: ٨٥% من طلاب الثانوي يعانون من التنمر الرقمي [cite: 61]",
-                    [cite_start]"• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة [cite: 70]",
-                    [cite_start]"• الجمعية المصرية للمسنين: ٢ مليون مسن يعيشون في عزلة رقمية [cite: 75]"
+                    "• الأزهر الشريف: حالة طلاق كل 3 دقائق تنفجر بسبب خلاف رقمي",
+                    "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي ودمار البيوت",
+                    "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة",
+                    "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل",
+                    "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا",
+                    "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي",
+                    "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو العزلة",
+                    "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي",
+                    "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم",
+                    "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي النفسية",
+                    "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً",
+                    "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة",
+                    "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"
                 ]
             },
             en: {
                 vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", browse: "Browse Book",
-                visTitle: "Strategic Vision", visDesc: "Protecting the Egyptian social fabric from digital fragmentation by empowering families.",
+                visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation by empowering families and restoring balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration through specialized fatwa committees.",
-                p2n: "Egyptian Church", p2d: "Addressing digital isolation within the home through counseling.",
-                p3n: "Ministry of Awqaf", p3d: "Educating couples about technology risks to their stability.",
+                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.",
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the home through counseling.",
+                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks to their stability.",
                 st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", ls1: "Billion EGP Production Loss", ls2: "Billions Treatment Cost",
                 ticker: [
-                    [cite_start]"• Al-Azhar: One divorce every 3 minutes due to digital conflicts [cite: 5, 118]",
-                    "• Ministry of Awqaf: Smartphones are a primary cause of marital silence",
-                    [cite_start]"• CAPMAS: 57% increase in divorce rates over 5 years [cite: 24]",
-                    [cite_start]"• Ministry of Health: 3 million psychiatric clinic visits linked to social media [cite: 38]",
-                    [cite_start]"• World Bank: 4.5 billion EGP annual cost for treating digital-related disorders [cite: 55]"
+                    "• Al-Azhar: One divorce every 3 minutes due to digital addiction",
+                    "• Awqaf: Smartphones are a primary cause of marital silence",
+                    "• CAPMAS: 57% increase in divorce rates over 5 years",
+                    "• Ministry of Health: 3 million psychiatric visits due to social media",
+                    "• World Bank: 4.5 billion EGP annual cost for treating digital disorders",
+                    "• UNICEF: 47% of children in Egypt experienced cyberbullying"
                 ]
             }
         };
@@ -291,7 +291,7 @@
             document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st2-txt').innerText = c.st2;
             document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls2-txt').innerText = c.ls2;
             
-            // Loop functionality: Double the content to ensure seamless repeat
+            // Re-doubling the content for a smooth continuous loop
             const tickerHtml = c.ticker.join('   ---   ');
             document.getElementById('tickerTrack').innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
         }
