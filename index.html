@@ -2,168 +2,172 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>CiviStories | النسخة المستقرة للابتوب</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CiviStories | تسونامي الوهم الرقمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root { 
-            --gold: #d4af37; --white: #ffffff; --red-news: #b30000;
+            --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
+            --wa-color: #25D366;
         }
 
-        /* الإعدادات التي نجحت في كود 171 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #000; color: var(--white); 
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            overflow-x: hidden;
-            min-width: 1200px; 
-        }
+        html { scroll-behavior: smooth; }
+        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
-        /* خلفية سينمائية متحركة (من كود 420) */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('image_390e08.jpg'); 
-            background-position: center; background-size: cover; z-index: -1;
-            animation: kenBurns 40s infinite alternate;
+            background-image: url('image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
+            animation: kenBurns 35s ease-in-out infinite alternate;
         }
-        @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.3); } 100% { transform: scale(1.1); filter: brightness(0.5); } }
+        @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
-        /* الهيدر المستقر */
         .navbar {
-            height: 90px; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--gold);
-            position: fixed; top: 0; width: 100%; z-index: 10001; 
+            min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
             display: flex; align-items: center; justify-content: center;
         }
-        .nav-container { width: 90%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links { display: flex; gap: 30px; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
-        .nav-links a:hover { color: #fff; text-shadow: 0 0 10px var(--gold); }
-        .nav-logo-img { height: 75px; }
+        .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; direction: rtl; }
+        .nav-right-group { display: flex; align-items: center; gap: 20px; }
+        .nav-logo-img { height: 65px; }
+        .social-icons { display: flex; gap: 12px; align-items: center; }
+        .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+        .nav-links a:hover { color: #fff; }
 
-        /* شريط الأخبار (من كود 420) */
-        .news-ticker { 
-            background: var(--red-news); height: 45px; position: fixed; top: 90px; width: 100%; z-index: 10000; 
-            display: flex; align-items: center; overflow: hidden; 
+        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
+        .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
+        .ic-in { color: var(--in); } 
+
+        .lang-toggle { background: var(--gold); border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; font-size: 0.9rem; }
+
+        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
+        .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
+        @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
+
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 60px; }
+        .hero-container { display: flex; gap: 40px; width: 100%; align-items: center; justify-content: center; }
+        .book-static { flex: 0 0 320px; text-align: center; }
+        .book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); animation: bookFloat 3s ease-in-out infinite; }
+        @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
+        .video-placeholder { flex: 1; height: 480px; border: 2px solid rgba(212,175,55,0.3); border-radius: 20px; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+
+        /* --- الحل الأمثل للمعرض (التعديلات الجوهرية هنا) --- */
+        .carousel-wide { 
+            width: 100%; height: 450px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
+            position: relative; overflow: hidden; margin: 40px 0; background: #000;
         }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 50s linear infinite; }
-        .ticker-track span { padding-left: 80px; font-weight: bold; font-size: 1.1rem; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
-
-        /* قسم الهيرو (تنسيق كود 420 الفخم) */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding: 180px 5% 50px; }
-        .hero-container { display: flex; gap: 60px; width: 100%; max-width: 1400px; margin: auto; align-items: center; }
-        
-        .book-static { flex: 0 0 380px; text-align: center; }
-        .book-wrapper img { width: 100%; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 0 30px rgba(212,175,55,0.3); animation: float 4s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-
-        .video-placeholder { 
-            flex: 1; height: 500px; border-radius: 20px; 
-            background: rgba(0,0,0,0.6); border: 1px solid rgba(212,175,55,0.2);
-            display: flex; align-items: center; justify-content: center;
-        }
-
-        /* --- معرض الصور (كود 171 الناجح مع تحسين الشكل) --- */
-        .media-section { margin: 80px 0; position: relative; width: 100%; background: rgba(0,0,0,0.5); padding: 40px 0; }
-        .carousel-outer { width: 92%; margin: 0 auto; overflow: hidden; position: relative; }
-        
         .track { 
-            display: flex; transition: transform 0.6s ease-out; 
-            width: 100%; /* الاعتماد على توزيع الـ 171 */
+            display: flex; transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+            width: max-content; /* يسمح بالتمدد الأفقي */
+            height: 100%; align-items: center;
         }
         .track img { 
-            flex: 0 0 25%; /* 4 صور في السطر كما طلبت */
-            height: 400px; object-fit: cover; padding: 10px; cursor: pointer;
-            transition: 0.4s; border-radius: 20px;
+            width: 25vw !important; /* ربع عرض الشاشة للكمبيوتر */
+            height: 400px; object-fit: contain; cursor: zoom-in; padding: 10px; flex-shrink: 0;
         }
-        .track img:hover { transform: scale(1.03); filter: brightness(1.1); }
 
         .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: var(--gold); color: #000; border: none;
-            width: 55px; height: 55px; border-radius: 50%; cursor: pointer;
-            z-index: 100; font-size: 1.8rem; display: flex; align-items: center; justify-content: center;
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.8);
+            color: #000; border: none; width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
+            z-index: 100; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
         }
-        .prev-btn { right: 10px; }
-        .next-btn { left: 10px; }
+        .prev-btn { left: 20px; }
+        .next-btn { right: 20px; }
 
-        /* الإحصائيات (من كود 420) */
-        .stats-section { padding: 100px 5%; }
-        .glass-box { 
-            background: rgba(255,255,255,0.03); backdrop-filter: blur(10px);
-            border: 2px solid var(--gold); border-radius: 40px; padding: 60px;
-            text-align: center;
+        @media (max-width: 768px) {
+            .track img { width: 100vw !important; } /* شاشة كاملة للموبايل */
+            .carousel-wide { height: 350px; }
         }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
-        .stat-card { padding: 30px; border-bottom: 4px solid var(--gold); background: rgba(0,0,0,0.4); border-radius: 20px; }
-        .stat-num { font-size: 4rem; font-weight: bold; color: var(--gold); display: block; }
+
+        /* الإحصائيات والكروت */
+        .vision-section, .glass-box { 
+            text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 5%;
+            background: rgba(0,0,0,0.6); position: relative; overflow: hidden;
+        }
+        .section { padding: 40px 5%; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { text-align: center; padding: 40px 25px; background: rgba(255,255,255,0.05); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
+        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
+        .loss-num { color: var(--red-num) !important; }
+
+        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
+        .lightbox img { max-width: 90%; max-height: 85%; border: 3px solid var(--gold); }
+        .close-lightbox { position: absolute; top: 30px; right: 30px; color: #ff0000; font-size: 40px; cursor: pointer; background: none; border: none; }
 
         .whatsapp-float {
-            position: fixed; bottom: 40px; left: 40px; background: #25D366;
-            color: #fff; width: 70px; height: 70px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 35px;
-            z-index: 10002; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color);
+            color: #FFF; border-radius: 50px; text-align: center; font-size: 30px;
+            z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none;
         }
     </style>
 </head>
-<body onload="initApp()">
+<body onload="initPage()">
 
     <div class="site-bg"></div>
+    <div id="lightbox" class="lightbox" onclick="closeImage()">
+        <button class="close-lightbox">X</button>
+        <img id="lightbox-img" src="">
+    </div>
 
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-links">
-                <a onclick="scrollToSec('media')">ميديا</a>
+                <a onclick="scrollToSec('about')">رؤيتنا</a>
+                <a onclick="scrollToSec('media-sec')">ميديا</a>
                 <a onclick="scrollToSec('stats')">إحصائيات</a>
-                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank">شارك برأيك</a>
+                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank">رأيك يهمنا</a>
             </div>
-            <img src="logo.png" class="nav-logo-img">
+            <div class="nav-right-group">
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.youtube.com" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                </div>
+                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
+                <img src="logo.png" class="nav-logo-img">
+            </div>
         </div>
     </nav>
 
-    <div class="news-ticker">
-        <div class="ticker-track">
-            <span>• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي بسبب الإدمان الرقمي</span>
-            <span>• حالة طلاق كل دقيقتين في مصر.. الدراسات تشير إلى "تسونامي الوهم" كسبب رئيسي</span>
-            <span>• وزارة الصحة: ارتفاع مهول في حالات الاكتئاب والعزلة المرتبطة بمواقع التواصل</span>
-        </div>
-    </div>
+    <div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="hero-container">
             <div class="book-static">
                 <div class="book-wrapper"><img src="CIVISTORIES Book.png"></div>
-                <h2 style="margin-top:20px; color:var(--gold);">كتاب: تسونامي الوهم</h2>
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-action" style="text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold;">تصفح الكتاب</a>
             </div>
             <div class="video-placeholder">
-                <h2 style="color:var(--gold)">فيديو تعريفي (قريباً)</h2>
+                <i class="fas fa-play-circle" style="font-size: 5rem; color: var(--gold); cursor: pointer;"></i>
             </div>
         </div>
     </section>
 
-    <section id="media" class="media-section">
-        <button class="nav-btn prev-btn" onclick="moveSlide(-1)">❯</button>
-        <div class="carousel-outer">
-            <div class="track" id="imageTrack"></div>
-        </div>
-        <button class="nav-btn next-btn" onclick="moveSlide(1)">❮</button>
+    <section id="media-sec" class="carousel-wide">
+        <button class="nav-btn prev-btn" onclick="moveSlide(1)">❮</button>
+        <div class="track" id="track-imgs"></div>
+        <button class="nav-btn next-btn" onclick="moveSlide(-1)">❯</button>
     </section>
 
-    <section id="stats" class="stats-section">
+    <section id="stats" class="section">
         <div class="glass-box">
-            <h2 style="font-size: 3rem; color: var(--gold);">الحقيقة بالأرقام</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-num" data-val="311">0</span>
+            <h2 style="color:var(--gold); font-size: 2.8rem; margin-bottom:40px;">إحصائيات الواقع الرقمي</h2>
+            <div class="grid">
+                <div class="card">
+                    <span class="stat-num counter" data-target="311">0</span>
                     <p>ألف حالة طلاق سنوياً</p>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-num" data-val="104">0</span>
+                <div class="card">
+                    <span class="stat-num counter" data-target="104">0</span>
                     <p>مليون هاتف محمول</p>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-num" data-val="15">0</span>
-                    <p>مليار جنيه خسائر إنتاجية</p>
+                <div class="card">
+                    <span class="stat-num loss-num counter" data-target="15">0</span>
+                    <p style="color:var(--gold); font-weight:bold;">مليار جنيه خسائر إنتاجية</p>
                 </div>
             </div>
         </div>
@@ -172,47 +176,69 @@
     <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <script>
-        const images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg"];
-        let currentIndex = 0;
+        let currentLang = 'ar';
+        let currentSlide = 0;
+        const imagesList = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg"];
 
-        function initApp() {
-            const track = document.getElementById('imageTrack');
-            track.innerHTML = images.map(img => `<img src="${img}">`).join('');
-            startCounter();
+        function initPage() {
+            const track = document.getElementById('track-imgs');
+            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')">`).join('');
+            updateTicker();
         }
 
+        // تحسين دالة التحريك لتناسب العرض الرباعي
         function moveSlide(direction) {
-            const track = document.getElementById('imageTrack');
-            const maxIndex = images.length - 4; // لأننا نعرض 4 صور
+            const track = document.getElementById('track-imgs');
+            const isDesktop = window.innerWidth > 768;
+            const step = isDesktop ? 25 : 100; // قفزة 25% للكمبيوتر و100% للموبايل
+            const visibleItems = isDesktop ? 4 : 1;
+            const maxSlides = imagesList.length - visibleItems;
 
-            currentIndex += direction;
-            if (currentIndex < 0) currentIndex = 0;
-            if (currentIndex > maxIndex) currentIndex = maxIndex;
+            currentSlide += direction;
 
-            // التحريك السلس المعتمد في كود 171
-            track.style.transform = `translateX(${currentIndex * 25}%)`;
+            if (currentSlide > maxSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = maxSlides;
+
+            // استخدام الموجب في RTL للتحريك لليسار
+            track.style.transform = `translateX(${currentSlide * step}vw)`;
         }
 
-        function startCounter() {
-            const counters = document.querySelectorAll('.stat-num');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-val');
-                let count = 0;
-                const update = setInterval(() => {
-                    count += Math.ceil(target/50);
-                    if(count >= target) {
-                        counter.innerText = target;
-                        clearInterval(update);
-                    } else {
-                        counter.innerText = count;
-                    }
-                }, 40);
-            });
+        function openImage(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
         }
 
         function scrollToSec(id) {
-            window.scrollTo({ top: document.getElementById(id).offsetTop - 150, behavior: 'smooth' });
+            window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' });
         }
+
+        function updateTicker() {
+            const tickerTrack = document.getElementById('tickerTrack');
+            const news = ["• الأزهر الشريف: حالة طلاق كل دقيقتين", "• إنذار أحمر: التفكك الأسري يهدد المجتمع", "• خسائر بالمليارات بسبب الإدمان الرقمي"];
+            const html = news.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
+            tickerTrack.innerHTML = `<span>${html}</span><span>${html}</span>`;
+        }
+
+        // عداد الأرقام الاحترافي
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = +el.getAttribute('data-target');
+                    let count = 0;
+                    const update = setInterval(() => {
+                        count += Math.ceil(target/50);
+                        if (count >= target) { el.innerText = target; clearInterval(update); }
+                        else { el.innerText = count; }
+                    }, 30);
+                }
+            });
+        });
+        document.querySelectorAll('.counter').forEach(c => observer.observe(c));
     </script>
 </body>
 </html>
