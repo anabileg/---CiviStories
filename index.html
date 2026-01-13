@@ -72,17 +72,6 @@
 
         .video-placeholder { flex: 1; height: 480px; border: 2px solid rgba(212,175,55,0.3); border-radius: 20px; }
 
-        /* --- نظام تكبير الصور Lightbox --- */
-        .lightbox {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
-            display: none; justify-content: center; align-items: center; z-index: 20000;
-        }
-        .lightbox img { max-width: 90%; max-height: 85%; border: 3px solid var(--gold); border-radius: 10px; }
-        .close-lightbox {
-            position: absolute; top: 30px; right: 30px; color: #ff0000; font-size: 40px; cursor: pointer;
-            font-weight: bold; background: none; border: none;
-        }
-
         .vision-section, .glass-box { 
             text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0;
             background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden;
@@ -135,11 +124,6 @@
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
-    <div id="lightbox" class="lightbox">
-        <button class="close-lightbox" onclick="closeImage()">X</button>
-        <img id="lightbox-img" src="">
-    </div>
-
     <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank" title="دردشة الآن">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -149,6 +133,7 @@
             <div class="nav-links">
                 <a onclick="scrollToSec('about')" id="lnk-vision">رؤيتنا</a>
                 <a onclick="scrollToSec('inst')" id="lnk-partners">الشركاء</a>
+                <a id="lnk-media">ميديا</a>
                 <a onclick="scrollToSec('stats')" id="lnk-stats">إحصائيات</a>
                 <a onclick="scrollToSec('losses')" id="lnk-losses">خسائر</a>
                 <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" id="lnk-feedback">رأيك يهمنا</a>
@@ -255,9 +240,10 @@
 
     <script>
         let currentLang = 'ar';
+
         const content = {
             ar: {
-                vision: "رؤيتنا", partners: "الشركاء", stats: "إحصائيات", losses: "خسائر", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
+                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
                 p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
@@ -270,7 +256,7 @@
                 ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري", "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا", "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي", "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي", "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي", "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم", "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة", "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل", "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً", "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة", "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي", "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"]
             },
             en: {
-                vision: "Vision", partners: "Partners", stats: "Stats", losses: "Losses", feedback: "Feedback", browse: "Browse Book",
+                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", feedback: "Feedback", browse: "Browse Book",
                 visTitle: "Strategic Vision", visDesc: "We aim through the CiviStories initiative to protect the Egyptian social fabric from digital disintegration by empowering families and restoring social balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
                 p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring and addressing family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Electronic Fatwa Center - 255 divorce cases daily",
@@ -295,6 +281,7 @@
             const c = content[currentLang];
             document.getElementById('lnk-vision').innerText = c.vision;
             document.getElementById('lnk-partners').innerText = c.partners;
+            document.getElementById('lnk-media').innerText = c.media;
             document.getElementById('lnk-stats').innerText = c.stats;
             document.getElementById('lnk-losses').innerText = c.losses;
             document.getElementById('lnk-feedback').innerText = c.feedback;
@@ -339,10 +326,6 @@
         function initPage() {
             window.scrollTo(0, 0);
             updateUI();
-        }
-
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
         }
 
         const observer = new IntersectionObserver((entries) => {
