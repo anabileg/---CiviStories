@@ -72,24 +72,34 @@
 
         .video-placeholder { flex: 1; height: 480px; border: 2px solid rgba(212,175,55,0.3); border-radius: 20px; }
 
-        /* --- تعديل شريط الميديا ليظهر 4 صور --- */
+        /* --- التعديل الجوهري للسلايدر --- */
         .carousel-wide { 
             width: 100%; height: 500px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
-            position: relative; overflow: hidden; margin: 40px 0; background: #000; display: flex; align-items: center;
+            position: relative; overflow: hidden; margin: 40px 0; background: #000;
         }
-        .track { display: flex; transition: transform 0.5s ease-in-out; width: max-content; }
+        .track { 
+            display: flex; 
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+            width: max-content;
+            height: 100%;
+            align-items: center;
+        }
         
         .track img { 
-            width: 25vw; min-width: 25vw; height: 500px; 
-            object-fit: contain; cursor: zoom-in; padding: 10px; flex-shrink: 0;
+            width: 25vw !important; 
+            height: 450px; 
+            object-fit: contain; 
+            cursor: zoom-in; 
+            padding: 10px; 
+            flex-shrink: 0;
         }
 
         .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.7);
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.8);
             color: #000; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer;
-            z-index: 10; font-size: 1.5rem; transition: 0.3s;
+            z-index: 100; font-size: 1.5rem; transition: 0.3s; display: flex; align-items: center; justify-content: center;
         }
-        .nav-btn:hover { background: var(--gold); }
+        .nav-btn:hover { background: var(--gold); scale: 1.1; }
         .prev-btn { left: 20px; }
         .next-btn { right: 20px; }
 
@@ -145,8 +155,8 @@
             .news-ticker { top: 160px; }
             .hero { padding-top: 220px; }
             .video-placeholder { height: 300px; }
-            .carousel-wide { height: 300px; }
-            .track img { width: 50vw; min-width: 50vw; height: 300px; } /* صورتين في الموبايل */
+            .carousel-wide { height: 350px; }
+            .track img { width: 80vw !important; height: 300px; } /* صورة واحدة كبيرة للموبايل لسهولة الرؤية */
         }
 
         .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; text-align: center; }
@@ -238,9 +248,9 @@
     </section>
 
     <section id="media-sec" class="carousel-wide">
-        <button class="nav-btn prev-btn" onclick="moveSlide(-1)">❮</button>
+        <button class="nav-btn prev-btn" onclick="moveSlide(1)">❮</button>
         <div class="track" id="track-imgs"></div>
-        <button class="nav-btn next-btn" onclick="moveSlide(1)">❯</button>
+        <button class="nav-btn next-btn" onclick="moveSlide(-1)">❯</button>
     </section>
 
     <section id="stats" class="section">
@@ -323,7 +333,8 @@
             document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
             currentSlide = 0;
             updateUI();
-            moveSlide(0); // إعادة تعيين السلايدر عند تغيير اللغة
+            const track = document.getElementById('track-imgs');
+            track.style.transform = `translateX(0)`;
         }
 
         function updateUI() {
@@ -379,18 +390,20 @@
             updateUI();
         }
 
-        /* دالة تحريك الصور بالسهم - تعديل للتحرك بمقدار 25% */
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
-            const maxSlides = imagesList.length - 4; // لأننا نعرض 4 صور
+            const visibleImages = window.innerWidth > 992 ? 4 : 1;
+            const maxSlides = imagesList.length - visibleImages;
+            
             currentSlide += direction;
 
             if (currentSlide > maxSlides) currentSlide = 0;
             if (currentSlide < 0) currentSlide = maxSlides;
             
-            let moveValue = currentSlide * 25; // تحريك بمقدار ربع الشاشة
-            if (currentLang === 'en') moveValue = -moveValue; // تصحيح الاتجاه للغة الإنجليزية
-
+            const imgWidth = window.innerWidth > 992 ? 25 : 80;
+            const moveValue = currentSlide * imgWidth;
+            
+            // في الـ RTL (العربية) نحتاج تحريك الصور للموجب لتظهر الصور التالية
             track.style.transform = `translateX(${moveValue}vw)`;
         }
 
