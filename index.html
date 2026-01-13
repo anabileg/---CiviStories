@@ -70,9 +70,27 @@
 
         @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
 
-        .video-placeholder { flex: 1; height: 480px; border: 2px solid rgba(212,175,55,0.3); border-radius: 20px; }
+        /* --- تعديل منطقة الفيديو لتصبح معرض صور أبيض وأسود --- */
+        .video-placeholder { 
+            flex: 1; height: 480px; 
+            border: 2px solid rgba(212,175,55,0.3); border-radius: 20px; 
+            display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; overflow-y: auto;
+        }
+        .img-card {
+            position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--gold); cursor: pointer; height: 210px;
+        }
+        .img-card img {
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: grayscale(100%); transition: 0.5s ease;
+        }
+        .img-card:hover img { filter: grayscale(0%); transform: scale(1.1); }
+        .search-icon {
+            position: absolute; top: 10px; right: 10px; background: var(--gold); color: #000;
+            width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 1rem; opacity: 0.8; transition: 0.3s;
+        }
+        .img-card:hover .search-icon { opacity: 1; transform: rotate(360deg); }
 
-        /* --- تعديل شريط الميديا ليصبح تفاعلياً --- */
         .carousel-wide { 
             width: 100%; height: 500px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
             position: relative; overflow: hidden; margin: 40px 0; background: #000; display: flex; align-items: center;
@@ -90,7 +108,6 @@
         .prev-btn { left: 20px; }
         .next-btn { right: 20px; }
 
-        /* --- نظام تكبير الصور Lightbox --- */
         .lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
             display: none; justify-content: center; align-items: center; z-index: 20000;
@@ -141,7 +158,7 @@
             .nav-right-group, .nav-links { justify-content: center; width: 100%; }
             .news-ticker { top: 160px; }
             .hero { padding-top: 220px; }
-            .video-placeholder { height: 300px; }
+            .video-placeholder { height: 400px; grid-template-columns: 1fr; }
             .carousel-wide { height: 300px; }
             .track img { height: 300px; }
         }
@@ -199,7 +216,24 @@
                 <div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book Cover"></div>
                 <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" class="btn-action">تصفح الكتاب</a>
             </div>
-            <div class="video-placeholder"></div>
+            <div class="video-placeholder">
+                <div class="img-card" onclick="openImage('1.jpg')">
+                    <div class="search-icon"><i class="fas fa-search"></i></div>
+                    <img src="1.jpg" alt="Gallery">
+                </div>
+                <div class="img-card" onclick="openImage('2.jpg')">
+                    <div class="search-icon"><i class="fas fa-search"></i></div>
+                    <img src="2.jpg" alt="Gallery">
+                </div>
+                <div class="img-card" onclick="openImage('3.jpg')">
+                    <div class="search-icon"><i class="fas fa-search"></i></div>
+                    <img src="3.jpg" alt="Gallery">
+                </div>
+                <div class="img-card" onclick="openImage('4.jpg')">
+                    <div class="search-icon"><i class="fas fa-search"></i></div>
+                    <img src="4.jpg" alt="Gallery">
+                </div>
+            </div>
         </div>
     </section>
 
@@ -374,7 +408,6 @@
             updateUI();
         }
 
-        /* دالة تحريك الصور بالسهم */
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
             currentSlide += direction;
@@ -383,7 +416,6 @@
             track.style.transform = `translateX(${currentSlide * 100}%)`;
         }
 
-        /* دالة تكبير الصورة */
         function openImage(src) {
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
@@ -391,7 +423,6 @@
             lb.style.display = 'flex';
         }
 
-        /* دالة إغلاق التكبير */
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
         }
