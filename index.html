@@ -72,13 +72,14 @@
  
         .video-placeholder { flex: 1; height: 480px; border: 2px solid rgba(212,175,55,0.3); border-radius: 20px; }
  
+        /* --- تعديل الميديا لمقاس 425 بكسل --- */
         .carousel-wide { 
             width: 100%; height: 500px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
             position: relative; overflow: hidden; margin: 40px 0; background: #000; display: flex; align-items: center;
         }
-        .track { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .track { display: flex; transition: transform 0.5s ease-in-out; width: 100%; align-items: center; }
         .track img { 
-            min-width: 100%; height: 500px; object-fit: contain; cursor: zoom-in; padding: 20px;
+            min-width: 100%; height: 425px; object-fit: contain; cursor: zoom-in; padding: 10px;
         }
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.7);
@@ -140,8 +141,8 @@
             .news-ticker { top: 160px; }
             .hero { padding-top: 220px; }
             .video-placeholder { height: 300px; }
-            .carousel-wide { height: 300px; }
-            .track img { height: 300px; }
+            .carousel-wide { height: 450px; } /* تعديل الارتفاع للموبايل ليناسب 425 بكسل */
+            .track img { height: 425px; }
         }
  
         .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
@@ -317,8 +318,6 @@
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
             updateUI();
-            
-            // إعادة تصفير السلايدر عند تغيير اللغة لضمان الاتجاه الصحيح
             currentSlide = 0;
             document.getElementById('track-imgs').style.transform = `translateX(0)`;
         }
@@ -376,17 +375,16 @@
             updateUI();
         }
  
-        /* إصلاح دالة تحريك الصور */
+        /* دالة الحركة المحسنة لمقاس 425 بكسل */
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
             const totalSlides = imagesList.length;
             
             currentSlide += direction;
-            
             if (currentSlide >= totalSlides) currentSlide = 0;
             if (currentSlide < 0) currentSlide = totalSlides - 1;
             
-            // حساب المسافة: في RTL نستخدم القيمة الموجبة، في LTR نستخدم القيمة السالبة
+            // الضرب في 100 لأن كل صورة تأخذ عرض الـ container بالكامل (min-width: 100%)
             let multiplier = currentLang === 'ar' ? 100 : -100;
             track.style.transform = `translateX(${currentSlide * multiplier}%)`;
         }
