@@ -2,126 +2,51 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CiviStories | اختبار الهيكل</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>اختبار اللون والتقسيم</title>
     <style>
-        :root { 
-            --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
+        /* تغيير الخلفية للأحمر للتأكد من أن المتصفح يقرأ هذا الملف */
+        body { 
+            background-color: #ff0000 !important; 
+            color: white; 
+            margin: 0; 
+            font-family: sans-serif; 
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; }
-
-        .navbar {
-            min-height: 90px; background: rgba(0,0,0,0.95);
-            position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
-            display: flex; align-items: center; justify-content: center;
+        .test-container {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            border: 5px solid yellow;
+            margin-top: 100px;
         }
 
-        .nav-container { width: 95%; display: flex; justify-content: space-between; align-items: center; }
-        .nav-links a { color: var(--gold); text-decoration: none; margin: 0 10px; font-weight: bold; cursor: pointer; }
-
-        .news-ticker { background: var(--red-news); height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; }
-
-        /* --- منطقة الاختبار (شريط الميديا) --- */
-        .carousel-wide { 
-            width: 100%; height: 500px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
-            position: relative; overflow: hidden; margin: 180px 0 40px; background: #111; display: flex; align-items: center;
-        }
-        
-        /* جعل الحاوية تتمدد بعرض المحتوى */
-        .track { display: flex; transition: transform 0.5s ease-in-out; width: max-content; }
-        
-        /* مربعات اختبار بدلاً من الصور لنتأكد من الـ 4 صور */
-        .test-box { 
-            width: 25vw; /* ربع عرض الشاشة تماماً */
-            min-width: 25vw;
-            height: 500px; 
-            border: 2px solid var(--gold);
+        .box {
+            /* عرض المربع 25% من الشاشة ليظهر 4 مربعات بجانب بعضها */
+            width: 25%;
+            min-width: 25%;
+            height: 100%;
+            border: 2px solid black;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            background: #222;
+            background-color: rgba(0,0,0,0.5);
+            font-size: 24px;
+            font-weight: bold;
         }
 
-        .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%); background: var(--gold);
-            color: #000; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; z-index: 10;
-        }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
-
-        .glass-box { 
-            text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 5%;
-            background: rgba(255,255,255,0.05);
-        }
+        h1 { text-align: center; padding: 20px; }
     </style>
 </head>
-<body onload="initPage()">
+<body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-links">
-                <a onclick="scrollToSec('media-sec')">ميديا</a>
-                <a onclick="scrollToSec('stats')">إحصائيات</a>
-            </div>
-            <img src="logo.png" style="height: 65px;" alt="Logo">
-        </div>
-    </nav>
+    <h1>إذا كان اللون أحمر، فأنت تشاهد النسخة الصحيحة</h1>
+    
+    <div class="test-container">
+        <div class="box">مربع 1</div>
+        <div class="box">مربع 2</div>
+        <div class="box">مربع 3</div>
+        <div class="box">مربع 4</div>
+    </div>
 
-    <div class="news-ticker"></div>
-
-    <section id="media-sec" class="carousel-wide">
-        <button class="nav-btn prev-btn" onclick="moveSlide(-1)">❮</button>
-        <div class="track" id="track-imgs">
-            </div>
-        <button class="nav-btn next-btn" onclick="moveSlide(1)">❯</button>
-    </section>
-
-    <section id="stats" class="glass-box">
-        <h2 style="color:var(--gold);">منطقة الإحصائيات</h2>
-        <p>سيتم استعادة المحتوى بالكامل بعد نجاح اختبار التقسيم.</p>
-    </section>
-
-    <script>
-        let currentSlide = 0;
-        let currentLang = 'ar';
-        // المصفوفة فارغة الآن للاختبار كما طلبت
-        let imagesList = []; 
-
-        function initPage() {
-            const track = document.getElementById('track-imgs');
-            // سنولد 8 مربعات اختبار لنرى هل سيظهر 4 منها في الشاشة أم لا
-            let testHtml = '';
-            for(let i=1; i<=8; i++) {
-                testHtml += `<div class="test-box">مربع ${i}</div>`;
-            }
-            track.innerHTML = testHtml;
-        }
-
-        function moveSlide(direction) {
-            const track = document.getElementById('track-imgs');
-            // بما أننا وضعنا 8 مربعات، أقصى حركة هي 4 (8 مربعات - 4 معروضة)
-            const maxSlides = 4; 
-            currentSlide += direction;
-
-            if (currentSlide > maxSlides) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = maxSlides;
-            
-            // التحريك بناءً على عرض المربع (25vw)
-            let moveAmount = currentSlide * 25;
-            // مراعاة الاتجاه
-            if (document.documentElement.dir === 'ltr') moveAmount = -moveAmount;
-
-            track.style.transform = `translateX(${moveAmount}vw)`;
-        }
-
-        function scrollToSec(id) {
-            window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
