@@ -77,14 +77,26 @@
             width: 100%; height: 500px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
             position: relative; overflow: hidden; margin: 40px 0; background: #000; display: flex; align-items: center;
         }
-        .track { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
+        .track { 
+            display: flex; 
+            transition: transform 0.5s ease-in-out; 
+            width: calc(100% * (29 / 4)); /* 29 صورة ÷ 4 صور في العرض = 7.25 ضعف العرض */
+            height: 100%;
+        }
         
         .track img { 
-            min-width: 25%; /* التعديل المطلوب لظهور 4 صور */
-            height: 500px; 
-            object-fit: contain; 
+            width: calc(100% / 29); /* عرض كل صورة = العرض الكلي ÷ عدد الصور */
+            flex: 0 0 auto;
+            height: 100%; 
+            object-fit: cover; 
             cursor: zoom-in; 
-            padding: 10px; /* تقليل البادنج قليلاً ليناسب العرض الجديد */
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .track img:hover {
+            transform: scale(1.05);
+            z-index: 5;
         }
 
         .nav-btn {
@@ -149,7 +161,13 @@
             .hero { padding-top: 220px; }
             .video-placeholder { height: 300px; }
             .carousel-wide { height: 300px; }
-            .track img { min-width: 100%; height: 300px; } /* للموبايل تظل صورة واحدة أفضل */
+            .track { width: calc(100% * (29 / 2)); } /* للموبايل عرض صورتين */
+            .track img { width: calc(100% / 29); } /* عرض كل صورة */
+        }
+        
+        @media (max-width: 768px) {
+            .track { width: calc(100% * 29); } /* للموبايل الصغير عرض صورة واحدة */
+            .track img { width: calc(100% / 29); }
         }
  
         .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
@@ -380,50 +398,11 @@
             updateUI();
         }
  
-        /* دالة تحريك الصور بالسهم (التعديل للتحرك بنسبة 25%) */
+        /* دالة تحريك الصور بالسهم */
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
-            currentSlide += direction;
+            const totalSlides = imagesList.length;
+            const slidesToShow = 4; // عدد الصور المعروضة في نفس الوقت
             
-            // الحد الأقصى للحركة لضمان عدم ظهور فراغ بعد آخر صورة
-            if (currentSlide > imagesList.length - 4) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = imagesList.length - 4;
-            
-            // التحريك بنسبة 25% (عرض الصورة الواحدة الجديد)
-            track.style.transform = `translateX(${currentSlide * 25}%)`;
-        }
- 
-        /* دالة تكبير الصورة */
-        function openImage(src) {
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            lbImg.src = src;
-            lb.style.display = 'flex';
-        }
- 
-        /* دالة إغلاق التكبير */
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
- 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-target'));
-                    let count = 0;
-                    const update = setInterval(() => {
-                        count += target/30;
-                        if (count >= target) { el.innerText = target; clearInterval(update); }
-                        else { el.innerText = Math.floor(count); }
-                    }, 40);
-                }
-            });
-        }, { threshold: 0.5 });
- 
-        document.querySelectorAll('.counter').forEach(c => observer.observe(c));
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
-    </script>
-</body>
-</html>
+            // احتساب أقصى شريحة يمكن التحرك إليها
+            const maxSlide =
