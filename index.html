@@ -89,7 +89,6 @@
         .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
         .video-container-box iframe { width: 100%; height: 100%; border: none; }
 
-        /* تصفيف قسم الوعي الجديد */
         .awareness-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -491,9 +490,25 @@
 
         function initPage() {
             window.scrollTo(0, 0);
-            const track = document.getElementById('track-imgs');
-            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
             updateUI();
+            
+            // تهيئة العدادات
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const update = () => {
+                    const inc = target / 50;
+                    if(count < target) {
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(update, 30);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                update();
+            });
         }
 
         function moveSlide(direction) {
@@ -524,24 +539,14 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-target'));
-                    let count = 0;
-                    const update = setInterval(() => {
-                        count += target/30;
-                        if (count >= target) { el.innerText = target; clearInterval(update); }
-                        else { el.innerText = Math.floor(count); }
-                    }, 40);
-                }
-            });
-        }, { threshold: 0.5 });
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
 
-        document.querySelectorAll('.counter').forEach(c => observer.observe(c));
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
+        window.onscroll = () => {
+            const btn = document.getElementById('btnUp');
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+        };
     </script>
 </body>
 </html>
