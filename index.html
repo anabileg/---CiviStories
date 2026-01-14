@@ -119,21 +119,6 @@
             font-size: 1.2rem;
         }
 
-        .q-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); display: none; justify-content: center;
-            align-items: center; z-index: 30000; padding: 20px;
-        }
-        .q-content {
-            background: #111; border: 2px solid var(--gold); border-radius: 20px;
-            max-width: 600px; width: 100%; padding: 30px; position: relative;
-            max-height: 80vh; overflow-y: auto;
-        }
-        .q-content h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
-        .q-list { list-style: none; }
-        .q-list li { margin-bottom: 15px; padding: 15px; border-bottom: 1px solid #333; line-height: 1.6; color: #fff; background: rgba(255,255,255,0.05); border-radius: 8px;}
-        .close-q { position: absolute; top: 10px; left: 10px; color: #ff0000; cursor: pointer; font-size: 24px; font-weight: bold; }
-
         .carousel-wide { 
             width: 100%; height: 400px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
             position: relative; overflow: hidden; margin: 40px 0; background: #000; display: flex; align-items: center;
@@ -238,14 +223,6 @@
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
-    <div id="qModal" class="q-modal" onclick="closeQuestions()">
-        <div class="q-content" onclick="event.stopPropagation()">
-            <span class="close-q" onclick="closeQuestions()">×</span>
-            <h3 id="q-title">الطفولة الرقمية</h3>
-            <ul class="q-list" id="q-list"></ul>
-        </div>
-    </div>
 
     <div id="lightbox" class="lightbox" onclick="closeImage()">
         <div class="lightbox-container" onclick="event.stopPropagation()">
@@ -381,27 +358,27 @@
             <p style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
             
             <div class="awareness-grid">
-                <div class="awareness-card" onclick="showChildQuestions()">
+                <div class="awareness-card">
                     <i class="fas fa-child"></i>
                     <span>الطفولة الرقمية</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة المراهقين قريباً')">
+                <div class="awareness-card">
                     <i class="fas fa-user-graduate"></i>
                     <span>عالم المراهقين</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة الإنتاجية قريباً')">
+                <div class="awareness-card">
                     <i class="fas fa-rocket"></i>
                     <span>الإنتاجية والعمل</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة الحياة الزوجية قريباً')">
+                <div class="awareness-card">
                     <i class="fas fa-heart"></i>
                     <span>الحياة الزوجية</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة كبار السن قريباً')">
+                <div class="awareness-card">
                     <i class="fas fa-blind"></i>
                     <span>كبار السن</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة الأمان قريباً')">
+                <div class="awareness-card">
                     <i class="fas fa-user-shield"></i>
                     <span>الأمان والجرائم</span>
                 </div>
@@ -422,16 +399,6 @@
             "107.jpg", "108.jpg", "109.jpg", "110.jpg", "111.jpg", "112.jpg", 
             "113.jpg", "114.jpg", "115.jpg", "116.jpg", "117.jpg", "118.jpg", 
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
-        ];
-
-        // مصفوفة الأسئلة
-        const childQuestions = [
-            "كم ساعة يقضيها طفلك أمام الشاشات يومياً؟",
-            "هل يفضل طفلك اللعب الإلكتروني على اللعب مع أقرانه؟",
-            "هل تلاحظ تغيراً في سلوك طفلك أو زيادة في العدوانية بعد استخدام الأجهزة؟",
-            "هل تتأكد من نوعية المحتوى الذي يشاهده طفلك باستمرار؟",
-            "هل يعاني طفلك من اضطرابات في النوم بسبب الشاشات؟",
-            "هل طفلك لديه الرغبة في ممارسة هواية أخرى غير الألعاب الإلكترونية؟"
         ];
 
         const content = {
@@ -569,22 +536,6 @@
 
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
-        }
-
-        // وظيفة إظهار الأسئلة
-        function showChildQuestions() {
-            const list = document.getElementById('q-list');
-            list.innerHTML = '';
-            childQuestions.forEach(q => {
-                const li = document.createElement('li');
-                li.innerText = q;
-                list.appendChild(li);
-            });
-            document.getElementById('qModal').style.display = 'flex';
-        }
-
-        function closeQuestions() {
-            document.getElementById('qModal').style.display = 'none';
         }
     </script>
 </body>
