@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CiviStories | تسونامي الوهم الرقمي</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=2">
     
     <style>
         :root { 
@@ -407,7 +407,7 @@
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
                 p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
-                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
+                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقورة المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.", p3src: "المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت",
                 st1: "ألف حالة طلاق سنوياً", st1src: "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية",
                 st2: "مليون هاتف محمول", st2src: "المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة",
@@ -520,42 +520,37 @@
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
             const totalImages = imagesList.length;
-            const visibleImages = window.innerWidth < 992 ? 2 : 4;
-            const maxIndex = totalImages - visibleImages;
-            
+            const imagesPerView = window.innerWidth <= 992 ? 2 : 4;
+            const maxSlide = totalImages - imagesPerView;
+
             currentSlide += direction;
-            if (currentSlide > maxIndex) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = maxIndex;
-            
-            const step = 100 / visibleImages; 
-            const offset = currentSlide * step;
-            // التحويل لليسار في الإنجليزية ولليمين في العربية
-            const multiplier = currentLang === 'ar' ? 1 : -1;
-            track.style.transform = `translateX(${offset * multiplier}%)`;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide > maxSlide) currentSlide = maxSlide;
+
+            const shift = currentSlide * (100 / imagesPerView);
+            track.style.transform = `translateX(${currentLang === 'ar' ? shift : -shift}%)`;
         }
 
         function openImage(src) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = src;
-            lb.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
         }
 
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
         }
 
         function scrollToSec(id) {
             const el = document.getElementById(id);
-            const offset = 150;
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = el.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
+            if (el) {
+                const offset = 150;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = el.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
 
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
         }
     </script>
 </body>
