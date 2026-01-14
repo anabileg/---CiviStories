@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CiviStories | تسونامي الوهم الرقمي</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root { 
@@ -16,6 +16,12 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
+
+        /* منع تظليل الترجمة التلقائي */
+        .awareness-card span, #awareness-main-title {
+            user-select: none;
+            -webkit-user-select: none;
+        }
 
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -50,7 +56,6 @@
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
         .ic-in { color: var(--in); } 
 
-        /* تعديل زر اللغة - العلم فقط بدون خلفية */
         .lang-toggle { 
             background: none; 
             border: none; 
@@ -74,6 +79,7 @@
         .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
+        @keyframes marquee-en { 0% { transform: translateX(0);} 100% { transform: translateX(-100%);} }
 
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
@@ -144,7 +150,7 @@
         }
         .child-box {
             width: 80%; max-width: 600px; height: 400px;
-            background: #ffcc00; /* أصفر فاقع */
+            background: #ffcc00; 
             border-radius: 15px; position: relative;
         }
         .close-child {
@@ -395,33 +401,33 @@
 
     <section id="awareness-sec" class="section">
         <div class="glass-box">
-            <h2 id="awareness-main-title" style="text-align:center; color:var(--gold); font-size: 2.5rem; margin-bottom:10px;">وعي</h2>
+            <h2 id="awareness-main-title" class="notranslate" style="text-align:center; color:var(--gold); font-size: 2.5rem; margin-bottom:10px;">وعي</h2>
             <p style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
             
             <div class="awareness-grid">
                 <div class="awareness-card" onclick="openChildBox()">
                     <i class="fas fa-child"></i>
-                    <span>الطفولة الرقمية</span>
+                    <span class="notranslate">الطفولة الرقمية</span>
                 </div>
                 <div class="awareness-card">
                     <i class="fas fa-user-graduate"></i>
-                    <span>عالم المراهقين</span>
+                    <span class="notranslate">عالم المراهقين</span>
                 </div>
                 <div class="awareness-card">
                     <i class="fas fa-rocket"></i>
-                    <span>الإنتاجية والعمل</span>
+                    <span class="notranslate">الإنتاجية والعمل</span>
                 </div>
                 <div class="awareness-card">
                     <i class="fas fa-heart"></i>
-                    <span>الحياة الزوجية</span>
+                    <span class="notranslate">الحياة الزوجية</span>
                 </div>
                 <div class="awareness-card">
                     <i class="fas fa-blind"></i>
-                    <span>كبار السن</span>
+                    <span class="notranslate">كبار السن</span>
                 </div>
                 <div class="awareness-card">
                     <i class="fas fa-user-shield"></i>
-                    <span>الأمان والجرائم</span>
+                    <span class="notranslate">الأمان والجرائم</span>
                 </div>
             </div>
         </div>
@@ -530,83 +536,83 @@
             track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
         }
 
-        const styleSheet = document.createElement('style');
-        styleSheet.innerHTML = `
-            @keyframes marquee-en { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%);} }
-        `;
-        document.head.appendChild(styleSheet);
-
-        function initPage() {
-            window.scrollTo(0, 0);
-            const track = document.getElementById('track-imgs');
-            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
-            updateUI();
-            initCounters();
-        }
-
-        function moveSlide(direction) {
-            const track = document.getElementById('track-imgs');
-            const totalImages = imagesList.length;
-            const visibleImages = 4;
-            const maxIndex = totalImages - visibleImages;
-            currentSlide += direction;
-            if (currentSlide > maxIndex) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = maxIndex;
-            const step = 25; 
-            const offset = currentSlide * step;
-            if (currentLang === 'ar') {
-                track.style.transform = `translateX(${offset}%)`;
-            } else {
-                track.style.transform = `translateX(-${offset}%)`;
-            }
-        }
-
-        function openImage(src) {
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            lbImg.src = src;
-            lb.style.display = 'flex';
-        }
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-
-        // دوال المربع الأصفر (الطفولة)
-        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
-        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
-
         function scrollToSec(id) {
             const el = document.getElementById(id);
             if(el) {
-                const headerOffset = 150; 
-                const elementPosition = el.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offset = 140; 
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = el.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
                 window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
             }
         }
 
-        window.onscroll = function() {
-            const btn = document.getElementById("btnUp");
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) btn.style.display = "flex";
-            else btn.style.display = "none";
-        };
+        function moveSlide(dir) {
+            const track = document.getElementById('track-imgs');
+            const total = imagesList.length;
+            const step = window.innerWidth > 992 ? 25 : 50;
+            const max = total * step - 100;
+            
+            currentSlide += (dir * step);
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide > max) currentSlide = max;
+            
+            track.style.transform = `translateX(${currentLang === 'ar' ? currentSlide : -currentSlide}%)`;
+        }
 
-        function initCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const updateCount = () => {
-                    const count = +counter.innerText;
-                    const speed = 200;
-                    const inc = target / speed;
-                    if(count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 10);
-                    } else {
-                        counter.innerText = target;
+        function openImage(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openChildBox() {
+            document.getElementById('childModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeChildBox() {
+            document.getElementById('childModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function initPage() {
+            updateUI();
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = +entry.target.getAttribute('data-target');
+                        let count = 0;
+                        const inc = target / 50;
+                        const timer = setInterval(() => {
+                            count += inc;
+                            if (count >= target) {
+                                entry.target.innerText = target;
+                                clearInterval(timer);
+                            } else {
+                                entry.target.innerText = Math.ceil(count);
+                            }
+                        }, 30);
+                        observer.unobserve(entry.target);
                     }
-                };
-                updateCount();
-            });
+                });
+            }, { threshold: 0.5 });
+
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
+
+            window.onscroll = () => {
+                document.getElementById('btnUp').style.display = window.pageYOffset > 400 ? 'flex' : 'none';
+            };
         }
     </script>
 </body>
