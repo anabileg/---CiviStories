@@ -78,7 +78,7 @@
         }
         .track { display: flex; transition: transform 0.5s ease-in-out; width: 100%; }
         .track img { 
-            flex: 0 0 25%; height: 380px; object-fit: cover; cursor: zoom-in; padding: 10px; border-radius: 20px;
+            flex: 0 0 25%; height: 380px; object-fit: contain; cursor: zoom-in; padding: 10px; border-radius: 20px;
         }
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.7);
@@ -283,7 +283,6 @@
         let currentLang = 'ar';
         let currentSlide = 0;
         
-        // تم إضافة الصور من 101 إلى 124 كما طلبت بدقة
         const imagesList = [
             "101.png", "102.png", "103.png", "104.png", "105.png", "106.png", 
             "107.png", "108.png", "109.png", "110.png", "111.png", "112.png", 
@@ -380,7 +379,6 @@
             updateUI();
         }
 
-        // تحكم الحركة صورة بصورة مع دعم النهاية والبداية
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
             const totalImages = imagesList.length;
@@ -389,16 +387,15 @@
 
             currentSlide += direction;
 
-            // إذا وصل للنهاية يعود للبداية
             if (currentSlide > maxIndex) {
                 currentSlide = 0;
             }
-            // إذا كان في البداية ورجع للخلف يذهب للنهاية
             if (currentSlide < 0) {
                 currentSlide = maxIndex;
             }
 
-            const offset = currentSlide * (100 / visibleImages);
+            const step = 25; // لأن كل صورة تأخذ 25% من العرض
+            const offset = currentSlide * step;
             track.style.transform = `translateX(${currentLang === 'ar' ? offset : -offset}%)`;
         }
 
