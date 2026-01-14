@@ -50,7 +50,24 @@
         .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
         .ic-in { color: var(--in); } 
  
-        .lang-toggle { background: var(--gold); border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #000; font-size: 0.9rem; }
+        /* تصميم زر اللغة الجديد */
+        .lang-toggle { 
+            background: var(--gold); 
+            border: none; 
+            padding: 5px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .lang-toggle img {
+            width: 35px; /* حجم العلم داخل المربع */
+            height: auto;
+            border-radius: 2px;
+            display: block;
+        }
  
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
@@ -256,7 +273,9 @@
                     <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
                     <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
                 </div>
-                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">English</button>
+                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">
+                    <img src="https://flagcdn.com/w80/gb.png" alt="English">
+                </button>
                 <img src="logo.png" class="nav-logo-img" alt="Logo">
             </div>
         </div>
@@ -432,7 +451,15 @@
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+            
+            // تغيير العلم في الزر
+            const langBtn = document.getElementById('langBtn');
+            if (currentLang === 'ar') {
+                langBtn.innerHTML = '<img src="https://flagcdn.com/w80/gb.png" alt="English">';
+            } else {
+                langBtn.innerHTML = '<img src="https://flagcdn.com/w80/eg.png" alt="العربية">';
+            }
+
             currentSlide = 0;
             document.getElementById('track-imgs').style.transform = `translateX(0%)`;
             updateUI();
@@ -524,7 +551,7 @@
         function scrollToSec(id) {
             const el = document.getElementById(id);
             if(el) {
-                const headerOffset = 150; // تعويض ارتفاع الهيدر
+                const headerOffset = 150; 
                 const elementPosition = el.getBoundingClientRect().top;
                 const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
