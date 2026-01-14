@@ -119,7 +119,6 @@
             font-size: 1.2rem;
         }
 
-        /* نافذة الأسئلة المنبثقة */
         .q-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); display: none; justify-content: center;
@@ -132,7 +131,7 @@
         }
         .q-content h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
         .q-list { list-style: none; }
-        .q-list li { margin-bottom: 15px; padding: 15px; border-bottom: 1px solid #333; line-height: 1.6; color: #fff; background: rgba(255,255,255,0.05); border-radius: 8px; }
+        .q-list li { margin-bottom: 15px; padding: 15px; border-bottom: 1px solid #333; line-height: 1.6; color: #fff; background: rgba(255,255,255,0.05); border-radius: 8px;}
         .close-q { position: absolute; top: 10px; left: 10px; color: #ff0000; cursor: pointer; font-size: 24px; font-weight: bold; }
 
         .carousel-wide { 
@@ -425,6 +424,7 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
+        // مصفوفة الأسئلة
         const childQuestions = [
             "كم ساعة يقضيها طفلك أمام الشاشات يومياً؟",
             "هل يفضل طفلك اللعب الإلكتروني على اللعب مع أقرانه؟",
@@ -474,7 +474,8 @@
             updateUI();
             startCounters();
             window.addEventListener('scroll', () => {
-                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+                const btnUp = document.getElementById('btnUp');
+                if (btnUp) btnUp.style.display = window.scrollY > 300 ? 'flex' : 'none';
             });
         }
 
@@ -557,7 +558,8 @@
         }
 
         function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            const sec = document.getElementById(id);
+            if(sec) sec.scrollIntoView({ behavior: 'smooth' });
         }
 
         function openImage(src) {
@@ -569,6 +571,7 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
+        // وظيفة إظهار الأسئلة
         function showChildQuestions() {
             const list = document.getElementById('q-list');
             list.innerHTML = '';
