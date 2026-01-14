@@ -314,19 +314,19 @@
         <div class="glass-box">
             <h2 style="text-align:center; color:var(--gold); font-size:2.8rem; margin-bottom:40px;" id="part-title">شركاء الوعي الوطني</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card" onclick="openQuiz('child')" style="cursor: pointer;">
                     <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً</div>
                     <img src="100.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p1-name">الأزهر الشريف</h3>
                     <p id="p1-desc" style="color:#ccc; margin-top:15px;">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openQuiz('child')" style="cursor: pointer;">
                     <div class="info-popup" id="p2-src">المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي</div>
                     <img src="300.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p2-name">الكنيسة المصرية</h3>
                     <p id="p2-desc" style="color:#ccc; margin-top:15px;">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openQuiz('child')" style="cursor: pointer;">
                     <div class="info-popup" id="p3-src">المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت</div>
                     <img src="200.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p3-name">وزارة الأوقاف</h3>
@@ -479,11 +479,10 @@
             }
         };
 
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+        function initPage() {
             updateContent();
+            loadCarousel();
+            initCounters();
         }
 
         function updateContent() {
@@ -501,24 +500,18 @@
             document.getElementById('part-title').innerText = c.partTitle;
             document.getElementById('st-title').innerText = c.stTitle;
             document.getElementById('ls-title').innerText = c.lsTitle;
-            document.getElementById('p1-name').innerText = c.p1n;
-            document.getElementById('p1-desc').innerText = c.p1d;
-            document.getElementById('p1-src').innerText = c.p1src;
-            document.getElementById('p2-name').innerText = c.p2n;
-            document.getElementById('p2-desc').innerText = c.p2d;
-            document.getElementById('p2-src').innerText = c.p2src;
-            document.getElementById('p3-name').innerText = c.p3n;
-            document.getElementById('p3-desc').innerText = c.p3d;
-            document.getElementById('p3-src').innerText = c.p3src;
-            document.getElementById('st1-txt').innerText = c.st1;
-            document.getElementById('st1-src').innerText = c.st1src;
-            document.getElementById('st2-txt').innerText = c.st2;
-            document.getElementById('st2-src').innerText = c.st2src;
-            document.getElementById('ls1-txt').innerText = c.ls1;
-            document.getElementById('ls1-src').innerText = c.ls1src;
-            document.getElementById('ls2-txt').innerText = c.ls2;
-            document.getElementById('ls2-src').innerText = c.ls2src;
             document.getElementById('footer-txt').innerText = c.footer;
+            document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+
+            document.getElementById('p1-name').innerText = c.p1n; document.getElementById('p1-desc').innerText = c.p1d; document.getElementById('p1-src').innerText = c.p1src;
+            document.getElementById('p2-name').innerText = c.p2n; document.getElementById('p2-desc').innerText = c.p2d; document.getElementById('p2-src').innerText = c.p2src;
+            document.getElementById('p3-name').innerText = c.p3n; document.getElementById('p3-desc').innerText = c.p3d; document.getElementById('p3-src').innerText = c.p3src;
+
+            document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st1-src').innerText = c.st1src;
+            document.getElementById('st2-txt').innerText = c.st2; document.getElementById('st2-src').innerText = c.st2src;
+            document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls1-src').innerText = c.ls1src;
+            document.getElementById('ls2-txt').innerText = c.ls2; document.getElementById('ls2-src').innerText = c.ls2src;
+
             document.getElementById('awareness-main-title').innerText = c.awm;
             document.getElementById('awareness-sub-title').innerText = c.aws;
             document.getElementById('aw-c1').innerText = c.aw1;
@@ -527,96 +520,64 @@
             document.getElementById('aw-c4').innerText = c.aw4;
             document.getElementById('aw-c5').innerText = c.aw5;
             document.getElementById('aw-c6').innerText = c.aw6;
-            
+
             const ticker = document.getElementById('tickerTrack');
             ticker.innerHTML = '';
-            c.ticker.forEach(t => {
-                const s = document.createElement('span');
-                s.innerText = t;
-                ticker.appendChild(s);
-            });
-            
-            // Re-center slider
-            const track = document.getElementById('track-imgs');
-            track.style.transform = `translateX(0)`;
-            currentSlide = 0;
+            c.ticker.forEach(t => { const s = document.createElement('span'); s.innerText = t; ticker.appendChild(s); });
         }
 
-        function initPage() {
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             updateContent();
+        }
+
+        function scrollToSec(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+
+        function loadCarousel() {
             const track = document.getElementById('track-imgs');
-            imagesList.forEach(img => {
-                const el = document.createElement('img');
-                el.src = img;
-                el.onclick = () => openImage(img);
-                track.appendChild(el);
+            imagesList.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.onclick = () => openImage(src);
+                track.appendChild(img);
             });
-            startCounters();
         }
 
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const perView = window.innerWidth > 992 ? 4 : 2;
-            const totalSlides = Math.ceil(imagesList.length / perView);
-            currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
-            const multiplier = currentLang === 'ar' ? 1 : -1;
-            track.style.transform = `translateX(${currentSlide * 100 * multiplier}%)`;
+            const total = imagesList.length;
+            const step = window.innerWidth > 992 ? 25 : 50;
+            const max = total * (100 / (100/step)) - 100;
+            currentSlide += dir * step;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide > max) currentSlide = max;
+            track.style.transform = `translateX(${currentLang === 'ar' ? currentSlide : -currentSlide}%)`;
         }
 
         function openImage(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
+        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function startCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                let count = 0;
-                const update = () => {
-                    const inc = target / 100;
-                    if (count < target) {
-                        count += inc;
-                        counter.innerText = Math.ceil(count);
-                        setTimeout(update, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                update();
-            });
-        }
-
-        window.onscroll = () => {
-            document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
-        };
-
-        function openQuiz(cat) {
-            const data = quizData[currentLang][cat];
+        function openQuiz(category) {
+            const data = quizData[currentLang][category];
             document.getElementById('quiz-header').innerText = data.title;
             document.getElementById('quiz-q').innerText = data.q;
-            
             const optsDiv = document.getElementById('quiz-opts');
-            optsDiv.innerHTML = ''; 
-            
-            data.opts.forEach((opt, index) => {
+            optsDiv.innerHTML = '';
+            data.opts.forEach((o, i) => {
                 const btn = document.createElement('div');
                 btn.className = 'quiz-opt';
-                btn.innerText = opt;
+                btn.innerText = o;
                 btn.onclick = () => {
-                    if(index === data.ans) {
-                        alert(currentLang === 'ar' ? "إجابة صحيحة!" : "Correct Answer!");
-                        closeQuiz();
+                    if (i === data.ans) {
+                        btn.style.background = '#25D366'; btn.style.color = '#fff';
+                        setTimeout(() => { alert(currentLang === 'ar' ? "إجابة صحيحة! أحسنت." : "Correct Answer! Well done."); closeQuiz(); }, 500);
                     } else {
-                        alert(currentLang === 'ar' ? "حاول مرة أخرى" : "Try Again");
+                        btn.style.background = '#ff0000'; btn.style.color = '#fff';
+                        alert(currentLang === 'ar' ? "إجابة خاطئة، حاول مرة أخرى." : "Wrong answer, try again.");
                     }
                 };
                 optsDiv.appendChild(btn);
@@ -624,9 +585,34 @@
             document.getElementById('quizModal').style.display = 'flex';
         }
 
-        function closeQuiz() {
-            document.getElementById('quizModal').style.display = 'none';
+        function closeQuiz() { document.getElementById('quizModal').style.display = 'none'; }
+
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = +entry.target.getAttribute('data-target');
+                        let count = 0;
+                        const speed = target / 50;
+                        const update = () => {
+                            count += speed;
+                            if (count < target) {
+                                entry.target.innerText = Math.ceil(count);
+                                setTimeout(update, 30);
+                            } else entry.target.innerText = target;
+                        };
+                        update();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(c => observer.observe(c));
         }
+
+        window.onscroll = function() {
+            document.getElementById("btnUp").style.display = window.pageYOffset > 400 ? "flex" : "none";
+        };
     </script>
 </body>
 </html>
