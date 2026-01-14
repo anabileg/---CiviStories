@@ -128,6 +128,8 @@
             flex: 0 0 25%; height: 380px; object-fit: contain; cursor: zoom-in; padding: 10px; border-radius: 20px;
             filter: grayscale(100%); transition: filter 0.3s;
         }
+        .track img:hover { filter: grayscale(0%); }
+
         .nav-btn {
             position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.7);
             color: #000; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer;
@@ -156,7 +158,6 @@
             height: auto; 
             border: 3px solid var(--gold); 
             border-radius: 10px; 
-            filter: grayscale(0%); 
             object-fit: contain;
         }
         .close-lightbox {
@@ -214,7 +215,7 @@
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
+        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; text-align: center;}
         .btn-action:hover { background: #fff; transform: scale(1.05);}
     </style>
 </head>
@@ -223,8 +224,8 @@
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
-    <div id="lightbox" class="lightbox">
-        <div class="lightbox-container">
+    <div id="lightbox" class="lightbox" onclick="closeImage()">
+        <div class="lightbox-container" onclick="event.stopPropagation()">
             <button class="close-lightbox" onclick="closeImage()">X</button>
             <img id="lightbox-img" src="">
         </div>
@@ -492,7 +493,6 @@
             window.scrollTo(0, 0);
             updateUI();
             
-            // تهيئة العدادات
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
@@ -509,44 +509,54 @@
                 };
                 update();
             });
+
+            window.addEventListener('scroll', () => {
+                const btn = document.getElementById('btnUp');
+                if (window.pageYOffset > 300) btn.style.display = "flex";
+                else btn.style.display = "none";
+            });
         }
 
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
             const totalImages = imagesList.length;
-            const visibleImages = 4;
+            const visibleImages = window.innerWidth < 992 ? 2 : 4;
             const maxIndex = totalImages - visibleImages;
+            
             currentSlide += direction;
             if (currentSlide > maxIndex) currentSlide = 0;
             if (currentSlide < 0) currentSlide = maxIndex;
-            const step = 25; 
+            
+            const step = 100 / visibleImages; 
             const offset = currentSlide * step;
-            if (currentLang === 'ar') {
-                track.style.transform = `translateX(${offset}%)`;
-            } else {
-                track.style.transform = `translateX(-${offset}%)`;
-            }
+            // التحويل لليسار في الإنجليزية ولليمين في العربية
+            const multiplier = currentLang === 'ar' ? 1 : -1;
+            track.style.transform = `translateX(${offset * multiplier}%)`;
         }
 
         function openImage(src) {
             const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            lbImg.src = src;
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
             lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
         function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
+            const el = document.getElementById(id);
+            const offset = 150;
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = el.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition - offset;
 
-        window.onscroll = () => {
-            const btn = document.getElementById('btnUp');
-            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-        };
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
     </script>
 </body>
 </html>
