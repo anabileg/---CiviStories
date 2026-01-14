@@ -165,6 +165,28 @@
             display: flex; align-items: center; justify-content: center; z-index: 20001;
         }
 
+        /* --- نافذة الأسئلة الجديدة --- */
+        .q-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 30000;
+            display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
+        }
+        .q-modal {
+            max-width: 700px; width: 95%; background: #0b0b0b; border: 3px solid var(--gold);
+            border-radius: 30px; padding: 40px; position: relative; max-height: 85vh; overflow-y: auto;
+            box-shadow: 0 0 50px rgba(212,175,55,0.4);
+        }
+        .q-item {
+            background: rgba(212,175,55,0.1); padding: 18px; margin: 15px 0;
+            border-right: 5px solid var(--gold); border-radius: 10px; text-align: right; 
+            font-size: 1.2rem; line-height: 1.6; color: #fff;
+        }
+        .close-q {
+            position: absolute; top: 15px; left: 15px; color: #ff0000;
+            font-size: 35px; cursor: pointer; border: 2px solid #ff0000; background: #000;
+            border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+        }
+
         .vision-section, .glass-box { 
             text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0;
             background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative;
@@ -184,26 +206,6 @@
 
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
-
-        /* --- الأكواد الجديدة للأسئلة --- */
-        .q-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.98); z-index: 30000;
-            display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
-        }
-        .q-modal {
-            max-width: 700px; width: 100%; background: #111; border: 2px solid var(--gold);
-            border-radius: 25px; padding: 40px; position: relative; max-height: 80vh; overflow-y: auto;
-        }
-        .q-item {
-            background: rgba(255,255,255,0.05); padding: 15px; margin: 10px 0;
-            border-right: 4px solid var(--gold); border-radius: 5px; text-align: right; font-size: 1.1rem;
-        }
-        .close-q {
-            position: absolute; top: 15px; left: 15px; color: var(--gold);
-            font-size: 24px; cursor: pointer; border: none; background: none;
-        }
-        /* --------------------------- */
 
         #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
         
@@ -246,7 +248,7 @@
     <div id="qOverlay" class="q-overlay">
         <div class="q-modal">
             <button class="close-q" onclick="closeQuestions()">×</button>
-            <h2 id="qTitle" style="color:var(--gold); margin-bottom:20px; text-align: center;"></h2>
+            <h2 id="qTitle" style="color:var(--gold); margin-bottom:30px; text-align: center; font-size: 2rem;"></h2>
             <div id="qList"></div>
         </div>
     </div>
@@ -428,37 +430,37 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
-        // بيانات الأسئلة الجديدة (تزيد من حجم الكود)
-        const interactiveData = {
+        // بيانات الأسئلة التفاعلية الكاملة
+        const qData = {
             ar: {
-                p1: { title: "الأزهر الشريف", q: ["كيف أواجه الابتزاز الإلكتروني شرعاً؟", "ما هو دور لجان الفتوى في حل مشاكل الإدمان الرقمي؟", "هل يؤثر الانعزال الرقمي على صحة العقد الزوجي؟"] },
-                p2: { title: "الكنيسة المصرية", q: ["كيف تحمي الكنيسة الشباب من الاستقطاب الفكري الرقمي؟", "ما هي برامج المشورة الأسرية لمواجهة الخرس الزوجي؟"] },
-                p3: { title: "وزارة الأوقاف", q: ["ما هي تفاصيل مبادرة سكن ومودة؟", "كيف يتم تدريب الأئمة على قضايا الوعي التكنولوجي؟"] },
-                s1: { title: "إحصائيات الطلاق", q: ["لماذا ارتفعت معدلات الطلاق بسبب السوشيال ميديا؟", "ما هي أكثر التطبيقات المسببة للنزاعات الزوجية؟"] },
-                s2: { title: "الانتشار الرقمي", q: ["كم ساعة يقضيها المصريون يومياً على الهواتف؟", "ما هي مخاطر وصول الهواتف للأطفال في سن مبكرة؟"] },
-                l1: { title: "خسائر الإنتاجية", q: ["كيف يسرق الهاتف ٤ ساعات من يوم الموظف؟", "ما هو تأثير التشتت الرقمي على الاقتصاد القومي؟"] },
-                l2: { title: "تكلفة العلاج", q: ["متى يحتاج مدمن الإنترنت لتدخل طبي؟", "كم تكلفة برامج التأهيل النفسي من الإدمان الرقمي؟"] },
-                q1: { title: "الطفولة الرقمية", q: ["ما هو السن المناسب لأول هاتف؟", "كيف أحمي طفلي من المحتوى الصادم؟", "علامات إدمان الألعاب الإلكترونية؟"] },
-                q2: { title: "عالم المراهقين", q: ["تحديات التيك توك القاتلة وكيفية منعها؟", "بناء الثقة بين الأهل والمراهق في العالم الافتراضي؟"] },
-                q3: { title: "الإنتاجية والعمل", q: ["كيف أتخلص من تشتت الإشعارات؟", "تقنيات العمل بتركيز عميق (Deep Work)؟"] },
-                q4: { title: "الحياة الزوجية", q: ["قواعد استخدام الهاتف داخل غرفة النوم؟", "كيف نتغلب على الخرس الزوجي الرقمي؟"] },
-                q5: { title: "كبار السن", q: ["حماية كبار السن من النصب الإلكتروني؟", "تطبيقات مفيدة لصحة كبار السن؟"] },
-                q6: { title: "الأمان والجرائم", q: ["كيف أكتشف الروابط الاحتيالية؟", "خطوات الإبلاغ عن جرائم المعلومات؟"] }
+                p1: { title: "الأزهر الشريف", questions: ["ما هو حكم الابتزاز الإلكتروني شرعاً؟", "كيف نصل لمكاتب الإرشاد الأسري بالأزهر؟", "دور الأزهر في التوعية ضد مخاطر الإدمان الرقمي؟"] },
+                p2: { title: "الكنيسة المصرية", questions: ["كيف تحافظ الكنيسة على ترابط الأسرة في عصر الشاشات؟", "ما هي برامج المشورة الأسرية المتخصصة؟"] },
+                p3: { title: "وزارة الأوقاف", questions: ["تفاصيل مبادرة سكن ومودة لحماية البيوت؟", "كيف يشارك الأئمة في حملات الوعي الوطني؟"] },
+                s1: { title: "إحصائيات الطلاق", questions: ["لماذا ارتفعت حالات الطلاق بسبب الهواتف؟", "ما هي المحافظات الأكثر تأثراً بالانعزال الرقمي؟"] },
+                s2: { title: "الانتشار الرقمي", questions: ["هل عدد الهواتف يتجاوز عدد السكان؟", "مخاطر امتلاك الأطفال للهواتف في سن مبكرة؟"] },
+                l1: { title: "خسائر الإنتاجية", questions: ["كيف يتم حساب الـ 15 مليار جنيه خسائر؟", "طرق استعادة التركيز في بيئة العمل الرقمية؟"] },
+                l2: { title: "تكلفة العلاج", questions: ["أين توجد مراكز علاج الإدمان الرقمي بمصر؟", "أعراض تستدعي التدخل الطبي الفوري؟"] },
+                q1: { title: "الطفولة الرقمية", questions: ["قاعدة (20-20-20) لحماية عيون الأطفال؟", "كيف أمنع طفلي من اليوتيوب الضار؟", "بدائل ترفيهية بعيدة عن الشاشات؟"] },
+                q2: { title: "عالم المراهقين", questions: ["كيفية رصد بوادر الاكتئاب الرقمي عند المراهق؟", "تأثير (الفلاتر) على الثقة بالنفس عند المراهقات؟"] },
+                q3: { title: "الإنتاجية والعمل", questions: ["تطبيق تقنية البومودورو للعمل بتركيز؟", "كيفية تعطيل الإشعارات المشتتة بذكاء؟"] },
+                q4: { title: "الحياة الزوجية", questions: ["اتفاقية (ساعات بلا هواتف) داخل المنزل؟", "خطر المقارنات الرقمية على السعادة الزوجية؟"] },
+                q5: { title: "كبار السن", questions: ["طرق حماية الأجداد من محاولات الاحتيال الهاتفي؟", "تطبيقات تسهل حياة كبار السن اليومية؟"] },
+                q6: { title: "الأمان والجرائم", questions: ["كيفية تأمين حسابات السوشيال ميديا بـ 2FA؟", "ماذا أفعل في حالة سرقة بياناتي البنكية؟"] }
             },
             en: {
-                p1: { title: "Al-Azhar", q: ["How to deal with cyber blackmail?", "The role of Fatwa committees in digital addiction?"] },
-                p2: { title: "Egyptian Church", q: ["Protecting youth from digital extremism?", "Family counseling for digital isolation?"] },
-                p3: { title: "Ministry of Awqaf", q: ["Details of Sakan & Mawadda?", "Training Imams on tech issues?"] },
-                s1: { title: "Divorce Stats", q: ["Why social media increased divorce?", "Top apps causing marital conflicts?"] },
-                s2: { title: "Digital Spread", q: ["Daily hours spent on mobile?", "Risks of early mobile usage?"] },
-                l1: { title: "Productivity", q: ["How phones steal work hours?", "Impact on national economy?"] },
-                l2: { title: "Treatment Cost", q: ["When to seek medical help?", "Cost of digital rehab?"] },
-                q1: { title: "Digital Childhood", q: ["Right age for first phone?", "Protecting children from shock content?"] },
-                q2: { title: "Teen World", q: ["Dangerous TikTok challenges?", "Building trust in virtual world?"] },
-                q3: { title: "Productivity", q: ["Eliminating notification distraction?", "Deep work techniques?"] },
-                q4: { title: "Marital Life", q: ["Phone rules in bedroom?", "Overcoming digital silence?"] },
-                q5: { title: "Seniors", q: ["Protecting seniors from fraud?", "Useful apps for elders?"] },
-                q6: { title: "Security", q: ["Detecting phishing links?", "Steps to report cybercrimes?"] }
+                p1: { title: "Al-Azhar", questions: ["Legal ruling on cyber blackmail?", "How to reach family counseling?", "Al-Azhar's role in digital awareness?"] },
+                p2: { title: "Egyptian Church", questions: ["Family bonding in the screen age?", "Specialized counseling programs?"] },
+                p3: { title: "Ministry of Awqaf", questions: ["Sakan & Mawadda initiative details?", "Imams role in national awareness?"] },
+                s1: { title: "Divorce Stats", questions: ["Why phones increased divorce rates?", "Most affected provinces by digital isolation?"] },
+                s2: { title: "Digital Spread", questions: ["Do mobiles exceed population?", "Risks of early child mobile usage?"] },
+                l1: { title: "Productivity", questions: ["How are the 15B EGP losses calculated?", "Regaining focus at work?"] },
+                l2: { title: "Treatment Cost", questions: ["Digital addiction centers in Egypt?", "Symptoms requiring medical intervention?"] },
+                q1: { title: "Digital Childhood", questions: ["The 20-20-20 rule for eyes?", "Blocking harmful YouTube content?", "Screen-free activity ideas?"] },
+                q2: { title: "Teen World", questions: ["Spotting digital depression signs?", "Impact of filters on self-esteem?"] },
+                q3: { title: "Productivity", questions: ["Using Pomodoro for focus?", "Managing distracting notifications?"] },
+                q4: { title: "Marital Life", questions: ["The (Phone-Free Hours) agreement?", "Social media comparisons vs marital joy?"] },
+                q5: { title: "Seniors", questions: ["Protecting elders from phone scams?", "Useful apps for senior citizens?"] },
+                q6: { title: "Security", questions: ["Securing accounts with 2FA?", "What to do if bank data is stolen?"] }
             }
         };
 
@@ -491,26 +493,17 @@
             }
         };
 
-        // وظائف الأسئلة التفاعلية (جديد)
-        function openQuestions(id) {
-            const data = interactiveData[currentLang][id];
-            document.getElementById('qTitle').innerText = data.title;
-            document.getElementById('qList').innerHTML = data.q.map(item => `<div class="q-item">${item}</div>`).join('');
-            document.getElementById('qOverlay').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeQuestions() {
-            document.getElementById('qOverlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        // وظائف تشغيل الموقع
+        function initPage() {
+            window.scrollTo(0, 0);
+            updateUI();
+            startCounters();
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
-            currentSlide = 0;
-            document.getElementById('track-imgs').style.transform = `translateX(0%)`;
             updateUI();
         }
 
@@ -557,18 +550,8 @@
             track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
         }
 
-        const styleSheet = document.createElement('style');
-        styleSheet.innerHTML = `
-            @keyframes marquee-en { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%);} }
-        `;
-        document.head.appendChild(styleSheet);
-
-        function initPage() {
-            window.scrollTo(0, 0);
-            updateUI();
-            
-            // تفعيل العدادات (Counter Logic)
+        // منطق العدادات
+        function startCounters() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -576,22 +559,37 @@
                         const target = parseInt(el.getAttribute('data-target'));
                         let count = 0;
                         const update = setInterval(() => {
-                            count += target/30;
+                            count += Math.ceil(target / 50);
                             if (count >= target) { el.innerText = target; clearInterval(update); }
-                            else { el.innerText = Math.floor(count); }
-                        }, 40);
+                            else { el.innerText = count; }
+                        }, 30);
+                        observer.unobserve(el);
                     }
                 });
             }, { threshold: 0.5 });
             document.querySelectorAll('.counter').forEach(c => observer.observe(c));
         }
 
+        // وظائف الأسئلة الجديدة
+        function openQuestions(id) {
+            const data = qData[currentLang][id];
+            if (!data) return;
+            document.getElementById('qTitle').innerText = data.title;
+            document.getElementById('qList').innerHTML = data.questions.map(q => `<div class="q-item">${q}</div>`).join('');
+            document.getElementById('qOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuestions() {
+            document.getElementById('qOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // وظائف الجاليري والميديا
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
-            const maxIndex = imagesList.length - 4;
-            currentSlide += direction;
-            if (currentSlide > maxIndex) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = maxIndex;
+            const total = imagesList.length - 4;
+            currentSlide = (currentSlide + direction + (total + 1)) % (total + 1);
             const offset = currentSlide * 25;
             track.style.transform = currentLang === 'ar' ? `translateX(${offset}%)` : `translateX(-${offset}%)`;
         }
@@ -606,12 +604,20 @@
         }
 
         function scrollToSec(id) {
-            window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' });
+            const target = document.getElementById(id);
+            window.scrollTo({ top: target.offsetTop - 120, behavior: 'smooth' });
         }
 
         window.onscroll = () => {
             document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none';
         };
+
+        const tickerStyles = document.createElement('style');
+        tickerStyles.innerHTML = `
+            @keyframes marquee-en { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
+            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%);} }
+        `;
+        document.head.appendChild(tickerStyles);
     </script>
 </body>
 </html>
