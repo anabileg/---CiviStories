@@ -219,21 +219,25 @@
 
         .quiz-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); z-index: 30000; justify-content: center; align-items: center;
+            background: rgba(0,0,0,0.95); z-index: 30000; justify-content: center; align-items: center;
         }
         .quiz-content {
             background: #111; border: 2px solid var(--gold); border-radius: 20px;
             width: 90%; max-width: 600px; padding: 30px; position: relative; color: #fff;
+            max-height: 80vh; overflow-y: auto;
         }
-        .quiz-header { color: var(--gold); font-size: 1.5rem; margin-bottom: 20px; text-align: center; }
-        .quiz-question { font-size: 1.2rem; margin-bottom: 20px; line-height: 1.5; text-align: center; }
-        .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+        .quiz-header { color: var(--gold); font-size: 1.5rem; margin-bottom: 20px; text-align: center; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .quiz-question-item { margin-bottom: 25px; border-bottom: 1px dashed #333; padding-bottom: 15px; }
+        .quiz-question { font-size: 1.1rem; margin-bottom: 15px; line-height: 1.4; color: #fff; text-align: right; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
         .quiz-opt {
-            background: rgba(212,175,55,0.1); border: 1px solid var(--gold);
-            padding: 12px; border-radius: 8px; cursor: pointer; transition: 0.3s; text-align: center;
+            background: rgba(212,175,55,0.05); border: 1px solid #444;
+            padding: 10px; border-radius: 8px; cursor: pointer; transition: 0.3s; text-align: right; font-size: 0.95rem;
         }
-        .quiz-opt:hover { background: var(--gold); color: #000; }
-        .close-quiz { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.5rem; color: var(--gold); }
+        .quiz-opt:hover { border-color: var(--gold); background: rgba(212,175,55,0.1); }
+        .quiz-opt.correct { background: #25D366 !important; color: #000; font-weight: bold; }
+        .quiz-opt.wrong { background: #ff0000 !important; color: #fff; }
+        .close-quiz { position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 1.8rem; color: var(--gold); z-index: 10; }
     </style>
 </head>
 <body onload="initPage()">
@@ -253,9 +257,7 @@
             <span class="close-quiz" onclick="closeQuiz()">&times;</span>
             <div id="quiz-header" class="quiz-header"></div>
             <div id="quiz-body">
-                <p id="quiz-q" class="quiz-question"></p>
-                <div id="quiz-opts" class="quiz-options"></div>
-            </div>
+                </div>
         </div>
     </div>
  
@@ -429,20 +431,38 @@
  
         const quizData = {
             ar: {
-                child: { title: "الطفولة الرقمية", q: "ما هو الوقت الصحي الموصى به لتعرض الأطفال أقل من عامين للشاشات؟", opts: ["ساعتين يومياً", "ساعة واحدة", "يُفضل عدم التعرض نهائياً", "نصف ساعة"], ans: 2 },
-                teen: { title: "عالم المراهقين", q: "ما هي العلامة الأبرز للتنمر الإلكتروني؟", opts: ["حب القراءة", "الانعزال المفاجئ وتغير المزاج", "زيادة الشهية", "التفوق الدراسي"], ans: 1 },
-                work: { title: "الإنتاجية والعمل", q: "ما هي استراتيجية 'العمل العميق'؟", opts: ["تعدد المهام", "العمل بدون فترات راحة", "التركيز الكامل بدون تشتت رقمي", "الرد الفوري على الإيميلات"], ans: 2 },
-                marriage: { title: "الحياة الزوجية", q: "ماذا يقصد بمصطلح 'الخرس الزوجي الرقمي'؟", opts: ["تعطل الهواتف", "غياب الحوار الحقيقي بسبب الانشغال بالمحمول", "استخدام لغة الإشارة", "توفير فواتير الاتصال"], ans: 1 },
-                senior: { title: "كبار السن", q: "كيف نحمي كبار السن من الاحتيال الرقمي؟", opts: ["منعهم من النت", "التوعية بعدم مشاركة الأكواد والبيانات البنكية", "تغيير هواتفهم", "تجاهل رسائلهم"], ans: 1 },
-                security: { title: "الأمان والجرائم", q: "ما هو التصرف الصحيح عند التعرض للابتزاز الإلكتروني؟", opts: ["الدفع للمبتز", "مسح الحساب", "إبلاغ مباحث الإنترنت (١٠٨)", "التجاهل التام"], ans: 2 }
+                child: { 
+                    title: "الطفولة الرقمية", 
+                    questions: [
+                        { q: "ما هو الوقت الصحي الموصى به لتعرض الأطفال أقل من عامين للشاشات؟", opts: ["ساعتين يومياً", "ساعة واحدة", "يُفضل عدم التعرض نهائياً", "نصف ساعة"], ans: 2 },
+                        { q: "ما هي المتلازمة الناتجة عن جلوس الأطفال لفترات طويلة أمام الأجهزة اللوحية؟", opts: ["متلازمة التوحد الرقمي", "متلازمة الذكاء الخارق", "متلازمة النشاط البدني", "متلازمة القراءة السريعة"], ans: 0 },
+                        { q: "في أي عمر يُنصح بالسماح للطفل بامتلاك حساب خاص على وسائل التواصل الاجتماعي؟", opts: ["7 سنوات", "10 سنوات", "بعد سن 13 عاماً", "5 سنوات"], ans: 2 },
+                        { q: "ما هو التأثير المباشر للضوء الأزرق المنبعث من الشاشات على الأطفال قبل النوم؟", opts: ["يساعد على الاسترخاء", "يسبب اضطرابات النوم وتأخير هرمون الميلاتونين", "يقوي النظر", "يزيد من التركيز الدراسي"], ans: 1 },
+                        { q: "ما هي أفضل وسيلة لحماية الطفل من المحتوى غير اللائق على الإنترنت؟", opts: ["منع الإنترنت تماماً", "تفعيل الرقابة الأبوية والمشاركة في التصفح", "ترك الطفل يكتشف بنفسه", "تغيير الجهاز كل شهر"], ans: 1 }
+                    ]
+                },
+                teen: { title: "عالم المراهقين", questions: [{ q: "ما هي العلامة الأبرز للتنمر الإلكتروني؟", opts: ["حب القراءة", "الانعزال المفاجئ وتغير المزاج", "زيادة الشهية", "التفوق الدراسي"], ans: 1 }] },
+                work: { title: "الإنتاجية والعمل", questions: [{ q: "ما هي استراتيجية 'العمل العميق'؟", opts: ["تعدد المهام", "العمل بدون فترات راحة", "التركيز الكامل بدون تشتت رقمي", "الرد الفوري على الإيميلات"], ans: 2 }] },
+                marriage: { title: "الحياة الزوجية", questions: [{ q: "ماذا يقصد بمصطلح 'الخرس الزوجي الرقمي'؟", opts: ["تعطل الهواتف", "غياب الحوار الحقيقي بسبب الانشغال بالمحمول", "استخدام لغة الإشارة", "توفير فواتير الاتصال"], ans: 1 }] },
+                senior: { title: "كبار السن", questions: [{ q: "كيف نحمي كبار السن من الاحتيال الرقمي؟", opts: ["منعهم من النت", "التوعية بعدم مشاركة الأكواد والبيانات البنكية", "تغيير هواتفهم", "تجاهل رسائلهم"], ans: 1 }] },
+                security: { title: "الأمان والجرائم", questions: [{ q: "ما هو التصرف الصحيح عند التعرض للابتزاز الإلكتروني؟", opts: ["الدفع للمبتز", "مسح الحساب", "إبلاغ مباحث الإنترنت (١٠٨)", "التجاهل التام"], ans: 2 }] }
             },
             en: {
-                child: { title: "Digital Childhood", q: "What is the recommended screen time for children under 2 years old?", opts: ["2 hours daily", "1 hour", "Zero screen time preferred", "30 minutes"], ans: 2 },
-                teen: { title: "Teen World", q: "What is a major sign of cyberbullying?", opts: ["Love for reading", "Sudden isolation and mood changes", "Increased appetite", "Academic excellence"], ans: 1 },
-                work: { title: "Productivity", q: "What is the 'Deep Work' strategy?", opts: ["Multitasking", "Working without breaks", "Full focus without digital distraction", "Instant reply to emails"], ans: 2 },
-                marriage: { title: "Marital Life", q: "What is 'Digital Marital Silence'?", opts: ["Broken phones", "Lack of real dialogue due to phone obsession", "Using sign language", "Saving on bills"], ans: 1 },
-                senior: { title: "Seniors", q: "How to protect seniors from digital fraud?", opts: ["Banning the internet", "Awareness about not sharing banking codes", "Changing their phones", "Ignoring their messages"], ans: 1 },
-                security: { title: "Security", q: "Correct action when facing cyber blackmail?", opts: ["Paying the blackmailer", "Deleting the account", "Reporting to Cybercrime Police", "Complete silence"], ans: 2 }
+                child: { 
+                    title: "Digital Childhood", 
+                    questions: [
+                        { q: "What is the recommended screen time for children under 2 years old?", opts: ["2 hours daily", "1 hour", "Zero screen time preferred", "30 minutes"], ans: 2 },
+                        { q: "What is the syndrome caused by children sitting too long in front of tablets?", opts: ["Digital Autism Syndrome", "Super Intelligence Syndrome", "Physical Activity Syndrome", "Speed Reading Syndrome"], ans: 0 },
+                        { q: "At what age is it recommended to allow a child to have a social media account?", opts: ["7 years old", "10 years old", "After 13 years old", "5 years old"], ans: 2 },
+                        { q: "What is the direct effect of blue light on children before sleep?", opts: ["Helps relaxation", "Causes sleep disorders and delays Melatonin", "Strengthens vision", "Increases study focus"], ans: 1 },
+                        { q: "Best way to protect children from inappropriate online content?", opts: ["Total internet ban", "Parental controls and co-browsing", "Let them discover alone", "Change device monthly"], ans: 1 }
+                    ]
+                },
+                teen: { title: "Teen World", questions: [{ q: "What is a major sign of cyberbullying?", opts: ["Love for reading", "Sudden isolation and mood changes", "Increased appetite", "Academic excellence"], ans: 1 }] },
+                work: { title: "Productivity", questions: [{ q: "What is the 'Deep Work' strategy?", opts: ["Multitasking", "Working without breaks", "Full focus without digital distraction", "Instant reply to emails"], ans: 2 }] },
+                marriage: { title: "Marital Life", questions: [{ q: "What is 'Digital Marital Silence'?", opts: ["Broken phones", "Lack of real dialogue due to phone obsession", "Using sign language", "Saving on bills"], ans: 1 }] },
+                senior: { title: "Seniors", questions: [{ q: "How to protect seniors from digital fraud?", opts: ["Banning the internet", "Awareness about not sharing banking codes", "Changing their phones", "Ignoring their messages"], ans: 1 }] },
+                security: { title: "Security", questions: [{ q: "Correct action when facing cyber blackmail?", opts: ["Paying the blackmailer", "Deleting the account", "Reporting to Cybercrime Police", "Complete silence"], ans: 2 }] }
             }
         };
 
@@ -481,66 +501,73 @@
 
         function initPage() {
             updateContent();
-            loadCarousel();
-            initCounters();
+            renderCarousel();
+            window.addEventListener('scroll', handleScroll);
         }
 
         function updateContent() {
-            const c = content[currentLang];
-            document.getElementById('lnk-vision').innerText = c.vision;
-            document.getElementById('lnk-partners').innerText = c.partners;
-            document.getElementById('lnk-media').innerText = c.media;
-            document.getElementById('lnk-stats').innerText = c.stats;
-            document.getElementById('lnk-losses').innerText = c.losses;
-            document.getElementById('lnk-awareness').innerText = c.awareness;
-            document.getElementById('lnk-feedback').innerText = c.feedback;
-            document.getElementById('btn-browse').innerText = c.browse;
-            document.getElementById('vis-title').innerText = c.visTitle;
-            document.getElementById('vis-desc').innerText = c.visDesc;
-            document.getElementById('part-title').innerText = c.partTitle;
-            document.getElementById('st-title').innerText = c.stTitle;
-            document.getElementById('ls-title').innerText = c.lsTitle;
-            document.getElementById('footer-txt').innerText = c.footer;
+            const l = content[currentLang];
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            document.getElementById('lnk-vision').innerText = l.vision;
+            document.getElementById('lnk-partners').innerText = l.partners;
+            document.getElementById('lnk-media').innerText = l.media;
+            document.getElementById('lnk-stats').innerText = l.stats;
+            document.getElementById('lnk-losses').innerText = l.losses;
+            document.getElementById('lnk-awareness').innerText = l.awareness;
+            document.getElementById('lnk-feedback').innerText = l.feedback;
+            document.getElementById('btn-browse').innerText = l.browse;
+            document.getElementById('vis-title').innerText = l.visTitle;
+            document.getElementById('vis-desc').innerText = l.visDesc;
+            document.getElementById('part-title').innerText = l.partTitle;
+            document.getElementById('st-title').innerText = l.stTitle;
+            document.getElementById('ls-title').innerText = l.lsTitle;
+            document.getElementById('footer-txt').innerText = l.footer;
             document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
 
-            document.getElementById('p1-name').innerText = c.p1n; document.getElementById('p1-desc').innerText = c.p1d; document.getElementById('p1-src').innerText = c.p1src;
-            document.getElementById('p2-name').innerText = c.p2n; document.getElementById('p2-desc').innerText = c.p2d; document.getElementById('p2-src').innerText = c.p2src;
-            document.getElementById('p3-name').innerText = c.p3n; document.getElementById('p3-desc').innerText = c.p3d; document.getElementById('p3-src').innerText = c.p3src;
+            document.getElementById('p1-name').innerText = l.p1n; document.getElementById('p1-desc').innerText = l.p1d; document.getElementById('p1-src').innerText = l.p1src;
+            document.getElementById('p2-name').innerText = l.p2n; document.getElementById('p2-desc').innerText = l.p2d; document.getElementById('p2-src').innerText = l.p2src;
+            document.getElementById('p3-name').innerText = l.p3n; document.getElementById('p3-desc').innerText = l.p3d; document.getElementById('p3-src').innerText = l.p3src;
 
-            document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st1-src').innerText = c.st1src;
-            document.getElementById('st2-txt').innerText = c.st2; document.getElementById('st2-src').innerText = c.st2src;
-            document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls1-src').innerText = c.ls1src;
-            document.getElementById('ls2-txt').innerText = c.ls2; document.getElementById('ls2-src').innerText = c.ls2src;
+            document.getElementById('st1-txt').innerText = l.st1; document.getElementById('st1-src').innerText = l.st1src;
+            document.getElementById('st2-txt').innerText = l.st2; document.getElementById('st2-src').innerText = l.st2src;
+            document.getElementById('ls1-txt').innerText = l.ls1; document.getElementById('ls1-src').innerText = l.ls1src;
+            document.getElementById('ls2-txt').innerText = l.ls2; document.getElementById('ls2-src').innerText = l.ls2src;
 
-            document.getElementById('awareness-main-title').innerText = c.awm;
-            document.getElementById('awareness-sub-title').innerText = c.aws;
-            document.getElementById('aw-c1').innerText = c.aw1;
-            document.getElementById('aw-c2').innerText = c.aw2;
-            document.getElementById('aw-c3').innerText = c.aw3;
-            document.getElementById('aw-c4').innerText = c.aw4;
-            document.getElementById('aw-c5').innerText = c.aw5;
-            document.getElementById('aw-c6').innerText = c.aw6;
+            document.getElementById('awareness-main-title').innerText = l.awm;
+            document.getElementById('awareness-sub-title').innerText = l.aws;
+            document.getElementById('aw-c1').innerText = l.aw1; document.getElementById('aw-c2').innerText = l.aw2;
+            document.getElementById('aw-c3').innerText = l.aw3; document.getElementById('aw-c4').innerText = l.aw4;
+            document.getElementById('aw-c5').innerText = l.aw5; document.getElementById('aw-c6').innerText = l.aw6;
 
             const ticker = document.getElementById('tickerTrack');
             ticker.innerHTML = '';
-            c.ticker.forEach(t => { const s = document.createElement('span'); s.innerText = t; ticker.appendChild(s); });
+            l.ticker.forEach(txt => {
+                const span = document.createElement('span');
+                span.innerText = txt;
+                ticker.appendChild(span);
+            });
+            // مضاعفة الشريط لضمان استمرارية الحركة
+            l.ticker.forEach(txt => {
+                const span = document.createElement('span');
+                span.innerText = txt;
+                ticker.appendChild(span);
+            });
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             updateContent();
         }
 
-        function scrollToSec(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-
-        function loadCarousel() {
+        function renderCarousel() {
             const track = document.getElementById('track-imgs');
-            imagesList.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.onclick = () => openImage(src);
-                track.appendChild(img);
+            imagesList.forEach(img => {
+                const el = document.createElement('img');
+                el.src = img;
+                el.onclick = () => openImage(img);
+                track.appendChild(el);
             });
         }
 
@@ -548,10 +575,12 @@
             const track = document.getElementById('track-imgs');
             const total = imagesList.length;
             const step = window.innerWidth > 992 ? 25 : 50;
-            const max = total * (100 / (100/step)) - 100;
+            const max = total * (100/4) - 100;
+            
             currentSlide += dir * step;
-            if (currentSlide < 0) currentSlide = 0;
-            if (currentSlide > max) currentSlide = max;
+            if(currentSlide < 0) currentSlide = 0;
+            if(currentSlide > 100 * (total/4 - 1)) currentSlide = 0;
+
             track.style.transform = `translateX(${currentLang === 'ar' ? currentSlide : -currentSlide}%)`;
         }
 
@@ -559,60 +588,77 @@
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
-        function openQuiz(category) {
-            const data = quizData[currentLang][category];
-            document.getElementById('quiz-header').innerText = data.title;
-            document.getElementById('quiz-q').innerText = data.q;
-            const optsDiv = document.getElementById('quiz-opts');
-            optsDiv.innerHTML = '';
-            data.opts.forEach((o, i) => {
-                const btn = document.createElement('div');
-                btn.className = 'quiz-opt';
-                btn.innerText = o;
-                btn.onclick = () => {
-                    if (i === data.ans) {
-                        btn.style.background = '#25D366'; btn.style.color = '#fff';
-                        setTimeout(() => { alert(currentLang === 'ar' ? "إجابة صحيحة! أحسنت." : "Correct Answer! Well done."); closeQuiz(); }, 500);
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function handleScroll() {
+            const btn = document.getElementById('btnUp');
+            btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const pos = counter.getBoundingClientRect().top;
+                if(pos < window.innerHeight) {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const speed = target / 50;
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + speed);
+                        setTimeout(handleScroll, 20);
                     } else {
-                        btn.style.background = '#ff0000'; btn.style.color = '#fff';
-                        alert(currentLang === 'ar' ? "إجابة خاطئة، حاول مرة أخرى." : "Wrong answer, try again.");
+                        counter.innerText = target;
                     }
-                };
-                optsDiv.appendChild(btn);
+                }
             });
+        }
+
+        function openQuiz(type) {
+            const data = quizData[currentLang][type];
+            document.getElementById('quiz-header').innerText = data.title;
+            const body = document.getElementById('quiz-body');
+            body.innerHTML = '';
+
+            data.questions.forEach((item, qIdx) => {
+                const qDiv = document.createElement('div');
+                qDiv.className = 'quiz-question-item';
+                qDiv.innerHTML = `<p class="quiz-question">${item.q}</p>`;
+                
+                const optDiv = document.createElement('div');
+                optDiv.className = 'quiz-options';
+                
+                item.opts.forEach((opt, oIdx) => {
+                    const btn = document.createElement('div');
+                    btn.className = 'quiz-opt';
+                    btn.innerText = opt;
+                    btn.onclick = () => {
+                        const allOpts = optDiv.querySelectorAll('.quiz-opt');
+                        allOpts.forEach(b => b.classList.remove('correct', 'wrong'));
+                        if(oIdx === item.ans) {
+                            btn.classList.add('correct');
+                        } else {
+                            btn.classList.add('wrong');
+                            allOpts[item.ans].classList.add('correct');
+                        }
+                    };
+                    optDiv.appendChild(btn);
+                });
+                
+                qDiv.appendChild(optDiv);
+                body.appendChild(qDiv);
+            });
+
             document.getElementById('quizModal').style.display = 'flex';
         }
 
-        function closeQuiz() { document.getElementById('quizModal').style.display = 'none'; }
-
-        function initCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
-                        const speed = target / 50;
-                        const update = () => {
-                            count += speed;
-                            if (count < target) {
-                                entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 30);
-                            } else entry.target.innerText = target;
-                        };
-                        update();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(c => observer.observe(c));
+        function closeQuiz() {
+            document.getElementById('quizModal').style.display = 'none';
         }
-
-        window.onscroll = function() {
-            document.getElementById("btnUp").style.display = window.pageYOffset > 400 ? "flex" : "none";
-        };
     </script>
 </body>
 </html>
