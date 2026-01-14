@@ -33,7 +33,7 @@
 
         .nav-container { 
             width: 95%; max-width: 1400px;
-            display: flex; flex-direction: row; justify-content: space-between; align-items: center; direction: rtl;
+            display: flex; flex-direction: row; justify-content: space-between; align-items: center; direction: inherit;
         }
         
         .nav-right-group { display: flex; align-items: center; gap: 20px; }
@@ -244,8 +244,7 @@
         <div class="q-content" onclick="event.stopPropagation()">
             <span class="close-q" onclick="closeQuestions()">×</span>
             <h3 id="q-title">الطفولة الرقمية</h3>
-            <ul class="q-list" id="q-list">
-                </ul>
+            <ul class="q-list" id="q-list"></ul>
         </div>
     </div>
 
@@ -426,7 +425,6 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
-        // أسئلة الطفولة الرقمية
         const childQuestions = [
             "كم ساعة يقضيها طفلك أمام الشاشات يومياً؟",
             "هل يفضل طفلك اللعب الإلكتروني على اللعب مع أقرانه؟",
@@ -451,35 +449,38 @@
             },
             en: {
                 vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback", browse: "Browse Book",
-                visTitle: "Strategic Vision", visDesc: "We aim through the CiviStories initiative to protect the Egyptian social fabric from digital disintegration by empowering families and restoring social balance.",
+                visTitle: "Strategic Vision", visDesc: "Protecting Egyptian society from digital disintegration by empowering families and restoring social balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring and addressing family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Electronic Fatwa Center - 255 divorce cases daily",
-                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the same home through counseling programs.", p2src: "Source: Church Family Counseling Report - 60% due to digital space conflicts",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate married couples about technology risks to their psychological stability.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
+                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction.", p1src: "Source: Al-Azhar - 255 divorce cases daily",
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation.", p2src: "Source: Church Counseling Report - 60% due to digital space",
+                p3n: "Ministry of Awqaf", p3d: "Educating married couples about technology risks.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
                 st1: "Thousand Divorces Annually", st1src: "Source: CAPMAS - Annual Divorce Rates",
-                st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Total Registered Mobile Lines",
-                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Productivity Loss due to Distraction",
-                ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget for isolation disorders",
-                ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian societal stability", "• Ministry of Health: 3M psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems linked to digital isolation", "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying", "• Ministry of Finance: 15B EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases", "• Ministry of Interior: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5B EGP annual cost for treating digital mental disorders", "• National Security: 870 organized electronic groups detected spreading discord", "• Disaster: 2.1B EGP annual losses due to electronic fraud"]
+                st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Mobile Lines",
+                ls1: "Billion EGP Production Loss", ls1src: "Source: Productivity Loss due to Distraction",
+                ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget",
+                ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Red Alert: Family breakdown threatens Egyptian stability", "• Ministry of Health: 3M psychiatric visits due to social media", "• CAPMAS: 57% increase in divorce rates in 5 years", "• National Security: 870 organized electronic groups detected"]
             }
         };
 
-        function showChildQuestions() {
-            const list = document.getElementById('q-list');
-            list.innerHTML = childQuestions.map(q => `<li>${q}</li>`).join('');
-            document.getElementById('qModal').style.display = 'flex';
-        }
-
-        function closeQuestions() {
-            document.getElementById('qModal').style.display = 'none';
+        function initPage() {
+            const track = document.getElementById('track-imgs');
+            imagesList.forEach(img => {
+                const imgEl = document.createElement('img');
+                imgEl.src = img;
+                imgEl.onclick = () => openImage(img);
+                track.appendChild(imgEl);
+            });
+            updateUI();
+            startCounters();
+            window.addEventListener('scroll', () => {
+                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
-            currentSlide = 0;
-            document.getElementById('track-imgs').style.transform = `translateX(0%)`;
             updateUI();
         }
 
@@ -518,20 +519,27 @@
             document.getElementById('ls2-src').innerText = c.ls2src;
             
             const tickerTrack = document.getElementById('tickerTrack');
-            const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
-            tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
-            tickerTrack.style.animation = currentLang === 'ar' ? "marquee 900s linear infinite" : "marquee-en 900s linear infinite";
-
-            const track = document.getElementById('track-imgs');
-            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
+            tickerTrack.innerHTML = '';
+            c.ticker.concat(c.ticker).forEach(txt => {
+                const span = document.createElement('span');
+                span.innerText = txt;
+                tickerTrack.appendChild(span);
+            });
         }
 
-        const styleSheet = document.createElement('style');
-        styleSheet.innerHTML = `
-            @keyframes marquee-en { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%);} }
-        `;
-        document.head.appendChild(styleSheet);
+        function moveSlide(direction) {
+            const track = document.getElementById('track-imgs');
+            const totalImages = imagesList.length;
+            const imagesPerView = window.innerWidth <= 992 ? 2 : 4;
+            const maxSlide = Math.ceil(totalImages / imagesPerView) - 1;
+            
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = maxSlide;
+            if (currentSlide > maxSlide) currentSlide = 0;
+            
+            const movePercentage = currentSlide * (100 / imagesPerView) * imagesPerView;
+            track.style.transform = `translateX(${currentLang === 'ar' ? movePercentage : -movePercentage}%)`;
+        }
 
         function openImage(src) {
             document.getElementById('lightbox-img').src = src;
@@ -542,60 +550,35 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        function moveSlide(direction) {
-            const track = document.getElementById('track-imgs');
-            const totalImages = imagesList.length;
-            const imagesPerView = window.innerWidth > 992 ? 4 : 2;
-            const maxSlide = Math.ceil(totalImages / imagesPerView) - 1;
+        function showChildQuestions() {
+            const list = document.getElementById('q-list');
+            list.innerHTML = childQuestions.map(q => `<li>${q}</li>`).join('');
+            document.getElementById('qModal').style.display = 'flex';
+        }
 
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = maxSlide;
-            if (currentSlide > maxSlide) currentSlide = 0;
-
-            const offset = currentSlide * (100 / (totalImages / imagesPerView));
-            track.style.transform = `translateX(${currentLang === 'ar' ? offset : -offset}%)`;
+        function closeQuestions() {
+            document.getElementById('qModal').style.display = 'none';
         }
 
         function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 120;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        function initPage() {
-            window.scrollTo(0, 0);
-            updateUI();
-            
+        function startCounters() {
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                let count = 0;
                 const update = () => {
-                    const inc = target / 50;
-                    if(count < target) {
-                        count += inc;
-                        counter.innerText = Math.ceil(count);
+                    const count = +counter.innerText;
+                    const speed = target / 100;
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + speed);
                         setTimeout(update, 30);
                     } else {
                         counter.innerText = target;
                     }
                 };
                 update();
-            });
-
-            window.addEventListener('scroll', () => {
-                const btn = document.getElementById('btnUp');
-                if (window.pageYOffset > 300) {
-                    btn.style.display = 'flex';
-                } else {
-                    btn.style.display = 'none';
-                }
             });
         }
     </script>
