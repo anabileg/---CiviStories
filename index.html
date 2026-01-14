@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CiviStories | تسونامي الوهم الرقمي</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=2">
     
     <style>
         :root { 
@@ -89,7 +89,6 @@
         .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
         .video-container-box iframe { width: 100%; height: 100%; border: none; }
 
-        /* تصفيف قسم الوعي الجديد */
         .awareness-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -179,12 +178,32 @@
         .section { padding: 40px 5%; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
+        .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; cursor: pointer; }
         .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; }
         .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
+
+        /* --- الأكواد الجديدة للأسئلة --- */
+        .q-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.98); z-index: 30000;
+            display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
+        }
+        .q-modal {
+            max-width: 700px; width: 100%; background: #111; border: 2px solid var(--gold);
+            border-radius: 25px; padding: 40px; position: relative; max-height: 80vh; overflow-y: auto;
+        }
+        .q-item {
+            background: rgba(255,255,255,0.05); padding: 15px; margin: 10px 0;
+            border-right: 4px solid var(--gold); border-radius: 5px; text-align: right; font-size: 1.1rem;
+        }
+        .close-q {
+            position: absolute; top: 15px; left: 15px; color: var(--gold);
+            font-size: 24px; cursor: pointer; border: none; background: none;
+        }
+        /* --------------------------- */
 
         #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
         
@@ -215,7 +234,7 @@
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
+        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; text-align: center; }
         .btn-action:hover { background: #fff; transform: scale(1.05);}
     </style>
 </head>
@@ -223,6 +242,14 @@
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+
+    <div id="qOverlay" class="q-overlay">
+        <div class="q-modal">
+            <button class="close-q" onclick="closeQuestions()">×</button>
+            <h2 id="qTitle" style="color:var(--gold); margin-bottom:20px; text-align: center;"></h2>
+            <div id="qList"></div>
+        </div>
+    </div>
 
     <div id="lightbox" class="lightbox">
         <div class="lightbox-container">
@@ -288,19 +315,19 @@
         <div class="glass-box">
             <h2 style="text-align:center; color:var(--gold); font-size:2.8rem; margin-bottom:40px;" id="part-title">شركاء الوعي الوطني</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card" onclick="openQuestions('p1')">
                     <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً</div>
                     <img src="100.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p1-name">الأزهر الشريف</h3>
                     <p id="p1-desc" style="color:#ccc; margin-top:15px;">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openQuestions('p2')">
                     <div class="info-popup" id="p2-src">المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي</div>
                     <img src="300.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p2-name">الكنيسة المصرية</h3>
                     <p id="p2-desc" style="color:#ccc; margin-top:15px;">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openQuestions('p3')">
                     <div class="info-popup" id="p3-src">المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت</div>
                     <img src="200.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p3-name">وزارة الأوقاف</h3>
@@ -320,12 +347,12 @@
         <div class="glass-box">
             <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom:30px;" id="st-title">إحصائيات</h2>
             <div class="grid">
-                <div class="card">
+                <div class="card" onclick="openQuestions('s1')">
                     <div class="info-popup" id="st1-src">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية</div>
                     <span class="stat-num counter" data-target="311">0</span>
                     <p id="st1-txt">ألف حالة طلاق سنوياً</p>
                 </div>
-                <div class="card">
+                <div class="card" onclick="openQuestions('s2')">
                     <div class="info-popup" id="st2-src">المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة</div>
                     <span class="stat-num counter" data-target="104">0</span>
                     <p id="st2-txt">مليون هاتف محمول</p>
@@ -338,12 +365,12 @@
         <div class="glass-box" style="border-color: var(--red-num);">
             <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom:30px;" id="ls-title">الخسائر</h2>
             <div class="grid">
-                <div class="card" style="border-bottom-color: var(--red-num);">
+                <div class="card" style="border-bottom-color: var(--red-num);" onclick="openQuestions('l1')">
                     <div class="info-popup" id="ls1-src">المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت</div>
                     <span class="stat-num loss-num counter" data-target="15">0</span>
                     <p id="ls1-txt" style="color:var(--gold); font-weight:bold;">مليار جنيه خسائر إنتاجية</p>
                 </div>
-                <div class="card" style="border-bottom-color: var(--red-num);">
+                <div class="card" style="border-bottom-color: var(--red-num);" onclick="openQuestions('l2')">
                     <div class="info-popup" id="ls2-src">المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات</div>
                     <span class="stat-num loss-num counter" data-target="4">0</span>
                     <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليارات تكلفة العلاج</p>
@@ -358,27 +385,27 @@
             <p style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
             
             <div class="awareness-grid">
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الطفولة')">
+                <div class="awareness-card" onclick="openQuestions('q1')">
                     <i class="fas fa-child"></i>
                     <span>الطفولة الرقمية</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة المراهقين')">
+                <div class="awareness-card" onclick="openQuestions('q2')">
                     <i class="fas fa-user-graduate"></i>
                     <span>عالم المراهقين</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الإنتاجية')">
+                <div class="awareness-card" onclick="openQuestions('q3')">
                     <i class="fas fa-rocket"></i>
                     <span>الإنتاجية والعمل</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الحياة الزوجية')">
+                <div class="awareness-card" onclick="openQuestions('q4')">
                     <i class="fas fa-heart"></i>
                     <span>الحياة الزوجية</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة كبار السن')">
+                <div class="awareness-card" onclick="openQuestions('q5')">
                     <i class="fas fa-blind"></i>
                     <span>كبار السن</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الأمان')">
+                <div class="awareness-card" onclick="openQuestions('q6')">
                     <i class="fas fa-user-shield"></i>
                     <span>الأمان والجرائم</span>
                 </div>
@@ -400,6 +427,40 @@
             "113.jpg", "114.jpg", "115.jpg", "116.jpg", "117.jpg", "118.jpg", 
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
+
+        // بيانات الأسئلة الجديدة (تزيد من حجم الكود)
+        const interactiveData = {
+            ar: {
+                p1: { title: "الأزهر الشريف", q: ["كيف أواجه الابتزاز الإلكتروني شرعاً؟", "ما هو دور لجان الفتوى في حل مشاكل الإدمان الرقمي؟", "هل يؤثر الانعزال الرقمي على صحة العقد الزوجي؟"] },
+                p2: { title: "الكنيسة المصرية", q: ["كيف تحمي الكنيسة الشباب من الاستقطاب الفكري الرقمي؟", "ما هي برامج المشورة الأسرية لمواجهة الخرس الزوجي؟"] },
+                p3: { title: "وزارة الأوقاف", q: ["ما هي تفاصيل مبادرة سكن ومودة؟", "كيف يتم تدريب الأئمة على قضايا الوعي التكنولوجي؟"] },
+                s1: { title: "إحصائيات الطلاق", q: ["لماذا ارتفعت معدلات الطلاق بسبب السوشيال ميديا؟", "ما هي أكثر التطبيقات المسببة للنزاعات الزوجية؟"] },
+                s2: { title: "الانتشار الرقمي", q: ["كم ساعة يقضيها المصريون يومياً على الهواتف؟", "ما هي مخاطر وصول الهواتف للأطفال في سن مبكرة؟"] },
+                l1: { title: "خسائر الإنتاجية", q: ["كيف يسرق الهاتف ٤ ساعات من يوم الموظف؟", "ما هو تأثير التشتت الرقمي على الاقتصاد القومي؟"] },
+                l2: { title: "تكلفة العلاج", q: ["متى يحتاج مدمن الإنترنت لتدخل طبي؟", "كم تكلفة برامج التأهيل النفسي من الإدمان الرقمي؟"] },
+                q1: { title: "الطفولة الرقمية", q: ["ما هو السن المناسب لأول هاتف؟", "كيف أحمي طفلي من المحتوى الصادم؟", "علامات إدمان الألعاب الإلكترونية؟"] },
+                q2: { title: "عالم المراهقين", q: ["تحديات التيك توك القاتلة وكيفية منعها؟", "بناء الثقة بين الأهل والمراهق في العالم الافتراضي؟"] },
+                q3: { title: "الإنتاجية والعمل", q: ["كيف أتخلص من تشتت الإشعارات؟", "تقنيات العمل بتركيز عميق (Deep Work)؟"] },
+                q4: { title: "الحياة الزوجية", q: ["قواعد استخدام الهاتف داخل غرفة النوم؟", "كيف نتغلب على الخرس الزوجي الرقمي؟"] },
+                q5: { title: "كبار السن", q: ["حماية كبار السن من النصب الإلكتروني؟", "تطبيقات مفيدة لصحة كبار السن؟"] },
+                q6: { title: "الأمان والجرائم", q: ["كيف أكتشف الروابط الاحتيالية؟", "خطوات الإبلاغ عن جرائم المعلومات؟"] }
+            },
+            en: {
+                p1: { title: "Al-Azhar", q: ["How to deal with cyber blackmail?", "The role of Fatwa committees in digital addiction?"] },
+                p2: { title: "Egyptian Church", q: ["Protecting youth from digital extremism?", "Family counseling for digital isolation?"] },
+                p3: { title: "Ministry of Awqaf", q: ["Details of Sakan & Mawadda?", "Training Imams on tech issues?"] },
+                s1: { title: "Divorce Stats", q: ["Why social media increased divorce?", "Top apps causing marital conflicts?"] },
+                s2: { title: "Digital Spread", q: ["Daily hours spent on mobile?", "Risks of early mobile usage?"] },
+                l1: { title: "Productivity", q: ["How phones steal work hours?", "Impact on national economy?"] },
+                l2: { title: "Treatment Cost", q: ["When to seek medical help?", "Cost of digital rehab?"] },
+                q1: { title: "Digital Childhood", q: ["Right age for first phone?", "Protecting children from shock content?"] },
+                q2: { title: "Teen World", q: ["Dangerous TikTok challenges?", "Building trust in virtual world?"] },
+                q3: { title: "Productivity", q: ["Eliminating notification distraction?", "Deep work techniques?"] },
+                q4: { title: "Marital Life", q: ["Phone rules in bedroom?", "Overcoming digital silence?"] },
+                q5: { title: "Seniors", q: ["Protecting seniors from fraud?", "Useful apps for elders?"] },
+                q6: { title: "Security", q: ["Detecting phishing links?", "Steps to report cybercrimes?"] }
+            }
+        };
 
         const content = {
             ar: {
@@ -429,6 +490,20 @@
                 ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian societal stability", "• Ministry of Health: 3M psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems linked to digital isolation", "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying", "• Ministry of Finance: 15B EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases", "• Ministry of Interior: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5B EGP annual cost for treating digital mental disorders", "• National Security: 870 organized electronic groups detected spreading discord", "• Disaster: 2.1B EGP annual losses due to electronic fraud"]
             }
         };
+
+        // وظائف الأسئلة التفاعلية (جديد)
+        function openQuestions(id) {
+            const data = interactiveData[currentLang][id];
+            document.getElementById('qTitle').innerText = data.title;
+            document.getElementById('qList').innerHTML = data.q.map(item => `<div class="q-item">${item}</div>`).join('');
+            document.getElementById('qOverlay').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeQuestions() {
+            document.getElementById('qOverlay').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -491,57 +566,52 @@
 
         function initPage() {
             window.scrollTo(0, 0);
-            const track = document.getElementById('track-imgs');
-            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
             updateUI();
+            
+            // تفعيل العدادات (Counter Logic)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseInt(el.getAttribute('data-target'));
+                        let count = 0;
+                        const update = setInterval(() => {
+                            count += target/30;
+                            if (count >= target) { el.innerText = target; clearInterval(update); }
+                            else { el.innerText = Math.floor(count); }
+                        }, 40);
+                    }
+                });
+            }, { threshold: 0.5 });
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
         }
 
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
-            const totalImages = imagesList.length;
-            const visibleImages = 4;
-            const maxIndex = totalImages - visibleImages;
+            const maxIndex = imagesList.length - 4;
             currentSlide += direction;
             if (currentSlide > maxIndex) currentSlide = 0;
             if (currentSlide < 0) currentSlide = maxIndex;
-            const step = 25; 
-            const offset = currentSlide * step;
-            if (currentLang === 'ar') {
-                track.style.transform = `translateX(${offset}%)`;
-            } else {
-                track.style.transform = `translateX(-${offset}%)`;
-            }
+            const offset = currentSlide * 25;
+            track.style.transform = currentLang === 'ar' ? `translateX(${offset}%)` : `translateX(-${offset}%)`;
         }
 
         function openImage(src) {
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            lbImg.src = src;
-            lb.style.display = 'flex';
+            document.getElementById('lightbox').style.display = 'flex';
+            document.getElementById('lightbox-img').src = src;
         }
 
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const el = entry.target;
-                    const target = parseInt(el.getAttribute('data-target'));
-                    let count = 0;
-                    const update = setInterval(() => {
-                        count += target/30;
-                        if (count >= target) { el.innerText = target; clearInterval(update); }
-                        else { el.innerText = Math.floor(count); }
-                    }, 40);
-                }
-            });
-        }, { threshold: 0.5 });
+        function scrollToSec(id) {
+            window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' });
+        }
 
-        document.querySelectorAll('.counter').forEach(c => observer.observe(c));
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
+        window.onscroll = () => {
+            document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none';
+        };
     </script>
 </body>
 </html>
