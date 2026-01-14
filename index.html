@@ -61,16 +61,17 @@
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 5% 60px; }
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
         
+        /* تعديل فريم الكتاب ليتناسب مع فريم الفيديو */
         .book-static { 
             flex: 0 0 320px; 
             display: flex; 
             flex-direction: column; 
             justify-content: space-between; 
-            height: 450px;
+            height: 450px; /* نفس ارتفاع فريم الفيديو */
         }
         
         .book-wrapper {
-            height: calc(100% - 70px);
+            height: calc(100% - 70px); /* ترك مساحة للزر بالأسفل */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,54 +89,6 @@
 
         .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
         .video-container-box iframe { width: 100%; height: 100%; border: none; }
-
-        /* تصفيف قسم الوعي الجديد */
-        .awareness-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .awareness-card {
-            background: rgba(0,0,0,0.6);
-            border: 1px solid var(--gold);
-            border-radius: 20px;
-            padding: 30px 15px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
-        }
-        .awareness-card:hover {
-            background: var(--gold);
-            color: #000;
-            transform: translateY(-5px);
-        }
-        .awareness-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-        .awareness-card span {
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        /* نافذة الأسئلة المنبثقة */
-        .questions-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95); z-index: 30000; display: none;
-            padding: 100px 5% 50px; overflow-y: auto;
-        }
-        .q-container { max-width: 800px; margin: 0 auto; }
-        .q-header { color: var(--gold); font-size: 2rem; margin-bottom: 30px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; display: flex; justify-content: space-between; }
-        .q-list { list-style: none; }
-        .q-item { 
-            background: rgba(255,255,255,0.05); margin-bottom: 15px; padding: 20px; 
-            border-radius: 10px; border-right: 4px solid var(--gold); cursor: pointer; transition: 0.3s;
-            text-align: right;
-        }
-        .q-item:hover { background: rgba(212,175,55,0.1); }
-        .close-q { cursor: pointer; color: #ff0000; }
 
         .carousel-wide { 
             width: 100%; height: 400px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
@@ -229,7 +182,6 @@
             .video-container-box { width: 100%; height: 250px; }
             .carousel-wide { height: 250px; }
             .track img { flex: 0 0 50%; height: 230px; }
-            .awareness-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
@@ -240,16 +192,6 @@
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
-    <div id="questionsOverlay" class="questions-overlay">
-        <div class="q-container">
-            <div class="q-header">
-                <span id="qCatTitle">العنوان</span>
-                <span class="close-q" onclick="closeQuestions()">✕</span>
-            </div>
-            <div id="qListArea" class="q-list"></div>
-        </div>
-    </div>
 
     <div id="lightbox" class="lightbox">
         <div class="lightbox-container">
@@ -270,7 +212,6 @@
                 <a onclick="scrollToSec('media-sec')" id="lnk-media">ميديا</a>
                 <a onclick="scrollToSec('stats')" id="lnk-stats">إحصائيات</a>
                 <a onclick="scrollToSec('losses')" id="lnk-losses">خسائر</a>
-                <a onclick="scrollToSec('awareness-sec')" id="lnk-awareness">وعي</a>
                 <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" id="lnk-feedback">رأيك يهمنا</a>
             </div>
 
@@ -373,41 +314,7 @@
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup" id="ls2-src">المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات</div>
                     <span class="stat-num loss-num counter" data-target="4">0</span>
-                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليار تكلفة العلاج</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="awareness-sec" class="section">
-        <div class="glass-box">
-            <h2 id="awareness-main-title" style="text-align:center; color:var(--gold); font-size: 2.5rem; margin-bottom:10px;">وعي</h2>
-            <p id="awareness-sub-title" style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
-            
-            <div class="awareness-grid">
-                <div class="awareness-card" onclick="openQuestions('child')">
-                    <i class="fas fa-child"></i>
-                    <span id="cat-child">الطفولة الرقمية</span>
-                </div>
-                <div class="awareness-card" onclick="openQuestions('teen')">
-                    <i class="fas fa-user-graduate"></i>
-                    <span id="cat-teen">عالم المراهقين</span>
-                </div>
-                <div class="awareness-card" onclick="openQuestions('work')">
-                    <i class="fas fa-rocket"></i>
-                    <span id="cat-work">الإنتاجية والعمل</span>
-                </div>
-                <div class="awareness-card" onclick="openQuestions('marry')">
-                    <i class="fas fa-heart"></i>
-                    <span id="cat-marry">الحياة الزوجية</span>
-                </div>
-                <div class="awareness-card" onclick="openQuestions('senior')">
-                    <i class="fas fa-blind"></i>
-                    <span id="cat-senior">كبار السن</span>
-                </div>
-                <div class="awareness-card" onclick="openQuestions('security')">
-                    <i class="fas fa-user-shield"></i>
-                    <span id="cat-security">الأمان والجرائم</span>
+                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليارات تكلفة العلاج</p>
                 </div>
             </div>
         </div>
@@ -428,82 +335,51 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
-        // مصفوفة الأسئلة الـ 90
-        const allQuestions = {
-            ar: {
-                child: ["سن امتلاك أول هاتف؟", "شرح المخاطر بدون ترهيب؟", "أفضل تطبيقات الرقابة؟", "البكاء عند سحب الجهاز؟", "مشاهدة محتوى غير لائق بالصدفة؟", "إدمان الألعاب الإلكترونية؟", "اليوتيوب كيدز والبدائل؟", "التنمر الإلكتروني بين الأطفال؟", "الغرباء في ألعاب الأونلاين؟", "وقت الشاشة الصحي لكل عمر؟", "تأثير الشاشات على النطق؟", "الخصوصية وصور الأطفال؟", "طفلي يريد أن يصبح يوتيوبر؟", "التعلم الرقمي مقابل اللعب؟", "قدوة الأهل في الاستخدام؟"],
-                teen: ["الخصوصية وكلمات المرور؟", "تحديات السوشيال ميديا الخطيرة؟", "المقارنة الاجتماعية والاكتئاب؟", "السهر مع الهاتف في الغرفة؟", "ابتزاز المراهقين بالصور?؟", "بناء الهوية الرقمية الصحيحة؟", "الثقافة الجنسية عبر الإنترنت؟", "المراهق والانعزال عن الأسرة؟", "هوس اللايكات والفلوورز؟", "حماية البيانات من الاختراق؟", "التطبيقات المخفية والسرية؟", "المراهق والعمل الحر أونلاين؟", "ضغط الأقران والتريند؟", "كيف أكسب ثقة المراهق؟", "علامات إدمان السوشيال ميديا؟"],
-                work: ["تشتت الانتباه بسبب الإشعارات؟", "تنظيم الوقت في عصر الموبايل؟", "العمل العميق Deep Work؟", "مخاطر الذكاء الاصطناعي؟", "إدمان العمل الرقمي Burnout؟", "التوازن بين العمل والحياة؟", "المذاكرة والتحصيل والتابلت؟", "فخ تعدد المهام Multitasking؟", "أمن المعلومات في العمل؟", "اجتماعات الزووم المرهقة؟", "مهارات البحث الصحيح؟", "تنظيم البريد الإلكتروني؟", "التعلم الذاتي عبر الإنترنت؟", "تأثير الموبايل على الإبداع؟", "وضع عدم الإزعاج الفعال؟"],
-                marry: ["الخرس الزوجي الرقمي؟", "التجسس على هاتف الشريك؟", "الخيانة الإلكترونية؟", "مقارنة حياتي بالمشاهير؟", "نشر أسرار البيت أونلاين؟", "الوقت النوعي بدون شاشات؟", "الغيرة من أصدقاء السوشيال؟", "الخلافات بسبب اللايكات؟", "الجلوس مع الموبايل قبل النوم؟", "تربية الأبناء برؤية موحدة؟", "تأثير الإباحية على العلاقة؟", "الانشغال بالهاتف أثناء الحوار؟", "ميزانية التسوق الإلكتروني؟", "جروبات الماميز والشكوى؟", "الاتفاق على القواعد الرقمية؟"],
-                senior: ["التعامل مع التكنولوجيا لأول مرة؟", "مخاطر النصب على كبار السن؟", "العزلة والوحدة الرقمية؟", "الشائعات والرسائل المضللة؟", "أمان الحسابات والبريد؟", "تطبيقات الصحة والأدوية؟", "التواصل مع الأحفاد رقمياً؟", "إجهاد العين من الشاشات؟", "نسيان كلمات المرور؟", "تطبيقات الدفع الإلكتروني؟", "الترفيه الآمن (أفلام، كتب)؟", "التمييز بين الحقيقة والذكاء؟", "حماية الصور الشخصية؟", "التعامل مع التنمر؟", "استعادة الحسابات المسروقة؟"],
-                security: ["اختراق الواتساب؟", "الابتزاز الإلكتروني؟", "روابط النصب والجوائز؟", "تأمين الحسابات 2FA؟", "التحرش الإلكتروني؟", "سرقة البيانات البنكية؟", "حماية الويفي المنزلي؟", "الكاميرات المخفية والتجسس؟", "تطبيقات التجسس على الموبايل؟", "انتحال الشخصية؟", "قانون جرائم المعلومات؟", "كيفية إبلاغ مباحث الإنترنت؟", "الشراء من صفحات مجهولة؟", "الفيروسات وبرامج الفدية؟", "مسح البيانات بشكل نهائي؟"]
-            },
-            en: {
-                child: ["Age for first phone?", "Explaining risks without fear?", "Best control apps?", "Crying when device is taken?", "Seeing inappropriate content?", "Gaming addiction?", "YouTube Kids & alternatives?", "Cyberbullying among kids?", "Strangers in online games?", "Screen time by age?", "Impact on speech?", "Privacy & kids' photos?", "Child wants to be YouTuber?", "Learning vs Gaming?", "Parents as role models?"],
-                teen: ["Privacy & Passwords?", "Dangerous Social Challenges?", "Comparison & Depression?", "Night phones in bedroom?", "Image-based blackmail?", "Digital Identity?", "Online Sexual Education?", "Teen & Family Isolation?", "Likes & Followers Obsession?", "Data Protection?", "Hidden & Secret Apps?", "Teens & Freelancing?", "Peer Pressure & Trends?", "Winning Teen's Trust?", "Addiction Signs?"],
-                work: ["Notification Distraction?", "Time Management?", "Deep Work?", "AI Risks?", "Digital Burnout?", "Work-Life Balance?", "Studying with Tablets?", "Multitasking Trap?", "Info Security?", "Zoom Fatigue?", "Search Skills?", "Email Organization?", "Self-Learning?", "Impact on Creativity?", "Do Not Disturb Mode?"],
-                marry: ["Digital Marital Silence?", "Snooping on Partner?", "Digital Infidelity?", "Celebrity Comparisons?", "Posting Family Secrets?", "Screen-Free Quality Time?", "Social Media Jealousy?", "Conflicts over Likes?", "Phones Before Sleep?", "Unified Digital Parenting?", "Pornography Impact?", "Distraction During Dialogue?", "Online Shopping Budget?", "Mommies Groups Issues?", "Digital House Rules?"],
-                senior: ["Tech for first-timers?", "Fraud Risks?", "Digital Loneliness?", "Rumors & Misinformation?", "Account Security?", "Health & Med Apps?", "Video Calls with Grandkids?", "Eye Strain?", "Forgotten Passwords?", "Online Payment Apps?", "Safe Entertainment?", "Fact vs AI?", "Photo Protection?", "Handling Bullying?", "Account Recovery?"],
-                security: ["WhatsApp Hacking?", "Cyber Blackmail?", "Scams & Fake Prizes?", "Two-Factor Auth (2FA)?", "Cyber Harassment?", "Bank Data Theft?", "Home Wi-Fi Security?", "Hidden Cams & Spying?", "Phone Spy Apps?", "Identity Theft?", "Cybercrime Law?", "Reporting to Police?", "Unknown Sellers Risks?", "Viruses & Ransomware?", "Permanent Data Erasure?"]
-            }
-        };
-
         const content = {
             ar: {
-                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
+                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
-                awarenessSub: "دليلك الشامل لحياة رقمية متزنة",
                 p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
                 p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.", p3src: "المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت",
                 st1: "ألف حالة طلاق سنوياً", st1src: "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية",
                 st2: "مليون هاتف محمول", st2src: "المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة",
                 ls1: "مليار جنيه خسائر إنتاجية", ls1src: "المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت",
-                ls2: "مليار تكلفة العلاج", ls2src: "المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات",
-                cats: {child:"الطفولة الرقمية", teen:"عالم المراهقين", work:"الإنتاجية والعمل", marry:"الحياة الزوجية", senior:"كبار السن", security:"الأمان والجرائم"},
+                ls2: "مليارات تكلفة العلاج", ls2src: "المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات",
                 ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري", "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا", "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي", "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي", "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي", "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم", "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة", "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل", "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً", "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة", "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي", "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"]
             },
             en: {
-                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback", browse: "Browse Book",
+                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", feedback: "Feedback", browse: "Browse Book",
                 visTitle: "Strategic Vision", visDesc: "We aim through the CiviStories initiative to protect the Egyptian social fabric from digital disintegration by empowering families and restoring social balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                awarenessSub: "Your comprehensive guide to a balanced digital life",
                 p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring and addressing family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Electronic Fatwa Center - 255 divorce cases daily",
-                p2n: "Egyptian Church", p2d: "Working on family stability and facing digital isolation within the same home through counseling programs.", p2src: "Source: Church Family Counseling Report - 60% due to digital space disputes",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate couples about technology risks to their psychological stability.", p3src: "Source: Egyptian Ministry of Awqaf - Sakan and Mawadda campaign",
-                st1: "Thousand Divorces Annually", st1src: "Source: Central Agency for Public Mobilization and Statistics",
-                st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications Report - Total Registered Lines",
-                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Loss of Work Hours Due to Distraction",
-                ls2: "Billion Treatment Cost", ls2src: "Source: Ministry of Health - Budget for Treating Isolation and Disorders",
-                cats: {child:"Digital Childhood", teen:"Teen World", work:"Productivity & Work", marry:"Marital Life", senior:"Seniors", security:"Security & Crimes"},
-                ticker: ["• Al-Azhar: A divorce case every two minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a major cause of marital silence", "• Red Alert: Family disintegration threatens Egyptian social stability"]
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the same home through counseling programs.", p2src: "Source: Church Family Counseling Report - 60% due to digital space conflicts",
+                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate married couples about technology risks to their psychological stability.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
+                st1: "Thousand Divorces Annually", st1src: "Source: CAPMAS - Annual Divorce Rates",
+                st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Total Registered Mobile Lines",
+                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Productivity Loss due to Distraction",
+                ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget for isolation disorders",
+                ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian societal stability", "• Ministry of Health: 3M psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems linked to digital isolation", "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying", "• Ministry of Finance: 15B EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases", "• Ministry of Interior: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5B EGP annual cost for treating digital mental disorders", "• National Security: 870 organized electronic groups detected spreading discord", "• Disaster: 2.1B EGP annual losses due to electronic fraud"]
             }
         };
 
-        function initPage() {
-            updateLangUI();
-            createTicker();
-            setupCounters();
-            const track = document.getElementById('track-imgs');
-            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')">`).join('');
-        }
-
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'عربي';
-            updateLangUI();
-            createTicker();
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langBtn').innerText = currentLang === 'ar' ? 'English' : 'العربية';
+            currentSlide = 0;
+            document.getElementById('track-imgs').style.transform = `translateX(0%)`;
+            updateUI();
         }
 
-        function updateLangUI() {
+        function updateUI() {
             const c = content[currentLang];
             document.getElementById('lnk-vision').innerText = c.vision;
             document.getElementById('lnk-partners').innerText = c.partners;
             document.getElementById('lnk-media').innerText = c.media;
             document.getElementById('lnk-stats').innerText = c.stats;
             document.getElementById('lnk-losses').innerText = c.losses;
-            document.getElementById('lnk-awareness').innerText = c.awareness;
             document.getElementById('lnk-feedback').innerText = c.feedback;
             document.getElementById('btn-browse').innerText = c.browse;
             document.getElementById('vis-title').innerText = c.visTitle;
@@ -512,109 +388,93 @@
             document.getElementById('st-title').innerText = c.stTitle;
             document.getElementById('ls-title').innerText = c.lsTitle;
             document.getElementById('footer-txt').innerText = c.footer;
-            document.getElementById('awareness-main-title').innerText = c.awareness;
-            document.getElementById('awareness-sub-title').innerText = c.awarenessSub;
-
-            document.getElementById('p1-name').innerText = c.p1n; document.getElementById('p1-desc').innerText = c.p1d; document.getElementById('p1-src').innerText = c.p1src;
-            document.getElementById('p2-name').innerText = c.p2n; document.getElementById('p2-desc').innerText = c.p2d; document.getElementById('p2-src').innerText = c.p2src;
-            document.getElementById('p3-name').innerText = c.p3n; document.getElementById('p3-desc').innerText = c.p3d; document.getElementById('p3-src').innerText = c.p3src;
-
-            document.getElementById('st1-txt').innerText = c.st1; document.getElementById('st1-src').innerText = c.st1src;
-            document.getElementById('st2-txt').innerText = c.st2; document.getElementById('st2-src').innerText = c.st2src;
-            document.getElementById('ls1-txt').innerText = c.ls1; document.getElementById('ls1-src').innerText = c.ls1src;
-            document.getElementById('ls2-txt').innerText = c.ls2; document.getElementById('ls2-src').innerText = c.ls2src;
-
-            document.getElementById('cat-child').innerText = c.cats.child;
-            document.getElementById('cat-teen').innerText = c.cats.teen;
-            document.getElementById('cat-work').innerText = c.cats.work;
-            document.getElementById('cat-marry').innerText = c.cats.marry;
-            document.getElementById('cat-senior').innerText = c.cats.senior;
-            document.getElementById('cat-security').innerText = c.cats.security;
-
-            document.body.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.body.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
-        }
-
-        function createTicker() {
-            const track = document.getElementById('tickerTrack');
-            const items = content[currentLang].ticker;
-            track.innerHTML = items.map(t => `<span>${t}</span>`).join('') + items.map(t => `<span>${t}</span>`).join('');
-        }
-
-        // --- وظيفة الأسئلة المصححة ---
-        function openQuestions(cat) {
-            const overlay = document.getElementById('questionsOverlay');
-            const listArea = document.getElementById('qListArea');
-            const title = document.getElementById('qCatTitle');
+            document.getElementById('p1-name').innerText = c.p1n; 
+            document.getElementById('p1-desc').innerText = c.p1d;
+            document.getElementById('p1-src').innerText = c.p1src;
+            document.getElementById('p2-name').innerText = c.p2n; 
+            document.getElementById('p2-desc').innerText = c.p2d;
+            document.getElementById('p2-src').innerText = c.p2src;
+            document.getElementById('p3-name').innerText = c.p3n; 
+            document.getElementById('p3-desc').innerText = c.p3d;
+            document.getElementById('p3-src').innerText = c.p3src;
+            document.getElementById('st1-txt').innerText = c.st1;
+            document.getElementById('st1-src').innerText = c.st1src;
+            document.getElementById('st2-txt').innerText = c.st2;
+            document.getElementById('st2-src').innerText = c.st2src;
+            document.getElementById('ls1-txt').innerText = c.ls1;
+            document.getElementById('ls1-src').innerText = c.ls1src;
+            document.getElementById('ls2-txt').innerText = c.ls2;
+            document.getElementById('ls2-src').innerText = c.ls2src;
             
-            title.innerText = content[currentLang].cats[cat];
-            const qs = allQuestions[currentLang][cat];
-            
-            listArea.innerHTML = qs.map((q, i) => `
-                <div class="q-item">
-                    <strong>${i+1}. ${q}</strong>
-                </div>
-            `).join('');
+            const tickerTrack = document.getElementById('tickerTrack');
+            const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
+            tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            tickerTrack.style.animation = currentLang === 'ar' ? "marquee 900s linear infinite" : "marquee-en 900s linear infinite";
 
-            overlay.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            const track = document.getElementById('track-imgs');
+            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
         }
 
-        function closeQuestions() {
-            document.getElementById('questionsOverlay').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        const styleSheet = document.createElement('style');
+        styleSheet.innerHTML = `
+            @keyframes marquee-en { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
+            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(100%);} }
+        `;
+        document.head.appendChild(styleSheet);
+
+        function initPage() {
+            window.scrollTo(0, 0);
+            const track = document.getElementById('track-imgs');
+            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')" loading="lazy">`).join('');
+            updateUI();
+        }
+
+        function moveSlide(direction) {
+            const track = document.getElementById('track-imgs');
+            const totalImages = imagesList.length;
+            const visibleImages = 4;
+            const maxIndex = totalImages - visibleImages;
+            currentSlide += direction;
+            if (currentSlide > maxIndex) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = maxIndex;
+            const step = 25; 
+            const offset = currentSlide * step;
+            if (currentLang === 'ar') {
+                track.style.transform = `translateX(${offset}%)`;
+            } else {
+                track.style.transform = `translateX(-${offset}%)`;
+            }
         }
 
         function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = src;
+            lb.style.display = 'flex';
         }
 
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        function moveSlide(dir) {
-            const track = document.getElementById('track-imgs');
-            track.scrollBy({ left: dir * 300, behavior: 'smooth' });
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'));
+                    let count = 0;
+                    const update = setInterval(() => {
+                        count += target/30;
+                        if (count >= target) { el.innerText = target; clearInterval(update); }
+                        else { el.innerText = Math.floor(count); }
+                    }, 40);
+                }
+            });
+        }, { threshold: 0.5 });
 
-        function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function setupCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const options = { threshold: 0.5 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
-                        const update = () => {
-                            const speed = target / 50;
-                            if (count < target) {
-                                count += speed;
-                                entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 30);
-                            } else { entry.target.innerText = target; }
-                        };
-                        update();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, options);
-            counters.forEach(c => observer.observe(c));
-        }
-
-        window.onscroll = function() {
-            const btn = document.getElementById('btnUp');
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                btn.style.display = "flex";
-            } else {
-                btn.style.display = "none";
-            }
-        };
+        document.querySelectorAll('.counter').forEach(c => observer.observe(c));
+        window.onscroll = () => { document.getElementById('btnUp').style.display = window.scrollY > 500 ? 'flex' : 'none'; };
+        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
     </script>
 </body>
 </html>
