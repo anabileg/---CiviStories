@@ -119,6 +119,22 @@
             font-size: 1.2rem;
         }
 
+        /* نافذة الأسئلة المنبثقة */
+        .q-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: none; justify-content: center;
+            align-items: center; z-index: 30000; padding: 20px;
+        }
+        .q-content {
+            background: #111; border: 2px solid var(--gold); border-radius: 20px;
+            max-width: 600px; width: 100%; padding: 30px; position: relative;
+            max-height: 80vh; overflow-y: auto;
+        }
+        .q-content h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
+        .q-list { list-style: none; }
+        .q-list li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #333; line-height: 1.6; }
+        .close-q { position: absolute; top: 10px; left: 10px; color: #ff0000; cursor: pointer; font-size: 24px; font-weight: bold; }
+
         .carousel-wide { 
             width: 100%; height: 400px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
             position: relative; overflow: hidden; margin: 40px 0; background: #000; display: flex; align-items: center;
@@ -223,6 +239,15 @@
 
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+
+    <div id="qModal" class="q-modal" onclick="closeQuestions()">
+        <div class="q-content" onclick="event.stopPropagation()">
+            <span class="close-q" onclick="closeQuestions()">×</span>
+            <h3 id="q-title">الطفولة الرقمية</h3>
+            <ul class="q-list" id="q-list">
+                </ul>
+        </div>
+    </div>
 
     <div id="lightbox" class="lightbox" onclick="closeImage()">
         <div class="lightbox-container" onclick="event.stopPropagation()">
@@ -358,27 +383,27 @@
             <p style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
             
             <div class="awareness-grid">
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الطفولة')">
+                <div class="awareness-card" onclick="showChildQuestions()">
                     <i class="fas fa-child"></i>
                     <span>الطفولة الرقمية</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة المراهقين')">
+                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة المراهقين قريباً')">
                     <i class="fas fa-user-graduate"></i>
                     <span>عالم المراهقين</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الإنتاجية')">
+                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة الإنتاجية قريباً')">
                     <i class="fas fa-rocket"></i>
                     <span>الإنتاجية والعمل</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الحياة الزوجية')">
+                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة الحياة الزوجية قريباً')">
                     <i class="fas fa-heart"></i>
                     <span>الحياة الزوجية</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة كبار السن')">
+                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة كبار السن قريباً')">
                     <i class="fas fa-blind"></i>
                     <span>كبار السن</span>
                 </div>
-                <div class="awareness-card" onclick="alert('سيتم فتح أسئلة الأمان')">
+                <div class="awareness-card" onclick="alert('سيتم إضافة أسئلة الأمان قريباً')">
                     <i class="fas fa-user-shield"></i>
                     <span>الأمان والجرائم</span>
                 </div>
@@ -401,13 +426,22 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
+        // أسئلة الطفولة الرقمية
+        const childQuestions = [
+            "كم ساعة يقضيها طفلك أمام الشاشات يومياً؟",
+            "هل يفضل طفلك اللعب الإلكتروني على اللعب مع أقرانه؟",
+            "هل تلاحظ تغير في سلوك طفلك أو زيادة في العدوانية بعد استخدام الأجهزة؟",
+            "هل تتأكد من نوعية المحتوى الذي يشاهده طفلك باستمرار؟",
+            "هل يعاني طفلك من اضطرابات في النوم بسبب الشاشات؟"
+        ];
+
         const content = {
             ar: {
                 vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
                 p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
-                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقورة المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
+                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
                 p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.", p3src: "المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت",
                 st1: "ألف حالة طلاق سنوياً", st1src: "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية",
                 st2: "مليون هاتف محمول", st2src: "المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة",
@@ -429,6 +463,16 @@
                 ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian societal stability", "• Ministry of Health: 3M psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems linked to digital isolation", "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying", "• Ministry of Finance: 15B EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases", "• Ministry of Interior: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5B EGP annual cost for treating digital mental disorders", "• National Security: 870 organized electronic groups detected spreading discord", "• Disaster: 2.1B EGP annual losses due to electronic fraud"]
             }
         };
+
+        function showChildQuestions() {
+            const list = document.getElementById('q-list');
+            list.innerHTML = childQuestions.map(q => `<li>${q}</li>`).join('');
+            document.getElementById('qModal').style.display = 'flex';
+        }
+
+        function closeQuestions() {
+            document.getElementById('qModal').style.display = 'none';
+        }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -489,6 +533,41 @@
         `;
         document.head.appendChild(styleSheet);
 
+        function openImage(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function moveSlide(direction) {
+            const track = document.getElementById('track-imgs');
+            const totalImages = imagesList.length;
+            const imagesPerView = window.innerWidth > 992 ? 4 : 2;
+            const maxSlide = Math.ceil(totalImages / imagesPerView) - 1;
+
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = maxSlide;
+            if (currentSlide > maxSlide) currentSlide = 0;
+
+            const offset = currentSlide * (100 / (totalImages / imagesPerView));
+            track.style.transform = `translateX(${currentLang === 'ar' ? offset : -offset}%)`;
+        }
+
+        function scrollToSec(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                const offset = 120;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = el.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+        }
+
         function initPage() {
             window.scrollTo(0, 0);
             updateUI();
@@ -512,45 +591,12 @@
 
             window.addEventListener('scroll', () => {
                 const btn = document.getElementById('btnUp');
-                if (window.pageYOffset > 300) btn.style.display = "flex";
-                else btn.style.display = "none";
+                if (window.pageYOffset > 300) {
+                    btn.style.display = 'flex';
+                } else {
+                    btn.style.display = 'none';
+                }
             });
-        }
-
-        function moveSlide(direction) {
-            const track = document.getElementById('track-imgs');
-            const totalImages = imagesList.length;
-            const imagesPerView = window.innerWidth <= 992 ? 2 : 4;
-            const maxSlide = totalImages - imagesPerView;
-
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = 0;
-            if (currentSlide > maxSlide) currentSlide = maxSlide;
-
-            const shift = currentSlide * (100 / imagesPerView);
-            track.style.transform = `translateX(${currentLang === 'ar' ? shift : -shift}%)`;
-        }
-
-        function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if (el) {
-                const offset = 150;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
         }
     </script>
 </body>
