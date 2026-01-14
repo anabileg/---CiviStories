@@ -132,7 +132,7 @@
         }
         .q-content h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
         .q-list { list-style: none; }
-        .q-list li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #333; line-height: 1.6; color: #fff; }
+        .q-list li { margin-bottom: 15px; padding: 15px; border-bottom: 1px solid #333; line-height: 1.6; color: #fff; background: rgba(255,255,255,0.05); border-radius: 8px; }
         .close-q { position: absolute; top: 10px; left: 10px; color: #ff0000; cursor: pointer; font-size: 24px; font-weight: bold; }
 
         .carousel-wide { 
@@ -425,7 +425,6 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
-        // أسئلة الطفولة المحدثة (بدون إجابات)
         const childQuestions = [
             "كم ساعة يقضيها طفلك أمام الشاشات يومياً؟",
             "هل يفضل طفلك اللعب الإلكتروني على اللعب مع أقرانه؟",
@@ -548,6 +547,15 @@
             });
         }
 
+        function moveSlide(direction) {
+            const track = document.getElementById('track-imgs');
+            const totalImages = imagesList.length;
+            const imagesToShow = window.innerWidth > 992 ? 4 : 2;
+            currentSlide = (currentSlide + direction + totalImages) % totalImages;
+            const offset = -(currentSlide * (100 / imagesToShow));
+            track.style.transform = `translateX(${offset}%)`;
+        }
+
         function scrollToSec(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
@@ -556,6 +564,7 @@
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
+
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
         }
@@ -573,20 +582,6 @@
 
         function closeQuestions() {
             document.getElementById('qModal').style.display = 'none';
-        }
-
-        function moveSlide(direction) {
-            const track = document.getElementById('track-imgs');
-            const totalImages = imagesList.length;
-            const imagesPerView = window.innerWidth <= 992 ? 2 : 4;
-            const maxSlide = Math.ceil(totalImages / imagesPerView) - 1;
-            
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = maxSlide;
-            if (currentSlide > maxSlide) currentSlide = 0;
-            
-            const offset = currentSlide * (100 / (totalImages / imagesPerView));
-            track.style.transform = `translateX(${offset}%)`;
         }
     </script>
 </body>
