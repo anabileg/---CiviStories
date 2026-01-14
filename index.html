@@ -132,7 +132,7 @@
         }
         .q-content h3 { color: var(--gold); margin-bottom: 20px; text-align: center; }
         .q-list { list-style: none; }
-        .q-list li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #333; line-height: 1.6; }
+        .q-list li { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #333; line-height: 1.6; color: #fff; }
         .close-q { position: absolute; top: 10px; left: 10px; color: #ff0000; cursor: pointer; font-size: 24px; font-weight: bold; }
 
         .carousel-wide { 
@@ -370,7 +370,7 @@
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup" id="ls2-src">المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات</div>
                     <span class="stat-num loss-num counter" data-target="4">0</span>
-                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليارات تكلفة العلاج</p>
+                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليار تكلفة العلاج</p>
                 </div>
             </div>
         </div>
@@ -425,12 +425,14 @@
             "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
         ];
 
+        // أسئلة الطفولة المحدثة (بدون إجابات)
         const childQuestions = [
             "كم ساعة يقضيها طفلك أمام الشاشات يومياً؟",
             "هل يفضل طفلك اللعب الإلكتروني على اللعب مع أقرانه؟",
-            "هل تلاحظ تغير في سلوك طفلك أو زيادة في العدوانية بعد استخدام الأجهزة؟",
+            "هل تلاحظ تغيراً في سلوك طفلك أو زيادة في العدوانية بعد استخدام الأجهزة؟",
             "هل تتأكد من نوعية المحتوى الذي يشاهده طفلك باستمرار؟",
-            "هل يعاني طفلك من اضطرابات في النوم بسبب الشاشات؟"
+            "هل يعاني طفلك من اضطرابات في النوم بسبب الشاشات؟",
+            "هل طفلك لديه الرغبة في ممارسة هواية أخرى غير الألعاب الإلكترونية؟"
         ];
 
         const content = {
@@ -444,7 +446,7 @@
                 st1: "ألف حالة طلاق سنوياً", st1src: "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية",
                 st2: "مليون هاتف محمول", st2src: "المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة",
                 ls1: "مليار جنيه خسائر إنتاجية", ls1src: "المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت",
-                ls2: "مليارات تكلفة العلاج", ls2src: "المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات",
+                ls2: "مليار تكلفة العلاج", ls2src: "المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات",
                 ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري", "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا", "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي", "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي", "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي", "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم", "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة", "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل", "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً", "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة", "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي", "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"]
             },
             en: {
@@ -457,7 +459,7 @@
                 st1: "Thousand Divorces Annually", st1src: "Source: CAPMAS - Annual Divorce Rates",
                 st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Mobile Lines",
                 ls1: "Billion EGP Production Loss", ls1src: "Source: Productivity Loss due to Distraction",
-                ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget",
+                ls2: "Billion Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget",
                 ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Red Alert: Family breakdown threatens Egyptian stability", "• Ministry of Health: 3M psychiatric visits due to social media", "• CAPMAS: 57% increase in divorce rates in 5 years", "• National Security: 870 organized electronic groups detected"]
             }
         };
@@ -527,6 +529,52 @@
             });
         }
 
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const updateCount = () => {
+                    const inc = target / 100;
+                    if (count < target) {
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        }
+
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openImage(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function showChildQuestions() {
+            const list = document.getElementById('q-list');
+            list.innerHTML = '';
+            childQuestions.forEach(q => {
+                const li = document.createElement('li');
+                li.innerText = q;
+                list.appendChild(li);
+            });
+            document.getElementById('qModal').style.display = 'flex';
+        }
+
+        function closeQuestions() {
+            document.getElementById('qModal').style.display = 'none';
+        }
+
         function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
             const totalImages = imagesList.length;
@@ -537,49 +585,8 @@
             if (currentSlide < 0) currentSlide = maxSlide;
             if (currentSlide > maxSlide) currentSlide = 0;
             
-            const movePercentage = currentSlide * (100 / imagesPerView) * imagesPerView;
-            track.style.transform = `translateX(${currentLang === 'ar' ? movePercentage : -movePercentage}%)`;
-        }
-
-        function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function showChildQuestions() {
-            const list = document.getElementById('q-list');
-            list.innerHTML = childQuestions.map(q => `<li>${q}</li>`).join('');
-            document.getElementById('qModal').style.display = 'flex';
-        }
-
-        function closeQuestions() {
-            document.getElementById('qModal').style.display = 'none';
-        }
-
-        function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function startCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const update = () => {
-                    const count = +counter.innerText;
-                    const speed = target / 100;
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + speed);
-                        setTimeout(update, 30);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                update();
-            });
+            const offset = currentSlide * (100 / (totalImages / imagesPerView));
+            track.style.transform = `translateX(${offset}%)`;
         }
     </script>
 </body>
