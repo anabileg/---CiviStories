@@ -448,7 +448,7 @@
 
         const content = {
             ar: {
-                vision: "رؤيتنا", partners: "الشركاء", media: " ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
+                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
                 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
                 p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
@@ -473,7 +473,7 @@
                 st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Total Registered Mobile Lines",
                 ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Productivity Loss due to Distraction",
                 ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget for isolation disorders",
-                awm: "Awareness", aws: "Your comprehensive guide to a balanced digital life",
+                awm: "Awareness", aws: "Your guide to a balanced digital life",
                 aw1: "Digital Childhood", aw2: "Teen World", aw3: "Productivity", aw4: "Marital Life", aw5: "Seniors", aw6: "Security",
                 ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian societal stability", "• Ministry of Health: 3M psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems linked to digital isolation", "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying", "• Ministry of Finance: 15B EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases", "• Ministry of Interior: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5B EGP annual cost for treating digital mental disorders", "• National Security: 870 organized electronic groups detected spreading discord", "• Disaster: 2.1B EGP annual losses due to electronic fraud"]
             }
@@ -535,6 +535,11 @@
                 s.innerText = t;
                 ticker.appendChild(s);
             });
+            
+            // Re-center slider
+            const track = document.getElementById('track-imgs');
+            track.style.transform = `translateX(0)`;
+            currentSlide = 0;
         }
 
         function initPage() {
@@ -551,10 +556,11 @@
 
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const total = imagesList.length;
             const perView = window.innerWidth > 992 ? 4 : 2;
-            currentSlide = (currentSlide + dir + Math.ceil(total/perView)) % Math.ceil(total/perView);
-            track.style.transform = `translateX(${currentLang === 'ar' ? '' : '-'}${currentSlide * 100}%)`;
+            const totalSlides = Math.ceil(imagesList.length / perView);
+            currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+            const multiplier = currentLang === 'ar' ? 1 : -1;
+            track.style.transform = `translateX(${currentSlide * 100 * multiplier}%)`;
         }
 
         function openImage(src) {
@@ -572,15 +578,15 @@
 
         function startCounters() {
             const counters = document.querySelectorAll('.counter');
-            const speed = 200;
             counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
                 const update = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
+                    const inc = target / 100;
                     if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(update, 10);
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(update, 20);
                     } else {
                         counter.innerText = target;
                     }
