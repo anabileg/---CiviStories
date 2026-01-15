@@ -10,7 +10,8 @@
         :root { 
             --gold: #d4af37;
             --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
-            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff;
+            --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
             --wa-color: #25D366;
         }
 
@@ -21,7 +22,8 @@
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
-        .awareness-card, .awareness-card span, #awareness-main-title {
+        .awareness-card, .awareness-card span, #awareness-main-title
+{
             user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
@@ -123,36 +125,36 @@
             background: rgba(0,0,0,0.85); z-index: 30000; display: none; justify-content: center; align-items: center;
         }
         .child-box {
-            width: 90%; max-width: 800px; height: 85vh; background: #ffcc00; border-radius: 20px; position: relative;
+            width: 95%; max-width: 900px; height: 90vh; background: #ffcc00; border-radius: 20px; position: relative;
             display: flex; flex-direction: column; padding: 20px; border: 5px solid var(--gold);
         }
         .close-child {
             position: absolute; top: 15px; left: 15px; color: #ff0000; font-size: 35px; cursor: pointer;
-            font-weight: bold; background: #fff; border: 2px solid #ff0000; z-index: 100; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; background: #fff; border: 2px solid #ff0000; z-index: 200; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
         }
         .questions-scroll {
-            width: 100%; height: 100%; overflow-y: auto; padding: 10px 20px;
+            width: 100%; height: 100%; overflow-y: auto; padding: 20px;
             direction: rtl; text-align: right; margin-top: 10px;
         }
-        .questions-scroll::-webkit-scrollbar { width: 10px; }
+        .questions-scroll::-webkit-scrollbar { width: 12px; }
         .questions-scroll::-webkit-scrollbar-thumb { background: #b30000; border-radius: 10px; }
         .questions-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1);}
         
         .q-item {
-            color: #000; font-size: 1.2rem; font-weight: bold; margin-bottom: 15px;
-            padding: 15px; border-bottom: 2px solid rgba(0,0,0,0.1); line-height: 1.6; cursor: pointer;
+            color: #000; font-size: 1.2rem; font-weight: bold; margin-bottom: 20px;
+            padding: 20px; border-bottom: 2px solid rgba(0,0,0,0.1); line-height: 1.6; cursor: pointer;
             transition: 0.2s; background: rgba(255,255,255,0.3); border-radius: 10px;
         }
         .q-item:hover { background: rgba(255,255,255,0.5);}
 
         /* Answer Box Styling */
         .answer-display {
-            display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; border-radius: 15px; z-index: 110; padding: 40px 20px 20px; overflow-y: auto; direction: rtl; text-align: right;
+            display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; border-radius: 15px; z-index: 150; padding: 60px 30px 30px; overflow-y: auto; direction: rtl; text-align: right;
         }
-        .ans-q-title { color: #ff0000; font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-        .ans-source { color: #2e7d32; font-weight: bold; margin-bottom: 20px; font-size: 1.1rem; }
-        .ans-text { color: #333; line-height: 2; font-size: 1.15rem; }
-        .ans-line { margin-bottom: 12px; display: block; }
+        .ans-q-title { color: #ff0000; font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .ans-source { color: #2e7d32; font-weight: bold; margin-bottom: 25px; font-size: 1.2rem; }
+        .ans-text { color: #333; line-height: 2.2; font-size: 1.25rem; }
+        .ans-line { margin-bottom: 15px; display: block; }
 
         .carousel-wide { 
             width: 100%; height: 400px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
@@ -250,9 +252,9 @@
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
     <div id="childModal" class="childhood-modal">
-        <div class="child-box">
+        <div class="child-box" id="modalBox">
             <button class="close-child" onclick="closeChildBox()">X</button>
-            <h3 style="color:red; text-align:center; margin-bottom:15px;">اضغط علي السؤال واكتشف الحل</h3>
+            <h3 style="color:red; text-align:center; margin-bottom:15px; font-weight:bold;">اضغط علي السؤال واكتشف الحل</h3>
             
             <div id="qListScroll" class="questions-scroll">
                 </div>
@@ -460,299 +462,260 @@
                     "الاستخدام العادي هو وسيلة للترفيه لا تؤثر على التواصل الاجتماعي الواقعي.",
                     "العزلة تبدأ عندما تظهر 'أعراض الانسحاب' مثل العصبية الشديدة عند ترك الجهاز.",
                     "فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر.",
-                    "إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة."
+                    "إهمال النظافة الشخصية أو اضطرابات النوم بسبب السهر على الهاتف."
+                ]
+            }
+        ];
+
+        const teenData = [
+            {
+                q: "1. كيف أتعامل مع رغبة المراهق في الخصوصية التامة ورفضه لمراقبة هاتفه؟",
+                src: "خبير تربوي - حماية المراهقين",
+                ans: [
+                    "الخصوصية في هذا العمر هي جزء من بناء الاستقلالية. بدلاً من المراقبة المباشرة (التجسس).",
+                    "التحول إلى الإشراف الواعي.",
+                    "اتفق معه على قواعد عامة (مثل عدم استخدام الهاتف في غرف النوم أو وقت الطعام).",
+                    "اشرح له أن دورك هو الحماية وليس التقييد.",
+                    "بناء جسر من الثقة يجعله يلجأ إليك إذا واجه مشكلة."
                 ]
             },
             {
-                q: "3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟",
-                src: "مركز نمو الطفل بجامعة هارفارد.",
+                q: "2. ما هي علامات وقوع المراهق في فخ 'الابتزاز الإلكتروني' وكيف أتصرف بهدوء؟",
+                src: "وحدة الجرائم المعلوماتية",
                 ans: [
-                    "استخدام أسلوب 'التحذير التدريجي' قبل 10 و 5 دقائق من النهاية.",
-                    "إعطاء الطفل 'قوة الاختيار' (هل تريد الإغلاق الآن أم بعد انتهاء هذا المستوى؟).",
-                    "ربط نهاية وقت الشاشة بنشاط محبب آخر (وقت اللعب بالمكعبات أو الخروج).",
-                    "التزام الوالدين بإنهاء وقت شاشتهم أيضاً ليكونوا قدوة للطفل."
+                    "العلامات تشمل: الانعزال المفاجئ.",
+                    "التوتر الشديد عند وصول رسائل.",
+                    "إغلاق الهاتف بسرعة عند اقترابك.",
+                    "تدهور الحالة المزاجية أو الدراسية.",
+                    "التصرف الهادئ يتطلب: احتواء المراهق، طمأنته بأنك بجانبه ولن تعاقبه.",
+                    "جمع الأدلة (صور الرسائل)، ثم إبلاغ الجهات المختصة (الجرائم المعلوماتية) فوراً."
                 ]
             },
             {
-                q: "4. هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال؟",
-                src: "منظمة (Common Sense Media).",
+                q: "3. كيف أحمي ابني/ابنتي من 'هوس المثالية' والمقارنة الدائمة مع مشاهير السوشيال ميديا؟",
+                src: "علم النفس الاجتماعي",
                 ans: [
-                    "تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز.",
-                    "الألعاب التي تحتوي على 'دردشة مفتوحة' مع غرباء مثل بعض غرف (روبلوكس).",
-                    "التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.",
-                    "التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)."
+                    "تنمية الوعي الناقد؛ علّمهم أن ما يظهر على الشاشة هو لقطات منتقاة وليس الحقيقة الكاملة، وأن هناك فلاتر وإضاءة خلف الكواليس.",
+                    "شجعهم على متابعة شخصيات ملهمة في مجالات حقيقية (علم، رياضة، تطوع) بدلاً من مشاهير الاستعراض."
                 ]
             },
             {
-                q: "5. كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل؟",
-                src: "منظمة 'اليونيسف' (UNICEF).",
+                q: "4. ما هو التصرف الصحيح إذا اكتشفت أن المراهق يتابع مجموعات أو صفحات تروج لأفكار متطرفة أو غريبة؟",
+                src: "مركز الفكر التربوي",
                 ans: [
-                    "التفاعل بهدوء وعدم إظهار الصدمة حتى لا يشعر الطفل بالخوف من إخبارك لاحقاً.",
-                    "شرح أن الإنترنت عالم واسع وفيه 'أخطاء' يجب تجنبها.",
-                    "تمكين الطفل من مهارة 'التحدث الصريح' فور رؤية أي محتوى مزعج.",
-                    "مراجعة إعدادات الأمان (Safe Search) وتحديثها فوراً."
+                    "تجنب الصدمة والهجوم العنيف الذي قد يدفعه للتمسك بها أكثر.",
+                    "ابدأ بحوار فكري هادئ، اسأله: ما الذي جذبك لهذا المحتوى؟",
+                    "اعرض عليه وجهات نظر بديلة ومنطقية.",
+                    "إذا كان الأمر يتعدى مجرد الفضول، استعن بمختص تربوي أو فكري لمساعدتك في تفكيك هذه الأفكار."
                 ]
             },
             {
-                q: "6. ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة؟",
-                src: "مؤسسة 'مايو كلينك' الطبية.",
+                q: "5. كيف أعلم المراهق إدارة 'سمعته الرقمية' وإدراك أن ما ينشره اليوم سيلاحقه في مستقبله المهني؟",
+                src: "مستشار التوظيف الرقمي",
                 ans: [
-                    "الألعاب الحسية (الرسم، التلوين، الصلصال، المكعبات).",
-                    "الأنشطة البدنية الخارجية التي تفرغ الطاقة الحركية.",
-                    "إشراك الطفل في 'مهام حقيقية' مثل الطبخ أو العناية بالمنزل.",
-                    "القراءة التفاعلية التي تتطلب تخيلاً ومشاركة ذهنية."
+                    "أخبره بقاعدة ذهبية: لا تنشر شيئاً لا تحب أن يراه مديرك المستقبلي أو جدودك.",
+                    "وضح له أن الشركات والجامعات الآن تبحث في التاريخ الرقمي للمتقدمين، وأن بصمته الرقمية هي سيرته الذاتية الحقيقية التي لا تمحى."
                 ]
             },
             {
-                q: "7. هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو الطفل فعلياً؟",
-                src: "مؤسسة النوم الوطنية (NSF).",
+                q: "6. كيف نواجه إدمان ألعاب 'الفيديو جيمز' وتأثيرها على التحصيل الدراسي؟",
+                src: "الصحة النفسية للمراهقين",
                 ans: [
-                    "الضوء الأزرق يمنع إفراز 'الميلاتونين'، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم.",
-                    "يؤثر على 'المرونة العصبية' للدماغ في السن الصغير بسبب التحفيز البصري المفرط.",
-                    "يسبب 'قصر النظر' وجفاف العين نتيجة التحديق الطويل.",
-                    "الجلوس بوضعيات خاطئة يؤثر على نمو العمود الفقري للطفل."
+                    "لا تمنعها تماماً، بل اجعلها مكافأة بعد إنجاز المهام.",
+                    "حدد ساعات معينة.",
+                    "تقليل الساعات تدريجياً في أيام الدراسة.",
+                    "شجعه على ممارسة أنشطة بدنية تعوضه عن الجلوس الطويل.",
+                    "اهتم بنوعية الألعاب لضمان أنها تنمي مهارات التفكير بدلاً من العنف."
                 ]
             },
             {
-                q: "8. كيف أفعل ميزة 'الرقابة الأبوية' على الراوتر والمنصات؟",
-                src: "خبراء تقنيين في (Google & Apple).",
+                q: "7. ما هي مخاطر تطبيقات الدردشة المجهولة (Anonymous Apps) على المراهقين؟",
+                src: "أمان الإنترنت",
                 ans: [
-                    "استخدام تطبيق (Google Family Link) لإدارة الوقت والتطبيقات.",
-                    "تفعيل (Restricted Mode) في يوتيوب و (SafeSearch) في جوجل.",
-                    "ضبط إعدادات الراوتر لحجب المواقع المشبوهة عبر نظام (DNS) آمن.",
-                    "تفعيل ميزة 'مدة استخدام الجهاز' (Screen Time) ووضع كلمة سر."
+                    "تكمن خطورتها في أنها بيئة خصبة للتنمر القاسي، التحرش، واستدراج القاصرين، نظراً لغياب الرقابة وعدم معرفة هوية الطرف الآخر.",
+                    "يجب توعية المراهق بأن عدم معرفة الهوية يرفع من احتمالية التعرض للأذى النفسي."
                 ]
             },
             {
-                q: "9. ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين؟",
-                src: "المركز الوطني للأطفال المفقودين والمستغلين (NCMEC).",
+                q: "8. كيف أقنع المراهق بوضع حدود زمنية لاستخدام الهاتف دون الدخول في صدام دائم؟",
+                src: "التربية الذكية",
                 ans: [
-                    "ابدأ بحوار هادئ: 'لماذا تتحدث معه؟' لفهم احتياجاته الاجتماعية.",
-                    "اشرح مخاطر 'الهوية المزيفة' وأن الغريب خلف الشاشة قد لا يكون طفلاً.",
-                    "أغلق خاصية الدردشة في اللعبة فوراً واجعل اللعب في 'مكان عام' بالمنزل.",
-                    "علمه ألا يشارك أي معلومات شخصية (الاسم، المدرسة، الموقع)."
+                    "عبر العقد الرقمي؛ اجلس معه واتفقا معاً على ساعات الاستخدام.",
+                    "عندما يشارك المراهق في وضع القوانين، يكون أكثر التزاماً بها.",
+                    "مناقشة المخاطر وتوضيحها وشرحها له.",
+                    "يجب أن تكون قدوة له، فلا تطلب منه ترك الهاتف وأنت تقضي ساعات طويلة عليه."
                 ]
             },
             {
-                q: "10. كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟",
-                src: "معهد ماساتشوستس للتكنولوجيا (MIT - Scratch).",
+                q: "9. كيف أتعامل مع 'التنمر الإلكتروني' سواء كان المراهق ضحية أو مشاركاً فيه؟",
+                src: "مركز دعم المراهقين",
                 ans: [
-                    "تحويل الطفل من 'مشاهد' إلى 'صانع' عبر تطبيقات تعليم البرمجة (مثل Scratch Junior).",
-                    "استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء.",
-                    "تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك.",
-                    "اختيار ألعاب 'حل الألغاز' التي تنمي التفكير المنطقي."
+                    "إذا كان ضحية: علمه عدم الرد، حظر المتنمر، توثيق ما حدث.",
+                    "أما إذا كان مشاركاً: يجب الوقوف بحزم على العواقب الأخلاقية والقانونية.",
+                    "تنمية مهارة التعاطف لديه ليفهم حجم الأذى الذي يسببه للآخرين."
                 ]
             },
             {
-                q: "11. كيف أحول 'وقت الشاشة' إلى جلسة ترابط أسري وتفاعل مشترك؟",
-                src: "دراسات جامعة ستانفورد حول 'المشاهدة المشتركة'.",
+                q: "10. ما هو دور الأهل في توعية المراهق بمخاطر 'تحديات التيك توك' الخطيرة؟",
+                src: "الوعي الإعلامي",
                 ans: [
-                    "العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها.",
-                    "شاهد فيلماً كرتونياً وناقش معه 'القيم الأخلاقية' المستفادة من القصة.",
-                    "اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي).",
-                    "خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية."
+                    "الدور هو التحليل المنطقي.",
+                    "ناقش معه التحدي المنتشر واسأله عن المخاطر المحتملة (جسدية أو قانونية).",
+                    "شجعه على التفكير المستقل بدلاً من عقلية القطيع واللحاق بكل تريند فقط من أجل المشاهدات."
                 ]
             },
             {
-                q: "12. هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟",
-                src: "الرابطة الدولية لتكنولوجيا التعليم (ISTE).",
+                q: "11. كيف يمكن للمراهق استخدام منصات التواصل لبناء 'ملف شخصي' (Portfolio) يدعم قبوله الجامعي؟",
+                src: "خبراء القبول الجامعي",
                 ans: [
-                    "نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع.",
-                    "تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب.",
-                    "منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة.",
-                    "التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل 'أفلام قصيرة' بالدمى."
+                    "عن طريق مشاركة إنجازاته: مشاريع مدرسية، تطوع، هوايات (رسم، كتابة، برمجة)، أو حتى آرائه في كتب قرأها.",
+                    "تحويل حسابه من مجرد مستهلك للمحتوى إلى صانع محتوى يعكس قدراته واهتماماته."
                 ]
             },
             {
-                q: "13. كيف أعلم طفلي مهارة 'التفكير النقدي' للتمييز بين الحقيقة والخداع؟",
-                src: "منظمة (Media Smarts).",
+                q: "12. ما هي أفضل الطرق لتدريب المراهق على مهارة 'الذكاء الاصطناعي' كأداة للتعلم لا للغش؟",
+                src: "تقنيات التعليم الحديثة",
                 ans: [
-                    "اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.",
-                    "علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).",
-                    "قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.",
-                    "علمه ألا يصدق كل ما يراه إلا إذا تأكد من 'مصدر موثوق'."
+                    "علمه كيف يسأل الذكاء الاصطناعي ليقوم بدور المعلم الخصوصي الذي يشرح المفاهيم الصعبة، أو يساعده في تلخيص المراجع.",
+                    "التأكيد على ضرورة كتابة الأبحاث بأسلوبه الخاص لضمان تطوير مهاراته العقلية."
                 ]
             },
             {
-                q: "14. ما هي القواعد الذهبية لإنشاء 'ميثاق رقمي' يلتزم به الطفل؟",
-                src: "أكاديمية كوايت (Quiet Academy) للتربية الرقمية.",
+                q: "13. كيف أحول اهتمام المراهق بالألعاب الإلكترونية إلى شغف بتعلم البرمجة أو تصميم الجرافيك؟",
+                src: "تطوير المهارات التقنية",
                 ans: [
-                    "المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.",
-                    "الوضوح: حدد أوقاتاً وأماكن 'خالية من الشاشات' (مثل وقت الأكل، وغرفة النوم).",
-                    "العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).",
-                    "التوازن: القاعدة هي 'أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة'."
+                    "أخبره أن الانتقال من لاعب إلى صانع هو التحدي الأكبر.",
+                    "اشترك له في دورات بسيطة لتطوير الألعاب (مثل Roblox Studio أو Unity) أو برامج التصميم، ليدرك القيمة التقنية والمادية التي يمكن أن يجنيها من هذا المجال."
                 ]
             },
             {
-                q: "15. كيف أدرب طفلي على أن يكون 'صانع محتوى' مفيداً؟",
-                src: "خبراء التربية الإبداعية.",
+                q: "14. كيف ننمي مهارة 'القيادة الرقمية' لدى المراهق ليكون مؤثراً إيجابياً في دوائره الاجتماعية؟",
+                src: "القيادة الشابة",
                 ans: [
-                    "شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).",
-                    "علمه أساسيات المونتاج البسيط وكتابة 'سيناريو' قصير.",
-                    "وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.",
-                    "ركز على 'جودة الفكرة' وليس على عدد 'اللايكات' أو المشاهدات."
+                    "تشجيعه على الدفاع عن الحق عبر الإنترنت، نشر معلومات مفيدة، ودعم زملائه الذين يتعرضون للتنمر.",
+                    "القيادة الرقمية تعني استخدام صوته الإلكتروني لإحدث تغيير إيجابي في مجتمعه الصغير."
                 ]
             },
             {
-                q: "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟",
-                src: "دراسة 'التقنية التداخلية' (Technoference).",
+                q: "15. ما هي الخطوات العملية لتمكين المراهق من إدارة ميزانيته المالية عبر تطبيقات الدفع الرقمي بأمان؟",
+                src: "الثقافة المالية الرقمية",
                 ans: [
-                    "الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.",
-                    "انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.",
-                    "'القاعدة الذهبية': كن أنت القدوة التي تريد أن تراها في طفلك.",
-                    "خصص وقتاً في اليوم يكون فيه المنزل بالكامل 'بدون هواتف' لتعزيز التواصل البصري."
+                    "ابدأ بمنحه ميزانية أسبوعية على بطاقة مسبقة الدفع (خاصة باليافعين).",
+                    "علمه مهارة التحقق قبل الشراء أونلاين.",
+                    "علمه كيفية حماية بيانات بطاقته.",
+                    "علمه حماية البيانات المالية عند الشراء أونلاين.",
+                    "مراجعة كشف الحساب معه شهرياً ليتعلم أين تذهب أمواله."
                 ]
             }
         ];
 
         function initPage() {
-            createMarquee();
-            createMediaTrack();
-            setupCounterObserver();
-            window.addEventListener('scroll', () => {
+            const ticker = document.getElementById('tickerTrack');
+            const msgs = [
+                "عاجل: ٢٥٥ حالة طلاق يومياً في مصر بسبب الإدمان الرقمي",
+                "تحذير: ١٥ مليار جنيه خسائر سنوية نتيجة تشتت الموظفين خلف الشاشات",
+                "تقرير: ٦٠٪ من حالات التفكك الأسري تبدأ بنزاع حول استخدام الهاتف",
+                "إحصائية: ١٠٤ مليون هاتف محمول في يد المصريين تلتهم ساعات الإنتاج",
+                "وزارة الصحة: ٤ مليار جنيه تكلفة علاج أمراض العزلة الرقمية والتوحد"
+            ];
+            ticker.innerHTML = msgs.map(m => `<span>${m}</span>`).join('') + msgs.map(m => `<span>${m}</span>`).join('');
+            
+            const track = document.getElementById('track-imgs');
+            const imgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg"];
+            track.innerHTML = imgs.map(i => `<img src="${i}" onclick="showImage('${i}')">`).join('');
+            
+            window.onscroll = () => {
                 document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+                handleCounters();
+            };
+        }
+
+        function openChildBox(type) {
+            const modal = document.getElementById('childModal');
+            const box = document.getElementById('modalBox');
+            const list = document.getElementById('qListScroll');
+            list.innerHTML = '';
+            
+            if(type === 'child') {
+                box.style.background = '#ffcc00';
+                childData.forEach((item, idx) => {
+                    list.innerHTML += `<div class="q-item" onclick="showAnswer('child', ${idx})">${item.q}</div>`;
+                });
+            } else if(type === 'teen') {
+                box.style.background = '#ffcc00';
+                teenData.forEach((item, idx) => {
+                    list.innerHTML += `<div class="q-item" onclick="showAnswer('teen', ${idx})">${item.q}</div>`;
+                });
+            }
+            
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function showAnswer(type, idx) {
+            const data = (type === 'child') ? childData[idx] : teenData[idx];
+            const ansBox = document.getElementById('answerBox');
+            const content = document.getElementById('ansContent');
+            
+            let ansHtml = `<div class="ans-q-title">${data.q}</div>`;
+            ansHtml += `<div class="ans-source">المصدر: ${data.src}</div>`;
+            ansHtml += `<div class="ans-text">`;
+            data.ans.forEach(line => {
+                ansHtml += `<span class="ans-line">. ${line}</span>`;
             });
+            ansHtml += `</div>`;
+            
+            content.innerHTML = ansHtml;
+            ansBox.style.display = 'block';
         }
 
-        function createMarquee() {
-            const track = document.getElementById('tickerTrack');
-            const msg = "عاجل: ٢٥٥ حالة طلاق يومياً في مصر بسبب 'الخرس الزوجي الرقمي' .. دراسة: ٦٠٪ من نزاعات الأسرة سببها إدمان الهواتف .. تحذير: الضوء الأزرق يدمر نمو دماغ الطفل .. مبادرة قصص الحضارات: معاً لاستعادة الترابط الأسري";
-            for(let i=0; i<10; i++) {
-                const span = document.createElement('span');
-                span.innerText = msg;
-                track.appendChild(span);
-            }
+        function closeAnswer() {
+            document.getElementById('answerBox').style.display = 'none';
         }
 
-        function createMediaTrack() {
-            const track = document.getElementById('track-imgs');
-            for(let i=1; i<=15; i++) {
-                const img = document.createElement('img');
-                img.src = `${i}.jpg`;
-                img.onclick = () => openImage(img.src);
-                track.appendChild(img);
-            }
+        function closeChildBox() {
+            document.getElementById('childModal').style.display = 'none';
+            document.getElementById('answerBox').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        function moveSlide(dir) {
-            const track = document.getElementById('track-imgs');
-            const total = track.children.length;
-            currentSlide = (currentSlide + dir + total) % total;
-            const width = track.children[0].clientWidth;
-            track.style.transform = `translateX(${currentSlide * width}px)`;
-        }
-
-        function openImage(src) {
+        function showImage(src) {
             const lb = document.getElementById('lightbox');
             document.getElementById('lightbox-img').src = src;
             lb.style.display = 'flex';
         }
         function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
-        function openChildBox(type) {
-            if(type !== 'child') return;
-            const modal = document.getElementById('childModal');
-            const list = document.getElementById('qListScroll');
-            list.innerHTML = "";
-            childData.forEach((item, idx) => {
-                const d = document.createElement('div');
-                d.className = 'q-item';
-                d.innerText = item.q;
-                d.onclick = () => showAnswer(idx);
-                list.appendChild(d);
+        function moveSlide(dir) {
+            const track = document.getElementById('track-imgs');
+            currentSlide += dir;
+            if (currentSlide < 0) currentSlide = 9;
+            if (currentSlide > 9) currentSlide = 0;
+            track.style.transform = `translateX(${currentSlide * 400}px)`;
+        }
+
+        function handleCounters() {
+            document.querySelectorAll('.counter').forEach(c => {
+                if (c.getBoundingClientRect().top < window.innerHeight && c.innerText === '0') {
+                    let target = +c.getAttribute('data-target');
+                    let count = 0;
+                    let inc = target / 50;
+                    let timer = setInterval(() => {
+                        count += inc;
+                        if (count >= target) { c.innerText = target; clearInterval(timer); }
+                        else { c.innerText = Math.ceil(count); }
+                    }, 30);
+                }
             });
-            modal.style.display = 'flex';
-        }
-
-        function showAnswer(idx) {
-            const box = document.getElementById('answerBox');
-            const cont = document.getElementById('ansContent');
-            const data = childData[idx];
-            let html = `<div class="ans-q-title">${data.q}</div>`;
-            html += `<div class="ans-source">المصدر: ${data.src}</div>`;
-            html += `<div class="ans-text">`;
-            data.ans.forEach(line => {
-                html += `<span class="ans-line">• ${line}</span>`;
-            });
-            html += `</div>`;
-            cont.innerHTML = html;
-            box.style.display = 'block';
-        }
-
-        function closeAnswer() { document.getElementById('answerBox').style.display = 'none'; }
-        function closeChildBox() { 
-            document.getElementById('childModal').style.display = 'none'; 
-            closeAnswer();
-        }
-
-        function setupCounterObserver() {
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
-                        const inc = target / 50;
-                        const update = () => {
-                            count += inc;
-                            if(count < target) {
-                                entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 30);
-                            } else { entry.target.innerText = target; }
-                        };
-                        update();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {threshold: 0.5});
-            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
         }
 
         function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 140;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
-
+        
         function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            const btn = document.getElementById('langBtn');
-            if(currentLang === 'en') {
-                document.documentElement.dir = "ltr";
-                document.documentElement.lang = "en";
-                btn.innerHTML = `<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">`;
-                translateToEn();
-            } else {
-                location.reload();
-            }
-        }
-
-        function translateToEn() {
-            document.getElementById('lnk-vision').innerText = "Vision";
-            document.getElementById('lnk-partners').innerText = "Partners";
-            document.getElementById('lnk-media').innerText = "Media";
-            document.getElementById('lnk-stats').innerText = "Stats";
-            document.getElementById('lnk-losses').innerText = "Losses";
-            document.getElementById('lnk-awareness').innerText = "Awareness";
-            document.getElementById('lnk-feedback').innerText = "Feedback";
-            document.getElementById('main-hero-title').innerHTML = `<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt's Cry to the World</span>`;
-            document.getElementById('btn-browse').innerText = "Browse Book";
-            document.getElementById('vis-title').innerText = "Our Strategic Vision";
-            document.getElementById('vis-desc').innerText = "Protecting the Egyptian social fabric from digital fragmentation by empowering families.";
-            document.getElementById('part-title').innerText = "National Awareness Partners";
-            document.getElementById('st-title').innerText = "Statistics";
-            document.getElementById('st1-txt').innerText = "Thousand Divorces Annually";
-            document.getElementById('st2-txt').innerText = "Million Mobile Phones";
-            document.getElementById('ls-title').innerText = "Losses";
-            document.getElementById('ls1-txt').innerText = "Billion EGP Production Loss";
-            document.getElementById('ls2-txt').innerText = "Billion Treatment Costs";
-            document.getElementById('footer-txt').innerText = "© 2026 CiviStories | All Rights Reserved";
-            document.getElementById('media-guideline').innerText = "Click the image to receive our message";
+            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+            alert("Language toggled to " + currentLang);
         }
     </script>
 </body>
