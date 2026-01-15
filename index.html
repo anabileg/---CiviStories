@@ -465,7 +465,7 @@
                 ans: [
                     ". تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز.",
                     ". الألعاب التي تحتوي على \"دردشة مفتوحة\" مع غرباء مثل بعض غرف (روبلوكس).",
-                    ". التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.",
+                    ". الألعاب التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.",
                     ". التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)."
                 ]
             },
@@ -558,84 +558,32 @@
                     ". قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.",
                     ". علمه ألا يصدق كل ما يراه إلا إذا تأكد من \"مصدر موثوق\"."
                 ]
-            },
-            {
-                q: "14. ما هي القواعد الذهبية لإنشاء \"ميثاق رقمي\" يلتزم به الطفل؟",
-                src: "المصدر: أكاديمية كوايت (Quiet Academy) للتربية الرقمية.",
-                ans: [
-                    ". المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.",
-                    ". الوضوح: حدد أوقاتاً وأماكن \"خالية من الشاشات\" (مثل وقت الأكل، وغرفة النوم).",
-                    ". العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).",
-                    ". التوازن: القاعدة هي \"أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة\"."
-                ]
-            },
-            {
-                q: "15. كيف أدرب طفلي على أن يكون \"صانع محتوى\" مفيداً؟",
-                src: "المصدر: خبراء التربية الإبداعية.",
-                ans: [
-                    ". شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).",
-                    ". علمه أساسيات المونتاج البسيط وكتابة \"سيناريو\" قصير.",
-                    ". وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.",
-                    ". ركز على \"جودة الفكرة\" وليس على عدد \"اللايكات\" أو المشاهدات."
-                ]
-            },
-            {
-                q: "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟",
-                src: "المصدر: دراسة \"التقنية التداخلية\" (Technoference).",
-                ans: [
-                    ". الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.",
-                    ". انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.",
-                    ". \"القاعدة الذهبية\": كن أنت القدوة التي تريد أن تراها في طفلك.",
-                    ". خصص وقتاً في اليوم يكون فيه المنزل بالكامل \"بدون هواتف\" لتعزيز التواصل البصري."
-                ]
             }
         ];
 
         let currentLang = 'ar';
-        const tickerData = [
-            "تنبيه: 255 حالة طلاق يومياً في مصر بسبب الإدمان الرقمي وفق إحصائيات الأزهر الشريف.",
-            "دراسة: 60% من الخلافات الأسرية في مصر تعود لاستخدام الهاتف المحمول داخل المنزل.",
-            "تحذير: الأطفال دون السنتين يمنع تعرضهم للشاشات تماماً حسب منظمة الصحة العالمية.",
-            "إحصائية: المصريون يقضون متوسط 7 ساعات يومياً على منصات التواصل الاجتماعي.",
-            "خسارة: 15 مليار جنيه سنوياً خسائر الاقتصاد المصري بسبب تشتت الموظفين رقمياً."
-        ];
-
         function initPage() {
-            const track = document.getElementById('tickerTrack');
-            tickerData.forEach(t => {
-                const s = document.createElement('span');
-                s.innerText = t;
-                track.appendChild(s);
-            });
-            // تكرار النصوص لضمان استمرارية الماركي
-            tickerData.forEach(t => {
-                const s = document.createElement('span');
-                s.innerText = t;
-                track.appendChild(s);
-            });
+            renderTicker();
+            renderGallery();
+            setupCounters();
+            renderQuestions();
+        }
 
-            const imgTrack = document.getElementById('track-imgs');
-            for(let i=1; i<=10; i++) {
-                const img = document.createElement('img');
-                img.src = `${i*10}.jpg`;
-                img.onclick = () => openImage(img.src);
-                imgTrack.appendChild(img);
-            }
-
-            // توليد الأسئلة في القائمة
-            const qList = document.getElementById('questionsList');
+        function renderQuestions() {
+            const list = document.getElementById('questionsList');
+            // إضافة الجملة الإرشادية في البداية بلون مميز
+            list.innerHTML = `<div style="color: #b30000; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 2px solid #b30000; padding-bottom: 5px;">اكتشف الحل هنا 🔽</div>`;
+            
             childhoodQuestions.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'q-item';
-                div.innerText = item.q;
+                // إضافة السهم بعد كل سؤال
+                div.innerHTML = `${item.q} 🔽`;
                 div.onclick = () => showAnswer(index);
-                qList.appendChild(div);
+                list.appendChild(div);
             });
-
-            startCounters();
         }
 
-        // وظائف المودال
         function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
         function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
 
@@ -644,76 +592,130 @@
             document.getElementById('ans-q-title').innerText = item.q;
             document.getElementById('ans-q-source').innerText = item.src;
             
-            let htmlAns = '';
+            const body = document.getElementById('ans-q-body');
+            body.innerHTML = '';
             item.ans.forEach(line => {
-                htmlAns += `<span class="ans-point">${line}</span>`;
+                const span = document.createElement('span');
+                span.className = 'ans-point';
+                span.innerText = line;
+                body.appendChild(span);
             });
-            document.getElementById('ans-q-body').innerHTML = htmlAns;
             
             document.getElementById('answerModal').style.display = 'flex';
-            document.getElementById('answerContent').style.display = 'flex';
         }
 
-        function closeAnswerBox() {
-            document.getElementById('answerModal').style.display = 'none';
+        function closeAnswerBox() { document.getElementById('answerModal').style.display = 'none'; }
+
+        const tickerData = [
+            "أكثر من 255 حالة طلاق يومياً في مصر",
+            "مصر تسجل 311 ألف حالة طلاق سنوياً",
+            "60% من حالات الطلاق بسبب نزاعات العالم الافتراضي",
+            "أكثر من 104 مليون هاتف محمول في يد المصريين",
+            "15 مليار جنيه خسائر سنوية بسبب تشتت الموظفين رقمياً",
+            "4 مليار جنيه تكلفة علاج أمراض العزلة والاضطرابات النفسية الرقمية"
+        ];
+
+        function renderTicker() {
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = "";
+            const content = tickerData.map(t => `<span>${t}</span>`).join('');
+            track.innerHTML = content + content;
         }
 
-        // سلايدر الميديا
-        let currentPos = 0;
+        const galleryImgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg"];
+        function renderGallery() {
+            const track = document.getElementById('track-imgs');
+            track.innerHTML = "";
+            galleryImgs.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.onclick = () => openImage(src);
+                track.appendChild(img);
+            });
+        }
+
+        let currentX = 0;
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const total = track.children.length;
-            currentPos += dir;
-            if(currentPos < 0) currentPos = total - 1;
-            if(currentPos >= total) currentPos = 0;
-            track.style.transform = `translateX(${currentPos * 400}px)`;
+            const step = 300;
+            currentX += dir * step;
+            if(currentX > 0) currentX = 0;
+            track.style.transform = `translateX(${currentX}px)`;
         }
 
         function openImage(src) {
+            const lb = document.getElementById('lightbox');
             document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
+            lb.style.display = 'flex';
         }
         function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
-        // عدادات الإحصائيات
-        function startCounters() {
+        function setupCounters() {
             const counters = document.querySelectorAll('.counter');
-            counters.forEach(c => {
-                const target = +c.getAttribute('data-target');
-                let now = 0;
-                const speed = target / 50;
-                const update = () => {
-                    now += speed;
-                    if(now < target) {
-                        c.innerText = Math.ceil(now);
-                        setTimeout(update, 30);
-                    } else {
-                        c.innerText = target;
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(en => {
+                    if(en.isIntersecting) {
+                        const target = +en.target.getAttribute('data-target');
+                        let count = 0;
+                        const inc = target / 50;
+                        const timer = setInterval(() => {
+                            count += inc;
+                            if(count >= target) { en.target.innerText = target; clearInterval(timer); }
+                            else { en.target.innerText = Math.ceil(count); }
+                        }, 30);
                     }
-                };
-                update();
-            });
+                });
+            }, {threshold: 0.5});
+            counters.forEach(c => obs.observe(c));
         }
 
-        window.onscroll = function() {
-            document.getElementById('btnUp').style.display = (window.pageYOffset > 400) ? 'flex' : 'none';
+        window.onscroll = () => {
+            document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
         };
 
         function scrollToSec(id) {
             const el = document.getElementById(id);
             if(el) {
-                const offset = 140; 
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                const offset = 140;
+                const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({top: pos, behavior: 'smooth'});
             }
         }
 
         function toggleLanguage() {
-            // كود تبديل اللغة (تم الاحتفاظ به كبنية فارغة حالياً لعدم المساس بالبنية الأصلية)
+            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+            const btn = document.getElementById('langBtn');
+            btn.innerHTML = currentLang === 'ar' ? 
+                '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
+                '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+            
+            if(currentLang === 'en') {
+                document.documentElement.dir = "ltr";
+                document.getElementById('lnk-vision').innerText = "Vision";
+                document.getElementById('lnk-partners').innerText = "Partners";
+                document.getElementById('lnk-media').innerText = "Media";
+                document.getElementById('lnk-stats').innerText = "Stats";
+                document.getElementById('lnk-losses').innerText = "Losses";
+                document.getElementById('lnk-awareness').innerText = "Awareness";
+                document.getElementById('lnk-feedback').innerText = "Feedback";
+                document.getElementById('main-hero-title').innerHTML = '<span class="highlight">Digital Illusion</span> <span class="gold-text">Tsunami: Egypt\'s Cry to Warn the World</span>';
+                document.getElementById('btn-browse').innerText = "Browse Book";
+                document.getElementById('vis-title').innerText = "Strategic Vision";
+                document.getElementById('vis-desc').innerText = "Through CiviStories, we aim to protect the Egyptian social fabric from digital fragmentation by empowering families.";
+                document.getElementById('part-title').innerText = "National Awareness Partners";
+                document.getElementById('p1-name').innerText = "Al-Azhar Al-Sharif";
+                document.getElementById('p2-name').innerText = "Egyptian Church";
+                document.getElementById('p3-name').innerText = "Ministry of Endowments";
+                document.getElementById('st-title').innerText = "Statistics";
+                document.getElementById('st1-txt').innerText = "Thousand Divorces Yearly";
+                document.getElementById('st2-txt').innerText = "Million Mobile Phones";
+                document.getElementById('ls-title').innerText = "Losses";
+                document.getElementById('ls1-txt').innerText = "Billion EGP Production Loss";
+                document.getElementById('ls2-txt').innerText = "Billion Treatment Cost";
+                document.getElementById('media-guideline').innerText = "Click on the image to receive our message";
+            } else {
+                location.reload();
+            }
         }
     </script>
 </body>
