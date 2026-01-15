@@ -365,7 +365,7 @@
     <section id="awareness-sec" class="section">
         <div class="glass-box">
             <h2 id="awareness-main-title" class="notranslate" style="text-align:center; color:var(--gold); font-size: 2.5rem; margin-bottom:10px;">وعي</h2>
-            <p style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
+            <p style="text-align:center; color:var(--gold); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
             
             <div class="awareness-grid">
                 <div class="awareness-card notranslate" onclick="openChildBox()">
@@ -493,33 +493,42 @@
             document.getElementById('p3-desc').innerText = l.p3d;
             document.getElementById('p3-src').innerText = l.p3src;
             
-            document.getElementById('st1-txt').innerText = l.st1; 
+            document.getElementById('st1-txt').innerText = l.st1;
             document.getElementById('st1-src').innerText = l.st1src;
-            document.getElementById('st2-txt').innerText = l.st2; 
+            document.getElementById('st2-txt').innerText = l.st2;
             document.getElementById('st2-src').innerText = l.st2src;
-            document.getElementById('ls1-txt').innerText = l.ls1; 
+            document.getElementById('ls1-txt').innerText = l.ls1;
             document.getElementById('ls1-src').innerText = l.ls1src;
-            document.getElementById('ls2-txt').innerText = l.ls2; 
+            document.getElementById('ls2-txt').innerText = l.ls2;
             document.getElementById('ls2-src').innerText = l.ls2src;
-
+            
             document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
                 '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
                 '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-                
+            
             updateTicker();
+            handleCounters();
         }
 
         function updateTicker() {
             const track = document.getElementById('tickerTrack');
-            const list = content[currentLang].ticker;
-            track.innerHTML = "";
-            const fullText = [...list, ...list].map(t => `<span>${t}</span>`).join('');
-            track.innerHTML = fullText;
+            track.innerHTML = '';
+            content[currentLang].ticker.forEach(msg => {
+                const span = document.createElement('span');
+                span.innerText = msg;
+                track.appendChild(span);
+            });
+            // Repeat for smooth loop
+            content[currentLang].ticker.forEach(msg => {
+                const span = document.createElement('span');
+                span.innerText = msg;
+                track.appendChild(span);
+            });
         }
 
         function loadMedia() {
             const track = document.getElementById('track-imgs');
-            imagesList.forEach((img, index) => {
+            imagesList.forEach((img, idx) => {
                 const el = document.createElement('img');
                 el.src = img;
                 el.onclick = () => openImage(img);
@@ -529,21 +538,23 @@
 
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const total = imagesList.length;
-            currentSlide = (currentSlide + dir + total) % total;
-            const offset = currentSlide * 400;
-            track.style.transform = `translateX(${currentLang === 'ar' ? offset : -offset}px)`;
+            const step = 400;
+            currentSlide += dir;
+            if(currentSlide < 0) currentSlide = imagesList.length - 1;
+            if(currentSlide >= imagesList.length) currentSlide = 0;
+            track.style.transform = `translateX(${currentSlide * step * (currentLang === 'ar' ? 1 : -1)}px)`;
         }
 
         function startAutoScroll() {
-            autoScrollInterval = setInterval(() => moveSlide(1), 3000);
-            document.getElementById('media-sec').onmouseover = () => clearInterval(autoScrollInterval);
-            document.getElementById('media-sec').onmouseout = () => startAutoScroll();
+            autoScrollInterval = setInterval(() => moveSlide(1), 4000);
+            document.getElementById('media-sec').onmouseenter = () => clearInterval(autoScrollInterval);
+            document.getElementById('media-sec').onmouseleave = () => startAutoScroll();
         }
 
         function openImage(src) {
             const lb = document.getElementById('lightbox');
-            document.getElementById('lightbox-img').src = src;
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
             lb.style.display = 'flex';
         }
 
@@ -551,43 +562,48 @@
             document.getElementById('lightbox').style.display = 'none';
         }
 
-        function handleCounters() {
-            const observers = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const target = entry.target;
-                        const goal = parseInt(target.getAttribute('data-target'));
-                        let current = 0;
-                        const inc = goal / 50;
-                        const timer = setInterval(() => {
-                            current += inc;
-                            if(current >= goal) {
-                                target.innerText = goal;
-                                clearInterval(timer);
-                            } else {
-                                target.innerText = Math.ceil(current);
-                            }
-                        }, 30);
-                    }
-                });
-            }, {threshold: 0.5});
-            document.querySelectorAll('.counter').forEach(c => observers.observe(c));
+        function openChildBox() {
+            document.getElementById('childModal').style.display = 'flex';
+        }
+
+        function closeChildBox() {
+            document.getElementById('childModal').style.display = 'none';
         }
 
         function scrollToSec(id) {
             const el = document.getElementById(id);
             if(el) {
-                const offset = 140; 
+                const offset = 140;
                 const bodyRect = document.body.getBoundingClientRect().top;
                 const elementRect = el.getBoundingClientRect().top;
                 const elementPosition = elementRect - bodyRect;
                 const offsetPosition = elementPosition - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
             }
         }
 
-        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
-        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
+        function handleCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                counter.innerText = '0';
+                const update = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const c = +counter.innerText;
+                    const increment = target / 100;
+                    if(c < target) {
+                        counter.innerText = Math.ceil(c + increment);
+                        setTimeout(update, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                update();
+            });
+        }
     </script>
 </body>
 </html>
