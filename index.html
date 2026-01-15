@@ -117,7 +117,6 @@
         }
         .awareness-card span { font-weight: bold; font-size: 1.2rem; }
 
-        /* تعديلات المربعات المطلوبة للطفولة */
         .childhood-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); z-index: 30000; display: none; justify-content: center; align-items: center;
@@ -127,7 +126,6 @@
             display: flex; flex-direction: column; padding: 50px 20px 20px;
         }
         
-        /* شاشة الإجابة الجديدة */
         .answer-box {
             width: 90%; max-width: 700px; min-height: 400px; max-height: 85vh; background: #000; border: 3px solid var(--gold); border-radius: 20px; position: relative;
             display: none; flex-direction: column; padding: 40px 25px; z-index: 31000; overflow-y: auto; direction: rtl;
@@ -148,10 +146,11 @@
         .q-item {
             color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px;
             padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
         }
         .q-item:hover { color: #b30000; }
+        .q-item i { color: #1877F2; margin-right: 10px; }
 
-        /* نمط محتوى الإجابة */
         .ans-question { color: #ff0000; font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; text-align: right; }
         .ans-source { color: var(--gold); font-size: 1.1rem; font-weight: bold; margin-bottom: 20px; text-align: right; }
         .ans-text { color: #ffffff; font-size: 1.1rem; line-height: 1.8; text-align: right; }
@@ -255,8 +254,7 @@
     <div id="childModal" class="childhood-modal">
         <div class="child-box">
             <button class="close-child" onclick="closeChildBox()">X</button>
-            <div class="questions-scroll" id="questionsList">
-                </div>
+            <div class="questions-scroll" id="questionsList"></div>
         </div>
     </div>
 
@@ -427,7 +425,6 @@
     </section>
 
     <script>
-        // داتا الأسئلة والطلبات
         const childhoodQuestions = [
             {
                 q: "1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟",
@@ -562,159 +559,161 @@
         ];
 
         let currentLang = 'ar';
+        const translations = {
+            ar: {
+                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا",
+                hero: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
+                browse: "تصفح الكتاب", visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني...",
+                partTitle: "شركاء الوعي الوطني", p1Name: "الأزهر الشريف", p1Desc: "رصد ومعالجة حالات التفكك الأسري...",
+                stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول",
+                lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليار تكلفة العلاج", mediaGuideline: "اضغط على الصورة لتصلك رسالتنا"
+            },
+            en: {
+                vision: "Our Vision", partners: "Partners", media: "Media", stats: "Statistics", losses: "Losses", awareness: "Awareness", feedback: "Feedback",
+                hero: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span>',
+                browse: "Browse Book", visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation...",
+                partTitle: "National Awareness Partners", p1Name: "Al-Azhar Al-Sharif", p1Desc: "Monitoring and addressing family disintegration...",
+                stTitle: "Statistics", st1: "Thousand Divorces Annually", st2: "Million Mobile Phones",
+                lsTitle: "Losses", ls1: "Billion EGP Production Losses", ls2: "Billion Treatment Cost", mediaGuideline: "Click on image to see our message"
+            }
+        };
+
+        const tickerMessages = [
+            "تحذير: ٢٥٥ حالة طلاق يومياً في مصر بسبب العالم الافتراضي",
+            "إحصائية: ١٠٤ مليون هاتف محمول في يد المصريين.. أين الترابط؟",
+            "دراسة: ١٥ مليار جنيه خسائر سنوية في الإنتاجية بسبب التشتت الرقمي",
+            "عاجل: الكنيسة المصرية تؤكد أن ٦٠٪ من نزاعات البيوت تبدأ من الشاشات",
+            "الأوقاف: حملة 'سكن ومودة' تواجه خطر الانفصال الصامت إلكترونياً"
+        ];
+
+        const mediaImages = [
+            "image_01.jpg", "image_02.jpg", "image_03.jpg", "image_04.jpg", "image_05.jpg",
+            "image_06.jpg", "image_07.jpg", "image_08.jpg", "image_09.jpg", "image_10.jpg",
+            "image_11.jpg", "image_12.jpg", "image_13.jpg", "image_14.jpg", "image_15.jpg"
+        ];
+
         function initPage() {
-            renderTicker();
-            renderGallery();
-            setupCounters();
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = tickerMessages.map(m => `<span>${m}</span>`).join('') + tickerMessages.map(m => `<span>${m}</span>`).join('');
+            
+            const imgTrack = document.getElementById('track-imgs');
+            mediaImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.onclick = () => openImage(src);
+                imgTrack.appendChild(img);
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const target = +entry.target.getAttribute('data-target');
+                        let count = 0;
+                        const timer = setInterval(() => {
+                            count += Math.ceil(target/50);
+                            if(count >= target) { entry.target.innerText = target; clearInterval(timer); }
+                            else entry.target.innerText = count;
+                        }, 30);
+                    }
+                });
+            }, {threshold: 0.5});
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
+
+            window.addEventListener('scroll', () => {
+                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
+
             renderQuestions();
         }
 
-        function renderQuestions() {
-            const list = document.getElementById('questionsList');
-            // إضافة الجملة الإرشادية في البداية بلون مميز
-            list.innerHTML = `<div style="color: #b30000; font-weight: bold; font-size: 1.2rem; margin-bottom: 20px; border-bottom: 2px solid #b30000; padding-bottom: 5px;">اكتشف الحل هنا 🔽</div>`;
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const btn = document.getElementById('langBtn');
+            const t = translations[currentLang];
             
-            childhoodQuestions.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'q-item';
-                // إضافة السهم بعد كل سؤال
-                div.innerHTML = `${item.q} 🔽`;
-                div.onclick = () => showAnswer(index);
-                list.appendChild(div);
-            });
+            btn.innerHTML = currentLang === 'ar' ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            document.getElementById('lnk-vision').innerText = t.vision;
+            document.getElementById('lnk-partners').innerText = t.partners;
+            document.getElementById('lnk-media').innerText = t.media;
+            document.getElementById('lnk-stats').innerText = t.stats;
+            document.getElementById('lnk-losses').innerText = t.losses;
+            document.getElementById('lnk-awareness').innerText = t.awareness;
+            document.getElementById('lnk-feedback').innerText = t.feedback;
+            document.getElementById('main-hero-title').innerHTML = t.hero;
+            document.getElementById('btn-browse').innerText = t.browse;
+            document.getElementById('vis-title').innerText = t.visTitle;
+            document.getElementById('vis-desc').innerText = t.visDesc;
+            document.getElementById('part-title').innerText = t.partTitle;
+            document.getElementById('p1-name').innerText = t.p1Name;
+            document.getElementById('st-title').innerText = t.stTitle;
+            document.getElementById('st1-txt').innerText = t.st1;
+            document.getElementById('st2-txt').innerText = t.st2;
+            document.getElementById('ls-title').innerText = t.lsTitle;
+            document.getElementById('ls1-txt').innerText = t.ls1;
+            document.getElementById('ls2-txt').innerText = t.ls2;
+            document.getElementById('media-guideline').innerText = t.mediaGuideline;
+        }
+
+        let slideIdx = 0;
+        function moveSlide(dir) {
+            const track = document.getElementById('track-imgs');
+            const total = mediaImages.length;
+            slideIdx = (slideIdx + dir + total) % total;
+            track.style.transform = `translateX(${currentLang === 'ar' ? (slideIdx * 400) : (-slideIdx * 400)}px)`;
+        }
+
+        function openImage(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+
+        function scrollToSec(id) {
+            const el = document.getElementById(id);
+            window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
         }
 
         function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
         function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
 
-        function showAnswer(index) {
-            const item = childhoodQuestions[index];
+        function renderQuestions() {
+            const list = document.getElementById('questionsList');
+            list.innerHTML = childhoodQuestions.map((item, index) => `
+                <div class="q-item" onclick="showAnswer(${index}, event)">
+                    <span>${item.q}</span>
+                    <i class="fas fa-chevron-left blue-arrow"></i>
+                </div>
+            `).join('');
+        }
+
+        function showAnswer(idx, event) {
+            // منع حدوث أي تكرار للحدث يسبب التجمد
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            const item = childhoodQuestions[idx];
             document.getElementById('ans-q-title').innerText = item.q;
             document.getElementById('ans-q-source').innerText = item.src;
-            
-            const body = document.getElementById('ans-q-body');
-            body.innerHTML = '';
-            item.ans.forEach(line => {
-                const span = document.createElement('span');
-                span.className = 'ans-point';
-                span.innerText = line;
-                body.appendChild(span);
-            });
+            document.getElementById('ans-q-body').innerHTML = item.ans.map(line => `<span class="ans-point">${line}</span>`).join('');
             
             document.getElementById('answerModal').style.display = 'flex';
+            document.getElementById('answerContent').style.display = 'flex';
         }
 
-        function closeAnswerBox() { document.getElementById('answerModal').style.display = 'none'; }
-
-        const tickerData = [
-            "أكثر من 255 حالة طلاق يومياً في مصر",
-            "مصر تسجل 311 ألف حالة طلاق سنوياً",
-            "60% من حالات الطلاق بسبب نزاعات العالم الافتراضي",
-            "أكثر من 104 مليون هاتف محمول في يد المصريين",
-            "15 مليار جنيه خسائر سنوية بسبب تشتت الموظفين رقمياً",
-            "4 مليار جنيه تكلفة علاج أمراض العزلة والاضطرابات النفسية الرقمية"
-        ];
-
-        function renderTicker() {
-            const track = document.getElementById('tickerTrack');
-            track.innerHTML = "";
-            const content = tickerData.map(t => `<span>${t}</span>`).join('');
-            track.innerHTML = content + content;
+        function closeAnswerBox() {
+            document.getElementById('answerModal').style.display = 'none';
+            document.getElementById('answerContent').style.display = 'none';
         }
 
-        const galleryImgs = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg"];
-        function renderGallery() {
-            const track = document.getElementById('track-imgs');
-            track.innerHTML = "";
-            galleryImgs.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.onclick = () => openImage(src);
-                track.appendChild(img);
-            });
-        }
-
-        let currentX = 0;
-        function moveSlide(dir) {
-            const track = document.getElementById('track-imgs');
-            const step = 300;
-            currentX += dir * step;
-            if(currentX > 0) currentX = 0;
-            track.style.transform = `translateX(${currentX}px)`;
-        }
-
-        function openImage(src) {
-            const lb = document.getElementById('lightbox');
-            document.getElementById('lightbox-img').src = src;
-            lb.style.display = 'flex';
-        }
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-
-        function setupCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const obs = new IntersectionObserver((entries) => {
-                entries.forEach(en => {
-                    if(en.isIntersecting) {
-                        const target = +en.target.getAttribute('data-target');
-                        let count = 0;
-                        const inc = target / 50;
-                        const timer = setInterval(() => {
-                            count += inc;
-                            if(count >= target) { en.target.innerText = target; clearInterval(timer); }
-                            else { en.target.innerText = Math.ceil(count); }
-                        }, 30);
-                    }
-                });
-            }, {threshold: 0.5});
-            counters.forEach(c => obs.observe(c));
-        }
-
-        window.onscroll = () => {
-            document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
-        };
-
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 140;
-                const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
-                window.scrollTo({top: pos, behavior: 'smooth'});
-            }
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-            const btn = document.getElementById('langBtn');
-            btn.innerHTML = currentLang === 'ar' ? 
-                '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
-                '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-            
-            if(currentLang === 'en') {
-                document.documentElement.dir = "ltr";
-                document.getElementById('lnk-vision').innerText = "Vision";
-                document.getElementById('lnk-partners').innerText = "Partners";
-                document.getElementById('lnk-media').innerText = "Media";
-                document.getElementById('lnk-stats').innerText = "Stats";
-                document.getElementById('lnk-losses').innerText = "Losses";
-                document.getElementById('lnk-awareness').innerText = "Awareness";
-                document.getElementById('lnk-feedback').innerText = "Feedback";
-                document.getElementById('main-hero-title').innerHTML = '<span class="highlight">Digital Illusion</span> <span class="gold-text">Tsunami: Egypt\'s Cry to Warn the World</span>';
-                document.getElementById('btn-browse').innerText = "Browse Book";
-                document.getElementById('vis-title').innerText = "Strategic Vision";
-                document.getElementById('vis-desc').innerText = "Through CiviStories, we aim to protect the Egyptian social fabric from digital fragmentation by empowering families.";
-                document.getElementById('part-title').innerText = "National Awareness Partners";
-                document.getElementById('p1-name').innerText = "Al-Azhar Al-Sharif";
-                document.getElementById('p2-name').innerText = "Egyptian Church";
-                document.getElementById('p3-name').innerText = "Ministry of Endowments";
-                document.getElementById('st-title').innerText = "Statistics";
-                document.getElementById('st1-txt').innerText = "Thousand Divorces Yearly";
-                document.getElementById('st2-txt').innerText = "Million Mobile Phones";
-                document.getElementById('ls-title').innerText = "Losses";
-                document.getElementById('ls1-txt').innerText = "Billion EGP Production Loss";
-                document.getElementById('ls2-txt').innerText = "Billion Treatment Cost";
-                document.getElementById('media-guideline').innerText = "Click on the image to receive our message";
-            } else {
-                location.reload();
+        // إغلاق المودال عند الضغط خارجه
+        window.onclick = function(event) {
+            if (event.target.className === 'childhood-modal') {
+                closeChildBox();
+                closeAnswerBox();
             }
         }
     </script>
