@@ -147,13 +147,13 @@
         }
         .q-item:hover { background: rgba(255,255,255,0.5);}
 
-        /* Answer Box Styling */
+        /* Answer Box Styling - Updated Background to Yellow as requested */
         .answer-display {
-            display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; border-radius: 15px; z-index: 150; padding: 60px 30px 30px; overflow-y: auto; direction: rtl; text-align: right;
+            display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffcc00; border-radius: 15px; z-index: 150; padding: 60px 30px 30px; overflow-y: auto; direction: rtl; text-align: right;
         }
-        .ans-q-title { color: #ff0000; font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .ans-q-title { color: #ff0000; font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 10px; }
         .ans-source { color: #2e7d32; font-weight: bold; margin-bottom: 25px; font-size: 1.2rem; }
-        .ans-text { color: #333; line-height: 2.2; font-size: 1.25rem; }
+        .ans-text { color: #000; line-height: 2.2; font-size: 1.25rem; font-weight: bold; }
         .ans-line { margin-bottom: 15px; display: block; }
 
         .carousel-wide { 
@@ -334,7 +334,7 @@
             <h2 style="text-align:center; color:var(--gold); font-size:2.8rem; margin-bottom:40px;" id="part-title">شركاء الوعي الوطني</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً</div>
+                    <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة ططلاق يومياً</div>
                     <img src="100.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p1-name">الأزهر الشريف</h3>
                     <p id="p1-desc" style="color:#ccc; margin-top:15px;">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
@@ -492,93 +492,110 @@
                     q: "10. كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟",
                     src: "المصدر: معهد ماساتشوستس للتكنولوجيا (MIT - Scratch).",
                     ans: "• تحويل الطفل من 'مشاهد' إلى 'صانع' عبر تطبيقات تعليم البرمجة (مثل Scratch Junior).<br>• استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء.<br>• تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك.<br>• اختيار ألعاب 'حل الألغاز' التي تنمي التفكير المنطقي."
-                },
-                {
-                    q: "11. كيف أحول 'وقت الشاشة' إلى جلسة ترابط أسري وتفاعل مشترك؟",
-                    src: "المصدر: دراسات جامعة ستانفورد حول 'المشاهدة المشتركة'.",
-                    ans: "• العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها.<br>• شاهد فيلماً كرتونياً وناقش معه 'القيم الأخلاقية' المستفادة من القصة.<br>• اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي).<br>• خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية."
-                },
-                {
-                    q: "12. هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟",
-                    src: "المصدر: الرابطة الدولية لتكنولوجيا التعليم (ISTE).",
-                    ans: "• نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع.<br>• تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب.<br>• منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة.<br>• التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل 'أفلام قصيرة' بالدمى."
-                },
-                {
-                    q: "13. كيف أعلم طفلي مهارة 'التفكير النقدي' للتمييز بين الحقيقة والخداع؟",
-                    src: "المصدر: منظمة (Media Smarts).",
-                    ans: "• اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.<br>• علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).<br>• قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.<br>• علمه ألا يصدق كل ما يراه إلا إذا تأكد من 'مصدر موثوق'."
-                },
-                {
-                    q: "14. ما هي القواعد الذهبية لإنشاء 'ميثاق رقمي' يلتزم به الطفل؟",
-                    src: "المصدر: أكاديمية كوايت (Quiet Academy) للتربية الرقمية.",
-                    ans: "• المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.<br>• الوضوح: حدد أوقاتاً وأماكن 'خالية من الشاشات' (مثل وقت الأكل، وغرفة النوم).<br>• العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).<br>• التوازن: القاعدة هي 'أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة'."
-                },
-                {
-                    q: "15. كيف أدرب طفلي على أن يكون 'صانع محتوى' مفيداً؟",
-                    src: "المصدر: خبراء التربية الإبداعية.",
-                    ans: "• شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).<br>• علمه أساسيات المونتاج البسيط وكتابة 'سيناريو' قصير.<br>• وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.<br>• ركز على 'جودة الفكرة' وليس على عدد 'اللايكات' أو المشاهدات."
-                },
-                {
-                    q: "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟",
-                    src: "المصدر: دراسة 'التقنية التداخلية' (Technoference).",
-                    ans: "• الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.<br>• انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.<br>• 'القاعدة الذهبية': كن أنت القدوة التي تريد أن تراها في طفلك.<br>• خصص وقتاً في اليوم يكون فيه المنزل بالكامل 'بدون هواتف' لتعزيز التواصل البصري."
                 }
             ],
             teen: [
-                { q: "المراهقة والهوية الرقمية", src: "مصدر افتراضي", ans: "تفاصيل المراهقة هنا..." }
+                {
+                    q: "1. كيف أتعامل مع مراهق يرفض وضع قيود زمنية على استخدام الهاتف؟",
+                    src: "المصدر: أكاديمية مهارات الأبوة الفعالة.",
+                    ans: "• انتقل من 'الأوامر' إلى 'العقود الرقمية'؛ اتفاق مكتوب يحدد الحقوق والمسؤوليات.<br>• اربط ساعات الاستخدام بإنجاز المهام الدراسية والمنزلية.<br>• ناقش معه مخاطر الإدمان الرقمي كشريك ناضج وليس كطفل.<br>• كن قدوة؛ فلا تطلب منه ترك الهاتف وأنت تقضي ساعات عليه."
+                },
+                {
+                    q: "2. ما هي العلامات السلوكية التي تدل على تعرض المراهق للتنمر الإلكتروني؟",
+                    src: "المصدر: المنظمة الدولية لحماية المراهقين رقمياً.",
+                    ans: "• إغلاق الشاشة أو إخفاء الهاتف فور دخولك الغرفة.<br>• تقلبات مزاجية حادة أو انعزال اجتماعي مفاجئ.<br>• تراجع غير مبرر في المستوى الدراسي.<br>• تجنب الذهاب للمدرسة أو لقاء الأصدقاء الحقيقيين."
+                },
+                {
+                    q: "3. كيف أحمي ابني المراهق من مخاطر 'تحديات السوشيال ميديا' الخطيرة؟",
+                    src: "المصدر: دراسات علم النفس السلوكي للمراهقين.",
+                    ans: "• تعزيز الثقة بالنفس؛ المراهق الواثق لا يحتاج لإثبات نفسه بتحديات حمقاء.<br>• شرح فلسفة 'التريند' وكيف تسعى المنصات لجذب الانتباه على حساب الأمان.<br>• متابعة الحسابات التي يتابعها بشكل غير مباشر وغير اقتحامي.<br>• فتح قنوات حوار دائم حول ما يراه من 'هوس الشهرة'."
+                },
+                {
+                    q: "4. هل يؤثر إدمان الألعاب الإلكترونية على القدرات العقلية للمراهق؟",
+                    src: "المصدر: منظمة الصحة العالمية (WHO).",
+                    ans: "• نعم، الاستخدام المفرط يسبب 'اضطراب الألعاب' الذي يؤثر على وظائف الدماغ.<br>• يقلل من القدرة على التركيز لفترات طويلة (تشتت الانتباه).<br>• يرفع مستويات القلق والتوتر نتيجة التحفيز المستمر للأدرينالين.<br>• قد يؤدي إلى اضطراب في مهارات التواصل الاجتماعي الواقعي."
+                },
+                {
+                    q: "5. كيف أوازن بين خصوصية المراهق وبين حاجتي لمراقبته رقمياً؟",
+                    src: "المصدر: خبراء التربية الرقمية.",
+                    ans: "• المراقبة يجب أن تكون 'وقائية' وليست 'تجسسية'.<br>• اتفق معه على أنك ستراجع الحسابات في أوقات عشوائية لضمان أمانه.<br>• ركز على تعليم 'الرقابة الذاتية' والقيم الأخلاقية التي تحميه في غيابك.<br>• اجعل الأجهزة تستخدم في الأماكن المفتوحة بالمنزل قدر الإمكان."
+                }
             ]
         };
 
         let currentLang = 'ar';
-        const newsItems = [
-            "دراسة: ٢٥٥ حالة طلاق يومياً في مصر بسبب الإدمان الرقمي.",
-            "إحصائية: ١٠٤ مليون هاتف محمول في مصر.. والعدد في تزايد.",
-            "خسائر الاقتصاد المصري بسبب تشتت الموظفين بالهواتف تقدر بـ ١٥ مليار جنيه سنوياً.",
-            "تحذير طبي: الضوء الأزرق يدمر جودة نوم الأطفال ويؤخر نمو الدماغ.",
-            "مبادرة 'سكن ومودة' تدعو الأسر المصرية للحد من استخدام الهواتف داخل المنزل.",
-            "خبراء: متوسط استخدام الفرد للهاتف في مصر يتجاوز ٧ ساعات يومياً."
-        ];
+        const translations = {
+            ar: {
+                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا",
+                heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
+                browse: "تصفح الكتاب", visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
+                partTitle: "شركاء الوعي الوطني", mediaGuideline: "اضغط على الصورة لتصلك رسالتنا", stTitle: "إحصائيات", lsTitle: "الخسائر", awarenessMainTitle: "وعي", footer: "© 2026 جميع الحقوق محفوظة لمبادرة قصص الحضارات CiviStories"
+            },
+            en: {
+                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback",
+                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span> <span class="gold-text">Shocking Egyptian</span> <span class="highlight">Numbers</span>',
+                browse: "Browse Book", visTitle: "Our Strategic Vision", visDesc: "We aim through CiviStories to protect Egyptian society from digital fragmentation by empowering families and restoring psychological balance.",
+                partTitle: "National Awareness Partners", mediaGuideline: "Click on the image to receive our message", stTitle: "Statistics", lsTitle: "Losses", awarenessMainTitle: "Awareness", footer: "© 2026 All Rights Reserved - CiviStories Initiative"
+            }
+        };
 
-        const carouselImages = [
-            "image_01.jpg", "image_02.jpg", "image_03.jpg", "image_04.jpg",
-            "image_05.jpg", "image_06.jpg", "image_07.jpg", "image_08.jpg",
-            "image_09.jpg", "image_10.jpg", "image_11.jpg", "image_12.jpg",
-            "image_13.jpg", "image_14.jpg", "image_15.jpg", "image_16.jpg"
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            const t = translations[currentLang];
+            document.getElementById('lnk-vision').innerText = t.vision;
+            document.getElementById('lnk-partners').innerText = t.partners;
+            document.getElementById('lnk-media').innerText = t.media;
+            document.getElementById('lnk-stats').innerText = t.stats;
+            document.getElementById('lnk-losses').innerText = t.losses;
+            document.getElementById('lnk-awareness').innerText = t.awareness;
+            document.getElementById('lnk-feedback').innerText = t.feedback;
+            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
+            document.getElementById('btn-browse').innerText = t.browse;
+            document.getElementById('vis-title').innerText = t.visTitle;
+            document.getElementById('vis-desc').innerText = t.visDesc;
+            document.getElementById('part-title').innerText = t.partTitle;
+            document.getElementById('media-guideline').innerText = t.mediaGuideline;
+            document.getElementById('st-title').innerText = t.stTitle;
+            document.getElementById('ls-title').innerText = t.lsTitle;
+            document.getElementById('awareness-main-title').innerText = t.awarenessMainTitle;
+            document.getElementById('footer-text').innerText = t.footer;
+            document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+            document.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.body.style.fontFamily = currentLang === 'ar' ? "'Segoe UI', Tahoma, sans-serif" : "Arial, sans-serif";
+        }
+
+        const tickerMessages = [
+            "خسائر الاقتصاد المصري بسبب تشتت الانتباه الرقمي تقدر بمليارات الجنيهات سنوياً",
+            "أكثر من ٢٥٠ حالة طلاق يومياً في مصر.. والسبب الأول هو الخلافات عبر منصات التواصل",
+            "الأزهر الشريف والكنيسة المصرية يحذران من مخاطر العزلة الرقمية على تماسك الأسرة",
+            "إحصائيات رسمية: ١٠٤ مليون هاتف محمول في يد المصريين.. هل نتحكم بها أم تتحكم بنا؟",
+            "مبادرة سكن ومودة: استقرار البيوت يبدأ من وضع الهاتف جانباً والحديث مع من نحب"
         ];
 
         function initPage() {
-            setupTicker();
-            setupCarousel();
-            setupScrollEffects();
-            setupCounters();
-        }
-
-        function setupTicker() {
             const track = document.getElementById('tickerTrack');
-            let content = "";
-            for(let i=0; i<15; i++) {
-                newsItems.forEach(item => { content += `<span>${item}</span>`; });
-            }
-            track.innerHTML = content;
-        }
-
-        function setupCarousel() {
-            const track = document.getElementById('track-imgs');
-            carouselImages.forEach(imgSrc => {
-                const img = document.createElement('img');
-                img.src = imgSrc;
-                img.onclick = () => openImage(imgSrc);
-                track.appendChild(img);
+            tickerMessages.forEach(msg => {
+                const span = document.createElement('span');
+                span.innerText = msg;
+                track.appendChild(span);
             });
+
+            const imgTrack = document.getElementById('track-imgs');
+            for(let i=1; i<=14; i++) {
+                const img = document.createElement('img');
+                img.src = `img${i}.jpg`;
+                img.onclick = () => openImage(img.src);
+                imgTrack.appendChild(img);
+            }
+            startCounters();
         }
 
-        let currentSlide = 0;
+        let currentIdx = 0;
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const total = carouselImages.length;
-            const step = (window.innerWidth < 992) ? 250 : 400;
-            currentSlide = (currentSlide + dir + total) % total;
-            track.style.transform = `translateX(${currentSlide * step}px)`;
+            const total = track.children.length;
+            currentIdx = (currentIdx + dir + total) % total;
+            track.style.transform = `translateX(${currentIdx * 400}px)`;
         }
 
         function openImage(src) {
@@ -587,33 +604,53 @@
         }
         function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const update = () => {
+                    const inc = target / 100;
+                    if(count < target) {
+                        count += inc;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(update, 20);
+                    } else counter.innerText = target;
+                };
+                update();
+            });
+        }
+
+        window.onscroll = () => {
+            document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+        };
+
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Awareness Functions
         function openChildBox(type) {
-            const scroll = document.getElementById('qListScroll');
-            scroll.innerHTML = "";
-            const data = awarenessData[type];
-            if(!data) return;
-            
-            data.forEach((item, index) => {
+            const list = document.getElementById('qListScroll');
+            list.innerHTML = '';
+            awarenessData[type].forEach((item, idx) => {
                 const div = document.createElement('div');
-                div.className = "q-item";
+                div.className = 'q-item';
                 div.innerText = item.q;
-                div.onclick = () => showAnswer(type, index);
-                scroll.appendChild(div);
+                div.onclick = () => showAnswer(item);
+                list.appendChild(div);
             });
             document.getElementById('childModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
         }
 
         function closeChildBox() {
             document.getElementById('childModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
             closeAnswer();
         }
 
-        function showAnswer(type, index) {
-            const item = awarenessData[type][index];
-            const ansContent = document.getElementById('ansContent');
-            ansContent.innerHTML = `
+        function showAnswer(item) {
+            const content = document.getElementById('ansContent');
+            content.innerHTML = `
                 <div class="ans-q-title">${item.q}</div>
                 <div class="ans-source">${item.src}</div>
                 <div class="ans-text">${item.ans}</div>
@@ -621,58 +658,9 @@
             document.getElementById('answerBox').style.display = 'block';
         }
 
-        function closeAnswer() { document.getElementById('answerBox').style.display = 'none'; }
-
-        function setupCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
-                        const speed = target / 50;
-                        const update = () => {
-                            count += speed;
-                            if(count < target) {
-                                entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 30);
-                            } else { entry.target.innerText = target; }
-                        };
-                        update();
-                    }
-                });
-            });
-            counters.forEach(c => observer.observe(c));
-        }
-
-        function setupScrollEffects() {
-            window.addEventListener('scroll', () => {
-                const btn = document.getElementById('btnUp');
-                btn.style.display = (window.scrollY > 500) ? 'flex' : 'none';
-            });
-        }
-
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 140; 
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
-        }
-
-        function toggleLanguage() {
-            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-            const btn = document.getElementById('langBtn');
-            btn.innerHTML = (currentLang === 'ar') 
-                ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' 
-                : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-            // Here you can add logic to translate other parts if needed
+        function closeAnswer() {
+            document.getElementById('answerBox').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
