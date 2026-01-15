@@ -373,7 +373,6 @@
                 <img src="image_46b3f5.jpg" onclick="openImage(this.src)">
                 <img src="image_52db35.jpg" onclick="openImage(this.src)">
                 <img src="image_302d96.jpg" onclick="openImage(this.src)">
-                <img src="image_390e08.jpg" onclick="openImage(this.src)">
                 <img src="image_0732db.jpg" onclick="openImage(this.src)">
                 <img src="image_b3f546.jpg" onclick="openImage(this.src)">
                 <img src="image_c80d10.jpg" onclick="openImage(this.src)">
@@ -457,7 +456,6 @@
     </section>
 
     <script>
-        // بيانات الأسئلة والإجابات
         const dataQuestions = {
             childhood: [
                 {
@@ -523,193 +521,39 @@
                 {
                     q: "13. كيف أعلم طفلي مهارة 'التفكير النقدي' للتمييز بين الحقيقة والخداع؟",
                     src: "المصدر: منظمة (Media Smarts).",
-                    ans: "• اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.<br>• علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).<br>• قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.<br>• علمه ألا يصدق كل ما يراه إلا إذا تأكد من 'مصدر موثوق'."
-                },
-                {
-                    q: "14. ما هي القواعد الذهبية لإنشاء 'ميثاق رقمي' يلتزم به الطفل؟",
-                    src: "المصدر: أكاديمية كوايت (Quiet Academy) للتربية الرقمية.",
-                    ans: "• المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.<br>• الوضوح: حدد أوقاتاً وأماكن 'خالية من الشاشات' (مثل وقت الأكل، وغرفة النوم).<br>• العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).<br>• التوازن: القاعدة هي 'أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة'."
-                },
-                {
-                    q: "15. كيف أدرب طفلي على أن يكون 'صانع محتوى' مفيداً؟",
-                    src: "المصدر: خبراء التربية الإبداعية.",
-                    ans: "• شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).<br>• علمه أساسيات المونتاج البسيط وكتابة 'سيناريو' قصير.<br>• وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.<br>• ركز على 'جودة الفكرة' وليس على عدد 'اللايكات' أو المشاهدات."
-                },
-                {
-                    q: "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟",
-                    src: "المصدر: دراسة 'التقنية التداخلية' (Technoference).",
-                    ans: "• الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.<br>• انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.<br>• 'القاعدة الذهبية': كن أنت القدوة التي تريد أن تراها في طفلك.<br>• خصص وقتاً في اليوم يكون فيه المنزل بالكامل 'بدون هواتف' لتعزيز التواصل البصري."
-                }
-            ],
-            adolescence: [
-                {
-                    q: "1. كيف أتعامل مع رغبة المراهق في الخصوصية التامة ورفضه لمراقبة هاتفه؟",
-                    src: "المصدر: خبراء التربية السلوكية",
-                    ans: "• الخصوصية في هذا العمر هي جزء من بناء الاستقلالية. بدلاً من المراقبة المباشرة (التجسس).<br>• التحول إلى 'الإشراف الواعي'.<br>• اتفق معه على قواعد عامة (مثل عدم استخدام الهاتف في غرف النوم أو وقت الطعام).<br>• اشرح له أن دورك هو الحماية وليس التقييد.<br>• بناء جسر من الثقة يجعله يلجأ إليك إذا واجه مشكلة."
-                },
-                {
-                    q: "2. ما هي علامات وقوع المراهق في فخ 'الابتزاز الإلكتروني' وكيف أتصرف بهدوء؟",
-                    src: "المصدر: إدارة مكافحة جرائم تقنية المعلومات",
-                    ans: "• الانعزال المفاجئ والتوتر الشديد عند وصول رسائل.<br>• إغلاق الهاتف بسرعة عند اقترابك.<br>• تدهور الحالة المزاجية أو الدراسية.<br>• التصرف الهادئ يتطلب: احتواء المراهق، طمأنته بأنك بجانبه ولن تعاقبه.<br>• جمع الأدلة (صور الرسائل)، ثم إبلاغ الجهات المختصة (الجرائم المعلوماتية) فوراً."
-                },
-                {
-                    q: "3. كيف أحمي ابني/ابنتي من 'هوس المثالية' والمقارنة الدائمة مع مشاهير السوشيال ميديا؟",
-                    src: "المصدر: الجمعية النفسية",
-                    ans: "• تنمية 'الوعي الناقد'؛ علّمهم أن ما يظهر على الشاشة هو 'لقطات منتقاة' وليس الحقيقة الكاملة.<br>• التوضيح بأن هناك فلاتر وإضاءة خلف الكواليس.<br>• شجعهم على متابعة شخصيات ملهمة في مجالات حقيقية (علم، رياضة، تطوع) بدلاً من مشاهير الاستعراض."
-                },
-                {
-                    q: "4. ما هو التصرف الصحيح إذا اكتشفت أن المراهق يتابع مجموعات تروج لأفكار متطرفة؟",
-                    src: "المصدر: خبراء فكريين وتربويين",
-                    ans: "• تجنب الصدمة والهجوم العنيف الذي قد يدفعه للتمسك بها أكثر.<br>• ابدأ بحوار فكري هادئ، اسأله: 'ما الذي جذبك لهذا المحتوى؟'.<br>• اعرض عليه وجهات نظر بديلة ومنطقية.<br>• استعن بمختص تربوي أو فكري لمساعدتك في تفكيك هذه الأفكار."
-                },
-                {
-                    q: "5. كيف أعلم المراهق إدارة 'سمعته الرقمية' وإدراك أن ما ينشره اليوم سيلاحقه؟",
-                    src: "المصدر: مستشاري التوظيف والتوجيه المهني",
-                    ans: "• أخبره بقاعدة ذهبية: 'لا تنشر شيئاً لا تحب أن يراه مديرك المستقبلي أو جدودك'.<br>• وضح له أن الشركات والجامعات الآن تبحث في التاريخ الرقمي للمتقدمين.<br>• علمه أن 'بصمته الرقمية' هي سيرته الذاتية الحقيقية التي لا تمحى."
-                },
-                {
-                    q: "6. كيف نواجه إدمان ألعاب 'الفيديو جيمز' وتأثيرها على التحصيل الدراسي؟",
-                    src: "المصدر: خبراء التوجيه الدراسي",
-                    ans: "• لا تمنعها تماماً، بل اجعلها 'مكافأة' بعد إنجاز المهام.<br>• حدد ساعات معينة وتقليلها تدريجياً في أيام الدراسة.<br>• شجعه على ممارسة أنشطة بدنية تعوضه عن الجلوس الطويل.<br>• اهتم بنوعية الألعاب لضمان أنها تنمي مهارات التفكير بدلاً من العنف."
-                },
-                {
-                    q: "7. ما هي مخاطر تطبيقات الدردشة المجهولة (Anonymous Apps) على المراهقين؟",
-                    src: "المصدر: منظمات حماية الطفل الرقمية",
-                    ans: "• تكمن خطورتها في أنها بيئة خصبة للتنمر القاسي، التحرش، واستدراج القاصرين.<br>• غياب الرقابة وعدم معرفة هوية الطرف الآخر يشجع السلوكيات العدوانية.<br>• يجب توعية المراهق بأن عدم معرفة الهوية يرفع من احتمالية التعرض للأذى النفسي."
-                },
-                {
-                    q: "8. كيف أقنع المراهق بوضع حدود زمنية لاستخدام الهاتف دون الدخول في صدام؟",
-                    src: "المصدر: خبراء التواصل الأسري",
-                    ans: "• عبر 'العقد الرقمي'؛ اجلس معه واتفقا معاً على ساعات الاستخدام.<br>• عندما يشارك المراهق في وضع القوانين، يكون أكثر التزاماً بها.<br>• مناقشة المخاطر وتوضيحها وشرحها له بهدوء.<br>• يجب أن تكون قدوة له، فلا تطلب منه ترك الهاتف وأنت تقضي ساعات طويلة عليه."
-                },
-                {
-                    q: "9. كيف أتعامل مع 'التنمر الإلكتروني' سواء كان المراهق ضحية أو مشاركاً فيه؟",
-                    src: "المصدر: الصحة النفسية المدرسية",
-                    ans: "• إذا كان ضحية: علمه عدم الرد، حظر المتنمر، وتوثيق ما حدث.<br>• إذا كان مشاركاً: يجب الوقوف بحزم على العواقب الأخلاقية والقانونية.<br>• تنمية مهارة 'التعاطف' لديه ليفهم حجم الأذى الذي يسببه للآخرين."
-                },
-                {
-                    q: "10. ما هو دور الأهل في توعية المراهق بمخاطر 'تحديات التيك توك' الخطيرة؟",
-                    src: "المصدر: خبراء السلامة العامة",
-                    ans: "• الدور هو 'التحليل المنطقي'.<br>• ناقش معه التحدي المنتشر واسأله عن المخاطر المحتملة (جسدية أو قانونية).<br>• شجعه على التفكير المستقل بدلاً من 'عقلية القطيع' واللحاق بكل 'تريند'."
-                },
-                {
-                    q: "11. كيف يمكن للمراهق استخدام منصات التواصل لبناء 'ملف شخصي' يدعم قبوله الجامعي؟",
-                    src: "المصدر: مستشاري القبول الجامعي",
-                    ans: "• عن طريق مشاركة إنجازاته: مشاريع مدرسية، تطوع، هوايات (رسم، كتابة، برمجة).<br>• تحويل حسابه من مجرد مستهلك للمحتوى إلى 'صانع محتوى' يعكس قدراته واهتماماته."
-                },
-                {
-                    q: "12. ما هي أفضل الطرق لتدريب المراهق على مهارة 'الذكاء الاصطناعي' كأداة للتعلم؟",
-                    src: "المصدر: خبراء التعليم الرقمي",
-                    ans: "• علمه كيف يسأل الذكاء الاصطناعي ليقوم بدور 'المعلم الخصوصي' الذي يشرح المفاهيم الصعبة.<br>• المساعدة في تلخيص المراجع وتبسيط المعلومات.<br>• التأكيد على ضرورة كتابة الأبحاث بأسلوبه الخاص لضمان تطوير مهاراته العقلية."
-                },
-                {
-                    q: "13. كيف أحول اهتمام المراهق بالألعاب إلى شغف بتعلم البرمجة أو التصميم؟",
-                    src: "المصدر: معاهد التكنولوجيا",
-                    ans: "• أخبره أن الانتقال من 'لاعب' إلى 'صانع' هو التحدي الأكبر.<br>• اشترك له في دورات بسيطة لتطوير الألعاب (مثل Roblox Studio أو Unity).<br>• تعريفه بالقيمة التقنية والمادية التي يمكن أن يجنيها من هذا المجال."
-                },
-                {
-                    q: "14. كيف ننمي مهارة 'القيادة الرقمية' لدى المراهق ليكون مؤثراً إيجابياً؟",
-                    src: "المصدر: مراكز القيادة والابتكار",
-                    ans: "• تشجيعه على الدفاع عن الحق عبر الإنترنت ونشر معلومات مفيدة.<br>• دعم زملائه الذين يتعرضون للتنمر.<br>• القيادة الرقمية تعني استخدام صوته الإلكتروني لإحداث تغيير إيجابي."
-                },
-                {
-                    q: "15. ما هي الخطوات العملية لتمكين المراهق من إدارة ميزانيته المالية عبر تطبيقات الدفع؟",
-                    src: "المصدر: خبراء الشمول المالي",
-                    ans: "• ابدأ بمنحه ميزانية أسبوعية على بطاقة مسبقة الدفع (خاصة باليافعين).<br>• علمه مهارة 'التحقق' قبل الشراء أونلاين وحماية بيانات بطاقته.<br>• مراجعة كشف الحساب معه شهرياً ليتعلم أين تذهب أمواله."
+                    ans: "• اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.<br>• علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).<br>• قارن معه بين إعلان لمنتج وبين شكله الحقيقي في الواقع.<br>• شجعه على التشكيك في المعلومات الغريبة والبحث عن مصدر ثانٍ لها."
                 }
             ]
         };
 
         let currentLang = 'ar';
-        const translations = {
-            ar: {
-                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا",
-                heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
-                browse: "تصفح الكتاب"
-            },
-            en: {
-                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback",
-                heroTitle: '<span class="highlight">Digital Illusion</span> <span class="gold-text">Tsunami: Egypt\'s Cry to Warn the World</span>',
-                browse: "Browse Book"
-            }
-        };
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            const langBtn = document.getElementById('langBtn');
-            langBtn.innerHTML = currentLang === 'ar' ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            updateContent();
-        }
-
-        function updateContent() {
-            const t = translations[currentLang];
-            document.getElementById('lnk-vision').innerText = t.vision;
-            document.getElementById('lnk-partners').innerText = t.partners;
-            document.getElementById('lnk-media').innerText = t.media;
-            document.getElementById('lnk-stats').innerText = t.stats;
-            document.getElementById('lnk-losses').innerText = t.losses;
-            document.getElementById('lnk-awareness').innerText = t.awareness;
-            document.getElementById('lnk-feedback').innerText = t.feedback;
-            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
-            document.getElementById('btn-browse').innerText = t.browse;
-        }
+        let currentIndex = 0;
 
         function initPage() {
-            const ticker = document.getElementById('tickerTrack');
-            const msg = " • خطر الإدمان الرقمي يهدد استقرار الأسرة المصرية • احمِ طفلك من مخاطر الشاشات • تسونامي الوهم الرقمي .. صرخة مصرية للعالم • ";
-            ticker.innerHTML = `<span>${msg}</span>`.repeat(20);
-            window.onscroll = function() {
-                document.getElementById('btnUp').style.display = window.pageYOffset > 300 ? 'flex' : 'none';
-            };
+            updateTicker();
+            window.addEventListener('scroll', () => {
+                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
         }
 
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
+        function updateTicker() {
+            const tickerData = [
+                "تسونامي الوهم الرقمي: خطر يهدد مستقبل أطفالنا..",
+                "الإدمان الرقمي يسبب تراجع التركيز بنسبة 65%..",
+                "انتبه: طفلك أمانة، لا تتركه فريسة للشاشات..",
+                "40% زيادة في حالات التفكك الأسري بسبب العالم الافتراضي.."
+            ];
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = tickerData.map(text => `<span>${text}</span>`).join('') + track.innerHTML;
         }
 
-        // وظائف الصناديق الجديدة
-        function openChildBox(type) {
-            const modal = document.getElementById('childModal');
-            const container = document.getElementById('questionsContainer');
-            container.innerHTML = '';
-            
-            const questions = dataQuestions[type];
-            if(questions) {
-                questions.forEach((item, index) => {
-                    const qDiv = document.createElement('div');
-                    qDiv.className = 'q-item';
-                    qDiv.innerText = item.q;
-                    qDiv.onclick = () => showAnswer(item);
-                    container.appendChild(qDiv);
-                });
-            }
-            modal.style.display = 'flex';
-        }
-
-        function closeChildBox() {
-            document.getElementById('childModal').style.display = 'none';
-        }
-
-        function showAnswer(data) {
-            document.getElementById('ansQuestion').innerText = data.q;
-            document.getElementById('ansSource').innerText = data.src;
-            document.getElementById('ansBody').innerHTML = data.ans;
-            document.getElementById('answerPopup').style.display = 'flex';
-        }
-
-        function closeAnswer() {
-            document.getElementById('answerPopup').style.display = 'none';
-        }
-
-        // ميديا سلايدر
-        let currentSlide = 0;
         function moveSlide(dir) {
             const track = document.getElementById('imageTrack');
-            const total = track.children.length;
-            currentSlide = (currentSlide + dir + total) % total;
-            track.style.transform = `translateX(${currentSlide * 400 * (currentLang === 'ar' ? 1 : -1)}px)`;
+            const images = track.getElementsByTagName('img');
+            currentIndex += dir;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            if (currentIndex >= images.length) currentIndex = 0;
+            track.style.transform = `translateX(${currentIndex * 400}px)`;
         }
 
         function openImage(src) {
@@ -717,8 +561,47 @@
             document.getElementById('lightbox-img').src = src;
             lb.style.display = 'flex';
         }
+
         function closeImage() {
             document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function scrollToSec(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openChildBox(type) {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+            const questions = dataQuestions[type] || [];
+            questions.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'q-item';
+                div.innerText = item.q;
+                div.onclick = () => showAnswer(item);
+                container.appendChild(div);
+            });
+            document.getElementById('childModal').style.display = 'flex';
+        }
+
+        function closeChildBox() {
+            document.getElementById('childModal').style.display = 'none';
+        }
+
+        function showAnswer(item) {
+            document.getElementById('ansQuestion').innerText = item.q;
+            document.getElementById('ansSource').innerText = item.src;
+            document.getElementById('ansBody').innerHTML = item.ans;
+            document.getElementById('answerPopup').style.display = 'flex';
+        }
+
+        function closeAnswer() {
+            document.getElementById('answerPopup').style.display = 'none';
+        }
+
+        function toggleLanguage() {
+            // وظيفة تبديل اللغة (يمكن تفعيلها لاحقاً)
+            alert("قريباً باللغة الإنجليزية");
         }
     </script>
 </body>
