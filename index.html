@@ -69,7 +69,8 @@
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
-        .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track span { padding-left: 0; font-weight: bold; font-size: 1.1rem; display: flex; }
+        .ticker-item { padding: 0 40px; }
 
         @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
 
@@ -153,7 +154,7 @@
             display: none; justify-content: center; align-items: center; z-index: 31000; padding: 20px;
         }
         .answer-content {
-            background: #fff; width: 100%; max-width: 700px; padding: 40px; border-radius: 15px; position: relative;
+            background: #ffcc00; width: 100%; max-width: 700px; padding: 40px; border-radius: 15px; position: relative;
             max-height: 90vh; overflow-y: auto; color: #333; line-height: 1.8;
         }
         .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; }
@@ -456,6 +457,23 @@
     </section>
 
     <script>
+        const news = [
+            "• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي",
+            "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي",
+            "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري",
+            "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا",
+            "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي",
+            "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي",
+            "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي",
+            "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم",
+            "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة",
+            "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل",
+            "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً",
+            "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة",
+            "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي",
+            "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"
+        ];
+
         const dataQuestions = {
             childhood: [
                 {
@@ -505,76 +523,56 @@
                 },
                 {
                     q: "10. كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟",
-                    src: "المصدر: معهد ماساتشوستس للتكنولوجيا (MIT - Scratch).",
-                    ans: "• تحويل الطفل من 'مشاهد' إلى 'صانع' عبر تطبيقات تعليم البرمجة (مثل Scratch Junior).<br>• استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء.<br>• تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك.<br>• اختيار ألعاب 'حل الألغاز' التي تنمي التفكير المنطقي."
+                    src: "المصدر: معهد ماساتشوستس للتقنية (MIT).",
+                    ans: "• توجيه الطفل نحو تطبيقات 'البرمجة للمبتدئين' مثل (Scratch Junior).<br>• استخدام تطبيقات تعليم اللغات الرسمية والقصص التفاعلية.<br>• تشجيع الطفل على صنع محتوى (تصوير، رسم رقمي) بدلاً من المشاهدة فقط.<br>• تخصيص وقت للبحث المشترك عن معلومات علمية تثير فضوله."
+                }
+            ],
+            adolescence: [
+                {
+                    q: "1. كيف يمكنني حماية ابني المراهق من التنمر الإلكتروني؟",
+                    src: "المصدر: منظمة الصحة العالمية (WHO).",
+                    ans: "• بناء جسر من الثقة يجعله يخبرك فوراً بأي مضايقة.<br>• علمه كيفية عمل 'حظر' (Block) و'إبلاغ' (Report) للمسيئين.<br>• الاحتفاظ بأدلة التنمر (Screenshots) لاستخدامها قانونياً إذا لزم الأمر.<br>• تجنب لوم الضحية، بل تقديم الدعم النفسي الكامل له."
                 },
                 {
-                    q: "11. كيف أحول 'وقت الشاشة' إلى جلسة ترابط أسري وتفاعل مشترك؟",
-                    src: "المصدر: دراسات جامعة ستانفورد حول 'المشاهدة المشتركة'.",
-                    ans: "• العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها.<br>• شاهد فيلماً كرتونياً وناقش معه 'القيم الأخلاقية' المستفادة من القصة.<br>• اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي).<br>• خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية."
+                    q: "2. ما هي علامات إدمان المراهقين لمواقع التواصل الاجتماعي؟",
+                    src: "المصدر: جامعة أكسفورد - دراسات سلوكية.",
+                    ans: "• تدهور مفاجئ في الدرجات الدراسية والتحصيل العلمي.<br>• السهر الطويل وتغيير نمط النوم المعتاد.<br>• القلق والتوتر الشديد عند انقطاع الإنترنت أو سحب الهاتف.<br>• الانسحاب من الجلسات العائلية والمناسبات الاجتماعية الواقعية."
                 },
                 {
-                    q: "12. هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟",
-                    src: "المصدر: الرابطة الدولية لتكنولوجيا التعليم (ISTE).",
-                    ans: "• نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع.<br>• تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب.<br>• منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة.<br>• التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل 'أفلام قصيرة' بالدمى."
+                    q: "3. كيف أتعامل مع رغبة المراهق في الخصوصية التامة لهاتفه؟",
+                    src: "المصدر: خبراء التربية الإيجابية.",
+                    ans: "• الخصوصية حق للمراهق ولكنها مشروطة بالسلامة.<br>• الاتفاق على قواعد واضحة: 'لا هواتف في غرفة النوم ليلاً'.<br>• المتابعة غير المباشرة للأصدقاء والمحتوى دون التجسس المفرط.<br>• التركيز على التوعية الذاتية والضمير بدلاً من المراقبة الشرطية."
                 },
                 {
-                    q: "13. كيف أعلم طفلي مهارة 'التفكير النقدي' للتمييز بين الحقيقة والخداع؟",
-                    src: "المصدر: منظمة (Media Smarts).",
-                    ans: "• اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.<br>• علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).<br>• قارن معه بين إعلان لمنتج وبين شكله الحقيقي في الواقع.<br>• شجعه على التشكيك في المعلومات الغريبة والبحث عن مصدر ثانٍ لها."
+                    q: "4. ما هي مخاطر الألعاب القتالية العنيفة على نفسية المراهق؟",
+                    src: "المصدر: الأكاديمية الأمريكية للطب النفسي.",
+                    ans: "• زيادة السلوك العدواني والتبلد تجاه العنف الحقيقي.<br>• الانفصال عن الواقع واعتبار القوة البدنية هي الحل الوحيد.<br>• احتمالية التعرض لعمليات استقطاب فكري عبر غرف الدردشة الملحقة بالألعاب.<br>• الإرهاق الذهني نتيجة التركيز العالي في بيئة مليئة بالتوتر."
+                },
+                {
+                    q: "5. كيف نحد من الفجوة الرقمية بين الآباء والأبناء المراهقين؟",
+                    src: "المصدر: اليونسكو - قطاع التعليم والوعي.",
+                    ans: "• اطلب من ابنك أن يعلمك ميزة جديدة في هاتفك ليشعر بالمسؤولية والتمكين.<br>• شاركه الاهتمامات الرقمية (مشاهدة فيديو ممتع أو لعب جولة معاً).<br>• لا تهاجم التكنولوجيا باستمرار، بل ناقش سلبياتها وإيجابياتها بموضوعية.<br>• اجعل وقت الطعام والاجتماع العائلي منطقة خالية تماماً من الشاشات للجميع."
                 }
             ]
         };
 
-        let currentLang = 'ar';
-        let currentIndex = 0;
-
         function initPage() {
-            updateTicker();
+            const track = document.getElementById('tickerTrack');
+            const content = news.map(item => `<div class="ticker-item">${item}</div>`).join('');
+            track.innerHTML = `<span>${content}${content}${content}</span>`;
+            
             window.addEventListener('scroll', () => {
                 document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
             });
         }
 
-        function updateTicker() {
-            const tickerData = [
-                "تسونامي الوهم الرقمي: خطر يهدد مستقبل أطفالنا..",
-                "الإدمان الرقمي يسبب تراجع التركيز بنسبة 65%..",
-                "انتبه: طفلك أمانة، لا تتركه فريسة للشاشات..",
-                "40% زيادة في حالات التفكك الأسري بسبب العالم الافتراضي.."
-            ];
-            const track = document.getElementById('tickerTrack');
-            track.innerHTML = tickerData.map(text => `<span>${text}</span>`).join('') + track.innerHTML;
-        }
-
-        function moveSlide(dir) {
-            const track = document.getElementById('imageTrack');
-            const images = track.getElementsByTagName('img');
-            currentIndex += dir;
-            if (currentIndex < 0) currentIndex = images.length - 1;
-            if (currentIndex >= images.length) currentIndex = 0;
-            track.style.transform = `translateX(${currentIndex * 400}px)`;
-        }
-
-        function openImage(src) {
-            const lb = document.getElementById('lightbox');
-            document.getElementById('lightbox-img').src = src;
-            lb.style.display = 'flex';
-        }
-
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function scrollToSec(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-        }
-
         function openChildBox(type) {
             const container = document.getElementById('questionsContainer');
             container.innerHTML = '';
-            const questions = dataQuestions[type] || [];
-            questions.forEach((item, index) => {
+            const title = type === 'childhood' ? "محور الطفولة الرقمية" : "محور عالم المراهقة";
+            document.getElementById('modalHeaderTitle').innerText = title;
+
+            dataQuestions[type].forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'q-item';
                 div.innerText = item.q;
@@ -584,9 +582,7 @@
             document.getElementById('childModal').style.display = 'flex';
         }
 
-        function closeChildBox() {
-            document.getElementById('childModal').style.display = 'none';
-        }
+        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
 
         function showAnswer(item) {
             document.getElementById('ansQuestion').innerText = item.q;
@@ -595,13 +591,35 @@
             document.getElementById('answerPopup').style.display = 'flex';
         }
 
-        function closeAnswer() {
-            document.getElementById('answerPopup').style.display = 'none';
+        function closeAnswer() { document.getElementById('answerPopup').style.display = 'none'; }
+
+        function scrollToSec(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                const offset = 140;
+                const pos = el.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({top: pos, behavior: 'smooth'});
+            }
         }
 
+        let currentSlide = 0;
+        function moveSlide(dir) {
+            const track = document.getElementById('imageTrack');
+            const total = track.children.length;
+            const cardWidth = track.children[0].offsetWidth;
+            currentSlide = (currentSlide + dir + total) % total;
+            track.style.transform = `translateX(${currentSlide * cardWidth}px)`;
+        }
+
+        function openImage(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+
         function toggleLanguage() {
-            // وظيفة تبديل اللغة (يمكن تفعيلها لاحقاً)
-            alert("قريباً باللغة الإنجليزية");
+            alert("Language toggle feature coming soon!");
         }
     </script>
 </body>
