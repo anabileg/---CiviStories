@@ -117,16 +117,30 @@
         }
         .awareness-card span { font-weight: bold; font-size: 1.2rem; }
 
+        /* تعديلات المربع الأصفر المطلوب */
         .childhood-modal {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); z-index: 30000; display: none; justify-content: center; align-items: center;
         }
         .child-box {
-            width: 80%; max-width: 600px; height: 400px; background: #ffcc00; border-radius: 15px; position: relative;
+            width: 80%; max-width: 600px; height: 450px; background: #ffcc00; border-radius: 15px; position: relative;
+            display: flex; flex-direction: column; padding: 50px 20px 20px;
         }
         .close-child {
             position: absolute; top: 10px; left: 10px; color: #ff0000; font-size: 30px; cursor: pointer;
-            font-weight: bold; background: none; border: none;
+            font-weight: bold; background: none; border: none; z-index: 10;
+        }
+        .questions-scroll {
+            width: 100%; height: 100%; overflow-y: auto; padding-right: 10px;
+            direction: rtl; text-align: right;
+        }
+        .questions-scroll::-webkit-scrollbar { width: 8px; }
+        .questions-scroll::-webkit-scrollbar-thumb { background: #b30000; border-radius: 10px; }
+        .questions-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        
+        .q-item {
+            color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px;
+            padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5;
         }
 
         .carousel-wide { 
@@ -227,6 +241,24 @@
     <div id="childModal" class="childhood-modal">
         <div class="child-box">
             <button class="close-child" onclick="closeChildBox()">X</button>
+            <div class="questions-scroll">
+                <div class="q-item">1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟</div>
+                <div class="q-item">2. كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة "العزلة الرقمية"؟</div>
+                <div class="q-item">3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟</div>
+                <div class="q-item">4. هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال في سن مبكرة؟</div>
+                <div class="q-item">5. كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل أثناء مشاهدة الكرتون؟</div>
+                <div class="q-item">6. ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة الإلكترونية؟</div>
+                <div class="q-item">7. هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو عقل وجسد الطفل فعلياً؟</div>
+                <div class="q-item">8. كيف أفعل ميزة "الرقابة الأبوية" على الراوتر والمنصات التي يستخدمها أطفالي؟</div>
+                <div class="q-item">9. ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين (مثل روبلوكس)؟</div>
+                <div class="q-item">10. كيف يمكنني استغلال التكنولوجيا في تطوير مهارات طفلي بدلاً من مجرد الاستهلاك السلبي؟</div>
+                <div class="q-item">11. كيف أحول "وقت الشاشة" من وقت ضائع إلى جلسة ترابط أسري وتفاعل مشترك؟</div>
+                <div class="q-item">12. هل يمكن للهواتف الذكية أن تساعد طفلي في اكتشاف مواهبه (رسم، برمجة، لغات) في سن مبكرة؟</div>
+                <div class="q-item">13. كيف أعلم طفلي مهارة "التفكير النقدي" ليميز بنفسه بين الحقيقة والخداع على الإنترنت؟</div>
+                <div class="q-item">14. ما هي القواعد الذهبية لإنشاء "ميثاق رقمي" يلتزم به الطفل عن قناعة وليس خوفاً؟</div>
+                <div class="q-item">15. كيف أدرب طفلي على أن يكون "صانع محتوى" مفيداً بدلاً من أن يكون مجرد "مستهلك" متلقٍ؟</div>
+                <div class="q-item">16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟</div>
+            </div>
         </div>
     </div>
 
@@ -449,7 +481,7 @@
         };
 
         function initPage() {
-            window.scrollTo(0, 0); // التعديل: فتح الصفحة على الجزء الأول دائماً
+            window.scrollTo(0, 0);
             updateTicker();
             loadMedia();
             startAutoScroll();
@@ -481,14 +513,13 @@
             document.getElementById('st-title').innerText = l.stTitle;
             document.getElementById('ls-title').innerText = l.lsTitle;
             document.getElementById('footer-txt').innerText = l.footer;
-            document.getElementById('media-guideline').innerText = l.mediaGuide;
-            document.getElementById('p1-name').innerText = l.p1n; 
+            document.getElementById('p1-name').innerText = l.p1n;
             document.getElementById('p1-desc').innerText = l.p1d;
             document.getElementById('p1-src').innerText = l.p1src;
-            document.getElementById('p2-name').innerText = l.p2n; 
+            document.getElementById('p2-name').innerText = l.p2n;
             document.getElementById('p2-desc').innerText = l.p2d;
             document.getElementById('p2-src').innerText = l.p2src;
-            document.getElementById('p3-name').innerText = l.p3n; 
+            document.getElementById('p3-name').innerText = l.p3n;
             document.getElementById('p3-desc').innerText = l.p3d;
             document.getElementById('p3-src').innerText = l.p3src;
             document.getElementById('st1-txt').innerText = l.st1;
@@ -499,74 +530,73 @@
             document.getElementById('ls1-src').innerText = l.ls1src;
             document.getElementById('ls2-txt').innerText = l.ls2;
             document.getElementById('ls2-src').innerText = l.ls2src;
-            document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang==='ar'?'gb':'eg'}.png" alt="Lang">`;
+            document.getElementById('media-guideline').innerText = l.mediaGuide;
+            document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
             updateTicker();
-            loadMedia();
         }
 
         function updateTicker() {
             const track = document.getElementById('tickerTrack');
             track.innerHTML = '';
-            content[currentLang].ticker.forEach(txt => {
+            content[currentLang].ticker.forEach(msg => {
                 const s = document.createElement('span');
-                s.innerText = txt;
+                s.innerText = msg;
                 track.appendChild(s);
             });
-            // مضاعفة المحتوى لشريط أخبار سلس
-            track.innerHTML += track.innerHTML;
+            // مضاعفة النص لضمان استمرارية الحركة
+            content[currentLang].ticker.forEach(msg => {
+                const s = document.createElement('span');
+                s.innerText = msg;
+                track.appendChild(s);
+            });
         }
 
         function loadMedia() {
             const track = document.getElementById('track-imgs');
-            track.innerHTML = '';
-            // التعديل: إضافة الصور مرتين لجعل الشريط متصل (Infinite Loop) بدون فراغات
-            const fullList = [...imagesList, ...imagesList];
-            fullList.forEach((src, index) => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.onclick = () => openImage(src);
-                track.appendChild(img);
+            imagesList.forEach(img => {
+                const i = document.createElement('img');
+                i.src = img;
+                i.onclick = () => openImage(img);
+                track.appendChild(i);
             });
-            currentSlide = 0;
-            updateSlide();
         }
 
         function moveSlide(dir) {
-            currentSlide += dir;
-            // التحقق من الحدود لإعادة الشريط للبداية أو النهاية بسلاسة
-            if (currentSlide >= imagesList.length) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = imagesList.length - 1;
-            updateSlide();
-        }
-
-        function updateSlide() {
             const track = document.getElementById('track-imgs');
-            const step = 400; // عرض الصورة
-            track.style.transform = `translateX(${currentSlide * step * (currentLang === 'ar' ? 1 : -1)}px)`;
+            const total = imagesList.length;
+            currentSlide = (currentSlide + dir + total) % total;
+            track.style.transform = `translateX(${currentLang === 'ar' ? currentSlide * 400 : -currentSlide * 400}px)`;
         }
 
         function startAutoScroll() {
-            clearInterval(autoScrollInterval);
-            autoScrollInterval = setInterval(() => moveSlide(1), 3000);
+            autoScrollInterval = setInterval(() => moveSlide(1), 4000);
         }
 
         function openImage(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
+            clearInterval(autoScrollInterval);
         }
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
-        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
-        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+            startAutoScroll();
+        }
+
+        function openChildBox() {
+            document.getElementById('childModal').style.display = 'flex';
+        }
+
+        function closeChildBox() {
+            document.getElementById('childModal').style.display = 'none';
+        }
 
         function scrollToSec(id) {
             const el = document.getElementById(id);
-            const offset = 140; 
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = el.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            if(el) {
+                const offset = 140; 
+                window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+            }
         }
 
         function handleCounters() {
@@ -574,23 +604,23 @@
                 entries.forEach(entry => {
                     if(entry.isIntersecting) {
                         const target = entry.target;
-                        const goal = parseInt(target.getAttribute('data-target'));
-                        let count = 0;
-                        const inc = goal / 100;
-                        const update = () => {
-                            count += inc;
-                            if(count < goal) {
-                                target.innerText = Math.ceil(count);
-                                setTimeout(update, 20);
+                        const countTo = parseInt(target.getAttribute('data-target'));
+                        let current = 0;
+                        const step = countTo / 50;
+                        const interval = setInterval(() => {
+                            current += step;
+                            if(current >= countTo) {
+                                target.innerText = countTo;
+                                clearInterval(interval);
                             } else {
-                                target.innerText = goal;
+                                target.innerText = Math.floor(current);
                             }
-                        };
-                        update();
+                        }, 30);
                         observers.unobserve(target);
                     }
                 });
-            }, {threshold: 0.5});
+            }, { threshold: 0.5 });
+
             document.querySelectorAll('.counter').forEach(c => observers.observe(c));
         }
     </script>
