@@ -122,8 +122,8 @@
             background: rgba(0,0,0,0.8); z-index: 30000; display: none; justify-content: center; align-items: center;
         }
         .child-box {
-            width: 90%; max-width: 600px; height: 550px; background: #ffcc00; border-radius: 15px; position: relative;
-            display: flex; flex-direction: column; padding: 20px;
+            width: 90%; max-width: 600px; height: 500px; background: #ffcc00; border-radius: 15px; position: relative;
+            display: flex; flex-direction: column; padding: 50px 20px 20px;
         }
         
         .answer-box {
@@ -137,7 +137,7 @@
         }
 
         .questions-scroll {
-            width: 100%; height: 100%; overflow-y: auto; padding: 10px 10px 40px 10px;
+            width: 100%; height: 100%; overflow-y: auto; padding-right: 10px;
             direction: rtl; text-align: right;
         }
         .questions-scroll::-webkit-scrollbar { width: 8px; }
@@ -146,9 +146,10 @@
         .q-item {
             color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px;
             padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5; cursor: pointer;
-            display: block;
+            display: flex; justify-content: space-between; align-items: center;
         }
         .q-item:hover { color: #b30000; }
+        .q-item i { color: #1877F2; margin-right: 10px; }
 
         .ans-question { color: #ff0000; font-size: 1.4rem; font-weight: bold; margin-bottom: 15px; text-align: right; }
         .ans-source { color: var(--gold); font-size: 1.1rem; font-weight: bold; margin-bottom: 20px; text-align: right; }
@@ -253,7 +254,6 @@
     <div id="childModal" class="childhood-modal">
         <div class="child-box">
             <button class="close-child" onclick="closeChildBox()">X</button>
-            <div id="instruction-text" style="text-align: center; color: #b30000; font-weight: bold; font-size: 1.3rem; margin-bottom: 15px; border-bottom: 2px solid #b30000; padding-bottom: 5px;">اضغط علي السؤال واكتشف الحل</div>
             <div class="questions-scroll" id="questionsList"></div>
         </div>
     </div>
@@ -462,7 +462,7 @@
                 ans: [
                     ". تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز.",
                     ". الألعاب التي تحتوي على \"دردشة مفتوحة\" مع غرباء مثل بعض غرف (روبلوكس).",
-                    ". التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.",
+                    ". الألعاب التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.",
                     ". التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)."
                 ]
             },
@@ -490,7 +490,7 @@
                 q: "7. هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو الطفل فعلياً؟",
                 src: "المصدر: مؤسسة النوم الوطنية (NSF).",
                 ans: [
-                    ". الضوء الأزرق يمنع إفرار \"الميلاتونين\"، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم.",
+                    ". الضوء الأزرق يمنع إفراز \"الميلاتونين\"، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم.",
                     ". يؤثر على \"المرونة العصبية\" للدماغ في السن الصغير بسبب التحفيز البصري المفرط.",
                     ". يسبب \"قصر النظر\" وجفاف العين نتيجة التحديق الطويل.",
                     ". الجلوس بوضعيات خاطئة يؤثر على نمو العمود الفقري للطفل."
@@ -555,228 +555,166 @@
                     ". قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.",
                     ". علمه ألا يصدق كل ما يراه إلا إذا تأكد من \"مصدر موثوق\"."
                 ]
-            },
-            {
-                q: "14. ما هي القواعد الذهبية لإنشاء \"ميثاق رقمي\" يلتزم به الطفل؟",
-                src: "المصدر: أكاديمية كوايت (Quiet Academy) للتربية الرقمية.",
-                ans: [
-                    ". المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.",
-                    ". الوضوح: حدد أوقاتاً وأماكن \"خالية من الشاشات\" (مثل وقت الأكل، وغرفة النوم).",
-                    ". العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).",
-                    ". التوازن: القاعدة هي \"أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة\"."
-                ]
-            },
-            {
-                q: "15. كيف أدرب طفلي على أن يكون \"صانع محتوى\" مفيداً؟",
-                src: "المصدر: خبراء التربية الإبداعية.",
-                ans: [
-                    ". شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).",
-                    ". علمه أساسيات المونتاج البسيط وكتابة \"سيناريو\" قصير.",
-                    ". وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.",
-                    ". ركز على \"جودة الفكرة\" وليس على عدد \"اللايكات\" أو المشاهدات."
-                ]
-            },
-            {
-                q: "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟",
-                src: "المصدر: دراسة \"التقنية التداخلية\" (Technoference).",
-                ans: [
-                    ". الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.",
-                    ". انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.",
-                    ". \"القاعدة الذهبية\": كن أنت القدوة التي تريد أن تراها في طفلك.",
-                    ". خصص وقتاً في اليوم يكون فيه المنزل بالكامل \"بدون هواتف\" لتعزيز التواصل البصري."
-                ]
             }
         ];
 
         let currentLang = 'ar';
-        const trans = {
+        const translations = {
             ar: {
                 vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا",
                 hero: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
-                browse: "تصفح الكتاب", visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
-                partTitle: "شركاء الوعي الوطني", p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.",
-                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
-                p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
-                mediaGuide: "اضغط على الصورة لتصلك رسالتنا", stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول",
-                lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليار تكلفة العلاج",
-                ticker: [
-                    "كل 2 دقيقة تقع حالة طلاق في مصر بسبب الانشغال بالهواتف..",
-                    "أكثر من 40 مليون طفل مصري معرضون لمخاطر التوحد الرقمي..",
-                    "60% من الخلافات الزوجية في مصر سببها تطبيقات التواصل الاجتماعي..",
-                    "الإدمان الرقمي يهدر 15 مليار جنيه سنوياً من الإنتاجية المصرية.."
-                ]
+                browse: "تصفح الكتاب", visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني...",
+                partTitle: "شركاء الوعي الوطني", p1Name: "الأزهر الشريف", p1Desc: "رصد ومعالجة حالات التفكك الأسري...",
+                stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول",
+                lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية", ls2: "مليار تكلفة العلاج", mediaGuideline: "اضغط على الصورة لتصلك رسالتنا"
             },
             en: {
-                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback",
-                hero: '<span class="highlight">Digital Illusion</span> <span class="gold-text">Tsunami: Egypt\'s Cry to Warn the World</span> <span class="gold-text">Shocking</span> <span class="highlight">Egyptian Figures</span>',
-                browse: "Browse Book", visTitle: "Strategic Vision", visDesc: "We aim through 'CiviStories' to protect the Egyptian social fabric from digital fragmentation risks, by empowering families and restoring psychological balance.",
-                partTitle: "National Awareness Partners", p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring and addressing family disintegration caused by digital addiction through specialized fatwa committees.",
-                p2n: "Egyptian Church", p2d: "Working on family stability and confronting digital isolation within the home through counseling programs.",
-                p3n: "Ministry of Endowments", p3d: "Sakan & Mawada initiative to educate couples about technology risks on their psychological stability.",
-                mediaGuide: "Click the image to receive our message", stTitle: "Statistics", st1: "Thousand Divorces Annually", st2: "Million Mobile Phones",
-                lsTitle: "Losses", ls1: "Billion EGP Productivity Loss", ls2: "Billion Treatment Cost",
-                ticker: [
-                    "A divorce occurs every 2 minutes in Egypt due to phone preoccupation..",
-                    "Over 40 million Egyptian children are at risk of digital autism..",
-                    "60% of marital disputes in Egypt are caused by social media..",
-                    "Digital addiction wastes 15 billion EGP annually in Egyptian productivity.."
-                ]
+                vision: "Our Vision", partners: "Partners", media: "Media", stats: "Statistics", losses: "Losses", awareness: "Awareness", feedback: "Feedback",
+                hero: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span>',
+                browse: "Browse Book", visTitle: "Strategic Vision", visDesc: "We aim through CiviStories to protect the Egyptian social fabric from digital fragmentation...",
+                partTitle: "National Awareness Partners", p1Name: "Al-Azhar Al-Sharif", p1Desc: "Monitoring and addressing family disintegration...",
+                stTitle: "Statistics", st1: "Thousand Divorces Annually", st2: "Million Mobile Phones",
+                lsTitle: "Losses", ls1: "Billion EGP Production Losses", ls2: "Billion Treatment Cost", mediaGuideline: "Click on image to see our message"
             }
         };
 
-        const images = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg","17.jpg","18.jpg","19.jpg","20.jpg"];
-        let currentSlide = 0;
+        const tickerMessages = [
+            "تحذير: ٢٥٥ حالة طلاق يومياً في مصر بسبب العالم الافتراضي",
+            "إحصائية: ١٠٤ مليون هاتف محمول في يد المصريين.. أين الترابط؟",
+            "دراسة: ١٥ مليار جنيه خسائر سنوية في الإنتاجية بسبب التشتت الرقمي",
+            "عاجل: الكنيسة المصرية تؤكد أن ٦٠٪ من نزاعات البيوت تبدأ من الشاشات",
+            "الأوقاف: حملة 'سكن ومودة' تواجه خطر الانفصال الصامت إلكترونياً"
+        ];
+
+        const mediaImages = [
+            "image_01.jpg", "image_02.jpg", "image_03.jpg", "image_04.jpg", "image_05.jpg",
+            "image_06.jpg", "image_07.jpg", "image_08.jpg", "image_09.jpg", "image_10.jpg",
+            "image_11.jpg", "image_12.jpg", "image_13.jpg", "image_14.jpg", "image_15.jpg"
+        ];
 
         function initPage() {
-            const track = document.getElementById('track-imgs');
-            images.forEach(img => {
-                const el = document.createElement('img');
-                el.src = img;
-                el.onclick = () => openImage(img);
-                track.appendChild(el);
-            });
-            updateTicker();
-            setupCounters();
-            renderQuestions();
-        }
-
-        function renderQuestions() {
-            const list = document.getElementById('questionsList');
-            list.innerHTML = "";
-            childhoodQuestions.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = "q-item";
-                div.innerHTML = item.q;
-                div.onclick = () => showAnswer(index);
-                list.appendChild(div);
-            });
-        }
-
-        function showAnswer(index) {
-            const item = childhoodQuestions[index];
-            document.getElementById('ans-q-title').innerText = item.q;
-            document.getElementById('ans-q-source').innerText = item.src;
-            let bodyHTML = "";
-            item.ans.forEach(p => {
-                bodyHTML += `<span class="ans-point">${p}</span>`;
-            });
-            document.getElementById('ans-q-body').innerHTML = bodyHTML;
-            document.getElementById('answerModal').style.display = 'flex';
-            document.getElementById('answerContent').style.display = 'flex';
-        }
-
-        function closeAnswerBox() {
-            document.getElementById('answerModal').style.display = 'none';
-        }
-
-        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
-        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
-
-        function updateTicker() {
             const track = document.getElementById('tickerTrack');
-            track.innerHTML = "";
-            const content = trans[currentLang].ticker.join(" &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; ");
-            for(let i=0; i<15; i++) {
-                const span = document.createElement('span');
-                span.innerHTML = content;
-                track.appendChild(span);
-            }
+            track.innerHTML = tickerMessages.map(m => `<span>${m}</span>`).join('') + tickerMessages.map(m => `<span>${m}</span>`).join('');
+            
+            const imgTrack = document.getElementById('track-imgs');
+            mediaImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.onclick = () => openImage(src);
+                imgTrack.appendChild(img);
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const target = +entry.target.getAttribute('data-target');
+                        let count = 0;
+                        const timer = setInterval(() => {
+                            count += Math.ceil(target/50);
+                            if(count >= target) { entry.target.innerText = target; clearInterval(timer); }
+                            else entry.target.innerText = count;
+                        }, 30);
+                    }
+                });
+            }, {threshold: 0.5});
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
+
+            window.addEventListener('scroll', () => {
+                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+            });
+
+            renderQuestions();
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
+            const btn = document.getElementById('langBtn');
+            const t = translations[currentLang];
+            
+            btn.innerHTML = currentLang === 'ar' ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             
-            document.getElementById('lnk-vision').innerText = trans[currentLang].vision;
-            document.getElementById('lnk-partners').innerText = trans[currentLang].partners;
-            document.getElementById('lnk-media').innerText = trans[currentLang].media;
-            document.getElementById('lnk-stats').innerText = trans[currentLang].stats;
-            document.getElementById('lnk-losses').innerText = trans[currentLang].losses;
-            document.getElementById('lnk-awareness').innerText = trans[currentLang].awareness;
-            document.getElementById('lnk-feedback').innerText = trans[currentLang].feedback;
-            document.getElementById('main-hero-title').innerHTML = trans[currentLang].hero;
-            document.getElementById('btn-browse').innerText = trans[currentLang].browse;
-            document.getElementById('vis-title').innerText = trans[currentLang].visTitle;
-            document.getElementById('vis-desc').innerText = trans[currentLang].visDesc;
-            document.getElementById('part-title').innerText = trans[currentLang].partTitle;
-            document.getElementById('p1-name').innerText = trans[currentLang].p1n;
-            document.getElementById('p1-desc').innerText = trans[currentLang].p1d;
-            document.getElementById('p2-name').innerText = trans[currentLang].p2n;
-            document.getElementById('p2-desc').innerText = trans[currentLang].p2d;
-            document.getElementById('p3-name').innerText = trans[currentLang].p3n;
-            document.getElementById('p3-desc').innerText = trans[currentLang].p3d;
-            document.getElementById('media-guideline').innerText = trans[currentLang].mediaGuide;
-            document.getElementById('st-title').innerText = trans[currentLang].stTitle;
-            document.getElementById('st1-txt').innerText = trans[currentLang].st1;
-            document.getElementById('st2-txt').innerText = trans[currentLang].st2;
-            document.getElementById('ls-title').innerText = trans[currentLang].lsTitle;
-            document.getElementById('ls1-txt').innerText = trans[currentLang].ls1;
-            document.getElementById('ls2-txt').innerText = trans[currentLang].ls2;
-
-            document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
-                '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
-                '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-            
-            updateTicker();
+            document.getElementById('lnk-vision').innerText = t.vision;
+            document.getElementById('lnk-partners').innerText = t.partners;
+            document.getElementById('lnk-media').innerText = t.media;
+            document.getElementById('lnk-stats').innerText = t.stats;
+            document.getElementById('lnk-losses').innerText = t.losses;
+            document.getElementById('lnk-awareness').innerText = t.awareness;
+            document.getElementById('lnk-feedback').innerText = t.feedback;
+            document.getElementById('main-hero-title').innerHTML = t.hero;
+            document.getElementById('btn-browse').innerText = t.browse;
+            document.getElementById('vis-title').innerText = t.visTitle;
+            document.getElementById('vis-desc').innerText = t.visDesc;
+            document.getElementById('part-title').innerText = t.partTitle;
+            document.getElementById('p1-name').innerText = t.p1Name;
+            document.getElementById('st-title').innerText = t.stTitle;
+            document.getElementById('st1-txt').innerText = t.st1;
+            document.getElementById('st2-txt').innerText = t.st2;
+            document.getElementById('ls-title').innerText = t.lsTitle;
+            document.getElementById('ls1-txt').innerText = t.ls1;
+            document.getElementById('ls2-txt').innerText = t.ls2;
+            document.getElementById('media-guideline').innerText = t.mediaGuideline;
         }
 
+        let slideIdx = 0;
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const cardWidth = 400;
-            currentSlide += dir;
-            if (currentSlide < 0) currentSlide = images.length - 1;
-            if (currentSlide >= images.length) currentSlide = 0;
-            track.style.transform = `translateX(${currentSlide * cardWidth * (currentLang === 'ar' ? 1 : -1)}px)`;
+            const total = mediaImages.length;
+            slideIdx = (slideIdx + dir + total) % total;
+            track.style.transform = `translateX(${currentLang === 'ar' ? (slideIdx * 400) : (-slideIdx * 400)}px)`;
         }
 
         function openImage(src) {
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
-
         function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
         function scrollToSec(id) {
             const el = document.getElementById(id);
-            if(el) {
-                const offset = 140;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            }
+            window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
         }
 
-        window.onscroll = function() {
-            const btn = document.getElementById("btnUp");
-            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) btn.style.display = "flex";
-            else btn.style.display = "none";
-        };
+        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
+        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
 
-        function setupCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const options = { threshold: 0.5 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
-                        const speed = target / 50;
-                        const update = () => {
-                            count += speed;
-                            if (count < target) {
-                                entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 30);
-                            } else entry.target.innerText = target;
-                        };
-                        update();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, options);
-            counters.forEach(c => observer.observe(c));
+        function renderQuestions() {
+            const list = document.getElementById('questionsList');
+            list.innerHTML = childhoodQuestions.map((item, index) => `
+                <div class="q-item" onclick="showAnswer(${index}, event)">
+                    <span>${item.q}</span>
+                    <i class="fas fa-chevron-left blue-arrow"></i>
+                </div>
+            `).join('');
+        }
+
+        function showAnswer(idx, event) {
+            // منع حدوث أي تكرار للحدث يسبب التجمد
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+
+            const item = childhoodQuestions[idx];
+            document.getElementById('ans-q-title').innerText = item.q;
+            document.getElementById('ans-q-source').innerText = item.src;
+            document.getElementById('ans-q-body').innerHTML = item.ans.map(line => `<span class="ans-point">${line}</span>`).join('');
+            
+            document.getElementById('answerModal').style.display = 'flex';
+            document.getElementById('answerContent').style.display = 'flex';
+        }
+
+        function closeAnswerBox() {
+            document.getElementById('answerModal').style.display = 'none';
+            document.getElementById('answerContent').style.display = 'none';
+        }
+
+        // إغلاق المودال عند الضغط خارجه
+        window.onclick = function(event) {
+            if (event.target.className === 'childhood-modal') {
+                closeChildBox();
+                closeAnswerBox();
+            }
         }
     </script>
 </body>
