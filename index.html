@@ -399,7 +399,7 @@
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup" id="ls2-src">المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات</div>
                     <span class="stat-num loss-num counter" data-target="4">0</span>
-                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليارات تكلفة العلاج</p>
+                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليار تكلفة العلاج</p>
                 </div>
             </div>
         </div>
@@ -473,134 +473,138 @@
                 vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback", browse: "Browse Book",
                 visTitle: "Strategic Vision", visDesc: "We aim through the CiviStories initiative to protect the Egyptian social fabric from digital disintegration by empowering families and restoring social balance.",
                 partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring and addressing family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Electronic Fatwa Center - 255 divorce cases daily",
-                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within the same home through counseling programs.", p2src: "Source: Church Family Counseling Report - 60% due to digital space conflicts",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate married couples about technology risks to their psychological stability.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
+                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Electronic Fatwa Center - 255 divorce cases daily",
+                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within homes through counseling programs.", p2src: "Source: Church Family Counseling Report - 60% due to digital space conflicts",
+                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate married couples about technology risks.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
                 st1: "Thousand Divorces Annually", st1src: "Source: CAPMAS - Annual Divorce Rates",
                 st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Total Registered Mobile Lines",
-                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Productivity Loss due to Distraction",
+                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Productivity Loss",
                 ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget for isolation disorders",
-                ticker: ["• Al-Azhar: One divorce every 2 minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian societal stability", "• Ministry of Health: 3M psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems linked to digital isolation", "• Kasr Al-Ainy: Suicide attempt every 6 hours due to cyberbullying", "• Ministry of Finance: 15B EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years, reaching 311K cases", "• Ministry of Interior: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5B EGP annual cost for treating digital mental disorders", "• National Security: 870 organized electronic groups detected spreading discord", "• Disaster: 2.1B EGP annual losses due to electronic fraud"]
+                ticker: ["• Al-Azhar: One divorce every two minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian social stability", "• Ministry of Health: 3 million psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems are related to digital isolation", "• Qasr Al-Aini: Suicide attempt every 6 hours due to digital bullying", "• Finance Ministry: 15 billion EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years reaching 311,000 cases", "• Interior Ministry: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5 billion EGP annual cost to treat digital mental disorders", "• National Security: 870 organized digital groups detected spreading discord", "• Study: 85% of high school students suffer from digital bullying effects", "• Disaster: 2.1 billion EGP annual losses due to electronic fraud"]
             }
         };
- 
+
+        function initPage() {
+            // التعديل المطلوب: الصفحة تفتح دائماً من الأعلى
+            window.scrollTo(0, 0);
+            
+            updateTicker();
+            loadMedia();
+            startAutoScroll();
+            handleCounters();
+            
+            window.onscroll = () => {
+                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+            };
+        }
+
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            const root = document.documentElement;
+            const l = content[currentLang];
             
-            const langBtn = document.getElementById('langBtn');
-            if (currentLang === 'ar') {
-                langBtn.innerHTML = '<img src="https://flagcdn.com/w80/gb.png" alt="English">';
-            } else {
-                langBtn.innerHTML = '<img src="https://flagcdn.com/w80/eg.png" alt="العربية">';
-            }
- 
-            currentSlide = 0;
-            document.getElementById('track-imgs').style.transform = `translateX(0%)`;
-            updateUI();
-        }
- 
-        function updateUI() {
-            const c = content[currentLang];
-            document.getElementById('lnk-vision').innerText = c.vision;
-            document.getElementById('lnk-partners').innerText = c.partners;
-            document.getElementById('lnk-media').innerText = c.media;
-            document.getElementById('lnk-stats').innerText = c.stats;
-            document.getElementById('lnk-losses').innerText = c.losses;
-            document.getElementById('lnk-awareness').innerText = c.awareness;
-            document.getElementById('lnk-feedback').innerText = c.feedback;
-            document.getElementById('btn-browse').innerText = c.browse;
-            document.getElementById('vis-title').innerText = c.visTitle;
-            document.getElementById('vis-desc').innerText = c.visDesc;
-            document.getElementById('part-title').innerText = c.partTitle;
-            document.getElementById('st-title').innerText = c.stTitle;
-            document.getElementById('ls-title').innerText = c.lsTitle;
-            document.getElementById('footer-txt').innerText = c.footer;
-            document.getElementById('p1-name').innerText = c.p1n; 
-            document.getElementById('p1-desc').innerText = c.p1d;
-            document.getElementById('p1-src').innerText = c.p1src;
-            document.getElementById('p2-name').innerText = c.p2n; 
-            document.getElementById('p2-desc').innerText = c.p2d;
-            document.getElementById('p2-src').innerText = c.p2src;
-            document.getElementById('p3-name').innerText = c.p3n; 
-            document.getElementById('p3-desc').innerText = c.p3d;
-            document.getElementById('p3-src').innerText = c.p3src;
-            document.getElementById('st1-txt').innerText = c.st1;
-            document.getElementById('st1-src').innerText = c.st1src;
-            document.getElementById('st2-txt').innerText = c.st2;
-            document.getElementById('st2-src').innerText = c.st2src;
-            document.getElementById('ls1-txt').innerText = c.ls1;
-            document.getElementById('ls1-src').innerText = c.ls1src;
-            document.getElementById('ls2-txt').innerText = c.ls2;
-            document.getElementById('ls2-src').innerText = c.ls2src;
+            root.lang = currentLang;
+            root.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             
-            const tickerTrack = document.getElementById('tickerTrack');
-            const tickerHtml = c.ticker.join(' &nbsp;&nbsp;&nbsp;&nbsp; ');
-            tickerTrack.innerHTML = `<span>${tickerHtml}</span><span>${tickerHtml}</span>`;
+            document.getElementById('lnk-vision').innerText = l.vision;
+            document.getElementById('lnk-partners').innerText = l.partners;
+            document.getElementById('lnk-media').innerText = l.media;
+            document.getElementById('lnk-stats').innerText = l.stats;
+            document.getElementById('lnk-losses').innerText = l.losses;
+            document.getElementById('lnk-awareness').innerText = l.awareness;
+            document.getElementById('lnk-feedback').innerText = l.feedback;
+            document.getElementById('btn-browse').innerText = l.browse;
+            
+            document.getElementById('vis-title').innerText = l.visTitle;
+            document.getElementById('vis-desc').innerText = l.visDesc;
+            document.getElementById('part-title').innerText = l.partTitle;
+            document.getElementById('st-title').innerText = l.stTitle;
+            document.getElementById('ls-title').innerText = l.lsTitle;
+            document.getElementById('footer-txt').innerText = l.footer;
+            
+            document.getElementById('p1-name').innerText = l.p1n; document.getElementById('p1-desc').innerText = l.p1d; document.getElementById('p1-src').innerText = l.p1src;
+            document.getElementById('p2-name').innerText = l.p2n; document.getElementById('p2-desc').innerText = l.p2d; document.getElementById('p2-src').innerText = l.p2src;
+            document.getElementById('p3-name').innerText = l.p3n; document.getElementById('p3-desc').innerText = l.p3d; document.getElementById('p3-src').innerText = l.p3src;
+            
+            document.getElementById('st1-txt').innerText = l.st1; document.getElementById('st1-src').innerText = l.st1src;
+            document.getElementById('st2-txt').innerText = l.st2; document.getElementById('st2-src').innerText = l.st2src;
+            document.getElementById('ls1-txt').innerText = l.ls1; document.getElementById('ls1-src').innerText = l.ls1src;
+            document.getElementById('ls2-txt').innerText = l.ls2; document.getElementById('ls2-src').innerText = l.ls2src;
+            
+            document.getElementById('langBtn').innerHTML = currentLang === 'ar' 
+                ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' 
+                : '<img src="https://flagcdn.com/w80/eg.png" alt="العربية">';
+                
+            updateTicker();
         }
 
-        // تم اختصار الدوال المتبقية للحفاظ على حجم الرد، تأكد من استكمال دوال JavaScript الخاصة بك كما كانت.
-        function scrollToSec(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
-        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
-        
-        function initPage() {
-            updateUI();
+        function updateTicker() {
+            const track = document.getElementById('tickerTrack');
+            const items = content[currentLang].ticker;
+            track.innerHTML = items.map(t => `<span>${t}</span>`).join('') + items.map(t => `<span>${t}</span>`).join('');
+        }
+
+        function loadMedia() {
             const track = document.getElementById('track-imgs');
-            imagesList.forEach(img => {
-                const imgEl = document.createElement('img');
-                imgEl.src = img;
-                imgEl.onclick = () => openImage(img);
-                track.appendChild(imgEl);
-            });
-            startAutoScroll();
-            initCounters();
+            track.innerHTML = imagesList.map(img => `<img src="${img}" onclick="openImage('${img}')">`).join('');
         }
-
-        function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
         function moveSlide(dir) {
             const track = document.getElementById('track-imgs');
-            const total = imagesList.length;
-            currentSlide = (currentSlide + dir + total) % total;
-            const offset = currentLang === 'ar' ? (currentSlide * 400) : -(currentSlide * 400);
-            track.style.transform = `translateX(${offset}px)`;
+            const totalSlides = imagesList.length;
+            currentSlide = (currentSlide + dir + totalSlides) % totalSlides;
+            const offset = currentSlide * (window.innerWidth <= 992 ? 250 : 400);
+            track.style.transform = `translateX(${currentLang === 'ar' ? offset : -offset}px)`;
+            startAutoScroll();
         }
 
         function startAutoScroll() {
-            autoScrollInterval = setInterval(() => moveSlide(1), 3000);
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(() => moveSlide(1), 4000);
         }
 
-        function initCounters() {
-            const counters = document.querySelectorAll('.counter');
+        function openImage(src) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            lb.style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function handleCounters() {
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if(entry.isIntersecting) {
                         const target = +entry.target.getAttribute('data-target');
                         let count = 0;
-                        const inc = target / 100;
+                        const inc = target / 50;
                         const update = () => {
                             count += inc;
                             if(count < target) {
                                 entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 20);
-                            } else entry.target.innerText = target;
+                                setTimeout(update, 30);
+                            } else {
+                                entry.target.innerText = target;
+                            }
                         };
                         update();
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {threshold: 0.5});
-            counters.forEach(c => observer.observe(c));
+            }, { threshold: 0.5 });
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
         }
 
-        window.onscroll = () => {
-            document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
-        };
+        function scrollToSec(id) {
+            const el = document.getElementById(id);
+            const offset = 140; 
+            window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+        }
+
+        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
+        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
     </script>
 </body>
 </html>
