@@ -64,13 +64,14 @@
             width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
 
+        /* --- شريط الأخبار: سرعة بطيئة جداً (80 ثانية) --- */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
 
-        .animate-news { animation: marqueeNews 40s linear infinite; }
+        .animate-news { animation: marqueeNews 80s linear infinite; }
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 40s linear infinite; }
+        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 80s linear infinite; }
         @keyframes marqueeNewsRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
@@ -116,9 +117,9 @@
         .questions-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .q-item { color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5; }
 
-        /* --- تعديل شريط الصور ليكون متناسقاً مع الفقرات --- */
+        /* --- شريط الصور: حجم متناسق + سرعة بطيئة جداً (120 ثانية) --- */
         .carousel-wide { 
-            width: 90%; /* نفس عرض الفقرات تقريباً */
+            width: 90%; 
             max-width: 1200px;
             margin: 40px auto; 
             height: 350px;
@@ -138,7 +139,6 @@
             width: 300px;
             object-fit: cover; 
             cursor: zoom-in; 
-            padding: 0;
             border-right: 2px solid var(--gold);
             filter: grayscale(100%); 
             transition: filter 0.3s; 
@@ -146,10 +146,9 @@
         }
         .track img:hover { filter: grayscale(0%); }
 
-        /* الأنيميشن بدون توقف */
-        .animate-media { animation: mediaScroll 40s linear infinite; }
+        .animate-media { animation: mediaScroll 120s linear infinite; }
         @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        [dir="rtl"] .animate-media { animation: mediaScrollRtl 40s linear infinite; }
+        [dir="rtl"] .animate-media { animation: mediaScrollRtl 120s linear infinite; }
         @keyframes mediaScrollRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
@@ -413,7 +412,6 @@
             track.innerHTML = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join("");
 
             const imgTrack = document.getElementById('track-imgs');
-            // تكرار الصور مرتين لضمان حلقة لا نهائية (Seamless Loop)
             const repeatedImages = [...images, ...images];
             imgTrack.innerHTML = repeatedImages.map(src => `<img src="${src}" onclick="openImage('${src}')">`).join("");
 
