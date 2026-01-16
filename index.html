@@ -9,7 +9,7 @@
     <style>
         :root { 
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
-            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD08ش1C; --in: #0077B5;
             --wa-color: #25D366;
         }
 
@@ -148,7 +148,7 @@
             position: relative; overflow: hidden; margin: 0 0 40px 0; background: #000; display: flex; align-items: center;
         }
         .track { 
-            display: flex; width: max-content; animation: mediaScroll 220s linear infinite; 
+            display: flex; width: max-content; animation: mediaScroll 500s linear infinite; 
         }
         .track:hover { animation-play-state: paused; }
         
@@ -160,7 +160,7 @@
 
         @keyframes mediaScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
+            100% { transform: translateX(50%); } 
         }
 
         .lightbox {
@@ -227,10 +227,10 @@
             .carousel-wide { height: 250px; }
             .track img { height: 250px; width: 250px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
-            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
         }
 
-        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; text-align: center; }
+        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
         .btn-action:hover { background: #fff; transform: scale(1.05);}
     </style>
 </head>
@@ -480,15 +480,15 @@
             "متوسط عمر الزواج عند الطلاق يبلغ ٣.٧ سنة",
             "تسجيل ١٢ ألف و٥٠٠ حالة طلاق رقمي سنوياً",
             "متوسط عدد حسابات السوشيال ميديا للفرد المصري ٣.٨ حساب",
-            "71% من المصريين يبدأون يومهم بتصفح السوشيال ميديا",
-            "52% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب",
+            "٧١% من المصريين يبدأون يومهم بتصفح السوشيال ميديا",
+            "٥٢% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب",
             "طلاق زوجين بعد ٣٢ سنة زواج بسبب تعليق كومنت",
             "مقتل شقيقين في المنصورة بعد مشاجرة بسبب منشور سياسي",
             "انتحار طالبة طب بجامعة عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية",
             "انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد",
             "زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك",
             "معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا يصل إلى ٣١%",
-            "76% من المستخدمين يقومون بمقارنات اجتماعية سلبية",
+            "٧٦% من المستخدمين يقومون بمقارنات اجتماعية سلبية",
             "خسائر أسرية بسبب النصب الإلكتروني تبلغ ٢.١ مليار جنيه سنوياً",
             "رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة",
             "رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة",
@@ -501,7 +501,6 @@
 
         let currentLang = 'ar';
         const images = [];
-        // التعديل المطلوب: صور من 101 إلى 124
         for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
 
         function initPage() {
