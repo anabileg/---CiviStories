@@ -64,14 +64,14 @@
             width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
 
-        /* --- شريط الأخبار: سرعة بطيئة جداً جداً (500 ثانية) --- */
+        /* --- شريط الأخبار: السرعة المطلوبة 400 ثانية --- */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
 
-        .animate-news { animation: marqueeNews 500s linear infinite; }
+        .animate-news { animation: marqueeNews 400s linear infinite; }
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 500s linear infinite; }
+        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 400s linear infinite; }
         @keyframes marqueeNewsRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
@@ -117,7 +117,7 @@
         .questions-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .q-item { color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5; }
 
-        /* --- شريط الصور: سرعة بطيئة جداً جداً (600 ثانية) --- */
+        /* --- شريط الصور: سرعة فائقة البطء 600 ثانية --- */
         .carousel-wide { 
             width: 90%; 
             max-width: 1200px;
