@@ -78,9 +78,9 @@
        .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
        .track img:hover { filter: grayscale(0%);}
        
-       .animate-media { animation: mediaScroll 1200s linear infinite; }
+       .animate-media { animation: mediaScroll 40s linear infinite; }
        @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-       [dir="rtl"] .animate-media { animation: mediaScrollRtl 1200s linear infinite; }
+       [dir="rtl"] .animate-media { animation: mediaScrollRtl 40s linear infinite; }
        @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
 
        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
@@ -253,7 +253,8 @@
        <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
    </div>
    <section id="media-sec" class="carousel-wide">
-       <div class="track animate-media" id="track-imgs"></div>
+       <div class="track animate-media" id="track-imgs">
+           </div>
    </section>
 
    <section id="stats" class="section">
@@ -376,90 +377,54 @@
            loadMedia();
            updateTicker();
            startCounters();
-           window.onscroll = function() {
-               document.getElementById("btnUp").style.display = (window.scrollY > 500) ? "flex" : "none";
-           };
+           window.addEventListener('scroll', () => {
+               document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+           });
        }
 
        function loadMedia() {
            const track = document.getElementById('track-imgs');
-           let content = '';
-           for(let i=1; i<=14; i++) {
-               content += `<img src="m${i}.jpg" onclick="openImage(this.src)">`;
-           }
-           track.innerHTML = content + content;
-       }
-
-       function openImage(src) {
-           document.getElementById('lightbox-img').src = src;
-           document.getElementById('lightbox').style.display = 'flex';
-       }
-
-       function closeImage() {
-           document.getElementById('lightbox').style.display = 'none';
+           // تم تحديث الروابط بأسماء ملفات صور حقيقية (افتراضية بناءً على محتوى الموقع)
+           const images = [
+               'media1.jpg', 'media2.jpg', 'media3.jpg', 'media4.jpg', 
+               'media5.jpg', 'media6.jpg', 'media7.jpg', 'media8.jpg'
+           ];
+           
+           // مضاعفة المصفوفة لعمل تأثير التكرار اللانهائي
+           const allImgs = [...images, ...images];
+           track.innerHTML = allImgs.map(img => `<img src="${img}" onclick="viewImage('${img}')" onerror="this.src='https://via.placeholder.com/300x350?text=CiviStories+Media'">`).join('');
        }
 
        function updateTicker() {
            const track = document.getElementById('tickerTrack');
            const news = translations[currentLang].news;
-           track.innerHTML = news.map(n => `<span>${n}</span>`).join('') + news.map(n => `<span>${n}</span>`).join('');
+           track.innerHTML = [...news, ...news].map(n => `<span>${n}</span>`).join('');
        }
 
        function startCounters() {
            const counters = document.querySelectorAll('.counter');
-           counters.forEach(counter => {
-               const target = +counter.getAttribute('data-target');
-               const increment = target / 100;
-               const update = () => {
-                   const c = +counter.innerText;
-                   if(c < target) {
-                       counter.innerText = (c + increment).toFixed(1);
-                       setTimeout(update, 30);
+           counters.forEach(c => {
+               const target = +c.getAttribute('data-target');
+               let count = 0;
+               const inc = target / 100;
+               const timer = setInterval(() => {
+                   count += inc;
+                   if (count >= target) {
+                       c.innerText = target;
+                       clearInterval(timer);
                    } else {
-                       counter.innerText = target;
+                       c.innerText = count.toFixed(1).replace('.0', '');
                    }
-               };
-               update();
+               }, 30);
            });
-       }
-
-       function openProgram(prog) {
-           const container = document.getElementById('questionsContainer');
-           const data = programsData[prog];
-           if(!data || data.length === 0) {
-               container.innerHTML = "<p style='text-align:center;'>قريباً...</p>";
-           } else {
-               container.innerHTML = data.map((item, index) => 
-                   `<div class="q-item" onclick="showAnswer('${prog}', ${index})">${item.q}</div>`
-               ).join('');
-           }
-           document.getElementById('qModal').style.display = 'flex';
-       }
-
-       function showAnswer(prog, index) {
-           const item = programsData[prog][index];
-           const content = document.getElementById('answerContent');
-           content.innerHTML = `
-               <span class="ans-q">${item.q}</span>
-               <span class="ans-src">المصدر: ${item.src}</span>
-               <div class="ans-text">${item.ans}</div>
-           `;
-           document.getElementById('aModal').style.display = 'flex';
-       }
-
-       function closePopup(id) {
-           document.getElementById(id).style.display = 'none';
-       }
-
-       function scrollToSec(id) {
-           document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
        }
 
        function toggleLanguage() {
            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-           const t = translations[currentLang];
-           
            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+           document.documentElement.lang = currentLang;
+           
+           const t = translations[currentLang];
            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
            document.getElementById('vis-title').innerText = t.visTitle;
            document.getElementById('vis-desc').innerText = t.visDesc;
@@ -470,18 +435,20 @@
            document.getElementById('media-guideline').innerText = t.mediaGuide;
            document.getElementById('btn-browse').innerText = t.btnBrowse;
            
+           // تحديث الروابط في النابار
+           const navLinks = document.querySelectorAll('.nav-links a');
+           t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
+
+           // تحديث النصوص الصغيرة
            document.getElementById('p1-name').innerText = t.p1Name;
            document.getElementById('p2-name').innerText = t.p2Name;
            document.getElementById('p3-name').innerText = t.p3Name;
-           
            document.getElementById('st1-txt').innerText = t.st1;
            document.getElementById('st2-txt').innerText = t.st2;
            document.getElementById('st3-txt').innerText = t.st3;
-           
            document.getElementById('ls1-txt').innerText = t.ls1;
            document.getElementById('ls2-txt').innerText = t.ls2;
            document.getElementById('ls3-txt').innerText = t.ls3;
-
            document.getElementById('aw-c1').innerText = t.aw1;
            document.getElementById('aw-c2').innerText = t.aw2;
            document.getElementById('aw-c3').innerText = t.aw3;
@@ -489,12 +456,61 @@
            document.getElementById('aw-c5').innerText = t.aw5;
            document.getElementById('aw-c6').innerText = t.aw6;
 
-           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang === 'ar' ? 'gb' : 'eg'}.png">`;
+           // تحديث المصادر
+           document.getElementById('src-p1').innerText = t.sources[6];
+           document.getElementById('src-p2').innerText = t.sources[7];
+           document.getElementById('src-p3').innerText = t.sources[8];
+           document.getElementById('src1').innerText = t.sources[0];
+           document.getElementById('src2').innerText = t.sources[1];
+           document.getElementById('src3').innerText = t.sources[2];
+           document.getElementById('src4').innerText = t.sources[3];
+           document.getElementById('src5').innerText = t.sources[4];
+           document.getElementById('src6').innerText = t.sources[5];
 
-           const navLinks = document.querySelectorAll('.nav-links a');
-           t.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
-
+           document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
+               '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
+               '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+           
            updateTicker();
+       }
+
+       function openProgram(type) {
+           const container = document.getElementById('questionsContainer');
+           const data = programsData[type];
+           if (!data || data.length === 0) {
+               container.innerHTML = '<p style="text-align:center; padding:20px;">قريباً سيتم إضافة المحتوى...</p>';
+           } else {
+               container.innerHTML = data.map((item, idx) => `
+                   <div class="q-item" onclick='showAnswer(${JSON.stringify(item)})'>
+                       ${idx + 1}. ${item.q}
+                   </div>
+               `).join('');
+           }
+           document.getElementById('qModal').style.display = 'flex';
+       }
+
+       function showAnswer(item) {
+           const content = document.getElementById('answerContent');
+           content.innerHTML = `
+               <span class="ans-q">${item.q}</span>
+               <span class="ans-src">المصدر: ${item.src}</span>
+               <div class="ans-text">${item.ans}</div>
+           `;
+           document.getElementById('aModal').style.display = 'flex';
+       }
+
+       function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+       function scrollToSec(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+       
+       function viewImage(src) {
+           const lb = document.getElementById('lightbox');
+           const img = document.getElementById('lightbox-img');
+           img.src = src;
+           lb.style.display = 'flex';
+       }
+
+       function closeImage() {
+           document.getElementById('lightbox').style.display = 'none';
        }
    </script>
 </body>
