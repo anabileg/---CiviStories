@@ -150,13 +150,13 @@
             padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5;
         }
 
-        /* --- MEDIA CAROUSEL (4 Images View) --- */
+        /* --- MEDIA CAROUSEL (FIXED REPEATING) --- */
         .carousel-wide { 
-            width: 90%; 
-            margin: 20px auto 40px auto; 
+            width: 100%; 
+            margin: 20px 0 40px 0; 
             height: 350px; 
-            border: 2px solid var(--gold); 
-            border-radius: 20px;
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
             position: relative; 
             overflow: hidden; 
             background: #000;
@@ -164,8 +164,13 @@
         .track { 
             display: flex; 
             width: max-content; 
-            animation: mediaScroll 400s linear infinite; 
+            animation: mediaScroll 60s linear infinite; 
         }
+        
+        /* التعديل لضمان الاتجاه الصحيح حسب لغة الصفحة */
+        [dir="rtl"] .track { animation: mediaScrollRtl 60s linear infinite; }
+        [dir="ltr"] .track { animation: mediaScrollLtr 60s linear infinite; }
+
         .track:hover { animation-play-state: paused; }
         
         .track img { 
@@ -174,21 +179,23 @@
             object-fit: cover; 
             cursor: zoom-in; 
             padding: 0; 
-            border-radius: 0;
+            border-right: 1px solid rgba(212,175,55,0.3);
             filter: grayscale(100%); 
             transition: filter 0.3s; 
             flex-shrink: 0;
         }
         .track img:hover { filter: grayscale(0%); }
 
-        @keyframes mediaScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        [dir="ltr"] .track { animation: mediaScrollLtr 400s linear infinite; }
+        /* Animation for LTR */
         @keyframes mediaScrollLtr {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(calc(-320px * 24)); }
+        }
+        
+        /* Animation for RTL */
+        @keyframes mediaScrollRtl {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(320px * 24)); }
         }
 
         .lightbox {
@@ -252,9 +259,12 @@
             .hero-container { flex-direction: column; }
             .book-static { height: auto; flex: 0 0 auto; width: 100%; max-width: 320px; }
             .video-container-box { width: 100%; height: 250px; }
-            .carousel-wide { height: 250px; width: 95%; }
+            .carousel-wide { height: 250px; }
             .track img { height: 250px; width: 220px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
+            /* Mobile animations */
+            @keyframes mediaScrollLtr { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-220px * 24)); } }
+            @keyframes mediaScrollRtl { 0% { transform: translateX(0); } 100% { transform: translateX(calc(220px * 24)); } }
         }
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -269,8 +279,7 @@
     <div id="childModal" class="childhood-modal">
         <div class="child-box">
             <button class="close-child" onclick="closeChildBox()">X</button>
-            <div class="questions-scroll" id="childQuestions">
-                </div>
+            <div class="questions-scroll" id="childQuestions"></div>
         </div>
     </div>
 
@@ -497,7 +506,10 @@
 
             const imgTrack = document.getElementById('track-imgs');
             imgTrack.innerHTML = "";
-            [...images, ...images].forEach(src => {
+            
+            // نكرر المصفوفة 3 مرات لضمان عدم وجود فراغ أبداً مهما كانت سرعة الجهاز أو اتجاه الحركة
+            const repeatedImages = [...images, ...images, ...images]; 
+            repeatedImages.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
                 img.onclick = () => openImage(src);
