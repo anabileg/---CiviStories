@@ -43,7 +43,7 @@
 
         .nav-container { 
             width: 95%; max-width: 1400px;
-            display: flex; flex-direction: row; justify-content: space-between; align-items: center; direction: rtl;
+            display: flex; flex-direction: row; justify-content: space-between; align-items: center;
         }
         
         .nav-right-group { display: flex; align-items: center; gap: 20px; }
@@ -69,15 +69,23 @@
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; animation: marquee 2800s linear infinite; }
-        .ticker-track span { padding-left: 32px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track span { padding: 0 32px; font-weight: bold; font-size: 1.1rem; }
 
-        @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
+        @keyframes marquee { 
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        [dir="rtl"] .ticker-track { animation: marqueeRtl 2800s linear infinite; }
+        @keyframes marqueeRtl {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
         
         .main-alert-title { 
             text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); 
-            max-width: 100%; white-space: nowrap; 
+            max-width: 100%;
         }
         .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
         .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
@@ -131,7 +139,7 @@
         }
         .questions-scroll {
             width: 100%; height: 100%; overflow-y: auto; padding-right: 10px;
-            direction: rtl; text-align: right;
+            text-align: right;
         }
         .questions-scroll::-webkit-scrollbar { width: 8px; }
         .questions-scroll::-webkit-scrollbar-thumb { background: #b30000; border-radius: 10px; }
@@ -142,9 +150,9 @@
             padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5;
         }
 
-        /* --- تعديل شريط الصور ليكون 4 صور فقط وبحجم متناسق --- */
+        /* --- MEDIA CAROUSEL (4 Images View) --- */
         .carousel-wide { 
-            width: 90%; /* حجم الشريط متناسق مع باقي الصناديق */
+            width: 90%; 
             margin: 20px auto 40px auto; 
             height: 350px; 
             border: 2px solid var(--gold); 
@@ -156,13 +164,13 @@
         .track { 
             display: flex; 
             width: max-content; 
-            animation: mediaScroll 500s linear infinite; 
+            animation: mediaScroll 400s linear infinite; 
         }
         .track:hover { animation-play-state: paused; }
         
         .track img { 
             height: 350px; 
-            width: 320px; /* تحديد عرض ثابت لكل صورة */
+            width: 320px; 
             object-fit: cover; 
             cursor: zoom-in; 
             padding: 0; 
@@ -175,7 +183,12 @@
 
         @keyframes mediaScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(50%); } /* العودة لنصف المسافة لضمان تكرار الصور المزدوجة */
+            100% { transform: translateX(-50%); }
+        }
+        [dir="ltr"] .track { animation: mediaScrollLtr 400s linear infinite; }
+        @keyframes mediaScrollLtr {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .lightbox {
@@ -235,7 +248,7 @@
             .nav-right-group, .nav-links { justify-content: center; width: 100%; }
             .news-ticker { top: 160px; }
             .hero { padding-top: 240px; }
-            .main-alert-title { font-size: 1.2rem; margin-bottom: 20px; white-space: normal; }
+            .main-alert-title { font-size: 1.2rem; margin-bottom: 20px; }
             .hero-container { flex-direction: column; }
             .book-static { height: auto; flex: 0 0 auto; width: 100%; max-width: 320px; }
             .video-container-box { width: 100%; height: 250px; }
@@ -244,7 +257,7 @@
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
+        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
         .btn-action:hover { background: #fff; transform: scale(1.05);}
     </style>
 </head>
@@ -256,24 +269,8 @@
     <div id="childModal" class="childhood-modal">
         <div class="child-box">
             <button class="close-child" onclick="closeChildBox()">X</button>
-            <div class="questions-scroll">
-                <div class="q-item">1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟</div>
-                <div class="q-item">2. كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة "العزلة الرقمية"؟</div>
-                <div class="q-item">3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟</div>
-                <div class="q-item">4. هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال في سن مبكرة؟</div>
-                <div class="q-item">5. كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل أثناء مشاهدة الكرتون؟</div>
-                <div class="q-item">6. ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة الإلكترونية؟</div>
-                <div class="q-item">7. هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو عقل وجسد الطفل فعلياً؟</div>
-                <div class="q-item">8. كيف أفعل ميزة "الرقابة الأبوية" على الراوتر والمنصات التي يستخدمها أطفالي؟</div>
-                <div class="q-item">9. ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين (مثل روبلوكس)؟</div>
-                <div class="q-item">10. كيف يمكنني استغلال التكنولوجيا في تطوير مهارات طفلي بدلاً من مجرد الاستهلاك السلبي؟</div>
-                <div class="q-item">11. كيف أحول "وقت الشاشة" من وقت ضائع إلى جلسة ترابط أسري وتفاعل مشترك؟</div>
-                <div class="q-item">12. هل يمكن للهواتف الذكية أن تساعد طفلي في اكتشاف مواهبه (رسم، برمجة، لغات) في سن مبكرة؟</div>
-                <div class="q-item">13. كيف أعلم طفلي مهارة "التفكير النقدي" ليميز بنفسه بين الحقيقة والخداع على الإنترنت؟</div>
-                <div class="q-item">14. ما هي القواعد الذهبية لإنشاء "ميثاق رقمي" يلتزم به الطفل عن قناعة وليس خوفاً؟</div>
-                <div class="q-item">15. كيف أدرب طفلي على أن يكون "صانع محتوى" مفيداً بدلاً من أن يكون مجرد "مستهلك" متلقٍ؟</div>
-                <div class="q-item">16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟</div>
-            </div>
+            <div class="questions-scroll" id="childQuestions">
+                </div>
         </div>
     </div>
 
@@ -284,7 +281,7 @@
         </div>
     </div>
 
-    <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank" title="دردشة الآن">
+    <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -302,13 +299,13 @@
 
             <div class="nav-right-group">
                 <div class="social-icons">
-                    <a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
-                    <a href="https://www.instagram.com/civistoriesarabic/" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/civistories" target="_blank" class="ic-tw" style="color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.tiktok.com/@civistoriesarabic?lang=ar" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.facebook.com/people/Civistories-%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA/100093677167187/" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank" class="ic-tw" style="color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                    <a href="#" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
                 </div>
                 <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">
                     <img src="https://flagcdn.com/w80/gb.png" alt="English">
@@ -336,31 +333,31 @@
     </section>
 
     <section id="about" class="vision-section">
-        <h2 id="vis-title" style="color:var(--gold); font-size:3rem; margin-bottom:20px;">رؤيتنا الاستراتيجية</h2>
-        <p id="vis-desc" style="font-size:1.7rem; font-weight:700; line-height:1.6;">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
+        <h2 id="vis-title">رؤيتنا الاستراتيجية</h2>
+        <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
     </section>
 
     <section id="inst" class="section">
         <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); font-size:2.8rem; margin-bottom:40px;" id="part-title">شركاء الوعي الوطني</h2>
+            <h2 id="part-title">شركاء الوعي الوطني</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً</div>
+                    <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر</div>
                     <img src="100.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p1-name">الأزهر الشريف</h3>
-                    <p id="p1-desc" style="color:#ccc; margin-top:15px;">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
+                    <p id="p1-desc">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
                 </div>
                 <div class="card">
-                    <div class="info-popup" id="p2-src">المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي</div>
+                    <div class="info-popup" id="p2-src">المصدر: تقارير المشورة الأسرية بالكنيسة</div>
                     <img src="300.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p2-name">الكنيسة المصرية</h3>
-                    <p id="p2-desc" style="color:#ccc; margin-top:15px;">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
+                    <p id="p2-desc">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
                 </div>
                 <div class="card">
-                    <div class="info-popup" id="p3-src">المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت</div>
+                    <div class="info-popup" id="p3-src">المصدر: وزارة الأوقاف المصرية</div>
                     <img src="200.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
                     <h3 id="p3-name">وزارة الأوقاف</h3>
-                    <p id="p3-desc" style="color:#ccc; margin-top:15px;">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.</p>
+                    <p id="p3-desc">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.</p>
                 </div>
             </div>
         </div>
@@ -376,20 +373,20 @@
 
     <section id="stats" class="section">
         <div class="glass-box">
-            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom:30px;" id="st-title">إحصائيات</h2>
+            <h2 id="st-title">إحصائيات</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup" id="st1-src">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية</div>
+                    <div class="info-popup" id="st1-src">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء</div>
                     <span class="stat-num counter" data-target="311">0</span>
                     <p id="st1-txt">ألف حالة طلاق سنوياً</p>
                 </div>
                 <div class="card">
-                    <div class="info-popup" id="st2-src">المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة</div>
+                    <div class="info-popup" id="st2-src">المصدر: تقرير وزارة الاتصالات</div>
                     <span class="stat-num counter" data-target="104">0</span>
                     <p id="st2-txt">مليون هاتف محمول</p>
                 </div>
                 <div class="card">
-                    <div class="info-popup" id="st3-src">المصدر: تقرير وزارة التضامن - نسب استخدام الأطفال للشاشات</div>
+                    <div class="info-popup" id="st3-src">المصدر: تقرير وزارة التضامن</div>
                     <span class="stat-num counter" data-target="5.7">0</span>
                     <p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
                 </div>
@@ -399,20 +396,20 @@
 
     <section id="losses" class="section">
         <div class="glass-box" style="border-color: var(--red-num);">
-            <h2 style="text-align:center; color:var(--gold); font-size: 2.2rem; margin-bottom:30px;" id="ls-title">الخسائر</h2>
+            <h2 id="ls-title">الخسائر</h2>
             <div class="grid">
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls1-src">المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت</div>
+                    <div class="info-popup" id="ls1-src">المصدر: دراسات الجدوى الاقتصادية</div>
                     <span class="stat-num loss-num counter" data-target="15">0</span>
                     <p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls2-src">المصدر: تقارير الصحة النفسية - تكلفة علاج حالات الإدمان الرقمي</div>
+                    <div class="info-popup" id="ls2-src">المصدر: تقارير الصحة النفسية</div>
                     <span class="stat-num loss-num counter" data-target="4.5">0</span>
                     <p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls3-src">المصدر: تقرير الأمن السيبراني - خسائر عمليات النصب الإلكتروني للأسر</div>
+                    <div class="info-popup" id="ls3-src">المصدر: تقرير الأمن السيبراني</div>
                     <span class="stat-num loss-num counter" data-target="2.1">0</span>
                     <p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
                 </div>
@@ -421,7 +418,7 @@
     </section>
 
     <section id="awareness-sec" class="section">
-        <h2 id="awareness-main-title" style="text-align:center; color:var(--gold); font-size:2.8rem; margin-bottom:30px;">برامج التوعية</h2>
+        <h2 id="awareness-main-title">برامج التوعية</h2>
         <div class="awareness-grid">
             <div class="awareness-card" onclick="openChildBox()">
                 <i class="fas fa-child"></i>
@@ -439,78 +436,54 @@
     </section>
 
     <script>
+        const translations = {
+            ar: {
+                heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
+                nav: ["رؤيتنا", "الشركاء", "ميديا", "إحصائيات", "خسائر", "وعي", "رأيك يهمنا"],
+                visTitle: "رؤيتنا الاستراتيجية",
+                visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
+                partTitle: "شركاء الوعي الوطني",
+                p1Name: "الأزهر الشريف", p1Desc: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.",
+                p2Name: "الكنيسة المصرية", p2Desc: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
+                p3Name: "وزارة الأوقاف", p3Desc: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
+                stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", st3: "ساعات يومية أمام الشاشات للأطفال",
+                lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية سنوياً", ls2: "مليار جنيه تكلفة العلاج النفسي", ls3: "مليار جنيه خسائر النصب الإلكتروني",
+                awTitle: "برامج التوعية", aw1: "الطفولة الرقمية", aw2: "الإرشاد الأسري", aw3: "الصحة النفسية",
+                mediaGuide: "اضغط على الصورة لتصلك رسالتنا", btnBrowse: "تصفح الكتاب",
+                q: [
+                    "1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟",
+                    "2. كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟",
+                    "3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟",
+                    "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟"
+                ]
+            },
+            en: {
+                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span> <br> <span class="gold-text">Shocking</span> <span class="highlight">Egyptian Numbers</span>',
+                nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"],
+                visTitle: "Our Strategic Vision",
+                visDesc: "We aim to protect the Egyptian social fabric from digital fragmentation risks by empowering families and restoring psychosocial balance.",
+                partTitle: "National Awareness Partners",
+                p1Name: "Al-Azhar Al-Sharif", p1Desc: "Monitoring and addressing family disintegration caused by digital addiction through fatwa committees.",
+                p2Name: "Egyptian Church", p2Desc: "Working on family stability and confronting digital isolation within the household through counseling.",
+                p3Name: "Ministry of Endowments", p3Desc: "Sakan & Mawada initiative to educate couples on technology risks to their stability.",
+                stTitle: "Statistics", st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", st3: "Daily Screen Hours for Children",
+                lsTitle: "Losses", ls1: "Billion EGP Annual Productivity Loss", ls2: "Billion EGP Psychological Treatment Cost", ls3: "Billion EGP Electronic Fraud Losses",
+                awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Family Guidance", aw3: "Mental Health",
+                mediaGuide: "Click on the image to receive our message", btnBrowse: "Browse Book",
+                q: [
+                    "1. What is the appropriate age for children to start using screens?",
+                    "2. How to distinguish between normal use and digital isolation?",
+                    "3. How to manage screen time endings without tantrums?",
+                    "16. How does parental phone use affect child digital behavior?"
+                ]
+            }
+        };
+
         const newsItems = [
             "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
             "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية",
             "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر",
-            "وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا",
-            "الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي",
-            "القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت",
-            "وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي",
-            "اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي",
-            "الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة",
-            "وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي",
-            "البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً",
-            "الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة",
-            "دراسة: ٨٥% من طلاب الثانوي يعانون آثار التنمر الرقمي النفسية",
-            "كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني",
-            "تسجيل ٩٣ ألف و٣٠٠ حالة طلاق سنوياً مرتبطة بالسوشيال ميديا",
-            "حدوث ٢٥٥ حالة طلاق يومياً بسبب وسائل التواصل الاجتماعي",
-            "ذكر وسائل التواصل كسبب مباشر في ٣٠% من حالات الطلاق",
-            "صدور ١٠٠ ألف فتوى سنوياً عن مشاكل أسرية ٢٣% منها بسبب التواصل الاجتماعي",
-            "٣٠% من فتاوى مجمع البحوث الإسلامية تتعلق بالقطيعة العائلية",
-            "٢٩% من فتاوى مجمع البحوث الإسلامية تتعلق بالعلاقات المحرمة",
-            "٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالسوشيال ميديا",
-            "معاناة ٥٠ ألف أسرة قبطية سنوياً من مشاكل التواصل الاجتماعي",
-            "زيادة معدلات الطلاق في مصر بنسبة ٥٧% خلال ٥ سنوات (٢٠١٨-٢٠٢٣)",
-            "ارتفاع حالات الطلاق من ١٩٨ ألف حالة عام ٢٠١٨ إلى ٣١١ ألف حالة عام ٢٠٢٣",
-            "تسجيل متوسط يومي ٨٥٢ حالة طلاق في مصر",
-            "٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على وسائل التواصل",
-            "تسجيل ١٤٥ ألف بلاغ عنف أسري عام ٢٠٢٣ منها ٤٣ ألف و٥٠٠ مرتبطة بمشاكل إلكترونية",
-            "وجود ٢٢ ألف قضية خيانة زوجية بأدلة إلكترونية",
-            "وقوق ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب الغيرة من منشورات",
-            "٦٥% من مراجعي العيادات النفسية يشكون من اضطرابات مرتبطة بالسوشيال ميديا",
-            "تسجيل ٣ مليون زيارة للعيادات النفسية عام ٢٠٢٣ ٤٠% منها مرتبطة بالسوشيال ميديا",
-            "الفئة العمرية من ١٥ إلى ٣٥ سنة تمثل ٦٨% من حالات الاضطرابات النفسية الرقمية",
-            "٥٠% من حالات الطلاق في السنة الأولى من الزواج سببها السوشيال ميديا",
-            "خسارة إنتاجية تقدر بـ١٥ مليار جنيه سنوياً بسبب المشاكل النفسية الرقمية",
-            "تعرض ٤٧% من الأطفال (٨-١٨ سنة) للتنمر الإلكتروني",
-            "وصول متوسط الوقت اليومي للأطفال على الشاشات إلى ٥.٧ ساعات",
-            "تعرض ٦٣% من الأطفال لمحتوى غير لائق عبر الإنترنت",
-            "خسائر الإنتاجية بسبب الإدمان الرقمي تصل إلى ٢.٣% من الناتج المحلي",
-            "تكلفة علاج الاضطرابات النفسية المرتبطة بالرقمنة تبلغ ٤ مليار و٥٠٠ ألف جنيه سنوياً",
-            "فقدان ١٨ مليون يوم عمل سنوياً بسبب التداعيات الرقمية",
-            "تسجيل متوسط ٣ صداقات مقطوعة لكل شاب بسبب الخلافات الرقمية",
-            "٨٥% من طلاب الثانوي يعانون من التنمر الرقمي",
-            "٣٥% من طلاب الثانوي حاولوا الانتحار مرة على الأقل",
-            "٦٤% من طلاب الجامعات يعانون من اضطرابات نوم بسبب السوشيال ميديا",
-            "٤٢% من طلاب الجامعات تأثرت درجاتهم الأكاديمية سلباً",
-            "تعرض ١٧% من طلاب الجامعات للابتزاز الإلكتروني",
-            "وقوع محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة",
-            "تسجيل ١٤٦٠ محاولة انتحار عام ٢٠٢٣ ٦٠% منها لأسباب رقمية",
-            "٤٠% من المسنين يعانون من العزلة بسبب انشغال أبنائهم بالسوشيال ميديا",
-            "٢ مليون مسن مصري يعيشون في عزلة رقمية",
-            "وصول نسبة حالات الطلاق في السنة الأولى من الزواج إلى ٣٤%",
-            "متوسط عمر الزواج عند الطلاق يبلغ ٣.٧ سنة",
-            "تسجيل ١٢ ألف و٥٠٠ حالة طلاق رقمي سنوياً",
-            "متوسط عدد حسابات السوشيال ميديا للفرد المصري ٣.٨ حساب",
-            "٧١% من المصريين يبدأون يومهم بتصفح السوشيال ميديا",
-            "٥٢% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب",
-            "طلاق زوجين بعد ٣٢ سنة زواج بسبب تعليق كومنت",
-            "مقتل شقيقين في المنصورة بعد مشاجرة بسبب منشور سياسي",
-            "انتحار طالبة طب بجامعة عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية",
-            "انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد",
-            "زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك",
-            "معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا يصل إلى ٣١%",
-            "٧٦% من المستخدمين يقومون بمقارنات اجتماعية سلبية",
-            "خسائر أسرية بسبب النصب الإلكتروني تبلغ ٢.١ مليار جنيه سنوياً",
-            "رصد أكثر من ١٥ ألف صفحة إلتكرونية مجهولة تنشر الفتنة",
-            "رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة",
-            "تعرض تماسك الأسرة المصرية لـ١٢٠ هجمة إلكترونية يومياً",
-            "تآكل القيم الأسرية التقليدية بنسبة ٢٢% خلال ٥ سنوات",
-            "المحتوى الأجنبي المؤثر سلباً يمثل ٦٨% من المحتوى المتداول",
-            "توقع وصول حالات الطلاق إلى ٤٥٠ ألف حالة سنوياً بحلول ٢٠٣٠ في حال عدم التدخل",
-            "توقع تجاوز الخسائر الاقتصادية الرقمية ٣٥ مليار جنيه سنوياً بحلول ٢٠٣٠"
+            "تسجيل متوسط يومي 852 حالة طلاق في مصر بسبب السوشيال ميديا"
         ];
 
         let currentLang = 'ar';
@@ -518,40 +491,66 @@
         for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
 
         function initPage() {
+            updateLangUI();
             const track = document.getElementById('tickerTrack');
-            track.innerHTML = "";
-            const spacer = "&nbsp;&nbsp;&nbsp;&nbsp;";
-            const fullNews = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join(spacer);
-            track.innerHTML = fullNews;
+            track.innerHTML = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join(" &nbsp;&nbsp; ");
 
             const imgTrack = document.getElementById('track-imgs');
-            // تكرار الصور مرتين لضمان استمرارية الحلقة (Loop) بدون فراغ
-            const combinedImages = [...images, ...images];
-            combinedImages.forEach(imgSrc => {
+            imgTrack.innerHTML = "";
+            [...images, ...images].forEach(src => {
                 const img = document.createElement('img');
-                img.src = imgSrc;
-                img.loading = "lazy";
-                img.onclick = () => openImage(imgSrc);
+                img.src = src;
+                img.onclick = () => openImage(src);
                 imgTrack.appendChild(img);
             });
             startCounters();
         }
 
-        function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
+        function updateLangUI() {
+            const lang = translations[currentLang];
+            document.getElementById('main-hero-title').innerHTML = lang.heroTitle;
+            document.getElementById('vis-title').innerText = lang.visTitle;
+            document.getElementById('vis-desc').innerText = lang.visDesc;
+            document.getElementById('part-title').innerText = lang.partTitle;
+            document.getElementById('p1-name').innerText = lang.p1Name; document.getElementById('p1-desc').innerText = lang.p1Desc;
+            document.getElementById('p2-name').innerText = lang.p2Name; document.getElementById('p2-desc').innerText = lang.p2Desc;
+            document.getElementById('p3-name').innerText = lang.p3Name; document.getElementById('p3-desc').innerText = lang.p3Desc;
+            document.getElementById('st-title').innerText = lang.stTitle;
+            document.getElementById('st1-txt').innerText = lang.st1;
+            document.getElementById('st2-txt').innerText = lang.st2;
+            document.getElementById('st3-txt').innerText = lang.st3;
+            document.getElementById('ls-title').innerText = lang.lsTitle;
+            document.getElementById('ls1-txt').innerText = lang.ls1;
+            document.getElementById('ls2-txt').innerText = lang.ls2;
+            document.getElementById('ls3-txt').innerText = lang.ls3;
+            document.getElementById('media-guideline').innerText = lang.mediaGuide;
+            document.getElementById('btn-browse').innerText = lang.btnBrowse;
+            document.getElementById('awareness-main-title').innerText = lang.awTitle;
+            document.getElementById('aw-c1').innerText = lang.aw1;
+            document.getElementById('aw-c2').innerText = lang.aw2;
+            document.getElementById('aw-c3').innerText = lang.aw3;
+
+            const navLinks = document.querySelectorAll('.nav-links a');
+            lang.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
+
+            const qBox = document.getElementById('childQuestions');
+            qBox.innerHTML = lang.q.map(text => `<div class="q-item">${text}</div>`).join("");
+            qBox.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
         }
 
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                const offset = 140;
-                window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
-            }
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            document.getElementById('langBtn').querySelector('img').src = currentLang === 'ar' ? 'https://flagcdn.com/w80/gb.png' : 'https://flagcdn.com/w80/eg.png';
+            updateLangUI();
         }
+
+        function openImage(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
+        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
+        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
+        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
 
         function startCounters() {
             document.querySelectorAll('.counter').forEach(c => {
@@ -568,17 +567,7 @@
             });
         }
 
-        function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
-        function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
-        
         window.onscroll = () => { document.getElementById('btnUp').style.display = window.pageYOffset > 300 ? 'flex' : 'none'; };
-
-        function toggleLanguage() {
-            const isAr = document.documentElement.lang === 'ar';
-            document.documentElement.lang = isAr ? 'en' : 'ar';
-            document.documentElement.dir = isAr ? 'ltr' : 'rtl';
-            document.getElementById('langBtn').querySelector('img').src = isAr ? 'https://flagcdn.com/w80/eg.png' : 'https://flagcdn.com/w80/gb.png';
-        }
     </script>
 </body>
 </html>
