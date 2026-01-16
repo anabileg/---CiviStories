@@ -20,7 +20,6 @@
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
-        /* توحيد نمط جميع العناوين */
         .section-main-title {
             text-align: center; 
             color: var(--gold); 
@@ -145,7 +144,6 @@
         
         .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
         
-        /* تعديل صندوق المعلومات ليظهر بالعربية */
         .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; text-align: center; }
         .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 
@@ -169,6 +167,40 @@
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
         .btn-action:hover { background: #fff; transform: scale(1.05);}
+
+        /* تعديلات شاشات الأسئلة الجديدة */
+        .q-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.98); z-index: 30000; display: none; 
+            padding: 50px 20px;
+        }
+        .q-container {
+            background: #000; border: 2px solid var(--gold); border-radius: 15px;
+            max-width: 800px; margin: 0 auto; height: 80vh; overflow-y: scroll;
+            padding: 30px; position: relative;
+        }
+        .close-btn { 
+            position: sticky; top: 0; float: left; color: #ff0000; 
+            font-size: 35px; cursor: pointer; font-weight: bold; z-index: 30005;
+        }
+        .question-item {
+            padding: 20px; border-bottom: 1px solid #333; cursor: pointer;
+            transition: 0.3s; margin-bottom: 15px; font-size: 1.2rem;
+        }
+        .question-item:hover { color: var(--gold); }
+        
+        .ans-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: #ffff00; z-index: 30100; display: none; padding: 40px 20px;
+            color: #000; overflow-y: auto;
+        }
+        .ans-content { max-width: 700px; margin: 0 auto; }
+        .ans-q { color: #ff0000; font-weight: bold; font-size: 1.5rem; margin-bottom: 20px; }
+        .ans-src { color: #008000; font-weight: bold; margin-bottom: 20px; }
+        .ans-body { color: #000; font-size: 1.2rem; line-height: 2; }
+        .ans-body ul { list-style: none; }
+        .ans-body li { margin-bottom: 15px; position: relative; padding-right: 25px; }
+        .ans-body li::before { content: "•"; position: absolute; right: 0; color: #000; }
     </style>
 </head>
 <body onload="initPage()">
@@ -180,6 +212,20 @@
         <div class="lightbox-container">
             <button class="close-lightbox" onclick="closeImage()">X</button>
             <img id="lightbox-img" src="">
+        </div>
+    </div>
+
+    <div id="questionsOverlay" class="q-overlay">
+        <div class="q-container">
+            <span class="close-btn" onclick="closeQuestions()">×</span>
+            <div id="questionsList"></div>
+        </div>
+    </div>
+
+    <div id="answerOverlay" class="ans-overlay">
+        <div class="ans-content">
+            <span class="close-btn" onclick="closeAnswer()">×</span>
+            <div id="answerData"></div>
         </div>
     </div>
 
@@ -322,7 +368,7 @@
         <div class="glass-box">
             <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
             <div class="awareness-grid">
-                <div class="awareness-card"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
+                <div class="awareness-card" onclick="openDigitalChildhood()"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
                 <div class="awareness-card"><i class="fas fa-user-friends"></i><span id="aw-c2">عالم المراهقين</span></div>
                 <div class="awareness-card"><i class="fas fa-briefcase"></i><span id="aw-c3">الإنتاج والشباب</span></div>
                 <div class="awareness-card"><i class="fas fa-heart"></i><span id="aw-c4">الزواج السعيد</span></div>
@@ -333,6 +379,54 @@
     </section>
 
     <script>
+        const digitalChildhoodData = [
+            { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: ["يمنع منعاً باتاً استخدام الشاشات للأطفال دون سن 18-24 شهراً.", "الاستثناء الوحيد في هذا السن هو مكالمات الفيديو للتواصل مع الأهل فقط.", "من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي عالي الجودة.", "يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع."] },
+            { q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة 'العزلة الرقمية'؟", src: "الجمعية النفسية الأمريكية (APA)", ans: ["الاستخدام العادي هو وسيلة للترفيه لا تؤثر على التواصل الاجتماعي الواقعي.", "العزلة تبدأ عندما تظهر 'أعراض الانسحاب' مثل العصبية الشديدة عند ترك الجهاز.", "فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر.", "إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة."] },
+            { q: "كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", src: "مركز نمو الطفل بجامعة هارفارد", ans: ["استخدام أسلوب 'التحذير التدريجي' قبل 10 و 5 دقائق من النهاية.", "إعطاء الطفل 'قوة الاختيار' (هل تريد الإغلاق الآن أم بعد انتهاء هذا المستوى؟).", "ربط نهاية وقت الشاشة بنشاط محبب آخر (وقت اللعب بالمكعبات أو الخروج).", "التزام الوالدين بإنهاء وقت شاشتهم أيضاً ليكونوا قدوة للطفل."] },
+            { q: "هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال؟", src: "منظمة (Common Sense Media)", ans: ["تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز.", "الألعاب التي تحتوي على 'دردشة مفتوحة' مع غرباء مثل بعض غرف (روبلوكس).", "التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.", "التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)."] },
+            { q: "كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل؟", src: "منظمة 'اليونيسف' (UNICEF)", ans: ["التفاعل بهدوء وعدم إظهار الصدمة حتى لا يشعر الطفل بالخوف من إخبارك لاحقاً.", "شرح أن الإنترنت عالم واسع وفيه 'أخطاء' يجب تجنبها.", "تمكين الطفل من مهارة 'التحدث الصريح' فور رؤية أي محتوى مزعج.", "مراجعة إعدادات الأمان (Safe Search) وتحديثها فوراً."] },
+            { q: "ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة؟", src: "مؤسسة 'مايو كلينك' الطبية", ans: ["الألعاب الحسية (الرسم، التلوين، الصلصال، المكعبات).", "الأنشطة البدنية الخارجية التي تفرغ الطاقة الحركية.", "إشراك الطفل في 'مهام حقيقية' مثل الطبخ أو العناية بالمنزل.", "القراءة التفاعلية التي تتطلب تخيلاً ومشاركة ذهنية."] },
+            { q: "هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو الطفل فعلياً؟", src: "مؤسسة النوم الوطنية (NSF)", ans: ["الضوء الأزرق يمنع إفراز 'الميلاتونين'، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم.", "يؤثر على 'المرونة العصبية' للدماغ في السن الصغير بسبب التحفيز البصري المفرط.", "يسبب 'قصر النظر' وجفاف العين نتيجة التحديق الطويل.", "الجلوس بوضعيات خاطئة يؤثر على نمو العمود الفقري للطفل."] },
+            { q: "كيف أفعل ميزة 'الرقابة الأبوية' على الراوتر والمنصات؟", src: "خبراء تقنيين في (Google & Apple)", ans: ["استخدام تطبيق (Google Family Link) لإدارة الوقت والتطبيقات.", "تفعيل (Restricted Mode) في يوتيوب و (SafeSearch) في جوجل.", "ضبط إعدادات الراوتر لحجب المواقع المشبوهة عبر نظام (DNS) آمن.", "تفعيل ميزة 'مدة استخدام الجهاز' (Screen Time) ووضع كلمة سر."] },
+            { q: "ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين؟", src: "المركز الوطني للأطفال المفقودين والمستغلين (NCMEC)", ans: ["ابدأ بحوار هادئ: 'لماذا تتحدث معه؟' لفهم احتياجاته الاجتماعية.", "اشرح مخاطر 'الهوية المزيفة' وأن الغريب خلف الشاشة قد لا يكون طفلاً.", "أغلق خاصية الدردشة في اللعبة فوراً واجعل اللعب في 'مكان عام' بالمنزل.", "علمه ألا يشارك أي معلومات شخصية (الاسم، المدرسة، الموقع)."] },
+            { q: "كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟", src: "معهد ماساتشوستس للتكنولوجيا (MIT - Scratch)", ans: ["تحويل الطفل من 'مشاهد' إلى 'صانع' عبر تطبيقات تعليم البرمجة (مثل Scratch Junior).", "استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء.", "تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك.", "اختيار ألعاب 'حل الألغاز' التي تنمي التفكير المنطقي."] },
+            { q: "كيف أحول 'وقت الشاشة' إلى جلسة ترابط أسري وتفاعل مشترك؟", src: "دراسات جامعة ستانفورد حول 'المشاهدة المشتركة'", ans: ["العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها.", "شاهد فيلماً كرتونياً وناقش معه 'القيم الأخلاقية' المستفادة من القصة.", "اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي).", "خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية."] },
+            { q: "هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟", src: "الرابطة الدولية لتكنولوجيا التعليم (ISTE)", ans: ["نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع.", "تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب.", "منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة.", "التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل 'أفلام قصيرة' بالدمى."] },
+            { q: "كيف أعلم طفلي مهارة 'التفكير النقدي' للتمييز بين الحقيقة والخداع؟", src: "منظمة (Media Smarts)", ans: ["اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.", "علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).", "قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.", "علمه ألا يصدق كل ما يراه إلا إذا تأكد من 'مصدر موثوق'."] },
+            { q: "ما هي القواعد الذهبية لإنشاء 'ميثاق رقمي' يلتزم به الطفل؟", src: "أكاديمية كوايت (Quiet Academy) للتربية الرقمية", ans: ["المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.", "الوضوح: حدد أوقاتاً وأماكن 'خالية من الشاشات' (مثل وقت الأكل، وغرفة النوم).", "العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).", "التوازن: القاعدة هي 'أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة'."] },
+            { q: "كيف أدرب طفلي على أن يكون 'صانع محتوى' مفيداً؟", src: "خبراء التربية الإبداعية", ans: ["شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).", "علمه أساسيات المونتاج البسيط وكتابة 'سيناريو' قصير.", "وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.", "ركز على 'جودة الفكرة' وليس على عدد 'اللايكات' أو المشاهدات."] },
+            { q: "كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟", src: "دراسة 'التقنية التداخلية' (Technoference)", ans: ["الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.", "انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.", "'القاعدة الذهبية': كن أنت القدوة التي تريد أن تراها في طفلك.", "خصص وقتاً في اليوم يكون فيه المنزل بالكامل 'بدون هواتف' لتعزيز التواصل البصري."] }
+        ];
+
+        function openDigitalChildhood() {
+            const list = document.getElementById('questionsList');
+            list.innerHTML = digitalChildhoodData.map((item, index) => `
+                <div class="question-item" onclick="showAnswer(${index})">
+                    ${index + 1}. ${item.q}
+                </div>
+            `).join('');
+            document.getElementById('questionsOverlay').style.display = 'block';
+        }
+
+        function closeQuestions() { document.getElementById('questionsOverlay').style.display = 'none'; }
+
+        function showAnswer(index) {
+            const item = digitalChildhoodData[index];
+            const dataDiv = document.getElementById('answerData');
+            dataDiv.innerHTML = `
+                <div class="ans-q">${item.q}</div>
+                <div class="ans-src">المصدر: ${item.src}</div>
+                <div class="ans-body">
+                    <ul>
+                        ${item.ans.map(point => `<li>${point}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            document.getElementById('answerOverlay').style.display = 'block';
+        }
+
+        function closeAnswer() { document.getElementById('answerOverlay').style.display = 'none'; }
+
         const translations = {
             ar: {
                 heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
@@ -364,11 +458,6 @@
         const images = [];
         for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
 
-        function toArabicDigits(num) {
-            const id = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-            return num.toString().replace(/[0-9]/g, w => id[+w]);
-        }
-
         function initPage() {
             updateLangUI();
             const track = document.getElementById('tickerTrack');
@@ -396,8 +485,6 @@
             document.getElementById('ls1-txt').innerText = lang.ls1;
             document.getElementById('ls2-txt').innerText = lang.ls2;
             document.getElementById('ls3-txt').innerText = lang.ls3;
-            document.getElementById('media-guideline').innerText = lang.mediaGuide;
-            document.getElementById('btn-browse').innerText = lang.btnBrowse;
             document.getElementById('awareness-main-title').innerText = lang.awTitle;
             document.getElementById('aw-c1').innerText = lang.aw1;
             document.getElementById('aw-c2').innerText = lang.aw2;
@@ -405,51 +492,65 @@
             document.getElementById('aw-c4').innerText = lang.aw4;
             document.getElementById('aw-c5').innerText = lang.aw5;
             document.getElementById('aw-c6').innerText = lang.aw6;
-
-            // تحديث المصادر في الـ Popups
-            for(let i=1; i<=6; i++) { document.getElementById('src'+i).innerText = lang.sources[i-1]; }
-            document.getElementById('src-p1').innerText = lang.sources[6];
-            document.getElementById('src-p2').innerText = lang.sources[7];
-            document.getElementById('src-p3').innerText = lang.sources[8];
-
-            const navLinks = document.querySelectorAll('.nav-links a');
-            lang.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
+            document.getElementById('media-guideline').innerText = lang.mediaGuide;
+            document.getElementById('btn-browse').innerText = lang.btnBrowse;
             
-            document.querySelectorAll('.counter').forEach(c => {
-                const target = c.getAttribute('data-target');
-                c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
-            });
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach((a, i) => { if(i < lang.nav.length) a.innerText = lang.nav[i]; });
+            
+            for(let i=1; i<=9; i++) {
+                const el = document.getElementById('src'+i) || document.getElementById('src-p'+i);
+                if(el) el.innerText = lang.sources[i-1];
+            }
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').querySelector('img').src = currentLang === 'ar' ? 'https://flagcdn.com/w80/gb.png' : 'https://flagcdn.com/w80/eg.png';
+            document.getElementById('langBtn').innerHTML = currentLang === 'ar' 
+                ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' 
+                : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
             updateLangUI();
             const track = document.getElementById('tickerTrack');
             track.innerHTML = [...translations[currentLang].news, ...translations[currentLang].news].map(item => `<span>${item}</span>`).join("");
         }
 
-        function openImage(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
-
         function startCounters() {
-            document.querySelectorAll('.counter').forEach(c => {
-                const target = parseFloat(c.getAttribute('data-target'));
-                let val = 0;
-                const update = () => {
-                    if(val < target) {
-                        val += target/100;
-                        let displayVal = val.toFixed(val % 1 === 0 ? 0 : 1);
-                        if(val >= target) displayVal = target;
-                        c.innerText = currentLang === 'ar' ? toArabicDigits(displayVal) : displayVal;
-                        setTimeout(update, 20);
-                    } else { c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target; }
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const updateCount = () => {
+                    const count = +counter.innerText.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
+                    const inc = target / 100;
+                    if (count < target) {
+                        const nextVal = count + inc;
+                        counter.innerText = currentLang === 'ar' ? toArabicDigits(nextVal.toFixed(1)) : nextVal.toFixed(1);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
+                    }
                 };
-                update();
+                updateCount();
             });
+        }
+
+        function toArabicDigits(num) {
+            const id = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+            return num.toString().replace(/[0-9]/g, w => id[+w]);
+        }
+
+        function openImage(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        function scrollToSec(id) {
+            const el = document.getElementById(id);
+            if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
         }
     </script>
 </body>
