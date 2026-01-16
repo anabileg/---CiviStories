@@ -5,7 +5,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <title>CiviStories | Digital Illusion Tsunami</title>
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+   
    <style>
        :root { 
            --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
@@ -77,15 +77,15 @@
        .track { display: flex; width: max-content; }
        .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
        .track img:hover { filter: grayscale(0%);}
-       .animate-media { animation: mediaScroll 600s linear infinite; }
+       .animate-media { animation: mediaScroll 40s linear infinite; }
        @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-       [dir="rtl"] .animate-media { animation: mediaScrollRtl 600s linear infinite; }
+       [dir="rtl"] .animate-media { animation: mediaScrollRtl 40s linear infinite; }
        @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
 
        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
        .lightbox-container { position: relative; max-width: 90%; max-height: 90vh; }
        .lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid var(--gold); border-radius: 10px; }
-       .close-lightbox { position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
+       .close-lightbox { position: absolute; top: -25px; left: -25px; color: #ff0000; font-size: 30px; cursor: pointer; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
 
        .vision-section, .glass-box { text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0; background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; }
        .vision-section::before, .glass-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 0; }
@@ -102,10 +102,9 @@
        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
        .modal-box { background: #ffff00; border: 3px solid #000; width: 90%; max-width: 600px; border-radius: 20px; padding: 30px; position: relative; color: #000; max-height: 80vh; overflow-y: auto; }
        
-       /* تعديل زر الإغلاق ليكون ثابتاً في الأعلى بالخارج جهة اليسار */
        .close-modal { 
-           position: absolute; top: -20px; left: -20px; font-size: 25px; cursor: pointer; color: #ff0000; font-weight: bold; 
-           z-index: 50002; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px;
+           position: absolute; top: -25px; left: -25px; font-size: 30px; cursor: pointer; color: #ff0000; font-weight: bold; 
+           z-index: 50002; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 50px; height: 50px;
            display: flex; align-items: center; justify-content: center;
        }
 
@@ -126,6 +125,7 @@
            .video-container-box { width: 100%; height: 250px; }
            .awareness-grid { grid-template-columns: repeat(2, 1fr); }
            .section-main-title { font-size: 2rem; }
+           .close-modal, .close-lightbox { left: -10px; top: -35px; }
        }
 
        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -358,34 +358,35 @@
            teens: [{ q: "مخاطر التنمر الإلكتروني؟", src: "الأمن السيبراني", ans: "يجب تعليم المراهق كيفية حظر المتنمرين وإبلاغ الوالدين فوراً." }],
            youth: [{ q: "كيف يؤثر الهاتف على الإنتاجية؟", src: "دراسات إدارية", ans: "التشتت الرقمي يقلل الإنتاجية بنسبة 40%." }],
            marriage: [{ q: "ما هو الخرس الزوجي الرقمي؟", src: "وزارة الأوقاف", ans: "هو انشغال كل طرف بهاتفه رغم وجودهما في مكان واحد." }],
-           seniors: [{ q: "كيف نحمي كبار السن من الاحتيال؟", src: "الشرطة التقنية", ans: "توعيتهم بعدم مشاركة أكواد التحقق مع أي غريب." }],
-           security: [{ q: "كيف أحمي خصوصيتي؟", src: "خبراء أمن", ans: "استخدام كلمات سر قوية وتفعيل التحقق بخطوتين." }]
+           seniors: [{ q: "كيف نتجنب النصب الإلكتروني لكبار السن؟", src: "الأمن السيبراني", ans: "عدم مشاركة أي رموز تصل في رسائل نصية مع أي شخص." }],
+           security: [{ q: "أهمية التحقق بخطوتين؟", src: "خبراء التقنية", ans: "تمنع 99% من محاولات اختراق الحسابات." }]
        };
 
        let currentLang = 'ar';
 
        function initPage() {
-           updateLangUI();
-           const track = document.getElementById('track-imgs');
-           const images = ['1.png','2.png','3.png','4.png','5.png','6.png','7.png','8.png','9.png','10.png','11.png','12.png','13.png','14.png','15.png','16.png','17.png','18.png','19.png','20.png'];
-           track.innerHTML = images.concat(images).map(img => `<img src="${img}" onclick="openImage('${img}')">`).join('');
-           
-           const observer = new IntersectionObserver(entries => {
-               entries.forEach(entry => {
-                   if(entry.isIntersecting) { startCounter(entry.target); observer.unobserve(entry.target); }
-               });
-           }, {threshold: 0.5});
-           document.querySelectorAll('.counter').forEach(c => observer.observe(c));
-
+           loadMedia();
+           updateContent();
+           setupCounters();
            window.addEventListener('scroll', () => {
                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
            });
        }
 
-       function updateLangUI() {
+       function loadMedia() {
+           const track = document.getElementById('track-imgs');
+           let content = "";
+           // تكرار الصور لضمان سلاسة الحركة
+           for(let i=1; i<=20; i++) {
+               content += `<img src="m${i}.jpg" onclick="openImage('m${i}.jpg')" alt="Media ${i}">`;
+           }
+           track.innerHTML = content + content; // مضاعفة الصور للشريط اللانهائي
+       }
+
+       function updateContent() {
            const t = translations[currentLang];
-           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
+           document.getElementById('btn-browse').innerText = t.btnBrowse;
            document.getElementById('vis-title').innerText = t.visTitle;
            document.getElementById('vis-desc').innerText = t.visDesc;
            document.getElementById('part-title').innerText = t.partTitle;
@@ -408,50 +409,98 @@
            document.getElementById('aw-c5').innerText = t.aw5;
            document.getElementById('aw-c6').innerText = t.aw6;
            document.getElementById('media-guideline').innerText = t.mediaGuide;
-           document.getElementById('btn-browse').innerText = t.btnBrowse;
 
-           const navLinks = document.querySelectorAll('.nav-links a');
-           t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
+           const links = document.querySelectorAll('.nav-links a');
+           t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
 
            const ticker = document.getElementById('tickerTrack');
-           ticker.innerHTML = t.news.concat(t.news).map(n => `<span>${n}</span>`).join('');
+           ticker.innerHTML = "";
+           t.news.concat(t.news).forEach(n => {
+               const s = document.createElement('span'); s.innerText = n; ticker.appendChild(s);
+           });
 
-           document.querySelectorAll('.info-popup').forEach((p, i) => { if(t.sources[i]) p.innerText = t.sources[i]; });
-           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang==='ar'?'gb':'eg'}.png">`;
+           for(let i=1; i<=9; i++) {
+               const el = document.getElementById('src'+i) || document.getElementById('src-p'+i);
+               if(el) el.innerText = t.sources[i-1];
+           }
        }
 
-       function toggleLanguage() { currentLang = currentLang === 'ar' ? 'en' : 'ar'; updateLangUI(); }
+       function toggleLanguage() {
+           currentLang = currentLang === 'ar' ? 'en' : 'ar';
+           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+           document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
+               '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
+               '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+           updateContent();
+       }
 
-       function startCounter(el) {
-           let target = parseFloat(el.dataset.target);
-           let count = 0;
-           let inc = target / 100;
-           let timer = setInterval(() => {
-               count += inc;
-               if(count >= target) { el.innerText = target; clearInterval(timer); }
-               else { el.innerText = count.toFixed(1); }
-           }, 20);
+       function scrollToSec(id) {
+           const el = document.getElementById(id);
+           const offset = 100;
+           const bodyRect = document.body.getBoundingClientRect().top;
+           const elementRect = el.getBoundingClientRect().top;
+           const elementPosition = elementRect - bodyRect;
+           const offsetPosition = elementPosition - offset;
+           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+       }
+
+       function setupCounters() {
+           const observer = new IntersectionObserver(entries => {
+               entries.forEach(entry => {
+                   if(entry.isIntersecting) {
+                       const target = entry.target;
+                       const goal = parseFloat(target.getAttribute('data-target'));
+                       let count = 0;
+                       const speed = goal / 50;
+                       const update = () => {
+                           count += speed;
+                           if(count < goal) {
+                               target.innerText = Math.floor(count);
+                               setTimeout(update, 30);
+                           } else {
+                               target.innerText = goal;
+                           }
+                       };
+                       update();
+                       observer.unobserve(target);
+                   }
+               });
+           }, { threshold: 0.5 });
+           document.querySelectorAll('.counter').forEach(c => observer.observe(c));
        }
 
        function openProgram(type) {
            const container = document.getElementById('questionsContainer');
+           container.innerHTML = "";
            const data = programsData[type];
-           const titles = { child: "الطفولة الرقمية", teens: "عالم المراهقين", youth: "الإنتاج والشباب", marriage: "الزواج السعيد", seniors: "كبار السن", security: "الأمان والخصوصية" };
-           document.getElementById('modalTitle').innerText = titles[type];
-           container.innerHTML = data.map((item, idx) => `<div class="q-item" onclick="showAnswer('${type}', ${idx})">${item.q}</div>`).join('');
+           document.getElementById('modalTitle').innerText = document.getElementById('aw-c' + (['child','teens','youth','marriage','seniors','security'].indexOf(type)+1)).innerText;
+           data.forEach((item, index) => {
+               const div = document.createElement('div');
+               div.className = "q-item";
+               div.innerText = item.q;
+               div.onclick = () => showAnswer(item);
+               container.appendChild(div);
+           });
            document.getElementById('qModal').style.display = 'flex';
        }
 
-       function showAnswer(type, idx) {
-           const item = programsData[type][idx];
+       function showAnswer(item) {
            const content = document.getElementById('answerContent');
-           content.innerHTML = `<span class="ans-q">${item.q}</span><span class="ans-src">المصدر: ${item.src}</span><div style="line-height:1.6;">${item.ans}</div>`;
+           content.innerHTML = `
+               <span class="ans-q">${item.q}</span>
+               <span class="ans-src">المصدر: ${item.src}</span>
+               <div style="font-size:1.1rem; line-height:1.6; color:#000;">${item.ans}</div>
+           `;
            document.getElementById('aModal').style.display = 'flex';
        }
 
        function closePopup(id) { document.getElementById(id).style.display = 'none'; }
-       function scrollToSec(id) { document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
-       function openImage(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
+
+       function openImage(src) {
+           document.getElementById('lightbox-img').src = src;
+           document.getElementById('lightbox').style.display = 'flex';
+       }
+
        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
    </script>
 </body>
