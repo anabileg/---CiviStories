@@ -78,10 +78,10 @@
        .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
        .track img:hover { filter: grayscale(0%);}
        
-       /* سرعة بطيئة (80 ثانية للدورة الكاملة) وتكرار سلس */
-       .animate-media { animation: mediaScroll 80s linear infinite; }
+       /* سرعة بطيئة جداً جداً وتكرار سلس */
+       .animate-media { animation: mediaScroll 100s linear infinite; }
        @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-       [dir="rtl"] .animate-media { animation: mediaScrollRtl 80s linear infinite; }
+       [dir="rtl"] .animate-media { animation: mediaScrollRtl 100s linear infinite; }
        @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
  
        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
@@ -373,22 +373,22 @@
            const track = document.getElementById('track-imgs');
            track.innerHTML = '';
            
-           // إنشاء قائمة الصور من 101.jpg إلى 124.jpg
+           // إنشاء الصور من 101.jpg إلى 124.jpg
            const images = [];
            for(let i = 101; i <= 124; i++) {
                images.push(i + '.jpg');
            }
            
-           // تكرار المصفوفة مرتين لضمان التمرير اللانهائي السلس
+           // تكرار المصفوفة للتمرير اللانهائي
            const fullList = [...images, ...images];
            
-           fullList.forEach(imgName => {
+           fullList.forEach(imgSrc => {
                const img = document.createElement('img');
-               img.src = imgName;
-               img.onclick = () => openImage(imgName);
+               img.src = imgSrc;
+               img.onclick = () => openImage(imgSrc);
                track.appendChild(img);
            });
-           
+
            updateTicker();
            startCounters();
        }
@@ -484,7 +484,7 @@
            if(!data || data.length === 0) {
                container.innerHTML = '<p style="text-align:center">قريباً...</p>';
            } else {
-               data.forEach((item, index) => {
+               data.forEach((item) => {
                    const div = document.createElement('div');
                    div.className = 'q-item';
                    div.innerText = item.q;
