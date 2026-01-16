@@ -68,7 +68,7 @@
         }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 1200s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 1800s linear infinite; }
         .ticker-track span { padding-left: 32px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
@@ -444,7 +444,7 @@
             "٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على وسائل التواصل",
             "تسجيل ١٤٥ ألف بلاغ عنف أسري عام ٢٠٢٣ منها ٤٣ ألف و٥٠٠ مرتبطة بمشاكل إلكترونية",
             "وجود ٢٢ ألف قضية خيانة زوجية بأدلة إلكترونية",
-            "وقوع ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب الغيرة من منشورات",
+            "وقوق ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب الغيرة من منشورات",
             "٦٥% من مراجعي العيادات النفسية يشكون من اضطرابات مرتبطة بالسوشيال ميديا",
             "تسجيل ٣ مليون زيارة للعيادات النفسية عام ٢٠٢٣ ٤٠% منها مرتبطة بالسوشيال ميديا",
             "الفئة العمرية من ١٥ إلى ٣٥ سنة تمثل ٦٨% من حالات الاضطرابات النفسية الرقمية",
@@ -495,10 +495,8 @@
 
         function initPage() {
             const track = document.getElementById('tickerTrack');
-            // تفريغ الشريط القديم وإضافة الأخبار الجديدة مع مسافة 4 حروف
             track.innerHTML = "";
             const spacer = "&nbsp;&nbsp;&nbsp;&nbsp;";
-            // مضاعفة المصفوفة لضمان استمرارية الحركة بدون انقطاع
             const fullNews = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join(spacer);
             track.innerHTML = fullNews;
 
