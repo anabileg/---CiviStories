@@ -13,31 +13,18 @@
             --wa-color: #25D366;
         }
 
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
-        .section-main-title {
-            text-align: center; 
-            color: var(--gold); 
-            font-size: 2.5rem; 
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
-
-        .awareness-card, .awareness-card span, #awareness-main-title {
-            user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none;
-        }
+        .section-main-title { text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; font-weight: bold; }
+        .awareness-card, .awareness-card span, #awareness-main-title { user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none; }
 
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
             animation: kenBurns 35s ease-in-out infinite alternate;
         }
-
         @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
         .navbar {
@@ -45,65 +32,36 @@
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
             display: flex; align-items: center; justify-content: center;
         }
-
-        .nav-container { 
-            width: 95%; max-width: 1400px;
-            display: flex; flex-direction: row; justify-content: space-between; align-items: center;
-        }
-        
+        .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
         .nav-right-group { display: flex; align-items: center; gap: 20px; }
         .nav-logo-img { height: 65px; }
-        
         .social-icons { display: flex; gap: 12px; align-items: center; }
         .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
-        
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
         .nav-links a:hover { color: #fff; }
+        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); } 
 
-        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
-        .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
-        .ic-in { color: var(--in); } 
-
-        .lang-toggle { 
-            background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s;
-        }
-        .lang-toggle img {
-            width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-        }
+        .lang-toggle { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .lang-toggle img { width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
-
         .animate-news { animation: marqueeNews 150s linear infinite; }
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         [dir="rtl"] .animate-news { animation: marqueeNewsRtl 150s linear infinite; }
         @keyframes marqueeNewsRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
-        
-        .main-alert-title { 
-            text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); 
-            max-width: 100%;
-        }
+        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); max-width: 100%; }
         .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
         .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
 
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
-        
-        .book-static { 
-            flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px;
-        }
-        
+        .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
         .book-wrapper { height: calc(100% - 70px); display: flex; align-items: center; justify-content: center; }
-
-        .book-wrapper img { 
-            max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
-            animation: bookFloat 3s ease-in-out infinite;
-        }
-
+        .book-wrapper img { max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); animation: bookFloat 3s ease-in-out infinite; }
         @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
 
         .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
@@ -115,14 +73,10 @@
         .awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
         .awareness-card span { font-weight: bold; font-size: 1.1rem; display: block; line-height: 1.3; }
 
-        .carousel-wide { 
-            width: 90%; max-width: 1200px; margin: 40px auto; height: 350px;
-            border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000;
-        }
+        .carousel-wide { width: 90%; max-width: 1200px; margin: 40px auto; height: 350px; border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000; }
         .track { display: flex; width: max-content; }
         .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
         .track img:hover { filter: grayscale(0%); }
-
         .animate-media { animation: mediaScroll 600s linear infinite; }
         @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         [dir="rtl"] .animate-media { animation: mediaScrollRtl 600s linear infinite; }
@@ -133,26 +87,30 @@
         .lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid var(--gold); border-radius: 10px; }
         .close-lightbox { position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
 
-        .vision-section, .glass-box { 
-            text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0;
-            background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden;
-        }
+        .vision-section, .glass-box { text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0; background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; }
         .vision-section::before, .glass-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 0; }
         .vision-section h2, .vision-section p, .glass-box h2, .glass-box .grid, .glass-box .awareness-grid { position: relative; z-index: 1; }
         .section { padding: 40px 5%; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
         .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
-        
         .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; text-align: center; }
         .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
+        /* ستايل النوافذ المنبثقة الجديدة */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
+        .modal-box { background: #000; border: 2px solid var(--gold); width: 90%; max-width: 600px; border-radius: 20px; padding: 30px; position: relative; color: #fff; max-height: 80vh; overflow-y: auto; }
+        .modal-box.yellow-bg { background: #ffff00; color: #000; border: none; }
+        .close-modal { position: absolute; top: 15px; left: 15px; font-size: 25px; cursor: pointer; color: #ff0000; font-weight: bold; }
+        .q-item { padding: 15px; border-bottom: 1px solid #333; cursor: pointer; transition: 0.2s; }
+        .q-item:hover { background: rgba(212,175,55,0.1); }
+        .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; }
+        .ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; }
+
         #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
         .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
-
         @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
         @media (max-width: 992px) {
@@ -167,40 +125,6 @@
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
         .btn-action:hover { background: #fff; transform: scale(1.05);}
-
-        /* تعديلات شاشات الأسئلة الجديدة */
-        .q-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.98); z-index: 30000; display: none; 
-            padding: 50px 20px;
-        }
-        .q-container {
-            background: #000; border: 2px solid var(--gold); border-radius: 15px;
-            max-width: 800px; margin: 0 auto; height: 80vh; overflow-y: scroll;
-            padding: 30px; position: relative;
-        }
-        .close-btn { 
-            position: sticky; top: 0; float: left; color: #ff0000; 
-            font-size: 35px; cursor: pointer; font-weight: bold; z-index: 30005;
-        }
-        .question-item {
-            padding: 20px; border-bottom: 1px solid #333; cursor: pointer;
-            transition: 0.3s; margin-bottom: 15px; font-size: 1.2rem;
-        }
-        .question-item:hover { color: var(--gold); }
-        
-        .ans-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: #ffff00; z-index: 30100; display: none; padding: 40px 20px;
-            color: #000; overflow-y: auto;
-        }
-        .ans-content { max-width: 700px; margin: 0 auto; }
-        .ans-q { color: #ff0000; font-weight: bold; font-size: 1.5rem; margin-bottom: 20px; }
-        .ans-src { color: #008000; font-weight: bold; margin-bottom: 20px; }
-        .ans-body { color: #000; font-size: 1.2rem; line-height: 2; }
-        .ans-body ul { list-style: none; }
-        .ans-body li { margin-bottom: 15px; position: relative; padding-right: 25px; }
-        .ans-body li::before { content: "•"; position: absolute; right: 0; color: #000; }
     </style>
 </head>
 <body onload="initPage()">
@@ -208,24 +132,25 @@
     <div class="site-bg"></div>
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
+    <div id="qModal" class="modal-overlay">
+        <div class="modal-box">
+            <span class="close-modal" onclick="closePopup('qModal')">×</span>
+            <h2 id="modalTitle" style="color:var(--gold); margin-bottom:20px;">الأسئلة الشائعة</h2>
+            <div id="questionsContainer"></div>
+        </div>
+    </div>
+
+    <div id="aModal" class="modal-overlay">
+        <div class="modal-box yellow-bg">
+            <span class="close-modal" onclick="closePopup('aModal')">×</span>
+            <div id="answerContent"></div>
+        </div>
+    </div>
+
     <div id="lightbox" class="lightbox">
         <div class="lightbox-container">
             <button class="close-lightbox" onclick="closeImage()">X</button>
             <img id="lightbox-img" src="">
-        </div>
-    </div>
-
-    <div id="questionsOverlay" class="q-overlay">
-        <div class="q-container">
-            <span class="close-btn" onclick="closeQuestions()">×</span>
-            <div id="questionsList"></div>
-        </div>
-    </div>
-
-    <div id="answerOverlay" class="ans-overlay">
-        <div class="ans-content">
-            <span class="close-btn" onclick="closeAnswer()">×</span>
-            <div id="answerData"></div>
         </div>
     </div>
 
@@ -368,65 +293,17 @@
         <div class="glass-box">
             <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
             <div class="awareness-grid">
-                <div class="awareness-card" onclick="openDigitalChildhood()"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
-                <div class="awareness-card"><i class="fas fa-user-friends"></i><span id="aw-c2">عالم المراهقين</span></div>
-                <div class="awareness-card"><i class="fas fa-briefcase"></i><span id="aw-c3">الإنتاج والشباب</span></div>
-                <div class="awareness-card"><i class="fas fa-heart"></i><span id="aw-c4">الزواج السعيد</span></div>
-                <div class="awareness-card"><i class="fas fa-blind"></i><span id="aw-c5">كبار السن</span></div>
-                <div class="awareness-card"><i class="fas fa-user-shield"></i><span id="aw-c6">الأمان والخصوصية</span></div>
+                <div class="awareness-card" onclick="openProgram('child')"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
+                <div class="awareness-card" onclick="openProgram('teens')"><i class="fas fa-user-friends"></i><span id="aw-c2">عالم المراهقين</span></div>
+                <div class="awareness-card" onclick="openProgram('youth')"><i class="fas fa-briefcase"></i><span id="aw-c3">الإنتاج والشباب</span></div>
+                <div class="awareness-card" onclick="openProgram('marriage')"><i class="fas fa-heart"></i><span id="aw-c4">الزواج السعيد</span></div>
+                <div class="awareness-card" onclick="openProgram('seniors')"><i class="fas fa-blind"></i><span id="aw-c5">كبار السن</span></div>
+                <div class="awareness-card" onclick="openProgram('security')"><i class="fas fa-user-shield"></i><span id="aw-c6">الأمان والخصوصية</span></div>
             </div>
         </div>
     </section>
 
     <script>
-        const digitalChildhoodData = [
-            { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: ["يمنع منعاً باتاً استخدام الشاشات للأطفال دون سن 18-24 شهراً.", "الاستثناء الوحيد في هذا السن هو مكالمات الفيديو للتواصل مع الأهل فقط.", "من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي عالي الجودة.", "يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع."] },
-            { q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة 'العزلة الرقمية'؟", src: "الجمعية النفسية الأمريكية (APA)", ans: ["الاستخدام العادي هو وسيلة للترفيه لا تؤثر على التواصل الاجتماعي الواقعي.", "العزلة تبدأ عندما تظهر 'أعراض الانسحاب' مثل العصبية الشديدة عند ترك الجهاز.", "فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر.", "إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة."] },
-            { q: "كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", src: "مركز نمو الطفل بجامعة هارفارد", ans: ["استخدام أسلوب 'التحذير التدريجي' قبل 10 و 5 دقائق من النهاية.", "إعطاء الطفل 'قوة الاختيار' (هل تريد الإغلاق الآن أم بعد انتهاء هذا المستوى؟).", "ربط نهاية وقت الشاشة بنشاط محبب آخر (وقت اللعب بالمكعبات أو الخروج).", "التزام الوالدين بإنهاء وقت شاشتهم أيضاً ليكونوا قدوة للطفل."] },
-            { q: "هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال؟", src: "منظمة (Common Sense Media)", ans: ["تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز.", "الألعاب التي تحتوي على 'دردشة مفتوحة' مع غرباء مثل بعض غرف (روبلوكس).", "التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة.", "التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)."] },
-            { q: "كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل؟", src: "منظمة 'اليونيسف' (UNICEF)", ans: ["التفاعل بهدوء وعدم إظهار الصدمة حتى لا يشعر الطفل بالخوف من إخبارك لاحقاً.", "شرح أن الإنترنت عالم واسع وفيه 'أخطاء' يجب تجنبها.", "تمكين الطفل من مهارة 'التحدث الصريح' فور رؤية أي محتوى مزعج.", "مراجعة إعدادات الأمان (Safe Search) وتحديثها فوراً."] },
-            { q: "ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة؟", src: "مؤسسة 'مايو كلينك' الطبية", ans: ["الألعاب الحسية (الرسم، التلوين، الصلصال، المكعبات).", "الأنشطة البدنية الخارجية التي تفرغ الطاقة الحركية.", "إشراك الطفل في 'مهام حقيقية' مثل الطبخ أو العناية بالمنزل.", "القراءة التفاعلية التي تتطلب تخيلاً ومشاركة ذهنية."] },
-            { q: "هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو الطفل فعلياً؟", src: "مؤسسة النوم الوطنية (NSF)", ans: ["الضوء الأزرق يمنع إفراز 'الميلاتونين'، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم.", "يؤثر على 'المرونة العصبية' للدماغ في السن الصغير بسبب التحفيز البصري المفرط.", "يسبب 'قصر النظر' وجفاف العين نتيجة التحديق الطويل.", "الجلوس بوضعيات خاطئة يؤثر على نمو العمود الفقري للطفل."] },
-            { q: "كيف أفعل ميزة 'الرقابة الأبوية' على الراوتر والمنصات؟", src: "خبراء تقنيين في (Google & Apple)", ans: ["استخدام تطبيق (Google Family Link) لإدارة الوقت والتطبيقات.", "تفعيل (Restricted Mode) في يوتيوب و (SafeSearch) في جوجل.", "ضبط إعدادات الراوتر لحجب المواقع المشبوهة عبر نظام (DNS) آمن.", "تفعيل ميزة 'مدة استخدام الجهاز' (Screen Time) ووضع كلمة سر."] },
-            { q: "ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين؟", src: "المركز الوطني للأطفال المفقودين والمستغلين (NCMEC)", ans: ["ابدأ بحوار هادئ: 'لماذا تتحدث معه؟' لفهم احتياجاته الاجتماعية.", "اشرح مخاطر 'الهوية المزيفة' وأن الغريب خلف الشاشة قد لا يكون طفلاً.", "أغلق خاصية الدردشة في اللعبة فوراً واجعل اللعب في 'مكان عام' بالمنزل.", "علمه ألا يشارك أي معلومات شخصية (الاسم، المدرسة، الموقع)."] },
-            { q: "كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟", src: "معهد ماساتشوستس للتكنولوجيا (MIT - Scratch)", ans: ["تحويل الطفل من 'مشاهد' إلى 'صانع' عبر تطبيقات تعليم البرمجة (مثل Scratch Junior).", "استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء.", "تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك.", "اختيار ألعاب 'حل الألغاز' التي تنمي التفكير المنطقي."] },
-            { q: "كيف أحول 'وقت الشاشة' إلى جلسة ترابط أسري وتفاعل مشترك؟", src: "دراسات جامعة ستانفورد حول 'المشاهدة المشتركة'", ans: ["العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها.", "شاهد فيلماً كرتونياً وناقش معه 'القيم الأخلاقية' المستفادة من القصة.", "اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي).", "خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية."] },
-            { q: "هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟", src: "الرابطة الدولية لتكنولوجيا التعليم (ISTE)", ans: ["نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع.", "تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب.", "منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة.", "التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل 'أفلام قصيرة' بالدمى."] },
-            { q: "كيف أعلم طفلي مهارة 'التفكير النقدي' للتمييز بين الحقيقة والخداع؟", src: "منظمة (Media Smarts)", ans: ["اسأل الطفل دائماً: 'من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟'.", "علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي).", "قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع.", "علمه ألا يصدق كل ما يراه إلا إذا تأكد من 'مصدر موثوق'."] },
-            { q: "ما هي القواعد الذهبية لإنشاء 'ميثاق رقمي' يلتزم به الطفل؟", src: "أكاديمية كوايت (Quiet Academy) للتربية الرقمية", ans: ["المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية.", "الوضوح: حدد أوقاتاً وأماكن 'خالية من الشاشات' (مثل وقت الأكل، وغرفة النوم).", "العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً).", "التوازن: القاعدة هي 'أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة'."] },
-            { q: "كيف أدرب طفلي على أن يكون 'صانع محتوى' مفيداً؟", src: "خبراء التربية الإبداعية", ans: ["شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً).", "علمه أساسيات المونتاج البسيط وكتابة 'سيناريو' قصير.", "وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية.", "ركز على 'جودة الفكرة' وليس على عدد 'اللايكات' أو المشاهدات."] },
-            { q: "كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟", src: "دراسة 'التقنية التداخلية' (Technoference)", ans: ["الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك.", "انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية.", "'القاعدة الذهبية': كن أنت القدوة التي تريد أن تراها في طفلك.", "خصص وقتاً في اليوم يكون فيه المنزل بالكامل 'بدون هواتف' لتعزيز التواصل البصري."] }
-        ];
-
-        function openDigitalChildhood() {
-            const list = document.getElementById('questionsList');
-            list.innerHTML = digitalChildhoodData.map((item, index) => `
-                <div class="question-item" onclick="showAnswer(${index})">
-                    ${index + 1}. ${item.q}
-                </div>
-            `).join('');
-            document.getElementById('questionsOverlay').style.display = 'block';
-        }
-
-        function closeQuestions() { document.getElementById('questionsOverlay').style.display = 'none'; }
-
-        function showAnswer(index) {
-            const item = digitalChildhoodData[index];
-            const dataDiv = document.getElementById('answerData');
-            dataDiv.innerHTML = `
-                <div class="ans-q">${item.q}</div>
-                <div class="ans-src">المصدر: ${item.src}</div>
-                <div class="ans-body">
-                    <ul>
-                        ${item.ans.map(point => `<li>${point}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
-            document.getElementById('answerOverlay').style.display = 'block';
-        }
-
-        function closeAnswer() { document.getElementById('answerOverlay').style.display = 'none'; }
-
         const translations = {
             ar: {
                 heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
@@ -454,9 +331,25 @@
             }
         };
 
+        const programsData = {
+            child: [
+                { q: "ما هو السن المناسب للشاشات؟", src: "منظمة الصحة العالمية", ans: "يمنع تماماً قبل سن السنتين، ومن 2-5 سنوات ساعة واحدة فقط كحد أقصى." },
+                { q: "كيف أعرف أن طفلي مدمن رقمياً؟", src: "الأكاديمية الأمريكية لطب الأطفال", ans: "العزلة، البكاء الشديد عند سحب الهاتف، واضطراب النوم والشهية." }
+            ],
+            marriage: [
+                { q: "كيف تسبب الهواتف الطلاق؟", src: "الأزهر الشريف", ans: "عبر الخرس الزوجي، والغيرة من المقارنات غير الواقعية على السوشيال ميديا." }
+            ]
+            // يمكن إضافة باقي الأقسام هنا
+        };
+
         let currentLang = 'ar';
         const images = [];
         for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
+
+        function toArabicDigits(num) {
+            const id = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+            return num.toString().replace(/[0-9]/g, w => id[+w]);
+        }
 
         function initPage() {
             updateLangUI();
@@ -485,6 +378,8 @@
             document.getElementById('ls1-txt').innerText = lang.ls1;
             document.getElementById('ls2-txt').innerText = lang.ls2;
             document.getElementById('ls3-txt').innerText = lang.ls3;
+            document.getElementById('media-guideline').innerText = lang.mediaGuide;
+            document.getElementById('btn-browse').innerText = lang.btnBrowse;
             document.getElementById('awareness-main-title').innerText = lang.awTitle;
             document.getElementById('aw-c1').innerText = lang.aw1;
             document.getElementById('aw-c2').innerText = lang.aw2;
@@ -492,65 +387,69 @@
             document.getElementById('aw-c4').innerText = lang.aw4;
             document.getElementById('aw-c5').innerText = lang.aw5;
             document.getElementById('aw-c6').innerText = lang.aw6;
-            document.getElementById('media-guideline').innerText = lang.mediaGuide;
-            document.getElementById('btn-browse').innerText = lang.btnBrowse;
-            
+
+            for(let i=1; i<=6; i++) { document.getElementById('src'+i).innerText = lang.sources[i-1]; }
+            document.getElementById('src-p1').innerText = lang.sources[6];
+            document.getElementById('src-p2').innerText = lang.sources[7];
+            document.getElementById('src-p3').innerText = lang.sources[8];
+
             const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach((a, i) => { if(i < lang.nav.length) a.innerText = lang.nav[i]; });
+            lang.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
             
-            for(let i=1; i<=9; i++) {
-                const el = document.getElementById('src'+i) || document.getElementById('src-p'+i);
-                if(el) el.innerText = lang.sources[i-1];
-            }
+            document.querySelectorAll('.counter').forEach(c => {
+                const target = c.getAttribute('data-target');
+                c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
+            });
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').innerHTML = currentLang === 'ar' 
-                ? '<img src="https://flagcdn.com/w80/gb.png" alt="English">' 
-                : '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+            document.getElementById('langBtn').querySelector('img').src = currentLang === 'ar' ? 'https://flagcdn.com/w80/gb.png' : 'https://flagcdn.com/w80/eg.png';
             updateLangUI();
             const track = document.getElementById('tickerTrack');
             track.innerHTML = [...translations[currentLang].news, ...translations[currentLang].news].map(item => `<span>${item}</span>`).join("");
         }
 
+        function openProgram(type) {
+            const data = programsData[type] || [];
+            const container = document.getElementById('questionsContainer');
+            document.getElementById('modalTitle').innerText = translations[currentLang].awTitle;
+            container.innerHTML = data.map((item, i) => `<div class="q-item" onclick="openAnswer('${type}', ${i})">${i+1}. ${item.q}</div>`).join('');
+            document.getElementById('qModal').style.display = 'flex';
+        }
+
+        function openAnswer(type, index) {
+            const item = programsData[type][index];
+            document.getElementById('answerContent').innerHTML = `
+                <span class="ans-q">${item.q}</span>
+                <span class="ans-src">المصدر: ${item.src}</span>
+                <p style="line-height:1.8; font-size:1.1rem;">${item.ans}</p>
+            `;
+            document.getElementById('aModal').style.display = 'flex';
+        }
+
+        function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+        function openImage(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
+        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+        function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
+
         function startCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const updateCount = () => {
-                    const count = +counter.innerText.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[^0-9.]/g, '');
-                    const inc = target / 100;
-                    if (count < target) {
-                        const nextVal = count + inc;
-                        counter.innerText = currentLang === 'ar' ? toArabicDigits(nextVal.toFixed(1)) : nextVal.toFixed(1);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
-                    }
+            document.querySelectorAll('.counter').forEach(c => {
+                const target = parseFloat(c.getAttribute('data-target'));
+                let val = 0;
+                const update = () => {
+                    if(val < target) {
+                        val += target/100;
+                        let displayVal = val.toFixed(val % 1 === 0 ? 0 : 1);
+                        if(val >= target) displayVal = target;
+                        c.innerText = currentLang === 'ar' ? toArabicDigits(displayVal) : displayVal;
+                        setTimeout(update, 20);
+                    } else { c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target; }
                 };
-                updateCount();
+                update();
             });
-        }
-
-        function toArabicDigits(num) {
-            const id = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-            return num.toString().replace(/[0-9]/g, w => id[+w]);
-        }
-
-        function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
         }
     </script>
 </body>
