@@ -9,7 +9,7 @@
     <style>
         :root { 
             --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
-            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD08ش1C; --in: #0077B5;
+            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
             --wa-color: #25D366;
         }
 
@@ -160,7 +160,7 @@
 
         @keyframes mediaScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(50%); } 
+            100% { transform: translateX(-50%); } 
         }
 
         .lightbox {
@@ -227,7 +227,7 @@
             .carousel-wide { height: 250px; }
             .track img { height: 250px; width: 250px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
-            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         }
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
