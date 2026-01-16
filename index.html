@@ -20,6 +20,15 @@
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
+        /* توحيد نمط جميع العناوين */
+        .section-main-title {
+            text-align: center; 
+            color: var(--gold); 
+            font-size: 2.5rem; 
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
         .awareness-card, .awareness-card span, #awareness-main-title {
             user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none;
         }
@@ -64,13 +73,14 @@
             width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
 
+        /* تعديل سرعة شريط الأخبار - تم تقليل الوقت لزيادة السرعة */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
 
-        .animate-news { animation: marqueeNews 400s linear infinite; }
+        .animate-news { animation: marqueeNews 150s linear infinite; }
         @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 400s linear infinite; }
+        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 150s linear infinite; }
         @keyframes marqueeNewsRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
@@ -101,7 +111,6 @@
         .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
         .video-container-box iframe { width: 100%; height: 100%; border: none; }
 
-        /* تعديل شبكة التوعية لتصبح 6 مربعات */
         .awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
         .awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px 10px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
         .awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
@@ -112,9 +121,6 @@
         .child-box { width: 80%; max-width: 600px; height: 450px; background: #ffcc00; border-radius: 15px; position: relative; display: flex; flex-direction: column; padding: 50px 20px 20px; }
         .close-child { position: absolute; top: 10px; left: 10px; color: #ff0000; font-size: 30px; cursor: pointer; font-weight: bold; background: none; border: none; z-index: 10; }
         .questions-scroll { width: 100%; height: 100%; overflow-y: auto; padding-right: 10px; text-align: right; }
-        .questions-scroll::-webkit-scrollbar { width: 8px; }
-        .questions-scroll::-webkit-scrollbar-thumb { background: #b30000; border-radius: 10px; }
-        .questions-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .q-item { color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5; }
 
         .carousel-wide { 
@@ -182,6 +188,7 @@
             .carousel-wide { height: 250px; width: 95%; }
             .track img { height: 250px; width: 220px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
+            .section-main-title { font-size: 2rem; }
         }
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -260,13 +267,13 @@
     </section>
 
     <section id="about" class="vision-section">
-        <h2 id="vis-title">رؤيتنا الاستراتيجية</h2>
+        <h2 id="vis-title" class="section-main-title">رؤيتنا الاستراتيجية</h2>
         <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
     </section>
 
     <section id="inst" class="section">
         <div class="glass-box">
-            <h2 id="part-title">شركاء الوعي الوطني</h2>
+            <h2 id="part-title" class="section-main-title">شركاء الوعي الوطني</h2>
             <div class="grid">
                 <div class="card">
                     <div class="info-popup">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر</div>
@@ -291,7 +298,7 @@
     </section>
 
     <div style="text-align:center; margin-top:40px;">
-        <h2 id="media-guideline" style="color:var(--gold); font-size:2.8rem; margin-bottom:10px;">اضغط على الصورة لتصلك رسالتنا</h2>
+        <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
     </div>
     <section id="media-sec" class="carousel-wide">
         <div class="track animate-media" id="track-imgs"></div>
@@ -299,21 +306,21 @@
 
     <section id="stats" class="section">
         <div class="glass-box">
-            <h2 id="st-title">إحصائيات</h2>
+            <h2 id="st-title" class="section-main-title">إحصائيات</h2>
             <div class="grid">
                 <div class="card">
                     <div class="info-popup">Source: CAPMAS Egypt</div>
-                    <span class="stat-num counter" data-target="311">0</span>
+                    <span class="stat-num counter" id="cnt1" data-target="311">0</span>
                     <p id="st1-txt">ألف حالة طلاق سنوياً</p>
                 </div>
                 <div class="card">
                     <div class="info-popup">Source: MCIT Egypt</div>
-                    <span class="stat-num counter" data-target="104">0</span>
+                    <span class="stat-num counter" id="cnt2" data-target="104">0</span>
                     <p id="st2-txt">مليون هاتف محمول</p>
                 </div>
                 <div class="card">
                     <div class="info-popup">Source: Ministry of Social Solidarity</div>
-                    <span class="stat-num counter" data-target="5.7">0</span>
+                    <span class="stat-num counter" id="cnt3" data-target="5.7">0</span>
                     <p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
                 </div>
             </div>
@@ -322,21 +329,21 @@
 
     <section id="losses" class="section">
         <div class="glass-box" style="border-color: var(--red-num);">
-            <h2 id="ls-title">الخسائر</h2>
+            <h2 id="ls-title" class="section-main-title" style="color: var(--red-num);">الخسائر</h2>
             <div class="grid">
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup">Source: Economic Feasibility Studies</div>
-                    <span class="stat-num loss-num counter" data-target="15">0</span>
+                    <span class="stat-num loss-num counter" id="cnt4" data-target="15">0</span>
                     <p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup">Source: Mental Health Reports</div>
-                    <span class="stat-num loss-num counter" data-target="4.5">0</span>
+                    <span class="stat-num loss-num counter" id="cnt5" data-target="4.5">0</span>
                     <p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup">Source: Cybersecurity Reports</div>
-                    <span class="stat-num loss-num counter" data-target="2.1">0</span>
+                    <span class="stat-num loss-num counter" id="cnt6" data-target="2.1">0</span>
                     <p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
                 </div>
             </div>
@@ -345,7 +352,7 @@
 
     <section id="awareness-sec" class="section">
         <div class="glass-box">
-            <h2 id="awareness-main-title" style="text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">برامج التوعية</h2>
+            <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
             <div class="awareness-grid">
                 <div class="awareness-card" onclick="openChildBox()">
                     <i class="fas fa-child"></i>
@@ -419,6 +426,12 @@
         const images = [];
         for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
 
+        // تحويل الأرقام إلى عربية
+        function toArabicDigits(num) {
+            const id = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+            return num.toString().replace(/[0-9]/g, function(w){ return id[+w]; });
+        }
+
         function initPage() {
             updateLangUI();
             const track = document.getElementById('tickerTrack');
@@ -473,6 +486,12 @@
             
             const track = document.getElementById('tickerTrack');
             track.innerHTML = [...lang.news, ...lang.news].map(item => `<span>${item}</span>`).join("");
+
+            // إعادة تحديث الأرقام لتظهر بالعربي أو الإنجليزي فوراً
+            document.querySelectorAll('.counter').forEach(c => {
+                const target = c.getAttribute('data-target');
+                c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
+            });
         }
 
         function toggleLanguage() {
@@ -491,14 +510,18 @@
 
         function startCounters() {
             document.querySelectorAll('.counter').forEach(c => {
-                const target = +c.getAttribute('data-target');
+                const target = parseFloat(c.getAttribute('data-target'));
                 let val = 0;
                 const update = () => {
                     if(val < target) {
                         val += target/100;
-                        c.innerText = val.toFixed(val % 1 === 0 ? 0 : 1);
+                        let displayVal = val.toFixed(val % 1 === 0 ? 0 : 1);
+                        if(val >= target) displayVal = target;
+                        c.innerText = currentLang === 'ar' ? toArabicDigits(displayVal) : displayVal;
                         setTimeout(update, 20);
-                    } else { c.innerText = target; }
+                    } else { 
+                        c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target; 
+                    }
                 };
                 update();
             });
