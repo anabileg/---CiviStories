@@ -68,8 +68,8 @@
         }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 900s linear infinite; }
-        .ticker-track span { padding-left: 150px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 1200s linear infinite; }
+        .ticker-track span { padding-left: 32px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
 
@@ -306,7 +306,7 @@
 
     <section class="hero" id="home">
         <h1 class="main-alert-title" id="main-hero-title">
-            <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>
+            <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>
         </h1>
         <div class="hero-container">
             <div class="book-static">
@@ -385,293 +385,235 @@
                 <div class="card" style="border-bottom-color: var(--red-num);">
                     <div class="info-popup" id="ls1-src">المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت</div>
                     <span class="stat-num loss-num counter" data-target="15">0</span>
-                    <p id="ls1-txt" style="color:var(--gold); font-weight:bold;">مليار جنيه خسائر إنتاجية</p>
+                    <p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls2-src">المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات</div>
-                    <span class="stat-num loss-num counter" data-target="4">0</span>
-                    <p id="ls2-txt" style="color:var(--gold); font-weight:bold;">مليار تكلفة العلاج</p>
+                    <div class="info-popup" id="ls2-src">المصدر: تقارير الصحة النفسية - تكلفة علاج حالات الإدمان الرقمي</div>
+                    <span class="stat-num loss-num counter" data-target="4.5">0</span>
+                    <p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="awareness-sec" class="section">
-        <div class="glass-box">
-            <h2 id="awareness-main-title" class="notranslate" style="text-align:center; color:var(--gold); font-size: 2.5rem; margin-bottom:10px;">وعي</h2>
-            <p style="text-align:center; color:var(--white); font-size: 1.4rem; font-weight: bold;">دليلك الشامل لحياة رقمية متزنة</p>
-            
-            <div class="awareness-grid">
-                <div class="awareness-card notranslate" onclick="openChildBox()">
-                    <i class="fas fa-child"></i>
-                    <span>الطفولة الرقمية</span>
-                </div>
-                <div class="awareness-card notranslate">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>عالم المراهقين</span>
-                </div>
-                <div class="awareness-card notranslate">
-                    <i class="fas fa-rocket"></i>
-                    <span>الإنتاجية والعمل</span>
-                </div>
-                <div class="awareness-card notranslate">
-                    <i class="fas fa-heart"></i>
-                    <span>الحياة الزوجية</span>
-                </div>
-                <div class="awareness-card notranslate">
-                    <i class="fas fa-blind"></i>
-                    <span>كبار السن</span>
-                </div>
-                <div class="awareness-card notranslate">
-                    <i class="fas fa-user-shield"></i>
-                    <span>الأمان والجرائم</span>
-                </div>
+        <h2 id="awareness-main-title" style="text-align:center; color:var(--gold); font-size:2.8rem; margin-bottom:30px;">برامج التوعية</h2>
+        <div class="awareness-grid">
+            <div class="awareness-card" onclick="openChildBox()">
+                <i class="fas fa-child"></i>
+                <span id="aw-c1">الطفولة الرقمية</span>
+            </div>
+            <div class="awareness-card">
+                <i class="fas fa-users"></i>
+                <span id="aw-c2">الإرشاد الأسري</span>
+            </div>
+            <div class="awareness-card">
+                <i class="fas fa-brain"></i>
+                <span id="aw-c3">الصحة النفسية</span>
             </div>
         </div>
     </section>
 
-    <footer style="text-align:center; padding:60px; color:var(--gold); background: rgba(0,0,0,0.95); border-top:1px solid var(--gold);">
-        <p id="footer-txt">© 2026 CiviStories | جميع الحقوق محفوظة</p>
-    </footer>
-
     <script>
-        let currentLang = 'ar';
-        let currentSlide = 0;
-        let autoScrollInterval;
-        let isTransitioning = false;
-        
-        const imagesList = [
-            "101.jpg", "102.jpg", "103.jpg", "104.jpg", "105.jpg", "106.jpg", 
-            "107.jpg", "108.jpg", "109.jpg", "110.jpg", "111.jpg", "112.jpg", 
-            "113.jpg", "114.jpg", "115.jpg", "116.jpg", "117.jpg", "118.jpg", 
-            "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg"
+        const newsItems = [
+            "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
+            "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية",
+            "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر",
+            "وزارة الصحة: ٣ ملايين زيارة سنوية للعيادات النفسية بسبب اضطرابات السوشيال ميديا",
+            "الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال والإفراط الرقمي",
+            "القصر العيني: محاولة انتحار كل ٦ ساعات تقريباً بسبب التنمر عبر الإنترنت",
+            "وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوية بسبب الإدمان الرقمي",
+            "اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني المؤذي",
+            "الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات سابقة",
+            "وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل الاجتماعي",
+            "البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً",
+            "الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة",
+            "دراسة: ٨٥% من طلاب الثانوي يعانون آثار التنمر الرقمي النفسية",
+            "كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني",
+            "تسجيل ٩٣ ألف و٣٠٠ حالة طلاق سنوياً مرتبطة بالسوشيال ميديا",
+            "حدوث ٢٥٥ حالة طلاق يومياً بسبب وسائل التواصل الاجتماعي",
+            "ذكر وسائل التواصل كسبب مباشر في ٣٠% من حالات الطلاق",
+            "صدور ١٠٠ ألف فتوى سنوياً عن مشاكل أسرية ٢٣% منها بسبب التواصل الاجتماعي",
+            "٣٠% من فتاوى مجمع البحوث الإسلامية تتعلق بالقطيعة العائلية",
+            "٢٩% من فتاوى مجمع البحوث الإسلامية تتعلق بالعلاقات المحرمة",
+            "٦٠% من المشاكل الأسرية في المجتمع القبطي مرتبطة بالسوشيال ميديا",
+            "معاناة ٥٠ ألف أسرة قبطية سنوياً من مشاكل التواصل الاجتماعي",
+            "زيادة معدلات الطلاق في مصر بنسبة ٥٧% خلال ٥ سنوات (٢٠١٨-٢٠٢٣)",
+            "ارتفاع حالات الطلاق من ١٩٨ ألف حالة عام ٢٠١٨ إلى ٣١١ ألف حالة عام ٢٠٢٣",
+            "تسجيل متوسط يومي ٨٥٢ حالة طلاق في مصر",
+            "٤٠% من بلاغات العنف الأسري بدأت بمشاجرات على وسائل التواصل",
+            "تسجيل ١٤٥ ألف بلاغ عنف أسري عام ٢٠٢٣ منها ٤٣ ألف و٥٠٠ مرتبطة بمشاكل إلكترونية",
+            "وجود ٢٢ ألف قضية خيانة زوجية بأدلة إلكترونية",
+            "وقوع ١٢٢ جريمة قتل بين أزواج منها ٤٠ حالة بسبب الغيرة من منشورات",
+            "٦٥% من مراجعي العيادات النفسية يشكون من اضطرابات مرتبطة بالسوشيال ميديا",
+            "تسجيل ٣ مليون زيارة للعيادات النفسية عام ٢٠٢٣ ٤٠% منها مرتبطة بالسوشيال ميديا",
+            "الفئة العمرية من ١٥ إلى ٣٥ سنة تمثل ٦٨% من حالات الاضطرابات النفسية الرقمية",
+            "٥٠% من حالات الطلاق في السنة الأولى من الزواج سببها السوشيال ميديا",
+            "خسارة إنتاجية تقدر بـ١٥ مليار جنيه سنوياً بسبب المشاكل النفسية الرقمية",
+            "تعرض ٤٧% من الأطفال (٨-١٨ سنة) للتنمر الإلكتروني",
+            "وصول متوسط الوقت اليومي للأطفال على الشاشات إلى ٥.٧ ساعات",
+            "تعرض ٦٣% من الأطفال لمحتوى غير لائق عبر الإنترنت",
+            "خسائر الإنتاجية بسبب الإدمان الرقمي تصل إلى ٢.٣% من الناتج المحلي",
+            "تكلفة علاج الاضطرابات النفسية المرتبطة بالرقمنة تبلغ ٤ مليار و٥٠٠ ألف جنيه سنوياً",
+            "فقدان ١٨ مليون يوم عمل سنوياً بسبب التداعيات الرقمية",
+            "تسجيل متوسط ٣ صداقات مقطوعة لكل شاب بسبب الخلافات الرقمية",
+            "٨٥% من طلاب الثانوي يعانون من التنمر الرقمي",
+            "٣٥% من طلاب الثانوي حاولوا الانتحار مرة على الأقل",
+            "٦٤% من طلاب الجامعات يعانون من اضطرابات نوم بسبب السوشيال ميديا",
+            "٤٢% من طلاب الجامعات تأثرت درجاتهم الأكاديمية سلباً",
+            "تعرض ١٧% من طلاب الجامعات للابتزاز الإلكتروني",
+            "وقوع محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي أو القطيعة",
+            "تسجيل ١٤٦٠ محاولة انتحار عام ٢٠٢٣ ٦٠% منها لأسباب رقمية",
+            "٤٠% من المسنين يعانون من العزلة بسبب انشغال أبنائهم بالسوشيال ميديا",
+            "٢ مليون مسن مصري يعيشون في عزلة رقمية",
+            "وصول نسبة حالات الطلاق في السنة الأولى من الزواج إلى ٣٤%",
+            "متوسط عمر الزواج عند الطلاق يبلغ ٣.٧ سنة",
+            "تسجيل ١٢ ألف و٥٠٠ حالة طلاق رقمي سنوياً",
+            "متوسط عدد حسابات السوشيال ميديا للفرد المصري ٣.٨ حساب",
+            "٧١% من المصريين يبدأون يومهم بتصفح السوشيال ميديا",
+            "٥٢% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب",
+            "طلاق زوجين بعد ٣٢ سنة زواج بسبب تعليق كومنت",
+            "مقتل شقيقين في المنصورة بعد مشاجرة بسبب منشور سياسي",
+            "انتحار طالبة طب بجامعة عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية",
+            "انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد",
+            "زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك",
+            "معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا يصل إلى ٣١%",
+            "٧٦% من المستخدمين يقومون بمقارنات اجتماعية سلبية",
+            "خسائر أسرية بسبب النصب الإلكتروني تبلغ ٢.١ مليار جنيه سنوياً",
+            "رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة",
+            "رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة",
+            "تعرض تماسك الأسرة المصرية لـ١٢٠ هجمة إلكترونية يومياً",
+            "تآكل القيم الأسرية التقليدية بنسبة ٢٢% خلال ٥ سنوات",
+            "المحتوى الأجنبي المؤثر سلباً يمثل ٦٨% من المحتوى المتداول",
+            "توقع وصول حالات الطلاق إلى ٤٥٠ ألف حالة سنوياً بحلول ٢٠٣٠ في حال عدم التدخل",
+            "توقع تجاوز الخسائر الاقتصادية الرقمية ٣٥ مليار جنيه سنوياً بحلول ٢٠٣٠"
         ];
 
-        const content = {
-            ar: {
-                heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
-                vision: "رؤيتنا", partners: "الشركاء", media: "ميديا", stats: "إحصائيات", losses: "خسائر", awareness: "وعي", feedback: "رأيك يهمنا", browse: "تصفح الكتاب",
-                visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
-                partTitle: "شركاء الوعي الوطني", stTitle: "إحصائيات", lsTitle: "الخسائر", footer: "© 2026 CiviStories | جميع الحقوق محفوظة",
-                p1n: "الأزهر الشريف", p1d: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.", p1src: "المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر - ٢٥٥ حالة طلاق يومياً",
-                p2n: "الكنيسة المصرية", p2d: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.", p2src: "المصدر: تقرير المشورة الأسرية بالكنيسة - ٦٠٪ بسبب نزاعات الفضاء الرقمي",
-                p3n: "وزارة الأوقاف", p3d: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.", p3src: "المصدر: وزارة الأوقاف المصرية - حملة سكن ومودة لحماية البيوت",
-                st1: "ألف حالة طلاق سنوياً", st1src: "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء - معدلات الطلاق السنوية",
-                st2: "مليون هاتف محمول", st2src: "المصدر: تقرير وزارة الاتصالات - إجمالي خطوط المحمول المسجلة",
-                ls1: "مليار جنيه خسائر إنتاجية", ls1src: "المصدر: دراسات الجدوى الاقتصادية - خسارة ساعات العمل بسبب التشتت",
-                ls2: "مليارات تكلفة العلاج", ls2src: "المصدر: وزارة الصحة - ميزانية علاج أمراض العزلة والاضطرابات",
-                mediaGuide: "اضغط على الصورة لتصلك رسالتنا",
-                ticker: ["• الأزهر الشريف: حالة طلاق كل دقيقتين بسبب الإدمان الرقمي", "• وزارة الأوقاف: الهواتف الذكية سبب رئيسي للخرس الزوجي", "• إنذار أحمر: التفكك الأسري يهدد الاستقرار المجتمعي المصري", "• وزارة الصحة: ٣ مليون زيارة للعيادات النفسية بسبب اضطرابات السوشيال ميديا", "• الكنيسة المصرية: ٦٠% من المشاكل الأسرية مرتبطة بالانعزال الرقمي", "• القصر العيني: محاولة انتحار كل ٦ ساعات بسبب التنمر الرقمي", "• وزارة المالية: ١٥ مليار جنيه خسائر إنتاجية سنوياً بسبب الإدمان الرقمي", "• اليونيسف: ٤٧% من أطفال مصر تعرضوا للتنمر الإلكتروني الصادم", "• الإحصاء: زيادة ٥٧% في معدلات الطلاق خلال ٥ سنوات لتصل ٣١١ ألف حالة", "• وزارة الداخلية: ٤٠% من بلاغات العنف الأسري سببها تطبيقات التواصل", "• البنك الدولي: ٤.٥ مليار جنيه تكلفة علاج الاضطرابات النفسية الرقمية سنوياً", "• الأمن القومي: رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة والفتنة", "• دراسة: ٨٥% من طلاب الثانوي يعانون من آثار التنمر الرقمي", "• كارثة: ٢.١ مليار جنيه خسائر سنوية بسبب عمليات النصب الإلكتروني"]
-            },
-            en: {
-                heroTitle: '<span class="highlight">Digital Illusion Tsunami</span>: <span class="gold-text">Egypt’s Cry to Warn the World</span> - <span class="gold-text">Shocking Egyptian Stats</span>',
-                vision: "Vision", partners: "Partners", media: "Media", stats: "Stats", losses: "Losses", awareness: "Awareness", feedback: "Feedback", browse: "Browse Book",
-                visTitle: "Strategic Vision", visDesc: "We aim through the CiviStories initiative to protect the Egyptian social fabric from digital disintegration by empowering families and restoring social balance.",
-                partTitle: "National Awareness Partners", stTitle: "Statistics", lsTitle: "Losses", footer: "© 2026 CiviStories | All Rights Reserved",
-                p1n: "Al-Azhar Al-Sharif", p1d: "Monitoring family disintegration caused by digital addiction through specialized fatwa committees.", p1src: "Source: Al-Azhar Electronic Fatwa Center - 255 divorce cases daily",
-                p2n: "Egyptian Church", p2d: "Promoting family stability and addressing digital isolation within homes through counseling programs.", p2src: "Source: Church Family Counseling Report - 60% due to digital space conflicts",
-                p3n: "Ministry of Awqaf", p3d: "Sakan and Mawadda initiative to educate married couples about technology risks.", p3src: "Source: Ministry of Awqaf - Sakan & Mawadda Campaign",
-                st1: "Thousand Divorces Annually", st1src: "Source: CAPMAS - Annual Divorce Rates",
-                st2: "Million Mobile Phones", st2src: "Source: Ministry of Communications - Total Registered Mobile Lines",
-                ls1: "Billion EGP Production Loss", ls1src: "Source: Economic Feasibility Studies - Productivity Loss",
-                ls2: "Billions Treatment Cost", ls2src: "Source: Ministry of Health - Treatment budget for isolation disorders",
-                mediaGuide: "Click the image to receive our message",
-                ticker: ["• Al-Azhar: One divorce every two minutes due to digital addiction", "• Ministry of Awqaf: Smartphones are a primary cause of marital silence", "• Red Alert: Family breakdown threatens Egyptian social stability", "• Ministry of Health: 3 million psychiatric visits due to social media disorders", "• Egyptian Church: 60% of family problems are related to digital isolation", "• Qasr Al-Aini: Suicide attempt every 6 hours due to digital bullying", "• Finance Ministry: 15 billion EGP annual production loss due to digital addiction", "• UNICEF: 47% of Egyptian children exposed to shocking cyberbullying", "• CAPMAS: 57% increase in divorce rates in 5 years reaching 311,000 cases", "• Interior Ministry: 40% of domestic violence reports caused by social apps", "• World Bank: 4.5 billion EGP annual cost to treat digital mental disorders", "• Security: Monitoring 870 digital groups organized to spread discord", "• Study: 85% of high school students suffer from cyberbullying", "• Disaster: 2.1 billion EGP annual losses due to electronic fraud"]
-            }
-        };
+        let currentLang = 'ar';
+        const images = [];
+        for(let i=1; i<=100; i++) { images.push(`${i}.jpg`); }
 
         function initPage() {
-            renderTicker();
-            setupCarousel();
-            initCounters();
-            window.addEventListener('scroll', () => {
-                document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
-            });
-        }
-
-        function renderTicker() {
             const track = document.getElementById('tickerTrack');
-            const list = content[currentLang].ticker;
+            // تفريغ الشريط القديم وإضافة الأخبار الجديدة مع مسافة 4 حروف
             track.innerHTML = "";
-            [...list, ...list].forEach(txt => {
-                const span = document.createElement('span');
-                span.innerText = txt;
-                track.appendChild(span);
+            const spacer = "&nbsp;&nbsp;&nbsp;&nbsp;";
+            // مضاعفة المصفوفة لضمان استمرارية الحركة بدون انقطاع
+            const fullNews = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join(spacer);
+            track.innerHTML = fullNews;
+
+            const imgTrack = document.getElementById('track-imgs');
+            images.forEach(imgSrc => {
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.loading = "lazy";
+                img.onclick = () => openImage(imgSrc);
+                imgTrack.appendChild(img);
             });
+            startCounters();
         }
 
-        function setupCarousel() {
+        let currentSlide = 0;
+        function moveSlide(direction) {
             const track = document.getElementById('track-imgs');
-            track.innerHTML = "";
-            
-            // إضافة الصور الأصلية
-            imagesList.forEach(img => {
-                const el = document.createElement('img');
-                el.src = img;
-                el.onclick = () => openImage(img);
-                track.appendChild(el);
-            });
-
-            // إضافة نسخة من الصور في النهاية لضمان استمرارية الحركة (Infinite Loop)
-            imagesList.forEach(img => {
-                const el = document.createElement('img');
-                el.src = img;
-                el.onclick = () => openImage(img);
-                track.appendChild(el);
-            });
-
-            currentSlide = 0;
-            updateSlide(false);
-            startAutoScroll();
-        }
-
-        function moveSlide(dir) {
-            if (isTransitioning) return;
-            stopAutoScroll();
-            currentSlide += dir;
-            updateSlide(true);
-            startAutoScroll();
-        }
-
-        function updateSlide(withTransition) {
-            const track = document.getElementById('track-imgs');
-            const imgWidth = track.children[0].clientWidth;
-            
-            if (withTransition) {
-                track.style.transition = "transform 0.8s ease";
-                isTransitioning = true;
-            } else {
-                track.style.transition = "none";
-            }
-
+            const imgWidth = 400;
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = images.length - 1;
+            if (currentSlide >= images.length) currentSlide = 0;
             track.style.transform = `translateX(${currentSlide * imgWidth}px)`;
-
-            track.addEventListener('transitionend', () => {
-                isTransitioning = false;
-                // إذا وصلنا لنهاية النسخة الثانية، نعود للنسخة الأولى بصمت
-                if (currentSlide >= imagesList.length) {
-                    track.style.transition = "none";
-                    currentSlide = 0;
-                    track.style.transform = `translateX(0px)`;
-                }
-                // إذا تحركنا للخلف تحت الصفر
-                if (currentSlide < 0) {
-                    track.style.transition = "none";
-                    currentSlide = imagesList.length - 1;
-                    track.style.transform = `translateX(${currentSlide * imgWidth}px)`;
-                }
-            }, { once: true });
-        }
-
-        function startAutoScroll() {
-            autoScrollInterval = setInterval(() => {
-                currentSlide++;
-                updateSlide(true);
-            }, 4000);
-        }
-
-        function stopAutoScroll() {
-            clearInterval(autoScrollInterval);
         }
 
         function openImage(src) {
-            if(!src) { document.getElementById('lightbox').style.display = 'none'; return; }
             document.getElementById('lightbox-img').src = src;
             document.getElementById('lightbox').style.display = 'flex';
         }
+        function closeImage() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
 
-        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+        function scrollToSec(id) {
+            const el = document.getElementById(id);
+            if(el) {
+                const offset = 140;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = el.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            }
+        }
+
+        window.onscroll = function() {
+            document.getElementById('btnUp').style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
+        };
+
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / 100;
+                let count = 0;
+                const update = () => {
+                    if(count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(update, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                update();
+            });
+        }
 
         function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
         function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
 
-        function scrollToSec(id) {
-            const el = document.getElementById(id);
-            const offset = 140; 
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = el.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
-
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        }
-
         function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            const c = content[currentLang];
-            const isAr = currentLang === 'ar';
-
+            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
             document.documentElement.lang = currentLang;
-            document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-            document.body.style.fontFamily = isAr ? 'Segoe UI, Tahoma, sans-serif' : 'Arial, sans-serif';
+            document.documentElement.dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
+            
+            const trans = {
+                en: {
+                    hero: "Digital Illusion Tsunami: Egypt's Warning to the World",
+                    vision: "Our Strategic Vision",
+                    visDesc: "Protecting Egyptian society from digital disintegration by empowering families and restoring balance.",
+                    partners: "National Awareness Partners",
+                    stats: "Statistics",
+                    losses: "Losses",
+                    awareness: "Awareness Programs",
+                    lang: "https://flagcdn.com/w80/eg.png",
+                    browse: "Browse the Book",
+                    nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"]
+                },
+                ar: {
+                    hero: "تسونامي الوهم الرقمي: صرخة مصر لتحذير العالم",
+                    vision: "رؤيتنا الاستراتيجية",
+                    visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني.",
+                    partners: "شركاء الوعي الوطني",
+                    stats: "إحصائيات",
+                    losses: "الخسائر",
+                    awareness: "برامج التوعية",
+                    lang: "https://flagcdn.com/w80/gb.png",
+                    browse: "تصفح الكتاب",
+                    nav: ["رؤيتنا", "الشركاء", "ميديا", "إحصائيات", "خسائر", "وعي", "رأيك يهمنا"]
+                }
+            };
 
-            document.getElementById('main-hero-title').innerHTML = c.heroTitle;
-            document.getElementById('lnk-vision').innerText = c.vision;
-            document.getElementById('lnk-partners').innerText = c.partners;
-            document.getElementById('lnk-media').innerText = c.media;
-            document.getElementById('lnk-stats').innerText = c.stats;
-            document.getElementById('lnk-losses').innerText = c.losses;
-            document.getElementById('lnk-awareness').innerText = c.awareness;
-            document.getElementById('lnk-feedback').innerText = c.feedback;
-            document.getElementById('btn-browse').innerText = c.browse;
-            document.getElementById('vis-title').innerText = c.visTitle;
-            document.getElementById('vis-desc').innerText = c.visDesc;
-            document.getElementById('part-title').innerText = c.partTitle;
-            document.getElementById('st-title').innerText = c.stTitle;
-            document.getElementById('ls-title').innerText = c.lsTitle;
-            document.getElementById('footer-txt').innerText = c.footer;
-            document.getElementById('media-guideline').innerText = c.mediaGuide;
-
-            document.getElementById('p1-name').innerText = c.p1n;
-            document.getElementById('p1-desc').innerText = c.p1d;
-            document.getElementById('p1-src').innerText = c.p1src;
-            document.getElementById('p2-name').innerText = c.p2n;
-            document.getElementById('p2-desc').innerText = c.p2d;
-            document.getElementById('p2-src').innerText = c.p2src;
-            document.getElementById('p3-name').innerText = c.p3n;
-            document.getElementById('p3-desc').innerText = c.p3d;
-            document.getElementById('p3-src').innerText = c.p3src;
-
-            document.getElementById('st1-txt').innerText = c.st1;
-            document.getElementById('st1-src').innerText = c.st1src;
-            document.getElementById('st2-txt').innerText = c.st2;
-            document.getElementById('st2-src').innerText = c.st2src;
-            document.getElementById('ls1-txt').innerText = c.ls1;
-            document.getElementById('ls1-src').innerText = c.ls1src;
-            document.getElementById('ls2-txt').innerText = c.ls2;
-            document.getElementById('ls2-src').innerText = c.ls2src;
-
-            document.getElementById('langBtn').innerHTML = isAr ? 
-                '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
-                '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-
-            renderTicker();
-            setupCarousel(); // إعادة ضبط الشريط عند تغيير اللغة
-        }
-
-        function initCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const target = +entry.target.getAttribute('data-target');
-                        let count = 0;
-                        const inc = target / 50;
-                        const update = () => {
-                            count += inc;
-                            if(count < target) {
-                                entry.target.innerText = Math.ceil(count);
-                                setTimeout(update, 30);
-                            } else {
-                                entry.target.innerText = target;
-                            }
-                        };
-                        update();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(c => observer.observe(c));
+            const t = trans[currentLang];
+            document.getElementById('main-hero-title').innerHTML = currentLang === 'ar' ? '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>' : t.hero;
+            document.getElementById('vis-title').innerText = t.vision;
+            document.getElementById('vis-desc').innerText = t.visDesc;
+            document.getElementById('part-title').innerText = t.partners;
+            document.getElementById('st-title').innerText = t.stats;
+            document.getElementById('ls-title').innerText = t.losses;
+            document.getElementById('awareness-main-title').innerText = t.awareness;
+            document.getElementById('langBtn').querySelector('img').src = t.lang;
+            document.getElementById('btn-browse').innerText = t.browse;
+            
+            const navIds = ['lnk-vision','lnk-partners','lnk-media','lnk-stats','lnk-losses','lnk-awareness','lnk-feedback'];
+            navIds.forEach((id, i) => { if(document.getElementById(id)) document.getElementById(id).innerText = t.nav[i]; });
         }
     </script>
 </body>
