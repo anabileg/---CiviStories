@@ -78,7 +78,6 @@
         .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
         .track img:hover { filter: grayscale(0%); }
         
-        /* تعديل السرعة هنا (1200 ثانية لتكون بطيئة جداً) */
         .animate-media { animation: mediaScroll 1200s linear infinite; }
         @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         [dir="rtl"] .animate-media { animation: mediaScrollRtl 1200s linear infinite; }
@@ -101,9 +100,19 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
+        /* تعديل المودال ليكون زر الإغلاق بالخارج */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
-        .modal-box { background: #ffff00; border: 3px solid #000; width: 90%; max-width: 600px; border-radius: 20px; padding: 30px; position: relative; color: #000; max-height: 80vh; overflow-y: auto; }
-        .close-modal { position: absolute; top: 15px; left: 15px; font-size: 25px; cursor: pointer; color: #ff0000; font-weight: bold; z-index: 50001; }
+        .modal-container { position: relative; width: 90%; max-width: 600px; }
+        .modal-box { background: #ffff00; border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
+        
+        /* زر الإغلاق الجديد في الخارج */
+        .close-modal { 
+            position: absolute; top: -20px; left: -20px; font-size: 30px; cursor: pointer; 
+            color: #ff0000; font-weight: bold; z-index: 50001; background: #000; 
+            border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; 
+            display: flex; align-items: center; justify-content: center; 
+        }
+
         .q-item { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s; font-weight: bold; color: #000; }
         .q-item:hover { background: rgba(0,0,0,0.05); }
         .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; text-align: center; }
@@ -121,6 +130,7 @@
             .video-container-box { width: 100%; height: 250px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
             .section-main-title { font-size: 2rem; }
+            .close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
         }
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -133,17 +143,21 @@
     <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
     <div id="qModal" class="modal-overlay">
-        <div class="modal-box">
+        <div class="modal-container">
             <span class="close-modal" onclick="closePopup('qModal')">×</span>
-            <h2 id="modalTitle" style="color:#ff0000; margin-bottom:20px; text-align: center;">برامج التوعية</h2>
-            <div id="questionsContainer"></div>
+            <div class="modal-box">
+                <h2 id="modalTitle" style="color:#ff0000; margin-bottom:20px; text-align: center;">برامج التوعية</h2>
+                <div id="questionsContainer"></div>
+            </div>
         </div>
     </div>
 
     <div id="aModal" class="modal-overlay">
-        <div class="modal-box">
+        <div class="modal-container">
             <span class="close-modal" onclick="closePopup('aModal')">×</span>
-            <div id="answerContent"></div>
+            <div class="modal-box">
+                <div id="answerContent"></div>
+            </div>
         </div>
     </div>
 
@@ -374,7 +388,6 @@
             track.innerHTML = [...translations[currentLang].news, ...translations[currentLang].news].map(item => `<span>${item}</span>`).join("");
             
             const imgTrack = document.getElementById('track-imgs');
-            // تأكد من تكرار الصور لضمان سلاسة الشريط
             imgTrack.innerHTML = [...images, ...images].map(src => `<img src="${src}" onclick="openImage('${src}')" onerror="this.style.display='none'">`).join("");
             
             startCounters();
@@ -430,72 +443,78 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             updateLangUI();
             const track = document.getElementById('tickerTrack');
             track.innerHTML = [...translations[currentLang].news, ...translations[currentLang].news].map(item => `<span>${item}</span>`).join("");
         }
 
+        function startCounters() {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const c = entry.target;
+                        const target = parseFloat(c.getAttribute('data-target'));
+                        let count = 0;
+                        const inc = target / 100;
+                        const update = () => {
+                            if(count < target) {
+                                count += inc;
+                                let displayVal = count.toFixed(count % 1 === 0 ? 0 : 1);
+                                c.innerText = currentLang === 'ar' ? toArabicDigits(displayVal) : displayVal;
+                                setTimeout(update, 20);
+                            } else {
+                                c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
+                            }
+                        };
+                        update();
+                        observer.unobserve(c);
+                    }
+                });
+            }, {threshold: 0.5});
+            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
+        }
+
         function scrollToSec(id) {
             const el = document.getElementById(id);
-            if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
+            if(el) {
+                const offset = 140; 
+                window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
+            }
         }
 
-        function openImage(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeImage() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-
-        function openProgram(prog) {
+        function openProgram(type) {
             const container = document.getElementById('questionsContainer');
-            container.innerHTML = programsData[prog].map((item, idx) => `
-                <div class="q-item" onclick="showAnswer('${prog}', ${idx})">${item.q}</div>
-            `).join("");
+            container.innerHTML = "";
+            const data = programsData[type];
+            document.getElementById('modalTitle').innerText = document.getElementById('aw-c' + (['child','teens','youth','marriage','seniors','security'].indexOf(type)+1)).innerText;
+            
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "q-item";
+                div.innerText = item.q;
+                div.onclick = () => showAnswer(item);
+                container.appendChild(div);
+            });
             document.getElementById('qModal').style.display = 'flex';
         }
 
-        function showAnswer(prog, idx) {
-            const item = programsData[prog][idx];
-            document.getElementById('answerContent').innerHTML = `
-                <span class="ans-src">${item.src}</span>
+        function showAnswer(item) {
+            const content = document.getElementById('answerContent');
+            content.innerHTML = `
                 <span class="ans-q">${item.q}</span>
-                <p style="text-align:center; line-height:1.6; font-size:1.1rem;">${item.ans}</p>
+                <span class="ans-src">المصدر: ${item.src}</span>
+                <p style="text-align:center; font-size:1.1rem; line-height:1.6;">${item.ans}</p>
             `;
             document.getElementById('aModal').style.display = 'flex';
         }
 
-        function closePopup(id) {
-            document.getElementById(id).style.display = 'none';
+        function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+        function openImage(src) { 
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
         }
-
-        function startCounters() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        const target = parseFloat(entry.target.getAttribute('data-target'));
-                        let count = 0;
-                        const speed = target / 100;
-                        const update = () => {
-                            count += speed;
-                            if(count < target) {
-                                entry.target.innerText = currentLang === 'ar' ? toArabicDigits(count.toFixed(1)) : count.toFixed(1);
-                                setTimeout(update, 20);
-                            } else {
-                                entry.target.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
-                            }
-                        };
-                        update();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            document.querySelectorAll('.counter').forEach(c => observer.observe(c));
-        }
+        function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
     </script>
 </body>
 </html>
