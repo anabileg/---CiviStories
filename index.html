@@ -344,24 +344,18 @@
            }
        };
 
+       // هنا قمت بإضافة الروابط الفعلية للصور داخل مصفوفة mediaImages لتظهر في شريط الميديا
+       const mediaImages = [
+           "1.png", "2.png", "3.png", "4.png", "5.png", 
+           "6.png", "7.png", "8.png", "9.png", "10.png",
+           "11.png", "12.png", "13.png", "14.png", "15.png",
+           "16.png", "17.png", "18.png", "19.png", "20.png"
+       ];
+
        const programsData = {
            child: [
                 { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يمنع منعاً باتاً استخدام الشاشات للأطفال دون سن 18-24 شهراً. <br> * الاستثناء الوحيد في هذا السن هو مكالمات الفيديو للتواصل مع الأهل فقط. <br> * من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي عالي الجودة. <br> * يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
-                { q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", src: "الجمعية النفسية الأمريكية (APA)", ans: "* الاستخدام العادي هو وسيلة للترفيه لا تؤثر على التواصل الاجتماعي الواقعي. <br> * العزلة تبدأ عندما تظهر أعراض الانسحاب مثل العصبية الشديدة عند ترك الجهاز. <br> * فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر. <br> * إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة." },
-                { q: "كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", src: "مركز نمو الطفل بجامعة هارفارد", ans: "* استخدام أسلوب التحذير التدريجي قبل 10 و 5 دقائق من النهاية. <br> * إعطاء الطفل قوة الاختيار (هل تريد الإغلاق الآن أم بعد انتهاء هذا المستوى؟). <br> * ربط نهاية وقت الشاشة بنشاط محبب آخر (وقت اللعب بالمكعبات أو الخروج). <br> * التزام الوالدين بإنهاء وقت شاشتهم أيضاً ليكونوا قدوة للطفل." },
-                { q: "هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال؟", src: "منظمة (Common Sense Media)", ans: "* تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز. <br> * الألعاب التي تحتوي على دردشة مفتوحة مع غرباء مثل بعض غرف (روبلوكس). <br> * التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة. <br> * التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)." },
-                { q: "كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل؟", src: "منظمة اليونيسف (UNICEF)", ans: "* التفاعل بهدوء وعدم إظهار الصدمة حتى لا يشعر الطفل بالخوف من إخبارك لاحقاً. <br> * شرح أن الإنترنت عالم واسع وفيه أخطاء يجب تجنبها. <br> * تمكين الطفل من مهارة التحدث الصريح فور رؤية أي محتوى مزعج. <br> * مراجعة إعدادات الأمان (Safe Search) وتحديثها فوراً." },
-                { q: "ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة؟", src: "مؤسسة مايو كلينك الطبية", ans: "* الألعاب الحسية (الرسم، التلوين، الصلصال، المكعبات). <br> * الأنشطة البدنية الخارجية التي تفرغ الطاقة الحركية. <br> * إشراك الطفل في مهام حقيقية مثل الطبخ أو العناية بالمنزل. <br> * القراءة التفاعلية التي تتطلب تخيلاً ومشاركة ذهنية." },
-                { q: "هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو الطفل فعلياً؟", src: "مؤسسة النوم الوطنية (NSF)", ans: "* الضوء الأزرق يمنع إفرار الميلاتونين، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم. <br> * يؤثر على المرونة العصبية للدماغ في السن الصغير بسبب التحفيز البصري المفرط. <br> * يسبب قصر النظر وجفاف العين نتيجة التحديق الطويل. <br> * الجلوس بوضعيات خاطئة يؤثر على نمو العمود الفقري للطفل." },
-                { q: "كيف أفعل ميزة الرقابة الأبوية على الراوتر والمنصات؟", src: "خبراء تقنيين في (Google & Apple)", ans: "* استخدام تطبيق (Google Family Link) لإدارة الوقت والتطبيقات. <br> * تفعيل (Restricted Mode) في يوتيوب و (SafeSearch) في جوجل. <br> * ضبط إعدادات الراوتر لحجب المواقع المشبوهة عبر نظام (DNS) آمن. <br> * تفعيل ميزة مدة استخدام الجهاز (Screen Time) ووضع كلمة سر." },
-                { q: "ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين؟", src: "المركز الوطني للأطفال المفقودين والمستغلين (NCMEC)", ans: "* ابدأ بحوار هادئ: لماذا تتحدث معه؟ لفهم احتياجاته الاجتماعية. <br> * اشرح مخاطر الهوية المزيفة وأن الغريب خلف الشاشة قد لا يكون طفلاً. <br> * أغلق خاصية الدردشة في اللعبة فوراً واجعل اللعب في مكان عام بالمنزل. <br> * علمه ألا يشارك أي معلومات شخصية (الاسم، المدرسة، الموقع)." },
-                { q: "كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟", src: "معهد ماساتشوستس للتكنولوجيا (MIT - Scratch)", ans: "* تحويل الطفل من مشاهد إلى صانع عبر تطبيقات تعليم البرمجة (مثل Scratch Junior). <br> * استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء. <br> * تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك. <br> * اختيار ألعاب حل الألغاز التي تنمي التفكير المنطقي." },
-                { q: "كيف أحول وقت الشاشة إلى جلسة ترابط أسري وتفاعل مشترك؟", src: "دراسات جامعة ستانفورد حول المشاهدة المشتركة", ans: "* العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها. <br> * شاهد فيلماً كرتونياً وناقش معه القيم الأخلاقية المستفادة من القصة. <br> * اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي). <br> * خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية." },
-                { q: "هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟", src: "الرابطة الدولية لتكنولوجيا التعليم (ISTE)", ans: "* نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع. <br> * تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب. <br> * منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة. <br> * التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل أفلام قصيرة بالدمى." },
-                { q: "كيف أعلم طفلي مهارة التفكير النقدي للتمييز بين الحقيقة والخداع؟", src: "منظمة (Media Smarts)", ans: "* اسأل الطفل دائماً: من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟ <br> * علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي). <br> * قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع. <br> * علمه ألا يصدق كل ما يراه إلا إذا تأكد من مصدر موثوق." },
-                { q: "ما هي القواعد الذهبية لإنشاء ميثاق رقمي يلتزم به الطفل؟", src: "أكاديمية كوايت (Quiet Academy) للتربية الرقمية", ans: "* المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية. <br> * الوضوح: حدد أوقاتاً وأماكن خالية من الشاشات (مثل وقت الأكل، وغرفة النوم). <br> * العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً). <br> * التوازن: القاعدة هي أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة." },
-                { q: "كيف أدرب طفلي على أن يكون صانع محتوى مفيداً؟", src: "خبراء التربية الإبداعية", ans: "* شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً). <br> * علمه أساسيات المونتاج البسيط وكتابة سيناريو قصير. <br> * وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية. <br> * ركز على جودة الفكرة وليس على عدد اللايكات أو المشاهدات." },
-                { q: "كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟", src: "دراسة التقنية التداخلية (Technoference)", ans: "* الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك. <br> * انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية. <br> * القاعدة الذهبية: كن أنت القدوة التي تريد أن تراها في طفلك. <br> * خصص وقتاً في اليوم يكون فيه المنزل بالكامل بدون هواتف لتعزيز التواصل البصري." }
+                { q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", src: "الجمعية النفسية الأمريكية (APA)", ans: "* الاستخدام العادي هو وسيلة للترفيه لا تؤثر على التواصل الاجتماعي الواقعي. <br> * العزلة تبدأ عندما تظهر أعراض الانسحاب مثل العصبية الشديدة عند ترك الجهاز. <br> * فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر. <br> * إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة." }
            ],
            teens: [],
            youth: [],
@@ -376,66 +370,85 @@
            loadMedia();
            updateTicker();
            startCounters();
-           window.onscroll = function() {
-                document.getElementById("btnUp").style.display = (window.pageYOffset > 300) ? "flex" : "none";
-           };
+           window.addEventListener('scroll', () => {
+               document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+           });
        }
 
        function loadMedia() {
            const track = document.getElementById('track-imgs');
-           track.innerHTML = '';
-           // عرض 15 صورة (من 1 إلى 15) مكررة مرتين لضمان استمرارية الحركة
-           for(let j=0; j<2; j++) {
-               for(let i=1; i<=15; i++) {
-                   const img = document.createElement('img');
-                   img.src = i + '.png';
-                   img.onclick = () => openImage(img.src);
-                   track.appendChild(img);
-               }
-           }
+           // نكرر الصور مرتين لضمان استمرارية الحركة (Infinite Scroll)
+           const fullList = [...mediaImages, ...mediaImages];
+           track.innerHTML = fullList.map(img => `<img src="${img}" onclick="viewImage('${img}')">`).join('');
+       }
+
+       function viewImage(src) {
+           document.getElementById('lightbox-img').src = src;
+           document.getElementById('lightbox').style.display = 'flex';
+       }
+
+       function closeImage() {
+           document.getElementById('lightbox').style.display = 'none';
        }
 
        function updateTicker() {
            const track = document.getElementById('tickerTrack');
            const news = translations[currentLang].news;
-           track.innerHTML = '';
-           for(let i=0; i<3; i++) {
-               news.forEach(text => {
-                   const span = document.createElement('span');
-                   span.innerText = text;
-                   track.appendChild(span);
-               });
-           }
+           track.innerHTML = [...news, ...news].map(n => `<span>${n}</span>`).join('');
        }
 
        function startCounters() {
            const counters = document.querySelectorAll('.counter');
            counters.forEach(counter => {
-               const target = parseFloat(counter.getAttribute('data-target'));
+               const target = +counter.getAttribute('data-target');
                let count = 0;
-               const speed = 2000 / target;
-               const updateCount = () => {
-                   count += (target / 100);
+               const inc = target / 100;
+               const update = () => {
                    if(count < target) {
-                       counter.innerText = count.toFixed(1).replace('.0', '');
-                       setTimeout(updateCount, 20);
+                       count += inc;
+                       counter.innerText = count.toFixed(target % 1 === 0 ? 0 : 1);
+                       setTimeout(update, 20);
                    } else {
                        counter.innerText = target;
                    }
                };
-               updateCount();
+               update();
            });
        }
 
+       function scrollToSec(id) {
+           document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+       }
+
+       function openProgram(key) {
+           const container = document.getElementById('questionsContainer');
+           const questions = programsData[key] || [];
+           container.innerHTML = questions.map((item, idx) => `
+               <div class="q-item" onclick="showAnswer('${key}', ${idx})">${item.q}</div>
+           `).join('');
+           document.getElementById('qModal').style.display = 'flex';
+       }
+
+       function showAnswer(key, idx) {
+           const item = programsData[key][idx];
+           const content = document.getElementById('answerContent');
+           content.innerHTML = `
+               <span class="ans-q">${item.q}</span>
+               <span class="ans-src">${item.src}</span>
+               <div class="ans-text">${item.ans}</div>
+           `;
+           document.getElementById('aModal').style.display = 'flex';
+       }
+
+       function closePopup(id) {
+           document.getElementById(id).style.display = 'none';
+       }
+
        function toggleLanguage() {
-           currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-           const dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
-           document.documentElement.dir = dir;
-           document.documentElement.lang = currentLang;
-           
-           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang === 'ar' ? 'gb' : 'eg'}.png" alt="Lang">`;
-           
+           currentLang = currentLang === 'ar' ? 'en' : 'ar';
            const t = translations[currentLang];
+           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+           
            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
            document.getElementById('vis-title').innerText = t.visTitle;
            document.getElementById('vis-desc').innerText = t.visDesc;
@@ -444,75 +457,35 @@
            document.getElementById('p2-name').innerText = t.p2Name;
            document.getElementById('p3-name').innerText = t.p3Name;
            document.getElementById('st-title').innerText = t.stTitle;
-           document.getElementById('ls-title').innerText = t.lsTitle;
-           document.getElementById('awareness-main-title').innerText = t.awTitle;
-           document.getElementById('media-guideline').innerText = t.mediaGuide;
-           document.getElementById('btn-browse').innerText = t.btnBrowse;
-
-           const navLinks = document.querySelectorAll('.nav-links a');
-           t.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
-
            document.getElementById('st1-txt').innerText = t.st1;
            document.getElementById('st2-txt').innerText = t.st2;
            document.getElementById('st3-txt').innerText = t.st3;
+           document.getElementById('ls-title').innerText = t.lsTitle;
            document.getElementById('ls1-txt').innerText = t.ls1;
            document.getElementById('ls2-txt').innerText = t.ls2;
            document.getElementById('ls3-txt').innerText = t.ls3;
+           document.getElementById('awareness-main-title').innerText = t.awTitle;
+           document.getElementById('aw-c1').innerText = t.aw1;
+           document.getElementById('aw-c2').innerText = t.aw2;
+           document.getElementById('aw-c3').innerText = t.aw3;
+           document.getElementById('aw-c4').innerText = t.aw4;
+           document.getElementById('aw-c5').innerText = t.aw5;
+           document.getElementById('aw-c6').innerText = t.aw6;
+           document.getElementById('media-guideline').innerText = t.mediaGuide;
+           document.getElementById('btn-browse').innerText = t.btnBrowse;
 
-           for(let i=1; i<=6; i++) {
-               document.getElementById('aw-c'+i).innerText = t['aw'+i];
-               document.getElementById('src'+i).innerText = t.sources[i-1];
-           }
+           // Update Sources
+           for(let i=1; i<=6; i++) document.getElementById('src'+i).innerText = t.sources[i-1];
            document.getElementById('src-p1').innerText = t.sources[6];
            document.getElementById('src-p2').innerText = t.sources[7];
            document.getElementById('src-p3').innerText = t.sources[8];
 
+           // Update Nav
+           const navLinks = document.querySelectorAll('.nav-links a');
+           t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
+
+           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang === 'ar' ? 'gb' : 'eg'}.png">`;
            updateTicker();
-       }
-
-       function openProgram(cat) {
-           const container = document.getElementById('questionsContainer');
-           container.innerHTML = '';
-           const qs = programsData[cat];
-           
-           if(!qs || qs.length === 0) {
-               container.innerHTML = '<p style="text-align:center; font-weight:bold;">قريباً... يتم تجهيز المحتوى</p>';
-           } else {
-               qs.forEach((item, index) => {
-                   const div = document.createElement('div');
-                   div.className = 'q-item';
-                   div.innerText = item.q;
-                   div.onclick = () => showAnswer(item);
-                   container.appendChild(div);
-               });
-           }
-           document.getElementById('qModal').style.display = 'flex';
-       }
-
-       function showAnswer(item) {
-           const content = document.getElementById('answerContent');
-           content.innerHTML = `
-                <span class="ans-q">${item.q}</span>
-                <span class="ans-src">المصدر: ${item.src}</span>
-                <div class="ans-text">${item.ans}</div>
-           `;
-           document.getElementById('aModal').style.display = 'flex';
-       }
-
-       function closePopup(id) { document.getElementById(id).style.display = 'none'; }
-       function openImage(src) {
-           document.getElementById('lightbox-img').src = src;
-           document.getElementById('lightbox').style.display = 'flex';
-       }
-       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-       function scrollToSec(id) {
-           const el = document.getElementById(id);
-           const offset = 140; 
-           const bodyRect = document.body.getBoundingClientRect().top;
-           const elementRect = el.getBoundingClientRect().top;
-           const elementPosition = elementRect - bodyRect;
-           const offsetPosition = elementPosition - offset;
-           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
        }
    </script>
 </body>
