@@ -20,232 +20,106 @@
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
-        .awareness-card, .awareness-card span, #awareness-main-title {
-            user-select: none;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            outline: none;
-        }
-
+        /* تجميل الخلفية */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
             animation: kenBurns 35s ease-in-out infinite alternate;
         }
-
         @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
+        /* الهيدر والقائمة */
         .navbar {
             min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
             display: flex; align-items: center; justify-content: center;
         }
-
         .nav-container { 
             width: 95%; max-width: 1400px;
             display: flex; flex-direction: row; justify-content: space-between; align-items: center;
         }
-        
         .nav-right-group { display: flex; align-items: center; gap: 20px; }
         .nav-logo-img { height: 65px; }
-        
-        .social-icons { display: flex; gap: 12px; align-items: center; }
-        .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
-        
         .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
         .nav-links a:hover { color: #fff; }
+        .social-icons { display: flex; gap: 12px; align-items: center; }
+        .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
 
-        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); }
-        .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); }
-        .ic-in { color: var(--in); } 
-
-        .lang-toggle { 
-            background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s;
-        }
-        .lang-toggle img {
-            width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-        }
-
+        /* شريط الأخبار */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
         .ticker-track span { padding: 0 60px; font-weight: bold; font-size: 1.1rem; }
-
-        /* تم إبطاء سرعة شريط الأخبار إلى 60 ثانية */
         .animate-news { animation: marqueeNews 60s linear infinite; }
-        @keyframes marqueeNews {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes marqueeNews { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         [dir="rtl"] .animate-news { animation: marqueeNewsRtl 60s linear infinite; }
-        @keyframes marqueeNewsRtl {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); }
-        }
+        @keyframes marqueeNewsRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
+        /* قسم الهيرو (الكتاب والفيديو) */
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
-        
-        .main-alert-title { 
-            text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); 
-            max-width: 100%;
-        }
+        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); }
         .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
         .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
 
         .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
-        
-        .book-static { 
-            flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px;
-        }
-        
-        .book-wrapper {
-            height: calc(100% - 70px); display: flex; align-items: center; justify-content: center;
-        }
-
-        .book-wrapper img { 
-            max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
-            animation: bookFloat 3s ease-in-out infinite;
-        }
-
+        .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
+        .book-wrapper { height: calc(100% - 70px); display: flex; align-items: center; justify-content: center; }
+        .book-wrapper img { max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); animation: bookFloat 3s ease-in-out infinite; }
         @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
-
-        .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
+        
+        .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; }
         .video-container-box iframe { width: 100%; height: 100%; border: none; }
 
-        .awareness-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px;
-        }
-        .awareness-card {
-            background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 30px 15px; cursor: pointer; transition: 0.3s; text-align: center; position: relative;
-        }
-        .awareness-card:hover {
-            background: rgba(212, 175, 55, 0.1); transform: translateY(-5px);
-        }
-        .awareness-card i {
-            font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--gold);
-        }
-        .awareness-card span { font-weight: bold; font-size: 1.2rem; }
-
-        .childhood-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 30000; display: none; justify-content: center; align-items: center;
-        }
-        .child-box {
-            width: 80%; max-width: 600px; height: 450px; background: #ffcc00; border-radius: 15px; position: relative;
-            display: flex; flex-direction: column; padding: 50px 20px 20px;
-        }
-        .close-child {
-            position: absolute; top: 10px; left: 10px; color: #ff0000; font-size: 30px; cursor: pointer;
-            font-weight: bold; background: none; border: none; z-index: 10;
-        }
-        .questions-scroll {
-            width: 100%; height: 100%; overflow-y: auto; padding-right: 10px;
-            text-align: right;
-        }
-        .questions-scroll::-webkit-scrollbar { width: 8px; }
-        .questions-scroll::-webkit-scrollbar-thumb { background: #b30000; border-radius: 10px; }
-        .questions-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        
-        .q-item {
-            color: #000; font-size: 1.1rem; font-weight: bold; margin-bottom: 15px;
-            padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5;
-        }
-
-        .carousel-wide { 
-            width: 100%; 
-            margin: 20px 0 40px 0; 
-            height: 350px; 
-            border-top: 2px solid var(--gold);
-            border-bottom: 2px solid var(--gold);
-            position: relative; 
-            overflow: hidden; 
-            background: #000;
-        }
+        /* الكاروسيل (الصور المتحركة) */
+        .carousel-wide { width: 100%; margin: 20px 0; height: 350px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); position: relative; overflow: hidden; background: #000; }
         .track { display: flex; width: max-content; }
-        .track:hover { animation-play-state: paused; }
-        .track img { 
-            height: 350px; width: 320px; object-fit: cover; cursor: zoom-in; padding: 0; 
-            border-right: 1px solid rgba(212,175,55,0.3); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0;
-        }
-        .track img:hover { filter: grayscale(0%); }
-
-        /* تم إبطاء سرعة شريط الصور إلى 120 ثانية لعرض هادئ جداً */
+        .track img { height: 350px; width: auto; min-width: 250px; object-fit: contain; cursor: zoom-in; border-right: 1px solid rgba(212,175,55,0.3); transition: 0.3s; }
         .animate-media { animation: mediaScroll 120s linear infinite; }
-        @keyframes mediaScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+        @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         [dir="rtl"] .animate-media { animation: mediaScrollRtl 120s linear infinite; }
-        @keyframes mediaScrollRtl {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); }
-        }
+        @keyframes mediaScrollRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
-        .lightbox {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
-            display: none; justify-content: center; align-items: center; z-index: 20000;
-        }
-        .lightbox-container { position: relative; max-width: 90%; max-height: 90vh; display: flex; justify-content: center; align-items: center; }
-        .lightbox img { max-width: 100%; max-height: 90vh; width: auto; height: auto; border: 3px solid var(--gold); border-radius: 10px; filter: grayscale(0%); object-fit: contain; }
-        .close-lightbox {
-            position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer;
-            font-weight: bold; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px;
-            display: flex; align-items: center; justify-content: center; z-index: 20001;
-        }
-
-        .vision-section, .glass-box { 
-            text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0;
-            background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative;
-            overflow: hidden;
-        }
-        .vision-section { margin: 40px 5%; }
-        .vision-section::before, .glass-box::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 0;
-        }
-        .vision-section h2, .vision-section p, .glass-box h2, .glass-box .grid { position: relative; z-index: 1; }
-        .section { padding: 40px 5%; }
+        /* الأقسام العامة والكروت */
+        .vision-section, .glass-box { text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 5%; position: relative; overflow: hidden; background: rgba(0,0,0,0.6); }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        
-        .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
-        .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; }
-        .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
-
+        .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.7); border-radius: 25px; border-bottom: 5px solid var(--gold); transition: 0.4s; position: relative; }
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
-        #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
-        
-        .whatsapp-float {
-            position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color);
-            color: #FFF; border-radius: 50px; text-align: center; font-size: 30px;
-            box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px;
-            display: flex; align-items: center; justify-content: center; text-decoration: none;
-            animation: pulse-wa 2s infinite;
-        }
+        /* برامج التوعية */
+        .awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+        .awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 30px 15px; cursor: pointer; text-align: center; transition: 0.3s; }
+        .awareness-card:hover { background: var(--gold); color: #000; }
+        .awareness-card i { font-size: 2.5rem; margin-bottom: 15px; display: block; }
 
-        @keyframes pulse-wa {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
+        /* المودال واللايت بوكس */
+        .childhood-modal, .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 30000; display: none; justify-content: center; align-items: center; }
+        .child-box { width: 90%; max-width: 600px; height: 500px; background: #ffcc00; border-radius: 20px; padding: 40px 20px; position: relative; color: #000; }
+        .close-child, .close-lightbox { position: absolute; top: 15px; left: 15px; font-size: 25px; font-weight: bold; cursor: pointer; background: #fff; border: 2px solid red; border-radius: 50%; width: 40px; height: 40px; color: red; }
+        .questions-scroll { height: 100%; overflow-y: auto; text-align: right; padding: 10px; }
+        .q-item { font-weight: bold; margin-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 10px; }
 
+        /* أزرار التواصل */
+        .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background: #25D366; color: #FFF; border-radius: 50px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 30px; z-index: 10002; animation: pulse-wa 2s infinite; }
+        #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 10002; cursor: pointer; }
+
+        /* تحسينات الجوال */
         @media (max-width: 992px) {
-            .nav-container { flex-direction: column; gap: 15px; padding: 10px 0; }
-            .nav-right-group, .nav-links { justify-content: center; width: 100%; }
-            .news-ticker { top: 160px; }
-            .hero { padding-top: 240px; }
-            .main-alert-title { font-size: 1.2rem; margin-bottom: 20px; }
-            .hero-container { flex-direction: column; }
-            .book-static { height: auto; flex: 0 0 auto; width: 100%; max-width: 320px; }
-            .video-container-box { width: 100%; height: 250px; }
+            .navbar { min-height: 120px; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 0.85rem; }
+            .news-ticker { top: 120px; }
+            .hero { padding-top: 190px; }
+            .main-alert-title { font-size: 1.4rem; padding: 0 10px; }
+            .hero-container { flex-direction: column; align-items: center; }
+            .video-container-box { height: 250px; width: 95%; }
+            .awareness-grid { grid-template-columns: 1fr; }
             .carousel-wide { height: 250px; }
-            .track img { height: 250px; width: 220px; }
-            .awareness-grid { grid-template-columns: repeat(2, 1fr); }
+            .track img { height: 250px; }
         }
 
-        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
-        .btn-action:hover { background: #fff; transform: scale(1.05);}
+        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; }
     </style>
 </head>
 <body onload="initPage()">
@@ -260,43 +134,33 @@
         </div>
     </div>
 
-    <div id="lightbox" class="lightbox">
-        <div class="lightbox-container">
-            <button class="close-lightbox" onclick="closeImage()">X</button>
-            <img id="lightbox-img" src="">
-        </div>
+    <div id="lightbox" class="lightbox" onclick="closeImage()">
+        <img id="lightbox-img" style="max-width: 90%; max-height: 80%; border: 3px solid var(--gold);">
     </div>
 
-    <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-links">
-                <a onclick="scrollToSec('about')" id="lnk-vision">رؤيتنا</a>
-                <a onclick="scrollToSec('inst')" id="lnk-partners">الشركاء</a>
-                <a onclick="scrollToSec('media-sec')" id="lnk-media">ميديا</a>
-                <a onclick="scrollToSec('stats')" id="lnk-stats">إحصائيات</a>
-                <a onclick="scrollToSec('losses')" id="lnk-losses">خسائر</a>
-                <a onclick="scrollToSec('awareness-sec')" id="lnk-awareness">وعي</a>
-                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank" id="lnk-feedback">رأيك يهمنا</a>
+                <a onclick="scrollToSec('about')">رؤيتنا</a>
+                <a onclick="scrollToSec('inst')">الشركاء</a>
+                <a onclick="scrollToSec('media-sec')">ميديا</a>
+                <a onclick="scrollToSec('stats')">إحصائيات</a>
+                <a onclick="scrollToSec('losses')">خسائر</a>
+                <a onclick="scrollToSec('awareness-sec')">وعي</a>
+                <a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank">رأيك يهمنا</a>
             </div>
-
             <div class="nav-right-group">
                 <div class="social-icons">
-                    <a href="#" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
-                    <a href="#" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="ic-tw" style="color: #ffffff;"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
-                    <a href="#" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="ic-fb"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="ic-yt"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="ic-ig"><i class="fab fa-instagram"></i></a>
                 </div>
-                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">
-                    <img src="https://flagcdn.com/w80/gb.png" alt="English">
+                <button class="lang-toggle" onclick="toggleLanguage()" id="langBtn" style="background:none; border:none; cursor:pointer;">
+                    <img src="https://flagcdn.com/w80/gb.png" width="30">
                 </button>
-                <img src="logo.png" class="nav-logo-img" alt="Logo">
+                <img src="logo.png" class="nav-logo-img">
             </div>
         </div>
     </nav>
@@ -309,50 +173,32 @@
         </h1>
         <div class="hero-container">
             <div class="book-static">
-                <div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book Cover"></div>
-                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" class="btn-action">تصفح الكتاب</a>
+                <div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book"></div>
+                <a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" class="btn-action" id="btn-browse">تصفح الكتاب</a>
             </div>
             <div class="video-container-box">
-                <iframe src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&controls=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4" allowfullscreen></iframe>
             </div>
         </div>
     </section>
 
     <section id="about" class="vision-section">
         <h2 id="vis-title">رؤيتنا الاستراتيجية</h2>
-        <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
+        <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني.</p>
     </section>
 
     <section id="inst" class="section">
         <div class="glass-box">
             <h2 id="part-title">شركاء الوعي الوطني</h2>
             <div class="grid">
-                <div class="card">
-                    <div class="info-popup" id="p1-src">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر</div>
-                    <img src="100.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-                    <h3 id="p1-name">الأزهر الشريف</h3>
-                    <p id="p1-desc">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
-                </div>
-                <div class="card">
-                    <div class="info-popup" id="p2-src">المصدر: تقارير المشورة الأسرية بالكنيسة</div>
-                    <img src="300.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-                    <h3 id="p2-name">الكنيسة المصرية</h3>
-                    <p id="p2-desc">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
-                </div>
-                <div class="card">
-                    <div class="info-popup" id="p3-src">المصدر: وزارة الأوقاف المصرية</div>
-                    <img src="200.png" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-                    <h3 id="p3-name">وزارة الأوقاف</h3>
-                    <p id="p3-desc">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.</p>
-                </div>
+                <div class="card"><h3>الأزهر الشريف</h3><p>رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي.</p></div>
+                <div class="card"><h3>الكنيسة المصرية</h3><p>العمل على استقرار الأسرة ومواجهة الانعزال الرقمي.</p></div>
+                <div class="card"><h3>وزارة الأوقاف</h3><p>مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا.</p></div>
             </div>
         </div>
     </section>
 
-    <div style="text-align:center; margin-top:40px;">
-        <h2 id="media-guideline" style="color:var(--gold); font-size:2.8rem; margin-bottom:10px;">اضغط على الصورة لتصلك رسالتنا</h2>
-    </div>
-
+    <div style="text-align:center; margin-top:40px;"><h2 id="media-guideline" style="color:var(--gold);">اضغط على الصورة لتصلك رسالتنا</h2></div>
     <section id="media-sec" class="carousel-wide">
         <div class="track animate-media" id="track-imgs"></div>
     </section>
@@ -361,21 +207,9 @@
         <div class="glass-box">
             <h2 id="st-title">إحصائيات</h2>
             <div class="grid">
-                <div class="card">
-                    <div class="info-popup" id="st1-src">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء</div>
-                    <span class="stat-num counter" data-target="311">0</span>
-                    <p id="st1-txt">ألف حالة طلاق سنوياً</p>
-                </div>
-                <div class="card">
-                    <div class="info-popup" id="st2-src">المصدر: تقرير وزارة الاتصالات</div>
-                    <span class="stat-num counter" data-target="104">0</span>
-                    <p id="st2-txt">مليون هاتف محمول</p>
-                </div>
-                <div class="card">
-                    <div class="info-popup" id="st3-src">المصدر: تقرير وزارة التضامن</div>
-                    <span class="stat-num counter" data-target="5.7">0</span>
-                    <p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
-                </div>
+                <div class="card"><span class="stat-num counter" data-target="311">0</span><p id="st1-txt">ألف حالة طلاق سنوياً</p></div>
+                <div class="card"><span class="stat-num counter" data-target="104">0</span><p id="st2-txt">مليون هاتف محمول</p></div>
+                <div class="card"><span class="stat-num counter" data-target="5.7">0</span><p id="st3-txt">ساعات يومية أمام الشاشات</p></div>
             </div>
         </div>
     </section>
@@ -384,40 +218,18 @@
         <div class="glass-box" style="border-color: var(--red-num);">
             <h2 id="ls-title">الخسائر</h2>
             <div class="grid">
-                <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls1-src">المصدر: دراسات الجدوى الاقتصادية</div>
-                    <span class="stat-num loss-num counter" data-target="15">0</span>
-                    <p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
-                </div>
-                <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls2-src">المصدر: تقارير الصحة النفسية</div>
-                    <span class="stat-num loss-num counter" data-target="4.5">0</span>
-                    <p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
-                </div>
-                <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup" id="ls3-src">المصدر: تقرير الأمن السيبراني</div>
-                    <span class="stat-num loss-num counter" data-target="2.1">0</span>
-                    <p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
-                </div>
+                <div class="card" style="border-bottom-color: var(--red-num);"><span class="stat-num loss-num counter" data-target="15">0</span><p id="ls1-txt">مليار جنيه خسائر إنتاجية</p></div>
+                <div class="card" style="border-bottom-color: var(--red-num);"><span class="stat-num loss-num counter" data-target="4.5">0</span><p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p></div>
             </div>
         </div>
     </section>
 
     <section id="awareness-sec" class="section">
-        <h2 id="awareness-main-title">برامج التوعية</h2>
+        <h2 id="awareness-main-title" style="text-align:center; margin-bottom:20px;">برامج التوعية</h2>
         <div class="awareness-grid">
-            <div class="awareness-card" onclick="openChildBox()">
-                <i class="fas fa-child"></i>
-                <span id="aw-c1">الطفولة الرقمية</span>
-            </div>
-            <div class="awareness-card">
-                <i class="fas fa-users"></i>
-                <span id="aw-c2">الإرشاد الأسري</span>
-            </div>
-            <div class="awareness-card">
-                <i class="fas fa-brain"></i>
-                <span id="aw-c3">الصحة النفسية</span>
-            </div>
+            <div class="awareness-card" onclick="openChildBox()"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
+            <div class="awareness-card"><i class="fas fa-users"></i><span id="aw-c2">الإرشاد الأسري</span></div>
+            <div class="awareness-card"><i class="fas fa-brain"></i><span id="aw-c3">الصحة النفسية</span></div>
         </div>
     </section>
 
@@ -429,65 +241,38 @@
                 visTitle: "رؤيتنا الاستراتيجية",
                 visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
                 partTitle: "شركاء الوعي الوطني",
-                p1Name: "الأزهر الشريف", p1Desc: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.",
-                p2Name: "الكنيسة المصرية", p2Desc: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
-                p3Name: "وزارة الأوقاف", p3Desc: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
                 stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", st3: "ساعات يومية أمام الشاشات للأطفال",
-                lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية سنوياً", ls2: "مليار جنيه تكلفة العلاج النفسي", ls3: "مليار جنيه خسائر النصب الإلكتروني",
+                lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية سنوياً", ls2: "مليار جنيه تكلفة العلاج النفسي",
                 awTitle: "برامج التوعية", aw1: "الطفولة الرقمية", aw2: "الإرشاد الأسري", aw3: "الصحة النفسية",
                 mediaGuide: "اضغط على الصورة لتصلك رسالتنا", btnBrowse: "تصفح الكتاب",
-                q: [
-                    "1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟",
-                    "2. كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟",
-                    "3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟",
-                    "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟"
-                ]
+                q: ["1. ما هو السن المناسب لاستخدام الشاشات؟", "2. كيف أميز بين الاستخدام العادي والعزلة؟", "3. كيف أدير وقت الشاشة بسلام؟", "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل؟"]
             },
             en: {
-                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span> <br> <span class="gold-text">Shocking</span> <span class="highlight">Egyptian Numbers</span>',
+                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion</span>',
                 nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"],
                 visTitle: "Our Strategic Vision",
-                visDesc: "We aim to protect the Egyptian social fabric from digital fragmentation risks by empowering families and restoring psychosocial balance.",
-                partTitle: "National Awareness Partners",
-                p1Name: "Al-Azhar Al-Sharif", p1Desc: "Monitoring and addressing family disintegration caused by digital addiction through fatwa committees.",
-                p2Name: "Egyptian Church", p2Desc: "Working on family stability and confronting digital isolation within the household through counseling.",
-                p3Name: "Ministry of Endowments", p3Desc: "Sakan & Mawada initiative to educate couples on technology risks to their stability.",
-                stTitle: "Statistics", st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", st3: "Daily Screen Hours for Children",
-                lsTitle: "Losses", ls1: "Billion EGP Annual Productivity Loss", ls2: "Billion EGP Psychological Treatment Cost", ls3: "Billion EGP Electronic Fraud Losses",
+                visDesc: "Protecting Egyptian social fabric from digital fragmentation.",
+                partTitle: "National Partners",
+                stTitle: "Statistics", st1: "Thousand Divorces", st2: "Million Mobiles", st3: "Daily Screen Hours",
+                lsTitle: "Losses", ls1: "Billion Productivity Loss", ls2: "Billion Psychological Cost",
                 awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Family Guidance", aw3: "Mental Health",
-                mediaGuide: "Click on the image to receive our message", btnBrowse: "Browse Book",
-                q: [
-                    "1. What is the appropriate age for children to start using screens?",
-                    "2. How to distinguish between normal use and digital isolation?",
-                    "3. How to manage screen time endings without tantrums?",
-                    "16. How does parental phone use affect child digital behavior?"
-                ]
+                mediaGuide: "Click to see our message", btnBrowse: "Browse Book",
+                q: ["1. Best age for screens?", "2. Normal use vs isolation?", "3. Managing screen time?", "16. Parental phone effect?"]
             }
         };
 
-        const newsItems = [
-            "الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي",
-            "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية",
-            "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر",
-            "تسجيل متوسط يومي 852 حالة طلاق في مصر بسبب السوشيال ميديا"
-        ];
-
+        const newsItems = ["أكثر من 800 حالة طلاق يومياً بسبب السوشيال ميديا", "الأزهر: الإدمان الرقمي يدمر الأسرة", "وزارة الأوقاف: الهواتف سبب الخرس الزوجي"];
         let currentLang = 'ar';
-        const images = [];
-        for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
+        const images = []; for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
 
         function initPage() {
             updateLangUI();
             const track = document.getElementById('tickerTrack');
             track.innerHTML = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join("");
-
             const imgTrack = document.getElementById('track-imgs');
-            imgTrack.innerHTML = "";
-            const repeatedImages = [...images, ...images]; 
-            repeatedImages.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.onclick = () => openImage(src);
+            [...images, ...images].forEach(src => {
+                const img = document.createElement('img'); img.src = src;
+                img.onclick = (e) => { e.stopPropagation(); openImage(src); };
                 imgTrack.appendChild(img);
             });
             startCounters();
@@ -499,37 +284,21 @@
             document.getElementById('vis-title').innerText = lang.visTitle;
             document.getElementById('vis-desc').innerText = lang.visDesc;
             document.getElementById('part-title').innerText = lang.partTitle;
-            document.getElementById('p1-name').innerText = lang.p1Name; document.getElementById('p1-desc').innerText = lang.p1Desc;
-            document.getElementById('p2-name').innerText = lang.p2Name; document.getElementById('p2-desc').innerText = lang.p2Desc;
-            document.getElementById('p3-name').innerText = lang.p3Name; document.getElementById('p3-desc').innerText = lang.p3Desc;
             document.getElementById('st-title').innerText = lang.stTitle;
-            document.getElementById('st1-txt').innerText = lang.st1;
-            document.getElementById('st2-txt').innerText = lang.st2;
-            document.getElementById('st3-txt').innerText = lang.st3;
             document.getElementById('ls-title').innerText = lang.lsTitle;
-            document.getElementById('ls1-txt').innerText = lang.ls1;
-            document.getElementById('ls2-txt').innerText = lang.ls2;
-            document.getElementById('ls3-txt').innerText = lang.ls3;
             document.getElementById('media-guideline').innerText = lang.mediaGuide;
             document.getElementById('btn-browse').innerText = lang.btnBrowse;
             document.getElementById('awareness-main-title').innerText = lang.awTitle;
             document.getElementById('aw-c1').innerText = lang.aw1;
             document.getElementById('aw-c2').innerText = lang.aw2;
             document.getElementById('aw-c3').innerText = lang.aw3;
-
-            const navLinks = document.querySelectorAll('.nav-links a');
-            lang.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
-
             const qBox = document.getElementById('childQuestions');
             qBox.innerHTML = lang.q.map(text => `<div class="q-item">${text}</div>`).join("");
-            qBox.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
         }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').querySelector('img').src = currentLang === 'ar' ? 'https://flagcdn.com/w80/gb.png' : 'https://flagcdn.com/w80/eg.png';
             updateLangUI();
         }
 
@@ -544,19 +313,13 @@
                 const target = +c.getAttribute('data-target');
                 let val = 0;
                 const update = () => {
-                    if(val < target) {
-                        val += target/100;
-                        c.innerText = val.toFixed(val % 1 === 0 ? 0 : 1);
-                        setTimeout(update, 20);
-                    } else { c.innerText = target; }
+                    if(val < target) { val += target/50; c.innerText = Math.ceil(val); setTimeout(update, 30); }
+                    else { c.innerText = target; }
                 };
                 update();
             });
         }
-        
-        window.onscroll = () => {
-            document.getElementById('btnUp').style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
-        };
+        window.onscroll = () => { document.getElementById('btnUp').style.display = (window.pageYOffset > 300) ? 'flex' : 'none'; };
     </script>
 </body>
 </html>
