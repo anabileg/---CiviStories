@@ -148,7 +148,7 @@
             position: relative; overflow: hidden; margin: 0 0 40px 0; background: #000; display: flex; align-items: center;
         }
         .track { 
-            display: flex; width: max-content; animation: mediaScroll 300s linear infinite; 
+            display: flex; width: max-content; animation: mediaScroll 220s linear infinite; 
         }
         .track:hover { animation-play-state: paused; }
         
@@ -160,7 +160,7 @@
 
         @keyframes mediaScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(50%); } /* Scrolls half because we clone the set */
+            100% { transform: translateX(-50%); } 
         }
 
         .lightbox {
@@ -227,10 +227,10 @@
             .carousel-wide { height: 250px; }
             .track img { height: 250px; width: 250px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
-            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         }
 
-        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
+        .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; text-align: center; }
         .btn-action:hover { background: #fff; transform: scale(1.05);}
     </style>
 </head>
@@ -480,15 +480,15 @@
             "متوسط عمر الزواج عند الطلاق يبلغ ٣.٧ سنة",
             "تسجيل ١٢ ألف و٥٠٠ حالة طلاق رقمي سنوياً",
             "متوسط عدد حسابات السوشيال ميديا للفرد المصري ٣.٨ حساب",
-            "٧١% من المصريين يبدأون يومهم بتصفح السوشيال ميديا",
-            "٥٢% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب",
+            "71% من المصريين يبدأون يومهم بتصفح السوشيال ميديا",
+            "52% من المشاكل الأسرية تبدأ عبر تطبيق الواتساب",
             "طلاق زوجين بعد ٣٢ سنة زواج بسبب تعليق كومنت",
             "مقتل شقيقين في المنصورة بعد مشاجرة بسبب منشور سياسي",
             "انتحار طالبة طب بجامعة عين شمس لمشاهدتها ١٠٠ فيديو يومياً عن فشل الحياة الطبية",
             "انقسام عائلة من ١٥ فرداً بالإسكندرية بسبب صورة حفلة عيد ميلاد",
             "زوج يطلق زوجته في الجيزة بعد اكتشاف فيديوهات رقص لها على تيك توك",
             "معدل انتشار الاكتئاب بين مستخدمي السوشيال ميديا يصل إلى ٣١%",
-            "٧٦% من المستخدمين يقومون بمقارنات اجتماعية سلبية",
+            "76% من المستخدمين يقومون بمقارنات اجتماعية سلبية",
             "خسائر أسرية بسبب النصب الإلكتروني تبلغ ٢.١ مليار جنيه سنوياً",
             "رصد أكثر من ١٥ ألف صفحة إلكترونية مجهولة تنشر الفتنة",
             "رصد ٨٧٠ جماعة إلكترونية منظمة لبث الفرقة",
@@ -501,7 +501,8 @@
 
         let currentLang = 'ar';
         const images = [];
-        for(let i=1; i<=100; i++) { images.push(`${i}.jpg`); }
+        // التعديل المطلوب: صور من 101 إلى 124
+        for(let i=101; i<=124; i++) { images.push(`${i}.jpg`); }
 
         function initPage() {
             const track = document.getElementById('tickerTrack');
@@ -511,7 +512,6 @@
             track.innerHTML = fullNews;
 
             const imgTrack = document.getElementById('track-imgs');
-            // Clone images to make seamless infinite loop
             const combinedImages = [...images, ...images];
             combinedImages.forEach(imgSrc => {
                 const img = document.createElement('img');
@@ -535,32 +535,20 @@
             const el = document.getElementById(id);
             if(el) {
                 const offset = 140;
-                const bodyRect = document.body.getBoundingClientRect().top;
-                const elementRect = el.getBoundingClientRect().top;
-                const elementPosition = elementRect - bodyRect;
-                const offsetPosition = elementPosition - offset;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                window.scrollTo({ top: el.offsetTop - offset, behavior: 'smooth' });
             }
         }
 
-        window.onscroll = function() {
-            document.getElementById('btnUp').style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
-        };
-
         function startCounters() {
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const target = parseFloat(counter.getAttribute('data-target'));
-                const increment = target / 100;
-                let count = 0;
+            document.querySelectorAll('.counter').forEach(c => {
+                const target = +c.getAttribute('data-target');
+                let val = 0;
                 const update = () => {
-                    if(count < target) {
-                        count += increment;
-                        counter.innerText = count.toFixed(target % 1 === 0 ? 0 : 1);
-                        setTimeout(update, 20);
-                    } else {
-                        counter.innerText = target;
-                    }
+                    if(val < target) {
+                        val += target/100;
+                        c.innerText = val.toFixed(val % 1 === 0 ? 0 : 1);
+                        setTimeout(update, 30);
+                    } else c.innerText = target;
                 };
                 update();
             });
@@ -568,52 +556,14 @@
 
         function openChildBox() { document.getElementById('childModal').style.display = 'flex'; }
         function closeChildBox() { document.getElementById('childModal').style.display = 'none'; }
+        
+        window.onscroll = () => { document.getElementById('btnUp').style.display = window.pageYOffset > 300 ? 'flex' : 'none'; };
 
         function toggleLanguage() {
-            currentLang = (currentLang === 'ar') ? 'en' : 'ar';
-            document.documentElement.lang = currentLang;
-            document.documentElement.dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
-            
-            const trans = {
-                en: {
-                    hero: "Digital Illusion Tsunami: Egypt's Warning to the World",
-                    vision: "Our Strategic Vision",
-                    visDesc: "Protecting Egyptian society from digital disintegration by empowering families and restoring balance.",
-                    partners: "National Awareness Partners",
-                    stats: "Statistics",
-                    losses: "Losses",
-                    awareness: "Awareness Programs",
-                    lang: "https://flagcdn.com/w80/eg.png",
-                    browse: "Browse the Book",
-                    nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"]
-                },
-                ar: {
-                    hero: "تسونامي الوهم الرقمي: صرخة مصر لتحذير العالم",
-                    vision: "رؤيتنا الاستراتيجية",
-                    visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني.",
-                    partners: "شركاء الوعي الوطني",
-                    stats: "إحصائيات",
-                    losses: "الخسائر",
-                    awareness: "برامج التوعية",
-                    lang: "https://flagcdn.com/w80/gb.png",
-                    browse: "تصفح الكتاب",
-                    nav: ["رؤيتنا", "الشركاء", "ميديا", "إحصائيات", "خسائر", "وعي", "رأيك يهمنا"]
-                }
-            };
-
-            const t = trans[currentLang];
-            document.getElementById('main-hero-title').innerHTML = currentLang === 'ar' ? '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>' : t.hero;
-            document.getElementById('vis-title').innerText = t.vision;
-            document.getElementById('vis-desc').innerText = t.visDesc;
-            document.getElementById('part-title').innerText = t.partners;
-            document.getElementById('st-title').innerText = t.stats;
-            document.getElementById('ls-title').innerText = t.losses;
-            document.getElementById('awareness-main-title').innerText = t.awareness;
-            document.getElementById('langBtn').querySelector('img').src = t.lang;
-            document.getElementById('btn-browse').innerText = t.browse;
-            
-            const navIds = ['lnk-vision','lnk-partners','lnk-media','lnk-stats','lnk-losses','lnk-awareness','lnk-feedback'];
-            navIds.forEach((id, i) => { if(document.getElementById(id)) document.getElementById(id).innerText = t.nav[i]; });
+            const isAr = document.documentElement.lang === 'ar';
+            document.documentElement.lang = isAr ? 'en' : 'ar';
+            document.documentElement.dir = isAr ? 'ltr' : 'rtl';
+            document.getElementById('langBtn').querySelector('img').src = isAr ? 'https://flagcdn.com/w80/eg.png' : 'https://flagcdn.com/w80/gb.png';
         }
     </script>
 </body>
