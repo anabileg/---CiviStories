@@ -68,7 +68,7 @@
         }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 2500s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 2800s linear infinite; }
         .ticker-track span { padding-left: 32px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
@@ -142,25 +142,26 @@
             padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5;
         }
 
+        /* --- Updated Media Carousel Styles --- */
         .carousel-wide { 
             width: 100%; height: 400px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); 
             position: relative; overflow: hidden; margin: 0 0 40px 0; background: #000; display: flex; align-items: center;
         }
-        .track { display: flex; width: max-content; transition: transform 0.8s ease; }
+        .track { 
+            display: flex; width: max-content; animation: mediaScroll 300s linear infinite; 
+        }
+        .track:hover { animation-play-state: paused; }
         
         .track img { 
             height: 400px; width: 400px; object-fit: cover; cursor: zoom-in; padding: 0; border-radius: 0;
-            filter: grayscale(100%); transition: filter 0.3s;
+            filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0;
         }
-        
-        .nav-btn {
-            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(212,175,55,0.7);
-            color: #000; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer;
-            z-index: 10; font-size: 1.5rem; transition: 0.3s;
+        .track img:hover { filter: grayscale(0%); }
+
+        @keyframes mediaScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); } /* Scrolls half because we clone the set */
         }
-        .nav-btn:hover { background: var(--gold); }
-        .prev-btn { left: 20px; }
-        .next-btn { right: 20px; }
 
         .lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
@@ -226,6 +227,7 @@
             .carousel-wide { height: 250px; }
             .track img { height: 250px; width: 250px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
+            @keyframes mediaScroll { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
         }
 
         .btn-action { text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; }
@@ -355,9 +357,7 @@
     </div>
 
     <section id="media-sec" class="carousel-wide">
-        <button class="nav-btn prev-btn" onclick="moveSlide(-1)">❮</button>
         <div class="track" id="track-imgs"></div>
-        <button class="nav-btn next-btn" onclick="moveSlide(1)">❯</button>
     </section>
 
     <section id="stats" class="section">
@@ -511,7 +511,9 @@
             track.innerHTML = fullNews;
 
             const imgTrack = document.getElementById('track-imgs');
-            images.forEach(imgSrc => {
+            // Clone images to make seamless infinite loop
+            const combinedImages = [...images, ...images];
+            combinedImages.forEach(imgSrc => {
                 const img = document.createElement('img');
                 img.src = imgSrc;
                 img.loading = "lazy";
@@ -519,16 +521,6 @@
                 imgTrack.appendChild(img);
             });
             startCounters();
-        }
-
-        let currentSlide = 0;
-        function moveSlide(direction) {
-            const track = document.getElementById('track-imgs');
-            const imgWidth = 400;
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = images.length - 1;
-            if (currentSlide >= images.length) currentSlide = 0;
-            track.style.transform = `translateX(${currentSlide * imgWidth}px)`;
         }
 
         function openImage(src) {
