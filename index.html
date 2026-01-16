@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CiviStories | تسونامي الوهم الرقمي</title>
+    <title>CiviStories | Digital Illusion Tsunami</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -20,10 +20,12 @@
         html { scroll-behavior: smooth; }
         body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
 
+        /* حماية العناوين من التحديد العشوائي */
         .awareness-card, .awareness-card span, #awareness-main-title {
             user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none;
         }
 
+        /* الخلفية المتحركة */
         .site-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
@@ -32,6 +34,7 @@
 
         @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
 
+        /* القائمة العلوية */
         .navbar {
             min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -64,7 +67,7 @@
             width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
 
-        /* --- شريط الأخبار: السرعة المطلوبة 400 ثانية --- */
+        /* --- شريط الأخبار: سرعة 400 ثانية --- */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
         .ticker-track { display: flex; white-space: nowrap; width: max-content; }
         .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
@@ -74,6 +77,7 @@
         [dir="rtl"] .animate-news { animation: marqueeNewsRtl 400s linear infinite; }
         @keyframes marqueeNewsRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
+        /* قسم الهيرو (الرئيسي) */
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
         
         .main-alert-title { 
@@ -102,12 +106,14 @@
         .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
         .video-container-box iframe { width: 100%; height: 100%; border: none; }
 
+        /* التوعية */
         .awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
         .awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 30px 15px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
         .awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
         .awareness-card i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--gold); }
         .awareness-card span { font-weight: bold; font-size: 1.2rem; }
 
+        /* المودال */
         .childhood-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 30000; display: none; justify-content: center; align-items: center; }
         .child-box { width: 80%; max-width: 600px; height: 450px; background: #ffcc00; border-radius: 15px; position: relative; display: flex; flex-direction: column; padding: 50px 20px 20px; }
         .close-child { position: absolute; top: 10px; left: 10px; color: #ff0000; font-size: 30px; cursor: pointer; font-weight: bold; background: none; border: none; z-index: 10; }
@@ -151,11 +157,13 @@
         [dir="rtl"] .animate-media { animation: mediaScrollRtl 600s linear infinite; }
         @keyframes mediaScrollRtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
 
+        /* لايت بوكس */
         .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
         .lightbox-container { position: relative; max-width: 90%; max-height: 90vh; display: flex; justify-content: center; align-items: center; }
         .lightbox img { max-width: 100%; max-height: 90vh; width: auto; height: auto; border: 3px solid var(--gold); border-radius: 10px; filter: grayscale(0%); object-fit: contain; }
         .close-lightbox { position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer; font-weight: bold; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
 
+        /* أقسام الرؤية والشركاء */
         .vision-section, .glass-box { 
             text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0;
             background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative;
@@ -174,12 +182,13 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
+        /* الأزرار العائمة */
         #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
-        
         .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
 
         @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
 
+        /* التجاوب مع الموبايل */
         @media (max-width: 992px) {
             .nav-container { flex-direction: column; gap: 15px; padding: 10px 0; }
             .nav-right-group, .nav-links { justify-content: center; width: 100%; }
@@ -303,7 +312,6 @@
     <div style="text-align:center; margin-top:40px;">
         <h2 id="media-guideline" style="color:var(--gold); font-size:2.8rem; margin-bottom:10px;">اضغط على الصورة لتصلك رسالتنا</h2>
     </div>
-
     <section id="media-sec" class="carousel-wide">
         <div class="track animate-media" id="track-imgs"></div>
     </section>
@@ -313,17 +321,17 @@
             <h2 id="st-title">إحصائيات</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="info-popup">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء</div>
+                    <div class="info-popup">Source: CAPMAS Egypt</div>
                     <span class="stat-num counter" data-target="311">0</span>
                     <p id="st1-txt">ألف حالة طلاق سنوياً</p>
                 </div>
                 <div class="card">
-                    <div class="info-popup">المصدر: تقرير وزارة الاتصالات</div>
+                    <div class="info-popup">Source: MCIT Egypt</div>
                     <span class="stat-num counter" data-target="104">0</span>
                     <p id="st2-txt">مليون هاتف محمول</p>
                 </div>
                 <div class="card">
-                    <div class="info-popup">المصدر: تقرير وزارة التضامن</div>
+                    <div class="info-popup">Source: Ministry of Social Solidarity</div>
                     <span class="stat-num counter" data-target="5.7">0</span>
                     <p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
                 </div>
@@ -336,17 +344,17 @@
             <h2 id="ls-title">الخسائر</h2>
             <div class="grid">
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup">المصدر: دراسات الجدوى الاقتصادية</div>
+                    <div class="info-popup">Source: Economic Feasibility Studies</div>
                     <span class="stat-num loss-num counter" data-target="15">0</span>
                     <p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup">المصدر: تقارير الصحة النفسية</div>
+                    <div class="info-popup">Source: Mental Health Reports</div>
                     <span class="stat-num loss-num counter" data-target="4.5">0</span>
                     <p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
                 </div>
                 <div class="card" style="border-bottom-color: var(--red-num);">
-                    <div class="info-popup">المصدر: تقرير الأمن السيبراني</div>
+                    <div class="info-popup">Source: Cybersecurity Reports</div>
                     <span class="stat-num loss-num counter" data-target="2.1">0</span>
                     <p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
                 </div>
@@ -355,7 +363,7 @@
     </section>
 
     <section id="awareness-sec" class="section">
-        <h2 id="awareness-main-title">برامج التوعية</h2>
+        <h2 id="awareness-main-title" style="text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 20px;">برامج التوعية</h2>
         <div class="awareness-grid">
             <div class="awareness-card" onclick="openChildBox()">
                 <i class="fas fa-child"></i>
@@ -381,26 +389,26 @@
                 lsTitle: "الخسائر", ls1: "مليار جنيه خسائر إنتاجية سنوياً", ls2: "مليار جنيه تكلفة العلاج النفسي", ls3: "مليار جنيه خسائر النصب الإلكتروني",
                 awTitle: "برامج التوعية", aw1: "الطفولة الرقمية", aw2: "الإرشاد الأسري", aw3: "الصحة النفسية",
                 mediaGuide: "اضغط على الصورة لتصلك رسالتنا", btnBrowse: "تصفح الكتاب",
-                q: ["1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", "2. كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", "3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", "16. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟"]
+                news: ["الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي", "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية", "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر", "تسجيل متوسط يومي 852 حالة طلاق في مصر بسبب السوشيال ميديا"],
+                q: ["1. ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", "2. كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", "3. كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", "4. كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟"]
             },
             en: {
-                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span> <br> <span class="gold-text">Shocking</span> <span class="highlight">Egyptian Numbers</span>',
+                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt\'s Cry to Warn the World</span> <br> <span class="gold-text">Shocking</span> <span class="highlight">Egyptian Statistics</span>',
                 nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"],
                 visTitle: "Our Strategic Vision",
-                visDesc: "We aim to protect the Egyptian social fabric from digital fragmentation risks by empowering families and restoring psychosocial balance.",
+                visDesc: "Through CiviStories, we aim to protect the Egyptian social fabric from digital fragmentation by empowering families and restoring psychosocial balance.",
                 partTitle: "National Awareness Partners",
-                p1Name: "Al-Azhar Al-Sharif", p1Desc: "Monitoring and addressing family disintegration caused by digital addiction through fatwa committees.",
-                p2Name: "Egyptian Church", p2Desc: "Working on family stability and confronting digital isolation within the household through counseling.",
-                p3Name: "Ministry of Endowments", p3Desc: "Sakan & Mawada initiative to educate couples on technology risks to their stability.",
+                p1Name: "Al-Azhar Al-Sharif", p1Desc: "Monitoring and addressing family disintegration caused by digital addiction through specialized Fatwa committees.",
+                p2Name: "The Egyptian Church", p2Desc: "Fostering family stability and confronting digital isolation within the same household through counseling programs.",
+                p3Name: "Ministry of Endowments", p3Desc: "The 'Sakan & Mawada' initiative to educate couples on technology's impact on marital stability.",
                 stTitle: "Statistics", st1: "Thousand Divorces Annually", st2: "Million Mobile Phones", st3: "Daily Screen Hours for Children",
-                lsTitle: "Losses", ls1: "Billion EGP Annual Productivity Loss", ls2: "Billion EGP Psychological Treatment Cost", ls3: "Billion EGP Electronic Fraud Losses",
+                lsTitle: "Losses", ls1: "Billion EGP Annual Productivity Loss", ls2: "Billion EGP Psychological Treatment Costs", ls3: "Billion EGP Electronic Fraud Losses",
                 awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Family Guidance", aw3: "Mental Health",
                 mediaGuide: "Click on the image to receive our message", btnBrowse: "Browse Book",
-                q: ["1. What is the appropriate age for children to start using screens?", "2. How to distinguish between normal use and digital isolation?", "3. How to manage screen time endings without tantrums?", "16. How does parental phone use affect child digital behavior?"]
+                news: ["Al-Azhar: A divorce case occurs nearly every 2.5 minutes due to digital addiction", "Min. of Endowments: Smartphones are a primary cause of marital 'social silence'", "Red Alert: Family fragmentation threatens social stability in Egypt", "Daily average of 852 divorce cases recorded in Egypt due to social media"],
+                q: ["1. What is the scientifically appropriate age to allow children screen time?", "2. How to distinguish between normal phone use and the onset of digital isolation?", "3. How to manage screen time boundaries peacefully without tantrums?", "4. How does parental phone addiction affect a child's digital behavior?"]
             }
         };
-
-        const newsItems = ["الأزهر الشريف: حالة طلاق تقريباً كل دقيقتين ونصف بسبب الإدمان الرقمي", "وزارة الأوقاف: الهواتف الذكية أحد أسباب الخرس والبرود الزوجي الرئيسية", "إنذار أحمر: تفكك الأسر يُهدد الاستقرار الاجتماعي والمجتمعي في مصر", "تسجيل متوسط يومي 852 حالة طلاق في مصر بسبب السوشيال ميديا"];
 
         let currentLang = 'ar';
         const images = [];
@@ -409,7 +417,8 @@
         function initPage() {
             updateLangUI();
             const track = document.getElementById('tickerTrack');
-            track.innerHTML = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join("");
+            const items = translations[currentLang].news;
+            track.innerHTML = [...items, ...items].map(item => `<span>${item}</span>`).join("");
 
             const imgTrack = document.getElementById('track-imgs');
             const repeatedImages = [...images, ...images];
@@ -452,6 +461,10 @@
             const qBox = document.getElementById('childQuestions');
             qBox.innerHTML = lang.q.map(text => `<div class="q-item">${text}</div>`).join("");
             qBox.style.textAlign = currentLang === 'ar' ? 'right' : 'left';
+            
+            // تحديث شريط الأخبار فور تغيير اللغة
+            const track = document.getElementById('tickerTrack');
+            track.innerHTML = [...lang.news, ...lang.news].map(item => `<span>${item}</span>`).join("");
         }
 
         function toggleLanguage() {
