@@ -99,15 +99,14 @@
         .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
         .loss-num { color: var(--red-num) !important; }
 
-        /* ستايل النوافذ المنبثقة للأسئلة */
+        /* ستايل النوافذ المنبثقة للأسئلة - معدل حسب الطلب */
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
-        .modal-box { background: #000; border: 2px solid var(--gold); width: 90%; max-width: 600px; border-radius: 20px; padding: 30px; position: relative; color: #fff; max-height: 80vh; overflow-y: auto; }
-        .modal-box.yellow-bg { background: #ffff00; color: #000; border: none; }
-        .close-modal { position: absolute; top: 15px; left: 15px; font-size: 25px; cursor: pointer; color: #ff0000; font-weight: bold; }
-        .q-item { padding: 15px; border-bottom: 1px solid #333; cursor: pointer; transition: 0.2s; font-weight: bold; }
-        .q-item:hover { background: rgba(212,175,55,0.1); }
+        .modal-box { background: #ffff00; border: 3px solid #000; width: 90%; max-width: 600px; border-radius: 20px; padding: 30px; position: relative; color: #000; max-height: 80vh; overflow-y: auto; }
+        .close-modal { position: absolute; top: 15px; left: 15px; font-size: 25px; cursor: pointer; color: #ff0000; font-weight: bold; z-index: 50001; }
+        .q-item { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s; font-weight: bold; color: #000; }
+        .q-item:hover { background: rgba(0,0,0,0.05); }
         .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; text-align: center; }
-        .ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        .ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; }
 
         #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
         .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
@@ -135,13 +134,13 @@
     <div id="qModal" class="modal-overlay">
         <div class="modal-box">
             <span class="close-modal" onclick="closePopup('qModal')">×</span>
-            <h2 id="modalTitle" style="color:var(--gold); margin-bottom:20px; text-align: center;">الأسئلة والتحذيرات</h2>
+            <h2 id="modalTitle" style="color:#ff0000; margin-bottom:20px; text-align: center;">برامج التوعية</h2>
             <div id="questionsContainer"></div>
         </div>
     </div>
 
     <div id="aModal" class="modal-overlay">
-        <div class="modal-box yellow-bg">
+        <div class="modal-box">
             <span class="close-modal" onclick="closePopup('aModal')">×</span>
             <div id="answerContent"></div>
         </div>
@@ -423,26 +422,47 @@
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.getElementById('langBtn').querySelector('img').src = currentLang === 'ar' ? 'https://flagcdn.com/w80/gb.png' : 'https://flagcdn.com/w80/eg.png';
-            updateLangUI();
-            const track = document.getElementById('tickerTrack');
-            track.innerHTML = [...translations[currentLang].news, ...translations[currentLang].news].map(item => `<span>${item}</span>`).join("");
+            const langBtn = document.getElementById('langBtn');
+            langBtn.querySelector('img').src = currentLang === 'ar' ? "https://flagcdn.com/w80/gb.png" : "https://flagcdn.com/w80/eg.png";
+            initPage();
+        }
+
+        function startCounters() {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / 100;
+                let count = 0;
+                const update = () => {
+                    count += increment;
+                    if(count < target) {
+                        counter.innerText = currentLang === 'ar' ? toArabicDigits(Math.ceil(count)) : Math.ceil(count);
+                        setTimeout(update, 20);
+                    } else {
+                        counter.innerText = currentLang === 'ar' ? toArabicDigits(target) : target;
+                    }
+                };
+                update();
+            });
         }
 
         function openProgram(type) {
-            const data = programsData[type] || [];
             const container = document.getElementById('questionsContainer');
-            document.getElementById('modalTitle').innerText = translations[currentLang].awTitle + " - " + type;
-            container.innerHTML = data.map((item, i) => `<div class="q-item" onclick="openAnswer('${type}', ${i})">${i+1}. ${item.q}</div>`).join('');
+            const questions = programsData[type] || [];
+            container.innerHTML = questions.map((item, index) => `
+                <div class="q-item" onclick="showAnswer('${type}', ${index})">
+                    ${index + 1}. ${item.q}
+                </div>
+            `).join('');
             document.getElementById('qModal').style.display = 'flex';
         }
 
-        function openAnswer(type, index) {
+        function showAnswer(type, index) {
             const item = programsData[type][index];
-            document.getElementById('answerContent').innerHTML = `
+            const content = document.getElementById('answerContent');
+            content.innerHTML = `
                 <span class="ans-q">${item.q}</span>
                 <span class="ans-src">المصدر: ${item.src}</span>
-                <p style="line-height:1.8; font-size:1.1rem; text-align: justify; direction: rtl;">${item.ans}</p>
+                <p style="line-height:1.8; font-size:1.1rem; text-align:justify;">${item.ans}</p>
             `;
             document.getElementById('aModal').style.display = 'flex';
         }
@@ -451,23 +471,6 @@
         function openImage(src) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox').style.display = 'flex'; }
         function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
         function scrollToSec(id) { window.scrollTo({ top: document.getElementById(id).offsetTop - 120, behavior: 'smooth' }); }
-
-        function startCounters() {
-            document.querySelectorAll('.counter').forEach(c => {
-                const target = parseFloat(c.getAttribute('data-target'));
-                let val = 0;
-                const update = () => {
-                    if(val < target) {
-                        val += target/100;
-                        let displayVal = val.toFixed(val % 1 === 0 ? 0 : 1);
-                        if(val >= target) displayVal = target;
-                        c.innerText = currentLang === 'ar' ? toArabicDigits(displayVal) : displayVal;
-                        setTimeout(update, 20);
-                    } else { c.innerText = currentLang === 'ar' ? toArabicDigits(target) : target; }
-                };
-                update();
-            });
-        }
     </script>
 </body>
 </html>
