@@ -253,8 +253,7 @@
        <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
    </div>
    <section id="media-sec" class="carousel-wide">
-       <div class="track animate-media" id="track-imgs">
-           </div>
+       <div class="track animate-media" id="track-imgs"></div>
    </section>
 
    <section id="stats" class="section">
@@ -377,114 +376,115 @@
            loadMedia();
            updateTicker();
            startCounters();
-           window.addEventListener('scroll', () => {
-               document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
-           });
+           window.onscroll = function() {
+                document.getElementById("btnUp").style.display = (window.pageYOffset > 300) ? "flex" : "none";
+           };
        }
 
        function loadMedia() {
            const track = document.getElementById('track-imgs');
-           // تم تحديث الروابط بأسماء ملفات صور حقيقية (افتراضية بناءً على محتوى الموقع)
-           const images = [
-               'media1.jpg', 'media2.jpg', 'media3.jpg', 'media4.jpg', 
-               'media5.jpg', 'media6.jpg', 'media7.jpg', 'media8.jpg'
-           ];
-           
-           // مضاعفة المصفوفة لعمل تأثير التكرار اللانهائي
-           const allImgs = [...images, ...images];
-           track.innerHTML = allImgs.map(img => `<img src="${img}" onclick="viewImage('${img}')" onerror="this.src='https://via.placeholder.com/300x350?text=CiviStories+Media'">`).join('');
+           track.innerHTML = '';
+           // عرض 15 صورة (من 1 إلى 15) مكررة مرتين لضمان استمرارية الحركة
+           for(let j=0; j<2; j++) {
+               for(let i=1; i<=15; i++) {
+                   const img = document.createElement('img');
+                   img.src = i + '.png';
+                   img.onclick = () => openImage(img.src);
+                   track.appendChild(img);
+               }
+           }
        }
 
        function updateTicker() {
            const track = document.getElementById('tickerTrack');
            const news = translations[currentLang].news;
-           track.innerHTML = [...news, ...news].map(n => `<span>${n}</span>`).join('');
+           track.innerHTML = '';
+           for(let i=0; i<3; i++) {
+               news.forEach(text => {
+                   const span = document.createElement('span');
+                   span.innerText = text;
+                   track.appendChild(span);
+               });
+           }
        }
 
        function startCounters() {
            const counters = document.querySelectorAll('.counter');
-           counters.forEach(c => {
-               const target = +c.getAttribute('data-target');
+           counters.forEach(counter => {
+               const target = parseFloat(counter.getAttribute('data-target'));
                let count = 0;
-               const inc = target / 100;
-               const timer = setInterval(() => {
-                   count += inc;
-                   if (count >= target) {
-                       c.innerText = target;
-                       clearInterval(timer);
+               const speed = 2000 / target;
+               const updateCount = () => {
+                   count += (target / 100);
+                   if(count < target) {
+                       counter.innerText = count.toFixed(1).replace('.0', '');
+                       setTimeout(updateCount, 20);
                    } else {
-                       c.innerText = count.toFixed(1).replace('.0', '');
+                       counter.innerText = target;
                    }
-               }, 30);
+               };
+               updateCount();
            });
        }
 
        function toggleLanguage() {
-           currentLang = currentLang === 'ar' ? 'en' : 'ar';
-           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+           currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+           const dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
+           document.documentElement.dir = dir;
            document.documentElement.lang = currentLang;
+           
+           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang === 'ar' ? 'gb' : 'eg'}.png" alt="Lang">`;
            
            const t = translations[currentLang];
            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
            document.getElementById('vis-title').innerText = t.visTitle;
            document.getElementById('vis-desc').innerText = t.visDesc;
            document.getElementById('part-title').innerText = t.partTitle;
+           document.getElementById('p1-name').innerText = t.p1Name;
+           document.getElementById('p2-name').innerText = t.p2Name;
+           document.getElementById('p3-name').innerText = t.p3Name;
            document.getElementById('st-title').innerText = t.stTitle;
            document.getElementById('ls-title').innerText = t.lsTitle;
            document.getElementById('awareness-main-title').innerText = t.awTitle;
            document.getElementById('media-guideline').innerText = t.mediaGuide;
            document.getElementById('btn-browse').innerText = t.btnBrowse;
-           
-           // تحديث الروابط في النابار
-           const navLinks = document.querySelectorAll('.nav-links a');
-           t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
 
-           // تحديث النصوص الصغيرة
-           document.getElementById('p1-name').innerText = t.p1Name;
-           document.getElementById('p2-name').innerText = t.p2Name;
-           document.getElementById('p3-name').innerText = t.p3Name;
+           const navLinks = document.querySelectorAll('.nav-links a');
+           t.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
+
            document.getElementById('st1-txt').innerText = t.st1;
            document.getElementById('st2-txt').innerText = t.st2;
            document.getElementById('st3-txt').innerText = t.st3;
            document.getElementById('ls1-txt').innerText = t.ls1;
            document.getElementById('ls2-txt').innerText = t.ls2;
            document.getElementById('ls3-txt').innerText = t.ls3;
-           document.getElementById('aw-c1').innerText = t.aw1;
-           document.getElementById('aw-c2').innerText = t.aw2;
-           document.getElementById('aw-c3').innerText = t.aw3;
-           document.getElementById('aw-c4').innerText = t.aw4;
-           document.getElementById('aw-c5').innerText = t.aw5;
-           document.getElementById('aw-c6').innerText = t.aw6;
 
-           // تحديث المصادر
+           for(let i=1; i<=6; i++) {
+               document.getElementById('aw-c'+i).innerText = t['aw'+i];
+               document.getElementById('src'+i).innerText = t.sources[i-1];
+           }
            document.getElementById('src-p1').innerText = t.sources[6];
            document.getElementById('src-p2').innerText = t.sources[7];
            document.getElementById('src-p3').innerText = t.sources[8];
-           document.getElementById('src1').innerText = t.sources[0];
-           document.getElementById('src2').innerText = t.sources[1];
-           document.getElementById('src3').innerText = t.sources[2];
-           document.getElementById('src4').innerText = t.sources[3];
-           document.getElementById('src5').innerText = t.sources[4];
-           document.getElementById('src6').innerText = t.sources[5];
 
-           document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
-               '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
-               '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-           
            updateTicker();
        }
 
-       function openProgram(type) {
+       function openProgram(cat) {
            const container = document.getElementById('questionsContainer');
-           const data = programsData[type];
-           if (!data || data.length === 0) {
-               container.innerHTML = '<p style="text-align:center; padding:20px;">قريباً سيتم إضافة المحتوى...</p>';
+           container.innerHTML = '';
+           const qs = programsData[cat];
+           
+           if(!qs || qs.length === 0) {
+               container.innerHTML = '<p style="text-align:center; font-weight:bold;">قريباً... يتم تجهيز المحتوى</p>';
            } else {
-               container.innerHTML = data.map((item, idx) => `
-                   <div class="q-item" onclick='showAnswer(${JSON.stringify(item)})'>
-                       ${idx + 1}. ${item.q}
-                   </div>
-               `).join('');
+               qs.forEach((item, index) => {
+                   const div = document.createElement('div');
+                   div.className = 'q-item';
+                   div.innerText = item.q;
+                   div.onclick = () => showAnswer(item);
+                   container.appendChild(div);
+               });
            }
            document.getElementById('qModal').style.display = 'flex';
        }
@@ -492,25 +492,27 @@
        function showAnswer(item) {
            const content = document.getElementById('answerContent');
            content.innerHTML = `
-               <span class="ans-q">${item.q}</span>
-               <span class="ans-src">المصدر: ${item.src}</span>
-               <div class="ans-text">${item.ans}</div>
+                <span class="ans-q">${item.q}</span>
+                <span class="ans-src">المصدر: ${item.src}</span>
+                <div class="ans-text">${item.ans}</div>
            `;
            document.getElementById('aModal').style.display = 'flex';
        }
 
        function closePopup(id) { document.getElementById(id).style.display = 'none'; }
-       function scrollToSec(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-       
-       function viewImage(src) {
-           const lb = document.getElementById('lightbox');
-           const img = document.getElementById('lightbox-img');
-           img.src = src;
-           lb.style.display = 'flex';
+       function openImage(src) {
+           document.getElementById('lightbox-img').src = src;
+           document.getElementById('lightbox').style.display = 'flex';
        }
-
-       function closeImage() {
-           document.getElementById('lightbox').style.display = 'none';
+       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+       function scrollToSec(id) {
+           const el = document.getElementById(id);
+           const offset = 140; 
+           const bodyRect = document.body.getBoundingClientRect().top;
+           const elementRect = el.getBoundingClientRect().top;
+           const elementPosition = elementRect - bodyRect;
+           const offsetPosition = elementPosition - offset;
+           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
        }
    </script>
 </body>
