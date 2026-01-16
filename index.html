@@ -68,7 +68,7 @@
         }
 
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 1800s linear infinite; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 2500s linear infinite; }
         .ticker-track span { padding-left: 32px; font-weight: bold; font-size: 1.1rem; }
 
         @keyframes marquee { 0% { transform: translateX(0);} 100% { transform: translateX(100%);} }
@@ -189,7 +189,7 @@
         }
         .vision-section h2, .vision-section p, .glass-box h2, .glass-box .grid { position: relative; z-index: 1; }
         .section { padding: 40px 5%; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         
         .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
         .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; }
@@ -374,6 +374,11 @@
                     <span class="stat-num counter" data-target="104">0</span>
                     <p id="st2-txt">مليون هاتف محمول</p>
                 </div>
+                <div class="card">
+                    <div class="info-popup" id="st3-src">المصدر: تقرير وزارة التضامن - نسب استخدام الأطفال للشاشات</div>
+                    <span class="stat-num counter" data-target="5.7">0</span>
+                    <p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
+                </div>
             </div>
         </div>
     </section>
@@ -391,6 +396,11 @@
                     <div class="info-popup" id="ls2-src">المصدر: تقارير الصحة النفسية - تكلفة علاج حالات الإدمان الرقمي</div>
                     <span class="stat-num loss-num counter" data-target="4.5">0</span>
                     <p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
+                </div>
+                <div class="card" style="border-bottom-color: var(--red-num);">
+                    <div class="info-popup" id="ls3-src">المصدر: تقرير الأمن السيبراني - خسائر عمليات النصب الإلكتروني للأسر</div>
+                    <span class="stat-num loss-num counter" data-target="2.1">0</span>
+                    <p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
                 </div>
             </div>
         </div>
@@ -548,13 +558,13 @@
         function startCounters() {
             const counters = document.querySelectorAll('.counter');
             counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
+                const target = parseFloat(counter.getAttribute('data-target'));
                 const increment = target / 100;
                 let count = 0;
                 const update = () => {
                     if(count < target) {
                         count += increment;
-                        counter.innerText = Math.ceil(count);
+                        counter.innerText = count.toFixed(target % 1 === 0 ? 0 : 1);
                         setTimeout(update, 20);
                     } else {
                         counter.innerText = target;
