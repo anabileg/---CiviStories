@@ -73,16 +73,14 @@
        .awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
        .awareness-card span { font-weight: bold; font-size: 1.1rem; display: block; line-height: 1.3; }
 
-       /* --- قسم ميديا الصور المعدل --- */
-       .carousel-wide { width: 95%; max-width: 1400px; margin: 40px auto; height: 350px; border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000; }
+       .carousel-wide { width: 90%; max-width: 1200px; margin: 40px auto; height: 350px; border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000; }
        .track { display: flex; width: max-content; }
        .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
        .track img:hover { filter: grayscale(0%);}
        
-       /* سرعة بطيئة جداً (200 ثانية) وتكرار لانهائي */
-       .animate-media { animation: mediaScroll 200s linear infinite; }
+       .animate-media { animation: mediaScroll 40s linear infinite; }
        @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-       [dir="rtl"] .animate-media { animation: mediaScrollRtl 200s linear infinite; }
+       [dir="rtl"] .animate-media { animation: mediaScrollRtl 40s linear infinite; }
        @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
 
        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
@@ -255,8 +253,7 @@
        <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
    </div>
    <section id="media-sec" class="carousel-wide">
-       <div class="track animate-media" id="track-imgs">
-           </div>
+       <div class="track animate-media" id="track-imgs"></div>
    </section>
 
    <section id="stats" class="section">
@@ -320,142 +317,202 @@
    </section>
 
    <script>
-       let currentLang = 'ar';
-
-       function initPage() {
-           loadMediaImages(); // تشغيل صور الميديا
-           updateContent();
-           startCounters();
-           window.addEventListener('scroll', handleScroll);
-       }
-
-       // وظيفة تحميل الصور من 1 إلى 24 وتكرارها
-       function loadMediaImages() {
-           const track = document.getElementById('track-imgs');
-           let content = '';
-           // نكرر الصور مرتين لضمان استمرارية الحركة بدون فراغات (Loop)
-           for(let j=0; j<2; j++) {
-               for(let i=1; i<=24; i++) {
-                   content += `<img src="${i}.png" onclick="openImage('${i}.png')" alt="Media ${i}">`;
-               }
-           }
-           track.innerHTML = content;
-       }
-
        const translations = {
            ar: {
-               heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
-               nav: ["رؤيتنا", "الشركاء", "ميديا", "إحصائيات", "خسائر", "وعي", "رأيك يهمنا"],
-               visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني...",
-               partTitle: "شركاء الوعي الوطني", p1Name: "الأزهر الشريف", p2Name: "الكنيسة المصرية", p3Name: "وزارة الأوقاف",
-               stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", st3: "ساعات يومية للأطفال",
-               lsTitle: "الخسائر", ls1: "خسائر إنتاجية سنوياً", ls2: "تكلفة العلاج النفسي", ls3: "خسائر النصب الإلكتروني",
-               awTitle: "برامج التوعية", aw1: "الطفولة الرقمية", aw2: "عالم المراهقين", aw3: "الإنتاج والشباب", aw4: "الزواج السعيد", aw5: "كبار السن", aw6: "الأمان والخصوصية",
-               mediaGuide: "اضغط على الصورة لتصلك رسالتنا", btnBrowse: "تصفح الكتاب",
-               news: ["الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي", "الأوقاف: الهواتف سبب رئيسي للخرس الزوجي", "إنذار: التفكك الرقمي يهدد استقرار مصر"],
-               sources: ["المصدر: الجهاز المركزي للتعبئة العامة والإحصاء", "المصدر: وزارة الاتصالات وتكنولوجيا المعلومات", "المصدر: وزارة التضامن الاجتماعي", "المصدر: دراسات الجدوى الاقتصادية", "المصدر: تقارير الصحة النفسية", "المصدر: تقارير الأمن السيبراني", "المصدر: مركز الفتوى بالأزهر", "المصدر: تقارير المشورة بالكنيسة", "المصدر: وزارة الأوقاف"]
+                heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
+                nav: ["رؤيتنا", "الشركاء", "ميديا", "إحصائيات", "خسائر", "وعي", "رأيك يهمنا"],
+                visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني...",
+                partTitle: "شركاء الوعي الوطني", p1Name: "الأزهر الشريف", p2Name: "الكنيسة المصرية", p3Name: "وزارة الأوقاف",
+                stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", st3: "ساعات يومية للأطفال",
+                lsTitle: "الخسائر", ls1: "خسائر إنتاجية سنوياً", ls2: "تكلفة العلاج النفسي", ls3: "خسائر النصب الإلكتروني",
+                awTitle: "برامج التوعية", aw1: "الطفولة الرقمية", aw2: "عالم المراهقين", aw3: "الإنتاج والشباب", aw4: "الزواج السعيد", aw5: "كبار السن", aw6: "الأمان والخصوصية",
+                mediaGuide: "اضغط على الصورة لتصلك رسالتنا", btnBrowse: "تصفح الكتاب",
+                news: ["الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي", "الأوقاف: الهواتف سبب رئيسي للخرس الزوجي", "إنذار: التفكك الرقمي يهدد استقرار مصر"],
+                sources: ["المصدر: الجهاز المركزي للتعبئة العامة والإحصاء", "المصدر: وزارة الاتصالات وتكنولوجيا المعلومات", "المصدر: وزارة التضامن الاجتماعي", "المصدر: دراسات الجدوى الاقتصادية", "المصدر: تقارير الصحة النفسية", "المصدر: تقارير الأمن السيبراني", "المصدر: مركز الفتوى بالأزهر", "المصدر: تقارير المشورة بالكنيسة", "المصدر: وزارة الأوقاف"]
            },
            en: {
-               heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion</span>',
-               nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"],
-               visTitle: "Our Strategic Vision", visDesc: "Protecting the Egyptian social fabric from digital fragmentation...",
-               partTitle: "National Partners", p1Name: "Al-Azhar Al-Sharif", p2Name: "Egyptian Church", p3Name: "Ministry of Endowments",
-               stTitle: "Statistics", st1: "Divorces Annually", st2: "Million Mobile Phones", st3: "Daily Child Screen Hours",
-               lsTitle: "Losses", ls1: "Annual Productivity Loss", ls2: "Psychological Treatment Costs", ls3: "E-Fraud Losses",
-               awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Teen World", aw3: "Youth Growth", aw4: "Happy Marriage", aw5: "Seniors", aw6: "Privacy",
-               mediaGuide: "Click to receive our message", btnBrowse: "Browse Book",
-               news: ["Al-Azhar: Divorce every 2.5 mins due to digital addiction", "Endowments: Phones cause marital silence", "Alert: Digital fragmentation risks stability"],
-               sources: ["Source: CAPMAS Egypt", "Source: MCIT Egypt", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Fatwa Center", "Source: Church Counseling Reports", "Source: Ministry of Endowments"]
+                heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion</span>',
+                nav: ["Vision", "Partners", "Media", "Stats", "Losses", "Awareness", "Feedback"],
+                visTitle: "Our Strategic Vision", visDesc: "Protecting the Egyptian social fabric from digital fragmentation...",
+                partTitle: "National Partners", p1Name: "Al-Azhar Al-Sharif", p2Name: "Egyptian Church", p3Name: "Ministry of Endowments",
+                stTitle: "Statistics", st1: "Divorces Annually", st2: "Million Mobile Phones", st3: "Daily Child Screen Hours",
+                lsTitle: "Losses", ls1: "Annual Productivity Loss", ls2: "Psychological Treatment Costs", ls3: "E-Fraud Losses",
+                awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Teen World", aw3: "Youth Growth", aw4: "Happy Marriage", aw5: "Seniors", aw6: "Privacy",
+                mediaGuide: "Click to receive our message", btnBrowse: "Browse Book",
+                news: ["Al-Azhar: Divorce every 2.5 mins due to digital addiction", "Endowments: Phones cause marital silence", "Alert: Digital fragmentation risks stability"],
+                sources: ["Source: CAPMAS Egypt", "Source: MCIT Egypt", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Fatwa Center", "Source: Church Counseling Reports", "Source: Ministry of Endowments"]
            }
        };
 
-       function toggleLanguage() {
-           currentLang = currentLang === 'ar' ? 'en' : 'ar';
-           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-           document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
-               '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
-               '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
-           updateContent();
+       const programsData = {
+           child: [
+                { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يمنع منعاً باتاً استخدام الشاشات للأطفال دون سن 18-24 شهراً. <br> * الاستثناء الوحيد في هذا السن هو مكالمات الفيديو للتواصل مع الأهل فقط. <br> * من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي عالي الجودة. <br> * يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
+                { q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", src: "الجمعية النفسية الأمريكية (APA)", ans: "* الاستخدام العادي هو وسيلة للترفيه لا تؤثر على التواصل الاجتماعي الواقعي. <br> * العزلة تبدأ عندما تظهر أعراض الانسحاب مثل العصبية الشديدة عند ترك الجهاز. <br> * فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر. <br> * إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة." },
+                { q: "كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", src: "مركز نمو الطفل بجامعة هارفارد", ans: "* استخدام أسلوب التحذير التدريجي قبل 10 و 5 دقائق من النهاية. <br> * إعطاء الطفل قوة الاختيار (هل تريد الإغلاق الآن أم بعد انتهاء هذا المستوى؟). <br> * ربط نهاية وقت الشاشة بنشاط محبب آخر (وقت اللعب بالمكعبات أو الخروج). <br> * التزام الوالدين بإنهاء وقت شاشتهم أيضاً ليكونوا قدوة للطفل." },
+                { q: "هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال؟", src: "منظمة (Common Sense Media)", ans: "* تطبيقات الفيديو القصير (تيك توك) بسبب سرعة المشاهد التي تضعف التركيز. <br> * الألعاب التي تحتوي على دردشة مفتوحة مع غرباء مثل بعض غرف (روبلوكس). <br> * التطبيقات التي تشجع على الشراء الدائم لتعزيز مبدأ الاستهلاك والمقامرة. <br> * التطبيقات التي لا تتبع معايير الخصوصية الصارمة للأطفال (COPPA)." },
+                { q: "كيف أتعامل مع المحتوى غير الأخلاقي الذي يظهر فجأة للطفل؟", src: "منظمة اليونيسف (UNICEF)", ans: "* التفاعل بهدوء وعدم إظهار الصدمة حتى لا يشعر الطفل بالخوف من إخبارك لاحقاً. <br> * شرح أن الإنترنت عالم واسع وفيه أخطاء يجب تجنبها. <br> * تمكين الطفل من مهارة التحدث الصريح فور رؤية أي محتوى مزعج. <br> * مراجعة إعدادات الأمان (Safe Search) وتحديثها فوراً." },
+                { q: "ما هو البديل العملي الذي يمكن تقديمه للطفل ليشغله عن الأجهزة؟", src: "مؤسسة مايو كلينك الطبية", ans: "* الألعاب الحسية (الرسم، التلوين، الصلصال، المكعبات). <br> * الأنشطة البدنية الخارجية التي تفرغ الطاقة الحركية. <br> * إشراك الطفل في مهام حقيقية مثل الطبخ أو العناية بالمنزل. <br> * القراءة التفاعلية التي تتطلب تخيلاً ومشاركة ذهنية." },
+                { q: "هل يؤثر إشعاع الهاتف والضوء الأزرق على نمو الطفل فعلياً؟", src: "مؤسسة النوم الوطنية (NSF)", ans: "* الضوء الأزرق يمنع إفرار الميلاتونين، مما يسبب اضطراباً في نمو الدماغ والجسد أثناء النوم. <br> * يؤثر على المرونة العصبية للدماغ في السن الصغير بسبب التحفيز البصري المفرط. <br> * يسبب قصر النظر وجفاف العين نتيجة التحديق الطويل. <br> * الجلوس بوضعيات خاطئة يؤثر على نمو العمود الفقري للطفل." },
+                { q: "كيف أفعل ميزة الرقابة الأبوية على الراوتر والمنصات؟", src: "خبراء تقنيين في (Google & Apple)", ans: "* استخدام تطبيق (Google Family Link) لإدارة الوقت والتطبيقات. <br> * تفعيل (Restricted Mode) في يوتيوب و (SafeSearch) في جوجل. <br> * ضبط إعدادات الراوتر لحجب المواقع المشبوهة عبر نظام (DNS) آمن. <br> * تفعيل ميزة مدة استخدام الجهاز (Screen Time) ووضع كلمة سر." },
+                { q: "ماذا أفعل إذا اكتشفت أن طفلي يتحدث مع غرباء عبر ألعاب الأونلاين؟", src: "المركز الوطني للأطفال المفقودين والمستغلين (NCMEC)", ans: "* ابدأ بحوار هادئ: لماذا تتحدث معه؟ لفهم احتياجاته الاجتماعية. <br> * اشرح مخاطر الهوية المزيفة وأن الغريب خلف الشاشة قد لا يكون طفلاً. <br> * أغلق خاصية الدردشة في اللعبة فوراً واجعل اللعب في مكان عام بالمنزل. <br> * علمه ألا يشارك أي معلومات شخصية (الاسم، المدرسة، الموقع)." },
+                { q: "كيف أستغل التكنولوجيا لتطوير مهارات طفلي بدلاً من الاستهلاك السلبي؟", src: "معهد ماساتشوستس للتكنولوجيا (MIT - Scratch)", ans: "* تحويل الطفل من مشاهد إلى صانع عبر تطبيقات تعليم البرمجة (مثل Scratch Junior). <br> * استخدام تطبيقات الواقع المعزز لاستكشاف العلوم والفضاء. <br> * تشجيع الطفل على البحث عن إجابات لأسئلته عبر الإنترنت تحت إشرافك. <br> * اختيار ألعاب حل الألغاز التي تنمي التفكير المنطقي." },
+                { q: "كيف أحول وقت الشاشة إلى جلسة ترابط أسري وتفاعل مشترك؟", src: "دراسات جامعة ستانفورد حول المشاهدة المشتركة", ans: "* العب مع طفلك ألعابه المفضلة واسأله عن تفاصيلها. <br> * شاهد فيلماً كرتونياً وناقش معه القيم الأخلاقية المستفادة من القصة. <br> * اجعل الشاشة وسيلة لتعلم مهارة جديدة معاً (مثل طبخة أو عمل يدوي). <br> * خصص وقتاً لمكالمات الفيديو مع الجد أو الجدة لتعزيز الروابط العائلية." },
+                { q: "هل تساعد الهواتف الذكية في اكتشاف مواهب طفلي (رسم، برمجة، لغات)؟", src: "الرابطة الدولية لتكنولوجيا التعليم (ISTE)", ans: "* نعم، عبر تطبيقات الرسم الرقمي التي تتيح أدوات لا نهائية للإبداع. <br> * تطبيقات تعلم اللغات (مثل Duolingo Kids) التي تعتمد على اللعب. <br> * منصات تعليم الموسيقى أو البرمجة البسيطة التي تكتشف ميول الطفل المبكرة. <br> * التوثيق: استخدام الكاميرا لتصوير الطبيعة أو عمل أفلام قصيرة بالدمى." },
+                { q: "كيف أعلم طفلي مهارة التفكير النقدي للتمييز بين الحقيقة والخداع؟", src: "منظمة (Media Smarts)", ans: "* اسأل الطفل دائماً: من صنع هذا الفيديو؟ ولماذا وضعه على الإنترنت؟ <br> * علمه أن الصور والفيديوهات يمكن تعديلها (الفلاتر والذكاء الاصطناعي). <br> * قارن معه بين إعلان لمنتج وبين المنتج الحقيقي في الواقع. <br> * علمه ألا يصدق كل ما يراه إلا إذا تأكد من مصدر موثوق." },
+                { q: "ما هي القواعد الذهبية لإنشاء ميثاق رقمي يلتزم به الطفل؟", src: "أكاديمية كوايت (Quiet Academy) للتربية الرقمية", ans: "* المشاركة: دع الطفل يشارك في وضع القوانين ليشعر بالمسؤولية. <br> * الوضوح: حدد أوقاتاً وأماكن خالية من الشاشات (مثل وقت الأكل، وغرفة النوم). <br> * العواقب: اتفق مسبقاً على عقوبة واضحة عند مخالفة القواعد (مثل سحب الجهاز يوماً). <br> * التوازن: القاعدة هي أنهِ واجباتك ورياضتك أولاً، ثم وقت الشاشة." },
+                { q: "كيف أدرب طفلي على أن يكون صانع محتوى مفيداً؟", src: "خبراء التربية الإبداعية", ans: "* شجعه على تسجيل فيديوهات يشرح فيها معلومة تعلمها (للعائلة فقط أولاً). <br> * علمه أساسيات المونتاج البسيط وكتابة سيناريو قصير. <br> * وجهه نحو المحتوى الذي يحل مشكلة أو ينشر قيمة إيجابية. <br> * ركز على جودة الفكرة وليس على عدد اللايكات أو المشاهدات." },
+                { q: "كيف يؤثر استخدام الوالدين للهاتف على سلوك الطفل الرقمي؟", src: "دراسة التقنية التداخلية (Technoference)", ans: "* الطفل يقلد أفعال والديه؛ إذا كنت تمسك هاتفك دائماً، سيفعل مثلك. <br> * انشغال الوالدين بالهاتف أثناء حديث الطفل يقلل من ثقته بنفسه ويسبب مشاكل سلوكية. <br> * القاعدة الذهبية: كن أنت القدوة التي تريد أن تراها في طفلك. <br> * خصص وقتاً في اليوم يكون فيه المنزل بالكامل بدون هواتف لتعزيز التواصل البصري." }
+           ],
+           teens: [],
+           youth: [],
+           marriage: [],
+           seniors: [],
+           security: []
+       };
+
+       let currentLang = 'ar';
+
+       function initPage() {
+           loadMedia();
+           updateTicker();
+           startCounters();
+           window.onscroll = function() {
+                document.getElementById("btnUp").style.display = (window.pageYOffset > 300) ? "flex" : "none";
+           };
        }
 
-       function updateContent() {
+       function loadMedia() {
+           const track = document.getElementById('track-imgs');
+           track.innerHTML = '';
+           // عرض 15 صورة (من 1 إلى 15) مكررة مرتين لضمان استمرارية الحركة
+           for(let j=0; j<2; j++) {
+               for(let i=1; i<=15; i++) {
+                   const img = document.createElement('img');
+                   img.src = i + '.png';
+                   img.onclick = () => openImage(img.src);
+                   track.appendChild(img);
+               }
+           }
+       }
+
+       function updateTicker() {
+           const track = document.getElementById('tickerTrack');
+           const news = translations[currentLang].news;
+           track.innerHTML = '';
+           for(let i=0; i<3; i++) {
+               news.forEach(text => {
+                   const span = document.createElement('span');
+                   span.innerText = text;
+                   track.appendChild(span);
+               });
+           }
+       }
+
+       function startCounters() {
+           const counters = document.querySelectorAll('.counter');
+           counters.forEach(counter => {
+               const target = parseFloat(counter.getAttribute('data-target'));
+               let count = 0;
+               const speed = 2000 / target;
+               const updateCount = () => {
+                   count += (target / 100);
+                   if(count < target) {
+                       counter.innerText = count.toFixed(1).replace('.0', '');
+                       setTimeout(updateCount, 20);
+                   } else {
+                       counter.innerText = target;
+                   }
+               };
+               updateCount();
+           });
+       }
+
+       function toggleLanguage() {
+           currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+           const dir = (currentLang === 'ar') ? 'rtl' : 'ltr';
+           document.documentElement.dir = dir;
+           document.documentElement.lang = currentLang;
+           
+           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang === 'ar' ? 'gb' : 'eg'}.png" alt="Lang">`;
+           
            const t = translations[currentLang];
            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
-           document.getElementById('btn-browse').innerText = t.btnBrowse;
            document.getElementById('vis-title').innerText = t.visTitle;
            document.getElementById('vis-desc').innerText = t.visDesc;
            document.getElementById('part-title').innerText = t.partTitle;
            document.getElementById('p1-name').innerText = t.p1Name;
            document.getElementById('p2-name').innerText = t.p2Name;
            document.getElementById('p3-name').innerText = t.p3Name;
-           document.getElementById('media-guideline').innerText = t.mediaGuide;
            document.getElementById('st-title').innerText = t.stTitle;
            document.getElementById('ls-title').innerText = t.lsTitle;
            document.getElementById('awareness-main-title').innerText = t.awTitle;
+           document.getElementById('media-guideline').innerText = t.mediaGuide;
+           document.getElementById('btn-browse').innerText = t.btnBrowse;
 
            const navLinks = document.querySelectorAll('.nav-links a');
            t.nav.forEach((text, i) => { if(navLinks[i]) navLinks[i].innerText = text; });
 
-           const ticker = document.getElementById('tickerTrack');
-           ticker.innerHTML = '';
-           t.news.concat(t.news).forEach(txt => {
-               const span = document.createElement('span');
-               span.innerText = txt;
-               ticker.appendChild(span);
-           });
+           document.getElementById('st1-txt').innerText = t.st1;
+           document.getElementById('st2-txt').innerText = t.st2;
+           document.getElementById('st3-txt').innerText = t.st3;
+           document.getElementById('ls1-txt').innerText = t.ls1;
+           document.getElementById('ls2-txt').innerText = t.ls2;
+           document.getElementById('ls3-txt').innerText = t.ls3;
+
+           for(let i=1; i<=6; i++) {
+               document.getElementById('aw-c'+i).innerText = t['aw'+i];
+               document.getElementById('src'+i).innerText = t.sources[i-1];
+           }
+           document.getElementById('src-p1').innerText = t.sources[6];
+           document.getElementById('src-p2').innerText = t.sources[7];
+           document.getElementById('src-p3').innerText = t.sources[8];
+
+           updateTicker();
        }
 
-       function startCounters() {
-           const counters = document.querySelectorAll('.counter');
-           counters.forEach(c => {
-               const target = +c.getAttribute('data-target');
-               let count = 0;
-               const inc = target / 100;
-               const update = () => {
-                   if(count < target) {
-                       count += inc;
-                       c.innerText = Math.ceil(count);
-                       setTimeout(update, 20);
-                   } else { c.innerText = target; }
-               };
-               update();
-           });
+       function openProgram(cat) {
+           const container = document.getElementById('questionsContainer');
+           container.innerHTML = '';
+           const qs = programsData[cat];
+           
+           if(!qs || qs.length === 0) {
+               container.innerHTML = '<p style="text-align:center; font-weight:bold;">قريباً... يتم تجهيز المحتوى</p>';
+           } else {
+               qs.forEach((item, index) => {
+                   const div = document.createElement('div');
+                   div.className = 'q-item';
+                   div.innerText = item.q;
+                   div.onclick = () => showAnswer(item);
+                   container.appendChild(div);
+               });
+           }
+           document.getElementById('qModal').style.display = 'flex';
        }
 
-       function scrollToSec(id) {
-           const el = document.getElementById(id);
-           if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
+       function showAnswer(item) {
+           const content = document.getElementById('answerContent');
+           content.innerHTML = `
+                <span class="ans-q">${item.q}</span>
+                <span class="ans-src">المصدر: ${item.src}</span>
+                <div class="ans-text">${item.ans}</div>
+           `;
+           document.getElementById('aModal').style.display = 'flex';
        }
 
-       function handleScroll() {
-           document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
-       }
-
+       function closePopup(id) { document.getElementById(id).style.display = 'none'; }
        function openImage(src) {
            document.getElementById('lightbox-img').src = src;
            document.getElementById('lightbox').style.display = 'flex';
        }
-
-       function closeImage() {
-           document.getElementById('lightbox').style.display = 'none';
-       }
-
-       function openProgram(type) {
-           // الوظيفة الأساسية لفتح النوافذ المنبثقة
-           const container = document.getElementById('questionsContainer');
-           container.innerHTML = '<p style="text-align:center; padding:20px;">سيتم إضافة المحتوى قريباً لهذه الفئة.</p>';
-           document.getElementById('qModal').style.display = 'flex';
-       }
-
-       function closePopup(id) {
-           document.getElementById(id).style.display = 'none';
-       }
-
-       // إغلاق المودال عند الضغط خارجه
-       window.onclick = function(event) {
-           if (event.target.className === 'modal-overlay') {
-               event.target.style.display = 'none';
-           }
+       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+       function scrollToSec(id) {
+           const el = document.getElementById(id);
+           const offset = 140; 
+           const bodyRect = document.body.getBoundingClientRect().top;
+           const elementRect = el.getBoundingClientRect().top;
+           const elementPosition = elementRect - bodyRect;
+           const offsetPosition = elementPosition - offset;
+           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
        }
    </script>
 </body>
