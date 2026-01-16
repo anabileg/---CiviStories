@@ -67,18 +67,21 @@
             width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
         }
 
+        /* --- إيجاد حل نهائي لشريط الأخبار --- */
         .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
-        .ticker-track { display: flex; white-space: nowrap; animation: marquee 2800s linear infinite; }
-        .ticker-track span { padding: 0 32px; font-weight: bold; font-size: 1.1rem; }
+        .ticker-track { display: flex; white-space: nowrap; width: max-content; }
+        .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
 
-        @keyframes marquee { 
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        /* أنيميشن الأخبار المعدل */
+        .animate-news { animation: marqueeNews 40s linear infinite; }
+        @keyframes marqueeNews {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-        [dir="rtl"] .ticker-track { animation: marqueeRtl 2800s linear infinite; }
-        @keyframes marqueeRtl {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 40s linear infinite; }
+        @keyframes marqueeNewsRtl {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
         }
 
         .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
@@ -150,7 +153,7 @@
             padding-bottom: 10px; border-bottom: 1px solid rgba(0,0,0,0.1); line-height: 1.5;
         }
 
-        /* --- MEDIA CAROUSEL (FIXED REPEATING) --- */
+        /* --- إيجاد حل نهائي لشريط الميديا (الصور) --- */
         .carousel-wide { 
             width: 100%; 
             margin: 20px 0 40px 0; 
@@ -164,13 +167,8 @@
         .track { 
             display: flex; 
             width: max-content; 
-            animation: mediaScroll 60s linear infinite; 
         }
         
-        /* التعديل لضمان الاتجاه الصحيح حسب لغة الصفحة */
-        [dir="rtl"] .track { animation: mediaScrollRtl 60s linear infinite; }
-        [dir="ltr"] .track { animation: mediaScrollLtr 60s linear infinite; }
-
         .track:hover { animation-play-state: paused; }
         
         .track img { 
@@ -186,16 +184,16 @@
         }
         .track img:hover { filter: grayscale(0%); }
 
-        /* Animation for LTR */
-        @keyframes mediaScrollLtr {
+        /* سرعة الحركة منضبطة الآن (80 ثانية للدورة) */
+        .animate-media { animation: mediaScroll 80s linear infinite; }
+        @keyframes mediaScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-320px * 24)); }
+            100% { transform: translateX(-50%); }
         }
-        
-        /* Animation for RTL */
+        [dir="rtl"] .animate-media { animation: mediaScrollRtl 80s linear infinite; }
         @keyframes mediaScrollRtl {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(320px * 24)); }
+            100% { transform: translateX(50%); }
         }
 
         .lightbox {
@@ -262,9 +260,6 @@
             .carousel-wide { height: 250px; }
             .track img { height: 250px; width: 220px; }
             .awareness-grid { grid-template-columns: repeat(2, 1fr); }
-            /* Mobile animations */
-            @keyframes mediaScrollLtr { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-220px * 24)); } }
-            @keyframes mediaScrollRtl { 0% { transform: translateX(0); } 100% { transform: translateX(calc(220px * 24)); } }
         }
 
         .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -324,7 +319,7 @@
         </div>
     </nav>
 
-    <div class="news-ticker"><div class="ticker-track" id="tickerTrack"></div></div>
+    <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
 
     <section class="hero" id="home">
         <h1 class="main-alert-title" id="main-hero-title">
@@ -377,7 +372,7 @@
     </div>
 
     <section id="media-sec" class="carousel-wide">
-        <div class="track" id="track-imgs"></div>
+        <div class="track animate-media" id="track-imgs"></div>
     </section>
 
     <section id="stats" class="section">
@@ -502,13 +497,14 @@
         function initPage() {
             updateLangUI();
             const track = document.getElementById('tickerTrack');
-            track.innerHTML = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join(" &nbsp;&nbsp; ");
+            // نكرر الأخبار مرتين ونستخدم تحريك الـ 50% لضمان عدم وجود فريم فارغ
+            track.innerHTML = [...newsItems, ...newsItems].map(item => `<span>${item}</span>`).join("");
 
             const imgTrack = document.getElementById('track-imgs');
             imgTrack.innerHTML = "";
             
-            // نكرر المصفوفة 3 مرات لضمان عدم وجود فراغ أبداً مهما كانت سرعة الجهاز أو اتجاه الحركة
-            const repeatedImages = [...images, ...images, ...images]; 
+            // نكرر الـ 24 صورة مرتين (48 صورة) ونحرك الـ 50% لضمان استمرارية الشريط للأبد
+            const repeatedImages = [...images, ...images]; 
             repeatedImages.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
@@ -572,14 +568,18 @@
                     if(val < target) {
                         val += target/100;
                         c.innerText = val.toFixed(val % 1 === 0 ? 0 : 1);
-                        setTimeout(update, 30);
-                    } else c.innerText = target;
+                        setTimeout(update, 20);
+                    } else {
+                        c.innerText = target;
+                    }
                 };
                 update();
             });
         }
-
-        window.onscroll = () => { document.getElementById('btnUp').style.display = window.pageYOffset > 300 ? 'flex' : 'none'; };
+        
+        window.onscroll = () => {
+            document.getElementById('btnUp').style.display = (window.pageYOffset > 300) ? 'flex' : 'none';
+        };
     </script>
 </body>
 </html>
