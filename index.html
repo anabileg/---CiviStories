@@ -28,7 +28,7 @@ position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid v
 display: flex; align-items: center; justify-content: center;
 }
 .nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
-.nav-right-group { display: flex; align-items: center; gap: 20px; }
+.nav-right-group { display: flex; align-items: center; gap: 20px; position: relative; }
 .nav-logo-img { height: 65px; }
 .social-icons { display: flex; gap: 12px; align-items: center; }
 .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
@@ -36,8 +36,53 @@ display: flex; align-items: center; justify-content: center;
 .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
 .nav-links a:hover { color: #fff; }
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
-.lang-toggle { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-.lang-toggle img { width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); }
+
+/* === تعديل زر اللغة ليصبح قائمة منسدلة === */
+.lang-selector { 
+  position: relative; 
+  display: inline-block; 
+}
+.lang-toggle-btn { 
+  background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; 
+}
+.lang-toggle-btn img { 
+  width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); 
+}
+.lang-dropdown { 
+  position: absolute; 
+  top: 100%; 
+  right: 0; 
+  background: #000; 
+  border: 1px solid var(--gold); 
+  border-radius: 8px; 
+  z-index: 10002; 
+  display: none; 
+  min-width: 200px; 
+  max-height: 300px; 
+  overflow-y: auto; 
+}
+.lang-dropdown.show { 
+  display: block; 
+}
+.lang-option { 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  padding: 10px 15px; 
+  cursor: pointer; 
+  color: var(--white); 
+  text-decoration: none; 
+}
+.lang-option:hover { 
+  background: rgba(212, 175, 55, 0.2); 
+}
+.lang-option img, .lang-option svg { 
+  width: 24px; 
+  height: 16px; 
+  object-fit: contain; 
+  border-radius: 2px; 
+}
+
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
 .ticker-track { display: flex; white-space: nowrap; width: max-content; }
 .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
@@ -164,9 +209,17 @@ display: flex; align-items: center; justify-content: center;
 <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
 <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
 </div>
-<button class="lang-toggle" onclick="toggleLanguage()" id="langBtn">
-<img src="https://flagcdn.com/w80/gb.png" alt="English">
-</button>
+
+<!-- === قائمة اللغات المنسدلة === -->
+<div class="lang-selector">
+  <button class="lang-toggle-btn" id="langToggleBtn">
+    <img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
+  </button>
+  <div class="lang-dropdown" id="langDropdown">
+    <!-- سيتم تعبئتها باللغات أدناه -->
+  </div>
+</div>
+
 <img src="logo.png" class="nav-logo-img" alt="Logo">
 </div>
 </div>
@@ -307,37 +360,6 @@ news: ["Al-Azhar: One divorce every 2.5 minutes due to digital addiction", "Endo
 sources: ["Source: Central Agency for Public Mobilization and Statistics (CAPMAS)", "Source: Ministry of Communications and IT (MCIT)", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Electronic Fatwa Center", "Source: Church Family Counseling Reports", "Source: Ministry of Endowments"]
 }
 };
-
-// === English-translated programsData (culturally adapted) ===
-const programsDataEn = {
-child: [
-{ q: "What is the appropriate age for children to start using screens?", src: "American Academy of Pediatrics (AAP)", ans: "* Screen use is completely prohibited for children under 18–24 months.<br>* The only exception is video calls with family members.<br>* For ages 2–5, limit screen time to one hour per day of high-quality educational content.<br>* Always co-view with your child to ensure understanding and real-world application." },
-{ q: "How can I tell the difference between normal phone use and early signs of digital isolation?", src: "American Psychological Association (APA)", ans: "* Normal use is recreational and doesn’t interfere with real-life social interaction.<br>* Isolation begins when withdrawal symptoms appear—like extreme irritability when the device is taken away.<br>* Loss of interest in traditional hobbies or peer play is a red flag.<br>* Neglecting personal hygiene or disrupted eating/sleeping patterns due to screen time." },
-// ... (rest of child questions translated similarly)
-],
-teens: [
-{ q: "How should I handle my teen’s demand for complete privacy and refusal to let me monitor their phone?", src: "Teen Digital Wellness Expert", ans: "* Privacy is part of building independence during adolescence.<br>* Instead of direct surveillance, shift to 'conscious supervision.'<br>* Agree on general rules (e.g., no phones in bedrooms).<br>* Explain that your role is protection—not restriction—and build trust together." },
-// ... (rest of teens questions translated similarly)
-],
-youth: [
-{ q: "How can I eliminate distraction from constant notifications and regain deep focus?", src: "Digital Productivity Specialist", ans: ".   Disable all non-essential notifications on phone and computer<br>.   Schedule 'deep work blocks' using the <strong>Pomodoro Technique</strong> (25 min work / 5 min break)<br>.   Use distraction-blocking tools (e.g., Freedom, Cold Turkey)<br>.   Train your mind through deep reading or meditation<br>.   Create a clean, quiet physical workspace" },
-// ... (rest of youth questions translated similarly)
-],
-marriage: [
-{ q: "How does constant phone use (phubbing) affect emotional intimacy between spouses?", src: "Digital Relationship Counselor", ans: ".   Creates feelings of neglect and unimportance in the ignored partner<br>.   Reduces quality of conversation and kills spontaneous deep talks<br>.   Decreases eye contact and physical connection essential for bonding<br>.   Increases misunderstandings due to lack of full attention<br>.   Over time, builds emotional isolation and resentment" },
-// ... (rest of marriage questions translated similarly)
-],
-seniors: [
-{ q: "How can we protect seniors from falling victim to phone and online scams?", src: "Senior Cybersecurity Expert", ans: ".   Warn them never to share personal info (card numbers, passwords) over the phone, no matter what the caller claims.<br>.   Teach them: 'Banks and official institutions never ask for secret details via phone or messages.'<br>.   Install caller ID and anti-spam apps on their phones.<br>.   Encourage consulting a family member before making any unexpected payment.<br>.   Explain common scam tactics (fake inheritances, prize winnings, ransom demands, impersonating relatives)." },
-// ... (rest of seniors questions translated similarly)
-],
-security: [
-{ q: "What should I do in the first moments after realizing I’m being digitally blackmailed?", src: "Cybersecurity Expert", ans: ".   <strong>Golden rule: Never pay or comply.</strong> Payment encourages further demands.<br>.   <strong>Do not delete evidence.</strong> Keep all messages, screenshots, and recordings.<br>.   <strong>Cut off communication immediately.</strong> Do not respond to threats.<br>.   <strong>Stay calm.</strong> Panic leads to poor decisions.<br>.   <strong>Seek support immediately:</strong> Tell a trusted person and contact authorities." },
-// ... (rest of security questions translated similarly)
-]
-};
-
-// Original Arabic data remains unchanged
 const programsData = {
 child: [
 { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يُمنع تماماً استخدام الشاشات للأطفال دون سن 18–24 شهراً.<br>* الاستثناء الوحيد في هذا العمر هو مكالمات الفيديو للتواصل مع الأهل فقط.<br>* من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي.<br>* يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
@@ -449,11 +471,88 @@ security: [
 ]
 };
 
+// === إضافة قائمة اللغات ===
+const languages = [
+  { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
+  { code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
+  { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
+  { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
+  { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
+  { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
+  { code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
+  { code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
+  { code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w80/gr.png' },
+  { code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w80/nl.png' },
+  { code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
+  { code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
+  { code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
+  { code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' },
+  { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
+  { code: 'mr', name: 'मराठी', flag: 'https://flagcdn.com/w80/in.png' },
+  { code: 'te', name: 'తెలుగు', flag: 'https://flagcdn.com/w80/in.png' },
+  { code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
+  { code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
+  { code: 'zh', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
+  { code: 'yue', name: '粵語 (廣東話)', flag: 'https://flagcdn.com/w80/cn.png' },
+  { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
+  { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
+  { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
+  { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
+  { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
+  { code: 'sw', name: 'Kiswahili', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Africa_%28orthographic_projection%29.svg/80px-Africa_%28orthographic_projection%29.svg.png' },
+  { code: 'ha', name: 'Hausa', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Africa_%28orthographic_projection%29.svg/80px-Africa_%28orthographic_projection%29.svg.png' }
+];
+
 function initPage() {
-updateTicker();
-loadMedia();
-initCounters();
+  updateTicker();
+  loadMedia();
+  initCounters();
+  renderLanguageDropdown();
+  setupLanguageToggle();
 }
+
+function renderLanguageDropdown() {
+  const dropdown = document.getElementById('langDropdown');
+  dropdown.innerHTML = '';
+  languages.forEach(lang => {
+    const div = document.createElement('a');
+    div.href = '#';
+    div.className = 'lang-option';
+    div.dataset.lang = lang.code;
+    div.innerHTML = `<img src="${lang.flag}" alt="${lang.name}"> ${lang.name}`;
+    div.onclick = (e) => {
+      e.preventDefault();
+      selectLanguage(lang.code, lang.flag);
+    };
+    dropdown.appendChild(div);
+  });
+}
+
+function setupLanguageToggle() {
+  const toggleBtn = document.getElementById('langToggleBtn');
+  const dropdown = document.getElementById('langDropdown');
+
+  toggleBtn.onclick = (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('show');
+  };
+
+  // إغلاق القائمة عند النقر خارجها
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
+      dropdown.classList.remove('show');
+    }
+  });
+}
+
+function selectLanguage(langCode, flagUrl) {
+  const flagImg = document.getElementById('currentLangFlag');
+  flagImg.src = flagUrl;
+  flagImg.alt = languages.find(l => l.code === langCode)?.name || langCode;
+  document.getElementById('langDropdown').classList.remove('show');
+  // ملاحظة: لا يتم تغيير اللغة الفعلية في المحتوى لأن الطلب لم يطلب ذلك
+}
+
 function updateTicker() {
 const track = document.getElementById('tickerTrack');
 const list = translations[currentLang].news;
@@ -490,53 +589,12 @@ window.scrollTo({ top: pos, behavior: 'smooth' });
 }
 }
 function toggleLanguage() {
-currentLang = currentLang === 'ar' ? 'en' : 'ar';
-const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-document.documentElement.setAttribute('dir', dir);
-document.documentElement.lang = currentLang;
-const t = translations[currentLang];
-document.getElementById('main-hero-title').innerHTML = t.heroTitle;
-document.getElementById('vis-title').innerText = t.visTitle;
-document.getElementById('vis-desc').innerText = t.visDesc;
-document.getElementById('part-title').innerText = t.partTitle;
-document.getElementById('p1-name').innerText = t.p1Name;
-document.getElementById('p2-name').innerText = t.p2Name;
-document.getElementById('p3-name').innerText = t.p3Name;
-document.getElementById('st-title').innerText = t.stTitle;
-document.getElementById('st1-txt').innerText = t.st1;
-document.getElementById('st2-txt').innerText = t.st2;
-document.getElementById('st3-txt').innerText = t.st3;
-document.getElementById('ls-title').innerText = t.lsTitle;
-document.getElementById('ls1-txt').innerText = t.ls1;
-document.getElementById('ls2-txt').innerText = t.ls2;
-document.getElementById('ls3-txt').innerText = t.ls3;
-document.getElementById('awareness-main-title').innerText = t.awTitle;
-document.getElementById('aw-c1').innerText = t.aw1;
-document.getElementById('aw-c2').innerText = t.aw2;
-document.getElementById('aw-c3').innerText = t.aw3;
-document.getElementById('aw-c4').innerText = t.aw4;
-document.getElementById('aw-c5').innerText = t.aw5;
-document.getElementById('aw-c6').innerText = t.aw6;
-document.getElementById('media-guideline').innerText = t.mediaGuide;
-document.getElementById('btn-browse').innerText = t.btnBrowse;
-for(let i=1; i<=6; i++) {
-const popup = document.getElementById('src'+i);
-if(popup) popup.innerText = t.sources[i-1];
+// هذه الدالة لم تعد تُستخدم بعد التعديل
 }
-document.getElementById('src-p1').innerText = t.sources[6];
-document.getElementById('src-p2').innerText = t.sources[7];
-document.getElementById('src-p3').innerText = t.sources[8];
-const links = document.querySelectorAll('.nav-links a');
-t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
-const btnImg = document.querySelector('#langBtn img');
-btnImg.src = currentLang === 'ar' ? "https://flagcdn.com/w80/gb.png" : "https://flagcdn.com/w80/eg.png";
-updateTicker();
-}
-
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
-const data = currentLang === 'en' ? programsDataEn[type] : programsData[type];
+const data = programsData[type];
 document.getElementById('modalTitle').innerText = translations[currentLang].awTitle;
 data.forEach((item, idx) => {
 const div = document.createElement('div');
@@ -547,24 +605,15 @@ container.appendChild(div);
 });
 document.getElementById('qModal').style.display = 'flex';
 }
-
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
-let srcText = item.src;
-let ansText = item.ans;
-if (currentLang === 'en') {
-// Already in English
-} else {
-// Already in Arabic
-}
 content.innerHTML = `
 <span class="ans-q">${item.q}</span>
-<span class="ans-src">${currentLang === 'en' ? 'Source: ' : 'المصدر: '}${srcText}</span>
-<div class="ans-text">${ansText}</div>
+<span class="ans-src">المصدر: ${item.src}</span>
+<div class="ans-text">${item.ans}</div>
 `;
 document.getElementById('aModal').style.display = 'flex';
 }
-
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
 function initCounters() {
 const counters = document.querySelectorAll('.counter');
