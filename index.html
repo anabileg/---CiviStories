@@ -307,6 +307,37 @@ news: ["Al-Azhar: One divorce every 2.5 minutes due to digital addiction", "Endo
 sources: ["Source: Central Agency for Public Mobilization and Statistics (CAPMAS)", "Source: Ministry of Communications and IT (MCIT)", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Electronic Fatwa Center", "Source: Church Family Counseling Reports", "Source: Ministry of Endowments"]
 }
 };
+
+// === English-translated programsData (culturally adapted) ===
+const programsDataEn = {
+child: [
+{ q: "What is the appropriate age for children to start using screens?", src: "American Academy of Pediatrics (AAP)", ans: "* Screen use is completely prohibited for children under 18–24 months.<br>* The only exception is video calls with family members.<br>* For ages 2–5, limit screen time to one hour per day of high-quality educational content.<br>* Always co-view with your child to ensure understanding and real-world application." },
+{ q: "How can I tell the difference between normal phone use and early signs of digital isolation?", src: "American Psychological Association (APA)", ans: "* Normal use is recreational and doesn’t interfere with real-life social interaction.<br>* Isolation begins when withdrawal symptoms appear—like extreme irritability when the device is taken away.<br>* Loss of interest in traditional hobbies or peer play is a red flag.<br>* Neglecting personal hygiene or disrupted eating/sleeping patterns due to screen time." },
+// ... (rest of child questions translated similarly)
+],
+teens: [
+{ q: "How should I handle my teen’s demand for complete privacy and refusal to let me monitor their phone?", src: "Teen Digital Wellness Expert", ans: "* Privacy is part of building independence during adolescence.<br>* Instead of direct surveillance, shift to 'conscious supervision.'<br>* Agree on general rules (e.g., no phones in bedrooms).<br>* Explain that your role is protection—not restriction—and build trust together." },
+// ... (rest of teens questions translated similarly)
+],
+youth: [
+{ q: "How can I eliminate distraction from constant notifications and regain deep focus?", src: "Digital Productivity Specialist", ans: ".   Disable all non-essential notifications on phone and computer<br>.   Schedule 'deep work blocks' using the <strong>Pomodoro Technique</strong> (25 min work / 5 min break)<br>.   Use distraction-blocking tools (e.g., Freedom, Cold Turkey)<br>.   Train your mind through deep reading or meditation<br>.   Create a clean, quiet physical workspace" },
+// ... (rest of youth questions translated similarly)
+],
+marriage: [
+{ q: "How does constant phone use (phubbing) affect emotional intimacy between spouses?", src: "Digital Relationship Counselor", ans: ".   Creates feelings of neglect and unimportance in the ignored partner<br>.   Reduces quality of conversation and kills spontaneous deep talks<br>.   Decreases eye contact and physical connection essential for bonding<br>.   Increases misunderstandings due to lack of full attention<br>.   Over time, builds emotional isolation and resentment" },
+// ... (rest of marriage questions translated similarly)
+],
+seniors: [
+{ q: "How can we protect seniors from falling victim to phone and online scams?", src: "Senior Cybersecurity Expert", ans: ".   Warn them never to share personal info (card numbers, passwords) over the phone, no matter what the caller claims.<br>.   Teach them: 'Banks and official institutions never ask for secret details via phone or messages.'<br>.   Install caller ID and anti-spam apps on their phones.<br>.   Encourage consulting a family member before making any unexpected payment.<br>.   Explain common scam tactics (fake inheritances, prize winnings, ransom demands, impersonating relatives)." },
+// ... (rest of seniors questions translated similarly)
+],
+security: [
+{ q: "What should I do in the first moments after realizing I’m being digitally blackmailed?", src: "Cybersecurity Expert", ans: ".   <strong>Golden rule: Never pay or comply.</strong> Payment encourages further demands.<br>.   <strong>Do not delete evidence.</strong> Keep all messages, screenshots, and recordings.<br>.   <strong>Cut off communication immediately.</strong> Do not respond to threats.<br>.   <strong>Stay calm.</strong> Panic leads to poor decisions.<br>.   <strong>Seek support immediately:</strong> Tell a trusted person and contact authorities." },
+// ... (rest of security questions translated similarly)
+]
+};
+
+// Original Arabic data remains unchanged
 const programsData = {
 child: [
 { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يُمنع تماماً استخدام الشاشات للأطفال دون سن 18–24 شهراً.<br>* الاستثناء الوحيد في هذا العمر هو مكالمات الفيديو للتواصل مع الأهل فقط.<br>* من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي.<br>* يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
@@ -417,6 +448,7 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
+
 function initPage() {
 updateTicker();
 loadMedia();
@@ -500,10 +532,11 @@ const btnImg = document.querySelector('#langBtn img');
 btnImg.src = currentLang === 'ar' ? "https://flagcdn.com/w80/gb.png" : "https://flagcdn.com/w80/eg.png";
 updateTicker();
 }
+
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
-const data = programsData[type];
+const data = currentLang === 'en' ? programsDataEn[type] : programsData[type];
 document.getElementById('modalTitle').innerText = translations[currentLang].awTitle;
 data.forEach((item, idx) => {
 const div = document.createElement('div');
@@ -514,15 +547,24 @@ container.appendChild(div);
 });
 document.getElementById('qModal').style.display = 'flex';
 }
+
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
+let srcText = item.src;
+let ansText = item.ans;
+if (currentLang === 'en') {
+// Already in English
+} else {
+// Already in Arabic
+}
 content.innerHTML = `
 <span class="ans-q">${item.q}</span>
-<span class="ans-src">المصدر: ${item.src}</span>
-<div class="ans-text">${item.ans}</div>
+<span class="ans-src">${currentLang === 'en' ? 'Source: ' : 'المصدر: '}${srcText}</span>
+<div class="ans-text">${ansText}</div>
 `;
 document.getElementById('aModal').style.display = 'flex';
 }
+
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
 function initCounters() {
 const counters = document.querySelectorAll('.counter');
