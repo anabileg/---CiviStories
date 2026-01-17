@@ -12,21 +12,21 @@
            --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
            --wa-color: #25D366;
        }
- 
+
        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
        html { scroll-behavior: smooth; }
        body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
- 
+
        .section-main-title { text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; font-weight: bold; }
        .awareness-card, .awareness-card span, #awareness-main-title { user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none; }
- 
+
        .site-bg {
            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
            background-image: url('image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
            animation: kenBurns 35s ease-in-out infinite alternate;
        }
        @keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
- 
+
        .navbar {
            min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
            position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
@@ -41,10 +41,10 @@
        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
        .nav-links a:hover { color: #fff; }
        .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
- 
+
        .lang-toggle { background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
        .lang-toggle img { width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5)); }
- 
+
        .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
        .ticker-track { display: flex; white-space: nowrap; width: max-content; }
        .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
@@ -52,43 +52,43 @@
        @keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
        [dir="rtl"] .animate-news { animation: marqueeNewsRtl 150s linear infinite; }
        @keyframes marqueeNewsRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
- 
+
        .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
        .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); max-width: 100%; }
        .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
        .main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
- 
+
        .hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
        .book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
        .book-wrapper { height: calc(100% - 70px); display: flex; align-items: center; justify-content: center; }
        .book-wrapper img { max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); animation: bookFloat 3s ease-in-out infinite; }
        @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
- 
+
        .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
        .video-container-box iframe { width: 100%; height: 100%; border: none; }
- 
+
        .awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
        .awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px 10px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
        .awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
        .awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
        .awareness-card span { font-weight: bold; font-size: 1.1rem; display: block; line-height: 1.3; }
- 
+
        .carousel-wide { width: 90%; max-width: 1200px; margin: 40px auto; height: 350px; border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000; }
        .track { display: flex; width: max-content; }
        .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
        .track img:hover { filter: grayscale(0%);}
        
-       /* سرعة بطيئة جداً جداً وتكرار سلس */
-       .animate-media { animation: mediaScroll 100s linear infinite; }
+       /* سرعة بطيئة جداً (تم التعديل لـ 150 ثانية لتكون مماثلة لشريط الأخبار) */
+       .animate-media { animation: mediaScroll 150s linear infinite; }
        @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-       [dir="rtl"] .animate-media { animation: mediaScrollRtl 100s linear infinite; }
+       [dir="rtl"] .animate-media { animation: mediaScrollRtl 150s linear infinite; }
        @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
- 
+
        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
        .lightbox-container { position: relative; max-width: 90%; max-height: 90vh; }
        .lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid var(--gold); border-radius: 10px; }
        .close-lightbox { position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
- 
+
        .vision-section, .glass-box { text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0; background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; }
        .vision-section::before, .glass-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 0; }
        .vision-section h2, .vision-section p, .glass-box h2, .glass-box .grid, .glass-box .awareness-grid { position: relative; z-index: 1; }
@@ -97,31 +97,26 @@
        .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
        .info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; text-align: center; }
        .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
- 
+
        .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
        .loss-num { color: var(--red-num) !important; }
- 
+
        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
        .modal-container { position: relative; width: 90%; max-width: 600px; }
        .modal-box { background: #ffff00; border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
        
-       .close-modal { 
-           position: absolute; top: -20px; left: -20px; font-size: 30px; cursor: pointer;
-           color: #ff0000; font-weight: bold; z-index: 50001; background: #000;
-           border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px;
-           display: flex; align-items: center; justify-content: center;
-       }
- 
+       .close-modal { position: absolute; top: -20px; left: -20px; font-size: 30px; cursor: pointer; color: #ff0000; font-weight: bold; z-index: 50001; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
+
        .q-item { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s; font-weight: bold; color: #000; }
        .q-item:hover { background: rgba(0,0,0,0.05);}
        .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; text-align: center; }
        .ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; }
        .ans-text { line-height: 1.6; font-size: 1.1rem; }
- 
+
        #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
        .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
        @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
- 
+
        @media (max-width: 992px) {
            .nav-container { flex-direction: column; gap: 15px; }
            .news-ticker { top: 160px; }
@@ -132,16 +127,16 @@
            .section-main-title { font-size: 2rem; }
            .close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
        }
- 
+
        .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
        .btn-action:hover { background: #fff; transform: scale(1.05);}
    </style>
 </head>
 <body onload="initPage()">
- 
+
    <div class="site-bg"></div>
    <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
- 
+
    <div id="qModal" class="modal-overlay">
        <div class="modal-container">
            <span class="close-modal" onclick="closePopup('qModal')">×</span>
@@ -151,7 +146,7 @@
            </div>
        </div>
    </div>
- 
+
    <div id="aModal" class="modal-overlay">
        <div class="modal-container">
            <span class="close-modal" onclick="closePopup('aModal')">×</span>
@@ -160,18 +155,18 @@
            </div>
        </div>
    </div>
- 
+
    <div id="lightbox" class="lightbox">
        <div class="lightbox-container">
            <button class="close-lightbox" onclick="closeImage()">X</button>
            <img id="lightbox-img" src="">
        </div>
    </div>
- 
+
    <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank">
        <i class="fab fa-whatsapp"></i>
    </a>
- 
+
    <nav class="navbar">
        <div class="nav-container">
            <div class="nav-links">
@@ -200,9 +195,9 @@
            </div>
        </div>
    </nav>
- 
+
    <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
- 
+
    <section class="hero" id="home">
        <h1 class="main-alert-title" id="main-hero-title">
            <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br>
@@ -218,12 +213,12 @@
            </div>
        </div>
    </section>
- 
+
    <section id="about" class="vision-section">
        <h2 id="vis-title" class="section-main-title">رؤيتنا الاستراتيجية</h2>
        <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
    </section>
- 
+
    <section id="inst" class="section">
        <div class="glass-box">
            <h2 id="part-title" class="section-main-title">شركاء الوعي الوطني</h2>
@@ -249,14 +244,14 @@
            </div>
        </div>
    </section>
- 
+
    <div style="text-align:center; margin-top:40px;">
        <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
    </div>
    <section id="media-sec" class="carousel-wide">
        <div class="track animate-media" id="track-imgs"></div>
    </section>
- 
+
    <section id="stats" class="section">
        <div class="glass-box">
            <h2 id="st-title" class="section-main-title">إحصائيات</h2>
@@ -279,7 +274,7 @@
            </div>
        </div>
    </section>
- 
+
    <section id="losses" class="section">
        <div class="glass-box" style="border-color: var(--red-num);">
            <h2 id="ls-title" class="section-main-title" style="color: var(--red-num);">الخسائر</h2>
@@ -302,7 +297,7 @@
            </div>
        </div>
    </section>
- 
+
    <section id="awareness-sec" class="section">
        <div class="glass-box">
            <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
@@ -316,7 +311,7 @@
            </div>
        </div>
    </section>
- 
+
    <script>
        const translations = {
            ar: {
@@ -344,7 +339,7 @@
                 sources: ["Source: CAPMAS Egypt", "Source: MCIT Egypt", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Fatwa Center", "Source: Church Counseling Reports", "Source: Ministry of Endowments"]
            }
        };
- 
+
        const programsData = {
            child: [
                 { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يمنع منعاً باتاً استخدام الشاشات للأطفال دون سن 18-24 شهراً. <br> * الاستثناء الوحيد في هذا السن هو مكالمات الفيديو للتواصل مع الأهل فقط. <br> * من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي عالي الجودة. <br> * يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
@@ -366,136 +361,136 @@
            ],
            teens: [], youth: [], marriage: [], seniors: [], security: []
        };
- 
+
        let currentLang = 'ar';
 
        function initPage() {
+           loadMedia();
+           updateContent();
+           initCounters();
+           window.onscroll = () => {
+               document.getElementById('btnUp').style.display = window.scrollY > 300 ? 'flex' : 'none';
+           };
+       }
+
+       function loadMedia() {
            const track = document.getElementById('track-imgs');
-           track.innerHTML = '';
-           
-           // إنشاء الصور من 101.jpg إلى 124.jpg
-           const images = [];
-           for(let i = 101; i <= 124; i++) {
-               images.push(i + '.jpg');
+           let content = "";
+           for(let i=1; i<=20; i++) {
+               content += `<img src="m${i}.jpg" onclick="openImage(this.src)" onerror="this.style.display='none'">`;
            }
-           
-           // تكرار المصفوفة للتمرير اللانهائي
-           const fullList = [...images, ...images];
-           
-           fullList.forEach(imgSrc => {
-               const img = document.createElement('img');
-               img.src = imgSrc;
-               img.onclick = () => openImage(imgSrc);
-               track.appendChild(img);
-           });
-
-           updateTicker();
-           startCounters();
+           track.innerHTML = content + content;
        }
 
-       function updateTicker() {
-           const ticker = document.getElementById('tickerTrack');
-           const news = translations[currentLang].news;
-           ticker.innerHTML = '';
-           [...news, ...news].forEach(txt => {
-               const s = document.createElement('span');
-               s.innerText = txt;
-               ticker.appendChild(s);
-           });
-       }
-
-       function startCounters() {
-           const counters = document.querySelectorAll('.counter');
-           counters.forEach(c => {
-               const target = +c.getAttribute('data-target');
-               let count = 0;
-               const inc = target / 100;
-               const update = () => {
-                   if(count < target) {
-                       count += inc;
-                       c.innerText = Math.ceil(count);
-                       setTimeout(update, 20);
-                   } else {
-                       c.innerText = target;
-                   }
-               };
-               update();
-           });
-       }
-
-       function toggleLanguage() {
-           currentLang = currentLang === 'ar' ? 'en' : 'ar';
-           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang==='ar'?'gb':'eg'}.png">`;
-           
+       function updateContent() {
            const t = translations[currentLang];
+           document.documentElement.lang = currentLang;
+           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+           
            document.getElementById('main-hero-title').innerHTML = t.heroTitle;
+           const navLinks = document.querySelectorAll('.nav-links a');
+           t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
+           
            document.getElementById('vis-title').innerText = t.visTitle;
            document.getElementById('vis-desc').innerText = t.visDesc;
            document.getElementById('part-title').innerText = t.partTitle;
-           document.getElementById('st-title').innerText = t.stTitle;
-           document.getElementById('ls-title').innerText = t.lsTitle;
-           document.getElementById('awareness-main-title').innerText = t.awTitle;
-           document.getElementById('media-guideline').innerText = t.mediaGuide;
-           document.getElementById('btn-browse').innerText = t.btnBrowse;
+           document.getElementById('p1-name').innerText = t.p1Name;
+           document.getElementById('p2-name').innerText = t.p2Name;
+           document.getElementById('p3-name').innerText = t.p3Name;
            
+           document.getElementById('st-title').innerText = t.stTitle;
            document.getElementById('st1-txt').innerText = t.st1;
            document.getElementById('st2-txt').innerText = t.st2;
            document.getElementById('st3-txt').innerText = t.st3;
+           
+           document.getElementById('ls-title').innerText = t.lsTitle;
            document.getElementById('ls1-txt').innerText = t.ls1;
            document.getElementById('ls2-txt').innerText = t.ls2;
            document.getElementById('ls3-txt').innerText = t.ls3;
            
-           for(let i=1; i<=6; i++) document.getElementById('aw-c'+i).innerText = t['aw'+i];
-           for(let i=1; i<=6; i++) document.getElementById('src'+i).innerText = t.sources[i-1];
-           for(let i=1; i<=3; i++) {
-                document.getElementById('p'+i+'-name').innerText = t['p'+i+'Name'];
-                document.getElementById('src-p'+i).innerText = t.sources[i+5];
-           }
+           document.getElementById('awareness-main-title').innerText = t.awTitle;
+           document.getElementById('aw-c1').innerText = t.aw1;
+           document.getElementById('aw-c2').innerText = t.aw2;
+           document.getElementById('aw-c3').innerText = t.aw3;
+           document.getElementById('aw-c4').innerText = t.aw4;
+           document.getElementById('aw-c5').innerText = t.aw5;
+           document.getElementById('aw-c6').innerText = t.aw6;
            
-           updateTicker();
+           document.getElementById('media-guideline').innerText = t.mediaGuide;
+           document.getElementById('btn-browse').innerText = t.btnBrowse;
+
+           const ticker = document.getElementById('tickerTrack');
+           ticker.innerHTML = "";
+           t.news.concat(t.news).forEach(n => {
+               const span = document.createElement('span');
+               span.innerText = n;
+               ticker.appendChild(span);
+           });
+
+           for(let i=1; i<=9; i++) {
+               const el = document.getElementById('src'+i) || document.getElementById('src-p'+i);
+               if(el) el.innerText = t.sources[i-1];
+           }
+
+           document.getElementById('langBtn').innerHTML = currentLang === 'ar' ? 
+               '<img src="https://flagcdn.com/w80/gb.png" alt="English">' : 
+               '<img src="https://flagcdn.com/w80/eg.png" alt="Arabic">';
+       }
+
+       function toggleLanguage() {
+           currentLang = currentLang === 'ar' ? 'en' : 'ar';
+           updateContent();
        }
 
        function scrollToSec(id) {
            const el = document.getElementById(id);
-           if(!el) return;
-           const offset = 140; 
-           const bodyRect = document.body.getBoundingClientRect().top;
-           const elementRect = el.getBoundingClientRect().top;
-           const elementPosition = elementRect - bodyRect;
-           const offsetPosition = elementPosition - offset;
-           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+           if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: 'smooth' });
        }
 
-       window.onscroll = function() {
-           document.getElementById("btnUp").style.display = (window.scrollY > 300) ? "flex" : "none";
-       };
-
-       function openImage(src) {
-           document.getElementById('lightbox-img').src = src;
-           document.getElementById('lightbox').style.display = 'flex';
+       function initCounters() {
+           const observers = new IntersectionObserver((entries) => {
+               entries.forEach(entry => {
+                   if(entry.isIntersecting) {
+                       const target = +entry.target.getAttribute('data-target');
+                       let count = 0;
+                       const speed = target / 100;
+                       const update = () => {
+                           count += speed;
+                           if(count < target) {
+                               entry.target.innerText = Math.floor(count);
+                               setTimeout(update, 20);
+                           } else {
+                               entry.target.innerText = target;
+                           }
+                       };
+                       update();
+                       observers.unobserve(entry.target);
+                   }
+               });
+           }, { threshold: 0.5 });
+           document.querySelectorAll('.counter').forEach(c => observers.observe(c));
        }
-       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
        function openProgram(type) {
            const container = document.getElementById('questionsContainer');
-           container.innerHTML = '';
+           container.innerHTML = "";
            const data = programsData[type];
            if(!data || data.length === 0) {
-               container.innerHTML = '<p style="text-align:center">قريباً...</p>';
+               container.innerHTML = "<p style='text-align:center; font-weight:bold;'>قريباً إن شاء الله...</p>";
            } else {
-               data.forEach((item) => {
+               data.forEach((item, index) => {
                    const div = document.createElement('div');
-                   div.className = 'q-item';
+                   div.className = "q-item";
                    div.innerText = item.q;
-                   div.onclick = () => showAnswer(item);
+                   div.onclick = () => showAnswer(type, index);
                    container.appendChild(div);
                });
            }
            document.getElementById('qModal').style.display = 'flex';
        }
 
-       function showAnswer(item) {
+       function showAnswer(type, index) {
+           const item = programsData[type][index];
            const content = document.getElementById('answerContent');
            content.innerHTML = `
                <span class="ans-q">${item.q}</span>
@@ -506,6 +501,11 @@
        }
 
        function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+       function openImage(src) { 
+           document.getElementById('lightbox-img').src = src;
+           document.getElementById('lightbox').style.display = 'flex';
+       }
+       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
    </script>
 </body>
 </html>
