@@ -78,10 +78,10 @@
        .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
        .track img:hover { filter: grayscale(0%);}
        
-       /* سرعة بطيئة جداً جداً وتكرار سلس */
-       .animate-media { animation: mediaScroll 100s linear infinite; }
+       /* تعديل السرعة هنا لتكون 150 ثانية مثل شريط الأخبار */
+       .animate-media { animation: mediaScroll 150s linear infinite; }
        @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
-       [dir="rtl"] .animate-media { animation: mediaScrollRtl 100s linear infinite; }
+       [dir="rtl"] .animate-media { animation: mediaScrollRtl 150s linear infinite; }
        @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
  
        .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
@@ -368,134 +368,72 @@
        };
  
        let currentLang = 'ar';
-
+ 
        function initPage() {
            const track = document.getElementById('track-imgs');
-           track.innerHTML = '';
-           
-           // إنشاء الصور من 101.jpg إلى 124.jpg
-           const images = [];
-           for(let i = 101; i <= 124; i++) {
-               images.push(i + '.jpg');
+           let content = '';
+           for(let i=1; i<=25; i++) {
+               content += `<img src="${i}.png" onclick="openImage('${i}.png')">`;
            }
+           track.innerHTML = content + content;
            
-           // تكرار المصفوفة للتمرير اللانهائي
-           const fullList = [...images, ...images];
-           
-           fullList.forEach(imgSrc => {
-               const img = document.createElement('img');
-               img.src = imgSrc;
-               img.onclick = () => openImage(imgSrc);
-               track.appendChild(img);
-           });
-
            updateTicker();
            startCounters();
+           
+           window.onscroll = function() {
+               if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                   document.getElementById("btnUp").style.display = "flex";
+               } else {
+                   document.getElementById("btnUp").style.display = "none";
+               }
+           };
        }
 
        function updateTicker() {
            const ticker = document.getElementById('tickerTrack');
            const news = translations[currentLang].news;
-           ticker.innerHTML = '';
-           [...news, ...news].forEach(txt => {
-               const s = document.createElement('span');
-               s.innerText = txt;
-               ticker.appendChild(s);
-           });
+           let html = '';
+           news.forEach(n => { html += `<span>${n}</span>`; });
+           ticker.innerHTML = html + html;
        }
 
        function startCounters() {
            const counters = document.querySelectorAll('.counter');
-           counters.forEach(c => {
-               const target = +c.getAttribute('data-target');
+           counters.forEach(counter => {
+               const target = +counter.getAttribute('data-target');
                let count = 0;
                const inc = target / 100;
                const update = () => {
                    if(count < target) {
                        count += inc;
-                       c.innerText = Math.ceil(count);
+                       counter.innerText = Math.ceil(count);
                        setTimeout(update, 20);
                    } else {
-                       c.innerText = target;
+                       counter.innerText = target;
                    }
                };
                update();
            });
        }
 
-       function toggleLanguage() {
-           currentLang = currentLang === 'ar' ? 'en' : 'ar';
-           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang==='ar'?'gb':'eg'}.png">`;
-           
-           const t = translations[currentLang];
-           document.getElementById('main-hero-title').innerHTML = t.heroTitle;
-           document.getElementById('vis-title').innerText = t.visTitle;
-           document.getElementById('vis-desc').innerText = t.visDesc;
-           document.getElementById('part-title').innerText = t.partTitle;
-           document.getElementById('st-title').innerText = t.stTitle;
-           document.getElementById('ls-title').innerText = t.lsTitle;
-           document.getElementById('awareness-main-title').innerText = t.awTitle;
-           document.getElementById('media-guideline').innerText = t.mediaGuide;
-           document.getElementById('btn-browse').innerText = t.btnBrowse;
-           
-           document.getElementById('st1-txt').innerText = t.st1;
-           document.getElementById('st2-txt').innerText = t.st2;
-           document.getElementById('st3-txt').innerText = t.st3;
-           document.getElementById('ls1-txt').innerText = t.ls1;
-           document.getElementById('ls2-txt').innerText = t.ls2;
-           document.getElementById('ls3-txt').innerText = t.ls3;
-           
-           for(let i=1; i<=6; i++) document.getElementById('aw-c'+i).innerText = t['aw'+i];
-           for(let i=1; i<=6; i++) document.getElementById('src'+i).innerText = t.sources[i-1];
-           for(let i=1; i<=3; i++) {
-                document.getElementById('p'+i+'-name').innerText = t['p'+i+'Name'];
-                document.getElementById('src-p'+i).innerText = t.sources[i+5];
-           }
-           
-           updateTicker();
-       }
-
-       function scrollToSec(id) {
-           const el = document.getElementById(id);
-           if(!el) return;
-           const offset = 140; 
-           const bodyRect = document.body.getBoundingClientRect().top;
-           const elementRect = el.getBoundingClientRect().top;
-           const elementPosition = elementRect - bodyRect;
-           const offsetPosition = elementPosition - offset;
-           window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-       }
-
-       window.onscroll = function() {
-           document.getElementById("btnUp").style.display = (window.scrollY > 300) ? "flex" : "none";
-       };
-
-       function openImage(src) {
-           document.getElementById('lightbox-img').src = src;
-           document.getElementById('lightbox').style.display = 'flex';
-       }
-       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-
        function openProgram(type) {
-           const container = document.getElementById('questionsContainer');
-           container.innerHTML = '';
            const data = programsData[type];
-           if(!data || data.length === 0) {
-               container.innerHTML = '<p style="text-align:center">قريباً...</p>';
+           const container = document.getElementById('questionsContainer');
+           const title = document.getElementById('modalTitle');
+           title.innerText = document.getElementById('aw-c' + (Object.keys(programsData).indexOf(type)+1)).innerText;
+           
+           if(data && data.length > 0) {
+               container.innerHTML = data.map((item, idx) => `
+                   <div class="q-item" onclick="showAnswer('${type}', ${idx})">${item.q}</div>
+               `).join('');
            } else {
-               data.forEach((item) => {
-                   const div = document.createElement('div');
-                   div.className = 'q-item';
-                   div.innerText = item.q;
-                   div.onclick = () => showAnswer(item);
-                   container.appendChild(div);
-               });
+               container.innerHTML = '<p style="text-align:center; padding:20px;">قريباً...</p>';
            }
            document.getElementById('qModal').style.display = 'flex';
        }
 
-       function showAnswer(item) {
+       function showAnswer(type, idx) {
+           const item = programsData[type][idx];
            const content = document.getElementById('answerContent');
            content.innerHTML = `
                <span class="ans-q">${item.q}</span>
@@ -506,6 +444,50 @@
        }
 
        function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+       function openImage(src) { 
+           document.getElementById('lightbox-img').src = src;
+           document.getElementById('lightbox').style.display = 'flex';
+       }
+       function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+       function scrollToSec(id) { document.getElementById(id).scrollIntoView({behavior: 'smooth'}); }
+
+       function toggleLanguage() {
+           currentLang = currentLang === 'ar' ? 'en' : 'ar';
+           const t = translations[currentLang];
+           document.documentElement.lang = currentLang;
+           document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+           
+           document.getElementById('main-hero-title').innerHTML = t.heroTitle;
+           document.getElementById('vis-title').innerText = t.visTitle;
+           document.getElementById('vis-desc').innerText = t.visDesc;
+           document.getElementById('part-title').innerText = t.partTitle;
+           document.getElementById('p1-name').innerText = t.p1Name;
+           document.getElementById('p2-name').innerText = t.p2Name;
+           document.getElementById('p3-name').innerText = t.p3Name;
+           document.getElementById('st-title').innerText = t.stTitle;
+           document.getElementById('st1-txt').innerText = t.st1;
+           document.getElementById('st2-txt').innerText = t.st2;
+           document.getElementById('st3-txt').innerText = t.st3;
+           document.getElementById('ls-title').innerText = t.lsTitle;
+           document.getElementById('ls1-txt').innerText = t.ls1;
+           document.getElementById('ls2-txt').innerText = t.ls2;
+           document.getElementById('ls3-txt').innerText = t.ls3;
+           document.getElementById('awareness-main-title').innerText = t.awTitle;
+           document.getElementById('media-guideline').innerText = t.mediaGuide;
+           document.getElementById('btn-browse').innerText = t.btnBrowse;
+           
+           for(let i=1; i<=6; i++) {
+               document.getElementById('aw-c'+i).innerText = t['aw'+i];
+               document.getElementById('src'+i).innerText = t.sources[i-1];
+               if(i<=3) document.getElementById('src-p'+i).innerText = t.sources[i+5];
+           }
+
+           const navLinks = document.querySelectorAll('.nav-links a');
+           t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
+           
+           document.getElementById('langBtn').innerHTML = `<img src="https://flagcdn.com/w80/${currentLang === 'ar' ? 'gb' : 'eg'}.png">`;
+           updateTicker();
+       }
    </script>
 </body>
 </html>
