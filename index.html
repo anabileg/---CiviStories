@@ -727,11 +727,24 @@ const links = document.querySelectorAll('.nav-links a');
 t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
 updateTicker();
 }
+
+// === التعديل المطلوب هنا ===
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
 const data = currentLang === 'en' ? programsDataEn[type] : programsData[type];
-document.getElementById('modalTitle').innerText = translations[currentLang].awTitle;
+
+// --- تحديد اسم البرنامج بناءً على النوع ---
+const programNames = {
+'child': translations[currentLang].aw1,
+'teens': translations[currentLang].aw2,
+'youth': translations[currentLang].aw3,
+'marriage': translations[currentLang].aw4,
+'seniors': translations[currentLang].aw5,
+'security': translations[currentLang].aw6
+};
+
+document.getElementById('modalTitle').innerText = programNames[type];
 data.forEach((item, idx) => {
 const div = document.createElement('div');
 div.className = "q-item";
@@ -741,6 +754,8 @@ container.appendChild(div);
 });
 document.getElementById('qModal').style.display = 'flex';
 }
+// === نهاية التعديل ===
+
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
 let srcText = item.src;
