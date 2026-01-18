@@ -174,7 +174,6 @@ text-align: center;
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
 <!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
@@ -186,7 +185,6 @@ text-align: center;
 </div>
 </div>
 </div>
-
 <!-- Modal for Answers -->
 <div id="aModal" class="modal-overlay">
 <div class="modal-container">
@@ -198,18 +196,15 @@ text-align: center;
 </div>
 </div>
 </div>
-
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
 <img id="lightbox-img" src="">
 </div>
 </div>
-
 <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
-
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
@@ -241,9 +236,7 @@ text-align: center;
 </div>
 </div>
 </nav>
-
 <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
-
 <section class="hero" id="home">
 <h1 class="main-alert-title" id="main-hero-title">
 <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br>
@@ -259,12 +252,10 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <section id="about" class="vision-section">
 <h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤيتنا الاستراتيجية</h2>
 <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
 </section>
-
 <section id="inst" class="section">
 <div class="glass-box">
 <h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
@@ -290,15 +281,12 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <div style="text-align:center; margin-top:40px;">
 <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
 </div>
-
 <section id="media-sec" class="carousel-wide">
 <div class="track animate-media" id="track-imgs"></div>
 </section>
-
 <section id="stats" class="section">
 <div class="glass-box">
 <h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
@@ -321,7 +309,6 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <section id="losses" class="section">
 <div class="glass-box" style="border-color: var(--red-num);">
 <h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
@@ -344,7 +331,6 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <section id="awareness-sec" class="section">
 <div class="glass-box">
 <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
@@ -358,10 +344,8 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <script>
 let currentLang = 'ar';
-
 // === Full translations for all supported languages ===
 const translations = {
 ar: {
@@ -497,7 +481,6 @@ sources: [
 ]
 }
 };
-
 // === Arabic programsData (original) ===
 const programsData = {
 child: [
@@ -609,9 +592,7 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
-
 // === Full culturally adapted programs data for each language ===
-
 // English
 const programsDataEn = {
 child: [
@@ -681,7 +662,7 @@ marriage: [
 { q: "What are the risks of online friendships with the opposite gender, and how can they lead to marital infidelity?", src: "Marriage Counselor", ans: ".   They offer false emotional closeness while hiding real-life flaws<br>.   Create a secret space where feelings grow outside the primary relationship (emotional affair)<br>.   Divert emotional investment and time away from the real partner<br>.   Can escalate to physical meetings if boundaries aren’t enforced<br>.   Prevention: set clear friendship boundaries, maintain transparency, and reinvest emotional energy into your marriage" },
 { q: "How does blue light and pre-sleep phone use affect couples’ shared sleep cycles?", src: "Family Sleep Specialist", ans: ".   Blue light tricks the brain into thinking it’s daytime, delaying melatonin release<br>.   Leads to difficulty falling asleep, fragmented sleep, and reduced deep sleep quality for both partners<br>.   Disrupts the couple’s shared sleep rhythm if one uses the phone in bed<br>.   Solution: enable Night Light, enforce a no-screen rule 1 hour before bed, and charge phones outside the bedroom" },
 { q: "How can we fix \"digital marital silence\"—sitting together but emotionally disconnected?", src: "Family Communication Specialist", ans: ".   Acknowledge the issue openly and non-accusatorily: “I feel we’ve drifted apart even when we’re together.”<br>.   Implement a “digital basket”: collect all devices for a set time daily<br>.   Redefine “quality time” as phone-free activities: cooking together, board games, walks<br>.   Ask open-ended questions to spark dialogue (e.g., “What’s your biggest dream this year?”)<br>.   Start sharing stories from your day instead of defaulting to phone scrolling" },
-{ q: "What if one partner overshhares our private life on social media?", src: "Digital Privacy Counselor", ans: ".   Express your feelings using “I” statements (e.g., “I feel uncomfortable when our photos are posted.”)<br>.   Discuss and agree on clear boundaries: what’s shareable vs. private (kids’ photos, arguments, family events)<br>.   Respect the more private partner’s wishes—privacy is a shared right<br>.   Suggest alternatives like a private family group chat for updates<br>.   Understand their motives (need for validation) while clarifying relational consequences" },
+{ q: "What if one partner overshhares our private life on social media?", src: "Digital Privacy Counselor", ans: ".   Express your feelings using “I” statements (e.g., “I feel uncomfortable when our photos are posted.”)<br>.   Discuss and agree on clear boundaries: what’s shareable vs. private (Kids’ photos, arguments, family events)<br>.   Respect the more private partner’s wishes—privacy is a shared right<br>.   Suggest alternatives like a private family group chat for updates<br>.   Understand their motives (need for validation) while clarifying relational consequences" },
 { q: "How can we use shared calendar and task apps to coordinate better and reduce household stress?", src: "Digital Life Organizer", ans: ".   Use a shared digital calendar (e.g., Google Calendar) for all appointments: work, meetings, family events, chores<br>.   Maintain a joint task list (via Todoist or Microsoft To Do) to distribute and track responsibilities<br>.   Schedule recurring “couple dates” and “family time” in the calendar—treat them like critical work meetings<br>.   Use reminders for coordinated actions (e.g., grocery pickups)<br>.   Hold a quick weekly planning session to review the upcoming week together" },
 { q: "How can technology strengthen our bond during long-distance or business travel?", src: "Long-Distance Relationship Expert", ans: ".   Schedule short, regular video calls—better than sporadic long ones<br>.   Send spontaneous voice notes or photos from your day<br>.   Watch movies or shows together using “Watch Party” features<br>.   Play simple online games together for fun competition<br>.   Surprise each other with food delivery or small gifts via apps to show care" },
 { q: "What innovative ways can we use online educational content to improve our communication and emotional intelligence?", src: "Digital Couples Learning Expert", ans: ".   Watch short courses on marital communication or emotional intelligence together and discuss<br>.   Listen to relationship podcasts during car rides and pause to reflect<br>.   Use interactive apps or e-books with conversation-starting questions<br>.   Play digital or physical board games focused on mutual discovery<br>.   Practice active listening exercises learned online with each other" },
@@ -723,7 +704,6 @@ security: [
 { q: "How can I build a personal and technical “firewall” to prevent hackers from exploiting my vulnerabilities?", src: "Holistic Security Expert", ans: ".   <strong>Psychological Firewall:</strong><br>        -   <strong>Awareness:</strong> Know your worth—never undervalue your personal data.<br>        -   <strong>Healthy skepticism:</strong> Don’t trust online offers or strangers easily.<br>        -   <strong>Privacy mindset:</strong> Avoid oversharing daily routines or personal struggles publicly.<br>.   <strong>Technical Firewall:</strong><br>        -   <strong>Strong, unique passwords</strong> for every account—use a password manager.<br>        -   <strong>Enable 2FA</strong> on all important accounts.<br>        -   <strong>Update software regularly</strong> to patch security holes.<br>        -   <strong>Use antivirus software</strong> and run periodic scans." }
 ]
 };
-
 // Spanish
 const programsDataEs = {
 child: [
@@ -735,22 +715,17 @@ teens: [], youth: [], marriage: [], seniors: [], security: []
 };
 // Note: For brevity in this response, only the first 2 child items are shown for Spanish.
 // In the actual implementation, all items would be fully translated as done for English.
-
 // French
 const programsDataFr = JSON.parse(JSON.stringify(programsDataEn));
 // In production, manually adapt all entries culturally for French context.
-
 // Italian
 const programsDataIt = JSON.parse(JSON.stringify(programsDataEn));
 // In production, manually adapt all entries culturally for Italian context.
-
 // Turkish
 const programsDataTr = JSON.parse(JSON.stringify(programsDataEn));
 // In production, manually adapt all entries culturally for Turkish context.
-
 // For demonstration, we'll assume full manual translation exists for all.
 // In reality, each language's programsData would be fully populated like programsDataEn.
-
 function initPage() {
 scrollToSec('home');
 updateTicker();
@@ -759,7 +734,6 @@ renderLanguageDropdown();
 setupLanguageToggle();
 initCountersObserver();
 }
-
 function initCountersObserver() {
 const counters = document.querySelectorAll('.counter');
 counters.forEach(c => c.innerText = '0');
@@ -788,7 +762,6 @@ document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
 observer.observe(c);
 });
 }
-
 function updateTicker() {
 const track = document.getElementById('tickerTrack');
 const list = translations[currentLang]?.news || translations.ar.news;
@@ -799,7 +772,6 @@ s.innerText = txt;
 track.appendChild(s);
 });
 }
-
 function loadMedia() {
 const track = document.getElementById('track-imgs');
 track.innerHTML = "";
@@ -812,14 +784,11 @@ img.onclick = () => openImage(src);
 track.appendChild(img);
 });
 }
-
 function openImage(src) {
 document.getElementById('lightbox-img').src = src;
 document.getElementById('lightbox').style.display = 'flex';
 }
-
 function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-
 function scrollToSec(id) {
 const el = document.getElementById(id);
 if(el) {
@@ -828,7 +797,6 @@ const pos = el.offsetTop - offset;
 window.scrollTo({ top: pos, behavior: 'smooth' });
 }
 }
-
 function renderLanguageDropdown() {
 const dropdown = document.getElementById('langDropdown');
 dropdown.innerHTML = '';
@@ -853,7 +821,6 @@ selectLanguage(lang.code, lang.flag);
 dropdown.appendChild(div);
 });
 }
-
 function setupLanguageToggle() {
 const toggleBtn = document.getElementById('langToggleBtn');
 const dropdown = document.getElementById('langDropdown');
@@ -867,7 +834,6 @@ dropdown.classList.remove('show');
 }
 });
 }
-
 function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
@@ -910,7 +876,6 @@ const links = document.querySelectorAll('.nav-links a');
 t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
 updateTicker();
 }
-
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
@@ -939,24 +904,21 @@ container.appendChild(div);
 });
 document.getElementById('qModal').style.display = 'flex';
 }
-
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
 const title = document.getElementById('answerTitle');
 title.innerText = item.q;
 content.innerHTML = `
-<span class="ans-src">${currentLang === 'en' ? 'Source: ' : 
-currentLang === 'es' ? 'Fuente: ' : 
-currentLang === 'fr' ? 'Source : ' : 
-currentLang === 'it' ? 'Fonte: ' : 
+<span class="ans-src">${currentLang === 'en' ? 'Source: ' :
+currentLang === 'es' ? 'Fuente: ' :
+currentLang === 'fr' ? 'Source : ' :
+currentLang === 'it' ? 'Fonte: ' :
 currentLang === 'tr' ? 'Kaynak: ' : 'المصدر: '}${item.src}</span>
 <div class="ans-text">${item.ans}</div>
 `;
 document.getElementById('aModal').style.display = 'flex';
 }
-
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
-
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
