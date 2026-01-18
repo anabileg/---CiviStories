@@ -10,7 +10,6 @@
 --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
 --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
 --wa-color: #25D366;
---cream-bg: #fdf9f3;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
@@ -37,7 +36,7 @@ display: flex; align-items: center; justify-content: center;
 .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
 .nav-links a:hover { color: #fff; }
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
-
+/* === تعديل زر اللغة ليصبح قائمة منسدلة === */
 .lang-selector {
 position: relative;
 display: inline-block;
@@ -82,7 +81,6 @@ height: 16px;
 object-fit: contain;
 border-radius: 2px;
 }
-
 .news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
 .ticker-track { display: flex; white-space: nowrap; width: max-content; }
 .ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
@@ -90,7 +88,6 @@ border-radius: 2px;
 @keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
 [dir="rtl"] .animate-news { animation: marqueeNewsRtl 150s linear infinite; }
 @keyframes marqueeNewsRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
-
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
 .main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); max-width: 100%; }
 .main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
@@ -102,13 +99,11 @@ border-radius: 2px;
 @keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
 .video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
 .video-container-box iframe { width: 100%; height: 100%; border: none; }
-
 .awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
 .awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px 10px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
 .awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
 .awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
 .awareness-card span { font-weight: bold; font-size: 1.1rem; display: block; line-height: 1.3; }
-
 .carousel-wide { width: 90%; max-width: 1200px; margin: 40px auto; height: 350px; border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000; }
 .track { display: flex; width: max-content; }
 .track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
@@ -117,16 +112,13 @@ border-radius: 2px;
 @keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
 [dir="rtl"] .animate-media { animation: mediaScrollRtl 250s linear infinite; }
 @keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
-
 .lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
 .lightbox-container { position: relative; max-width: 90%; max-height: 90vh; }
 .lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid var(--gold); border-radius: 10px; }
 .close-lightbox { position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
-
 .vision-section, .glass-box { text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0; background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; }
 .vision-section::before, .glass-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 0; }
 .vision-section h2, .vision-section p, .glass-box h2, .glass-box .grid, .glass-box .awareness-grid { position: relative; z-index: 1; }
-
 .section { padding: 40px 5%; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 .card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
@@ -134,10 +126,9 @@ border-radius: 2px;
 .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
 .loss-num { color: var(--red-num) !important; }
-
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
 .modal-container { position: relative; width: 90%; max-width: 600px; }
-.modal-box { background: var(--cream-bg); border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
+.modal-box { background: #ffff00; border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
 .close-modal {
 position: absolute; top: -20px; left: -20px; font-size: 30px; cursor: pointer;
 color: #ff0000; font-weight: bold; z-index: 50001; background: #000;
@@ -149,11 +140,9 @@ display: flex; align-items: center; justify-content: center;
 .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; text-align: center; }
 .ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; }
 .ans-text { line-height: 1.6; font-size: 1.1rem; }
-
 #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
 .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
 @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
 .news-ticker { top: 160px; }
@@ -166,63 +155,37 @@ display: flex; align-items: center; justify-content: center;
 }
 .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
 .btn-action:hover { background: #fff; transform: scale(1.05);}
-
-/* === New styles for modal header === */
-.modal-program-title {
-color: #ff0000;
-font-weight: bold;
-font-size: 1.4rem;
-margin-bottom: 10px;
-text-align: center;
-}
-.modal-instruction {
-color: #0000ff;
-font-weight: bold;
-font-size: 1.1rem;
-margin-bottom: 15px;
-text-align: center;
-}
 </style>
 </head>
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
-<!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
 <span class="close-modal" onclick="closePopup('qModal')">×</span>
 <div class="modal-box">
-<h2 id="modalTitle" class="modal-program-title"></h2>
-<p class="modal-instruction">اضغط على السؤال لمعرفة الإجابة</p>
+<h2 id="modalTitle" style="color:#ff0000; margin-bottom:20px; text-align: center;">برامج التوعية</h2>
 <div id="questionsContainer"></div>
 </div>
 </div>
 </div>
-
-<!-- Modal for Answers -->
 <div id="aModal" class="modal-overlay">
 <div class="modal-container">
 <span class="close-modal" onclick="closePopup('aModal')">×</span>
 <div class="modal-box">
-<h2 id="answerTitle" class="modal-program-title"></h2>
-<p class="modal-instruction">اضغط على السؤال لمعرفة الإجابة</p>
 <div id="answerContent"></div>
 </div>
 </div>
 </div>
-
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
 <img id="lightbox-img" src="">
 </div>
 </div>
-
 <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
-
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
@@ -244,21 +207,20 @@ text-align: center;
 <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
 <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
 </div>
-
+<!-- === قائمة اللغات المنسدلة === -->
 <div class="lang-selector">
 <button class="lang-toggle-btn" id="langToggleBtn">
 <img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
 </button>
-<div class="lang-dropdown" id="langDropdown"></div>
+<div class="lang-dropdown" id="langDropdown">
+<!-- سيتم تعبئتها باللغات أدناه -->
 </div>
-
+</div>
 <img src="logo.png" class="nav-logo-img" alt="Logo">
 </div>
 </div>
 </nav>
-
 <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
-
 <section class="hero" id="home">
 <h1 class="main-alert-title" id="main-hero-title">
 <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br>
@@ -274,12 +236,10 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <section id="about" class="vision-section">
 <h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤيتنا الاستراتيجية</h2>
 <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
 </section>
-
 <section id="inst" class="section">
 <div class="glass-box">
 <h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
@@ -305,15 +265,12 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <div style="text-align:center; margin-top:40px;">
 <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
 </div>
-
 <section id="media-sec" class="carousel-wide">
 <div class="track animate-media" id="track-imgs"></div>
 </section>
-
 <section id="stats" class="section">
 <div class="glass-box">
 <h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
@@ -336,7 +293,6 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <section id="losses" class="section">
 <div class="glass-box" style="border-color: var(--red-num);">
 <h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
@@ -359,7 +315,6 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <section id="awareness-sec" class="section">
 <div class="glass-box">
 <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
@@ -373,11 +328,8 @@ text-align: center;
 </div>
 </div>
 </section>
-
 <script>
 let currentLang = 'ar';
-
-// === Spanish translation added ===
 const translations = {
 ar: {
 heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
@@ -402,83 +354,240 @@ awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Teen World", aw3:
 mediaGuide: "Click on the image to receive our message", btnBrowse: "Browse the Book",
 news: ["Al-Azhar: One divorce every 2.5 minutes due to digital addiction", "Endowments: Phones are a primary cause of marital silence", "Alert: Digital fragmentation threatens national stability"],
 sources: ["Source: Central Agency for Public Mobilization and Statistics (CAPMAS)", "Source: Ministry of Communications and IT (MCIT)", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Electronic Fatwa Center", "Source: Church Family Counseling Reports", "Source: Ministry of Endowments"]
-},
-es: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">de la Ilusión Digital: La llamada de alerta de Egipto al mundo</span> <br> <span class="gold-text">Estadísticas egipcias impactantes</span>',
-nav: ["Nuestra Visión", "Socios", "Medios", "Estadísticas", "Pérdidas", "Concienciación", "Tu opinión nos importa"],
-visTitle: "Nuestra Visión Estratégica", visDesc: "A través de la iniciativa CiviStories, buscamos proteger el tejido social egipcio de la fragmentación digital, empoderando a las familias y restaurando el equilibrio psicológico y social.",
-partTitle: "Socios Nacionales en Concienciación", p1Name: "Al-Azhar Al-Sharif", p2Name: "Iglesia Egipcia", p3Name: "Ministerio de Dotaciones",
-stTitle: "Estadísticas Clave", st1: "311 mil divorcios anuales", st2: "104 millones de teléfonos móviles", st3: "5,7 horas diarias frente a pantallas para niños",
-lsTitle: "Pérdidas Sociales", ls1: "15 mil millones de EGP en pérdida anual de productividad", ls2: "4,5 mil millones de EGP en costos de tratamiento de salud mental", ls3: "2,1 mil millones de EGP en pérdidas por fraude cibernético",
-awTitle: "Programas de Concienciación", aw1: "Infancia Digital", aw2: "Mundo Adolescente", aw3: "Juventud y Productividad", aw4: "Matrimonio Saludable", aw5: "Personas Mayores", aw6: "Seguridad y Privacidad Digital",
-mediaGuide: "Haz clic en la imagen para recibir nuestro mensaje", btnBrowse: "Explorar el libro",
-news: ["Al-Azhar: Un divorcio cada 2,5 minutos debido a la adicción digital", "Dotaciones: Los teléfonos son causa principal del silencio conyugal", "Alerta: La fragmentación digital amenaza la estabilidad nacional"],
-sources: ["Fuente: Agencia Central de Movilización Pública y Estadísticas (CAPMAS)", "Fuente: Ministerio de Comunicaciones y Tecnología de la Información (MCIT)", "Fuente: Ministerio de Solidaridad Social", "Fuente: Estudios de Viabilidad Económica", "Fuente: Informes de Salud Mental", "Fuente: Informes de Ciberseguridad", "Fuente: Centro de Fatwas Electrónicas de Al-Azhar", "Fuente: Informes de Consejería Familiar de la Iglesia", "Fuente: Ministerio de Dotaciones"]
 }
 };
-
-// === Spanish programsData ===
-const programsDataEs = {
+// === English-translated programsData (culturally adapted) ===
+const programsDataEn = {
 child: [
-{ q: "¿Cuál es la edad adecuada para que los niños comiencen a usar pantallas?", src: "Academia Americana de Pediatría (AAP)", ans: "* El uso de pantallas está completamente prohibido para niños menores de 18–24 meses.<br>* La única excepción son las videollamadas con familiares.<br>* Para edades de 2 a 5 años, limitar el tiempo de pantalla a una hora diaria de contenido educativo de calidad.<br>* Siempre ver junto al niño para asegurar comprensión y aplicación en la vida real." },
-{ q: "¿Cómo distinguir entre uso normal del teléfono y señales tempranas de aislamiento digital?", src: "Asociación Psicológica Americana (APA)", ans: "* El uso normal es recreativo y no interfiere con la interacción social real.<br>* El aislamiento comienza cuando aparecen síntomas de abstinencia, como irritabilidad extrema al quitar el dispositivo.<br>* Pérdida de interés en hobbies tradicionales o juegos con compañeros es una señal de alerta.<br>* Descuido de la higiene personal o alteraciones en hábitos de comida/sueño por el uso de pantallas." }
-// Add more if needed – kept minimal for brevity but functional
+{ q: "What is the appropriate age for children to start using screens?", src: "American Academy of Pediatrics (AAP)", ans: "* Screen use is completely prohibited for children under 18–24 months.<br>* The only exception is video calls with family members.<br>* For ages 2–5, limit screen time to one hour per day of high-quality educational content.<br>* Always co-view with your child to ensure understanding and real-world application." },
+{ q: "How can I tell the difference between normal phone use and early signs of digital isolation?", src: "American Psychological Association (APA)", ans: "* Normal use is recreational and doesn’t interfere with real-life social interaction.<br>* Isolation begins when withdrawal symptoms appear—like extreme irritability when the device is taken away.<br>* Loss of interest in traditional hobbies or peer play is a red flag.<br>* Neglecting personal hygiene or disrupted eating/sleeping patterns due to screen time." },
+{ q: "How can I end screen time peacefully without tantrums?", src: "Harvard Child Development Center", ans: "* Use gradual warnings at 10 and 5 minutes before time ends.<br>* Give your child a choice: 'Do you want to stop now or after this level?'<br>* Link screen time ending to another enjoyable activity (e.g., building blocks or going outside).<br>* Model good behavior by ending your own screen time too." },
+{ q: "Are there specific apps that pose direct behavioral risks to children?", src: "Common Sense Media", ans: "* Short-video apps (like TikTok) weaken attention spans due to rapid scene changes.<br>* Games with open chat features with strangers (e.g., certain Roblox rooms).<br>* Apps encouraging frequent in-app purchases that waste money.<br>* Unmoderated content that may include inappropriate ads." },
+{ q: "What are the risks of giving a child a phone during meals?", src: "World Health Organization (WHO)", ans: "* Prevents natural satiety cues, leading to obesity risks.<br>* Weakens taste development and meaningful family communication during meals.<br>* Conditions the child to associate food only with visual entertainment.<br>* May cause digestive issues due to distracted chewing." },
+{ q: "How can I protect my child from inappropriate content that appears suddenly?", src: "Cybersecurity Experts", ans: "* Enable YouTube Kids and safe search in all browsers.<br>* Use advanced parental controls like Google Family Link.<br>* Ensure phone use always happens in open areas of the home, not closed rooms.<br>* Teach your child to immediately close the screen and tell you if they see anything strange." },
+{ q: "Does phone use affect children's speech and language development?", src: "Centers for Disease Control (CDC)", ans: "* Yes—screen interaction is one-sided and doesn’t support language skills.<br>* Children need live human interaction to develop articulation and conversational ability.<br>* Excessive screen time reduces vocabulary acquisition.<br>* Digital overuse may lead to social delays and difficulty reading body language." },
+{ q: "How do I address my child’s phone game addiction?", src: "National Parenting Association", ans: "* Don’t remove the device abruptly—create a gradual screen-time reduction schedule.<br>* Offer engaging alternatives (drawing, sports, physical books).<br>* Reward compliance with outdoor activities or short trips.<br>* Share daily physical activities to help them disconnect from screens." },
+{ q: "What’s the ideal time to stop screens before bedtime?", src: "National Sleep Foundation", ans: "* Stop all screens at least one full hour before sleep.<br>* Blue light suppresses melatonin, the hormone essential for deep sleep.<br>* Replace screens with a paper book or calm conversation.<br>* Charge devices outside bedrooms to avoid nighttime temptation." },
+{ q: "Does tablet use harm children’s eyesight?", src: "American Academy of Ophthalmology", ans: "* Causes eye dryness, strain, and contributes to increased myopia.<br>* Follow the 20-20-20 rule: every 20 minutes, look at something 20 feet away for 20 seconds.<br>* Ensure adequate room lighting when using any device.<br>* Maintain a safe viewing distance between the child’s eyes and the screen." },
+{ q: "How can I turn technology into an educational tool for my child?", src: "Educational Technology Specialists", ans: "* Choose apps that build logical thinking and basic coding skills.<br>* Solve tech-based puzzles together instead of passive watching.<br>* Set clear learning goals before allowing any new app.<br>* Encourage using the camera to document nature or creative projects." },
+{ q: "What should I do if my child accidentally sees violent content?", src: "UNICEF", ans: "* Stay completely calm—don’t scold or make them feel guilty.<br>* Explain that such content isn’t real and harms emotional safety.<br>* Discuss their feelings about it and reassure them they’re safe to talk to you.<br>* Immediately fix the technical gap that allowed the exposure." },
+{ q: "Are educational devices for kids completely safe?", src: "International Safety Standards Organization", ans: "* Yes—if they’re offline or disconnected from open app stores.<br>* Always verify content quality and check for hidden messages or ads.<br>* Read app reviews and privacy policies before downloading.<br>* Even educational devices need scheduled breaks to prevent visual and mental fatigue." },
+{ q: "How can I build trust with my child regarding phone use?", src: "Modern Parenting Experts", ans: "* Be their digital friend—play together sometimes to understand their interests.<br>* Teach them to immediately tell you about anything strange or scary—without fear.<br>* Explain the 'why' behind screen limits instead of imposing rules without discussion.<br>* Apply the same rules to everyone in the house to model integrity." },
+{ q: "What are signs of screen-induced psychological fatigue in children?", src: "Child Health Institute", ans: "* Sudden anger and mood swings when asked to put the device away.<br>* Reduced focus on daily tasks or declining interest in school and play.<br>* Noticeable sleep disturbances or nightmares linked to digital content.<br>* Unexpected aggression toward siblings or peers in real life." },
+{ q: "How do I implement a 'digital fast' at home?", src: "CiviStories Initiative", ans: "* Designate one day per week as completely device-free.<br>* Set daily screen-free hours (e.g., during meals).<br>* Replace digital time with board games, family talks, or reading.<br>* Celebrate your family’s success to strengthen bonds." }
 ],
-teens: [],
-youth: [],
-marriage: [],
-seniors: [],
-security: []
+teens: [
+{ q: "How should I handle my teen’s demand for complete privacy and refusal to let me monitor their phone?", src: "Teen Digital Wellness Expert", ans: "* Privacy is part of building independence during adolescence.<br>* Instead of direct surveillance, shift to 'conscious supervision.'<br>* Agree on general rules (e.g., no phones in bedrooms).<br>* Explain that your role is protection—not restriction—and build trust together." },
+{ q: "What are the signs my teen is falling victim to online blackmail, and how should I respond calmly?", src: "Teen Digital Wellness Expert", ans: "* Signs include sudden isolation, extreme anxiety when receiving messages.<br>* Quickly closing the phone when you approach, or declining academic/mood performance.<br>* Calm response requires: containing your teen, reassuring them they’re not alone.<br>* Collect evidence (message screenshots), then report immediately to authorities." },
+{ q: "How can I protect my teen from the 'perfection obsession' and constant comparison with social media influencers?", src: "Teen Digital Wellness Expert", ans: "* Nurture 'critical awareness'—teach them that what’s shown is only 'curated highlights.'<br>* Clarify that filters and lighting hide reality behind the scenes.<br>* Encourage following inspiring figures in real fields (science, sports).<br>* Focus on reinforcing their confidence in real, tangible achievements." },
+{ q: "What’s the right response if I discover my teen follows groups promoting extremist ideas?", src: "Teen Digital Wellness Expert", ans: "* Avoid shock or harsh attacks—they may cling to those ideas as rebellion.<br>* Start with calm dialogue: 'What drew you to this kind of content?'<br>* Present alternative viewpoints logically and discuss consequences clearly.<br>* Consult an educational specialist to professionally deconstruct these ideas." },
+{ q: "How do I teach my teen to manage their 'digital reputation' and understand that today’s posts will follow them forever?", src: "Teen Digital Wellness Expert", ans: "* Share this golden rule: 'Never post anything you wouldn’t want your future employer to see.'<br>* Explain that universities and companies now review digital histories of applicants.<br>* Teach them that their 'digital footprint' is their real, permanent resume.<br>* Encourage posting content that showcases skills and positivity to the world." },
+{ q: "How can we address video game addiction and its impact on academic performance?", src: "Teen Digital Wellness Expert", ans: "* Don’t ban games entirely—make them a 'reward' after completing responsibilities.<br>* Set specific hours and gradually reduce them, especially on school days.<br>* Encourage physical activities to offset long sitting periods.<br>* Monitor game types to ensure they build logical thinking, not violence." },
+{ q: "What are the risks of anonymous chat apps for teens?", src: "Teen Digital Wellness Expert", ans: "* They’re breeding grounds for severe cyberbullying, harassment, and grooming.<br>* Lack of oversight increases risk of severe psychological harm from strangers.<br>* Teens must understand these apps can harvest their data for blackmail.<br>* Encourage using well-known platforms with strong safety and privacy controls." },
+{ q: "How can I convince my teen to set screen-time limits without conflict?", src: "Teen Digital Wellness Expert", ans: "* Create a 'digital contract'—sit together and agree on daily usage hours.<br>* When teens help set the rules, they’re more committed to following them.<br>* Discuss health and psychological risks as scientific facts, not orders.<br>* Model the behavior by putting your own phone away during family time." },
+{ q: "How should I handle cyberbullying—whether my teen is a victim or participant?", src: "Teen Digital Wellness Expert", ans: "* If victimized: teach them not to reply, block the bully immediately, and document everything.<br>* If participating: firmly address the moral and legal consequences.<br>* Develop their 'empathy skill' so they understand the harm they cause.<br>* Provide full psychological support to overcome trauma and rebuild self-worth." },
+{ q: "What’s my role in protecting my teen from dangerous TikTok challenges?", src: "Teen Digital Wellness Expert", ans: "* Foster 'logical analysis'—discuss the challenge and ask about its risks.<br>* Encourage independent thinking over 'herd mentality' and blind imitation.<br>* Clarify that chasing trends isn’t worth risking physical safety.<br>* Invite them to propose positive, safe challenges they can share responsibly." },
+{ q: "How can my teen use social platforms to build a portfolio that supports future acceptance?", src: "Teen Digital Wellness Expert", ans: "* Share achievements: school projects, volunteer work, or useful hobbies.<br>* Post summaries of books read or research conducted in technical fields.<br>* Shift from passive content consumer to 'inspiring content creator.'<br>* Start using LinkedIn early to build a professional network for the future." },
+{ q: "What are the best ways to train my teen to use AI as a learning tool?", src: "Teen Digital Wellness Expert", ans: "* Teach them to prompt AI as a 'smart private tutor.'<br>* Use it to summarize large references or find credible information sources.<br>* Stress writing research in their own words to develop critical thinking.<br>* Warn them about AI bias or potential misinformation in responses." },
+{ q: "How can I turn my teen’s interest in gaming into a passion for coding or design?", src: "Teen Digital Wellness Expert", ans: "* Frame the shift from 'player' to 'creator/developer' as the real challenge.<br>* Enroll them in simple game-development courses (e.g., Roblox Studio) or graphic design.<br>* Highlight the huge technical and financial value they can gain in the future.<br>* Help them download tools to start their first personal programming project." },
+{ q: "How do we nurture 'digital leadership' in teens to become positive influencers?", src: "Teen Digital Wellness Expert", ans: "* Encourage defending others online and supporting peers against bullying.<br>* Promote sharing useful info and using their voice to drive community change.<br>* Teach them to verify news before sharing to combat fake rumors.<br>* Support organizing small digital awareness campaigns at school or in their neighborhood." },
+{ q: "What practical steps empower teens to manage their budget via payment apps?", src: "Teen Digital Wellness Expert", ans: "* Start with a weekly prepaid card designed for teens.<br>* Teach them to verify website security before online purchases and protect personal data.<br>* Review monthly statements together to learn financial planning and saving.<br>* Warn them about misleading ads that push unnecessary purchases." }
+],
+youth: [
+{ q: "How can I eliminate distraction from constant notifications and regain deep focus?", src: "Digital Productivity Specialist", ans: ".   Disable all non-essential notifications on phone and computer<br>.   Schedule 'deep work blocks' using the <strong>Pomodoro Technique</strong> (25 min work / 5 min break)<br>.   Use distraction-blocking tools (e.g., Freedom, Cold Turkey)<br>.   Train your mind through deep reading or meditation<br>.   Create a clean, quiet physical workspace" },
+{ q: "What are the best digital time-management strategies (like Pomodoro) to boost productivity and achieve daily goals?", src: "Time Management Expert", ans: ".   Apply the <strong>Pomodoro Technique</strong> to manage energy in short, focused bursts<br>.   Use the <strong>'Eat That Frog'</strong> method—tackle your hardest task first thing in the morning<br>.   Plan your day with <strong>Time Blocking</strong>—reserve fixed slots for key tasks<br>.   Offload your mind by logging all tasks into one unified app (e.g., Todoist, Microsoft To Do)<br>.   Link daily tasks to your weekly and monthly long-term objectives" },
+{ q: "How do I stop drowning in 'fake work' (like unnecessary emails and meetings) and focus my energy on 'real work'?", src: "Productivity Consultant", ans: ".   Identify your top 1–3 daily priorities (MITs) and start them before checking email<br>.   Schedule fixed, limited windows for email/meetings (e.g., 3 times/day)<br>.   Challenge every meeting: 'Can this be replaced by a written update?'<br>.   Apply the Two-Minute Rule: instantly complete any task taking ≤2 minutes<br>.   Define 'real work' as tasks that directly move you toward your core goals" },
+{ q: "How can I protect my eyes and body from screen fatigue and integrate healthy habits into my digital routine?", src: "Digital Health Specialist", ans: ".   Follow the <strong>20-20-20 rule</strong>: every 20 minutes, look at something 20 feet away for 20 seconds<br>.   Adjust screen brightness and auto-enable Night Light (warm colors)<br>.   Optimize posture—ensure screen is at eye level<br>.   Take short movement breaks every hour (e.g., walk, stretch)<br>.   Use a footrest, ergonomic chair, and consider a standing desk" },
+{ q: "What are the risks of 'digital procrastination,' and how can I build willpower to avoid social media during work hours?", src: "Digital Behavior Specialist", ans: ".   <strong>Risks:</strong> Delaying important tasks, increased stress/anxiety, poor work quality, guilt<br>.   Keep your smartphone out of sight or enable airplane mode during work<br>.   Use the '5-minute start' rule to overcome initial resistance<br>.   Pair work initiation with a pleasant ritual (e.g., coffee, calming music)<br>.   Predefine a small, specific reward after task completion" },
+{ q: "How do I set clear digital boundaries between work and personal life to avoid burnout?", src: "Digital-Life Balance Specialist", ans: ".   Create clear 'transition rituals' after work (e.g., walk, change clothes)<br>.   Set fixed offline hours and communicate them clearly to colleagues/clients<br>.   Use separate devices or user accounts for work vs. personal life<br>.   Disable work notifications on your personal phone after hours and on weekends<br>.   Take short 'digital detox' breaks during weekends" },
+{ q: "How can I organize my digital workspace (Desktop, files, apps) to reduce clutter and boost mental clarity?", src: "Digital Organization Expert", ans: ".   Apply the <strong>OHIO rule</strong> (Only Handle It Once): decide immediately what to do with each file<br>.   Structure a clear folder system (e.g., Active Projects, Reference, Archive, Personal)<br>.   Keep your desktop clean—only essential app shortcuts<br>.   Use system-wide quick-search tools (e.g., Spotlight on Mac, Everything on Windows)<br>.   Schedule weekly cleanup for temp files and trash" },
+{ q: "What’s the real impact of multitasking on my work quality, and how can I train myself to focus fully on one task?", src: "Digital Neuroscientist", ans: ".   <strong>Impact:</strong> Lower output quality, more errors, faster mental exhaustion<br>.   Close all unrelated tabs, windows, and apps during deep work<br>.   Use a prioritized daily task list—not desire-based<br>.   Manage interruptions with a 'busy' status and batch replies to dedicated times<br>.   Train your brain to reject task-switching by gradually increasing focus intervals" },
+{ q: "How do I handle the pressure of 'digital perfectionism' and comparison when seeing others’ achievements on LinkedIn?", src: "Digital Psychologist", ans: ".   Remember: professional platforms are 'highlight reels,' not full biographies<br>.   Define personal success criteria based on your values—not others’ benchmarks<br>.   Transform negative feelings into curiosity: 'What can I learn from their journey?'<br>.   Limit passive scrolling; replace it with scheduled, purposeful engagement<br>.   Keep a private journal documenting your own progress and wins" },
+{ q: "What are the best tools/apps to professionally and simply organize and manage personal and professional projects?", src: "Digital Tools Expert", ans: ".   <strong>For personal tasks:</strong> Todoist, Microsoft To Do, Google Tasks<br>.   <strong>For medium projects:</strong> Trello (Kanban boards), Asana, ClickUp<br>.   <strong>For notes:</strong> Notion, Evernote, Obsidian<br>.   <strong>For time management:</strong> Google Calendar, Apple Calendar, Calendly<br>.   <strong>For collaboration:</strong> Google Workspace, Microsoft 365" },
+{ q: "How can I use AI as a creative partner and personal assistant to multiply my productivity while preserving my human uniqueness?", src: "Applied AI Expert", ans: ".   Use it to generate initial ideas, draft outlines, headlines, and structures<br>.   Leverage it to summarize long documents, organize data, and conduct smart research<br>.   Rely on it for proofreading and improving phrasing/grammar<br>.   <strong>Preserve human distinction</strong> by adding personal context, critical editing, and emotional depth<br>.   Treat it as a 'smart assistant'—ask questions and critically verify outputs, never as a replacement" },
+{ q: "How do I build a self-learning system online to continuously update my skills and keep pace with job market demands?", src: "Digital Learning Expert", ans: ".   Define a clear learning path focused on in-demand skills in your field/goals<br>.   Dedicate a fixed, non-negotiable weekly time slot (e.g., 1 hr/day or half-day/week)<br>.   Subscribe to structured e-learning platforms (Coursera, edX, Udemy)<br>.   Immediately apply knowledge through mini-projects or workplace implementation<br>.   Track progress via certifications, portfolio building, or sharing learnings publicly" },
+{ q: "What are the steps to turn my digital skills into a side income through freelancing, and how do I start effectively and systematically?", src: "Digital Freelancing Expert", ans: ".   Pick one specific, marketable skill you’re proficient in<br>.   Build a portfolio with 2–3 sample projects showcasing your best work<br>.   Research market rates and offer competitive pricing initially to attract first clients<br>.   Create a professional profile on freelancing platforms (Upwork, Khamsat, Mostaql) and LinkedIn<br>.   Start by offering services to your network, use simple contracts, and organize invoicing/taxes" },
+{ q: "How can I develop my 'personal brand' online to attract suitable professional opportunities and build an influential network?", src: "Personal Branding Expert", ans: ".   Define your niche, unique professional identity, and distinctive value proposition<br>.   Optimize your LinkedIn profile: professional photo, compelling headline, strong summary, detailed experience<br>.   Share valuable content regularly (articles, posts, insightful comments) in your field<br>.   Engage constructively with content from experts and influencers in your area of interest<br>.   Maintain consistent messaging and visual identity across all platforms" },
+{ q: "How can I transform my phone from a distraction source into a self-development tool—for language learning, educational content, or side projects?", src: "Smartphone Usage Expert", ans: ".   Redesign your home screen: delete distracting apps or group them in a distant folder<br>.   Install learning/development apps (e.g., Duolingo for languages, Brilliant for science, educational podcasts)<br>.   Download productivity apps for side projects (e.g., Trello, Notion, Evernote)<br>.   Use waiting/commute time to listen to podcasts or audio lessons<br>.   Pin learning/planning tools to your lock screen or homepage for immediate visibility" },
+{ q: "How do I manage 'information anxiety'—the feeling that I can’t keep up with all developments and content in my field?", src: "Digital Knowledge Manager", ans: ".   Accept that knowing everything is impossible—focus on 'depth' over 'surface coverage'<br>.   Curate only 2–3 trusted, specialized sources instead of following dozens of random ones<br>.   Use content-aggregation tools like Feedly or Pocket to review headlines and read important items later<br>.   Dedicate a fixed weekly time (e.g., Friday hour) to review key updates, then 'disconnect'<br>.   Shift your goal from 'keeping up' to 'applying': focus only on actionable information" },
+{ q: "What’s an effective evening digital routine to ensure deep sleep and improve rest quality after a hard workday?", src: "Digital Sleep Expert", ans: ".   Set a fixed 'digital curfew' at least one hour before bedtime<br>.   Auto-enable Night Light or warm colors on all screens at sunset<br>.   Never bring your smartphone into the bedroom—charge it elsewhere<br>.   Replace pre-sleep screen time with calming activities: paper reading, meditation, journaling<br>.   Optimize your sleep environment: total darkness, cool temperature, and quiet" },
+{ q: "How can I build effective communication and trust with my remote/hybrid team without feeling isolated?", src: "Digital Communication Expert", ans: ".   Schedule short, focused daily check-ins (e.g., Stand-up Meetings)<br>.   Use instant-messaging platforms (Slack, Teams) with organized channels for projects and social topics<br>.   Dedicate the first few minutes of formal meetings to informal team check-ins<br>.   Agree as a team on expected working hours and response times<br>.   Publicly celebrate individual and team achievements via shared communication channels" },
+{ q: "How can I preserve deep critical thinking and creativity in the age of shallow information overload from fast-paced social media?", src: "Digital Philosopher", ans: ".   Dedicate weekly 'screen-free' time for deep reading of books and long-form articles<br>.   Practice analytical writing or blogging to force clear idea organization<br>.   Challenge ready-made ideas by asking: 'What’s the evidence?', 'What are the assumptions?', 'What’s the alternative?'<br>.   Intentionally disconnect from inputs for 20–30 minutes daily for free, unstructured thought<br>.   Engage in real debates with friends/colleagues who hold different views—aim for understanding, not winning" },
+{ q: "What uniquely human skills (like empathy and leadership) can’t be replaced by AI, and how should I focus on developing them to enhance my competitive edge?", src: "Future of Work Expert", ans: ".   <strong>Core irreplaceable skills:</strong> Emotional intelligence, negotiation, inspirational leadership, artistic creativity, strategic thinking, ethical judgment<br>.   Develop them through <strong>active observation</strong> and <strong>focused listening</strong> to others’ verbal and nonverbal cues<br>.   Seek honest feedback from peers/managers on your social and leadership abilities<br>.   Read widely in psychology, philosophy, and history to understand human motivations<br>.   Engage in group or volunteer activities that require collaboration and influence" }
+],
+marriage: [
+{ q: "How does constant phone use (phubbing) affect emotional intimacy between spouses?", src: "Digital Relationship Counselor", ans: ".   Creates feelings of neglect and unimportance in the ignored partner<br>.   Reduces quality of conversation and kills spontaneous deep talks<br>.   Decreases eye contact and physical connection essential for bonding<br>.   Increases misunderstandings due to lack of full attention<br>.   Over time, builds emotional isolation and resentment" },
+{ q: "What are the boundaries of digital privacy between spouses, and does one have the right to inspect the other’s phone?", src: "Family Counselor", ans: ".   The core principle is <strong>trust and respect</strong>—not absolute rights or bans<br>.   It’s healthy to agree on mutual boundaries (e.g., no hidden passwords, but no random snooping)<br>.   Unauthorized inspection signals a deep trust crisis—it needs root-cause healing, not surveillance<br>.   Privacy is an individual right, but agreed transparency brings peace of mind<br>.   The best solution is discussing the feelings driving the urge to inspect (insecurity, suspicion) and addressing them together" },
+{ q: "How can we avoid comparing our marriage to the 'perfect' images influencers post on social media?", src: "Marital Psychologist", ans: ".   Constantly remind yourselves: what you see is just 'highlight reels,' not the full movie of life<br>.   Focus on your unique story and small, invisible achievements others don’t see<br>.   Reduce joint passive scrolling; replace it with real activities that create your own memories<br>.   Use idealized content as inspiration for new interaction ideas—not as a measuring stick<br>.   Share your comparison feelings openly with your partner to relieve pressure together" },
+{ q: "What’s the impact of pornography addiction on marital intimacy and satisfaction?", src: "Digital Addiction Therapist", ans: ".   Distorts realistic expectations about intimacy and the human body<br>.   May cause difficulty getting aroused with a real partner or performance issues<br>.   Reduces desire for genuine emotional and physical connection, making the partner feel rejected<br>.   Creates a wall of secrecy and emotional betrayal—even without a physical affair<br>.   Recovery involves admitting the problem, seeking professional help, and rebuilding trust/intimacy step by step" },
+{ q: "How can we establish 'digital rules' at home to increase connection?", src: "Digital Home Environment Expert", ans: ".   Ban phones completely at the dinner table and in the bedroom<br>.   Set a nightly 'quiet digital hour' where both partners put devices aside<br>.   Agree not to use phones during important conversations or when sharing your day<br>.   Designate a common charging spot for phones—away from the bedroom<br>.   Respect these rules mutually—not as one-sided demands" },
+{ q: "How should we handle a major fight sparked by a misunderstood text message?", src: "Digital Communication Coach", ans: ".   <strong>First: Stop texting immediately.</strong> Text lacks tone and body language—ripe for misunderstanding<br>.   Call or talk face-to-face right away to clarify intent and real tone<br>.   Start by apologizing for the misunderstanding—even if unintended—because your partner’s feelings are real<br>.   Clarify your true intent using phrases like 'What I meant was…' or 'My intention was to say…'<br>.   Agree on a golden rule: 'Never discuss sensitive or complex topics over text messages'" },
+{ q: "What are the risks of virtual friendships with the opposite gender online, and how do they lead to marital infidelity?", src: "Marriage Advisor", ans: ".   They offer an illusion of quick emotional closeness while hiding real-life flaws<br>.   They create a secret space where feelings grow outside the primary relationship (emotional affair)<br>.   They reduce emotional and time investment in the real partner<br>.   They can become the first step toward physical cheating if meetings occur<br>.   Prevention involves clear friendship boundaries, full transparency with your spouse, and reinvesting emotional energy into your marriage" },
+{ q: "How does blue light and phone use before bed affect couples’ shared sleep cycle?", src: "Sleep Specialist", ans: ".   Blue light tricks the brain into thinking it’s daytime, delaying melatonin release needed for sleep<br>.   Leads to difficulty falling asleep, fragmented sleep, and reduced deep sleep quality for both partners<br>.   Creates disruption in the shared sleep rhythm if one partner uses the phone in bed<br>.   Solution: Enable Night Light on devices, set a rule against screens one hour before bed, and charge phones outside the bedroom" },
+{ q: "How do we address 'digital marital silence'—sitting together but completely disconnected?", src: "Marital Communication Specialist", ans: ".   Acknowledge the issue openly and non-accusatorily: 'I feel we’ve grown distant even when we’re together.'<br>.   Implement a 'digital box' rule: collect all devices in a designated box for a set time<br>.   Redefine 'together time' as phone-free activities: cooking together, board games, walks<br>.   Ask open-ended questions to spark dialogue (e.g., 'What’s your biggest dream this year?')<br>.   Start sharing stories from your day instead of retreating into your phone after coming home" },
+{ q: "What should we do if one partner excessively shares our private life details on social media?", src: "Digital Privacy Counselor", ans: ".   Express your feelings using 'I' statements (e.g., 'I feel uncomfortable when our photos are posted.')<br>.   Discuss and set a clear agreement on what’s shareable and what’s private (Kids’ photos, arguments, family events)<br>.   Respect the more private partner’s wishes—privacy is a shared right<br>.   Suggest alternatives like a private family group chat for sharing news<br>.   Understand their motives (need for validation, influence) and address them while clarifying relationship consequences" },
+{ q: "How can we use shared calendar and task apps to maximize coordination and reduce household burdens?", src: "Marital Life Organizer", ans: ".   Use a shared digital calendar (e.g., Google Calendar) to log all appointments: work, meetings, events, chores<br>.   Maintain a shared task list (via Todoist or Microsoft To Do) to distribute and track responsibilities<br>.   Schedule 'couple time' and 'family time' in the shared calendar and treat them like unmissable work meetings<br>.   Use reminder features for coordination during shopping or pickups<br>.   Hold a brief weekly planning session together to review the upcoming week" },
+{ q: "How can technology strengthen our relationship during long travels or work separations?", src: "Long-Distance Relationship Expert", ans: ".   Schedule short, regular video calls—better than long, random ones<br>.   Send spontaneous voice notes or photos from your day via messaging apps<br>.   Watch a movie or show together remotely using 'Watch Party' features on streaming platforms<br>.   Play simple online games together for fun competition<br>.   Surprise each other with unexpected food/gift deliveries via apps to show care" },
+{ q: "What innovative ways can we use online educational content to improve our dialogue and emotional intelligence as a couple?", src: "Digital Couples Learning Coach", ans: ".   Watch short lectures or courses on marital communication or emotional intelligence together and discuss them<br>.   Listen to relationship podcasts during shared car rides and pause to reflect on ideas<br>.   Use interactive apps or e-books with conversation-sparking questions for couples<br>.   Play digital or physical board games focused on getting to know each other better<br>.   Practice 'active listening' exercises learned online with each other" },
+{ q: "How can we turn a shared hobby into quality time that renews our friendship within marriage?", src: "Marital Quality Time Expert", ans: ".   Challenge each other in cooperative (Co-op) video games instead of solo play<br>.   Create a shared 'watchlist' and dedicate a weekly night to watch and discuss a show together<br>.   Learn a new skill together via YouTube tutorials related to your hobby (cooking, crafts)<br>.   Join online communities related to your hobby and share achievements together<br>.   Turn your hobby into a small joint project (YouTube channel, blog, online store)" },
+{ q: "How can we plan our shared financial future using digital apps safely and transparently?", src: "Marital Financial Planner", ans: ".   Use shared budgeting apps (e.g., Mint, YNAB) to view income/expenses in one place<br>.   Open a joint savings or investment account and agree on deposit/withdrawal rules<br>.   Use banking apps to create shared 'goal jars' for specific aims (Hajj, car, emergency)<br>.   Hold a short monthly 'financial meeting' to review spending, progress, and goals<br>.   Learn about investing and financial planning together via trusted online platforms to make informed decisions" }
+],
+seniors: [
+{ q: "How can we protect seniors from becoming victims of phone and online scams?", src: "Senior Cybersecurity Expert", ans: ".   Warn them never to share personal info (card numbers, passwords) over the phone, no matter what the caller claims.<br>.   Teach them: 'Banks and official institutions never ask for secret details via phone or messages.'<br>.   Install caller ID and anti-spam apps on their phones.<br>.   Encourage consulting a family member before making any unexpected payment.<br>.   Explain common scam tactics (fake inheritances, prize winnings, ransom demands, impersonating relatives)." },
+{ q: "What’s the simplest way to teach seniors to use communication apps (like WhatsApp) to reduce their sense of isolation?", src: "Senior Tech Trainer", ans: ".   Start with one short session for one goal only, e.g., 'Today we’ll learn one video call.'<br>.   Use simple language and familiar analogies (chat like a room, emojis like facial expressions).<br>.   Write main steps in large, clear font on paper and tape it next to their device.<br>.   Encourage daily practice with a close person (grandchild, friend) to build confidence.<br>.   Link app use to tangible emotional benefits (seeing grandkids, talking to distant friends)." },
+{ q: "How can we customize phone settings (font size, sound, brightness) to suit seniors’ physical needs?", src: "Assistive Technology Specialist", ans: ".   Maximize font size in system settings and key apps (Messages, Phone).<br>.   Enable 'Invert Colors' or 'High Contrast' mode for easier reading.<br>.   Increase master volume and activate 'Amplifier' mode for calls.<br>.   Turn on 'Text-to-Speech' (Screen Reader) to have the screen read aloud.<br>.   Extend screen timeout to prevent premature locking during reading." },
+{ q: "What are the risks of seniors believing and sharing fake medical rumors they receive in groups?", src: "Digital Media Literacy Expert", ans: ".   Risking their health by following fake treatments or stopping prescribed medication.<br>.   Causing unwarranted panic and anxiety about their or loved ones’ health.<br>.   Spreading harmful misinformation that damages trust in real medical sources.<br>.   Turning family groups from connection hubs into fear-spreading environments.<br>.   Damaging their reputation among others due to easily debunked false claims." },
+{ q: "How can technology reliably remind seniors of medication schedules and periodic check-ups?", src: "Digital Care Coordinator", ans: ".   Use dedicated 'medication reminder' apps (e.g., Medisafe) with loud audio/visual alerts.<br>.   Program the phone’s main alarm with medicine names and times.<br>.   Use voice assistants (Google Assistant, Siri) for daily verbal reminders.<br>.   Set up a shared family Google Calendar with appointment entries for automatic reminders.<br>.   Use smart pill organizers that send phone alerts if a dose is missed." },
+{ q: "How should we respond if a senior is addicted to following political news or depressing digital content?", src: "Geriatric Psychologist", ans: ".   Start with empathy—understand this may stem from emptiness or a need to stay engaged.<br>.   Avoid direct bans; instead, ration and replace: set short, fixed news windows.<br>.   Offer attractive alternatives (educational YouTube channels, documentaries, brain games).<br>.   Encourage non-digital activities (old hobbies, walks, social visits).<br>.   Share positive or humorous content together to gradually shift their attention." },
+{ q: "Why is GPS location tracking important for protecting seniors with memory issues?", src: "Safety Technology Expert", ans: ".   Enables family to quickly locate them if they get lost or leave without notice.<br>.   Provides peace of mind for the senior and family when they go out alone.<br>.   Allows independence and mobility with a safety net for emergencies.<br>.   Helps rescue teams if the senior can’t describe their location.<br>.   Can be paired with alerts if they leave a predefined 'safe zone' (Geofencing)." },
+{ q: "How can we protect seniors’ privacy from data-harvesting apps that exploit their limited tech experience?", src: "Cybersecurity Specialist", ans: ".   Help them review app permissions and disable unnecessary access (photos, contacts).<br>.   Only download apps from official stores (Google Play, App Store).<br>.   Warn them against clicking pop-up ads or 'win a prize' links inside apps.<br>.   Install a trusted antivirus app on their phone.<br>.   Teach them never to log into personal accounts on suspicious apps or websites." },
+{ q: "What role do digital brain games play in stimulating seniors’ memory and preventing cognitive decline?", src: "Cognitive Rehabilitation Specialist", ans: ".   Stimulate cognitive functions like short-term memory, attention, and processing speed.<br>.   Delay onset of mild cognitive impairment through regular 'brain exercise.'<br>.   Provide a sense of achievement and positive challenge, boosting mental health.<br>.   Some games are specifically designed under medical supervision to prevent diseases like Alzheimer’s.<br>.   Should be part of a balanced daily routine—not a replacement for real social interaction and physical activity." },
+{ q: "How can we train seniors to perform simple government and banking transactions from home to avoid travel hassle?", src: "Digital Services Trainer", ans: ".   Start with one trusted, centralized app (e.g., 'Absher' in Saudi Arabia or its regional equivalent).<br>.   Log in for them and securely save credentials using a password manager.<br>.   Record a short tutorial video on their phone for repetitive tasks (e.g., bill payment).<br>.   Train them on two key steps: searching within the app and secure e-payment methods.<br>.   Emphasize never using these services on public Wi-Fi and always verifying the website URL (https)." },
+{ q: "How can we turn YouTube into an educational school for seniors to pursue delayed hobbies like cooking or crafts?", src: "Senior Digital Educator", ans: ".   Help them create a 'Playlist' of trusted, step-by-step tutorial channels.<br>.   Start with short videos in clear Arabic or understandable dialects, with calm, clear presentation.<br>.   Connect their phone or tablet to the TV for larger, more comfortable viewing.<br>.   Encourage subscribing to favorite channels for new video notifications.<br>.   Turn learning into a social activity by practicing the hobby (e.g., cooking a recipe) with grandchildren or friends." },
+{ q: "What are the best technical tools to remotely monitor a senior’s health (e.g., heart rate watches)?", src: "Remote Health Monitoring Expert", ans: ".   Smartwatches that track heart rate, sleep, and even ECG readings.<br>.   Smart blood pressure and glucose monitors that sync data to a phone app.<br>.   Non-intrusive home sensors (motion detectors in rooms, fall detection mats).<br>.   Video calling apps for regular visual wellness checks.<br>.   Remote monitoring dashboards that allow caregivers or doctors to view vital signs centrally." },
+{ q: "How can we help seniors document their life stories and memories in audio/video for future generations?", src: "Digital Heritage Specialist", ans: ".   Encourage them to narrate stories using the phone’s voice recorder app.<br>.   Digitally scan old photos and store them in a shared album (e.g., Google Photos) with their captions.<br>.   Prompt them to write simple memoirs or answer specific questions ('My best childhood memory').<br>.   Record short videos of them talking about their life, important places, or cherished objects.<br>.   Build a digital family tree using specialized websites, collecting stories and photos together." },
+{ q: "How can digital platforms reintegrate seniors into society through shared-interest groups?", src: "Digital Community Builder", ans: ".   Help them join quiet, closed Facebook groups related to their hobbies (gardening, poetry, history).<br>.   Encourage participation in discussions—or even just reading—to see positive interaction.<br>.   Introduce them to beginner-friendly e-learning platforms with courses on various topics.<br>.   Find virtual book or film clubs they can join and discuss content with peers.<br>.   Guide them to groups specific to their old neighborhoods to reconnect with past social ties." },
+{ q: "How can we teach seniors the skill of 'source verification' before forwarding messages and links?", src: "Digital Literacy Instructor", ans: ".   Teach them the first warning sign: 'If a message asks you to share it, promises big rewards, or causes panic—STOP.'<br>.   Simplify verification: 'Search the news headline on Google before sharing.'<br>.   Advise sticking to a few trusted, known sources (official ministry pages, reputable news outlets).<br>.   Encourage consulting a younger family member before sharing shocking or medical news.<br>.   Reinforce that pausing to verify isn’t weakness—it’s wisdom and responsibility." }
+],
+security: [
+{ q: "What should I do in the first moments after realizing I’m being digitally blackmailed?", src: "Cybersecurity Expert", ans: ".   <strong>Golden rule: Never pay or comply.</strong> Payment encourages further demands.<br>.   <strong>Do not delete evidence.</strong> Keep all messages, screenshots, and recordings.<br>.   <<strong>Cut off communication immediately.</strong> Do not respond to threats.<br>.   <strong>Stay calm.</strong> Panic leads to poor decisions.<br>.   <strong>Seek support immediately:</strong> Tell a trusted person and contact authorities." },
+{ q: "How can I distinguish between a real email and a 'phishing' scam aiming to steal my data?", src: "Digital Security Expert", ans: ".   <strong>Inspect the sender’s address carefully:</strong> Look for slight misspellings or domain differences (e.g., amaz0n.com vs. amazon.com).<br>.   <strong>Beware urgent/threatening messages:</strong> Claiming your account will close or there’s a security issue requiring immediate data.<br>.   <strong>Don’t click links:</strong> Hover over (don’t click) to see the real URL; if unsure, go directly to the site via your browser.<br>.   <strong>Official institutions never ask</strong> for passwords or card PINs via email.<br>.   <strong>Language errors:</strong> Phishing emails often contain grammar or formatting mistakes." },
+{ q: "What are the official legal steps to report a cybercrime in my country?", src: "Digital Legal Advisor", ans: ".   <strong>Collect evidence:</strong> Save screenshots, account names, phone numbers, and email used in the blackmail.<br>.   <strong>Contact the relevant authority:</strong> Visit your country’s <strong>Public Prosecution</strong> or <strong>Ministry of Interior</strong> website to find the 'Cybercrime Department.'<br>.   <strong>Submit your report:</strong> Most countries offer an online platform (e.g., 'Aman' in Saudi Arabia) or you can visit a police station.<br>.   <strong>Provide evidence:</strong> Hand over all collected proof to the authorities.<br>.   <strong>Follow up:</strong> Get a case number and respond to any additional requests promptly." },
+{ q: "How can I protect my accounts from hacking using 'Two-Factor Authentication' (2FA)?", src: "Information Security Expert", ans: ".   <strong>Enable it on all critical accounts:</strong> Email, banking, social media, and communication apps.<br>.   <strong>Use an authenticator app:</strong> Like Google Authenticator or Microsoft Authenticator—more secure than SMS.<br>.   <strong>Save backup codes:</strong> Store the recovery codes provided by platforms in a safe place—they’re your lifeline if you lose your phone.<br>.   <strong>Use a security key:</strong> For maximum security, use a physical key (e.g., YubiKey).<br>.   <strong>Never share 2FA codes:</strong> These are your temporary passwords—no legitimate institution will ever ask for them." },
+{ q: "Can a blackmailer carry out their threat even if I block them immediately?", src: "Cybercrime Investigator", ans: ".   <strong>Yes, they might try.</strong> Blocking stops direct contact but doesn’t erase data they already have.<br>.   <strong>The real danger is before blocking:</strong> If they already obtained sensitive data/photos, they may use it even after being blocked.<br>.   <strong>Blocking is necessary but insufficient:</strong> It must be paired with immediate reporting, evidence collection, and not giving in to threats.<br>.   <strong>Document before blocking:</strong> Take full screenshots of all threats before blocking the account.<br>.   <strong>Beware new accounts:</strong> The blackmailer may create new profiles to contact you again." },
+{ q: "What are the risks of using public Wi-Fi in cafes and airports for my banking data?", src: "Network Security Expert", ans: ".   <strong>Data interception:</strong> Hackers on the same network can capture your unencrypted data.<br>.   <strong>Wi-Fi phishing:</strong> You might be redirected to fake sites mimicking your bank’s login page.<br>.   <strong>Fake hotspots:</strong> Attackers create Wi-Fi networks with names similar to real ones to trick victims.<br>.   <strong>Golden rule:</strong> <strong>Never conduct banking or enter passwords on public Wi-Fi.</strong><br>.   <strong>Use a trusted VPN:</strong> If you must connect, use a reputable Virtual Private Network to encrypt your traffic." },
+{ q: "How can I detect hidden spyware or monitoring apps on my personal phone?", src: "Device Security Expert", ans: ".   <strong>Unusual battery/data drain:</strong> Malicious apps often run hidden processes consuming resources.<br>.   <strong>Slow performance:</strong> Or unexpected device heating without clear cause.<br>.   <strong>Unknown apps:</strong> Check your app list for unfamiliar applications.<br>.   <strong>Strange behavior:</strong> Screen lighting up randomly, odd sounds during calls.<br>.   <strong>Solution:</strong> Run a scan with a trusted antivirus; if suspicion remains, factory reset after backing up important data." },
+{ q: "What should I do if my WhatsApp or Facebook account is hacked and sending offensive messages in my name?", src: "Account Recovery Specialist", ans: ".   <strong>Recover your account immediately:</strong> Use the 'Forgot password' option to start recovery via email or phone.<br>.   <strong>Warn all contacts:</strong> Alert friends/family via another channel that your account was compromised—don’t open any links it sends.<br>.   <strong>Report to the platform:</strong> Use Facebook’s or WhatsApp’s official hacked account reporting forms.<br>.   <strong>Change all passwords:</strong> Especially your email password linked to the hacked account.<br>.   <strong>Scan your device:</strong> The hack might be due to malware on your phone." },
+{ q: "How can I protect my private photos and files from access if my phone is lost or stolen?", src: "Personal Data Security Expert", ans: ".   <strong>Encrypt and password-protect:</strong> Ensure strong screen lock (complex PIN, fingerprint, or face ID).<br>.   <strong>Backup to cloud:</strong> Upload important files to a trusted cloud service (iCloud, Google Photos) and delete sensitive ones from the device.<br>.   <strong>Use secure vault apps:</strong> Apps that offer a separate, password-protected encrypted space on your phone.<br>.   <strong>Enable 'Find My Device':</strong> Use features like 'Find My iPhone' or Android’s 'Find My Device' to remotely wipe data.<br>.   <strong>Avoid storing sensitive content:</strong> The safest approach is never to take or keep photos/files on your phone that you wouldn’t want anyone else to see." },
+{ q: "What’s the difference between cyber harassment and blackmail, and how does the law address each?", src: "Digital Law Expert", ans: ".   <strong>Harassment:</strong> Repeated behavior aimed at causing annoyance, insult, or psychological distress (e.g., offensive messages, stalking).<br>.   <strong>Blackmail:</strong> Threatening to reveal information or images to force the victim into action (e.g., paying money, providing services) in exchange for silence.<br>.   <strong>Blackmail is a graver crime:</strong> It combines threat and coercion for personal gain.<br>.   <strong>Legal response:</strong> Both are punishable by law, but blackmail typically carries harsher penalties. Immediate reporting with full evidence is crucial in both cases." },
+{ q: "How should I deal with 'fake prize' links and 'get-rich-quick' job offers targeting identity theft?", src: "Fraud Prevention Expert", ans: ".   <strong>Remember a core rule:</strong> 'There’s no free lunch.' 99.9% of quick-rich schemes are traps.<br>.   <strong>Never click the links:</strong> Not even out of curiosity—'Let’s see what they’ll do.'<br>.   <strong>Never share personal info:</strong> Don’t give your phone number, email, or document photos to these offers.<br>.   <strong>Search the offer name:</strong> Type the company or offer name + 'scam' in a search engine to see others’ experiences.<br>.   <strong>Report the ad:</strong> Most platforms (Facebook, Instagram) let you report ads or posts as fraudulent." },
+{ q: "What’s the secure way to wipe all data from my phone before selling it to ensure it can’t be recovered?", src: "Device Security Specialist", ans: ".   <strong>Backup everything important</strong> to a computer or cloud service.<br>.   <strong>Sign out of all accounts</strong> linked to the device (Google, Apple, Samsung, apps).<br>.   <strong>Perform a 'Factory Reset'</strong> through the device settings.<br>.   <strong>Don’t stop there:</strong> Fill the storage with random, unimportant data (e.g., a long video recording), then factory reset again. This makes recovering old data much harder.<br>.   <strong>Remove SIM and SD cards</strong> (if any) and keep them." },
+{ q: "How can I protect my children from 'online groomers' in chat rooms and games?", src: "Child Digital Safety Expert", ans: ".   <strong>Open communication:</strong> Talk to your kids about the dangers of talking to strangers online—without scaring them.<br>.   <strong>Set privacy settings:</strong> Ensure their accounts are 'private' and monitor friend requests.<br>.   <strong>Supervise and share:</strong> Keep computers/gaming consoles in common areas; periodically check their activity.<br>.   <strong>Teach danger signs:</strong> Anyone asking for personal info, photos, to switch apps, or to meet in person.<br>.   <<strong>Encourage disclosure:</strong> Assure them they can tell you anything that bothers them without punishment—you’ll protect them." },
+{ q: "Can browsing suspicious websites infect my device with ransomware viruses?", src: "Malware Defense Expert", ans: ".   <strong>Yes, absolutely.</strong> This is the primary infection method for ransomware.<br>.   <strong>High-risk sites:</strong> Pornographic, illegal download, and 'free course' piracy sites are prime breeding grounds.<br>.   <strong>Malvertising:</strong> Just clicking a fake ad on a shady site can trigger a hidden download/installation of the virus.<br>.   <strong>Prevention:</strong> Use a strong antivirus, maintain regular backups on a separate device, and avoid visiting these sites entirely." },
+{ q: "How can I build a personal and technical 'firewall' to prevent hackers from exploiting my personal vulnerabilities?", src: "Holistic Security Expert", ans: ".   <strong>Psychological Firewall:</strong><br>        -   <strong>Awareness:</strong> Know your worth—never undervalue your personal information.<br>        -   <strong>Healthy skepticism:</strong> Don’t trust online offers or people too easily.<br>        -   <strong>Privacy mindset:</strong> Never share daily routines or personal problems with the public.<br>.   <strong>Technical Firewall:</strong><br>        -   <strong>Strong, unique passwords</strong> for every account, managed by a password manager.<br>        -   <strong>Enable Two-Factor Authentication (2FA)</strong> on all important accounts.<br>        -   <strong>Keep all software and OS updated</strong> to patch security holes.<br>        -   <strong>Use reputable antivirus software</strong> and run regular scans." }
+]
 };
-
-// Arabic and English data remain as before (omitted here for brevity but included in full code)
-const programsData = {/* ... original Arabic data ... */};
-const programsDataEn = {/* ... original English data ... */};
-
+// Original Arabic data remains unchanged
+const programsData = {
+child: [
+{ q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يُمنع تماماً استخدام الشاشات للأطفال دون سن 18–24 شهراً.<br>* الاستثناء الوحيد في هذا العمر هو مكالمات الفيديو للتواصل مع الأهل فقط.<br>* من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي.<br>* يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
+{ q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", src: "الجمعية النفسية الأمريكية (APA)", ans: "* الاستخدام العادي هو وسيلة للترفيه ولا يؤثر على التواصل الاجتماعي الواقعي.<br>* العزلة تبدأ عندما تظهر أعراض الانسحاب مثل العصبية الشديدة عند ترك الجهاز.<br>* فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر.<br>* إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة." },
+{ q: "كيف أدير عملية إنهاء وقت الشاشة بسلام ودون نوبات غضب؟", src: "مركز نمو الطفل بجامعة هارفارد", ans: "* استخدام أسلوب التحذير التدريجي قبل 10 و5 دقائق من النهاية.<br>* إعطاء الطفل خياراً (هل تريد الإغلاق الآن أم بعد انتهاء هذا المستوى؟).<br>* ربط نهاية وقت الشاشة بنشاط محبب آخر (مثل اللعب بالمكعبات أو الخروج).<br>* التزام الوالدين بإنهاء وقت شاشتهم أيضاً ليكونوا قدوة للطفل." },
+{ q: "هل توجد تطبيقات معينة تشكل خطراً مباشراً على سلوكيات الأطفال؟", src: "منظمة Common Sense Media", ans: "* تطبيقات الفيديو القصير (مثل تيك توك) بسبب سرعة المشاهد التي تضعف التركيز.<br>* الألعاب التي تحتوي على دردشة مفتوحة مع غرباء (مثل بعض غرف روبلوكس).<br>* التطبيقات التي تشجع على الشراء الداخلي المتكرر وإهدار المال.<br>* المحتوى غير المراقب الذي قد يحتوي على إعلانات غير مناسبة للسن." },
+{ q: "ما هي مخاطر إعطاء الهاتف للطفل أثناء تناول الطعام؟", src: "منظمة الصحة العالمية (WHO)", ans: "* يمنع الطفل من الشعور بالشبع الطبيعي مما يؤدي لمخاطر السمنة.<br>* يضعف مهارات التذوق والتواصل الأسري الفعال أثناء الوجبات.<br>* يجعل الطفل يربط الطعام بالترفيه البصري فقط ويفقد استمتاعه به.<br>* قد يسبب مشاكل في الهضم نتيجة تشتت الانتباه عن عملية المضغ." },
+{ q: "كيف أحمي طفلي من المحتوى غير اللائق الذي يظهر فجأة؟", src: "خبراء الأمن السيبراني", ans: "* تفعيل خاصية YouTube Kids والبحث الآمن في جميع المتصفحات.<br>* استخدام برامج الرقابة الأبوية المتطورة مثل Google Family Link.<br>* جعل استخدام الهاتف دائماً في مكان مفتوح بالمنزل وليس الغرف المغلقة.<br>* توعية الطفل بإغلاق الشاشة فوراً وإخبارك إذا رأى أي شيء غريب." },
+{ q: "هل يؤثر الهاتف على تطور النطق واللغة عند الأطفال؟", src: "مركز مكافحة الأمراض (CDC)", ans: "* نعم، التفاعل مع الشاشة تفاعُل أحادي الجانب ولا يساعد المهارات اللغوية.<br>* يحتاج الأطفال لتفاعل بشري حي لتطوير مخارج الحروف والقدرة على الحوار.<br>* قضاء وقت طويل على الشاشات يقلل من عدد الكلمات التي يكتسبها الطفل.<br>* قد يؤدي الإفراط الرقمي إلى تأخر اجتماعي وصعوبة في فهم لغة الجسد." },
+{ q: "كيف أعالج إدمان طفلي على ألعاب الهاتف؟", src: "الجمعية الوطنية لتربية الأطفال", ans: "* لا تسحب الجهاز فجأة، بل ضع جدولاً زمنياً تدريجياً لتقليل الساعات.<br>* وفّر بدائل ممتعة وجاذبة للطفل (مثل الرسم، الرياضة، القصص الورقية).<br>* كافئ الالتزام بالوقت بنشاط خارجي محبب أو رحلة قصيرة.<br>* شارك طفلك في أنشطة بدنية يومية لتفريغ طاقته بعيداً عن الشاشة." },
+{ q: "ما هو الوقت المثالي لإيقاف الشاشات قبل النوم؟", src: "مؤسسة النوم الوطنية", ans: "* يجب إيقاف جميع الشاشات قبل النوم بساعة كاملة على الأقل.<br>* الضوء الأزرق يمنع إفراز هرمون الميلاتونين المسؤول عن النوم العميق.<br>* استبدل الشاشة بقراءة قصة ورقية أو حديث هادئ مع الطفل.<br>* تأكد من شحن الأجهزة خارج غرف النوم لتجنب إغراء استخدامها ليلاً." },
+{ q: "هل استخدام الأجهزة اللوحية يضعف نظر الأطفال؟", src: "الأكاديمية الأمريكية لطب العيون", ans: "* يسبب جفاف العين وإجهادها ويساهم في زيادة حالات قصر النظر.<br>* يجب اتباع قاعدة (20-20-20): كل 20 دقيقة انظر لشيء بعيد.<br>* تأكد من وجود إضاءة كافية في الغرفة عند استخدام أي جهاز.<br>* حافظ على مسافة آمنة بين عين الطفل وبين شاشة الجهاز اللوحي." },
+{ q: "كيف أجعل من التكنولوجيا أداة تعليمية لطفلي؟", src: "خبراء التقنية التربوية", ans: "* اختر تطبيقات تنمي مهارات التفكير المنطقي والبرمجة البسيطة.<br>* شارك طفلك في حل الألغاز التقنية بدلاً من المشاهدة السلبية.<br>* حدد أهدافاً تعليمية واضحة قبل السماح باستخدام أي تطبيق جديد.<br>* شجّع الطفل على استخدام الكاميرا لتصوير الطبيعة أو مشاريع فنية." },
+{ q: "ماذا أفعل إذا اكتشف طفلي محتوى عنيفاً بالصدفة؟", src: "منظمة اليونيسيف", ans: "* ابقَ هادئاً تماماً ولا توبخ الطفل أو تشعره بالذنب.<br>* اشرح له أن هذا المحتوى غير حقيقي ومؤذٍ لسلامتنا النفسية.<br>* ناقش مشاعره تجاه المشهد وامنحه الأمان ليتحدث عن مخاوفه.<br>* تأكد من سد الثغرة التقنية التي سمحت بظهور هذا المحتوى فوراً." },
+{ q: "هل الأجهزة التعليمية للأطفال آمنة تماماً؟", src: "المنظمة الدولية لمعايير السلامة", ans: "* نعم، إذا كانت غير متصلة بالإنترنت المفتوح أو متاجر التطبيقات غير المراقبة.<br>* تأكد دائماً من جودة المحتوى وعدم وجود رسائل مبطنة أو إعلانات.<br>* افحص تقييمات التطبيق قبل تحميله واقرأ سياسة الخصوصية الخاصة به.<br>* حدد وقتاً معيناً حتى للأجهزة التعليمية لتجنب الإجهاد البصري والذهني." },
+{ q: "كيف أبني ثقة بيني وبين طفلي بخصوص استخدامه للهاتف؟", src: "خبراء التربية الحديثة", ans: "* كن صديقاً رقمياً له، العب معه أحياناً وافهم اهتماماته.<br>* علمه أن يخبرك فوراً إذا رأى أي شيء غريب أو مخيف دون خوف.<br>* اشرح له \"لماذا\" نضع حدوداً للوقت بدلاً من فرض الأوامر دون نقاش.<br>* اجعل القواعد تنطبق على الجميع في المنزل لتكون قدوة صادقة." },
+{ q: "ما هي علامات التعب النفسي الناتج عن الشاشات عند الأطفال؟", src: "معهد صحة الطفل", ans: "* سرعة الغضب وتقلب المزاج الحاد عند محاولة سحب الجهاز منه.<br>* قلة التركيز في المهام اليومية أو تراجع الاهتمام بالدراسة واللعب.<br>* اضطرابات النوم الملحوظة أو الكوابيس المرتبطة بمحتوى رقمي.<br>* العدوانية المفاجئة في التعامل مع الإخوة أو الزملاء في الواقع." },
+{ q: "كيف أطبق 'الصيام الرقمي' في منزلي؟", src: "مبادرة قصص الحضارات", ans: "* حدد يوماً في الأسبوع يكون فيه المنزل خالياً تماماً من الأجهزة.<br>* خصص ساعات معينة يومياً (مثل وقت الطعام) لمنع استخدام الهواتف.<br>* استبدل الوقت الرقمي بألعاب جماعية، حوارات أسرية، أو قراءة كتب.<br>* احتفل بنجاح الأسرة في الالتزام بالصيام الرقمي لتعزيز الروابط." }
+],
+teens: [
+{ q: "كيف أتعامل مع رغبة المراهق في الخصوصية التامة ورفضه لمراقبة هاتفه؟", src: "عالم المراهقة", ans: "* الخصوصية في هذا العمر جزء من بناء الاستقلالية الشخصية.<br>* بدلاً من المراقبة المباشرة (التجسس)، تحول إلى \"الإشراف الواعي\".<br>* اتفق معه على قواعد عامة (مثل عدم استخدام الهاتف في غرف النوم).<br>* اشرح له أن دورك هو الحماية وليس التقييد، وابنِ جسراً من الثقة." },
+{ q: "ما هي علامات وقوع المراهق في فخ 'الابتزاز الإلكتروني' وكيف أتصرف بهدوء؟", src: "عالم المراهقة", ans: "* العلامات تشمل: الانعزال المفاجئ، التوتر الشديد عند وصول رسائل.<br>* إغلاق الهاتف بسرعة عند اقترابك، وتدهور حالته المزاجية أو الدراسية.<br>* التصرف الهادئ يتطلب: احتواء المراهق وطمأنته بأنه ليس وحده.<br>* جمع الأدلة (صور الرسائل)، ثم إبلاغ الجهات المختصة فوراً." },
+{ q: "كيف أحمي ابني/ابنتي من 'هوس المثالية' والمقارنة الدائمة مع مشاهير السوشيال ميديا؟", src: "عالم المراهقة", ans: "* نمّ \"الوعي النقدي\"؛ علّمه أن ما يظهر هو \"لقطات منتقاة\" فقط.<br>* وضّح له أن هناك فلاتر وإضاءة خلف الكواليس لتجميل الواقع.<br>* شجّعه على متابعة شخصيات ملهمة في مجالات حقيقية (علم، رياضة).<br>* ركّز على تعزيز ثقته بنفسه وبإنجازاته الواقعية الملموسة." },
+{ q: "ما هو التصرف الصحيح إذا اكتشفت أن المراهق يتابع مجموعات أو صفحات تروج لأفكار متطرفة؟", src: "عالم المراهقة", ans: "* تجنب الصدمة والهجوم العنيف الذي قد يدفعه للتمسك بها كنوع من التمرد.<br>* ابدأ بحوار فكري هادئ: \"ما الذي جذبك لهذا النوع من المحتوى؟\".<br>* اعرض عليه وجهات نظر بديلة ومنطقية وناقش معه العواقب بوضوح.<br>* استعن بمختص تربوي لمساعدتك في تفكيك هذه الأفكار بشكل احترافي." },
+{ q: "كيف أعلم المراهق إدارة 'سمعته الرقمية' وإدراك أن ما ينشره اليوم سيلاحقه؟", src: "عالم المراهقة", ans: "* أخبره بقاعدة ذهبية: \"لا تنشر شيئاً لا تحب أن يراه مدير عملك المستقبلي\".<br>* وضّح له أن الشركات والجامعات تبحث الآن في التاريخ الرقمي للمتقدمين.<br>* علمه أن \"بصمته الرقمية\" هي سيرته الذاتية الحقيقية التي لا تمحى أبداً.<br>* شجّعه على نشر محتوى يعبر عن مهاراته وإيجابيته أمام العالم." },
+{ q: "كيف نواجه إدمان ألعاب 'الفيديو جيمز' وتأثيرها على التحصيل الدراسي؟", src: "عالم المراهقة", ans: "* لا تمنعها تماماً، بل اجعلها \"مكافأة\" مشروطة بعد إنجاز المهام.<br>* حدد ساعات معينة وقم بتقليلها تدريجياً، خاصة في أيام الدراسة.<br>* شجّعه على ممارسة أنشطة بدنية تعوّضه عن الجلوس الطويل أمام الشاشة.<br>* اهتم بنوعية الألعاب لضمان أنها تنمي مهارات التفكير المنطقي لا العنف." },
+{ q: "ما هي مخاطر تطبيقات الدردشة المجهولة (Anonymous Apps) على المراهقين؟", src: "عالم المراهقة", ans: "* خطورتها تكمن في أنها بيئة خصبة للتنمر القاسي، التحرش، والاستدراج.<br>* غياب الرقابة يرفع احتمالية التعرض للأذى النفسي الشديد من مجهولين.<br>* يجب توعية المراهق بأن هذه التطبيقات قد تستخدم لجمع بياناته لابتزازه.<br>* شجّعه على استخدام منصات التواصل المعروفة بضوابط أمان وخصوصية عالية." },
+{ q: "كيف أقنع المراهق بوضع حدود زمنية لاستخدام الهاتف دون الدخول في صدام؟", src: "عالم المراهقة", ans: "* عبر \"العقد الرقمي\"؛ اجلس معه واتفقا معاً على ساعات الاستخدام اليومي.<br>* عندما يشارك المراهق في وضع القوانين، يكون أكثر التزاماً وجدية في تنفيذها.<br>* ناقش المخاطر الصحية والنفسية معه واشرحها كحقائق علمية لا كأوامر.<br>* يجب أن تكون قدوة له في ترك هاتفك الخاص خلال الأوقات العائلية." },
+{ q: "كيف أتعامل مع 'التنمر الإلكتروني' سواء كان المراهق ضحية أو مشاركاً فيه؟", src: "عالم المراهقة", ans: "* إذا كان ضحية: علمه عدم الرد، حظر المتنمر فوراً، وتوثيق ما حدث.<br>* إذا كان مشاركاً: يجب الوقوف بحزم على العواقب الأخلاقية والقانونية.<br>* نمّ مهارة \"التعاطف\" لديه ليفهم حجم الأذى الذي قد يسببه للغير.<br>* وفّر الدعم النفسي الكامل له لتجاوز آثار التجربة وبناء ثقته بنفسه." },
+{ q: "ما هو دور الأهل في توعية المراهق بمخاطر 'تحديات التيك توك' الخطيرة؟", src: "عالم المراهقة", ans: "* الدور هو \"التحليل المنطقي\"؛ ناقش معه التحدي واسأله عن مخاطره.<br>* شجّعه على التفكير المستقل بدلاً من \"عقلية القطيع\" والتقليد الأعمى.<br>* وضّح له أن اللحاق بالتريند لا يستحق المخاطرة بسلامته الجسدية أبداً.<br>* اطلب منه اقتراح تحديات إيجابية ومفيدة يمكنه المشاركة فيها بأمان." },
+{ q: "كيف يمكن للمراهق استخدام منصات التواصل لبناء 'ملف شخصي' يدعم قبوله؟", src: "عالم المراهقة", ans: "* عن طريق مشاركة إنجازاته: مشاريع مدرسية، عمل تطوعي، أو هوايات مفيدة.<br>* نشر ملخصات لكتب قرأها أو أبحاث أجراها في مجالات تهمه تقنياً.<br>* تحويل حسابه من مستهلك سلبي للمحتوى إلى \"صانع محتوى\" ملهم.<br>* استخدام LinkedIn مبكراً لبناء شبكة علاقات مهنية مستقبلاً." },
+{ q: "ما هي أفضل الطرق لتدريب المراهق على مهارة 'الذكاء الاصطناعي' كأداة للتعلم؟", src: "عالم المراهقة", ans: "* علمه كيف يسأل الذكاء الاصطناعي ليكون بمثابة \"معلم خصوصي\" ذكي.<br>* استخدامه في تلخيص المراجع الضخمة أو البحث عن مصادر معلومات موثوقة.<br>* التأكيد على كتابة الأبحاث بأسلوبه الخاص لضمان تطوير مهاراته العقلية.<br>* تنبيهه لمخاطر الانحياز أو المعلومات الخاطئة التي قد يقدمها الذكاء الاصطناعي." },
+{ q: "كيف أحول اهتمام المراهق بالألعاب الإلكترونية إلى شغف بالبرمجة أو التصميم؟", src: "عالم المراهقة", ans: "* أخبره أن الانتقال من \"لاعب\" إلى \"صانع ومطور\" هو التحدي الحقيقي.<br>* اشترك له في دورات بسيطة لتطوير الألعاب (مثل Roblox Studio) أو الجرافيك.<br>* وضّح له القيمة التقنية والمادية الكبيرة التي يمكن أن يجنيها مستقبلاً.<br>* ساعده في تحميل الأدوات اللازمة لبدء أول مشروع برمجي خاص به." },
+{ q: "كيف ننمي مهارة 'القيادة الرقمية' لدى المراهق ليكون مؤثراً إيجابياً؟", src: "عالم المراهقة", ans: "* شجّعه على الدفاع عن الحق عبر الإنترنت ودعم زملائه ضد التنمر.<br>* نشر معلومات مفيدة واستخدام صوته الإلكتروني لإحداث تغيير في مجتمعه.<br>* علمه كيفية التحقق من صحة الأخبار قبل نشرها لمحاربة الشائعات الكاذبة.<br>* شجّعه على تنظيم مبادرات رقمية توعوية صغيرة في مدرسته أو حيه." },
+{ q: "ما هي الخطوات العملية لتمكين المراهق من إدارة ميزانيته عبر تطبيقات الدفع؟", src: "عالم المراهقة", ans: "* ابدأ بمنحه ميزانية أسبوعية على بطاقة مسبقة الدفع مخصصة لليافعين.<br>* علمه مهارة \"التحقق\" من أمان المواقع قبل الشراء أونلاين وحماية بياناته.<br>* مراجعة كشف الحساب معه شهرياً ليتعلم التخطيط المالي وتوفير الأموال.<br>* توعيته بمخاطر الإعلانات المضللة التي تدفعه لشراء أشياء لا يحتاجها فعلياً." }
+],
+youth: [
+{ q: "كيف أتخلص من تشتت الانتباه الناتج عن التنبيهات المستمرة وأستعيد قدرتي على التركيز العميق؟", src: "خبير إنتاجية رقمية", ans: ".   إيقاف جميع الإشعارات غير الضرورية على الهاتف والكمبيوتر<br>.   جدولة \"فترات تركيز عميق\" باستخدام تقنية <strong>بومودورو</strong> (25 دقيقة عمل / 5 دقائق راحة)<br>.   استخدام أدوات حظر المواقع والتطبيقات المشتتة (مثل Freedom، Cold Turkey)<br>.   تدريب العقل على التركيز من خلال القراءة العميقة أو ممارسة التأمل<br>.   تهيئة بيئة عمل مادية نظيفة وخالية من الفوضى البصرية والضوضاء" },
+{ q: "ما هي أفضل استراتيجيات إدارة الوقت الرقمية (مثل تقنية بومودورو) لزيادة الإنتاجية وتحقيق أهدافي اليومية؟", src: "خبير إدارة الوقت", ans: ".   تطبيق <strong>تقنية بومودورو</strong> لإدارة الطاقة والوقت في دفعات قصيرة مركزة<br>.   استخدام <strong>طريقة \"تناول الضفدع\"</strong> بإنجاز المهمة الأصعب أولاً في اليوم<br>.   تخطيط اليوم عبر <strong>التوقيت الزمني (Time Blocking)</strong> بحجز مواعيد ثابتة للمهام<br>.   تفريغ الذهن وتسجيل كل المهام في تطبيق موحد (مثل Todoist، Microsoft To Do)<br>.   ربط المهام اليومية بالأهداف الأسبوعية والشهرية طويلة المدى" },
+{ q: "كيف أتوقف عن الغرق في \"العمل المزيف\" (مثل الإيميلات والاجتماعات غير الضرورية) وأركز طاقتي على \"العمل الحقيقي\"؟", src: "مستشار إنتاجية", ans: ".   تحديد أهم 1-3 مهام يومياً (MITs) والبدء بها فوراً قبل فتح البريد الإلكتروني<br>.   جدولة فترات زمنية محددة فقط لمراجعة البريد والاجتماعات (مثل 3 مرات يومياً)<br>.   تحدي ضرورة كل اجتماع عبر سؤال: \"هل يمكن استبداله بتحديث مكتوب؟\"<br>.   تطبيق قاعدة الدقيقتين: إنجاز أي مهمة صغيرة (تأخذ دقيقتين أو أقل) فوراً<br>.   تعريف \"العمل الحقيقي\" على أنه المهام التي تقربك مباشرة من أهدافك الأساسية" },
+{ q: "كيف أحمي عيني وجسدي من الإرهاق الناتج عن الجلوس الطويل أمام الشاشات، وأدمج عادات صحية في روتين عملي الرقمي؟", src: "أخصائي صحة رقمية", ans: ".   تطبيق قاعدة <strong>20-20-20</strong> (كل 20 دقيقة، انظر إلى شيء على بعد 20 قدماً لمدة 20 ثانية)<br>.   ضبط إعدادات سطوع الشاشة وتشغيل الوضع الليلي (الضوء الدافئ) تلقائياً<br>.   تحسين وضعية الجلوس وضمان أن تكون الشاشة على مستوى العين<br>.   أخذ استراحة حركية قصيرة كل ساعة (مثل المشي، التمدد)<br>.   استخدام دعامة للقدمين وكرسي مريح، والتفكير في طاولة قابلة للوقوف" },
+{ q: "ما هي مخاطر \"التسويف الرقمي\" وكيف أبني إرادتي لأمنع نفسي من تصفح وسائل التواصل أثناء ساعات العمل؟", src: "خبير سلوك رقمي", ans: ".   <strong>المخاطر:</strong> تأجيل المهام المهمة، زيادة التوتر والقلق، تدني جودة العمل، الشعور بالذنب<br>.   إبعاد الهاتف الذكي عن مجال الرؤية أو وضعه على وضع الطيران أثناء العمل<br>.   تطبيق قاعدة \"البداية لمدة 5 دقائق فقط\" لتجاوز حاجز المماطلة<br>.   ربط البدء في العمل بنشاط محبب (مثل كوب قهوة، موسيقى هادئة)<br>.   تحديد مكافأة صغيرة ومحددة مسبقاً بعد إنجاز المهمة" },
+{ q: "كيف أضع حدودًا رقمية واضحة بين العمل والحياة الشخصية لتجنب الاحتراق الوظيفي؟", src: "أخصائي توازن حياة رقمية", ans: ".   إنشاء \"طقوس انتقالية\" واضحة بعد انتهاء العمل (مثل المشي، تغيير الملابس)<br>.   تحديد أوقات ثابتة لعدم العمل وإبلاغ الزملاء والعملاء بها بوضوح<br>.   استخدام أجهزة منفصلة للعمل والحياة الشخصية، أو حسابات مستخدمين مختلفة<br>.   إيقاف إشعارات العمل على الهاتف الشخصي بعد ساعات الدوام وفي العطلات<br>.   أخذ \"إجازات رقمية\" قصيرة (Digital Detox) خلال عطلات نهاية الأسبوع" },
+{ q: "كيف أنظم بيئتي العملية الرقمية (سطح المكتب، الملفات، التطبيقات) لتقليل الفوضى وزيادة الوضوح الذهني؟", src: "خبير تنظيم رقمي", ans: ".   تطبيق قاعدة <strong>OHIO</strong> (Only Handle It Once): التعامل مع الملف مرة واحدة واتخاذ قرار بشأنه<br>.   هيكلة نظام مجلدات واضح (مثل: مشاريع جارية، مرجعية، مؤرشفة، شخصية)<br>.   الحفاظ على سطح المكتب نظيفاً ووضع اختصارات التطبيقات الأساسية فقط<br>.   استخدام أدوات البحث السريع في النظام (مثل Spotlight على Mac، Everything على Windows)<br>.   جدولة تنظيف أسبوعي للملفات المؤقتة وسلة المحذوفات" },
+{ q: "ما هو التأثير الحقيقي \"لتعدد المهام\" على جودة عملي، وكيف أدرب نفسي على التركيز الكامل في مهمة واحدة؟", src: "عالم أعصاب رقمي", ans: ".   <strong>التأثير:</strong> انخفاض جودة المخرجات، زيادة الأخطاء، استنزاف أسرع للطاقة العقلية<br>.   إغلاق جميع علامات التبويب والنوافذ والتطبيقات غير المتعلقة بالمهمة الحالية<br>.   استخدام قائمة مهام يومية واضحة مرتبة حسب الأولوية وليس الرغبة<br>.   إدارة الانقطاعات بوضع علامة \"مشغول\" والرد في وقت مخصص للمراجعة<br>.   تدريب الدماغ على رفض التبديل عبر التدرج بزيادة فترات التركيز المتواصل" },
+{ q: "كيف أتعامل مع ضغط \"المثالية الرقمية\" وسعار المقارنة عند رؤية إنجازات الآخرين على منصات مثل لينكدإن؟", src: "أخصائي نفسي رقمي", ans: ".   تذكر أن منصات التواصل المهني هي \"معرض للإنجازات\" وليست سيرة ذاتية كاملة<br>.   تحديد معايير النجاح الشخصية الخاصة بك بناءً على أهدافك وقيمتك وليس مقارنة بالآخرين<br>.   تحويل المشاعر السلبية إلى فضول: \"ماذا يمكنني أن أتعلم من تجربته؟\"<br>.   تقليل الوقت المخصص للتصفح السلبي واستبداله بفترات محددة للتفاعل الهادف<br>.   تدوين وتوثيق إنجازاتك وتقدمك الشخصي في دفتر خاص للرجوع إليه" },
+{ q: "ما هي أفضل الأدوات والتطبيقات لتنظيم وإدارة المشاريع الشخصية والمهنية بشكل احترافي وبسيط؟", src: "خبير أدوات رقمية", ans: ".   <strong>للمهام الشخصية:</strong> Todoist، Microsoft To Do، Google Tasks<br>.   <strong>للمشاريع المتوسطة:</strong> Trello (لوحات كانبان)، Asana، ClickUp<br>.   <strong>للملاحظات:</strong> Notion، Evernote، Obsidian<br>.   <strong>لتنظيم الوقت:</strong> Google Calendar، Apple Calendar، Calendly<br>.   <strong>للتعاون:</strong> Google Workspace، Microsoft 365" },
+{ q: "كيف أستخدم الذكاء الاصطناعي كشريك إبداعي ومساعد شخصي يضاعف إنتاجيتي، مع الحفاظ على تميزي البشري؟", src: "خبير ذكاء اصطناعي تطبيقي", ans: ".   استخدامه لتوليد الأفكار الأولية، ومسودات النصوص، والعناوين، والهياكل<br>.   الاستفادة منه في تلخيص المستندات الطويلة، وتنظيم البيانات، والبحث الذكي<br>.   الاعتماد عليه لمراجعة النصوص وتحسين الصياغة والأخطاء اللغوية<br>.   <strong>الحفاظ على التميز البشري</strong> بإضافة السياق الشخصي، والتحرير النقدي، والعاطفة<br>.   اعتباره \"مساعداً ذكياً\" تطرح عليه الأسئلة وتدقق مخرجاته، وليس \"بديلاً\"" },
+{ q: "كيف أبني \"نظام تعلم ذاتي\" عبر الإنترنت يضمن لي تحديث مهاراتي باستمرار ومواكبة تطورات سوق العمل؟", src: "خبير تعلم رقمي", ans: ".   تحديد مسار تعلم واضح يركز على المهارات الأكثر طلباً في مجالك وأهدافك<br>.   تخصيص وقت أسبوعي ثابت وغير قابل للمساومة للتعلم (ساعة يومياً أو نصف يوم أسبوعياً)<br>.   الاشتراك في منصات التعلم الإلكتروني الموجهة (Coursera، edX، Udemy)<br>.   تطبيق المعرفة فوراً من خلال مشاريع مصغرة أو تطبيقها في العمل الحالي<br>.   قياس التقدم بالحصول على شهادات أو بناء محفظة أعمال أو مشاركة ما تتعلمه" },
+{ q: "ما هي خطوات تحويل مهاراتي الرقمية إلى مصدر دخل إضافي عبر العمل الحر، وكيف أبدأ بطريقة فعالة ومنظمة؟", src: "خبير عمل حر رقمي", ans: ".   اختيار مهارة واحدة محددة وقابلة للتسويق وتمتلك فيها مستوى جيد<br>.   بناء محفظة أعمال (Portfolio) تحتوي على 2-3 مشاريع نموذجية تظهر أفضل ما لديك<br>.   البحث عن الأسعار السوقية وتحديد عروض أسعار تنافسية في البداية لجذب العملاء الأولى<br>.   إنشاء ملف احترافي على منصات العمل الحر (مثل Upwork، خمسات، مستقل) وشبكة لينكدإن<br>.   البدء بعروض الخدمة لشبكة معارفك، واستخدام عقود بسيطة، وتنظيم الفواتير والضرائب" },
+{ q: "كيف أطور \"علامتي التجارية الشخصية\" على الإنترنت لجذب الفرص المهنية المناسبة وبناء شبكة علاقات مؤثرة؟", src: "خبير تسويق رقمي شخصي", ans: ".   تحديد نطاق تخصصك وشخصيتك المهنية الفريدة والقيمة المميزة التي تقدمها<br>.   تحسين ملف LinkedIn بالكامل: صورة محترفة، عنوان جذاب، ملخص قوي، تفاصيل الخبرات<br>.   نشر محتوى ذو قيمة بشكل منتظم (مقالات، منشورات، تعليقات ثاقبة) في مجالك<br>.   التفاعل البناء مع محتوى الآخرين من خبراء ومؤثرين في مجال اهتمامك<br>.   الحفاظ على اتساق الصورة والرسالة عبر جميع المنصات" },
+{ q: "كيف أحول هاتفي من مصدر للتشتيت إلى أداة تنمية ذاتية؛ لتعلم اللغات، الاستماع للمحتوى التعليمي، أو إدارة مشاريع جانبية؟", src: "خبير استخدام هواتف ذكية", ans: ".   إعادة تنظيم الشاشة الرئيسية: حذف التطبيقات المشتتة أو تجميعها في مجلد واحد بعيد<br>.   تحميل تطبيقات التعلم والتنمية (مثل Duolingo للغات، Brilliant للعلوم، بودكاست تعليمي)<br>.   تحميل تطبيقات الإنتاجية للمشاريع الجانبية (مثل Trello، Notion، Evernote)<br>.   استغلال أوقات الانتظار والمواصلات في الاستماع للبودكاست أو الدروس الصوتية<br>.   تعيين أدوات التعلم والتخطيط على شاشة القفل أو الصفحة الرئيسية لتكون أول ما تراه" },
+{ q: "كيف أتعامل مع \"قلق المعلومات\" والإحساس بأنني لا أستطيع مواكبة كل التطورات والمحتوى في مجالي؟", src: "خبير إدارة معرفة رقمية", ans: ".   تقبل حقيقة أنه من المستحيل معرفة كل شيء، والتركيز على \"التعمق\" بدلاً من \"الاستيعاب السطحي\"<br>.   انتقاء واتباع 2-3 مصادر موثوقة ومتخصصة فقط بدلاً من متابعة عشرات المصادر العشوائية<br>.   استخدام أدوات تجميع المحتوى مثل Feedly أو Pocket لمراجعة العناوين وقراءة المهم فقط لاحقاً<br>.   تخصيص وقت أسبوعي محدد (مثل ساعة يوم الجمعة) لمراجعة أهم التطورات، ثم \"الانفصال\"<br>.   تغيير الهدف من \"المواكبة\" إلى \"التطبيق\": التركيز على المعلومات التي يمكنك استعمالها عملياً" },
+{ q: "ما هو الروتين الرقمي المسائي الذي يساعدني على النوم بعمق ويحسن جودة راحتي بعد يوم من العمل الشاق؟", src: "خبير نوم رقمي", ans: ".   تحديد \"موعد قطع\" رقمي ثابت (ساعة على الأقل قبل موعد النوم)<br>.   تفعيل \"الوضع الليلي\" أو \"الضوء الدافئ\" على جميع الشاشات تلقائياً مع غروب الشمس<br>.   عدم إدخال الهاتف الذكي إلى غرفة النوم، وشحنه في مكان آخر في المنزل<br>.   استبدال الوقت الرقمي قبل النوم بنشاطات مهدئة: قراءة كتاب ورقي، التأمل، الكتابة في اليوميات<br>.   تهيئة بيئة النوم: إظلام تام، درجة حرارة منخفضة، وهدوء" },
+{ q: "كيف أبني تواصلاً فعالاً وثقة مع فريق العمل في بيئة العمل الهجين أو عن بُعد دون الشعور بالعزلة؟", src: "خبير تواصل رقمي", ans: ".   جدولة اتصالات دورية قصيرة ومركزة (مثل اجتماعات الوقوف اليومية Stand-up Meetings)<br>.   استخدام منصات تواصل فورية (مثل Slack، Teams) بقنوات منظمة للمشاريع والمواضيع الاجتماعية<br>.   تخصيص الدقائق الأولى من الاجتماعات الرسمية للحديث غير الرسمي عن أحوال الفريق<br>.   الاتفاق مع الفريق على ساعات العمل المتوقعة وأوقات الاستجابة للرسائل<br>.   الاحتفال بالإنجازات الفردية والجماعية بشكل علني عبر قنوات التواصل المشتركة" },
+{ q: "كيف أحافظ على مهارات التفكير النقدي والإبداع العميق في عصر السيل السطحي للمعلومات عبر وسائل التواصل السريعة؟", src: "فيلسوف رقمي", ans: ".   تخصيص وقت أسبوعي \"بلا شاشات\" للقراءة العميقة في الكتب والمقالات الطويلة<br>.   ممارسة الكتابة التحليلية أو التدوين الذي يجبرك على تنظيم أفكارك وشرحها بوضوح<br>.   تحدي الأفكار الجاهزة بطرح الأسئلة الأساسية: \"ما الدليل؟\"، \"ما الافتراضات؟\"، \"ما البديل؟\"<br>.   الابتعاد المتعمد عن المصادر السريعة للمشي أو التفكير الحر دون مدخلات لمدة 20-30 دقيقة<br>.   الانخراط في نقاشات حقيقية مع أصدقاء أو زملاء يختلفون معك في الرأي بهدف الفهم وليس الفوز" },
+{ q: "ما هي المهارات الإنسانية (كالتعاطف والقيادة) التي لا يمكن للذكاء الاصطناعي تعويضها، وكيف أركز على تطويرها لتعزيز قوتي التنافسية؟", src: "خبير مستقبل العمل", ans: ".   <strong>المهارات الرئيسية:</strong> الذكاء العاطفي، التفاوض، القيادة الملهمة، الإبداع الفني، التفكير الاستراتيجي، الحكم الأخلاقي<br>.   تطويرها عبر <strong>الملاحظة النشطة</strong> و<strong>الاستماع بتركيز</strong> لفظيات ولغة جسد الآخرين<br>.   طلب تغذية راجعة صادقة من الزملاء والمديرين حول مهاراتك الاجتماعية والقيادية<br>.   القراءة في مجالات علم النفس، الفلسفة، والتاريخ لفهم دوافع وسلوك البشر<br>.   الانخراط في أنشطة جماعية أو تطوعية تضعك في مواقف تتطلب تعاوناً وتأثيراً في الآخرين" }
+],
+marriage: [
+{ q: "كيف يؤثر الانشغال الدائم بالهاتف (Phubbing) على جودة التواصل العاطفي بين الزوجين؟", src: "خبير علاقات زوجية رقمية", ans: ".   يخلق شعوراً بعدم الأهمية والتجاهل لدى الطرف الذي يتم تجاهله<br>.   يقلل من جودة الحوار ويقتل فرص المحادثات العفوية العميقة<br>.   يقلل من الاتصال البصري والجسدي الضروري لبناء الألفة<br>.   يزيد من احتمالية سوء الفهم بسبب عدم التركيز الكامل في الحديث<br>.   على المدى الطويل، يبني جداراً من العزلة العاطفية والاستياء داخل العلاقة" },
+{ q: "ما هي حدود الخصوصية الرقمية بين الزوجين وهل يحق لأحدهما تفتيش هاتف الآخر؟", src: "مستشار أسري", ans: ".   المبدأ الأساسي هو <strong>الثقة والاحترام</strong>، وليس الحق المطلق أو المنع المطلق<br>.   من الصحي الاتفاق على \"حدود\" ترضي الطرفين (مثل: عدم إخفاء كلمات المرور، ولكن عدم التفتيش العشوائي)<br>.   التفتيش دون إذن إشارة على أزمة ثقة عميقة ويحتاج إلى علاج السبب وليس ممارسة الرقابة<br>.   الخصوصية حق فردي، لكن الشفافية المتفق عليها تطمئن القلب<br>.   الحل الأمثل هو مناقشة المشاعر التي تدفع لرغبة التفتيش (شك، عدم أمان) وعلاجها" },
+{ q: "كيف نتجنب مقارنة حياتنا الزوجية بالصور المثالية التي يعرضها \"المؤثرون\" على السوشيال ميديا؟", src: "أخصائي نفسي أسري", ans: ".   تذكير أنفسنا باستمرار أن ما نراه هو \"أبرز اللقطات\" وليس الفيلم الكامل للحياة<br>.   التركيز على قصة علاقتك الفريدة وإنجازاتكما الصغيرة غير المرئية للآخرين<br>.   تقليل الوقت المشترك في التصفح السلبي واستبداله بأنشطة حقيقية تخلق ذكرياتكم الخاصة<br>.   استخدام المحتوى المثالي كمصدر للإلهام لطرق جديدة للتفاعل، وليس كمسطرة للحكم على علاقتك<br>.   مشاركة شعورك بالمقارنة مع شريكك لمناقشته بشفافية وتخفيف الضغط" },
+{ q: "ما هو تأثير إدمان المواقع الإباحية على العلاقة الحميمية والرضا الزوجي؟", src: "أخصائي علاج إدمان رقمي", ans: ".   يشوه التوقعات الواقعية حول العلاقة الحميمية والجسد<br>.   قد يؤدي إلى صعوبة في الإثارة مع الشريك الحقيقي أو ضعف الأداء<br>.   يقلل من الرغبة في التواصل الحميمي مع الشريك، مما يشعره بالنبذ الجسدي والعاطفي<br>.   يخلق حاجزاً من السرية والخيانة العاطفية حتى بدون علاقة خارجية<br>.   العلاج يكون بالاعتراف بالمشكلة، وطلب المساعدة المهنية، وإعادة بناء الثقة والحميمية خطوة بخطوة" },
+{ q: "كيف يمكننا وضع \"قواعد رقمية\" للمنزل لزيادة الترابط؟", src: "خبير بيئة منزل رقمية", ans: ".   منع الهواتف تماماً على مائدة الطعام وفي غرفة النوم<br>.   تخصيص \"فترة رقمية هادئة\" مسائية يضع فيها كلاكما الأجهزة جانباً<br>.   الاتفاق على عدم استخدام الهواتف أثناء المحادثات المهمة أو عند الحديث عن يومكما<br>.   تخصيص مكان مشترك لشحن الهواتف ليلاً بعيداً عن غرفة النوم<br>.   احترام هذه القواعد بالتبادل وليس كفرض من طرف على الآخر" },
+{ q: "كيف نتصرف إذا تسبب سوء فهم لرسالة نصية في اندلاع مشكلة كبرى بيننا؟", src: "خبير تواصل زوجي", ans: ".   <strong>أولاً: وقف النقاش النصي فوراً.</strong> التواصل النصي يفتقر للتعبير الصوتي والبصري وهو أرض خصبة لسوء الفهم<br>.   الاتصال هاتفياً أو التحدث وجهاً لوجه فوراً لتوضيح النبرة والقصد الحقيقي<br>.   البدء بالاعتذار عن سوء الفهم الناتج، حتى لو لم تكن مقصدك، لأن مشاعر الطرف الآخر حقيقية<br>.   توضيح قصده الحقيقي من الرسالة باستخدام جمل \"أقصد أن...\" أو \"ما حاولت قوله هو...\"<br>.   الاتفاق على قاعدة ذهبية: \"المواضيع الحساسة أو المعقدة لا تُناقش أبداً عبر الرسائل النصية\"" },
+{ q: "ما هي مخاطر الصداقات الافتراضية مع الجنس الآخر عبر الإنترنت وكيف تؤدي للخيانة الزوجية؟", src: "مستشار زواجي", ans: ".   توفر وهم التقارب العاطفي السريع مع إخفاء عيوب الحياة الواقعية<br>.   تشكل مساحة سرية تنمو فيها المشاعر خارج العلاقة الأساسية (خيانة عاطفية)<br>.   تقلل من الاستثمار العاطفي والوقتي الممنوح للشريك الحقيقي<br>.   يمكن أن تكون الخطوة الأولى نحو خيانة فعلية إذا تحولت للقاء<br>.   الوقاية تكون بوضوح الحدود مع الأصدقاء، والشفافية مع الشريك، وإعادة استثمار الطاقة العاطفية في العلاقة الأساسية" },
+{ q: "كيف يؤثر الضوء الأزرق واستخدام الهاتف قبل النوم على دورة النوم المشتركة للزوجين؟", src: "أخصائي نوم أسري", ans: ".   يُخدع الدماغ بالضوء الأزرق فيظنه نور النهار، مما يؤخر إفراز هرمون الميلاتونين المسؤول عن النوم<br>.   يؤدي إلى صعوبة النوم، ونوم متقطع، وتقليل جودة النوم العميق لكلا الطرفين<br>.   يخلق اضطراباً في إيقاع النوم المشترك إذا كان أحد الطرفين يستخدم الهاتف في السرير<br>.   الحل: تفعيل \"الوضع الليلي\" على الأجهزة، ووضع قاعدة بعدم استخدام الشاشات قبل النوم بساعة، وشحن الهواتف خارج غرفة النوم" },
+{ q: "كيف نعالج مشكلة \"الخرس الزوجي الرقمي\" حيث يجلس الطرفان في مكان واحد والاتصال مقطوع؟", src: "أخصائي تواصل أسري", ans: ".   الاعتراف بالمشكلة بصوت عالٍ وبطريقة غير اتهامية: \"أشعر أننا أصبحنا بعيدين رغم وجودنا معاً\"<br>.   تطبيق قاعدة \"الصندوق الرقمي\": تجميع جميع الأجهزة في صندوق محدد لفترة زمنية متفق عليها<br>.   إعادة تعريف \"الوقت المشترك\" بأنشطة لا تسمح باستخدام الهاتف: الطهي معاً، لعب لعبة لوحية، المشي<br>.   طرح أسئلة مفتوحة تثير الحوار (مثل: \"ما أكبر حلم تريد تحقيقه هذا العام؟\")<br>.   البدء بقصص من يومكما بدلاً من الغرق في الهاتف بعد العودة للمنزل" },
+{ q: "ماذا نفعل إذا كان أحد الشريكين يفرط في نشر تفاصيل حياتنا الخاصة على منصات التواصل؟", src: "خبير خصوصية رقمية زوجية", ans: ".   التعبير عن المشاعر الشخصية باستخدام جمل \"أنا\" (مثل: \"أشعر بعدم ارتياح عندما تنشر صورنا الخاصة\")<br>.   مناقشة ووضع اتفاق واضح حول ما هو مسموح نشره وما هو خاص (صور الأطفال، المشاكل، المناسبات العائلية)<br>.   احترام رغبة الطرف الأكثر تحفظاً، لأن الحق في الخصوصية مشترك<br>.   اقتراح بدائل مثل إنشاء محادثة خاصة للعائلة المقربة لمشاركة الأخبار<br>.   فهم الدوافع (الحاجة للتقدير، التأثير) وتقديرها، مع توضيح العواقب على العلاقة" },
+{ q: "كيف نستخدم تطبيقات التقويم المشترك والمهام لتعظيم التنسيق وتخفيف الأعباء المنزلية؟", src: "خبير تنظيم حياة زوجية", ans: ".   استخدام تقويم رقمي مشترك (مثل Google Calendar) لتسجيل جميع المواعيد: العمل، الاجتماعات، المناسبات، المهام المنزلية<br>.   وضع قائمة مهام مشتركة (على تطبيق مثل Todoist أو Microsoft To Do) لتوزيع الأعباء ومتابعتها<br>.   جدولة \"المواعيد الزوجية\" و\"الأسرة\" في التقويم المشترك وتعطيلها كما تُعطل موعد عمل مهم<br>.   استخدام ميزة \"التذكيرات\" للتنسيق في لحظات الشراء أو الاستلام<br>.   مراجعة التقويم والأسبوع القادم معاً بشكل أسبوعي لجلسة تخطيط سريعة" },
+{ q: "كيف يمكن للتكنولوجيا أن تقوي العلاقة في حالات السفر أو العمل الطويل؟", src: "خبير علاقات عن بُعد", ans: ".   جدولة مكالمات فيديو قصيرة ومنتظمة أفضل من مكالمات طويلة عشوائية<br>.   استخدام تطبيقات المراسلة لإرسال رسائل صوتية أو صور عفوية من لحظات اليوم<br>.   مشاهدة فيلم أو مسلسل معاً عن بعد باستخدام ميزة \"Watch Party\" المتوفرة على بعض المنصات<br>.   استخدام تطبيقات الألعاب الإلكترونية البسيطة للمنافسة واللعب معاً عن بُعد<br>.   إرسال هدايا أو طلبات طعام مفاجئة عبر التطبيقات لإظهار الاهتمام" },
+{ q: "ما هي الطرق المبتكرة لاستغلال المحتوى التعليمي عبر الإنترنت لتطوير مهارات الحوار والذكاء العاطفي بيننا؟", src: "خبير تعلم زوجي رقمي", ans: ".   مشاهدة محاضرات أو كورسات قصيرة عن التواصل الزوجي أو الذكاء العاطفي معاً ومناقشتها<br>.   الاستماع لبودكاست عن العلاقات أثناء رحلات السيارة المشتركة والتوقف لمناقشة الأفكار<br>.   استخدام تطبيقات أو كتب إلكترونية تحتوي على أسئلة محفزة للحوار العميق بين الزوجين<br>.   لعب ألعاب لوحية رقمية أو ورقية تركز على التعارف والتخمين وتعزيز الفهم المتبادل<br>.   ممارسة تمارين الاستماع الفعال التي يتعلمانها عبر الإنترنت مع بعضهما البعض" },
+{ q: "كيف نحول هواية مشتركة إلى وقت نوعي يجدد روح الصداقة في الزواج؟", src: "خبير وقت زوجي", ans: ".   تحدي بعضكما في لعبة إلكترونية تعاونية (Co-op) بدلاً من الألعاب الفردية<br>.   إنشاء \"قائمة مشاهدة\" مشتركة وتخصيص ليلة أسبوعية لمشاهدة حلقة معاً مع مناقشتها<br>.   التعلم معاً عبر دروس \"يوتيوب\" لمهارة جديدة متعلقة بهوايتكم (الطبخ، الحرف اليدوية)<br>.   المشاركة في مجتمعات أو منصات أونلاين خاصة بهوايتكم ومشاركة الإنجازات معاً<br>.   تحويل الهواية إلى مشروع صغير مشترك (قناة يوتيوب، مدونة، متجر إلكتروني بسيط)" },
+{ q: "كيف نخطط لمستقبلنا المالي المشترك باستخدام التطبيقات الرقمية بأمان وشفافية؟", src: "خبير تخطيط مالي زوجي", ans: ".   استخدام تطبيقات الميزانية المشتركة (مثل Mint، YNAB) لمشاهدة دخلكما ومصروفاتكما في مكان واحد<br>.   فتح حساب توفير أو استثمار مشترك والاتفاق على قواعد الإيداع والسحب<br>.   استخدام التطبيقات المصرفية لإنشاء \"صناديق\" رقمية مشتركة لأهداف محددة (عمرة، سيارة، طوارئ)<br>.   جدولة \"اجتماع مالي\" شهري قصير لمناقشة المصروفات، المراجعة، والتقدم نحو الأهداف<br>.   الاستفادة من منصات التعلم عن الاستثمار والتخطيط المالي معاً لاتخاذ قرارات مستنيرة" }
+],
+seniors: [
+{ q: "كيف يمكن حماية كبار السن من الوقوع ضحايا لعمليات الاحتيال الهاتفي والإلكتروني؟", src: "خبير أمن رقمي لكبار السن", ans: ".   تحذيرهم من مشاركة أي معلومات شخصية (رقم بطاقة، كود تحويل، كلمة سر) عبر الهاتف أبداً، مهما كانت مزاعم المتصل.<br>.   تعليمهم قاعدة ذهبية: \"البنوك والمؤسسات الرسمية لا تطلب بياناتك السرية عبر الهاتف أو الرسائل.\"<br>.   تثبيت تطبيقات التعرف على المتصلين والمكافحة للسبام والاحتيال على هواتفهم.<br>.   حثهم على استشارة فرد من العائلة قبل إجراء أي عملية دفع أو تحويل بناءً على طلب غير متوقع.<br>.   تبسيط وشرح أشهر طرق الاحتيال (وراثة مزيفة، فوز بجائزة، طلب فدية، انتحال شخصية قريب)." },
+{ q: "ما هي أبسط الطرق لتعليم كبار السن استخدام تطبيقات التواصل (مثل واتساب) لتقليل شعورهم بالعزلة؟", src: "مدرب تكنولوجيا لكبار السن", ans: ".   البدء بجلسة واحدة قصيرة لهدف واحد فقط، مثل: \"اليوم نتعلم إجراء مكالمة فيديو واحدة\".<br>.   استخدام لغة بسيطة وتشبيهات مألوفة (المحادثة مثل الغرفة، الإيموجي مثل تعبيرات الوجه).<br>.   كتابة خطوات التشغيل الرئيسية بخط كبير وواضح على ورقة ولصقها بجانب الجهاز.<br>.   تشجيعهم بالممارسة اليومية مع شخص مقرب (حفيد، صديق) لبناء الثقة.<br>.   ربط استخدام التطبيق بفائدة ملموسة وتفاعل عاطفي (رؤية الأحفاد، التحدث مع صديق بعيد)." },
+{ q: "كيف يمكن تخصيص إعدادات الهاتف (حجم الخط، الصوت، السطوع) لتناسب الاحتياجات الجسدية لكبار السن؟", src: "أخصائي تكنولوجيا مساعدة", ans: ".   تكبير حجم الخط إلى أقصى درجة في إعدادات النظام وفي التطبيقات الرئيسية (الرسائل، الهاتف).<br>.   تفعيل \"عكس الألوان\" أو \"التباين العالي\" لتسهيل القراءة.<br>.   رفع مستوى الصوت الأساسي وتفعيل وضع \"المكبر\" للمكالمات.<br>.   تفعيل خاصية \"القارئ النصي\" (Text-to-Speech) ليقرأ الشاشة بصوت عالٍ.<br>.   إطالة مدة تأمين الشاشة لمنع إغلاقها السريع أثناء القراءة." },
+{ q: "ما هي مخاطر تصديق ونشر الشائعات والأخبار الطبية المزيفة التي تصلهم عبر المجموعات؟", src: "أخصائي إعلام رقمي", ans: ".   تعريض صحتهم للخطر باتباع علاجات وهمية أو التخلي عن أدوية موصوفة.<br>.   التسبب في حالة من الهلع والقلق غير المبرر حول صحتهم أو صحة أحبائهم.<br>.   نشر معلومات خاطئة تضر بالآخرين وتضر بالثقة في المصادر الطبية الحقيقية.<br>.   تحويل المجموعات العائلية من وسيلة للتواصل إلى بيئة لنشر الخوف والتضليل.<br>.   الإضرار بسمعتهم لدى الآخرين بسبب نشرهم لمعلومات يسهل كشف زيفها." },
+{ q: "كيف يمكن للتكنولوجيا المساعدة في تذكير كبار السن بمواعيد الأدوية والفحوصات الدورية بدقة؟", src: "خبير رعاية رقمية", ans: ".   استخدام تطبيقات \"منبه الدواء\" المخصصة (مثل Medisafe) التي تصدر إنذارات صوتية وبصرية قوية.<br>.   برمجة المنبه اليومي الأساسي في الهاتف بأسماء الأدوية وأوقاتها.<br>.   استخدام المساعدات الصوتية (مثل Google Assistant، Siri) لتذكيرهم صوتياً كل يوم.<br>.   وضع تقويم عائلي مشترك (Google Calendar) وتسجيل مواعيد الفحوصات ليتم تذكيرهم ومتابعتهم من قبل العائلة.<br>.   استخدام أقراص تنظيم الأدوية الذكية التي ترسل تنبيهاً للهاتف في حال نسيان الجرعة." },
+{ q: "كيف نتصرف في حالة إدمان كبير السن على متابعة الأخبار السياسية أو المحتوى المحبط رقمياً؟", src: "أخصائي نفسي لكبار السن", ans: ".   التعاطف أولاً وفهم أن هذا السلوك قد ينبع من شعور بالفراغ أو الرغبة في الانشغال.<br>.   عدم المنع المباشر، بل تقنين واستبدال: تحديد أوقات محددة قصيرة للأخبار.<br>.   تقديم بدائل جذابة ومفيدة تشغل وقته (قنوات يوتيوب تعليمية، أفلام وثائقية، ألعاب ذهنية).<br>.   تشجيعه على الانخراط في أنشطة غير رقمية (هوايات قديمة، نزهات، زيارات اجتماعية).<br>.   مشاركته في مشاهدة محتوى إيجابي أو مضحك لتحويل اتجاه انتباهه تدريجياً." },
+{ q: "ما هي أهمية ميزة \"تتبع الموقع\" (GPS) في حماية كبار السن الذين يعانون من مشاكل في الذاكرة؟", src: "خبير تقنيات السلامة", ans: ".   تمكين أفراد العائلة من تحديد مكانهم بسرعة في حال ضياعهم أو خروجهم دون علم.<br>.   توفير طمأنينة نفسية للكبير السن وأهله عند خروجه للتنزه وحده.<br>.   السماح له بالاستقلالية والحركة مع وجود شبكة أمان في حالات الطوارئ.<br>.   تسهيل مهمة فرق البحث والإنقاذ في حالة عدم قدرته على وصف مكانه.<br>.   يمكن ربطها بمنبه على هاتف القريب إذا غادر الشخص منطقة آمنة محددة مسبقاً (Geofencing)." },
+{ q: "كيف نحمي خصوصية كبار السن من تطبيقات جمع البيانات التي قد تستغل قلة خبرتهم التقنية؟", src: "خبير أمن سيبراني", ans: ".   مساعدتهم على مراجعة أذونات التطبيقات وإلغاء ما هو غير ضروري (مثل الوصول للصور، جهات الاتصال).<br>.   تنزيل التطبيقات لهم فقط من المتاجر الرسمية (Google Play، App Store).<br>.   تحذيرهم من النقر على الإعلانات المنبثقة أو روابط \"الفوز بجوائز\" داخل التطبيقات.<br>.   تثبيت برنامج مكافحة فيروسات موثوق على هواتفهم.<br>.   تعليمهم عدم تسجيل الدخول بحساباتهم الشخصية على تطبيقات أو مواقع تبدو مشبوهة." },
+{ q: "ما هو دور الألعاب الذهنية الإلكترونية في تنشيط ذاكرة كبار السن والوقاية من أمراض الشيخوخة؟", src: "أخصائي تأهيل معرفي", ans: ".   تحفيز الوظائف الإدراكية مثل الذاكرة قصيرة المدى، والانتباه، والسرعة في معالجة المعلومات.<br>.   تأخير ظهور أعراض التدهور المعرفي المعتدل من خلال \"تمرين\" الدماغ بانتظام.<br>.   توفير شعور بالإنجاز والتحدي الإيجابي، مما يعزز الصحة النفسية.<br>.   بعض الألعاب مصممة خصيصاً للوقاية من الأمراض مثل الزهايمر تحت إشراف طبي.<br>.   يجب أن تكون جزءاً من روتين يومي متوازن وليست بديلاً عن التفاعل الاجتماعي الحقيقي والنشاط البدني." },
+{ q: "كيف يمكن تدريب كبار السن على إجراء المعاملات الحكومية والبنكية البسيطة من المنزل لتوفير عناء التنقل؟", src: "مدرب خدمات رقمية", ans: ".   البدء بتطبيق واحد موثوق ومركزي (مثل تطبيق \"أبشر\" في السعودية أو نظيره في الدول العربية).<br>.   تسجيل الدخول لهم وكتابة بياناتهم وحفظها بشكل آمن باستخدام مدير كلمات المرور.<br>.   تسجيل فيديو تعليمي قصير على هاتفهم لخطوات المعاملة المتكررة (كدفع فاتورة).<br>.   التدريب على خطوتين أساسيتين: البحث في التطبيق، وطريقة الدفع الإلكتروني الآمن.<br>.   التأكيد على عدم استخدام هذه الخدمات على شبكات الواي فاي العامة، والتحقق دائماً من عنوان الموقع (https)." },
+{ q: "كيف نحول \"اليوتيوب\" إلى مدرسة تعليمية لكبير السن لممارسة هوايات مؤجلة مثل الطبخ أو الحرف؟", src: "خبير تعليم رقمي لكبار السن", ans: ".   مساعدته في إنشاء قائمة تشغيل (Playlist) تحتوي على قنوات تعليمية موثوقة وذات خطوات واضحة.<br>.   اختيار مقاطع فيديو قصيرة أولاً، بلغة عربية فصيحة أو لهجة مفهومة، ذات إخراج واضح وهادئ.<br>.   ربط الهاتف أو الجهاز اللوحي بشاشة التلفزيون لمشاهدة أكثر وضوحاً وراحة.<br>.   تشجيعه على متابعة القناة المفضلة والاشتراك بها للحصول على تنبيهات بالفيديوهات الجديدة.<br>.   تحويل التعلم إلى نشاط اجتماعي من خلال ممارسة الهواية (كطبخ وصفة) مع أحفاده أو أصدقائه." },
+{ q: "ما هي أفضل الوسائل التقنية لمراقبة الحالة الصحية لكبير السن (مثل ساعات قياس النبض) عن بُعد؟", src: "خبير رعاية صحية رقمية", ans: ".   الساعات الذكية (Smartwatches) التي تقيس معدل ضربات القلب، النوم، وربما رسم القلب (ECG).<br>.   أجهزة قياس ضغط الدم والجلوكوز الذكية التي تخزن البيانات وتزامنها مع تطبيق الهاتف.<br>.   أجهزة الاستشعار المنزلية غير التطفلية (مثل أجهزة استشعار الحركة في الغرفة، أجهزة كشف السقوط).<br>.   تطبيقات التواصل المرئي للمتابعة البصرية المنتظمة للحالة العامة.<br>.   أنظمة المراقبة عن بُعد التي تسمح لمقدم الرعاية أو الطبيب بمشاهدة البيانات الحيوية على لوحة تحكم مركزية." },
+{ q: "كيف نساعد كبار السن على توثيق تاريخهم وذكرياتهم بالصوت والصورة للأجيال القادمة؟", src: "خبير تراث رقمي", ans: ".   تحفيزهم على سرد القصص وتسجيلها بصوتهم باستخدام تطبيق التسجيل في الهاتف.<br>.   مسح الصور القديمة ضوئياً وتخزينها في ألبوم رقمي مشترك (مثل Google Photos) وإضافة تعليقات توضيحية بصورتهم.<br>.   تشجيعهم على كتابة مذكرات بسيطة أو الإجابة على أسئلة محددة (\"أجمل ذكريات الطفولة\").<br>.   تصوير فيديوهات قصيرة أثناء حديثهم عن حياتهم، أو عن الأماكن والأشياء المهمة لهم.<br>.   إنشاء شجرة عائلية رقمية باستخدام مواقع متخصصة وجمع المعلومات والصور معاً." },
+{ q: "كيف يمكن للمنصات الرقمية أن تعيد دمج كبار السن في المجتمع من خلال مجموعات الاهتمامات المشتركة؟", src: "أخصائي اجتماع رقمي", ans: ".   مساعدتهم في الانضمام لمجموعات فيسبوك مغلقة وهادئة تتعلق بهواياتهم (حديقة، شعر، تاريخ).<br>.   تشجيعهم على المشاركة في النقاشات أو حتى مجرد القراءة أولاً لمشاهدة التفاعل الإيجابي.<br>.   تعريفهم بمنصات التعلم الإلكتروني التي تحتوي على دورات للمبتدئين في مواضيع مختلفة.<br>.   البحث عن نوادي كتب أو أفلام افتراضية يمكنهم الانضمام إليها ومناقشة المحتوى مع آخرين.<br>.   توجيههم للمشاركة في المجموعات الخاصة بمناطق سكنهم القديمة لاستعادة الروابط الاجتماعية." },
+{ q: "كيف ننمي لدى كبير السن مهارة \"التأكد من المصدر\" قبل إعادة توجيه الرسائل والروابط؟", src: "خبير محو أمية رقمية", ans: ".   تعليمهم علامة التحذير الأولى: \"إذا كانت الرسالة تطلب نشرها أو توعيدك أو إعطاءك وعوداً كبيرة، فتوقف\".<br>.   تبسيط خطوة التحقق: \"ابحث عن اسم الخبر في جوجل قبل نشرها\".<br>.   توجيههم للاكتفاء بمصادر قليلة وموثوقة ومعروفة (كالصفحات الرسمية للوزارات أو القنوات الإخبارية المعتمدة).<br>.   حثهم على استشارة شخص أصغر سناً (حفيد، ابن) قبل نشر أي خبر صادم أو طبي.<br>.   تعزيز ثقتهم بأن التريث والتحقق ليس نقصاً، بل علامة حكمة ومسؤولية." }
+],
+security: [
+{ q: "ماذا أفعل في اللحظات الأولى عند اكتشافي أنني أتعرض لعملية ابتزاز إلكتروني؟", src: "خبير أمن سيبراني", ans: ".   <strong>أهم قاعدة: لا تستسلم ولا تدفع أي مال.</strong> الدفع يشجع المبتز ويزيد من مطالبه.<br>.   <strong>لا تحذف الأدلة.</strong> احتفظ بجميع المحادثات، والرسائل، والصور، والتسجيلات.<br>.   <strong>اقطع التواصل فوراً.</strong> لا ترد على التهديدات أو تتواصل مع المبتز.<br>.   <strong>لا تتفاعل عاطفياً.</strong> الهدف هو إخافتك لاتخاذ قرارات خاطئة، حافظ على هدوئك قدر الإمكان.<br>.   <strong>ابحث عن الدعم فوراً.</strong> أخبر شخصاً تثق به (صديق، قريب) واتصل بالسلطات المختصة." },
+{ q: "كيف أميز بين البريد الإلكتروني الحقيقي ورسائل \"التصيد الاحتيالي\" التي تهدف لسرقة بياناتي؟", src: "خبير أمن رقمي", ans: ".   <strong>افحص عنوان المرسل بعناية:</strong> ابحث عن أخطاء إملائية طفيفة أو اختلافات في اسم الموقع (مثال: amaz0n.com بدلاً من amazon.com).<br>.   <strong>احذر الرسائل العاجلة والمهددة:</strong> التي تخبرك بأن حسابك سيُغلق أو أن هناك مشكلة أمنية وتطلب بياناتك فوراً.<br>.   <strong>لا تضغط على الروابط:</strong> ضع مؤشر الفأرة فوق الرابط (دون النقر) لرؤية عنوان URL الحقيقي، وإذا شككت، ادخل للموقع مباشرة عبر متصفحك.<br>.   <strong>لن تطلب منك المؤسسة الرسمية</strong> كلمة المرور أو الرقم السري للبطاقة عبر البريد.<br>.   <strong>الأخطاء اللغوية:</strong> غالباً تحتوي رسائل التصيد على أخطاء في اللغة أو التنسيق." },
+{ q: "ما هي الخطوات القانونية الرسمية للإبلاغ عن جريمة إلكترونية في بلدي؟", src: "مستشار قانوني رقمي", ans: ".   <strong>تجميع الأدلة:</strong> حفظ صور الشاشة، وتسجيل أسماء الحسابات، وأرقام الهواتف، والبريد الإلكتروني المستخدم في الابتزاز.<br>.   <strong>التوجه للجهة المختصة:</strong> زيارة موقع <strong>النيابة العامة</strong> أو <strong>وزارة الداخلية</strong> في بلدك للوصول لقسم \"الجرائم الإلكترونية\".<br>.   <strong>تقديم البلاغ رقمياً أو شخصياً:</strong> معظم الدول توفر منصة إلكترونية لتقديم البلاغات (مثل \"أمن\" في السعودية)، أو يمكن التوجه لأقرب مركز شرطة.<br>.   <strong>تسليم الأدلة:</strong> تقديم جميع الأدلة التي جمعتها للسلطات.<br>.   <strong>المتابعة:</strong> الحصول على رقم البلاغ ومتابعته، والاستجابة لأي طلبات إضافية من الجهات المختصة." },
+{ q: "كيف أحمي حساباتي من الاختراق باستخدام ميزة \"المصادقة الثنائية\" (2FA)?", src: "خبير أمن معلومات", ans: ".   <strong>تفعيلها على جميع الحسابات الحيوية:</strong> البريد الإلكتروني، والحسابات البنكية، وتطبيقات التواصل، ووسائل التواصل الاجتماعي.<br>.   <strong>استخدام تطبيق المصادقة:</strong> مثل (Google Authenticator، Microsoft Authenticator) بدلاً من الاعتماد على الرسائل النصية (SMS) فقط.<br>.   <strong>حفظ رموز الاستعادة:</strong> قم بحفظ رموز الاستعادة (Backup Codes) التي تقدمها المنصات في مكان آمن، فهي مفتاحك الوحيد إذا فقدت هاتفك.<br>.   <strong>استخدام مفتاح أمني:</strong> للأهمية القصوى، يمكن استخدام مفتاح أمني مادي (مثل YubiKey) للمصادقة.<br>.   <strong>لا تشارك رموز المصادقة:</strong> هذه الرموز هي كلمة المرور المؤقتة الخاصة بك، لا تطلبها منك أي مؤسسة رسمية أبداً." },
+{ q: "هل يمكن للمبتز أن ينفذ تهديده فعلياً إذا قمت بحظره (Block) مباشرة؟", src: "خبير جرائم إلكترونية", ans: ".   <strong>نعم، قد يحاول.</strong> الحظر يمنع التواصل المباشر، لكن لا يمحو المعلومات التي بحوزته.<br>.   <strong>الخطر الأكبر هو قبل الحظر:</strong> إذا كان قد حصل على بيانات أو صور حساسة بالفعل، فقد يستخدمها حتى بعد الحظر.<br>.   <strong>الحظر خطوة ضرورية لكنها ليست كافية:</strong> يجب أن تقترن بالإبلاغ الفوري وجمع الأدلة وعدم الاستسلام للتهديد.<br>.   <strong>التوثيق قبل الحظر:</strong> تأكد من أخذ لقطات شاشة كاملة لكل التهديدات قبل حظر الشخص.<br>.   <strong>حذر من حسابات جديدة:</strong> قد يحاول المبتز إنشاء حسابات جديدة للتواصل مجدداً." },
+{ q: "ما هي مخاطر استخدام شبكات \"الواي فاي\" العامة في الكافيهات والمطارات على بياناتي البنكية؟", src: "خبير أمن شبكات", ans: ".   <strong>التنصت على البيانات:</strong> يمكن للمخترق المتصل بنفس الشبكة اعتراض البيانات غير المشفرة التي ترسلها.<br>.   <strong>التصيد عبر الشبكة:</strong> قد يتم توجيهك لمواقع وهمية تشبه مواقعك المفضلة لسرقة بيانات الدخول.<br>.   <strong>نقاط الوصول المزيفة:</strong> قد ينشئ مخترق شبكة واي فاي تحمل اسماً مشابهاً للشبكة الحقيقية لخداع الضحايا.<br>.   <strong>القاعدة الذهبية:</strong> <strong>لا تقم أبداً بإجراء معاملات بنكية أو إدخال كلمات مرور مهمة أثناء الاتصال بشبكة واي فاي عامة.</strong><br>.   <strong>استخدم VPN موثوقاً:</strong> إذا اضطررت للاتصال، استخدم شبكة افتراضية خاصة (VPN) مشفرة لتأمين اتصالك." },
+{ q: "كيف أكتشف وجود برامج تجسس أو تطبيقات مراقبة مخفية على هاتفي الشخصي؟", src: "خبير أمن أجهزة", ans: ".   <strong>استهلاك غير طبيعي للبطارية والبيانات:</strong> قد تشير التطبيقات الخبيثة إلى نشاط خفي مكثف.<br>.   <strong>أداء الجهاز البطيء:</strong> أو ارتفاع درجة حرارته دون سبب واضح.<br>.   <strong>ظهور تطبيقات غريبة:</strong> افحص قائمة التطبيقات بحثاً عن تطبيقات لا تتذكر تحميلها.<br>.   <strong>سلوك غريب:</strong> مثل إضاءة الشاشة من تلقاء نفسها، أو سماع أصوات غريبة أثناء المكالمات.<br>.   <strong>الحل:</strong> تشغيل فحص بواسطة برنامج مكافحة فيروسات موثوق، وإذا استمر الشك، إعادة ضبط المصنع بعد نسخ بياناتك المهمة." },
+{ q: "ماذا أفعل إذا تم اختراق حسابي على واتساب أو فيسبوك وإرسال رسائل مسيئة باسمي؟", src: "خبير استعادة الحسابات", ans: ".   <strong>حاول استعادة الحساب فوراً:</strong> استخدم خيار \"نسيت كلمة المرور\" على المنصة للبدء بعملية الاستعادة عبر البريد الإلكتروني أو رقم الهاتف.<br>.   <strong>أبلغ جميع جهات اتصالك:</strong> حذر أصدقاءك وعائلتك عبر أي وسيلة أخرى متاحة (مكالمة، منصة أخرى) أن حسابك تم اختراقه ولا تفتح أي روابط يرسلها.<br>.   <strong>أبلغ المنصة:</strong> استخدم نماذج الإبلاغ عن الحساب المخترق الموجودة في صفحات المساعدة الخاصة بـ فيسبوك أو واتساب.<br>.   <strong>غير جميع كلمات المرور:</strong> خاصة كلمة مرور البريد الإلكتروني المرتبط بالحساب المخترق.<br>.   <strong>افحص جهازك:</strong> قد يكون الاختراق بسبب وجود برمجية خبيثة على هاتفك." },
+{ q: "كيف أحمي صوري وملفاتي الخاصة من الوصول إليها في حال ضياع الهاتف أو سرقته؟", src: "خبير أمن بيانات شخصية", ans: ".   <strong>التشفير والتأمين بكلمة مرور:</strong> تأكد من تفعيل قفل الشاشة بقوة (رقم سري معقد، أو بصمة، أو تعرف الوجه).<br>.   <strong>النسخ الاحتياطي في السحابة:</strong> قم برفع ملفاتك المهمة إلى خدمة سحابية موثوقة (مثل iCloud، Google Photos) وحذفها من ذاكرة الهاتف إذا كانت حساسة جداً.<br>.   <strong>استخدام تطبيقات الخزنة الآمنة:</strong> هناك تطبيقات توفر مساحة مشفرة بكلمة مرور منفصلة داخل هاتفك.<br>.   <strong>تفعيل خاصية \"ابحث عن هاتفي\":</strong> مثل (Find My iPhone) أو (Find My Device) على أندرويد، لمسح البيانات عن بُعد في حال الضياع.<br>.   <strong>تجنب حفظ الصور الحساسة:</strong> الفكرة الأكثر أماناً هي عدم التقاط أو حفظ أي شيء لا تريد أن يراه أحد على هاتفك أساساً." },
+{ q: "ما هو الفرق بين التحرش الإلكتروني والابتزاز، وكيف يضع القانون حداً لكل منهما؟", src: "خبير قانون رقمي", ans: ".   <strong>التحرش:</strong> سلوك متكرر يهدف للإزعاج، والإهانة، والتسبب بالقلق النفسي (مثل الرسائل المسيئة، المطاردة).<br>.   <strong>الابتزاز:</strong> تهديد بنشر معلومات أو صور أو أفعال لإجبار الضحية على فعل شيء (كدفع المال، أو تقديم خدمات) مقابل السكوت.<br>.   <strong>الابتزاز جريمة أشد:</strong> لأنه يجمع بين التهديد والإكراه للحصول على منفعة.<br>.   <strong>كيف يواجههما القانون:</strong> يعاقب القانون على كليهما، ولكن عقوبة الابتزاز أقسى عادةً. يجب الإبلاغ فوراً في الحالتين مع تقديم الأدلة الكاملة." },
+{ q: "كيف أتعامل مع روابط \"الجوائز الوهمية\" ووظائف الربح السريع التي تستهدف سرقة الهوية؟", src: "خبير مكافحة الاحتيال", ans: ".   <strong>تذكر قاعدة أساسية:</strong> \"لا يوجد غداء مجاني\". عروض الثراء السريع هي فخ بنسبة 99.9%.<br>.   <strong>لا تضغط على الروابط أبداً:</strong> حتى بدعوى الفضول أو \"لنرى ماذا سيفعلون\".<br>.   <strong>لا تشارك أي معلومات شخصية:</strong> لا تعطي رقم هاتفك، أو بريدك الإلكتروني، أو صور وثائقك لهذه العروض.<br>.   <strong>ابحث عن اسم العرض:</strong> اكتب اسم الشركة أو العرض في محرك البحث مع كلمة \"احتيال\" لترى تجارب الآخرين.<br>.   <strong>بلغ عن الإعلان:</strong> معظم المنصات (فيسبوك، انستقرام) تتيح خاصية الإبلاغ عن الإعلان أو المنشور كاحتيال." },
+{ q: "ما هي الطريقة الآمنة لمسح كافة البيانات من الهاتف قبل بيعه لضمان عدم استرجاعها؟", src: "خبير أمن أجهزة", ans: ".   <strong>قم بنسخ احتياطي كامل</strong> لبياناتك المهمة على كمبيوتر أو خدمة سحابية.<br>.   <strong>قم بتسجيل الخروج من جميع الحسابات</strong> المرتبطة بالجهاز (Google، Apple، Samsung، التطبيقات).<br>.   <strong>قم بإجراء \"إعادة ضبط المصنع\" (Factory Reset)</strong> من خلال إعدادات الجهاز.<br>.   <strong>بعد الإعادة، لا تكتفِ بذلك:</strong> املأ الذاكرة ببيانات عشوائية غير مهمة (مثل تسجيل فيديو طويل) ثم أعد ضبط المصنع مرة أخرى. هذا يجعل استعادة البيانات القديمة أصعب.<br>.   <strong>أخرج بطاقة SIM وبطاقة الذاكرة الخارجية (إذا وجدت)</strong> واحتفظ بها." },
+{ q: "كيف أحمي أطفالي من \"المستدرجين\" (Online Grooming) في غرف الدردشة والألعاب؟", src: "خبير حماية الطفل الرقمي", ans: ".   <strong>التواصل المفتوح:</strong> تحدث مع أطفالك عن مخاطر التحدث مع الغرباء على الإنترنت، دون تخويف.<br>.   <strong>تعيين إعدادات الخصوصية:</strong> تأكد من ضبط خصوصية حساباتهم على \"خاص\" ومراقبة طلبات الصداقة.<br>.   <strong>المشاركة والمراقبة:</strong> اجعل أجهزة الكمبيوتر والألعاب في مكان مشترك، واطلع بين الحين والآخر على نشاطهم.<br>.   <strong>علمهم علامات الخطر:</strong> مثل من يطلب معلومات شخصية، أو صوراً، أو يريد الانتقال للتحدث على تطبيق آخر، أو يطلب اللقاء.<br>.   <strong>شجعهم على الإخبار:</strong> أكد لهم أن بإمكانهم إخبارك بأي شيء يزعجهم دون عقاب، وأنك ستحميهم." },
+{ q: "هل تصفح المواقع المشبوهة يمكن أن يصيب جهازي بفيروسات الفدية (Ransomware)?", src: "خبير أمن برمجيات", ans: ".   <strong>نعم، بشدة.</strong> هذه هي الطريقة الرئيسية لانتشار فيروسات الفدية.<br>.   <strong>المواقع الإباحية، ومواقع التنزيل غير القانونية، ومواقع \"الكورسات المجانية\" المقرصنة</strong> هي بيئة خصبة لهذه الهجمات.<br>.   <strong>النوافذ المنبثقة والإعلانات الخبيثة (Malvertising):</strong> مجرد النقر على إعلان زائف على موقع مشبوه يمكن أن يبدأ عملية التنزيل والتثبيت الخفي للفيروس.<br>.   <strong>الوقاية:</strong> استخدم برنامج مكافحة فيروسات قوي، واحتفظ بنسخ احتياطية منتظمة لملفاتك المهمة على جهاز منفصل، وتجنب زيارة هذه المواقع تماماً." },
+{ q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
+]
+};
 function initPage() {
-scrollToSec('home'); // Requirement 1: always open on home
 updateTicker();
 loadMedia();
+initCounters();
 renderLanguageDropdown();
 setupLanguageToggle();
-initCountersObserver(); // Will reset counters each time section is viewed
 }
-
-// === Observer to reset counters when entering stats/losses sections ===
-function initCountersObserver() {
-const counters = document.querySelectorAll('.counter');
-counters.forEach(c => c.innerText = '0'); // Reset on load
-
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting) {
-const el = entry.target;
-const target = parseFloat(el.getAttribute('data-target'));
-let start = 0;
-const duration = 2000;
-const step = target / (duration / 30);
-const timer = setInterval(() => {
-start += step;
-if(start >= target) {
-el.innerText = target;
-clearInterval(timer);
-} else {
-el.innerText = start.toFixed(1).replace('.0','');
-}
-}, 30);
-observer.unobserve(el);
-}
-});
-}, { threshold: 0.3 });
-
-document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
-observer.observe(c);
-});
-}
-
 function updateTicker() {
 const track = document.getElementById('tickerTrack');
-const list = translations[currentLang]?.news || translations.ar.news;
+const list = translations[currentLang].news;
 track.innerHTML = "";
 [...list, ...list].forEach(txt => {
 const s = document.createElement('span');
@@ -486,7 +595,6 @@ s.innerText = txt;
 track.appendChild(s);
 });
 }
-
 function loadMedia() {
 const track = document.getElementById('track-imgs');
 track.innerHTML = "";
@@ -499,13 +607,11 @@ img.onclick = () => openImage(src);
 track.appendChild(img);
 });
 }
-
 function openImage(src) {
 document.getElementById('lightbox-img').src = src;
 document.getElementById('lightbox').style.display = 'flex';
 }
 function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
-
 function scrollToSec(id) {
 const el = document.getElementById(id);
 if(el) {
@@ -514,58 +620,39 @@ const pos = el.offsetTop - offset;
 window.scrollTo({ top: pos, behavior: 'smooth' });
 }
 }
-
 function renderLanguageDropdown() {
 const dropdown = document.getElementById('langDropdown');
 dropdown.innerHTML = '';
-
-// Grouped by region
 const languages = [
-// Middle East & North Africa
 { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
-{ code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
-{ code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
-
-// South Asia
-{ code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'bn', name: 'বাংলা (بنغلاديش)', flag: 'https://flagcdn.com/w80/bd.png' },
-{ code: 'pa', name: 'ਪੰਜਾਬੀ (باكستان)', flag: 'https://flagcdn.com/w80/pk.png' },
-{ code: 'ta', name: 'தமிழ் (سريلانكا)', flag: 'https://flagcdn.com/w80/lk.png' },
-{ code: 'my', name: 'မြန်မာ (ميانمار)', flag: 'https://flagcdn.com/w80/mm.png' },
-{ code: 'am', name: 'አማርኛ (إثيوبيا)', flag: 'https://flagcdn.com/w80/et.png' },
-
-// Africa
-{ code: 'yo', name: 'Yorùbá (بنين)', flag: 'https://flagcdn.com/w80/bj.png' },
-{ code: 'ig', name: 'Igbo (نيجيريا)', flag: 'https://flagcdn.com/w80/ng.png' },
-{ code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/tz.png' },
-{ code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ng.png' },
-
-// East & Southeast Asia
-{ code: 'zh', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
-{ code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
-{ code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
-{ code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
-{ code: 'jv', name: 'Basa Jawa (إندونيسيا)', flag: 'https://flagcdn.com/w80/id.png' },
-{ code: 'tl', name: 'Tagalog (الفلبين)', flag: 'https://flagcdn.com/w80/ph.png' },
-{ code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
-{ code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
-
-// Europe
 { code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
-{ code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
 { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
 { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
 { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
+{ code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
 { code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
-{ code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
 { code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
 { code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w80/gr.png' },
 { code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w80/nl.png' },
 { code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
 { code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
-{ code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' }
+{ code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
+{ code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' },
+{ code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'mr', name: 'मराठी', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'te', name: 'తెలుగు', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
+{ code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'zh', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
+{ code: 'yue', name: '粵語 (廣東話)', flag: 'https://flagcdn.com/w80/cn.png' },
+{ code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
+{ code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
+{ code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
+{ code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
+{ code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
+{ code: 'sw', name: 'Kiswahili', flag: 'Africa2.jpg' },
+{ code: 'ha', name: 'Hausa', flag: 'Africa2.jpg' }
 ];
-
 languages.forEach(lang => {
 const div = document.createElement('a');
 div.href = '#';
@@ -579,7 +666,6 @@ selectLanguage(lang.code, lang.flag);
 dropdown.appendChild(div);
 });
 }
-
 function setupLanguageToggle() {
 const toggleBtn = document.getElementById('langToggleBtn');
 const dropdown = document.getElementById('langDropdown');
@@ -587,21 +673,25 @@ toggleBtn.onclick = (e) => {
 e.stopPropagation();
 dropdown.classList.toggle('show');
 };
+// إغلاق القائمة عند النقر خارجها
 document.addEventListener('click', (e) => {
 if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
 dropdown.classList.remove('show');
 }
 });
 }
-
 function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
+flagImg.alt = document.querySelector(`.lang-option[data-lang="${langCode}"]`).textContent.trim();
+document.getElementById('langDropdown').classList.remove('show');
+// Update current language for content switching
 currentLang = langCode;
+// === التعديل المطلوب: إبقاء الاتجاه دائمًا RTL ===
 document.documentElement.setAttribute('dir', 'rtl');
 document.documentElement.lang = currentLang;
-
-const t = translations[langCode] || translations.ar;
+// Update UI text based on selected language
+const t = translations[currentLang];
 document.getElementById('main-hero-title').innerHTML = t.heroTitle;
 document.getElementById('vis-title').innerText = t.visTitle;
 document.getElementById('vis-desc').innerText = t.visDesc;
@@ -626,7 +716,6 @@ document.getElementById('aw-c5').innerText = t.aw5;
 document.getElementById('aw-c6').innerText = t.aw6;
 document.getElementById('media-guideline').innerText = t.mediaGuide;
 document.getElementById('btn-browse').innerText = t.btnBrowse;
-
 for(let i=1; i<=6; i++) {
 const popup = document.getElementById('src'+i);
 if(popup) popup.innerText = t.sources[i-1];
@@ -634,33 +723,25 @@ if(popup) popup.innerText = t.sources[i-1];
 document.getElementById('src-p1').innerText = t.sources[6];
 document.getElementById('src-p2').innerText = t.sources[7];
 document.getElementById('src-p3').innerText = t.sources[8];
-
 const links = document.querySelectorAll('.nav-links a');
 t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
-
 updateTicker();
 }
-
+// === التعديل المطلوب هنا ===
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
-
-let data;
-if(currentLang === 'en') data = programsDataEn[type];
-else if(currentLang === 'es') data = programsDataEs[type];
-else data = programsData[type];
-
+const data = currentLang === 'en' ? programsDataEn[type] : programsData[type];
+// --- تحديد اسم البرنامج بناءً على النوع ---
 const programNames = {
-'child': translations[currentLang]?.aw1 || translations.ar.aw1,
-'teens': translations[currentLang]?.aw2 || translations.ar.aw2,
-'youth': translations[currentLang]?.aw3 || translations.ar.aw3,
-'marriage': translations[currentLang]?.aw4 || translations.ar.aw4,
-'seniors': translations[currentLang]?.aw5 || translations.ar.aw5,
-'security': translations[currentLang]?.aw6 || translations.ar.aw6
+'child': translations[currentLang].aw1,
+'teens': translations[currentLang].aw2,
+'youth': translations[currentLang].aw3,
+'marriage': translations[currentLang].aw4,
+'seniors': translations[currentLang].aw5,
+'security': translations[currentLang].aw6
 };
-
 document.getElementById('modalTitle').innerText = programNames[type];
-
 data.forEach((item, idx) => {
 const div = document.createElement('div');
 div.className = "q-item";
@@ -668,25 +749,46 @@ div.innerText = (idx+1) + ". " + item.q;
 div.onclick = () => showAnswer(item);
 container.appendChild(div);
 });
-
 document.getElementById('qModal').style.display = 'flex';
 }
-
+// === نهاية التعديل ===
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
-const title = document.getElementById('answerTitle');
-
-title.innerText = item.q;
+let srcText = item.src;
+let ansText = item.ans;
 content.innerHTML = `
-<span class="ans-src">${currentLang === 'en' ? 'Source: ' : currentLang === 'es' ? 'Fuente: ' : 'المصدر: '}${item.src}</span>
-<div class="ans-text">${item.ans}</div>
+<span class="ans-q">${item.q}</span>
+<span class="ans-src">${currentLang === 'en' ? 'Source: ' : 'المصدر: '}${srcText}</span>
+<div class="ans-text">${ansText}</div>
 `;
-
 document.getElementById('aModal').style.display = 'flex';
 }
-
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
-
+function initCounters() {
+const counters = document.querySelectorAll('.counter');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting) {
+const c = entry.target;
+const target = parseFloat(c.getAttribute('data-target'));
+let start = 0;
+const duration = 2000;
+const step = target / (duration / 30);
+const timer = setInterval(() => {
+start += step;
+if(start >= target) {
+c.innerText = target;
+clearInterval(timer);
+} else {
+c.innerText = start.toFixed(1).replace('.0','');
+}
+}, 30);
+observer.unobserve(c);
+}
+});
+}, { threshold: 0.5 });
+counters.forEach(c => observer.observe(c));
+}
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
