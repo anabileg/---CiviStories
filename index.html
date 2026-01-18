@@ -356,7 +356,6 @@ news: ["Al-Azhar: One divorce every 2.5 minutes due to digital addiction", "Endo
 sources: ["Source: Central Agency for Public Mobilization and Statistics (CAPMAS)", "Source: Ministry of Communications and IT (MCIT)", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Electronic Fatwa Center", "Source: Church Family Counseling Reports", "Source: Ministry of Endowments"]
 }
 };
-
 // === English-translated programsData (culturally adapted) ===
 const programsDataEn = {
 child: [
@@ -468,7 +467,6 @@ security: [
 { q: "How can I build a personal and technical 'firewall' to prevent hackers from exploiting my personal vulnerabilities?", src: "Holistic Security Expert", ans: ".   <strong>Psychological Firewall:</strong><br>        -   <strong>Awareness:</strong> Know your worth—never undervalue your personal information.<br>        -   <strong>Healthy skepticism:</strong> Don’t trust online offers or people too easily.<br>        -   <strong>Privacy mindset:</strong> Never share daily routines or personal problems with the public.<br>.   <strong>Technical Firewall:</strong><br>        -   <strong>Strong, unique passwords</strong> for every account, managed by a password manager.<br>        -   <strong>Enable Two-Factor Authentication (2FA)</strong> on all important accounts.<br>        -   <strong>Keep all software and OS updated</strong> to patch security holes.<br>        -   <strong>Use reputable antivirus software</strong> and run regular scans." }
 ]
 };
-
 // Original Arabic data remains unchanged
 const programsData = {
 child: [
@@ -652,8 +650,8 @@ const languages = [
 { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
 { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
 { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
-{ code: 'sw', name: 'Kiswahili', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Africa_%28orthographic_projection%29.svg/80px-Africa_%28orthographic_projection%29.svg.png' },
-{ code: 'ha', name: 'Hausa', flag: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Africa_%28orthographic_projection%29.svg/80px-Africa_%28orthographic_projection%29.svg.png' }
+{ code: 'sw', name: 'Kiswahili', flag: 'Africa2.jpg' },
+{ code: 'ha', name: 'Hausa', flag: 'Africa2.jpg' }
 ];
 languages.forEach(lang => {
 const div = document.createElement('a');
@@ -687,13 +685,11 @@ const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
 flagImg.alt = document.querySelector(`.lang-option[data-lang="${langCode}"]`).textContent.trim();
 document.getElementById('langDropdown').classList.remove('show');
-
 // Update current language for content switching
 currentLang = langCode;
 const dir = currentLang === 'ar' ? 'rtl' : 'ltr';
 document.documentElement.setAttribute('dir', dir);
 document.documentElement.lang = currentLang;
-
 // Update UI text based on selected language
 const t = translations[currentLang];
 document.getElementById('main-hero-title').innerHTML = t.heroTitle;
@@ -729,10 +725,8 @@ document.getElementById('src-p2').innerText = t.sources[7];
 document.getElementById('src-p3').innerText = t.sources[8];
 const links = document.querySelectorAll('.nav-links a');
 t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
-
 updateTicker();
 }
-
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
@@ -747,7 +741,6 @@ container.appendChild(div);
 });
 document.getElementById('qModal').style.display = 'flex';
 }
-
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
 let srcText = item.src;
@@ -759,7 +752,6 @@ content.innerHTML = `
 `;
 document.getElementById('aModal').style.display = 'flex';
 }
-
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
 function initCounters() {
 const counters = document.querySelectorAll('.counter');
