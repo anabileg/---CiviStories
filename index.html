@@ -962,6 +962,45 @@ const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
 else btn.style.display = 'none';
 };
+<p class="modal-instruction">اضغط على السؤال لمعرفة الإجابة</p>
+const programsDataEs = {
+  child: [
+    {
+      q: "¿Cuál es la edad adecuada, tanto desde el desarrollo como desde la psicología, para introducir el uso de pantallas en los niños?",
+      src: "Academia Americana de Pediatría (AAP)",
+      ans: "* Está estrictamente prohibido el uso de pantallas en niños menores de 18–24 meses.<br>* La única excepción a esta edad son las videollamadas con familiares cercanos.<br>* De los 2 a los 5 años, el límite máximo es de una hora diaria de contenido educativo de calidad.<br>* Los padres deben ver junto con su hijo para garantizar la comprensión y su aplicación en la vida real."
+    },
+    {
+      q: "¿Cómo puedo distinguir entre el uso normal del teléfono y las primeras señales de aislamiento digital?",
+      src: "Asociación Psicológica Americana (APA)",
+      ans: "* El uso normal es recreativo y no interfiere con la interacción social en la vida real.<br>* El aislamiento comienza cuando aparecen síntomas de abstinencia, como irritabilidad extrema al retirar el dispositivo.<br>* La pérdida de interés en hobbies tradicionales o juegos con compañeros es una señal de alerta.<br>* Descuidar la higiene personal o alterar los horarios de comida y sueño por el uso de pantallas."
+    },
+    // ... (يتم ترجمة باقي الأسئلة بنفس النمط)
+  ],
+  teens: [ /* ... */ ],
+  youth: [ /* ... */ ],
+  marriage: [ /* ... */ ],
+  seniors: [ /* ... */ ],
+  security: [ /* ... */ ]
+};
+#vis-desc {
+  font-size: 1.4rem !important;
+  font-weight: bold !important;
+  line-height: 1.6;
+}
+
+.card p {
+  font-weight: bold !important;
+}
+<div class="nav-right-group">
+  <div class="lang-selector" style="margin-left: auto;">
+    <!-- زر اللغة -->
+  </div>
+  <div class="social-icons">...</div>
+  <img src="logo.png" class="nav-logo-img" alt="Logo">
+</div>
+// بعد اختيار اللغة:
+dropdown.classList.remove('show');
 </script>
 </body>
 </html>
