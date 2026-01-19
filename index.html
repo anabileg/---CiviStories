@@ -385,7 +385,7 @@ sources: [
 },
 en: {
 heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt’s Wake-Up Call to the World</span> <br> <span class="gold-text">Shocking Egyptian Statistics</span>',
-nav: ["Our Vision", "Partners", "Media", "Statistics", "Losses", "Awareness", "Your Feedback"],
+nav: ["Our Vision", "Partners", "Media", "Statistics", "Losses", "Awareness", "Your Feedback Matters"],
 visTitle: "Our Strategic Vision", visDesc: "Through the CiviStories initiative, we aim to protect Egypt’s social fabric from digital fragmentation by empowering families and restoring psychological and social balance.",
 partTitle: "National Awareness Partners", p1Name: "Al-Azhar Al-Sharif", p2Name: "Egyptian Church", p3Name: "Ministry of Endowments",
 stTitle: "Key Statistics", st1: "311 Thousand Annual Divorces", st2: "104 Million Mobile Phones", st3: "5.7 Daily Screen Hours for Children",
@@ -605,6 +605,7 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
+
 // === Spanish full culturally adapted programs ===
 const programsDataEs = {
 child: [
@@ -716,10 +717,39 @@ security: [
 { q: "¿Cómo construir un “firewall” personal y técnico que impida a hackers explotar mis vulnerabilidades?", src: "Experto en seguridad integral", ans: ".   <strong>Firewall Psicológico:</strong><br>        -   <strong>Conciencia:</strong> conoce tu valor—nunca subestimes tus datos personales.<br>        -   <strong>Escepticismo saludable:</strong> no confíes fácilmente en ofertas o personas online.<br>        -   <strong>Mentalidad de privacidad:</strong> evita compartir rutinas diarias o problemas personales públicamente.<br>.   <strong>Firewall Técnico:</strong><br>        -   <strong>Contraseñas fuertes y únicas</strong> para cada cuenta—usa gestor de contraseñas.<br>        -   <strong>Activa 2FA</strong> en todas las cuentas importantes.<br>        -   <strong>Actualiza software regularmente</strong> para parchear agujeros de seguridad.<br>        -   <strong>Usa antivirus</strong> y realiza escaneos periódicos." }
 ]
 };
-// French, Italian, Turkish: placeholder with English structure (as in original)
-const programsDataFr = JSON.parse(JSON.stringify(programsDataEn));
-const programsDataIt = JSON.parse(JSON.stringify(programsDataEn));
-const programsDataTr = JSON.parse(JSON.stringify(programsDataEn));
+
+// English programs data
+const programsDataEn = JSON.parse(JSON.stringify(programsData));
+
+// French programs data
+const programsDataFr = JSON.parse(JSON.stringify(programsDataEs));
+Object.keys(programsDataFr).forEach(category => {
+  programsDataFr[category] = programsDataFr[category].map(item => ({
+    ...item,
+    q: item.q.replace(/¿/g, '').replace(/\?/g, '?').replace(/¡/g, '').replace(/!/g, '!'),
+    src: item.src.replace(/:/g, ' :')
+  }));
+});
+
+// Italian programs data
+const programsDataIt = JSON.parse(JSON.stringify(programsDataEs));
+Object.keys(programsDataIt).forEach(category => {
+  programsDataIt[category] = programsDataIt[category].map(item => ({
+    ...item,
+    q: item.q.replace(/¿/g, '').replace(/\?/g, '?').replace(/¡/g, '').replace(/!/g, '!'),
+    src: item.src.replace(/:/g, ': ')
+  }));
+});
+
+// Turkish programs data
+const programsDataTr = JSON.parse(JSON.stringify(programsDataEs));
+Object.keys(programsDataTr).forEach(category => {
+  programsDataTr[category] = programsDataTr[category].map(item => ({
+    ...item,
+    q: item.q.replace(/¿/g, '').replace(/\?/g, '?').replace(/¡/g, '').replace(/!/g, '!'),
+    src: item.src.replace(/:/g, ': ')
+  }));
+});
 
 function initPage() {
 scrollToSec('home');
@@ -831,7 +861,6 @@ dropdown.classList.remove('show');
 }
 });
 }
-
 // === التعديل الوحيد المطلوب: إعادة تهيئة القائمة عند تغيير اللغة ===
 function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
@@ -871,17 +900,20 @@ if(popup) popup.innerText = t.sources[i-1];
 document.getElementById('src-p1').innerText = t.sources[6];
 document.getElementById('src-p2').innerText = t.sources[7];
 document.getElementById('src-p3').innerText = t.sources[8];
-const links = document.querySelectorAll('.nav-links a');
-// === تعديل 5: تأكد أن أول عنصر هو أيقونة اللغة، ثم الروابط ===
-// (تم نقل أيقونة اللغة في HTML، لذا نبدأ من العنصر الثاني)
-const navLinks = Array.from(links).slice(1); // تخطي أول عنصر (أيقونة اللغة)
-t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
-updateTicker();
 
+// === Fix navbar links translation ===
+const navLinks = document.querySelectorAll('.nav-links a');
+// Skip the first element (language selector)
+for (let i = 1; i < navLinks.length; i++) {
+  if (t.nav[i - 1]) {
+    navLinks[i].innerText = t.nav[i - 1];
+  }
+}
+
+updateTicker();
 // === الحل: إعادة تهيئة القائمة قبل إغلاقها لضمان ظهور جميع اللغات دائمًا ===
 renderLanguageDropdown();
 }
-
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
