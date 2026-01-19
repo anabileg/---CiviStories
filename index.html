@@ -126,18 +126,16 @@ border-radius: 2px;
 .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
 .loss-num { color: var(--red-num) !important; }
-
 /* === تعديل 4: تكبير وتكثيف الخط للرسالة في رؤيتنا + النصوص تحت الأرقام === */
 #vis-desc {
-  font-size: 1.4rem;
-  font-weight: bold;
-  line-height: 1.6;
+font-size: 1.4rem;
+font-weight: bold;
+line-height: 1.6;
 }
 .card p {
-  font-weight: bold !important;
-  font-size: 1.15rem;
+font-weight: bold !important;
+font-size: 1.15rem;
 }
-
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
 .modal-container { position: relative; width: 90%; max-width: 600px; }
 .modal-box { background: var(--cream-bg); border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
@@ -607,7 +605,6 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
-
 // === Spanish full culturally adapted programs ===
 const programsDataEs = {
 child: [
@@ -719,7 +716,6 @@ security: [
 { q: "¿Cómo construir un “firewall” personal y técnico que impida a hackers explotar mis vulnerabilidades?", src: "Experto en seguridad integral", ans: ".   <strong>Firewall Psicológico:</strong><br>        -   <strong>Conciencia:</strong> conoce tu valor—nunca subestimes tus datos personales.<br>        -   <strong>Escepticismo saludable:</strong> no confíes fácilmente en ofertas o personas online.<br>        -   <strong>Mentalidad de privacidad:</strong> evita compartir rutinas diarias o problemas personales públicamente.<br>.   <strong>Firewall Técnico:</strong><br>        -   <strong>Contraseñas fuertes y únicas</strong> para cada cuenta—usa gestor de contraseñas.<br>        -   <strong>Activa 2FA</strong> en todas las cuentas importantes.<br>        -   <strong>Actualiza software regularmente</strong> para parchear agujeros de seguridad.<br>        -   <strong>Usa antivirus</strong> y realiza escaneos periódicos." }
 ]
 };
-
 // French, Italian, Turkish: placeholder with English structure (as in original)
 const programsDataFr = JSON.parse(JSON.stringify(programsDataEn));
 const programsDataIt = JSON.parse(JSON.stringify(programsDataEn));
@@ -835,6 +831,8 @@ dropdown.classList.remove('show');
 }
 });
 }
+
+// === التعديل الوحيد المطلوب: إعادة تهيئة القائمة عند تغيير اللغة ===
 function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
@@ -879,7 +877,11 @@ const links = document.querySelectorAll('.nav-links a');
 const navLinks = Array.from(links).slice(1); // تخطي أول عنصر (أيقونة اللغة)
 t.nav.forEach((txt, i) => { if(navLinks[i]) navLinks[i].innerText = txt; });
 updateTicker();
+
+// === الحل: إعادة تهيئة القائمة قبل إغلاقها لضمان ظهور جميع اللغات دائمًا ===
+renderLanguageDropdown();
 }
+
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
