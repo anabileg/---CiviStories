@@ -359,6 +359,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </section>
 <script>
 let currentLang = 'ar';
+
 // === Full translations for all supported languages ===
 const translations = {
 ar: {
@@ -975,6 +976,7 @@ sources: [
 ]
 }
 };
+
 // Arabic programsData (original)
 const programsData = {
 child: [
@@ -1510,6 +1512,7 @@ answer: "Psychologically: be skeptical of unsolicited offers. Technically: use u
 }
 };
 // === END OF ENGLISH TRANSLATION ===
+
 // Spanish programs data
 const programsDataEs = JSON.parse(JSON.stringify(programsData));
 const programsDataFr = JSON.parse(JSON.stringify(programsData));
@@ -1531,6 +1534,7 @@ const programsDataAm = JSON.parse(JSON.stringify(programsData));
 const programsDataSw = JSON.parse(JSON.stringify(programsData));
 const programsDataHa = JSON.parse(JSON.stringify(programsData));
 const programsDataYo = JSON.parse(JSON.stringify(programsData));
+
 function initPage() {
 scrollToSec('home');
 updateTicker();
@@ -1539,6 +1543,7 @@ renderLanguageDropdown();
 setupLanguageToggle();
 initCountersObserver();
 }
+
 function initCountersObserver() {
 const counters = document.querySelectorAll('.counter');
 counters.forEach(c => c.innerText = '0');
@@ -1567,6 +1572,7 @@ document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
 observer.observe(c);
 });
 }
+
 function updateTicker() {
 const track = document.getElementById('tickerTrack');
 const list = translations[currentLang]?.news || translations.ar.news;
@@ -1577,6 +1583,7 @@ s.innerText = txt;
 track.appendChild(s);
 });
 }
+
 function loadMedia() {
 const track = document.getElementById('track-imgs');
 track.innerHTML = "";
@@ -1589,11 +1596,14 @@ img.onclick = () => openImage(src);
 track.appendChild(img);
 });
 }
+
 function openImage(src) {
 document.getElementById('lightbox-img').src = src;
 document.getElementById('lightbox').style.display = 'flex';
 }
+
 function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+
 function scrollToSec(id) {
 const el = document.getElementById(id);
 if(el) {
@@ -1602,6 +1612,7 @@ const pos = el.offsetTop - offset;
 window.scrollTo({ top: pos, behavior: 'smooth' });
 }
 }
+
 function renderLanguageDropdown() {
 const dropdown = document.getElementById('langDropdown');
 dropdown.innerHTML = '';
@@ -1643,6 +1654,7 @@ document.getElementById('langDropdown').classList.remove('show');
 dropdown.appendChild(div);
 });
 }
+
 function setupLanguageToggle() {
 const toggleBtn = document.getElementById('langToggleBtn');
 const dropdown = document.getElementById('langDropdown');
@@ -1656,6 +1668,7 @@ dropdown.classList.remove('show');
 }
 });
 }
+
 function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
@@ -1708,18 +1721,20 @@ navLinks[i].innerText = t.nav[i - 1];
 updateTicker();
 renderLanguageDropdown();
 }
+
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
 let data;
+
+// Select data based on current language
 switch(currentLang) {
 case 'en':
 const enData = programsDataEn[type];
 if (enData && enData.questions) {
-// Handle new structure
 data = enData.questions.map(q => ({ q: q.question, ans: q.answer, src: "Expert Source" }));
 } else {
-data = programsDataEn[type] || programsData[type];
+data = programsData[type] || [];
 }
 break;
 case 'es': data = programsDataEs[type]; break;
@@ -1744,6 +1759,7 @@ case 'ha': data = programsDataHa[type]; break;
 case 'yo': data = programsDataYo[type]; break;
 default: data = programsData[type];
 }
+
 const programNames = {
 'child': translations[currentLang]?.aw1 || translations.ar.aw1,
 'teens': translations[currentLang]?.aw2 || translations.ar.aw2,
@@ -1753,7 +1769,8 @@ const programNames = {
 'security': translations[currentLang]?.aw6 || translations.ar.aw6
 };
 document.getElementById('modalTitle').innerText = programNames[type];
-// Handle both old and new data structures
+
+// Render questions
 if (Array.isArray(data)) {
 data.forEach((item, idx) => {
 const div = document.createElement('div');
@@ -1762,18 +1779,11 @@ div.innerText = (idx+1) + ". " + item.q;
 div.onclick = () => showAnswer(item);
 container.appendChild(div);
 });
-} else if (data && data.questions) {
-// New structure (English)
-data.questions.forEach((item, idx) => {
-const div = document.createElement('div');
-div.className = "q-item";
-div.innerText = (idx+1) + ". " + item.question;
-div.onclick = () => showAnswer({ q: item.question, ans: item.answer, src: "Expert Source" });
-container.appendChild(div);
-});
 }
+
 document.getElementById('qModal').style.display = 'flex';
 }
+
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
 const title = document.getElementById('answerTitle');
@@ -1804,7 +1814,9 @@ currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '}${item.src || 'E
 `;
 document.getElementById('aModal').style.display = 'flex';
 }
+
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
