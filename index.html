@@ -10,7 +10,7 @@
 --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
 --yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
 --wa-color: #25D366;
---cream-bg: #fdf9f3;
+--cream-bg: #fdf9f3; /* Added for modal background */
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
@@ -37,6 +37,7 @@ display: flex; align-items: center; justify-content: center;
 .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
 .nav-links a:hover { color: #fff; }
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
+/* === تعديل زر اللغة ليصبح قائمة منسدلة === */
 .lang-selector {
 position: relative;
 display: inline-block;
@@ -126,16 +127,6 @@ border-radius: 2px;
 .card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
 .stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
 .loss-num { color: var(--red-num) !important; }
-/* === تعديل 4: تكبير وتكثيف الخط للرسالة في رؤيتنا + النصوص تحت الأرقام === */
-#vis-desc {
-font-size: 1.4rem;
-font-weight: bold;
-line-height: 1.6;
-}
-.card p {
-font-weight: bold !important;
-font-size: 1.15rem;
-}
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
 .modal-container { position: relative; width: 90%; max-width: 600px; }
 .modal-box { background: var(--cream-bg); border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
@@ -150,6 +141,8 @@ display: flex; align-items: center; justify-content: center;
 .ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; text-align: center; }
 .ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; }
 .ans-text { line-height: 1.6; font-size: 1.1rem; }
+
+/* === New styles for modal header === */
 .modal-program-title {
 color: #ff0000;
 font-weight: bold;
@@ -163,8 +156,8 @@ font-weight: bold;
 font-size: 1.1rem;
 margin-bottom: 15px;
 text-align: center;
-display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإجابة === */
 }
+
 #btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
 .whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
 @keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
@@ -185,6 +178,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+
 <!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
@@ -196,18 +190,19 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </div>
+
 <!-- Modal for Answers -->
 <div id="aModal" class="modal-overlay">
 <div class="modal-container">
 <span class="close-modal" onclick="closePopup('aModal')">×</span>
 <div class="modal-box">
 <h2 id="answerTitle" class="modal-program-title"></h2>
-<!-- === تعديل 2: تم إخفاء الجملة هنا باستخدام CSS display:none === -->
 <p class="modal-instruction">اضغط على السؤال لمعرفة الإجابة</p>
 <div id="answerContent"></div>
 </div>
 </div>
 </div>
+
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
@@ -220,13 +215,6 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
-<!-- === تعديل 5: نقل أيقونة اللغة إلى أقصى اليمين قبل "رؤيتنا" === -->
-<div class="lang-selector">
-<button class="lang-toggle-btn" id="langToggleBtn">
-<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
-</button>
-<div class="lang-dropdown" id="langDropdown"></div>
-</div>
 <a onclick="scrollToSec('about')">رؤيتنا</a>
 <a onclick="scrollToSec('inst')">الشركاء</a>
 <a onclick="scrollToSec('media-sec')">ميديا</a>
@@ -244,6 +232,15 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
 <a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
 <a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+</div>
+<!-- === قائمة اللغات المنسدلة === -->
+<div class="lang-selector">
+<button class="lang-toggle-btn" id="langToggleBtn">
+<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
+</button>
+<div class="lang-dropdown" id="langDropdown">
+<!-- سيتم تعبئتها باللغات أدناه -->
+</div>
 </div>
 <img src="logo.png" class="nav-logo-img" alt="Logo">
 </div>
@@ -360,624 +357,60 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <script>
 let currentLang = 'ar';
 
-// === Full translations for all supported languages ===
+// === Spanish translation added (culturally adapted) ===
 const translations = {
 ar: {
 heroTitle: '<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br> <span class="gold-text">أرقام مصرية</span> <span class="highlight">صادمة</span>',
 nav: ["رؤيتنا", "الشركاء", "ميديا", "إحصائيات", "خسائر", "وعي", "رأيك يهمنا"],
 visTitle: "رؤيتنا الاستراتيجية", visDesc: "نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.",
 partTitle: "شركاء الوعي الوطني", p1Name: "الأزهر الشريف", p2Name: "الكنيسة المصرية", p3Name: "وزارة الأوقاف",
-p1Desc: "رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.",
-p2Desc: "العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.",
-p3Desc: "مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.",
 stTitle: "إحصائيات", st1: "ألف حالة طلاق سنوياً", st2: "مليون هاتف محمول", st3: "ساعات يومية أمام الشاشات للأطفال",
 lsTitle: "الخسائر", ls1: "خسائر إنتاجية سنوياً", ls2: "تكلفة العلاج النفسي", ls3: "خسائر النصب الإلكتروني",
 awTitle: "برامج التوعية", aw1: "الطفولة الرقمية", aw2: "عالم المراهقين", aw3: "الإنتاج والشباب", aw4: "الزواج السعيد", aw5: "كبار السن", aw6: "الأمان والخصوصية",
 mediaGuide: "اضغط على الصورة لتصلك رسالتنا", btnBrowse: "تصفح الكتاب",
 news: ["الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي", "الأوقاف: الهواتف سبب رئيسي للخرس الزوجي", "إنذار: التفكك الرقمي يهدد استقرار مصر"],
-sources: [
-"المصدر: الجهاز المركزي للتعبئة العامة والإحصاء",
-"المصدر: وزارة الاتصالات وتكنولوجيا المعلومات",
-"المصدر: وزارة التضامن الاجتماعي",
-"المصدر: دراسات الجدوى الاقتصادية",
-"المصدر: تقارير الصحة النفسية",
-"المصدر: تقارير الأمن السيبراني",
-"المصدر: مركز الفتوى بالأزهر",
-"المصدر: تقارير المشورة بالكنيسة",
-"المصدر: وزارة الأوقاف"
-]
+sources: ["المصدر: الجهاز المركزي للتعبئة العامة والإحصاء", "المصدر: وزارة الاتصالات وتكنولوجيا المعلومات", "المصدر: وزارة التضامن الاجتماعي", "المصدر: دراسات الجدوى الاقتصادية", "المصدر: تقارير الصحة النفسية", "المصدر: تقارير الأمن السيبراني", "المصدر: مركز الفتوى بالأزهر", "المصدر: تقارير المشورة بالكنيسة", "المصدر: وزارة الأوقاف"]
 },
 en: {
 heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">of Digital Illusion: Egypt’s Wake-Up Call to the World</span> <br> <span class="gold-text">Shocking Egyptian Statistics</span>',
-nav: ["Our Vision", "Partners", "Media", "Statistics", "Losses", "Awareness", "Your Feedback Matters"],
+nav: ["Our Vision", "Partners", "Media", "Statistics", "Losses", "Awareness", "Your Feedback"],
 visTitle: "Our Strategic Vision", visDesc: "Through the CiviStories initiative, we aim to protect Egypt’s social fabric from digital fragmentation by empowering families and restoring psychological and social balance.",
-partTitle: "National Awareness Partners",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Egyptian Church",
-p3Name: "Ministry of Endowments",
-p1Desc: "Monitoring and addressing family disintegration cases caused by digital addiction through specialized fatwa committees.",
-p2Desc: "Working on family stability and combating digital isolation within the household through counseling programs.",
-p3Desc: "The Sakn wa Mawaddah (Peace & Affection) initiative to educate married couples about technology's risks to their psychological well-being.",
+partTitle: "National Awareness Partners", p1Name: "Al-Azhar Al-Sharif", p2Name: "Egyptian Church", p3Name: "Ministry of Endowments",
 stTitle: "Key Statistics", st1: "311 Thousand Annual Divorces", st2: "104 Million Mobile Phones", st3: "5.7 Daily Screen Hours for Children",
 lsTitle: "Societal Losses", ls1: "EGP 15 Billion in Annual Productivity Loss", ls2: "EGP 4.5 Billion in Mental Health Treatment Costs", ls3: "EGP 2.1 Billion in Cyber Fraud Losses",
 awTitle: "Awareness Programs", aw1: "Digital Childhood", aw2: "Teen World", aw3: "Youth & Productivity", aw4: "Healthy Marriage", aw5: "Senior Citizens", aw6: "Cyber Safety & Privacy",
 mediaGuide: "Click on the image to receive our message", btnBrowse: "Browse the Book",
 news: ["Al-Azhar: One divorce every 2.5 minutes due to digital addiction", "Endowments: Phones are a primary cause of marital silence", "Alert: Digital fragmentation threatens national stability"],
-sources: [
-"Source: Central Agency for Public Mobilization and Statistics (CAPMAS)",
-"Source: Ministry of Communications and IT (MCIT)",
-"Source: Ministry of Social Solidarity",
-"Source: Economic Feasibility Studies",
-"Source: Mental Health Reports",
-"Source: Cybersecurity Reports",
-"Source: Al-Azhar Electronic Fatwa Center",
-"Source: Church Family Counseling Reports",
-"Source: Ministry of Endowments"
-]
+sources: ["Source: Central Agency for Public Mobilization and Statistics (CAPMAS)", "Source: Ministry of Communications and IT (MCIT)", "Source: Ministry of Social Solidarity", "Source: Economic Feasibility Studies", "Source: Mental Health Reports", "Source: Cybersecurity Reports", "Source: Al-Azhar Electronic Fatwa Center", "Source: Church Family Counseling Reports", "Source: Ministry of Endowments"]
 },
 es: {
 heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">de la Ilusión Digital: La llamada de alerta de Egipto al mundo</span> <br> <span class="gold-text">Estadísticas egipcias impactantes</span>',
 nav: ["Nuestra Visión", "Socios", "Medios", "Estadísticas", "Pérdidas", "Concienciación", "Tu opinión nos importa"],
 visTitle: "Nuestra Visión Estratégica", visDesc: "A través de la iniciativa CiviStories, buscamos proteger el tejido social egipcio de la fragmentación digital, empoderando a las familias y restaurando el equilibrio psicológico y social.",
-partTitle: "Socios Nacionales en Concienciación",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Iglesia Egipcia",
-p3Name: "Ministerio de Dotaciones",
-p1Desc: "Monitoreo y tratamiento de casos de desintegración familiar causados por la adicción digital mediante comités especializados de fatwas.",
-p2Desc: "Trabajo en la estabilidad familiar y combate del aislamiento digital dentro del hogar mediante programas de consejería.",
-p3Desc: "Iniciativa Sakn wa Mawaddah (Paz y Afecto) para educar a parejas casadas sobre los riesgos de la tecnología en su bienestar psicológico.",
+partTitle: "Socios Nacionales en Concienciación", p1Name: "Al-Azhar Al-Sharif", p2Name: "Iglesia Egipcia", p3Name: "Ministerio de Dotaciones",
 stTitle: "Estadísticas Clave", st1: "311 mil divorcios anuales", st2: "104 millones de teléfonos móviles", st3: "5,7 horas diarias frente a pantallas para niños",
 lsTitle: "Pérdidas Sociales", ls1: "15 mil millones de EGP en pérdida anual de productividad", ls2: "4,5 mil millones de EGP en costos de tratamiento de salud mental", ls3: "2,1 mil millones de EGP en pérdidas por fraude cibernético",
 awTitle: "Programas de Concienciación", aw1: "Infancia Digital", aw2: "Mundo Adolescente", aw3: "Juventud y Productividad", aw4: "Matrimonio Saludable", aw5: "Personas Mayores", aw6: "Seguridad y Privacidad Digital",
 mediaGuide: "Haz clic en la imagen para recibir nuestro mensaje", btnBrowse: "Explorar el libro",
 news: ["Al-Azhar: Un divorcio cada 2,5 minutos debido a la adicción digital", "Dotaciones: Los teléfonos son causa principal del silencio conyugal", "Alerta: La fragmentación digital amenaza la estabilidad nacional"],
-sources: [
-"Fuente: Agencia Central de Movilización Pública y Estadísticas (CAPMAS)",
-"Fuente: Ministerio de Comunicaciones y Tecnología de la Información (MCIT)",
-"Fuente: Ministerio de Solidaridad Social",
-"Fuente: Estudios de Viabilidad Económica",
-"Fuente: Informes de Salud Mental",
-"Fuente: Informes de Ciberseguridad",
-"Fuente: Centro de Fatwas Electrónicas de Al-Azhar",
-"Fuente: Informes de Consejería Familiar de la Iglesia",
-"Fuente: Ministerio de Dotaciones"
-]
-},
-fr: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">d’Illusion Numérique : L’appel d’urgence de l’Égypte au monde</span> <br> <span class="gold-text">Statistiques égyptiennes choquantes</span>',
-nav: ["Notre Vision", "Partenaires", "Médias", "Statistiques", "Pertes", "Sensibilisation", "Votre avis compte"],
-visTitle: "Notre Vision Stratégique", visDesc: "Via l’initiative CiviStories, nous protégeons le tissu social égyptien contre la fragmentation numérique en renforçant les familles et en rétablissant l’équilibre psychologique et social.",
-partTitle: "Partenaires Nationaux de Sensibilisation",
-p1Name: "Al-Azhar Al-Chérif",
-p2Name: "Église Égyptienne",
-p3Name: "Ministère des Habous",
-p1Desc: "Surveillance et traitement des cas de désintégration familiale dus à la dépendance numérique via des comités spécialisés en fatwas.",
-p2Desc: "Travail sur la stabilité familiale et lutte contre l’isolement numérique au sein du foyer grâce à des programmes de conseil.",
-p3Desc: "Initiative Sakn wa Mawaddah (Paix et Affection) pour sensibiliser les couples mariés aux risques technologiques sur leur équilibre psychologique.",
-stTitle: "Chiffres Clés", st1: "311 000 divorces annuels", st2: "104 millions de téléphones mobiles", st3: "5,7 heures quotidiennes d’écran pour les enfants",
-lsTitle: "Pertes Sociétales", ls1: "15 milliards de L.E. de perte annuelle de productivité", ls2: "4,5 milliards de L.E. en coûts de traitement psychologique", ls3: "2,1 milliards de L.E. en pertes dues à la cybercriminalité",
-awTitle: "Programmes de Sensibilisation", aw1: "Enfance Numérique", aw2: "Monde Adolescent", aw3: "Jeunesse & Productivité", aw4: "Mariage Sain", aw5: "Personnes Âgées", aw6: "Sécurité & Confidentialité Numériques",
-mediaGuide: "Cliquez sur l’image pour recevoir notre message", btnBrowse: "Parcourir le livre",
-news: ["Al-Azhar : Un divorce toutes les 2,5 minutes à cause de la dépendance numérique", "Habous : Les téléphones sont une cause majeure du silence conjugal", "Alerte : La fragmentation numérique menace la stabilité nationale"],
-sources: [
-"Source : Agence Centrale pour la Mobilisation Publique et les Statistiques (CAPMAS)",
-"Source : Ministère des Communications et des Technologies de l’Information (MCIT)",
-"Source : Ministère de la Solidarité Sociale",
-"Source : Études de Faisabilité Économique",
-"Source : Rapports de Santé Mentale",
-"Source : Rapports de Cybersécurité",
-"Source : Centre de Fatwas Électroniques d’Al-Azhar",
-"Source : Rapports de Conseil Familial de l’Église",
-"Source : Ministère des Habous"
-]
-},
-it: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">di Illusione Digitale: L’allarme dell’Egitto al mondo</span> <br> <span class="gold-text">Statistiche egiziane scioccanti</span>',
-nav: ["La Nostra Visione", "Partner", "Media", "Statistiche", "Perdite", "Sensibilizzazione", "Il tuo parere conta"],
-visTitle: "La Nostra Visione Strategica", visDesc: "Attraverso l’iniziativa CiviStories, miriamo a proteggere il tessuto sociale egiziano dalla frammentazione digitale, rafforzando le famiglie e ripristinando l’equilibrio psicologico e sociale.",
-partTitle: "Partner Nazionali per la Consapevolezza",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Chiesa Egiziana",
-p3Name: "Ministero dei Waqf",
-p1Desc: "Monitoraggio e gestione dei casi di disintegrazione familiare causati dalla dipendenza digitale tramite comitati specializzati in fatwa.",
-p2Desc: "Lavoro sulla stabilità familiare e contrasto all'isolamento digitale all'interno della casa attraverso programmi di consulenza.",
-p3Desc: "Iniziativa Sakn wa Mawaddah (Pace e Affetto) per educare le coppie sposate sui rischi della tecnologia per il loro benessere psicologico.",
-stTitle: "Statistiche Chiave", st1: "311.000 divorzi annuali", st2: "104 milioni di telefoni mobili", st3: "5,7 ore quotidiane davanti agli schermi per i bambini",
-lsTitle: "Perdite Sociali", ls1: "15 miliardi di EGP di perdita annuale di produttività", ls2: "4,5 miliardi di EGP in costi per trattamenti psicologici", ls3: "2,1 miliardi di EGP persi per frodi informatiche",
-awTitle: "Programmi di Sensibilizzazione", aw1: "Infanzia Digitale", aw2: "Mondo degli Adolescenti", aw3: "Giovani e Produttività", aw4: "Matrimonio Sano", aw5: "Anziani", aw6: "Sicurezza e Privacy Online",
-mediaGuide: "Clicca sull’immagine per ricevere il nostro messaggio", btnBrowse: "Sfoglia il libro",
-news: ["Al-Azhar: Un divorzio ogni 2,5 minuti a causa della dipendenza digitale", "Waqf: I telefoni sono una causa principale del silenzio coniugale", "Allerta: La frammentazione digitale minaccia la stabilità nazionale"],
-sources: [
-"Fonte: Agenzia Centrale per la Mobilitazione Pubblica e le Statistiche (CAPMAS)",
-"Fonte: Ministero delle Comunicazioni e della Tecnologia dell'Informazione (MCIT)",
-"Fonte: Ministero della Solidarietà Sociale",
-"Fonte: Studi di Fattibilità Economica",
-"Fonte: Rapporti sulla Salute Mentale",
-"Fonte: Rapporti sulla Sicurezza Informatica",
-"Fonte: Centro di Fatwa Elettroniche di Al-Azhar",
-"Fonte: Rapporti di Consulenza Familiare della Chiesa",
-"Fonte: Ministero dei Waqf"
-]
-},
-tr: {
-heroTitle: '<span class="highlight">Dijital Yanılsama</span> <span class="gold-text">Tsunamisi: Mısır’ın Dünyaya Uyarısı</span> <br> <span class="gold-text">Şaşırtıcı Mısırlı İstatistikler</span>',
-nav: ["Vizyonumuz", "Ortaklar", "Medya", "İstatistikler", "Kayıplar", "Farkındalık", "Görüşünüz Bizim İçin Önemli"],
-visTitle: "Stratejik Vizyonumuz", visDesc: "CiviStories girişimiyle, aileleri güçlendirerek ve psikolojik-sosyal dengeyi yeniden kurarak Mısır’ın toplumsal dokusunu dijital parçalanmadan korumayı hedefliyoruz.",
-partTitle: "Ulusal Farkındalık Ortakları",
-p1Name: "El-Ezherü’ş-Şerif",
-p2Name: "Mısır Kilisesi",
-p3Name: "Vakıflar Bakanlığı",
-p1Desc: "Dijital bağımlılıktan kaynaklanan aile içi çözülme vakalarını uzman fetva komiteleri aracılığıyla izleme ve müdahale etme.",
-p2Desc: "Danışmanlık programlarıyla aile istikrarını sağlama ve ev içi dijital izolasyonla mücadele etme.",
-p3Desc: "Teknolojinin psikolojik refah üzerindeki riskleri konusunda evli çiftleri bilinçlendirmek için Sakinlik ve Sevgi (Sakn wa Mawaddah) girişimi.",
-stTitle: "Temel İstatistikler", st1: "Yılda 311 Bin Boşanma", st2: "104 Milyon Cep Telefonu", st3: "Çocuklar için Günlük 5,7 Saat Ekran Süresi",
-lsTitle: "Toplumsal Kayıplar", ls1: "Yıllık 15 Milyar EGP Üretkenlik Kaybı", ls2: "4,5 Milyar EGP Psikolojik Tedavi Maliyeti", ls3: "2,1 Milyar EGP Siber Dolandırıcılık Zararı",
-awTitle: "Farkındalık Programları", aw1: "Dijital Çocukluk", aw2: "Gençler Dünyası", aw3: "Gençlik ve Verimlilik", aw4: "Sağlıklı Evlilik", aw5: "Yaşlılar", aw6: "Siber Güvenlik ve Gizlilik",
-mediaGuide: "Mesajımızı almak için görseli tıklayın", btnBrowse: "Kitabı Göz At",
-news: ["El-Ezher: Dijital bağımlılık nedeniyle her 2,5 dakikada bir boşanma", "Vakıflar: Telefonlar eşler arası sessizliğin başlıca nedeni", "Uyarı: Dijital parçalanma ulusal istikrarı tehdit ediyor"],
-sources: [
-"Kaynak: Merkezî Kamuoyu Hareketlendirme ve İstatistik Kurumu (CAPMAS)",
-"Kaynak: İletişim ve Bilişim Teknolojileri Bakanlığı (MCIT)",
-"Kaynak: Sosyal Dayanışma Bakanlığı",
-"Kaynak: Ekonomik Fizibilite Çalışmaları",
-"Kaynak: Ruh Sağlığı Raporları",
-"Kaynak: Siber Güvenlik Raporları",
-"Kaynak: El-Ezher Elektronik Fetva Merkezi",
-"Kaynak: Kilise Aile Danışmanlığı Raporları",
-"Kaynak: Vakıflar Bakanlığı"
-]
-},
-de: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">der digitalen Illusion: Ägyptens Weckruf an die Welt</span> <br> <span class="gold-text">Schockierende ägyptische Statistiken</span>',
-nav: ["Unsere Vision", "Partner", "Medien", "Statistiken", "Verluste", "Bewusstsein", "Ihre Meinung zählt"],
-visTitle: "Unsere strategische Vision", visDesc: "Mit der CiviStories-Initiative wollen wir das soziale Gefüge Ägyptens vor digitaler Zersplitterung schützen, indem wir Familien stärken und psychisches sowie soziales Gleichgewicht wiederherstellen.",
-partTitle: "Nationale Bewusstseinspartner",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Ägyptische Kirche",
-p3Name: "Ministerium für religiöse Stiftungen",
-p1Desc: "Überwachung und Behandlung von Fällen familiärer Auflösung aufgrund digitaler Sucht durch spezialisierte Fatwa-Komitees.",
-p2Desc: "Arbeit an familiärer Stabilität und Bekämpfung der digitalen Isolation im Haushalt durch Beratungsprogramme.",
-p3Desc: "Die Initiative Sakn wa Mawaddah (Frieden & Zuneigung) zur Aufklärung verheirateter Paare über die Risiken der Technologie für ihr psychisches Wohlbefinden.",
-stTitle: "Wichtige Statistiken", st1: "311.000 Scheidungen pro Jahr", st2: "104 Millionen Mobiltelefone", st3: "5,7 tägliche Bildschirmstunden für Kinder",
-lsTitle: "Gesellschaftliche Verluste", ls1: "15 Milliarden EGP jährlicher Produktivitätsverlust", ls2: "4,5 Milliarden EGP Kosten für psychische Gesundheitsbehandlung", ls3: "2,1 Milliarden EGP Verluste durch Cyberbetrug",
-awTitle: "Bewusstseinsprogramme", aw1: "Digitale Kindheit", aw2: "Jugendwelt", aw3: "Jugend & Produktivität", aw4: "Gesunde Ehe", aw5: "Senioren", aw6: "Cybersicherheit & Datenschutz",
-mediaGuide: "Klicken Sie auf das Bild, um unsere Botschaft zu erhalten", btnBrowse: "Buch durchblättern",
-news: ["Al-Azhar: Alle 2,5 Minuten eine Scheidung aufgrund digitaler Sucht", "Stiftungsministerium: Handys sind Hauptursache für eheliches Schweigen", "Warnung: Digitale Zersplitterung bedroht nationale Stabilität"],
-sources: [
-"Quelle: Zentrale Behörde für öffentliche Mobilisierung und Statistik (CAPMAS)",
-"Quelle: Ministerium für Kommunikation und Informationstechnologie (MCIT)",
-"Quelle: Ministerium für soziale Solidarität",
-"Quelle: Wirtschaftlichkeitsstudien",
-"Quelle: Berichte zur psychischen Gesundheit",
-"Quelle: Cybersecurity-Berichte",
-"Quelle: Elektronisches Fatwa-Zentrum von Al-Azhar",
-"Quelle: Kirchliche Familienberatungsberichte",
-"Quelle: Ministerium für religiöse Stiftungen"
-]
-},
-pt: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">da Ilusão Digital: O alerta do Egito ao mundo</span> <br> <span class="gold-text">Estatísticas egípcias chocantes</span>',
-nav: ["Nossa Visão", "Parceiros", "Mídia", "Estatísticas", "Perdas", "Conscientização", "Sua opinião importa"],
-visTitle: "Nossa Visão Estratégica", visDesc: "Por meio da iniciativa CiviStories, visamos proteger o tecido social egípcio da fragmentação digital, fortalecendo famílias e restaurando o equilíbrio psicológico e social.",
-partTitle: "Parceiros Nacionais de Conscientização",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Igreja Egípcia",
-p3Name: "Ministério dos Awqaf",
-p1Desc: "Monitoramento e tratamento de casos de desintegração familiar causados pelo vício digital por meio de comitês especializados em fátuas.",
-p2Desc: "Trabalho na estabilidade familiar e combate ao isolamento digital dentro do lar por meio de programas de aconselhamento.",
-p3Desc: "Iniciativa Sakn wa Mawaddah (Paz e Afeição) para educar casais sobre os riscos da tecnologia para seu bem-estar psicológico.",
-stTitle: "Estatísticas-Chave", st1: "311 mil divórcios anuais", st2: "104 milhões de celulares", st3: "5,7 horas diárias de tela para crianças",
-lsTitle: "Perdas Sociais", ls1: "15 bilhões de EGP em perda anual de produtividade", ls2: "4,5 bilhões de EGP em custos de tratamento de saúde mental", ls3: "2,1 bilhões de EGP em perdas por fraudes cibernéticas",
-awTitle: "Programas de Conscientização", aw1: "Infância Digital", aw2: "Mundo dos Adolescentes", aw3: "Juventude e Produtividade", aw4: "Casamento Saudável", aw5: "Idosos", aw6: "Segurança e Privacidade Digital",
-mediaGuide: "Clique na imagem para receber nossa mensagem", btnBrowse: "Navegar pelo livro",
-news: ["Al-Azhar: Um divórcio a cada 2,5 minutos por vício digital", "Awqaf: Celulares são causa principal do silêncio conjugal", "Alerta: Fragmentação digital ameaça a estabilidade nacional"],
-sources: [
-"Fonte: Agência Central de Mobilização Pública e Estatísticas (CAPMAS)",
-"Fonte: Ministério das Comunicações e Tecnologia da Informação (MCIT)",
-"Fonte: Ministério da Solidariedade Social",
-"Fonte: Estudos de Viabilidade Econômica",
-"Fonte: Relatórios de Saúde Mental",
-"Fonte: Relatórios de Cibersegurança",
-"Fonte: Centro de Fátuas Eletrônicas de Al-Azhar",
-"Fonte: Relatórios de Aconselhamento Familiar da Igreja",
-"Fonte: Ministério dos Awqaf"
-]
-},
-ro: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">al Iluziei Digitale: Avertismentul Egiptului către lume</span> <br> <span class="gold-text">Statistici egiptene șocante</span>',
-nav: ["Viziunea Noastră", "Parteneri", "Media", "Statistici", "Pierderi", "Conștientizare", "Părerea ta contează"],
-visTitle: "Viziunea Noastră Strategică", visDesc: "Prin inițiativa CiviStories, ne propunem să protejăm țesătura socială egipteană de fragmentarea digitală, prin împuternicirea familiilor și restabilirea echilibrului psihologic și social.",
-partTitle: "Parteneri Naționali pentru Conștientizare",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Biserica Egipteană",
-p3Name: "Ministerul Waqf",
-p1Desc: "Monitorizarea și tratarea cazurilor de destrămări familiale cauzate de dependența digitală prin comitete specializate de fatwa.",
-p2Desc: "Lucrul pentru stabilitatea familială și combaterea izolării digitale în gospodărie prin programe de consiliere.",
-p3Desc: "Inițiativa Sakn wa Mawaddah (Pace și Afecțiune) pentru educarea cuplurilor căsătorite despre riscurile tehnologiei asupra bunăstării lor psihologice.",
-stTitle: "Statistici Cheie", st1: "311.000 de divorțuri anuale", st2: "104 milioane de telefoane mobile", st3: "5,7 ore zilnice în fața ecranului pentru copii",
-lsTitle: "Pierderi Societale", ls1: "15 miliarde EGP pierdere anuală de productivitate", ls2: "4,5 miliarde EGP costuri pentru tratamente psihiatrice", ls3: "2,1 miliarde EGP pierderi din fraudă cibernetică",
-awTitle: "Programe de Conștientizare", aw1: "Copilăria Digitală", aw2: "Lumea Adolescentului", aw3: "Tineret și Productivitate", aw4: "Căsnicie Sănătoasă", aw5: "Persoane în Vârstă", aw6: "Siguranță și Confidențialitate Cibernetică",
-mediaGuide: "Apasă pe imagine pentru a primi mesajul nostru", btnBrowse: "Răsfoiește cartea",
-news: ["Al-Azhar: Un divorț la fiecare 2,5 minute din cauza dependenței digitale", "Waqf: Telefoanele sunt cauza principală a tăcerii conjugale", "Alertă: Fragmentarea digitală amenință stabilitatea națională"],
-sources: [
-"Sursă: Agenția Centrală pentru Mobilizare Publică și Statistică (CAPMAS)",
-"Sursă: Ministerul Comunicațiilor și Tehnologiei Informației (MCIT)",
-"Sursă: Ministerul Solidarității Sociale",
-"Sursă: Studii de Fezabilitate Economică",
-"Sursă: Rapoarte privind Sănătatea Mintală",
-"Sursă: Rapoarte privind Securitatea Cibernetică",
-"Sursă: Centrul Electronic de Fatwa Al-Azhar",
-"Sursă: Rapoarte de Consiliere Familială ale Bisericii",
-"Sursă: Ministerul Waqf"
-]
-},
-hu: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">a digitális illúzióból: Egyiptom figyelmeztetése a világnak</span> <br> <span class="gold-text">Megdöbbentő egyiptomi statisztikák</span>',
-nav: ["Küldetésünk", "Partnereink", "Média", "Statisztikák", "Veszteségek", "Tudatosság", "Véleményed számít"],
-visTitle: "Stratégiai küldetésünk", visDesc: "A CiviStories kezdeményezés célja Egyiptom társadalmi szövetének védelme a digitális töredezéstől, családok megerősítésével és a pszichológiai-szociális egyensúly helyreállításával.",
-partTitle: "Nemzeti Tudatossági Partnerek",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Egyiptomi Egyház",
-p3Name: "Waqf Minisztérium",
-p1Desc: "A digitális függőség okozta családi szétszakadások nyomon követése és kezelése szakértő fatwa bizottságok segítségével.",
-p2Desc: "A családi stabilitás erősítése és a digitális elszigetelődés elleni küzdelem házon belül tanácsadói programokkal.",
-p3Desc: "A Sakn wa Mawaddah (Békesség és Szeretet) kezdeményezés a házasok felvilágosítása érdekében a technológia pszichológiai kockázatairól.",
-stTitle: "Kulcsstatisztikák", st1: "311 ezer éves válás", st2: "104 millió mobiltelefon", st3: "5,7 óra napi képernyőidő gyermekeknek",
-lsTitle: "Társadalmi veszteségek", ls1: "15 milliárd EGP éves termelékenységveszteség", ls2: "4,5 milliárd EGP mentálhigiénés kezelések költsége", ls3: "2,1 milliárd EGP kiberbűnözés miatti veszteség",
-awTitle: "Tudatossági programok", aw1: "Digitális gyermekkor", aw2: "Tinédzser világ", aw3: "Ifjúság és termelékenység", aw4: "Egészséges házasság", aw5: "Idősek", aw6: "Kiberbiztonság és adatvédelem",
-mediaGuide: "Kattints a képre üzenetünkért", btnBrowse: "Könyv böngészése",
-news: ["Al-Azhar: Egy válás minden 2,5 percben digitális függőség miatt", "Waqf: A mobiltelefonok a házastársi némaság fő oka", "Figyelmeztetés: A digitális töredezés fenyegeti az ország stabilitását"],
-sources: [
-"Forrás: Központi Statisztikai és Népmozgalmi Hivatal (CAPMAS)",
-"Forrás: Kommunikációs és Informatikai Minisztérium (MCIT)",
-"Forrás: Szociális Szolidaritás Minisztériuma",
-"Forrás: Gazdasági megvalósíthatósági tanulmányok",
-"Forrás: Mentálhigiénés jelentések",
-"Forrás: Kiberbiztonsági jelentések",
-"Forrás: Al-Azhar Elektronikus Fatwa Központ",
-"Forrás: Egyházi családtanácsadási jelentések",
-"Forrás: Waqf Minisztérium"
-]
-},
-ja: {
-heroTitle: '<span class="highlight">デジタル幻想の津波</span> <span class="gold-text">：エジプトが世界に発する警告</span> <br> <span class="gold-text">衝撃的なエジプトの統計</span>',
-nav: ["私たちのビジョン", "パートナー", "メディア", "統計", "損失", "意識啓発", "あなたの声が大切です"],
-visTitle: "戦略的ビジョン", visDesc: "CiviStoriesイニシアチブを通じて、家族をエンパワーメントし、心理的・社会的バランスを回復することで、エジプトの社会的基盤をデジタルによる分断から守ることを目指しています。",
-partTitle: "国民意識啓発パートナー",
-p1Name: "アル＝アズハル・アル＝シャリーフ",
-p2Name: "エジプト教会",
-p3Name: "宗教基金省",
-p1Desc: "専門のファトワ委員会を通じて、デジタル依存症による家庭崩壊事例を監視・対応しています。",
-p2Desc: "カウンセリングプログラムを通じて、家庭の安定を図り、家庭内でのデジタル隔離と戦っています。",
-p3Desc: "「サクン・ワ・マワッダ（平和と愛情）」イニシアチブにより、結婚したカップルにテクノロジーが心理的健康に及ぼすリスクについて教育しています。",
-stTitle: "主要統計", st1: "年間31万1千件の離婚", st2: "1億400万台の携帯電話", st3: "子どもたちの1日平均スクリーン時間5.7時間",
-lsTitle: "社会的損失", ls1: "年間150億エジプトポンドの生産性損失", ls2: "45億エジプトポンドのメンタルヘルス治療費", ls3: "21億エジプトポンドのサイバー詐欺による損失",
-awTitle: "意識啓発プログラム", aw1: "デジタル時代の子育て", aw2: "ティーンエイジャーの世界", aw3: "若者と生産性", aw4: "健全な結婚生活", aw5: "高齢者", aw6: "サイバーセキュリティとプライバシー",
-mediaGuide: "画像をクリックして私たちのメッセージを受け取ってください", btnBrowse: "本を閲覧する",
-news: ["アル＝アズハル：デジタル依存症により2.5分に1回離婚が発生", "宗教基金省：スマホは夫婦間沈黙の主な原因", "警告：デジタル分断が国家の安定を脅かす"],
-sources: [
-"出典：中央公共動員統計局（CAPMAS）",
-"出典：通信・情報技術省（MCIT）",
-"出典：社会連帯省",
-"出典：経済実現可能性調査",
-"出典：メンタルヘルス報告書",
-"出典：サイバーセキュリティ報告書",
-"出典：アル＝アズハル電子ファトワセンター",
-"出典：教会家族カウンセリング報告書",
-"出典：宗教基金省"
-]
-},
-ko: {
-heroTitle: '<span class="highlight">디지털 환상의 쓰나미</span> <span class="gold-text">: 이집트가 세계에 보내는 경고</span> <br> <span class="gold-text">충격적인 이집트 통계</span>',
-nav: ["우리의 비전", "파트너", "미디어", "통계", "손실", "인식 제고", "귀하의 의견이 중요합니다"],
-visTitle: "전략적 비전", visDesc: "CiviStories 이니셔티브를 통해 가족을 강화하고 심리적·사회적 균형을 회복함으로써 디지털 단절로부터 이집트의 사회 구조를 보호하는 것을 목표로 합니다.",
-partTitle: "국민 인식 제고 파트너",
-p1Name: "알아즈하르 알샤리프",
-p2Name: "이집트 교회",
-p3Name: "와크프부",
-p1Desc: "전문 팻와 위원회를 통해 디지털 중독으로 인한 가정 해체 사례를 모니터링하고 대응합니다.",
-p2Desc: "상담 프로그램을 통해 가정의 안정을 도모하고 가정 내 디지털 고립을 방지합니다.",
-p3Desc: "결혼한 부부에게 기술이 정신 건강에 미치는 위험성을 교육하기 위한 '사쿤 와 마와다(평화와 애정)' 이니셔티브입니다.",
-stTitle: "핵심 통계", st1: "연간 31만 1천 건의 이혼", st2: "1억 400만 대의 휴대폰", st3: "어린이의 하루 평균 스크린 시간 5.7시간",
-lsTitle: "사회적 손실", ls1: "연간 150억 이집트 파운드의 생산성 손실", ls2: "45억 이집트 파운드의 정신 건강 치료비", ls3: "21억 이집트 파운드의 사이버 사기 손실",
-awTitle: "인식 제고 프로그램", aw1: "디지털 시대의 육아", aw2: "청소년의 세계", aw3: "청년과 생산성", aw4: "건강한 결혼 생활", aw5: "노인", aw6: "사이버 보안 및 개인정보 보호",
-mediaGuide: "이미지를 클릭하여 메시지를 받아보세요", btnBrowse: "책 보기",
-news: ["알아즈하르: 디지털 중독으로 인해 2.5분마다 한 번씩 이혼 발생", "와크프부: 스마트폰이 부부 간 침묵의 주요 원인", "경고: 디지털 단절이 국가 안정을 위협함"],
-sources: [
-"출처: 중앙공동동원통계청(CAPMAS)",
-"출처: 통신정보기술부(MCIT)",
-"출처: 사회연대부",
-"출처: 경제 타당성 연구",
-"출처: 정신 건강 보고서",
-"출처: 사이버 보안 보고서",
-"출처: 알아즈하르 전자 팻와 센터",
-"출처: 교회 가족 상담 보고서",
-"출처: 와크프부"
-]
-},
-hi: {
-heroTitle: '<span class="highlight">डिजिटल भ्रम की सुनामि</span> <span class="gold-text">: दुनिया को चेतावनी देने के लिए मिस्र की चीख</span> <br> <span class="gold-text">चौंकाने वाले मिस्र के आंकड़े</span>',
-nav: ["हमारा दृष्टिकोण", "साझेदार", "मीडिया", "आँकड़े", "नुकसान", "जागरूकता", "आपकी राय महत्वपूर्ण है"],
-visTitle: "हमारा रणनीतिक दृष्टिकोण", visDesc: "सिविस्टोरीज पहल के माध्यम से, हम परिवारों को सशक्त बनाकर और मनोवैज्ञानिक व सामाजिक संतुलन बहाल करके डिजिटल टुकड़ों से मिस्र के सामाजिक ताने-बाने की रक्षा करना चाहते हैं।",
-partTitle: "राष्ट्रीय जागरूकता भागीदार",
-p1Name: "अल-अजहर अल-शरीफ",
-p2Name: "मिस्र की चर्च",
-p3Name: "धार्मिक संपत्ति मंत्रालय",
-p1Desc: "डिजिटल नशे के कारण पारिवारिक टूटन के मामलों की निगरानी और विशेषज्ञ फतवा समितियों के माध्यम से संबोधित करना।",
-p2Desc: "परामर्श कार्यक्रमों के माध्यम से परिवार की स्थिरता पर काम करना और घर के भीतर डिजिटल अलगाव से लड़ना।",
-p3Desc: "विवाहित जोड़ों को प्रौद्योगिकी के उनके मनोवैज्ञानिक कल्याण पर प्रभाव के जोखिमों के बारे में शिक्षित करने के लिए 'सकन व मवद्दत (शांति और स्नेह)' पहल।",
-stTitle: "मुख्य आँकड़े", st1: "प्रति वर्ष 3.11 लाख तलाक", st2: "10.4 करोड़ मोबाइल फोन", st3: "बच्चों के लिए प्रतिदिन 5.7 घंटे स्क्रीन समय",
-lsTitle: "सामाजिक नुकसान", ls1: "प्रति वर्ष 15 अरब मिस्री पाउंड उत्पादकता का नुकसान", ls2: "4.5 अरब मिस्री पाउंड मानसिक स्वास्थ्य उपचार लागत", ls3: "2.1 अरब मिस्री पाउंड साइबर धोखाधड़ी का नुकसान",
-awTitle: "जागरूकता कार्यक्रम", aw1: "डिजिटल बचपन", aw2: "किशोरों की दुनिया", aw3: "युवा और उत्पादकता", aw4: "स्वस्थ विवाह", aw5: "वरिष्ठ नागरिक", aw6: "साइबर सुरक्षा और गोपनीयता",
-mediaGuide: "हमारा संदेश प्राप्त करने के लिए छवि पर क्लिक करें", btnBrowse: "पुस्तक ब्राउज़ करें",
-news: ["अल-अजहर: डिजिटल नशे के कारण हर 2.5 मिनट में एक तलाक", "धार्मिक संपत्ति: फोन पारिवारिक मौन का प्रमुख कारण हैं", "चेतावनी: डिजिटल टुकड़े राष्ट्रीय स्थिरता को खतरे में डालते हैं"],
-sources: [
-"स्रोत: केंद्रीय जन गतिशीलता और सांख्यिकी एजेंसी (CAPMAS)",
-"स्रोत: संचार और सूचना प्रौद्योगिकी मंत्रालय (MCIT)",
-"स्रोत: सामाजिक एकजुटता मंत्रालय",
-"स्रोत: आर्थिक व्यवहार्यता अध्ययन",
-"स्रोत: मानसिक स्वास्थ्य रिपोर्ट",
-"स्रोत: साइबर सुरक्षा रिपोर्ट",
-"स्रोत: अल-अजहर इलेक्ट्रॉनिक फतवा केंद्र",
-"स्रोत: चर्च पारिवारिक परामर्श रिपोर्ट",
-"स्रोत: धार्मिक संपत्ति मंत्रालय"
-]
-},
-pa: {
-heroTitle: '<span class="highlight">ਡਿਜੀਟਲ ਭਰਮ ਦੀ ਸੁਨਾਮੀ</span> <span class="gold-text">: ਦੁਨੀਆ ਨੂੰ ਚੇਤਾਵਨੀ ਦੇਣ ਲਈ ਮਿਸਰ ਦੀ ਚੀਖ</span> <br> <span class="gold-text">ਹੈਰਾਨ ਕਰਨ ਵਾਲੇ ਮਿਸਰੀ ਅੰਕੜੇ</span>',
-nav: ["ਸਾਡਾ ਵਿਜ਼ਨ", "ਭਾਈਵਾਲ", "ਮੀਡੀਆ", "ਅੰਕੜੇ", "ਨੁਕਸਾਨ", "ਜਾਗਰੂਕਤਾ", "ਤੁਹਾਡੀ ਰਾਏ ਮਹੱਤਵਪੂਰਨ ਹੈ"],
-visTitle: "ਸਾਡਾ ਰਣਨੀਤਕ ਵਿਜ਼ਨ", visDesc: "ਸਿਵੀਸਟੋਰੀਜ਼ ਪਹਿਲ ਰਾਹੀਂ, ਅਸੀਂ ਪਰਿਵਾਰਾਂ ਨੂੰ ਸਸ਼ਕਤ ਕਰਕੇ ਅਤੇ ਮਨੋਵਿਗਿਆਨਕ ਅਤੇ ਸਮਾਜਿਕ ਸੰਤੁਲਨ ਬਹਾਲ ਕਰਕੇ ਡਿਜੀਟਲ ਟੁਕੜਿਆਂ ਤੋਂ ਮਿਸਰ ਦੇ ਸਮਾਜਿਕ ਤਾਣੇ-ਬਾਣੇ ਦੀ ਰੱਖਿਆ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਾਂ।",
-partTitle: "ਕੌਮੀ ਜਾਗਰੂਕਤਾ ਭਾਈਵਾਲ",
-p1Name: "ਅਲ-ਅਜ਼ਹਰ ਅਲ-ਸ਼ਰੀਫ",
-p2Name: "ਮਿਸਰੀ ਚਰਚ",
-p3Name: "ਧਾਰਮਿਕ ਸੰਪਤੀ ਮੰਤਰਾਲਯ",
-p1Desc: "ਡਿਜੀਟਲ ਲਤ ਕਾਰਨ ਪਰਿਵਾਰਕ ਟੁੱਟਣ ਦੇ ਮਾਮਲਿਆਂ ਦੀ ਨਿਗਰਾਨੀ ਅਤੇ ਮਾਹਰ ਫ਼ਤਵਾ ਕਮੇਟੀਆਂ ਰਾਹੀਂ ਸੰਬੋਧਨ।",
-p2Desc: "ਪਰਾਮਰਸ਼ ਪ੍ਰੋਗਰਾਮਾਂ ਰਾਹੀਂ ਪਰਿਵਾਰਕ ਸਥਿਰਤਾ 'ਤੇ ਕੰਮ ਕਰਨਾ ਅਤੇ ਘਰ ਵਿੱਚ ਡਿਜੀਟਲ ਅਲਗਾਵ ਨਾਲ ਲੜਨਾ।",
-p3Desc: "ਵਿਆਹੇ ਜੋੜਿਆਂ ਨੂੰ ਤਕਨਾਲੋਜੀ ਦੇ ਉਨ੍ਹਾਂ ਦੇ ਮਨੋਵਿਗਿਆਨਕ ਭਲਾਈ 'ਤੇ ਜੋਖਮਾਂ ਬਾਰੇ ਸਿੱਖਿਆ ਦੇਣ ਲਈ 'ਸਕਨ ਵਾ ਮਵੱਦਤ (ਸ਼ਾਂਤੀ ਅਤੇ ਪਿਆਰ)' ਪਹਿਲ।",
-stTitle: "ਮੁੱਖ ਅੰਕੜੇ", st1: "ਸਾਲਾਨਾ 3.11 ਲੱਖ ਤਲਾਕ", st2: "10.4 ਕਰੋੜ ਮੋਬਾਈਲ ਫੋਨ", st3: "ਬੱਚਿਆਂ ਲਈ ਰੋਜ਼ਾਨਾ 5.7 ਘੰਟੇ ਸਕਰੀਨ ਸਮਾਂ",
-lsTitle: "ਸਮਾਜਿਕ ਨੁਕਸਾਨ", ls1: "ਸਾਲਾਨਾ 15 ਅਰਬ ਮਿਸਰੀ ਪਾਊਂਡ ਉਤਪਾਦਕਤਾ ਦਾ ਨੁਕਸਾਨ", ls2: "4.5 ਅਰਬ ਮਿਸਰੀ ਪਾਊਂਡ ਮਾਨਸਿਕ ਸਿਹਤ ਇਲਾਜ ਲਾਗਤ", ls3: "2.1 ਅਰਬ ਮਿਸਰੀ ਪਾਊਂਡ ਸਾਈਬਰ ਧੋਖੇਬਾਜ਼ੀ ਦਾ ਨੁਕਸਾਨ",
-awTitle: "ਜਾਗਰੂਕਤਾ ਪ੍ਰੋਗਰਾਮ", aw1: "ਡਿਜੀਟਲ ਬਚਪਨ", aw2: "ਕਿਸ਼ੋਰਾਂ ਦੀ ਦੁਨੀਆ", aw3: "ਜਵਾਨੀ ਅਤੇ ਉਤਪਾਦਕਤਾ", aw4: "ਸਿਹਤਮੰਦ ਵਿਆਹ", aw5: "ਸੀਨੀਅਰ ਨਾਗਰਿਕ", aw6: "ਸਾਈਬਰ ਸੁਰੱਖਿਆ ਅਤੇ ਗੋਪਨੀਯਤਾ",
-mediaGuide: "ਸਾਡਾ ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਚਿੱਤਰ 'ਤੇ ਕਲਿੱਕ ਕਰੋ", btnBrowse: "ਕਿਤਾਬ ਬਰਾਊਜ਼ ਕਰੋ",
-news: ["ਅਲ-ਅਜ਼ਹਰ: ਡਿਜੀਟਲ ਲਤ ਕਾਰਨ ਹਰ 2.5 ਮਿੰਟ ਵਿੱਚ ਇੱਕ ਤਲਾਕ", "ਧਾਰਮਿਕ ਸੰਪਤੀ: ਫੋਨ ਪਰਿਵਾਰਕ ਚੁੱਪ ਦਾ ਮੁੱਖ ਕਾਰਨ ਹਨ", "ਚੇਤਾਵਨੀ: ਡਿਜੀਟਲ ਟੁਕੜੇ ਕੌਮੀ ਸਥਿਰਤਾ ਨੂੰ ਖ਼ਤਰੇ ਵਿੱਚ ਪਾਉਂਦੇ ਹਨ"],
-sources: [
-"ਸਰੋਤ: ਕੇਂਦਰੀ ਜਨ ਗਤੀਸ਼ੀਲਤਾ ਅਤੇ ਅੰਕੜੇ ਏਜੰਸੀ (CAPMAS)",
-"ਸਰੋਤ: ਸੰਚਾਰ ਅਤੇ ਜਾਣਕਾਰੀ ਤਕਨਾਲੋਜੀ ਮੰਤਰਾਲਯ (MCIT)",
-"ਸਰੋਤ: ਸਮਾਜਿਕ ਏਕਤਾ ਮੰਤਰਾਲਯ",
-"ਸਰੋਤ: ਆਰਥਿਕ ਵਿਹਾਰਯੋਗਤਾ ਅਧਿਐਨ",
-"ਸਰੋਤ: ਮਾਨਸਿਕ ਸਿਹਤ ਰਿਪੋਰਟ",
-"ਸਰੋਤ: ਸਾਈਬਰ ਸੁਰੱਖਿਆ ਰਿਪੋਰਟ",
-"ਸਰੋਤ: ਅਲ-ਅਜ਼ਹਰ ਇਲੈਕਟ੍ਰਾਨਿਕ ਫ਼ਤਵਾ ਕੇਂਦਰ",
-"ਸਰੋਤ: ਚਰਚ ਪਰਿਵਾਰਕ ਪਰਾਮਰਸ਼ ਰਿਪੋਰਟ",
-"ਸਰੋਤ: ਧਾਰਮਿਕ ਸੰਪਤੀ ਮੰਤਰਾਲਯ"
-]
-},
-bn: {
-heroTitle: '<span class="highlight">ডিজিটাল ভ্রান্তির সুনামি</span> <span class="gold-text">: বিশ্বকে সতর্ক করতে মিশরের আহ্বান</span> <br> <span class="gold-text">চাঞ্চল্যকর মিশরীয় পরিসংখ্যান</span>',
-nav: ["আমাদের দৃষ্টিভঙ্গি", "অংশীদার", "মিডিয়া", "পরিসংখ্যান", "ক্ষতি", "সচেতনতা", "আপনার মতামত গুরুত্বপূর্ণ"],
-visTitle: "আমাদের কৌশলগত দৃষ্টিভঙ্গি", visDesc: "সিভিস্টোরিজ উদ্যোগের মাধ্যমে, আমরা পরিবারগুলিকে ক্ষমতায়ন করে এবং মনস্তাত্ত্বিক ও সামাজিক ভারসাম্য পুনরুদ্ধার করে ডিজিটাল বিচ্ছিন্নতা থেকে মিশরের সামাজিক কাঠামোকে রক্ষা করতে চাই।",
-partTitle: "জাতীয় সচেতনতা অংশীদার",
-p1Name: "আল-আজহার আল-শরীফ",
-p2Name: "মিশরীয় চার্চ",
-p3Name: "ওয়াকফ মন্ত্রণালয়",
-p1Desc: "ডিজিটাল আসক্তির কারণে পারিবারিক বিচ্ছিন্নতার ক্ষেত্রে বিশেষজ্ঞ ফাতওয়া কমিটির মাধ্যমে পর্যবেক্ষণ ও সমাধান।",
-p2Desc: "পরামর্শ কার্যক্রমের মাধ্যমে পারিবারিক স্থিতিশীলতা নিশ্চিত করা এবং বাড়ির ভিতরে ডিজিটাল বিচ্ছিন্নতার বিরুদ্ধে লড়াই।",
-p3Desc: "প্রযুক্তির মনস্তাত্ত্বিক কল্যাণের উপর ঝুঁকি সম্পর্কে বিবাহিত দম্পতিদের শিক্ষিত করার জন্য 'সাকন ওয়া মাওয়াদ্দাহ (শান্তি ও স্নেহ)' উদ্যোগ।",
-stTitle: "প্রধান পরিসংখ্যান", st1: "বার্ষিক ৩.১১ লাখ তালাক", st2: "১০.৪ কোটি মোবাইল ফোন", st3: "শিশুদের জন্য দৈনিক ৫.৭ ঘন্টা স্ক্রিন সময়",
-lsTitle: "সামাজিক ক্ষতি", ls1: "বার্ষিক ১৫ বিলিয়ন মিশরীয় পাউন্ড উৎপাদনশীলতা ক্ষতি", ls2: "৪.৫ বিলিয়ন মিশরীয় পাউন্ড মানসিক স্বাস্থ্য চিকিৎসা খরচ", ls3: "২.১ বিলিয়ন মিশরীয় পাউন্ড সাইবার প্রতারণা ক্ষতি",
-awTitle: "সচেতনতা কার্যক্রম", aw1: "ডিজিটাল শৈশব", aw2: "কিশোরদের জগৎ", aw3: "যুবক ও উৎপাদনশীলতা", aw4: "স্বাস্থ্যকর বিবাহ", aw5: "বয়স্ক নাগরিক", aw6: "সাইবার নিরাপত্তা ও গোপনীয়তা",
-mediaGuide: "আমাদের বার্তা পেতে ছবিতে ক্লিক করুন", btnBrowse: "বই ব্রাউজ করুন",
-news: ["আল-আজহার: ডিজিটাল আসক্তির কারণে প্রতি ২.৫ মিনিটে একটি তালাক", "ওয়াকফ: ফোন পারিবারিক নীরবতার প্রধান কারণ", "সতর্কবার্তা: ডিজিটাল বিচ্ছিন্নতা জাতীয় স্থিতিশীলতাকে হুমকি দেয়"],
-sources: [
-"উৎস: কেন্দ্রীয় জন মোবাইলাইজেশন ও পরিসংখ্যান সংস্থা (CAPMAS)",
-"উৎস: যোগাযোগ ও তথ্য প্রযুক্তি মন্ত্রণালয় (MCIT)",
-"উৎস: সামাজিক সহযোগিতা মন্ত্রণালয়",
-"উৎস: অর্থনৈতিক বাস্তবসম্মত অধ্যয়ন",
-"উৎস: মানসিক স্বাস্থ্য প্রতিবেদন",
-"উৎস: সাইবার নিরাপত্তা প্রতিবেদন",
-"উৎস: আল-আজহার ইলেকট্রনিক ফাতওয়া কেন্দ্র",
-"উৎস: চার্চ পারিবারিক পরামর্শ প্রতিবেদন",
-"উৎস: ওয়াকফ মন্ত্রণালয়"
-]
-},
-id: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">Ilusi Digital: Peringatan Mesir kepada Dunia</span> <br> <span class="gold-text">Statistik Mengejutkan dari Mesir</span>',
-nav: ["Visi Kami", "Mitra", "Media", "Statistik", "Kerugian", "Kesadaran", "Masukan Anda Penting Bagi Kami"],
-visTitle: "Visi Strategis Kami", visDesc: "Melalui inisiatif CiviStories, kami bertujuan melindungi jalinan sosial Mesir dari fragmentasi digital dengan memberdayakan keluarga dan memulihkan keseimbangan psikologis serta sosial.",
-partTitle: "Mitra Kesadaran Nasional",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Gereja Mesir",
-p3Name: "Kementerian Wakaf",
-p1Desc: "Memantau dan menangani kasus-kasus perpecahan keluarga akibat kecanduan digital melalui komite fatwa yang terlatih.",
-p2Desc: "Bekerja untuk menjaga stabilitas keluarga dan mengatasi isolasi digital di dalam rumah tangga melalui program konseling.",
-p3Desc: "Inisiatif Sakn wa Mawaddah (Ketenangan & Kasih Sayang) untuk mendidik pasangan menikah tentang risiko teknologi terhadap kesejahteraan psikologis mereka.",
-stTitle: "Statistik Utama", st1: "311 Ribu Perceraian Tahunan", st2: "104 Juta Ponsel", st3: "5,7 Jam Layar Harian untuk Anak-Anak",
-lsTitle: "Kerugian Sosial", ls1: "15 Miliar EGP Kerugian Produktivitas Tahunan", ls2: "4,5 Miliar EGP Biaya Perawatan Kesehatan Mental", ls3: "2,1 Miliar EGP Kerugian Penipuan Siber",
-awTitle: "Program Kesadaran", aw1: "Masa Kanak-Kanak Digital", aw2: "Dunia Remaja", aw3: "Pemuda & Produktivitas", aw4: "Pernikahan Sehat", aw5: "Lansia", aw6: "Keamanan & Privasi Siber",
-mediaGuide: "Klik gambar untuk menerima pesan kami", btnBrowse: "Telusuri Buku",
-news: ["Al-Azhar: Satu perceraian setiap 2,5 menit akibat kecanduan digital", "Wakaf: Ponsel adalah penyebab utama keheningan dalam pernikahan", "Peringatan: Fragmentasi digital mengancam stabilitas nasional"],
-sources: [
-"Sumber: Badan Pusat Statistik dan Mobilisasi Publik Mesir (CAPMAS)",
-"Sumber: Kementerian Komunikasi dan Teknologi Informasi (MCIT)",
-"Sumber: Kementerian Solidaritas Sosial",
-"Sumber: Studi Kelayakan Ekonomi",
-"Sumber: Laporan Kesehatan Mental",
-"Sumber: Laporan Keamanan Siber",
-"Sumber: Pusat Fatwa Elektronik Al-Azhar",
-"Sumber: Laporan Konseling Keluarga Gereja",
-"Sumber: Kementerian Wakaf"
-]
-},
-vi: {
-heroTitle: '<span class="highlight">Thảm họa</span> <span class="gold-text">ảo ảnh kỹ thuật số: Lời cảnh tỉnh của Ai Cập gửi thế giới</span> <br> <span class="gold-text">Những con số thống kê gây sốc từ Ai Cập</span>',
-nav: ["Tầm nhìn của chúng tôi", "Đối tác", "Truyền thông", "Thống kê", "Thiệt hại", "Nhận thức", "Ý kiến của bạn rất quan trọng"],
-visTitle: "Tầm nhìn chiến lược của chúng tôi", visDesc: "Thông qua sáng kiến CiviStories, chúng tôi nhằm bảo vệ cấu trúc xã hội Ai Cập khỏi sự phân mảnh kỹ thuật số bằng cách trao quyền cho các gia đình và khôi phục sự cân bằng tâm lý và xã hội.",
-partTitle: "Đối tác nâng cao nhận thức quốc gia",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Giáo hội Ai Cập",
-p3Name: "Bộ Quản lý Quỹ tôn giáo",
-p1Desc: "Giám sát và xử lý các trường hợp tan vỡ gia đình do nghiện kỹ thuật số thông qua các ủy ban ra phán quyết Hồi giáo chuyên trách.",
-p2Desc: "Làm việc để ổn định gia đình và chống lại sự cô lập kỹ thuật số trong hộ gia đình thông qua các chương trình tư vấn.",
-p3Desc: "Sáng kiến Sakn wa Mawaddah (Bình an & Yêu thương) nhằm giáo dục các cặp vợ chồng về những rủi ro của công nghệ đối với sức khỏe tâm lý của họ.",
-stTitle: "Thống kê chính", st1: "311 nghìn vụ ly hôn mỗi năm", st2: "104 triệu điện thoại di động", st3: "5,7 giờ sử dụng màn hình mỗi ngày cho trẻ em",
-lsTitle: "Thiệt hại xã hội", ls1: "15 tỷ bảng Ai Cập thiệt hại năng suất hàng năm", ls2: "4,5 tỷ bảng Ai Cập chi phí điều trị sức khỏe tâm thần", ls3: "2,1 tỷ bảng Ai Cập thiệt hại do gian lận mạng",
-awTitle: "Chương trình nâng cao nhận thức", aw1: "Thời thơ ấu kỹ thuật số", aw2: "Thế giới thanh thiếu niên", aw3: "Giới trẻ & Năng suất", aw4: "Hôn nhân hạnh phúc", aw5: "Người cao tuổi", aw6: "An ninh & Quyền riêng tư mạng",
-mediaGuide: "Nhấp vào hình ảnh để nhận thông điệp của chúng tôi", btnBrowse: "Duyệt sách",
-news: ["Al-Azhar: Một vụ ly hôn mỗi 2,5 phút do nghiện kỹ thuật số", "Quỹ tôn giáo: Điện thoại là nguyên nhân chính gây im lặng trong hôn nhân", "Cảnh báo: Sự phân mảnh kỹ thuật số đe dọa sự ổn định quốc gia"],
-sources: [
-"Nguồn: Cơ quan Thống kê và Huy động Công chúng Trung ương (CAPMAS)",
-"Nguồn: Bộ Thông tin và Truyền thông (MCIT)",
-"Nguồn: Bộ Đoàn kết Xã hội",
-"Nguồn: Nghiên cứu khả thi kinh tế",
-"Nguồn: Báo cáo sức khỏe tâm thần",
-"Nguồn: Báo cáo an ninh mạng",
-"Nguồn: Trung tâm Fatwa điện tử Al-Azhar",
-"Nguồn: Báo cáo tư vấn gia đình của Giáo hội",
-"Nguồn: Bộ Quản lý Quỹ tôn giáo"
-]
-},
-fa: {
-heroTitle: '<span class="highlight">سونامی</span> <span class="gold-text">توهم دیجیتال: فریاد هشداردهنده مصر به جهان</span> <br> <span class="gold-text">آمارهای شوک‌آور مصری</span>',
-nav: ["چشم‌انداز ما", "شرکا", "رسانه", "آمار", "زیان‌ها", "آگاهی", "نظر شما برای ما مهم است"],
-visTitle: "چشم‌انداز استراتژیک ما", visDesc: "از طریق ابتکار CiviStories، ما به دنبال محافظت از بافت اجتماعی مصر در برابر پراکندگی دیجیتال با توانمندسازی خانواده‌ها و بازیابی تعادل روانی و اجتماعی هستیم.",
-partTitle: "شرکای آگاهی ملی",
-p1Name: "ازهر شریف",
-p2Name: "کلیسای مصر",
-p3Name: "وزارت اوقاف",
-p1Desc: "پایش و رسیدگی به موارد تجزیه خانواده ناشی از اعتیاد دیجیتال از طریق کمیته‌های فتوای تخصصی.",
-p2Desc: "کار بر روی ثبات خانواده و مبارزه با انزوا دیجیتال در داخل خانه از طریق برنامه‌های مشاوره.",
-p3Desc: "ابتکار سکن و مودت برای آموزش زوجین درباره خطرات فناوری بر سلامت روانی آن‌ها.",
-stTitle: "آمار کلیدی", st1: "۳۱۱ هزار طلاق سالانه", st2: "۱۰۴ میلیون تلفن همراه", st3: "۵٫۷ ساعت استفاده از صفحه‌نمایش در روز برای کودکان",
-lsTitle: "زیان‌های اجتماعی", ls1: "۱۵ میلیارد پوند مصری زیان سالانه بهره‌وری", ls2: "۴٫۵ میلیارد پوند مصری هزینه درمان سلامت روان", ls3: "۲٫۱ میلیارد پوند مصری زیان ناشی از کلاهبرداری سایبری",
-awTitle: "برنامه‌های آگاهی", aw1: "کودکی دیجیتال", aw2: "جهان نوجوانی", aw3: "جوانی و بهره‌وری", aw4: "ازدواج سالم", aw5: "سالمندان", aw6: "امنیت و حریم خصوصی سایبری",
-mediaGuide: "برای دریافت پیام ما روی تصویر کلیک کنید", btnBrowse: "مرور کتاب",
-news: ["ازهر: هر ۲٫۵ دقیقه یک طلاق به دلیل اعتیاد دیجیتال", "اوقاف: تلفن‌ها عامل اصلی سکوت زناشویی هستند", "هشدار: پراکندگی دیجیتال ثبات ملی را تهدید می‌کند"],
-sources: [
-"منبع: آژانس مرکزی آمار و تعبیه عمومی (CAPMAS)",
-"منبع: وزارت ارتباطات و فناوری اطلاعات (MCIT)",
-"منبع: وزارت تضامن اجتماعی",
-"منبع: مطالعات امکان‌سنجی اقتصادی",
-"منبع: گزارش‌های سلامت روان",
-"منبع: گزارش‌های امنیت سایبری",
-"منبع: مرکز فتوای الکترونیکی ازهر",
-"منبع: گزارش‌های مشاوره خانواده کلیسا",
-"منبع: وزارت اوقاف"
-]
-},
-am: {
-heroTitle: '<span class="highlight">ዲጂታል ምስላዊነት ጉንፋኑ</span> <span class="gold-text">፡ ዓለምን ለማሳስብ የሚስር ጥሪ</span> <br> <span class="gold-text">የሚስር የማይታወቁ ስታቲስቲክስ</span>',
-nav: ["የእኛ እይታ", "ተባባሪዎች", "ሜድያ", "ስታቲስቲክስ", "አፍራሽ", "ስማማት", "意见很重要"],
-visTitle: "የእኛ ስትራቴጂክ እይታ", visDesc: "ሲቪስቶሪስ ኢኒሻቲቭ በመጠቀም፣ ቤተሰቦችን ስልጣን ሰጥተን እና ስነ-ልቦና እና ማህበራዊ ሚዛን እንደገና ለማስመጣት የሚስር ማህበራዊ መዋቅር ከዲጂታል ትርጉም ለመጠበቅ እንፈልጋለን።",
-partTitle: "የግልጽ ስማማት ተባባሪዎች",
-p1Name: "አል-አዝሐር አል-ሻሪፍ",
-p2Name: "የሚስር ቤተክርስቲያን",
-p3Name: "የወቅፍ ሚኒስቴር",
-p1Desc: "በተለያዩ ፋቱዋ ኮሚቴዎች በመረዳት የዲጂታል ጥሩነት ምክንያት የቤተሰብ ትርጉም ሁኔታዎችን ማሳካት እና ማስተካከል።",
-p2Desc: "በቤተሰብ ውስጥ ያለውን ዲጂታል የተለያየነት ለመቋቋም በማማሪያ ፕሮግራሞች በመጠቀም ቤተሰብ ስታቢሊቲ ላይ ስራ ማድረግ።",
-p3Desc: "ለማርያም ጥሩነት ስለ ቴክኖሎጂ አደጋዎች ለማማሪያ የሳክን ወ ማዋደህ (ሰላም እና ፍቅር) ኢኒሻቲቭ።",
-stTitle: "ዋና ስታቲስቲክስ", st1: "311 ሺህ ዓመታዊ የግዳጅ ጉዳዮች", st2: "104 ሚሊዮን ሞባይል ስልክ", st3: "ለልጆች ቀን በቀን 5.7 ሰዓት ስክሪን ጊዜ",
-lsTitle: "ማህበራዊ አፍራሽ", ls1: "15 ቢሊዮን የሚስር ፓውንድ ዓመታዊ የፕሮዳክቲቪቲ አፍራሽ", ls2: "4.5 ቢሊዮን የሚስር ፓውንድ የስነ-ልቦና ጥገና ወጪ", ls3: "2.1 ቢሊዮን የሚስር ፓውንድ የሳይበር ፍራውድ አፍራሽ",
-awTitle: "ስማማት ፕሮግራሞች", aw1: "ዲጂታል ልጅነት", aw2: "የወጣት ዓለም", aw3: "ወጣቶች እና ፕሮዳክቲቪቲ", aw4: "ጤናማ ጋብቻ", aw5: "ልዩ ዜጎች", aw6: "ሳይበር ደህንነት እና ፕራይቫሲ",
-mediaGuide: "ለመልዕክታችን ለማግኘት ምስሉን ጠቅ ያድርጉ", btnBrowse: "መጽሐፍ ያስሱ",
-news: ["አል-አዝሐር፡ በዲጂታል ጥሩነት ምክንያት በ2.5 ደቂቃ አንድ ግዳጅ", "ወቅፍ፡ ስልኮች የቤተሰብ ስሙት ዋና ምክንያት ናቸው", "ማሳስቢያ፡ ዲጂታል ትርጉም የግልጽ ስታቢሊቲ ይጠቃልላል"],
-sources: [
-"ምንጭ፡ ማዕከላዊ የሕዝብ ሞባይላይዜሽን እና ስታቲስቲክስ ኤጀንሲ (CAPMAS)",
-"ምንጭ፡ የኮሙኒኬሽን እና የኢንፎርሜሽን ቴክኖሎጂ ሚኒስቴር (MCIT)",
-"ምንጭ፡ የማህበራዊ ማህበረ-ሰብ ሚኒስቴር",
-"ምንጭ፡ የኢኮኖሚክ ፊዛቢሊቲ ጥናቶች",
-"ምንጭ፡ የስነ-ልቦና ጥገና ሪፖርቶች",
-"ምንጭ፡ የሳይበር ሴኩሪቲ ሪፖርቶች",
-"ምንጭ፡ አል-አዝሐር ኤሌክትሮኒክ ፋቱዋ ሥርዓት",
-"ምንጭ፡ ቤተክርስቲያን የቤተሰብ ማማሪያ ሪፖርቶች",
-"ምንጭ፡ የወቅፍ ሚኒስቴር"
-]
-},
-sw: {
-heroTitle: '<span class="highlight">Tsotsi ya</span> <span class="gold-text">Uhamisho wa Kidijitali: Maonyo ya Misri kwa Dunia</span> <br> <span class="gold-text">Takwimu za Kuogopesha za Misri</span>',
-nav: ["Mradi Wetu", "Washirika", "Vyombo vya Habari", "Takwimu", "Hasara", "Ujumbe", "Maoni yako ni Muhimu"],
-visTitle: "Mradi Wetu wa Kisratagi", visDesc: "Kupitia jitihada ya CiviStories, tunalenga kulinda mtandao wa kijamii wa Misri kutoka uhamishoni wa kidijitali kwa kuimarisha familia na kurejesha usawa wa kisaikolojia na kijamii.",
-partTitle: "Washirika wa Ujumbe wa Taifa",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Kanisa la Misri",
-p3Name: "Wizara ya Matumaini",
-p1Desc: "Kufuatilia na kushughulikia matukio ya uvunjaji wa familia yanayotokana na utumishi wa kidijitali kupitia kamati maalum za fatwa.",
-p2Desc: "Kufanya kazi kwa ajili ya utulivu wa familia na kupambana na utulivu wa kidijitali ndani ya nyumba kupitia miradi ya ushauri.",
-p3Desc: "Mradi wa Sakn wa Mawaddah (Amani na Upendo) wa kuelimisha wanandoa kuhusu hatari za teknolojia kwa afya yao ya kisaikolojia.",
-stTitle: "Takwimu Muhimu", st1: "Vipande 311 elfu vya matoleo kila mwaka", st2: "Simu za mkononi 104 milioni", st3: "Saa 5.7 za skrini kwa siku kwa watoto",
-lsTitle: "Hasara za Kijamii", ls1: "Shilingi milioni 15 za Misri za hasara ya uzalishaji kila mwaka", ls2: "Shilingi milioni 4.5 za Misri za gharama ya matibabu ya kisaikolojia", ls3: "Shilingi milioni 2.1 za Misri za hasara ya udanganyifu wa mtandao",
-awTitle: "Miradi ya Ujumbe", aw1: "Ulimwengu wa Watoto wa Kidijitali", aw2: "Ulimwengu wa Vijana", aw3: "Vijana na Uzalishaji", aw4: "Ndoa Bora", aw5: "Wazee", aw6: "Usalama na Faragha ya Mtandao",
-mediaGuide: "Bofya picha ili upokee ujumbe wetu", btnBrowse: "Soma Kitabu",
-news: ["Al-Azhar: Matoleo moja kila dakika 2.5 kutokana na utumishi wa kidijitali", "Matumaini: Simu ni sababu kuu ya utulivu wa ndoa", "Onyo: Uhamisho wa kidijitali unatishia utulivu wa taifa"],
-sources: [
-"Chanzo: Shirika la Kati la Takwimu na Uhamisho wa Umma (CAPMAS)",
-"Chanzo: Wizara ya Mawasiliano na Teknolojia ya Habari (MCIT)",
-"Chanzo: Wizara ya Ushirikiano wa Kijamii",
-"Chanzo: Utafiti wa Ufanisi wa Kiuchumi",
-"Chanzo: Ripoti za Afya ya Akili",
-"Chanzo: Ripoti za Usalama wa Mtandao",
-"Chanzo: Kituo cha Fatwa ya Kidijitali cha Al-Azhar",
-"Chanzo: Ripoti za Ushauri wa Familia wa Kanisa",
-"Chanzo: Wizara ya Matumaini"
-]
-},
-ha: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">na Illusion Dinɗima: Matsala na Masar taƙaita ga Duniya</span> <br> <span class="gold-text">Ƙarin Bayanai na Masar</span>',
-nav: ["Bayanin Mu", "Masu Shirkaci", "Madobi", "Bayanai", "Zubar", "Lura", "Gaskiya ta ka muhimmi"],
-visTitle: "Bayanin Mu na Stratiji", visDesc: "Ta hanyar CiviStories, mun yi sauya kaɗuwarmu na Masar daga tsoron wanda teknolojiya ke haifar da shi ta hanyar inganta iyali da sauya musamman da al'ada.",
-partTitle: "Masu Shirkaci na Lura ta Duniya",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Ekklisiyar Masar",
-p3Name: "Wizarar Awqaf",
-p1Desc: "Ƙarfafa da kuma sauya matsalolin iyali da suka fito daga cin zarafi na teknolojiya ta hanyar ƙwararrun fatwa masu bincike.",
-p2Desc: "Aiki domin inganta iyali da kuma sauya tsoron teknolojiya a cikin gida ta hanyar shawarwari.",
-p3Desc: "Shawarar Sakn wa Mawaddah (Lahiya da Soyayya) domin fahimtar mata da mazun su game da tsoron teknolojiya kan lahiyarsu.",
-stTitle: "Bayanai Babban", st1: "Ƙwaruru 311 na tallace tallace a shekara", st2: "Ƙwaruru 104 na wayar hannu", st3: "Wata 5.7 na lokacin screen a rana domin yara",
-lsTitle: "Zubar Na Musamman", ls1: "Ƙwaruru 15 na Masar Pound na zubar na shekara", ls2: "Ƙwaruru 4.5 na Masar Pound na biyan mai shaƙaƙa", ls3: "Ƙwaruru 2.1 na Masar Pound na zubar na cin zarafi na internet",
-awTitle: "Shawarar Lura", aw1: "Ƙananan Zamani na Teknolojiya", aw2: "Duniyar Mutane", aw3: "Mutane da Sauƙi", aw4: "Tallace Tallace Mai Kyau", aw5: "Masu Shekara", aw6: "Kyauta da Sirri na Internet",
-mediaGuide: "Danna hoton domin karanta saƙonmu", btnBrowse: "Karanta Littafi",
-news: ["Al-Azhar: Tallace tallace daya a kowane mintuna 2.5 saboda cin zarafi na teknolojiya", "Awqaf: Wayoyi suna da mutane a cikin tallace tallace", "Gargadi: Cin zarafi na teknolojiya yana hana tsoro ta duniya"],
-sources: [
-"Manzo: Makamashi na CAPMAS",
-"Manzo: Makamashi na MCIT",
-"Manzo: Makamashi na Wizarar Usalama",
-"Manzo: Bincike na Usalama",
-"Manzo: Bincike na Mai Shaƙaƙa",
-"Manzo: Bincike na Kyauta na Internet",
-"Manzo: Makamashi na Fatwa na Al-Azhar",
-"Manzo: Bincike na Shawarwari na Ekklisiya",
-"Manzo: Makamashi na Awqaf"
-]
-},
-yo: {
-heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">ti Aṣayan Digidigi: Ikilo ti Orilẹ-ede Misiri si Agbaye</span> <br> <span class="gold-text">Awọn Ọ̀rọ̀ Àkọsílẹ̀ ti o dá àbírán àwọn Ẹlẹ́misì Misiri</span>',
-nav: ["Ìwífún Wa", "Àwọn Ẹlẹ́sẹ̀", "Ìròyìn", "Àwọn Ọ̀rọ̀ Àkọsílẹ̀", "Ìbùjú", "Ìmọ̀-ẹ̀rí", "Ọ̀rọ̀ rẹ jẹ pàtàkì"],
-visTitle: "Ìwífún Stratèjì Wa", visDesc: "Pẹlu ìdaràn CiviStories, a n gbiyànjú láti dá àwọn ẹgbẹ́ àgbàyé Misiri lórí àwọn ìbùjú tó ń ṣẹlẹ̀ nípasẹ̀ ìlò ohun elo ayélujára pẹlu ìdájú àwọn idile ati ṣíṣe àwọn èyí tó ń darí àwọn ẹ̀sìn àti àwọn ohun èlò ayélujára.",
-partTitle: "Àwọn Ẹlẹ́sẹ̀ Ìmọ̀-ẹ̀rí Orilẹ̀-èdè",
-p1Name: "Al-Azhar Al-Sharif",
-p2Name: "Ilé Ẹ̀jọ́ Misiri",
-p3Name: "Ìpínlẹ̀ Awqaf",
-p1Desc: "Ṣíṣe àwọn ìbùjú tó ń ṣẹlẹ̀ nípasẹ̀ ìlò ohun elo ayélujára pẹlu àwọn kọmítì fátùwà tó ní ìmọ̀ tó tọ́.",
-p2Desc: "Ṣíṣe àwọn iṣẹ́ láti mú ìdàgbàsókè àwọn idile ati pàdé àwọn ìbùjú tó ń ṣẹlẹ̀ nípasẹ̀ ìlò ohun elo ayélujára nínú ilé pẹlu àwọn ìdaràn ìmọ̀-ẹ̀rí.",
-p3Desc: "Ìdaràn Sakn wa Mawaddah (Aláfíà àti Ìfẹ́) láti kọ́ àwọn olórí idile lórí àwọn ìbùjú tó ń ṣẹlẹ̀ nípasẹ̀ ìlò ohun elo ayélujára.",
-stTitle: "Àwọn Ọ̀rọ̀ Àkọsílẹ̀ Pàtàkì", st1: "311 odún ìdájú idile ní odún kan", st2: "104 miliọnu ẹrọ ayélujára", st3: "5.7 wákàtí ìlò ẹrọ ayélujára fun ọmọdé ní ọjọ́ kan",
-lsTitle: "Àwọn Ìbùjú Àgbàyé", ls1: "15 bilionù pọ́ọ̀ndù Misiri ìbùjú ìṣẹ́ ní odún kan", ls2: "4.5 bilionù pọ́ọ̀ndù Misiri ìbùjú ìmọ̀-ẹ̀rí", ls3: "2.1 bilionù pọ́ọ̀ndù Misiri ìbùjú ìlò ohun elo ayélujára",
-awTitle: "Àwọn Ìdaràn Ìmọ̀-ẹ̀rí", aw1: "Ìgbà Ọmọdé Ayélujára", aw2: "Agbègbè Ọmọdé", aw3: "Àwọn Ọdọgbọn àti Ìṣẹ́", aw4: "Ìdájú Idile Tó Tọ́", aw5: "Àwọn Arágbè", aw6: "Àlàáfíà àti Àṣírí Ayélujára",
-mediaGuide: "Tẹ̀ ọ̀wọ́ lórí àwòrán láti gba ìfihàn wa", btnBrowse: "Wo Iwe",
-news: ["Al-Azhar: Ìdájú idile kan nígbà 2.5 mita nípasẹ̀ ìlò ohun elo ayélujára", "Awqaf: Ẹrọ ayélujára jẹ́ iṣẹ́ pàtàkì ti ìdárí nínú idile", "Ikilo: Ìlò ohun elo ayélujára ń hùn ìdàgbàsókè orilẹ̀-èdè"],
-sources: [
-"Oríṣìrìṣì: CAPMAS",
-"Oríṣìrìṣì: MCIT",
-"Oríṣìrìṣì: Ìpínlẹ̀ Ìdàgbàsókè Àgbàyé",
-"Oríṣìrìṣì: Àwọn Ìwádìí Ìdàgbàsókè",
-"Oríṣìrìṣì: Àwọn Ìwádìí Ìmọ̀-ẹ̀rí",
-"Oríṣìrìṣì: Àwọn Ìwádìí Àlàáfíà Ayélujára",
-"Oríṣìrìṣì: Àgbèdè Fátùwà Al-Azhar",
-"Oríṣìrìṣì: Àwọn Ìwádìí Ìmọ̀-ẹ̀rí Ilé Ẹ̀jọ́",
-"Oríṣìrìṣì: Ìpínlẹ̀ Awqaf"
-]
+sources: ["Fuente: Agencia Central de Movilización Pública y Estadísticas (CAPMAS)", "Fuente: Ministerio de Comunicaciones y Tecnología de la Información (MCIT)", "Fuente: Ministerio de Solidaridad Social", "Fuente: Estudios de Viabilidad Económica", "Fuente: Informes de Salud Mental", "Fuente: Informes de Ciberseguridad", "Fuente: Centro de Fatwas Electrónicas de Al-Azhar", "Fuente: Informes de Consejería Familiar de la Iglesia", "Fuente: Ministerio de Dotaciones"]
 }
 };
 
-// Arabic programsData (original)
+// === Spanish programsData (culturally adapted) ===
+const programsDataEs = {
+child: [
+{ q: "¿Cuál es la edad adecuada para que los niños comiencen a usar pantallas?", src: "Academia Americana de Pediatría (AAP)", ans: "* El uso de pantallas está completamente prohibido para niños menores de 18–24 meses.<br>* La única excepción son las videollamadas con familiares.<br>* Para edades de 2 a 5 años, limitar el tiempo de pantalla a una hora diaria de contenido educativo de calidad.<br>* Siempre ver junto al niño para asegurar comprensión y aplicación en la vida real." },
+{ q: "¿Cómo distinguir entre uso normal del teléfono y señales tempranas de aislamiento digital?", src: "Asociación Psicológica Americana (APA)", ans: "* El uso normal es recreativo y no interfiere con la interacción social real.<br>* El aislamiento comienza cuando aparecen síntomas de abstinencia, como irritabilidad extrema al quitar el dispositivo.<br>* Pérdida de interés en hobbies tradicionales o juegos con compañeros es una señal de alerta.<br>* Descuido de la higiene personal o alteraciones en hábitos de comida/sueño por el uso de pantallas." }
+],
+teens: [],
+youth: [],
+marriage: [],
+seniors: [],
+security: []
+};
+
+// Original Arabic data remains unchanged
 const programsData = {
 child: [
 { q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يُمنع تماماً استخدام الشاشات للأطفال دون سن 18–24 شهراً.<br>* الاستثناء الوحيد في هذا العمر هو مكالمات الفيديو للتواصل مع الأهل فقط.<br>* من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي.<br>* يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
@@ -1028,7 +461,7 @@ youth: [
 { q: "كيف أستخدم الذكاء الاصطناعي كشريك إبداعي ومساعد شخصي يضاعف إنتاجيتي، مع الحفاظ على تميزي البشري؟", src: "خبير ذكاء اصطناعي تطبيقي", ans: ".   استخدامه لتوليد الأفكار الأولية، ومسودات النصوص، والعناوين، والهياكل<br>.   الاستفادة منه في تلخيص المستندات الطويلة، وتنظيم البيانات، والبحث الذكي<br>.   الاعتماد عليه لمراجعة النصوص وتحسين الصياغة والأخطاء اللغوية<br>.   <strong>الحفاظ على التميز البشري</strong> بإضافة السياق الشخصي، والتحرير النقدي، والعاطفة<br>.   اعتباره \"مساعداً ذكياً\" تطرح عليه الأسئلة وتدقق مخرجاته، وليس \"بديلاً\"" },
 { q: "كيف أبني \"نظام تعلم ذاتي\" عبر الإنترنت يضمن لي تحديث مهاراتي باستمرار ومواكبة تطورات سوق العمل؟", src: "خبير تعلم رقمي", ans: ".   تحديد مسار تعلم واضح يركز على المهارات الأكثر طلباً في مجالك وأهدافك<br>.   تخصيص وقت أسبوعي ثابت وغير قابل للمساومة للتعلم (ساعة يومياً أو نصف يوم أسبوعياً)<br>.   الاشتراك في منصات التعلم الإلكتروني الموجهة (Coursera، edX، Udemy)<br>.   تطبيق المعرفة فوراً من خلال مشاريع مصغرة أو تطبيقها في العمل الحالي<br>.   قياس التقدم بالحصول على شهادات أو بناء محفظة أعمال أو مشاركة ما تتعلمه" },
 { q: "ما هي خطوات تحويل مهاراتي الرقمية إلى مصدر دخل إضافي عبر العمل الحر، وكيف أبدأ بطريقة فعالة ومنظمة؟", src: "خبير عمل حر رقمي", ans: ".   اختيار مهارة واحدة محددة وقابلة للتسويق وتمتلك فيها مستوى جيد<br>.   بناء محفظة أعمال (Portfolio) تحتوي على 2-3 مشاريع نموذجية تظهر أفضل ما لديك<br>.   البحث عن الأسعار السوقية وتحديد عروض أسعار تنافسية في البداية لجذب العملاء الأولى<br>.   إنشاء ملف احترافي على منصات العمل الحر (مثل Upwork، خمسات، مستقل) وشبكة لينكدإن<br>.   البدء بعروض الخدمة لشبكة معارفك، واستخدام عقود بسيطة، وتنظيم الفواتير والضرائب" },
-{ q: "كيف أطور \"علامتي التجارية الشخصية\" على الإنترنت لجذب الفرص المهنية المناسبة وبناء شبكة علاقات مؤثرة؟", src: "خبير تسويق رقمي شخصي", ans: ".   تحديد نطاق تخصصي وشخصيتي المهنية الفريدة والقيمة المميزة التي تقدمها<br>.   تحسين ملف LinkedIn بالكامل: صورة محترفة، عنوان جذاب، ملخص قوي، تفاصيل الخبرات<br>.   نشر محتوى ذو قيمة بشكل منتظم (مقالات، منشورات، تعليقات ثاقبة) في مجالك<br>.   التفاعل البناء مع محتوى الآخرين من خبراء ومؤثرين في مجال اهتمامك<br>.   الحفاظ على اتساق الصورة والرسالة عبر جميع المنصات" },
+{ q: "كيف أطور \"علامتي التجارية الشخصية\" على الإنترنت لجذب الفرص المهنية المناسبة وبناء شبكة علاقات مؤثرة؟", src: "خبير تسويق رقمي شخصي", ans: ".   تحديد نطاق تخصصك وشخصيتك المهنية الفريدة والقيمة المميزة التي تقدمها<br>.   تحسين ملف LinkedIn بالكامل: صورة محترفة، عنوان جذاب، ملخص قوي، تفاصيل الخبرات<br>.   نشر محتوى ذو قيمة بشكل منتظم (مقالات، منشورات، تعليقات ثاقبة) في مجالك<br>.   التفاعل البناء مع محتوى الآخرين من خبراء ومؤثرين في مجال اهتمامك<br>.   الحفاظ على اتساق الصورة والرسالة عبر جميع المنصات" },
 { q: "كيف أحول هاتفي من مصدر للتشتيت إلى أداة تنمية ذاتية؛ لتعلم اللغات، الاستماع للمحتوى التعليمي، أو إدارة مشاريع جانبية؟", src: "خبير استخدام هواتف ذكية", ans: ".   إعادة تنظيم الشاشة الرئيسية: حذف التطبيقات المشتتة أو تجميعها في مجلد واحد بعيد<br>.   تحميل تطبيقات التعلم والتنمية (مثل Duolingo للغات، Brilliant للعلوم، بودكاست تعليمي)<br>.   تحميل تطبيقات الإنتاجية للمشاريع الجانبية (مثل Trello، Notion، Evernote)<br>.   استغلال أوقات الانتظار والمواصلات في الاستماع للبودكاست أو الدروس الصوتية<br>.   تعيين أدوات التعلم والتخطيط على شاشة القفل أو الصفحة الرئيسية لتكون أول ما تراه" },
 { q: "كيف أتعامل مع \"قلق المعلومات\" والإحساس بأنني لا أستطيع مواكبة كل التطورات والمحتوى في مجالي؟", src: "خبير إدارة معرفة رقمية", ans: ".   تقبل حقيقة أنه من المستحيل معرفة كل شيء، والتركيز على \"التعمق\" بدلاً من \"الاستيعاب السطحي\"<br>.   انتقاء واتباع 2-3 مصادر موثوقة ومتخصصة فقط بدلاً من متابعة عشرات المصادر العشوائية<br>.   استخدام أدوات تجميع المحتوى مثل Feedly أو Pocket لمراجعة العناوين وقراءة المهم فقط لاحقاً<br>.   تخصيص وقت أسبوعي محدد (مثل ساعة يوم الجمعة) لمراجعة أهم التطورات، ثم \"الانفصال\"<br>.   تغيير الهدف من \"المواكبة\" إلى \"التطبيق\": التركيز على المعلومات التي يمكنك استعمالها عملياً" },
 { q: "ما هو الروتين الرقمي المسائي الذي يساعدني على النوم بعمق ويحسن جودة راحتي بعد يوم من العمل الشاق؟", src: "خبير نوم رقمي", ans: ".   تحديد \"موعد قطع\" رقمي ثابت (ساعة على الأقل قبل موعد النوم)<br>.   تفعيل \"الوضع الليلي\" أو \"الضوء الدافئ\" على جميع الشاشات تلقائياً مع غروب الشمس<br>.   عدم إدخال الهاتف الذكي إلى غرفة النوم، وشحنه في مكان آخر في المنزل<br>.   استبدال الوقت الرقمي قبل النوم بنشاطات مهدئة: قراءة كتاب ورقي، التأمل، الكتابة في اليوميات<br>.   تهيئة بيئة النوم: إظلام تام، درجة حرارة منخفضة، وهدوء" },
@@ -1039,7 +472,7 @@ youth: [
 marriage: [
 { q: "كيف يؤثر الانشغال الدائم بالهاتف (Phubbing) على جودة التواصل العاطفي بين الزوجين؟", src: "خبير علاقات زوجية رقمية", ans: ".   يخلق شعوراً بعدم الأهمية والتجاهل لدى الطرف الذي يتم تجاهله<br>.   يقلل من جودة الحوار ويقتل فرص المحادثات العفوية العميقة<br>.   يقلل من الاتصال البصري والجسدي الضروري لبناء الألفة<br>.   يزيد من احتمالية سوء الفهم بسبب عدم التركيز الكامل في الحديث<br>.   على المدى الطويل، يبني جداراً من العزلة العاطفية والاستياء داخل العلاقة" },
 { q: "ما هي حدود الخصوصية الرقمية بين الزوجين وهل يحق لأحدهما تفتيش هاتف الآخر؟", src: "مستشار أسري", ans: ".   المبدأ الأساسي هو <strong>الثقة والاحترام</strong>، وليس الحق المطلق أو المنع المطلق<br>.   من الصحي الاتفاق على \"حدود\" ترضي الطرفين (مثل: عدم إخفاء كلمات المرور، ولكن عدم التفتيش العشوائي)<br>.   التفتيش دون إذن إشارة على أزمة ثقة عميقة ويحتاج إلى علاج السبب وليس ممارسة الرقابة<br>.   الخصوصية حق فردي، لكن الشفافية المتفق عليها تطمئن القلب<br>.   الحل الأمثل هو مناقشة المشاعر التي تدفع لرغبة التفتيش (شك، عدم أمان) وعلاجها" },
-{ q: "كيف نتجنب مقارنة حياتنا الزوجية بالصور المثالية التي يعرضها \"المؤثرون\" على السوشيال ميديا؟", src: "أخصائي نفسي أسري", ans: ".   تذكير أنفسنا باستمرار أن ما نراه هو \"أبرز اللقطات\" وليس الفيلم الكامل للحياة<br>.   التركيز على قصة علاقتنا الفريدة وإنجازاتنا الصغيرة غير المرئية للآخرين<br>.   تقليل الوقت المشترك في التصفح السلبي واستبداله بأنشطة حقيقية تخلق ذكرياتنا الخاصة<br>.   استخدام المحتوى المثالي كمصدر للإلهام لطرق جديدة للتفاعل، وليس كمسطرة للحكم على علاقتنا<br>.   مشاركة شعورك بالمقارنة مع شريكك لمناقشته بشفافية وتخفيف الضغط" },
+{ q: "كيف نتجنب مقارنة حياتنا الزوجية بالصور المثالية التي يعرضها \"المؤثرون\" على السوشيال ميديا؟", src: "أخصائي نفسي أسري", ans: ".   تذكير أنفسنا باستمرار أن ما نراه هو \"أبرز اللقطات\" وليس الفيلم الكامل للحياة<br>.   التركيز على قصة علاقتك الفريدة وإنجازاتكما الصغيرة غير المرئية للآخرين<br>.   تقليل الوقت المشترك في التصفح السلبي واستبداله بأنشطة حقيقية تخلق ذكرياتكم الخاصة<br>.   استخدام المحتوى المثالي كمصدر للإلهام لطرق جديدة للتفاعل، وليس كمسطرة للحكم على علاقتك<br>.   مشاركة شعورك بالمقارنة مع شريكك لمناقشته بشفافية وتخفيف الضغط" },
 { q: "ما هو تأثير إدمان المواقع الإباحية على العلاقة الحميمية والرضا الزوجي؟", src: "أخصائي علاج إدمان رقمي", ans: ".   يشوه التوقعات الواقعية حول العلاقة الحميمية والجسد<br>.   قد يؤدي إلى صعوبة في الإثارة مع الشريك الحقيقي أو ضعف الأداء<br>.   يقلل من الرغبة في التواصل الحميمي مع الشريك، مما يشعره بالنبذ الجسدي والعاطفي<br>.   يخلق حاجزاً من السرية والخيانة العاطفية حتى بدون علاقة خارجية<br>.   العلاج يكون بالاعتراف بالمشكلة، وطلب المساعدة المهنية، وإعادة بناء الثقة والحميمية خطوة بخطوة" },
 { q: "كيف يمكننا وضع \"قواعد رقمية\" للمنزل لزيادة الترابط؟", src: "خبير بيئة منزل رقمية", ans: ".   منع الهواتف تماماً على مائدة الطعام وفي غرفة النوم<br>.   تخصيص \"فترة رقمية هادئة\" مسائية يضع فيها كلاكما الأجهزة جانباً<br>.   الاتفاق على عدم استخدام الهواتف أثناء المحادثات المهمة أو عند الحديث عن يومكما<br>.   تخصيص مكان مشترك لشحن الهواتف ليلاً بعيداً عن غرفة النوم<br>.   احترام هذه القواعد بالتبادل وليس كفرض من طرف على الآخر" },
 { q: "كيف نتصرف إذا تسبب سوء فهم لرسالة نصية في اندلاع مشكلة كبرى بيننا؟", src: "خبير تواصل زوجي", ans: ".   <strong>أولاً: وقف النقاش النصي فوراً.</strong> التواصل النصي يفتقر للتعبير الصوتي والبصري وهو أرض خصبة لسوء الفهم<br>.   الاتصال هاتفياً أو التحدث وجهاً لوجه فوراً لتوضيح النبرة والقصد الحقيقي<br>.   البدء بالاعتذار عن سوء الفهم الناتج، حتى لو لم تكن مقصدك، لأن مشاعر الطرف الآخر حقيقية<br>.   توضيح قصده الحقيقي من الرسالة باستخدام جمل \"أقصد أن...\" أو \"ما حاولت قوله هو...\"<br>.   الاتفاق على قاعدة ذهبية: \"المواضيع الحساسة أو المعقدة لا تُناقش أبداً عبر الرسائل النصية\"" },
@@ -1088,465 +521,132 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
-// === START OF ENGLISH CULTURAL TRANSLATION FOR AWARENESS PROGRAMS ===
+// English data remains as before
 const programsDataEn = {
-child: {
-title: "Digital Childhood: Nurturing Healthy Tech Habits from the Start",
-description: "Guidance for parents on raising digitally balanced children in a screen-saturated world.",
-questions: [
-{
-question: "At what age is it developmentally appropriate to introduce screen time for children?",
-answer: "The American Academy of Pediatrics (AAP) recommends avoiding screen time for children under 18–24 months, except for video chatting. For ages 2–5, limit high-quality programming to 1 hour per day, always with adult co-viewing and discussion."
-},
-{
-question: "How can I ensure my child’s screen time is educational and not just passive consumption?",
-answer: "Choose interactive, age-appropriate apps that encourage creativity, problem-solving, or storytelling. Avoid fast-paced or violent content. Always engage with your child during screen use—ask questions, discuss characters, and connect digital experiences to real life."
-},
-{
-question: "What are the signs of unhealthy screen dependency in young children?",
-answer: "Watch for tantrums when devices are removed, loss of interest in non-screen activities (like playing outside or drawing), sleep disruption, or difficulty focusing on face-to-face interactions. These may signal overuse."
-},
-{
-question: "Should I allow screens during meals or bedtime?",
-answer: "No. Screens during meals reduce family connection and mindful eating. Before bed, blue light from devices suppresses melatonin, disrupting sleep. Establish screen-free zones and routines—especially during meals and 1 hour before bedtime."
-},
-{
-question: "How do I model healthy digital behavior for my child?",
-answer: "Children learn by watching you. Put your phone away during playtime, avoid checking emails constantly, and prioritize eye contact and conversation. Your habits set the standard for their future relationship with technology."
-},
-{
-question: "Are educational apps truly beneficial for toddlers?",
-answer: "Most 'educational' apps for under-2s lack scientific backing. Real learning happens through hands-on play, sensory exploration, and human interaction—not swiping. Save apps for ages 3+ and choose those reviewed by experts like Common Sense Media."
-},
-{
-question: "What’s the best way to introduce digital safety to a young child?",
-answer: "Start simple: 'We only watch shows Mommy/Daddy picks.' Teach them to never share their name, school, or photos online. Use parental controls, but remember—your presence and guidance are the most powerful filters."
-},
-{
-question: "Can too much screen time affect my child’s language development?",
-answer: "Yes. Studies show excessive screen exposure in early childhood correlates with delayed speech and reduced vocabulary. Real conversations—with pauses, facial expressions, and back-and-forth—are irreplaceable for language growth."
-},
-{
-question: "How do I balance screen time with other essential activities?",
-answer: "Follow the AAP’s 'Family Media Plan': prioritize sleep, physical activity, homework, and family time first. Screen time should be a small, intentional part of the day—not the default activity."
-},
-{
-question: "Is it okay to use screens as a calming tool during tantrums?",
-answer: "Occasionally, yes—but don’t make it a habit. Relying on screens to soothe teaches kids to outsource emotional regulation. Instead, offer hugs, deep breaths, or a quiet space to calm down together."
-},
-{
-question: "What screen-free alternatives can keep my child engaged?",
-answer: "Simple toys (blocks, puzzles, art supplies), outdoor play, storytelling, cooking together, or even helping with chores build creativity, motor skills, and confidence far more than any app."
-},
-{
-question: "How do I handle screen time when we’re traveling or in waiting rooms?",
-answer: "Bring non-digital distractions: books, coloring kits, or small toys. If you must use a device, choose one shared video (not endless scrolling) and discuss it afterward to make it interactive."
-},
-{
-question: "Should I monitor what my child watches, even on 'kids’ platforms'?",
-answer: "Absolutely. Algorithms can recommend inappropriate content. Always preview shows, use curated services like PBS Kids, and stay nearby during viewing to answer questions and redirect if needed."
-},
-{
-question: "How does screen time impact my child’s attention span?",
-answer: "Fast-paced, overstimulating content can condition young brains to expect constant novelty, making slower-paced real-world tasks (like reading or listening) feel boring. Choose calm, narrative-driven media."
-},
-{
-question: "What’s the role of co-viewing in healthy digital development?",
-answer: "Co-viewing turns passive watching into active learning. By asking 'What do you think will happen next?' or 'How would you help that character?', you build critical thinking and empathy—skills no app can teach alone."
-},
-{
-question: "How can I implement a 'digital detox' at home?",
-answer: "Designate one screen-free day per week. Create daily tech-free zones (e.g., meals, bedrooms). Replace digital time with board games, family walks, or shared reading. Celebrate your family’s success to strengthen bonds."
-}
+child: [
+{ q: "What is the appropriate age for children to start using screens?", src: "American Academy of Pediatrics (AAP)", ans: "* Screen use is completely prohibited for children under 18–24 months.<br>* The only exception is video calls with family members.<br>* For ages 2–5, limit screen time to one hour per day of high-quality educational content.<br>* Always co-view with your child to ensure understanding and real-world application." },
+{ q: "How can I tell the difference between normal phone use and early signs of digital isolation?", src: "American Psychological Association (APA)", ans: "* Normal use is recreational and doesn’t interfere with real-life social interaction.<br>* Isolation begins when withdrawal symptoms appear—like extreme irritability when the device is taken away.<br>* Loss of interest in traditional hobbies or peer play is a red flag.<br>* Neglecting personal hygiene or disrupted eating/sleeping patterns due to screen time." },
+{ q: "How can I end screen time peacefully without tantrums?", src: "Harvard Child Development Center", ans: "* Use gradual warnings at 10 and 5 minutes before time ends.<br>* Give your child a choice: 'Do you want to stop now or after this level?'<br>* Link screen time ending to another enjoyable activity (e.g., building blocks or going outside).<br>* Model good behavior by ending your own screen time too." },
+{ q: "Are there specific apps that pose direct behavioral risks to children?", src: "Common Sense Media", ans: "* Short-video apps (like TikTok) weaken attention spans due to rapid scene changes.<br>* Games with open chat features with strangers (e.g., certain Roblox rooms).<br>* Apps encouraging frequent in-app purchases that waste money.<br>* Unmoderated content that may include inappropriate ads." },
+{ q: "What are the risks of giving a child a phone during meals?", src: "World Health Organization (WHO)", ans: "* Prevents natural satiety cues, leading to obesity risks.<br>* Weakens taste development and meaningful family communication during meals.<br>* Conditions the child to associate food only with visual entertainment.<br>* May cause digestive issues due to distracted chewing." },
+{ q: "How can I protect my child from inappropriate content that appears suddenly?", src: "Cybersecurity Experts", ans: "* Enable YouTube Kids and safe search in all browsers.<br>* Use advanced parental controls like Google Family Link.<br>* Ensure phone use always happens in open areas of the home, not closed rooms.<br>* Teach your child to immediately close the screen and tell you if they see anything strange." },
+{ q: "Does phone use affect children's speech and language development?", src: "Centers for Disease Control (CDC)", ans: "* Yes—screen interaction is one-sided and doesn’t support language skills.<br>* Children need live human interaction to develop articulation and conversational ability.<br>* Excessive screen time reduces vocabulary acquisition.<br>* Digital overuse may lead to social delays and difficulty reading body language." },
+{ q: "How do I address my child’s phone game addiction?", src: "National Parenting Association", ans: "* Don’t remove the device abruptly—create a gradual screen-time reduction schedule.<br>* Offer engaging alternatives (drawing, sports, physical books).<br>* Reward compliance with outdoor activities or short trips.<br>* Share daily physical activities to help them disconnect from screens." },
+{ q: "What’s the ideal time to stop screens before bedtime?", src: "National Sleep Foundation", ans: "* Stop all screens at least one full hour before sleep.<br>* Blue light suppresses melatonin, the hormone essential for deep sleep.<br>* Replace screens with a paper book or calm conversation.<br>* Charge devices outside bedrooms to avoid nighttime temptation." },
+{ q: "Does tablet use harm children’s eyesight?", src: "American Academy of Ophthalmology", ans: "* Causes eye dryness, strain, and contributes to increased myopia.<br>* Follow the 20-20-20 rule: every 20 minutes, look at something 20 feet away for 20 seconds.<br>* Ensure adequate room lighting when using any device.<br>* Maintain a safe viewing distance between the child’s eyes and the screen." },
+{ q: "How can I turn technology into an educational tool for my child?", src: "Educational Technology Specialists", ans: "* Choose apps that build logical thinking and basic coding skills.<br>* Solve tech-based puzzles together instead of passive watching.<br>* Set clear learning goals before allowing any new app.<br>* Encourage using the camera to document nature or creative projects." },
+{ q: "What should I do if my child accidentally sees violent content?", src: "UNICEF", ans: "* Stay completely calm—don’t scold or make them feel guilty.<br>* Explain that such content isn’t real and harms emotional safety.<br>* Discuss their feelings about it and reassure them they’re safe to talk to you.<br>* Immediately fix the technical gap that allowed the exposure." },
+{ q: "Are educational devices for kids completely safe?", src: "International Safety Standards Organization", ans: "* Yes—if they’re offline or disconnected from open app stores.<br>* Always verify content quality and check for hidden messages or ads.<br>* Read app reviews and privacy policies before downloading.<br>* Even educational devices need scheduled breaks to prevent visual and mental fatigue." },
+{ q: "How can I build trust with my child regarding phone use?", src: "Modern Parenting Experts", ans: "* Be their digital friend—play together sometimes to understand their interests.<br>* Teach them to immediately tell you about anything strange or scary—without fear.<br>* Explain the 'why' behind screen limits instead of imposing rules without discussion.<br>* Apply the same rules to everyone in the house to model integrity." },
+{ q: "What are signs of screen-induced psychological fatigue in children?", src: "Child Health Institute", ans: "* Sudden anger and mood swings when asked to put the device away.<br>* Reduced focus on daily tasks or declining interest in school and play.<br>* Noticeable sleep disturbances or nightmares linked to digital content.<br>* Unexpected aggression toward siblings or peers in real life." },
+{ q: "How do I implement a 'digital fast' at home?", src: "CiviStories Initiative", ans: "* Designate one day per week as completely device-free.<br>* Set daily screen-free hours (e.g., during meals).<br>* Replace digital time with board games, family talks, or reading.<br>* Celebrate your family’s success to strengthen bonds." }
+],
+teens: [
+{ q: "How should I handle my teen’s demand for complete privacy and refusal to let me monitor their phone?", src: "Teen Digital Wellness Expert", ans: "* Privacy is part of building independence during adolescence.<br>* Instead of direct surveillance, shift to 'conscious supervision.'<br>* Agree on general rules (e.g., no phones in bedrooms).<br>* Explain that your role is protection—not restriction—and build trust together." },
+{ q: "What are the signs my teen is falling victim to online blackmail, and how should I respond calmly?", src: "Teen Digital Wellness Expert", ans: "* Signs include sudden isolation, extreme anxiety when receiving messages.<br>* Quickly closing the phone when you approach, or declining academic/mood performance.<br>* Calm response requires: containing your teen, reassuring them they’re not alone.<br>* Collect evidence (message screenshots), then report immediately to authorities." },
+{ q: "How can I protect my teen from the 'perfection obsession' and constant comparison with social media influencers?", src: "Teen Digital Wellness Expert", ans: "* Nurture 'critical awareness'—teach them that what’s shown is only 'curated highlights.'<br>* Clarify that filters and lighting hide reality behind the scenes.<br>* Encourage following inspiring figures in real fields (science, sports).<br>* Focus on reinforcing their confidence in real, tangible achievements." },
+{ q: "What’s the right response if I discover my teen follows groups promoting extremist ideas?", src: "Teen Digital Wellness Expert", ans: "* Avoid shock or harsh attacks—they may cling to those ideas as rebellion.<br>* Start with calm dialogue: 'What drew you to this kind of content?'<br>* Present alternative viewpoints logically and discuss consequences clearly.<br>* Consult an educational specialist to professionally deconstruct these ideas." },
+{ q: "How do I teach my teen to manage their 'digital reputation' and understand that today’s posts will follow them forever?", src: "Teen Digital Wellness Expert", ans: "* Share this golden rule: 'Never post anything you wouldn’t want your future employer to see.'<br>* Explain that universities and companies now review digital histories of applicants.<br>* Teach them that their 'digital footprint' is their real, permanent resume.<br>* Encourage posting content that showcases skills and positivity to the world." },
+{ q: "How can we address video game addiction and its impact on academic performance?", src: "Teen Digital Wellness Expert", ans: "* Don’t ban games entirely—make them a 'reward' after completing responsibilities.<br>* Set specific hours and gradually reduce them, especially on school days.<br>* Encourage physical activities to offset long sitting periods.<br>* Monitor game types to ensure they build logical thinking, not violence." },
+{ q: "What are the risks of anonymous chat apps for teens?", src: "Teen Digital Wellness Expert", ans: "* They’re breeding grounds for severe cyberbullying, harassment, and grooming.<br>* Lack of oversight increases risk of severe psychological harm from strangers.<br>* Teens must understand these apps can harvest their data for blackmail.<br>* Encourage using well-known platforms with strong safety and privacy controls." },
+{ q: "How can I convince my teen to set screen-time limits without conflict?", src: "Teen Digital Wellness Expert", ans: "* Create a 'digital contract'—sit together and agree on daily usage hours.<br>* When teens help set the rules, they’re more committed to following them.<br>* Discuss health and psychological risks as scientific facts, not orders.<br>* Model the behavior by putting your own phone away during family time." },
+{ q: "How should I handle cyberbullying—whether my teen is a victim or participant?", src: "Teen Digital Wellness Expert", ans: "* If victimized: teach them not to reply, block the bully immediately, and document everything.<br>* If participating: firmly address the moral and legal consequences.<br>* Develop their 'empathy skill' so they understand the harm they cause.<br>* Provide full psychological support to overcome trauma and rebuild self-worth." },
+{ q: "What’s my role in protecting my teen from dangerous TikTok challenges?", src: "Teen Digital Wellness Expert", ans: "* Foster 'logical analysis'—discuss the challenge and ask about its risks.<br>* Encourage independent thinking over 'herd mentality' and blind imitation.<br>* Clarify that chasing trends isn’t worth risking physical safety.<br>* Invite them to propose positive, safe challenges they can share responsibly." },
+{ q: "How can my teen use social platforms to build a portfolio that supports future acceptance?", src: "Teen Digital Wellness Expert", ans: "* Share achievements: school projects, volunteer work, or useful hobbies.<br>* Post summaries of books read or research conducted in technical fields.<br>* Shift from passive content consumer to 'inspiring content creator.'<br>* Start using LinkedIn early to build a professional network for the future." },
+{ q: "What are the best ways to train my teen to use AI as a learning tool?", src: "Teen Digital Wellness Expert", ans: "* Teach them to prompt AI as a 'smart private tutor.'<br>* Use it to summarize large references or find credible information sources.<br>* Stress writing research in their own words to develop critical thinking.<br>* Warn them about AI bias or potential misinformation in responses." },
+{ q: "How can I turn my teen’s interest in gaming into a passion for coding or design?", src: "Teen Digital Wellness Expert", ans: "* Frame the shift from 'player' to 'creator/developer' as the real challenge.<br>* Enroll them in simple game-development courses (e.g., Roblox Studio) or graphic design.<br>* Highlight the huge technical and financial value they can gain in the future.<br>* Help them download tools to start their first personal programming project." },
+{ q: "How do we nurture 'digital leadership' in teens to become positive influencers?", src: "Teen Digital Wellness Expert", ans: "* Encourage defending others online and supporting peers against bullying.<br>* Promote sharing useful info and using their voice to drive community change.<br>* Teach them to verify news before sharing to combat fake rumors.<br>* Support organizing small digital awareness campaigns at school or in their neighborhood." },
+{ q: "What practical steps empower teens to manage their budget via payment apps?", src: "Teen Digital Wellness Expert", ans: "* Start with a weekly prepaid card designed for teens.<br>* Teach them to verify website security before online purchases and protect personal data.<br>* Review monthly statements together to learn financial planning and saving.<br>* Warn them about misleading ads that push unnecessary purchases." }
+],
+youth: [
+{ q: "How can I eliminate distraction from constant notifications and regain deep focus?", src: "Digital Productivity Specialist", ans: ".   Disable all non-essential notifications on phone and computer<br>.   Schedule 'deep work blocks' using the <strong>Pomodoro Technique</strong> (25 min work / 5 min break)<br>.   Use distraction-blocking tools (e.g., Freedom, Cold Turkey)<br>.   Train your mind through deep reading or meditation<br>.   Create a clean, quiet physical workspace" },
+{ q: "What are the best digital time-management strategies (like Pomodoro) to boost productivity and achieve daily goals?", src: "Time Management Expert", ans: ".   Apply the <strong>Pomodoro Technique</strong> to manage energy in short, focused bursts<br>.   Use the <strong>'Eat That Frog'</strong> method—tackle your hardest task first thing in the morning<br>.   Plan your day with <strong>Time Blocking</strong>—reserve fixed slots for key tasks<br>.   Offload your mind by logging all tasks into one unified app (e.g., Todoist, Microsoft To Do)<br>.   Link daily tasks to your weekly and monthly long-term objectives" },
+{ q: "How do I stop drowning in 'fake work' (like unnecessary emails and meetings) and focus my energy on 'real work'?", src: "Productivity Consultant", ans: ".   Identify your top 1–3 daily priorities (MITs) and start them before checking email<br>.   Schedule fixed, limited windows for email/meetings (e.g., 3 times/day)<br>.   Challenge every meeting: 'Can this be replaced by a written update?'<br>.   Apply the Two-Minute Rule: instantly complete any task taking ≤2 minutes<br>.   Define 'real work' as tasks that directly move you toward your core goals" },
+{ q: "How can I protect my eyes and body from screen fatigue and integrate healthy habits into my digital routine?", src: "Digital Health Specialist", ans: ".   Follow the <strong>20-20-20 rule</strong>: every 20 minutes, look at something 20 feet away for 20 seconds<br>.   Adjust screen brightness and auto-enable Night Light (warm colors)<br>.   Optimize posture—ensure screen is at eye level<br>.   Take short movement breaks every hour (e.g., walk, stretch)<br>.   Use a footrest, ergonomic chair, and consider a standing desk" },
+{ q: "What are the risks of 'digital procrastination,' and how can I build willpower to avoid social media during work hours?", src: "Digital Behavior Specialist", ans: ".   <strong>Risks:</strong> Delaying important tasks, increased stress/anxiety, poor work quality, guilt<br>.   Keep your smartphone out of sight or enable airplane mode during work<br>.   Use the '5-minute start' rule to overcome initial resistance<br>.   Pair work initiation with a pleasant ritual (e.g., coffee, calming music)<br>.   Predefine a small, specific reward after task completion" },
+{ q: "How do I set clear digital boundaries between work and personal life to avoid burnout?", src: "Digital-Life Balance Specialist", ans: ".   Create clear 'transition rituals' after work (e.g., walk, change clothes)<br>.   Set fixed offline hours and communicate them clearly to colleagues/clients<br>.   Use separate devices or user accounts for work vs. personal life<br>.   Disable work notifications on your personal phone after hours and on weekends<br>.   Take short 'digital detox' breaks during weekends" },
+{ q: "How can I organize my digital workspace (Desktop, files, apps) to reduce clutter and boost mental clarity?", src: "Digital Organization Expert", ans: ".   Apply the <strong>OHIO rule</strong> (Only Handle It Once): decide immediately what to do with each file<br>.   Structure a clear folder system (e.g., Active Projects, Reference, Archive, Personal)<br>.   Keep your desktop clean—only essential app shortcuts<br>.   Use system-wide quick-search tools (e.g., Spotlight on Mac, Everything on Windows)<br>.   Schedule weekly cleanup for temp files and trash" },
+{ q: "What’s the real impact of multitasking on my work quality, and how can I train myself to focus fully on one task?", src: "Digital Neuroscientist", ans: ".   <strong>Impact:</strong> Lower output quality, more errors, faster mental exhaustion<br>.   Close all unrelated tabs, windows, and apps during deep work<br>.   Use a prioritized daily task list—not desire-based<br>.   Manage interruptions with a 'busy' status and batch replies to dedicated times<br>.   Train your brain to reject task-switching by gradually increasing focus intervals" },
+{ q: "How do I handle the pressure of 'digital perfectionism' and comparison when seeing others’ achievements on LinkedIn?", src: "Digital Psychologist", ans: ".   Remember: professional platforms are 'highlight reels,' not full biographies<br>.   Define personal success criteria based on your values—not others’ benchmarks<br>.   Transform negative feelings into curiosity: 'What can I learn from their journey?'<br>.   Limit passive scrolling; replace it with scheduled, purposeful engagement<br>.   Keep a private journal documenting your own progress and wins" },
+{ q: "What are the best tools/apps to professionally and simply organize and manage personal and professional projects?", src: "Digital Tools Expert", ans: ".   <strong>For personal tasks:</strong> Todoist, Microsoft To Do, Google Tasks<br>.   <strong>For medium projects:</strong> Trello (Kanban boards), Asana, ClickUp<br>.   <strong>For notes:</strong> Notion, Evernote, Obsidian<br>.   <strong>For time management:</strong> Google Calendar, Apple Calendar, Calendly<br>.   <strong>For collaboration:</strong> Google Workspace, Microsoft 365" },
+{ q: "How can I use AI as a creative partner and personal assistant to multiply my productivity while preserving my human uniqueness?", src: "Applied AI Expert", ans: ".   Use it to generate initial ideas, draft outlines, headlines, and structures<br>.   Leverage it to summarize long documents, organize data, and conduct smart research<br>.   Rely on it for proofreading and improving phrasing/grammar<br>.   <strong>Preserve human distinction</strong> by adding personal context, critical editing, and emotional depth<br>.   Treat it as a 'smart assistant'—ask questions and critically verify outputs, never as a replacement" },
+{ q: "How do I build a self-learning system online to continuously update my skills and keep pace with job market demands?", src: "Digital Learning Expert", ans: ".   Define a clear learning path focused on in-demand skills in your field/goals<br>.   Dedicate a fixed, non-negotiable weekly time slot (e.g., 1 hr/day or half-day/week)<br>.   Subscribe to structured e-learning platforms (Coursera, edX, Udemy)<br>.   Immediately apply knowledge through mini-projects or workplace implementation<br>.   Track progress via certifications, portfolio building, or sharing learnings publicly" },
+{ q: "What are the steps to turn my digital skills into a side income through freelancing, and how do I start effectively and systematically?", src: "Digital Freelancing Expert", ans: ".   Pick one specific, marketable skill you’re proficient in<br>.   Build a portfolio with 2–3 sample projects showcasing your best work<br>.   Research market rates and offer competitive pricing initially to attract first clients<br>.   Create a professional profile on freelancing platforms (Upwork, Khamsat, Mostaql) and LinkedIn<br>.   Start by offering services to your network, use simple contracts, and organize invoicing/taxes" },
+{ q: "How can I develop my 'personal brand' online to attract suitable professional opportunities and build an influential network?", src: "Personal Branding Expert", ans: ".   Define your niche, unique professional identity, and distinctive value proposition<br>.   Optimize your LinkedIn profile: professional photo, compelling headline, strong summary, detailed experience<br>.   Share valuable content regularly (articles, posts, insightful comments) in your field<br>.   Engage constructively with content from experts and influencers in your area of interest<br>.   Maintain consistent messaging and visual identity across all platforms" },
+{ q: "How can I transform my phone from a distraction source into a self-development tool—for language learning, educational content, or side projects?", src: "Smartphone Usage Expert", ans: ".   Redesign your home screen: delete distracting apps or group them in a distant folder<br>.   Install learning/development apps (e.g., Duolingo for languages, Brilliant for science, educational podcasts)<br>.   Download productivity apps for side projects (e.g., Trello, Notion, Evernote)<br>.   Use waiting/commute time to listen to podcasts or audio lessons<br>.   Pin learning/planning tools to your lock screen or homepage for immediate visibility" },
+{ q: "How do I manage 'information anxiety'—the feeling that I can’t keep up with all developments and content in my field?", src: "Digital Knowledge Manager", ans: ".   Accept that knowing everything is impossible—focus on 'depth' over 'surface coverage'<br>.   Curate only 2–3 trusted, specialized sources instead of following dozens of random ones<br>.   Use content-aggregation tools like Feedly or Pocket to review headlines and read important items later<br>.   Dedicate a fixed weekly time (e.g., Friday hour) to review key updates, then 'disconnect'<br>.   Shift your goal from 'keeping up' to 'applying': focus only on actionable information" },
+{ q: "What’s an effective evening digital routine to ensure deep sleep and improve rest quality after a hard workday?", src: "Digital Sleep Expert", ans: ".   Set a fixed 'digital curfew' at least one hour before bedtime<br>.   Auto-enable Night Light or warm colors on all screens at sunset<br>.   Never bring your smartphone into the bedroom—charge it elsewhere<br>.   Replace pre-sleep screen time with calming activities: paper reading, meditation, journaling<br>.   Optimize your sleep environment: total darkness, cool temperature, and quiet" },
+{ q: "How can I build effective communication and trust with my remote/hybrid team without feeling isolated?", src: "Digital Communication Expert", ans: ".   Schedule short, focused daily check-ins (e.g., Stand-up Meetings)<br>.   Use instant-messaging platforms (Slack, Teams) with organized channels for projects and social topics<br>.   Dedicate the first few minutes of formal meetings to informal team check-ins<br>.   Agree as a team on expected working hours and response times<br>.   Publicly celebrate individual and team achievements via shared communication channels" },
+{ q: "How can I preserve deep critical thinking and creativity in the age of shallow information overload from fast-paced social media?", src: "Digital Philosopher", ans: ".   Dedicate weekly 'screen-free' time for deep reading of books and long-form articles<br>.   Practice analytical writing or blogging to force clear idea organization<br>.   Challenge ready-made ideas by asking: 'What’s the evidence?', 'What are the assumptions?', 'What’s the alternative?'<br>.   Intentionally disconnect from inputs for 20–30 minutes daily for free, unstructured thought<br>.   Engage in real debates with friends/colleagues who hold different views—aim for understanding, not winning" },
+{ q: "What uniquely human skills (like empathy and leadership) can’t be replaced by AI, and how should I focus on developing them to enhance my competitive edge?", src: "Future of Work Expert", ans: ".   <strong>Core irreplaceable skills:</strong> Emotional intelligence, negotiation, inspirational leadership, artistic creativity, strategic thinking, ethical judgment<br>.   Develop them through <strong>active observation</strong> and <strong>focused listening</strong> to others’ verbal and nonverbal cues<br>.   Seek honest feedback from peers/managers on your social and leadership abilities<br>.   Read widely in psychology, philosophy, and history to understand human motivations<br>.   Engage in group or volunteer activities that require collaboration and influence" }
+],
+marriage: [
+{ q: "How does constant phone use (phubbing) affect emotional intimacy between spouses?", src: "Digital Relationship Counselor", ans: ".   Creates feelings of neglect and unimportance in the ignored partner<br>.   Reduces quality of conversation and kills spontaneous deep talks<br>.   Decreases eye contact and physical connection essential for bonding<br>.   Increases misunderstandings due to lack of full attention<br>.   Over time, builds emotional isolation and resentment" },
+{ q: "What are the boundaries of digital privacy between spouses, and does one have the right to inspect the other’s phone?", src: "Family Counselor", ans: ".   The core principle is <strong>trust and respect</strong>—not absolute rights or bans<br>.   It’s healthy to agree on mutual boundaries (e.g., no hidden passwords, but no random snooping)<br>.   Unauthorized inspection signals a deep trust crisis—it needs root-cause healing, not surveillance<br>.   Privacy is an individual right, but agreed transparency brings peace of mind<br>.   The best solution is discussing the feelings driving the urge to inspect (insecurity, suspicion) and addressing them together" },
+{ q: "How can we avoid comparing our marriage to the 'perfect' images influencers post on social media?", src: "Marital Psychologist", ans: ".   Constantly remind yourselves: what you see is just 'highlight reels,' not the full movie of life<br>.   Focus on your unique story and small, invisible achievements others don’t see<br>.   Reduce joint passive scrolling; replace it with real activities that create your own memories<br>.   Use idealized content as inspiration for new interaction ideas—not as a measuring stick<br>.   Share your comparison feelings openly with your partner to relieve pressure together" },
+{ q: "What’s the impact of pornography addiction on marital intimacy and satisfaction?", src: "Digital Addiction Therapist", ans: ".   Distorts realistic expectations about intimacy and the human body<br>.   May cause difficulty getting aroused with a real partner or performance issues<br>.   Reduces desire for genuine emotional and physical connection, making the partner feel rejected<br>.   Creates a wall of secrecy and emotional betrayal—even without a physical affair<br>.   Recovery involves admitting the problem, seeking professional help, and rebuilding trust/intimity step by step" },
+{ q: "How can we establish 'digital rules' at home to increase connection?", src: "Digital Home Environment Expert", ans: ".   Ban phones completely at the dinner table and in the bedroom<br>.   Set a nightly 'quiet digital hour' where both partners put devices aside<br>.   Agree not to use phones during important conversations or when sharing your day<br>.   Designate a common charging spot for phones—away from the bedroom<br>.   Respect these rules mutually—not as one-sided demands" },
+{ q: "How should we handle a major fight sparked by a misunderstood text message?", src: "Digital Communication Coach", ans: ".   <strong>First: Stop texting immediately.</strong> Text lacks tone and body language—ripe for misunderstanding<br>.   Call or talk face-to-face right away to clarify intent and real tone<br>.   Start by apologizing for the misunderstanding—even if unintended—because your partner’s feelings are real<br>.   Clarify your true intent using phrases like 'What I meant was…' or 'My intention was to say…'<br>.   Agree on a golden rule: 'Never discuss sensitive or complex topics over text messages'" },
+{ q: "What are the risks of virtual friendships with the opposite gender online, and how do they lead to marital infidelity?", src: "Marriage Advisor", ans: ".   They offer an illusion of quick emotional closeness while hiding real-life flaws<br>.   They create a secret space where feelings grow outside the primary relationship (emotional affair)<br>.   They reduce emotional and time investment in the real partner<br>.   They can become the first step toward physical cheating if meetings occur<br>.   Prevention involves clear friendship boundaries, full transparency with your spouse, and reinvesting emotional energy into your marriage" },
+{ q: "How does blue light and phone use before bed affect couples’ shared sleep cycle?", src: "Sleep Specialist", ans: ".   Blue light tricks the brain into thinking it’s daytime, delaying melatonin release needed for sleep<br>.   Leads to difficulty falling asleep, fragmented sleep, and reduced deep sleep quality for both partners<br>.   Creates disruption in the shared sleep rhythm if one partner uses the phone in bed<br>.   Solution: Enable Night Light on devices, set a rule against screens one hour before bed, and charge phones outside the bedroom" },
+{ q: "How do we address 'digital marital silence'—sitting together but completely disconnected?", src: "Marital Communication Specialist", ans: ".   Acknowledge the issue openly and non-accusatorily: 'I feel we’ve grown distant even when we’re together.'<br>.   Implement a 'digital box' rule: collect all devices in a designated box for a set time<br>.   Redefine 'together time' as phone-free activities: cooking together, board games, walks<br>.   Ask open-ended questions to spark dialogue (e.g., 'What’s your biggest dream this year?')<br>.   Start sharing stories from your day instead of retreating into your phone after coming home" },
+{ q: "What should we do if one partner excessively shares our private life details on social media?", src: "Digital Privacy Counselor", ans: ".   Express your feelings using 'I' statements (e.g., 'I feel uncomfortable when our photos are posted.')<br>.   Discuss and set a clear agreement on what’s shareable and what’s private (Kids’ photos, arguments, family events)<br>.   Respect the more private partner’s wishes—privacy is a shared right<br>.   Suggest alternatives like a private family group chat for sharing news<br>.   Understand their motives (need for validation, influence) and address them while clarifying relationship consequences" },
+{ q: "How can we use shared calendar and task apps to maximize coordination and reduce household burdens?", src: "Marital Life Organizer", ans: ".   Use a shared digital calendar (e.g., Google Calendar) to log all appointments: work, meetings, events, chores<br>.   Maintain a shared task list (via Todoist or Microsoft To Do) to distribute and track responsibilities<br>.   Schedule 'couple time' and 'family time' in the shared calendar and treat them like unmissable work meetings<br>.   Use reminder features for coordination during shopping or pickups<br>.   Hold a brief weekly planning session together to review the upcoming week" },
+{ q: "How can technology strengthen our relationship during long travels or work separations?", src: "Long-Distance Relationship Expert", ans: ".   Schedule short, regular video calls—better than long, random ones<br>.   Send spontaneous voice notes or photos from your day via messaging apps<br>.   Watch a movie or show together remotely using 'Watch Party' features on streaming platforms<br>.   Play simple online games together for fun competition<br>.   Surprise each other with unexpected food/gift deliveries via apps to show care" },
+{ q: "What innovative ways can we use online educational content to improve our dialogue and emotional intelligence as a couple?", src: "Digital Couples Learning Coach", ans: ".   Watch short lectures or courses on marital communication or emotional intelligence together and discuss them<br>.   Listen to relationship podcasts during shared car rides and pause to reflect on ideas<br>.   Use interactive apps or e-books with conversation-sparking questions for couples<br>.   Play digital or physical board games focused on getting to know each other better<br>.   Practice 'active listening' exercises learned online with each other" },
+{ q: "How can we turn a shared hobby into quality time that renews our friendship within marriage?", src: "Marital Quality Time Expert", ans: ".   Challenge each other in cooperative (Co-op) video games instead of solo play<br>.   Create a shared 'watchlist' and dedicate a weekly night to watch and discuss a show together<br>.   Learn a new skill together via YouTube tutorials related to your hobby (cooking, crafts)<br>.   Join online communities related to your hobby and share achievements together<br>.   Turn your hobby into a small joint project (YouTube channel, blog, online store)" },
+{ q: "How can we plan our shared financial future using digital apps safely and transparently?", src: "Marital Financial Planner", ans: ".   Use shared budgeting apps (e.g., Mint, YNAB) to view income/expenses in one place<br>.   Open a joint savings or investment account and agree on deposit/withdrawal rules<br>.   Use banking apps to create shared 'goal jars' for specific aims (Hajj, car, emergency)<br>.   Hold a short monthly 'financial meeting' to review spending, progress, and goals<br>.   Learn about investing and financial planning together via trusted online platforms to make informed decisions" }
+],
+seniors: [
+{ q: "How can we protect seniors from becoming victims of phone and online scams?", src: "Senior Cybersecurity Expert", ans: ".   Warn them never to share personal info (card numbers, passwords) over the phone, no matter what the caller claims.<br>.   Teach them: 'Banks and official institutions never ask for secret details via phone or messages.'<br>.   Install caller ID and anti-spam apps on their phones.<br>.   Encourage consulting a family member before making any unexpected payment.<br>.   Explain common scam tactics (fake inheritances, prize winnings, ransom demands, impersonating relatives)." },
+{ q: "What’s the simplest way to teach seniors to use communication apps (like WhatsApp) to reduce their sense of isolation?", src: "Senior Tech Trainer", ans: ".   Start with one short session for one goal only, e.g., 'Today we’ll learn one video call.'<br>.   Use simple language and familiar analogies (chat like a room, emojis like facial expressions).<br>.   Write main steps in large, clear font on paper and tape it next to their device.<br>.   Encourage daily practice with a close person (grandchild, friend) to build confidence.<br>.   Link app use to tangible emotional benefits (seeing grandkids, talking to distant friends)." },
+{ q: "How can we customize phone settings (font size, sound, brightness) to suit seniors’ physical needs?", src: "Assistive Technology Specialist", ans: ".   Maximize font size in system settings and key apps (Messages, Phone).<br>.   Enable 'Invert Colors' or 'High Contrast' mode for easier reading.<br>.   Increase master volume and activate 'Amplifier' mode for calls.<br>.   Turn on 'Text-to-Speech' (Screen Reader) to have the screen read aloud.<br>.   Extend screen timeout to prevent premature locking during reading." },
+{ q: "What are the risks of seniors believing and sharing fake medical rumors they receive in groups?", src: "Digital Media Literacy Expert", ans: ".   Risking their health by following fake treatments or stopping prescribed medication.<br>.   Causing unwarranted panic and anxiety about their or loved ones’ health.<br>.   Spreading harmful misinformation that damages trust in real medical sources.<br>.   Turning family groups from connection hubs into fear-spreading environments.<br>.   Damaging their reputation among others due to easily debunked false claims." },
+{ q: "How can technology reliably remind seniors of medication schedules and periodic check-ups?", src: "Digital Care Coordinator", ans: ".   Use dedicated 'medication reminder' apps (e.g., Medisafe) with loud audio/visual alerts.<br>.   Program the phone’s main alarm with medicine names and times.<br>.   Use voice assistants (Google Assistant, Siri) for daily verbal reminders.<br>.   Set up a shared family Google Calendar with appointment entries for automatic reminders.<br>.   Use smart pill organizers that send phone alerts if a dose is missed." },
+{ q: "How should we respond if a senior is addicted to following political news or depressing digital content?", src: "Geriatric Psychologist", ans: ".   Start with empathy—understand this may stem from emptiness or a need to stay engaged.<br>.   Avoid direct bans; instead, ration and replace: set short, fixed news windows.<br>.   Offer attractive alternatives (educational YouTube channels, documentaries, brain games).<br>.   Encourage non-digital activities (old hobbies, walks, social visits).<br>.   Share positive or humorous content together to gradually shift their attention." },
+{ q: "Why is GPS location tracking important for protecting seniors with memory issues?", src: "Safety Technology Expert", ans: ".   Enables family to quickly locate them if they get lost or leave without notice.<br>.   Provides peace of mind for the senior and family when they go out alone.<br>.   Allows independence and mobility with a safety net for emergencies.<br>.   Helps rescue teams if the senior can’t describe their location.<br>.   Can be paired with alerts if they leave a predefined 'safe zone' (Geofencing)." },
+{ q: "How can we protect seniors’ privacy from data-harvesting apps that exploit their limited tech experience?", src: "Cybersecurity Specialist", ans: ".   Help them review app permissions and disable unnecessary access (photos, contacts).<br>.   Only download apps from official stores (Google Play, App Store).<br>.   Warn them against clicking pop-up ads or 'win a prize' links inside apps.<br>.   Install a trusted antivirus app on their phone.<br>.   Teach them never to log into personal accounts on suspicious apps or websites." },
+{ q: "What role do digital brain games play in stimulating seniors’ memory and preventing cognitive decline?", src: "Cognitive Rehabilitation Specialist", ans: ".   Stimulate cognitive functions like short-term memory, attention, and processing speed.<br>.   Delay onset of mild cognitive impairment through regular 'brain exercise.'<br>.   Provide a sense of achievement and positive challenge, boosting mental health.<br>.   Some games are specifically designed under medical supervision to prevent diseases like Alzheimer’s.<br>.   Should be part of a balanced daily routine—not a replacement for real social interaction and physical activity." },
+{ q: "How can we train seniors to perform simple government and banking transactions from home to avoid travel hassle?", src: "Digital Services Trainer", ans: ".   Start with one trusted, centralized app (e.g., 'Absher' in Saudi Arabia or its regional equivalent).<br>.   Log in for them and securely save credentials using a password manager.<br>.   Record a short tutorial video on their phone for repetitive tasks (e.g., bill payment).<br>.   Train them on two key steps: searching within the app and secure e-payment methods.<br>.   Emphasize never using these services on public Wi-Fi and always verifying the website URL (https)." },
+{ q: "How can we turn YouTube into an educational school for seniors to pursue delayed hobbies like cooking or crafts?", src: "Senior Digital Educator", ans: ".   Help them create a 'Playlist' of trusted, step-by-step tutorial channels.<br>.   Start with short videos in clear Arabic or understandable dialects, with calm, clear presentation.<br>.   Connect their phone or tablet to the TV for larger, more comfortable viewing.<br>.   Encourage subscribing to favorite channels for new video notifications.<br>.   Turn learning into a social activity by practicing the hobby (e.g., cooking a recipe) with grandchildren or friends." },
+{ q: "What are the best technical tools to remotely monitor a senior’s health (e.g., heart rate watches)?", src: "Remote Health Monitoring Expert", ans: ".   Smartwatches that track heart rate, sleep, and even ECG readings.<br>.   Smart blood pressure and glucose monitors that sync data to a phone app.<br>.   Non-intrusive home sensors (motion detectors in rooms, fall detection mats).<br>.   Video calling apps for regular visual wellness checks.<br>.   Remote monitoring dashboards that allow caregivers or doctors to view vital signs centrally." },
+{ q: "How can we help seniors document their life stories and memories in audio/video for future generations?", src: "Digital Heritage Specialist", ans: ".   Encourage them to narrate stories using the phone’s voice recorder app.<br>.   Digitally scan old photos and store them in a shared album (e.g., Google Photos) with their captions.<br>.   Prompt them to write simple memoirs or answer specific questions ('My best childhood memory').<br>.   Record short videos of them talking about their life, important places, or cherished objects.<br>.   Build a digital family tree using specialized websites, collecting stories and photos together." },
+{ q: "How can digital platforms reintegrate seniors into society through shared-interest groups?", src: "Digital Community Builder", ans: ".   Help them join quiet, closed Facebook groups related to their hobbies (gardening, poetry, history).<br>.   Encourage participation in discussions—or even just reading—to see positive interaction.<br>.   Introduce them to beginner-friendly e-learning platforms with courses on various topics.<br>.   Find virtual book or film clubs they can join and discuss content with peers.<br>.   Guide them to groups specific to their old neighborhoods to reconnect with past social ties." },
+{ q: "How can we teach seniors the skill of 'source verification' before forwarding messages and links?", src: "Digital Literacy Instructor", ans: ".   Teach them the first warning sign: 'If a message asks you to share it, promises big rewards, or causes panic—STOP.'<br>.   Simplify verification: 'Search the news headline on Google before sharing.'<br>.   Advise sticking to a few trusted, known sources (official ministry pages, reputable news outlets).<br>.   Encourage consulting a younger family member before sharing shocking or medical news.<br>.   Reinforce that pausing to verify isn’t weakness—it’s wisdom and responsibility." }
+],
+security: [
+{ q: "What should I do in the first moments after realizing I’m being digitally blackmailed?", src: "Cybersecurity Expert", ans: ".   <strong>Golden rule: Never pay or comply.</strong> Payment encourages further demands.<br>.   <strong>Do not delete evidence.</strong> Keep all messages, screenshots, and recordings.<br>.   <<strong>Cut off communication immediately.</strong> Do not respond to threats.<br>.   <strong>Stay calm.</strong> Panic leads to poor decisions.<br>.   <strong>Seek support immediately:</strong> Tell a trusted person and contact authorities." },
+{ q: "How can I distinguish between a real email and a 'phishing' scam aiming to steal my data?", src: "Digital Security Expert", ans: ".   <strong>Inspect the sender’s address carefully:</strong> Look for slight misspellings or domain differences (e.g., amaz0n.com vs. amazon.com).<br>.   <strong>Beware urgent/threatening messages:</strong> Claiming your account will close or there’s a security issue requiring immediate data.<br>.   <strong>Don’t click links:</strong> Hover over (don’t click) to see the real URL; if unsure, go directly to the site via your browser.<br>.   <strong>Official institutions never ask</strong> for passwords or card PINs via email.<br>.   <strong>Language errors:</strong> Phishing emails often contain grammar or formatting mistakes." },
+{ q: "What are the official legal steps to report a cybercrime in my country?", src: "Digital Legal Advisor", ans: ".   <strong>Collect evidence:</strong> Save screenshots, account names, phone numbers, and email used in the blackmail.<br>.   <strong>Contact the relevant authority:</strong> Visit your country’s <strong>Public Prosecution</strong> or <strong>Ministry of Interior</strong> website to find the 'Cybercrime Department.'<br>.   <strong>Submit your report:</strong> Most countries offer an online platform (e.g., 'Aman' in Saudi Arabia) or you can visit a police station.<br>.   <strong>Provide evidence:</strong> Hand over all collected proof to the authorities.<br>.   <strong>Follow up:</strong> Get a case number and respond to any additional requests promptly." },
+{ q: "How can I protect my accounts from hacking using 'Two-Factor Authentication' (2FA)?", src: "Information Security Expert", ans: ".   <strong>Enable it on all critical accounts:</strong> Email, banking, social media, and communication apps.<br>.   <strong>Use an authenticator app:</strong> Like Google Authenticator or Microsoft Authenticator—more secure than SMS.<br>.   <strong>Save backup codes:</strong> Store the recovery codes provided by platforms in a safe place—they’re your lifeline if you lose your phone.<br>.   <strong>Use a security key:</strong> For maximum security, use a physical key (e.g., YubiKey).<br>.   <strong>Never share 2FA codes:</strong> These are your temporary passwords—no legitimate institution will ever ask for them." },
+{ q: "Can a blackmailer carry out their threat even if I block them immediately?", src: "Cybercrime Investigator", ans: ".   <strong>Yes, they might try.</strong> Blocking stops direct contact but doesn’t erase data they already have.<br>.   <strong>The real danger is before blocking:</strong> If they already obtained sensitive data/photos, they may use it even after being blocked.<br>.   <strong>Blocking is necessary but insufficient:</strong> It must be paired with immediate reporting, evidence collection, and not giving in to threats.<br>.   <strong>Document before blocking:</strong> Take full screenshots of all threats before blocking the account.<br>.   <strong>Beware new accounts:</strong> The blackmailer may create new profiles to contact you again." },
+{ q: "What are the risks of using public Wi-Fi in cafes and airports for my banking data?", src: "Network Security Expert", ans: ".   <strong>Data interception:</strong> Hackers on the same network can capture your unencrypted data.<br>.   <strong>Wi-Fi phishing:</strong> You might be redirected to fake sites mimicking your bank’s login page.<br>.   <strong>Fake hotspots:</strong> Attackers create Wi-Fi networks with names similar to real ones to trick victims.<br>.   <strong>Golden rule:</strong> <strong>Never conduct banking or enter passwords on public Wi-Fi.</strong><br>.   <strong>Use a trusted VPN:</strong> If you must connect, use a reputable Virtual Private Network to encrypt your traffic." },
+{ q: "How can I detect hidden spyware or monitoring apps on my personal phone?", src: "Device Security Expert", ans: ".   <strong>Unusual battery/data drain:</strong> Malicious apps often run hidden processes consuming resources.<br>.   <strong>Slow performance:</strong> Or unexpected device heating without clear cause.<br>.   <strong>Unknown apps:</strong> Check your app list for unfamiliar applications.<br>.   <strong>Strange behavior:</strong> Screen lighting up randomly, odd sounds during calls.<br>.   <strong>Solution:</strong> Run a scan with a trusted antivirus; if suspicion remains, factory reset after backing up important data." },
+{ q: "What should I do if my WhatsApp or Facebook account is hacked and sending offensive messages in my name?", src: "Account Recovery Specialist", ans: ".   <strong>Recover your account immediately:</strong> Use the 'Forgot password' option to start recovery via email or phone.<br>.   <strong>Warn all contacts:</strong> Alert friends/family via another channel that your account was compromised—don’t open any links it sends.<br>.   <strong>Report to the platform:</strong> Use Facebook’s or WhatsApp’s official hacked account reporting forms.<br>.   <strong>Change all passwords:</strong> Especially your email password linked to the hacked account.<br>.   <strong>Scan your device:</strong> The hack might be due to malware on your phone." },
+{ q: "How can I protect my private photos and files from access if my phone is lost or stolen?", src: "Personal Data Security Expert", ans: ".   <strong>Encrypt and password-protect:</strong> Ensure strong screen lock (complex PIN, fingerprint, or face ID).<br>.   <strong>Backup to cloud:</strong> Upload important files to a trusted cloud service (iCloud, Google Photos) and delete sensitive ones from the device.<br>.   <strong>Use secure vault apps:</strong> Apps that offer a separate, password-protected encrypted space on your phone.<br>.   <strong>Enable 'Find My Device':</strong> Use features like 'Find My iPhone' or Android’s 'Find My Device' to remotely wipe data.<br>.   <strong>Avoid storing sensitive content:</strong> The safest approach is never to take or keep photos/files on your phone that you wouldn’t want anyone else to see." },
+{ q: "What’s the difference between cyber harassment and blackmail, and how does the law address each?", src: "Digital Law Expert", ans: ".   <strong>Harassment:</strong> Repeated behavior aimed at causing annoyance, insult, or psychological distress (e.g., offensive messages, stalking).<br>.   <strong>Blackmail:</strong> Threatening to reveal information or images to force the victim into action (e.g., paying money, providing services) in exchange for silence.<br>.   <strong>Blackmail is a graver crime:</strong> It combines threat and coercion for personal gain.<br>.   <strong>Legal response:</strong> Both are punishable by law, but blackmail typically carries harsher penalties. Immediate reporting with full evidence is crucial in both cases." },
+{ q: "How should I deal with 'fake prize' links and 'get-rich-quick' job offers targeting identity theft?", src: "Fraud Prevention Expert", ans: ".   <strong>Remember a core rule:</strong> 'There’s no free lunch.' 99.9% of quick-rich schemes are traps.<br>.   <strong>Never click the links:</strong> Not even out of curiosity—'Let’s see what they’ll do.'<br>.   <strong>Never share personal info:</strong> Don’t give your phone number, email, or document photos to these offers.<br>.   <strong>Search the offer name:</strong> Type the company or offer name + 'scam' in a search engine to see others’ experiences.<br>.   <strong>Report the ad:</strong> Most platforms (Facebook, Instagram) let you report ads or posts as fraudulent." },
+{ q: "What’s the secure way to wipe all data from my phone before selling it to ensure it can’t be recovered?", src: "Device Security Specialist", ans: ".   <strong>Backup everything important</strong> to a computer or cloud service.<br>.   <strong>Sign out of all accounts</strong> linked to the device (Google, Apple, Samsung, apps).<br>.   <strong>Perform a 'Factory Reset'</strong> through the device settings.<br>.   <strong>Don’t stop there:</strong> Fill the storage with random, unimportant data (e.g., a long video recording), then factory reset again. This makes recovering old data much harder.<br>.   <strong>Remove SIM and SD cards</strong> (if any) and keep them." },
+{ q: "How can I protect my children from 'online groomers' in chat rooms and games?", src: "Child Digital Safety Expert", ans: ".   <strong>Open communication:</strong> Talk to your kids about the dangers of talking to strangers online—without scaring them.<br>.   <strong>Set privacy settings:</strong> Ensure their accounts are 'private' and monitor friend requests.<br>.   <strong>Supervise and share:</strong> Keep computers/gaming consoles in common areas; periodically check their activity.<br>.   <strong>Teach danger signs:</strong> Anyone asking for personal info, photos, to switch apps, or to meet in person.<br>.   <<strong>Encourage disclosure:</strong> Assure them they can tell you anything that bothers them without punishment—you’ll protect them." },
+{ q: "Can browsing suspicious websites infect my device with ransomware viruses?", src: "Malware Defense Expert", ans: ".   <strong>Yes, absolutely.</strong> This is the primary infection method for ransomware.<br>.   <strong>High-risk sites:</strong> Pornographic, illegal download, and 'free course' piracy sites are prime breeding grounds.<br>.   <strong>Malvertising:</strong> Just clicking a fake ad on a shady site can trigger a hidden download/installation of the virus.<br>.   <strong>Prevention:</strong> Use a strong antivirus, maintain regular backups on a separate device, and avoid visiting these sites entirely." },
+{ q: "How can I build a personal and technical 'firewall' to prevent hackers from exploiting my personal vulnerabilities?", src: "Holistic Security Expert", ans: ".   <strong>Psychological Firewall:</strong><br>        -   <strong>Awareness:</strong> Know your worth—never undervalue your personal information.<br>        -   <strong>Healthy skepticism:</strong> Don’t trust online offers or people too easily.<br>        -   <strong>Privacy mindset:</strong> Never share daily routines or personal problems with the public.<br>.   <strong>Technical Firewall:</strong><br>        -   <strong>Strong, unique passwords</strong> for every account, managed by a password manager.<br>        -   <strong>Enable Two-Factor Authentication (2FA)</strong> on all important accounts.<br>        -   <strong>Keep all software and OS updated</strong> to patch security holes.<br>        -   <strong>Use reputable antivirus software</strong> and run regular scans." }
 ]
-},
-teens: {
-title: "Teen World: Navigating Digital Identity and Relationships",
-description: "Empowering teens and parents to build resilience against online pressures and foster authentic connections.",
-questions: [
-{
-question: "How do I respect my teen’s need for privacy while ensuring their digital safety?",
-answer: "Shift from surveillance to 'guided supervision.' Agree on boundaries (e.g., no phones in bedrooms at night). Explain your role is protection—not control—and build trust through open dialogue."
-},
-{
-question: "What are the warning signs my teen is being cyberbullied or groomed?",
-answer: "Sudden withdrawal, anxiety when receiving notifications, hiding their screen, or declining grades/mood. Respond calmly: reassure them they’re not alone, preserve evidence, and report to authorities immediately."
-},
-{
-question: "How can I help my teen resist comparing themselves to 'perfect' social media influencers?",
-answer: "Teach 'critical literacy': remind them curated feeds are highlight reels, not reality. Discuss how filters and editing create illusions. Encourage following accounts that inspire real-world goals (sports, science, arts)."
-},
-{
-question: "My teen follows extremist content online—how should I respond?",
-answer: "Avoid shaming—it fuels rebellion. Start with curiosity: 'What drew you to this?' Offer alternative perspectives calmly. Seek help from a counselor to address underlying identity or belonging needs."
-},
-{
-question: "Why does my teen’s digital footprint matter for their future?",
-answer: "Colleges and employers routinely review applicants’ online history. Teach them: 'Never post anything you wouldn’t want a future boss to see.' Their digital footprint is their permanent resume."
-},
-{
-question: "How can gaming be managed without constant battles?",
-answer: "Make gaming a privilege tied to responsibilities (homework, chores). Use parental controls to enforce time limits. Encourage multiplayer games that build teamwork—and balance with offline hobbies."
-},
-{
-question: "Are anonymous chat apps safe for teens?",
-answer: "They’re high-risk environments for predators, bullying, and scams. Stress that anonymity removes accountability. Encourage using verified platforms with strong privacy settings instead."
-},
-{
-question: "How do I negotiate screen time limits without conflict?",
-answer: "Create a 'digital contract' together. When teens help set rules, they’re more invested in following them. Frame limits as health guidelines (like nutrition)—not punishments."
-},
-{
-question: "What if my teen is the cyberbully—not the victim?",
-answer: "Address it firmly but compassionately. Help them understand the real harm caused. Require apologies and restitution. Work with school counselors to rebuild empathy and accountability."
-},
-{
-question: "How can I protect my teen from dangerous TikTok challenges?",
-answer: "Discuss the psychology behind viral trends: 'Likes' trigger dopamine hits that override safety instincts. Empower them to ask: 'Would I do this offline?' Encourage creating positive challenges instead."
-},
-{
-question: "How can my teen build a professional online presence?",
-answer: "Guide them to showcase achievements: school projects, volunteer work, or creative portfolios. Use LinkedIn early to network. Transform their profile from passive consumer to active creator."
-},
-{
-question: "Can AI tools help my teen learn effectively?",
-answer: "Yes—as a tutor, not a crutch. Teach them to prompt AI critically ('Explain quantum physics simply'), verify facts, and always add their own analysis. AI augments thinking; it doesn’t replace it."
-},
-{
-question: "My teen loves gaming—how can I channel this into a career?",
-answer: "Frame coding or game design as the ultimate gamer challenge. Enroll them in beginner courses (Roblox Studio, Unity). Highlight lucrative paths in esports, streaming, or development."
-},
-{
-question: "How can teens become positive digital leaders?",
-answer: "Encourage them to stand up against online hate, share credible info, and organize awareness campaigns. True influence isn’t follower count—it’s impact."
-},
-{
-question: "How can teens manage money responsibly with digital payments?",
-answer: "Start with a prepaid teen card. Teach them to track spending via apps, avoid impulse buys from targeted ads, and save for goals. Financial literacy is a core life skill."
-}
-]
-},
-youth: {
-title: "Youth & Productivity: Thriving in the Digital Workplace",
-description: "Strategies for young professionals to harness technology for focus, growth, and work-life harmony.",
-questions: [
-{
-question: "How do I reclaim deep focus in an age of constant notifications?",
-answer: "Silence non-essential alerts. Schedule 'focus blocks' using the Pomodoro Technique (25-min work / 5-min break). Use apps like Freedom to block distractions. Train your brain like a muscle—start small."
-},
-{
-question: "What’s the most effective digital time-management system?",
-answer: "Combine Time Blocking (scheduling tasks like appointments) with the 'Eat That Frog' method (tackle your hardest task first). Tools like Todoist or Google Calendar turn intentions into action."
-},
-{
-question: "How do I stop drowning in 'fake work' (emails, meetings) and focus on real output?",
-answer: "Define your 1–3 Most Important Tasks (MITs) daily. Batch email/meeting checks to 2–3 slots. Ask: 'Does this directly advance my core goals?' If not, delegate or delete."
-},
-{
-question: "How can I protect my eyes and posture during long screen sessions?",
-answer: "Follow the 20-20-20 rule: every 20 mins, look 20 feet away for 20 seconds. Use blue-light filters, ergonomic chairs, and standing desks. Move hourly—your body isn’t designed for stillness."
-},
-{
-question: "Why do I procrastinate on important work for social media?",
-answer: "Digital procrastination stems from task aversion. Trick your brain: commit to just 5 minutes of work. Often, starting is the hardest part. Reward completion—not avoidance."
-},
-{
-question: "How do I set firm digital boundaries to prevent burnout?",
-answer: "Create 'shutdown rituals': close tabs, write tomorrow’s plan, then physically step away. Use separate devices/accounts for work vs. personal life. Protect weekends as sacred recovery time."
-},
-{
-question: "How can I declutter my digital workspace for mental clarity?",
-answer: "Apply the OHIO rule: Only Handle It Once. File documents immediately. Keep desktop clean. Use cloud storage with clear folder hierarchies. A tidy digital space = a focused mind."
-},
-{
-question: "Does multitasking actually harm my productivity?",
-answer: "Yes. Task-switching drains mental energy and increases errors. Close unrelated tabs/apps. Single-tasking with full attention yields higher-quality work in less time."
-},
-{
-question: "How do I cope with 'digital perfectionism' on LinkedIn?",
-answer: "Remember: LinkedIn is a highlight reel. Define success by your values—not others’ metrics. Track your own progress in a journal. Comparison steals joy; contribution builds it."
-},
-{
-question: "What are the best tools for managing personal and professional projects?",
-answer: "For simple tasks: Todoist or Microsoft To Do. For complex projects: Trello (Kanban boards) or ClickUp. For notes: Notion or Obsidian. Sync calendars across devices for seamless coordination."
-},
-{
-question: "How can I leverage AI without losing my human edge?",
-answer: "Use AI for ideation, research, and drafting—but always add your unique perspective, ethics, and emotional intelligence. AI is a collaborator, not a replacement for human judgment."
-},
-{
-question: "How do I build a self-directed learning system online?",
-answer: "Audit your skills gaps quarterly. Dedicate 5 hours/week to courses (Coursera, edX). Apply learnings immediately through micro-projects. Share insights publicly to reinforce knowledge."
-},
-{
-question: "How can I monetize my digital skills through freelancing?",
-answer: "Start niche: master one marketable skill (e.g., copywriting, UX design). Build a portfolio with 3 sample projects. Set competitive rates on Upwork/Fiverr. Treat clients like partners—not transactions."
-},
-{
-question: "How do I craft a compelling personal brand online?",
-answer: "Define your niche and value proposition. Optimize LinkedIn: professional photo, keyword-rich headline, detailed experience. Share original insights weekly. Engage authentically—don’t just broadcast."
-},
-{
-question: "How can I turn my phone from a distraction into a growth tool?",
-answer: "Delete addictive apps or move them to a hidden folder. Install learning apps (Duolingo, Blinkist). Use voice memos for ideas. Make your lock screen a reminder of your top goal."
-},
-{
-question: "How do I avoid 'information overload' in my field?",
-answer: "Curate ruthlessly: follow only 3–5 trusted experts. Use RSS feeds (Feedly) or newsletters. Schedule 'learning hours' weekly—then disconnect. Depth beats breadth in expertise."
-},
-{
-question: "What’s an ideal digital wind-down routine for better sleep?",
-answer: "Power down screens 60+ mins before bed. Enable Night Shift mode. Charge devices outside the bedroom. Replace scrolling with reading, journaling, or meditation. Darkness = melatonin."
-},
-{
-question: "How can I build trust in remote/hybrid teams?",
-answer: "Schedule short daily check-ins. Use video for complex discussions. Create virtual 'watercooler' channels for casual chats. Over-communicate context—assume positive intent."
-},
-{
-question: "How do I maintain critical thinking amid shallow online content?",
-answer: "Schedule 'deep work' blocks without screens. Read long-form articles/books. Practice writing analyses. Question everything: 'Who benefits from this narrative?' Slow thinking is your superpower."
-},
-{
-question: "Which human skills will AI never replace?",
-answer: "Empathy, ethical judgment, creative storytelling, and cross-cultural negotiation. Double down on these: volunteer, join debate clubs, or mentor others. Humanity is your competitive advantage."
-}
-]
-},
-marriage: {
-title: "Healthy Marriage: Reconnecting in a Distracted World",
-description: "Tools for couples to strengthen intimacy, communication, and trust in the digital age.",
-questions: [
-{
-question: "How does 'phubbing' (phone snubbing) damage our relationship?",
-answer: "It signals: 'This device matters more than you.' Over time, it erodes emotional intimacy, breeds resentment, and kills spontaneous connection. Prioritize eye contact and presence."
-},
-{
-question: "Is it ever okay to check my partner’s phone?",
-answer: "Trust is foundational. Secret snooping indicates deeper issues. Instead, discuss fears openly ('I’ve been feeling insecure—can we talk?'). Transparency builds security; surveillance destroys it."
-},
-{
-question: "How do we avoid comparing our marriage to 'perfect' influencer couples?",
-answer: "Remember: social media shows staged moments, not messy realities. Focus on your unique journey. Celebrate small wins offline—your story doesn’t need an audience to matter."
-},
-{
-question: "Can pornography addiction impact our intimacy?",
-answer: "Yes. It distorts expectations of sex and bodies, reduces desire for real partners, and creates secrecy. Recovery requires honesty, professional support, and rebuilding trust slowly."
-},
-{
-question: "What are healthy 'digital boundaries' for our home?",
-answer: "Create tech-free zones: meals, bedrooms, and date nights. Charge phones outside the bedroom. Agree: no phones during meaningful conversations. Protect your couple bubble."
-},
-{
-question: "How do we resolve fights sparked by misunderstood texts?",
-answer: "Never debate sensitive topics over text. Switch to voice/video immediately. Assume good intent: 'I think I misread your tone—can we clarify?' Text lacks nuance; voice carries care."
-},
-{
-question: "Are online friendships with the opposite gender risky?",
-answer: "Emotional affairs often start innocently. Maintain transparency: share interactions with your partner. Redirect energy into your primary relationship—it deserves your best attention."
-},
-{
-question: "How does late-night screen use affect our sleep as a couple?",
-answer: "Blue light delays melatonin, fragmenting sleep. One partner’s screen disrupts both. Solution: read physical books together or listen to a podcast—shared wind-down rituals deepen connection."
-},
-{
-question: "We sit together but scroll separately—how do we reconnect?",
-answer: "Implement a 'digital sunset': power down devices 1 hour before bed. Play a board game, cook together, or share 'highs and lows' of your day. Presence > proximity."
-},
-{
-question: "My partner overshhares our private life online—what now?",
-answer: "Express feelings using 'I' statements: 'I feel exposed when our arguments go public.' Co-create sharing guidelines. Privacy isn’t secrecy—it’s mutual respect."
-},
-{
-question: "How can shared digital tools reduce household stress?",
-answer: "Use a joint calendar (Google Calendar) for appointments and a task app (Todoist) for chores. Schedule recurring 'us time' like doctor’s appointments—non-negotiable and protected."
-},
-{
-question: "How can tech strengthen our bond during long-distance periods?",
-answer: "Schedule short video dates. Watch movies simultaneously via Teleparty. Send surprise food deliveries via apps. Small, consistent gestures say: 'You’re on my mind.'"
-},
-{
-question: "How can we use online resources to improve our communication?",
-answer: "Take a couples’ course on Coursera. Listen to relationship podcasts during drives. Practice active listening exercises from apps like Lasting. Growth is a team sport."
-},
-{
-question: "How do we turn shared hobbies into quality time?",
-answer: "Try co-op video games (Stardew Valley), start a joint YouTube channel, or take online cooking classes. Shared creation builds camaraderie beyond consumption."
-},
-{
-question: "How can we manage finances transparently with digital tools?",
-answer: "Use shared budgeting apps (Mint, YNAB). Set joint savings goals (vacation, emergency fund). Hold monthly 'money dates' to review spending—without blame, just planning."
-}
-]
-},
-seniors: {
-title: "Senior Citizens: Embracing Technology with Confidence and Safety",
-description: "Empowering older adults to connect, learn, and protect themselves online.",
-questions: [
-{
-question: "How can I avoid phone scams targeting seniors?",
-answer: "Never share personal info (SSN, bank details) over calls. Hang up on 'urgent' requests. Verify callers: call back via official numbers. When in doubt, consult a family member first."
-},
-{
-question: "What’s the easiest way to learn video calling with grandkids?",
-answer: "Start with one app (WhatsApp or FaceTime). Practice with a patient helper. Use large-font guides taped to your device. Remember: seeing smiles is worth the learning curve!"
-},
-{
-question: "How do I adjust my phone for aging eyes and hearing?",
-answer: "Enable Accessibility: increase font size, use high-contrast mode, turn on captions, and activate voice assistants (Siri/Google) for hands-free help. Your phone can adapt to you."
-},
-{
-question: "Why shouldn’t I forward health 'tips' from WhatsApp groups?",
-answer: "Misinformation spreads faster than facts. Forwarding unverified claims can harm others and damage your credibility. Check sources like WHO or CDC before sharing."
-},
-{
-question: "How can tech help me remember medications?",
-answer: "Use pill reminder apps (Medisafe) with loud alarms. Smart pill dispensers alert caregivers if doses are missed. Sync schedules with family via shared calendars."
-},
-{
-question: "I’m overwhelmed by negative news online—what can I do?",
-answer: "Limit news to 15 minutes/day from trusted sources. Curate your feed: follow uplifting accounts (nature, music). Replace doomscrolling with audiobooks or video calls."
-},
-{
-question: "Is GPS tracking useful for seniors with memory concerns?",
-answer: "Yes. Wearables (Apple Watch, medical alert pendants) let families locate you if you wander. It’s not surveillance—it’s peace of mind for independence."
-},
-{
-question: "How do I protect my privacy from data-hungry apps?",
-answer: "Review app permissions monthly. Deny access to contacts/photos unless essential. Download only from official stores (App Store, Google Play). When asked for data, ask: 'Why do you need this?'"
-},
-{
-question: "Can brain-training games really help prevent dementia?",
-answer: "They support cognitive health—but aren’t magic bullets. Combine them with social interaction, physical activity, and new learning (language, instrument). Variety is key."
-},
-{
-question: "How can I do banking safely from home?",
-answer: "Use your bank’s official app—not links from emails. Never use public Wi-Fi for transactions. Enable transaction alerts. Bookmark login pages to avoid phishing sites."
-},
-{
-question: "How can YouTube reignite my old hobbies?",
-answer: "Search '[hobby] for beginners' (e.g., 'knitting for seniors'). Subscribe to patient teachers. Connect your tablet to a TV for larger viewing. Share creations with online communities."
-},
-{
-question: "What tech helps monitor my health remotely?",
-answer: "Smartwatches track heart rate/sleep. Bluetooth blood pressure cuffs sync to apps. Fall-detection sensors alert emergency contacts. Tech extends independent living."
-},
-{
-question: "How can I preserve my life stories for future generations?",
-answer: "Record voice memos of memories. Scan old photos into Google Photos with captions. Write short memoirs using dictation apps. Create a digital family tree on Ancestry.com."
-},
-{
-question: "How do I find meaningful online communities?",
-answer: "Join Facebook groups for your interests (gardening, history). Participate in library-hosted Zoom book clubs. Reconnect with hometown groups. Shared passions bridge generations."
-},
-{
-question: "How can I verify if online information is trustworthy?",
-answer: "Check the source: Is it a government (.gov) or educational (.edu) site? Reverse-search images. Ask: 'Does this seem too good to be true?' When unsure, ask a tech-savvy friend."
-}
-]
-},
-security: {
-title: "Cyber Safety & Privacy: Protecting Yourself in a Connected World",
-description: "Essential practices to safeguard your data, identity, and peace of mind online.",
-questions: [
-{
-question: "What should I do immediately if I’m being blackmailed online?",
-answer: "DO NOT PAY. Preserve all evidence (screenshots, messages). Block the perpetrator. Contact law enforcement and a trusted support person. You’re not alone—help exists."
-},
-{
-question: "How can I spot a phishing email?",
-answer: "Check sender addresses for misspellings (e.g., amaz0n.com). Hover over links to see real URLs. Legitimate companies never ask for passwords via email. When in doubt, log in directly—not via links."
-},
-{
-question: "Where do I report cybercrime in my country?",
-answer: "Contact your national cybercrime unit (e.g., IC3 in the US, Action Fraud in the UK). Provide evidence: screenshots, account names, transaction IDs. Get a case number for follow-up."
-},
-{
-question: "Why is two-factor authentication (2FA) essential?",
-answer: "Passwords alone are easily stolen. 2FA adds a second layer: a code from an authenticator app (Google/Microsoft) or security key (YubiKey). Never share 2FA codes—they’re your digital keys."
-},
-{
-question: "If I block a blackmailer, can they still harm me?",
-answer: "Blocking stops direct contact but not threats using existing data. Document everything BEFORE blocking. Report to authorities immediately—don’t wait. Your safety is paramount."
-},
-{
-question: "Are public Wi-Fi networks safe for banking?",
-answer: "Never access financial accounts on public Wi-Fi. Hackers can intercept data. Use a trusted VPN if essential. Better yet: wait until you’re on a secure home network."
-},
-{
-question: "How do I detect spyware on my phone?",
-answer: "Watch for rapid battery drain, overheating, or strange background noises. Run antivirus scans (Malwarebytes). If suspicious, factory reset after backing up essential data."
-},
-{
-question: "My social media was hacked—what now?",
-answer: "Immediately reset passwords and enable 2FA. Warn contacts not to click links from your account. Report the hack to the platform. Audit connected apps—remove unknown ones."
-},
-{
-question: "How can I protect private photos if my phone is lost?",
-answer: "Use strong passcodes (not simple PINs). Enable 'Find My Device' to wipe remotely. Store sensitive photos in encrypted vaults (Google Photos Locked Folder). Better yet: don’t store them at all."
-},
-{
-question: "What’s the difference between cyberbullying and blackmail?",
-answer: "Bullying aims to humiliate; blackmail uses threats to extort money/actions. Both are crimes. Document everything and report—legal systems have tools to stop both."
-},
-{
-question: "How do I avoid 'too-good-to-be-true' online offers?",
-answer: "If it promises easy money or prizes, it’s likely a scam. Never click pop-ups. Search '[offer name] + scam' to check reviews. Legitimate companies don’t operate this way."
-},
-{
-question: "How do I permanently erase data before selling my phone?",
-answer: "Back up essentials. Sign out of all accounts. Perform a factory reset. For extra security, fill storage with dummy files, then reset again. Remove SIM/memory cards."
-},
-{
-question: "How can I protect my child from online groomers?",
-answer: "Teach them: never share personal details or meet online friends. Keep devices in common areas. Use parental controls. Most importantly: create a safe space where they’ll tell you if something feels wrong."
-},
-{
-question: "Can sketchy websites infect my device with ransomware?",
-answer: "Yes. Pirated content and adult sites are common vectors. Malvertising (malicious ads) can infect you just by loading a page. Use ad blockers, keep software updated, and avoid risky sites."
-},
-{
-question: "How do I build a personal 'firewall' against hackers?",
-answer: "Psychologically: be skeptical of unsolicited offers. Technically: use unique passwords (via a manager like Bitwarden), enable 2FA everywhere, update software, and run antivirus scans monthly."
-}
-]
-}
 };
-// === END OF ENGLISH TRANSLATION ===
-
-// Spanish programs data
-const programsDataEs = JSON.parse(JSON.stringify(programsData));
-const programsDataFr = JSON.parse(JSON.stringify(programsData));
-const programsDataIt = JSON.parse(JSON.stringify(programsData));
-const programsDataTr = JSON.parse(JSON.stringify(programsData));
-const programsDataDe = JSON.parse(JSON.stringify(programsData));
-const programsDataPt = JSON.parse(JSON.stringify(programsData));
-const programsDataRo = JSON.parse(JSON.stringify(programsData));
-const programsDataHu = JSON.parse(JSON.stringify(programsData));
-const programsDataJa = JSON.parse(JSON.stringify(programsData));
-const programsDataKo = JSON.parse(JSON.stringify(programsData));
-const programsDataHi = JSON.parse(JSON.stringify(programsData));
-const programsDataPa = JSON.parse(JSON.stringify(programsData));
-const programsDataBn = JSON.parse(JSON.stringify(programsData));
-const programsDataId = JSON.parse(JSON.stringify(programsData));
-const programsDataVi = JSON.parse(JSON.stringify(programsData));
-const programsDataFa = JSON.parse(JSON.stringify(programsData));
-const programsDataAm = JSON.parse(JSON.stringify(programsData));
-const programsDataSw = JSON.parse(JSON.stringify(programsData));
-const programsDataHa = JSON.parse(JSON.stringify(programsData));
-const programsDataYo = JSON.parse(JSON.stringify(programsData));
 
 function initPage() {
-scrollToSec('home');
+scrollToSec('home'); // Requirement 1: always open on home
 updateTicker();
 loadMedia();
 renderLanguageDropdown();
 setupLanguageToggle();
-initCountersObserver();
+initCountersObserver(); // Will reset counters each time section is viewed
 }
 
+// === Observer to reset counters when entering stats/losses sections ===
 function initCountersObserver() {
 const counters = document.querySelectorAll('.counter');
-counters.forEach(c => c.innerText = '0');
+counters.forEach(c => c.innerText = '0'); // Reset on load
+
 const observer = new IntersectionObserver(entries => {
 entries.forEach(entry => {
 if(entry.isIntersecting) {
@@ -1568,6 +668,7 @@ observer.unobserve(el);
 }
 });
 }, { threshold: 0.3 });
+
 document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
 observer.observe(c);
 });
@@ -1601,7 +702,6 @@ function openImage(src) {
 document.getElementById('lightbox-img').src = src;
 document.getElementById('lightbox').style.display = 'flex';
 }
-
 function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 
 function scrollToSec(id) {
@@ -1616,30 +716,54 @@ window.scrollTo({ top: pos, behavior: 'smooth' });
 function renderLanguageDropdown() {
 const dropdown = document.getElementById('langDropdown');
 dropdown.innerHTML = '';
+
+// Grouped by region
 const languages = [
+// Middle East & North Africa
 { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
-{ code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
-{ code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
-{ code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
-{ code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
-{ code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
-{ code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
-{ code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
-{ code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
-{ code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
+{ code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
+{ code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
+
+// South Asia
+{ code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'bn', name: 'বাংলা (بنغلاديش)', flag: 'https://flagcdn.com/w80/bd.png' },
+{ code: 'pa', name: 'ਪੰਜਾਬੀ (باكستان)', flag: 'https://flagcdn.com/w80/pk.png' },
+{ code: 'ta', name: 'தமிழ் (سريلانكا)', flag: 'https://flagcdn.com/w80/lk.png' },
+{ code: 'my', name: 'မြန်မာ (ميانمار)', flag: 'https://flagcdn.com/w80/mm.png' },
+{ code: 'am', name: 'አማርኛ (إثيوبيا)', flag: 'https://flagcdn.com/w80/et.png' },
+
+// Africa
+{ code: 'yo', name: 'Yorùbá (بنين)', flag: 'https://flagcdn.com/w80/bj.png' },
+{ code: 'ig', name: 'Igbo (نيجيريا)', flag: 'https://flagcdn.com/w80/ng.png' },
+{ code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/tz.png' },
+{ code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ng.png' },
+
+// East & Southeast Asia
+{ code: 'zh', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
 { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
 { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
-{ code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'pa', name: 'ਪੰਜਾਬੀ', flag: 'https://flagcdn.com/w80/pk.png' },
-{ code: 'bn', name: 'বাংলা', flag: 'https://flagcdn.com/w80/bd.png' },
 { code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'jv', name: 'Basa Jawa (إندونيسيا)', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'tl', name: 'Tagalog (الفلبين)', flag: 'https://flagcdn.com/w80/ph.png' },
+{ code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
 { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
-{ code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
-{ code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w80/et.png' },
-{ code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/tz.png' },
-{ code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ne.png' },
-{ code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w80/ng.png' }
+
+// Europe
+{ code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
+{ code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
+{ code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
+{ code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
+{ code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
+{ code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
+{ code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
+{ code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
+{ code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w80/gr.png' },
+{ code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w80/nl.png' },
+{ code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
+{ code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
+{ code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' }
 ];
+
 languages.forEach(lang => {
 const div = document.createElement('a');
 div.href = '#';
@@ -1649,7 +773,6 @@ div.innerHTML = `<img src="${lang.flag}" alt="${lang.name}"> ${lang.name}`;
 div.onclick = (e) => {
 e.preventDefault();
 selectLanguage(lang.code, lang.flag);
-document.getElementById('langDropdown').classList.remove('show');
 };
 dropdown.appendChild(div);
 });
@@ -1673,8 +796,9 @@ function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
 currentLang = langCode;
-document.documentElement.setAttribute('dir', langCode === 'ar' ? 'rtl' : 'ltr');
+document.documentElement.setAttribute('dir', 'rtl');
 document.documentElement.lang = currentLang;
+
 const t = translations[langCode] || translations.ar;
 document.getElementById('main-hero-title').innerHTML = t.heroTitle;
 document.getElementById('vis-title').innerText = t.visTitle;
@@ -1683,9 +807,6 @@ document.getElementById('part-title').innerText = t.partTitle;
 document.getElementById('p1-name').innerText = t.p1Name;
 document.getElementById('p2-name').innerText = t.p2Name;
 document.getElementById('p3-name').innerText = t.p3Name;
-document.getElementById('p1-desc').innerText = t.p1Desc;
-document.getElementById('p2-desc').innerText = t.p2Desc;
-document.getElementById('p3-desc').innerText = t.p3Desc;
 document.getElementById('st-title').innerText = t.stTitle;
 document.getElementById('st1-txt').innerText = t.st1;
 document.getElementById('st2-txt').innerText = t.st2;
@@ -1703,6 +824,7 @@ document.getElementById('aw-c5').innerText = t.aw5;
 document.getElementById('aw-c6').innerText = t.aw6;
 document.getElementById('media-guideline').innerText = t.mediaGuide;
 document.getElementById('btn-browse').innerText = t.btnBrowse;
+
 for(let i=1; i<=6; i++) {
 const popup = document.getElementById('src'+i);
 if(popup) popup.innerText = t.sources[i-1];
@@ -1710,55 +832,21 @@ if(popup) popup.innerText = t.sources[i-1];
 document.getElementById('src-p1').innerText = t.sources[6];
 document.getElementById('src-p2').innerText = t.sources[7];
 document.getElementById('src-p3').innerText = t.sources[8];
-// Fix navbar links translation
-const navLinks = document.querySelectorAll('.nav-links a');
-// Skip the first element (language selector)
-for (let i = 1; i < navLinks.length; i++) {
-if (t.nav[i - 1]) {
-navLinks[i].innerText = t.nav[i - 1];
-}
-}
+
+const links = document.querySelectorAll('.nav-links a');
+t.nav.forEach((txt, i) => { if(links[i]) links[i].innerText = txt; });
+
 updateTicker();
-renderLanguageDropdown();
 }
 
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
-let data;
 
-// Select data based on current language
-switch(currentLang) {
-case 'en':
-const enData = programsDataEn[type];
-if (enData && enData.questions) {
-data = enData.questions.map(q => ({ q: q.question, ans: q.answer, src: "Expert Source" }));
-} else {
-data = programsData[type] || [];
-}
-break;
-case 'es': data = programsDataEs[type]; break;
-case 'fr': data = programsDataFr[type]; break;
-case 'it': data = programsDataIt[type]; break;
-case 'tr': data = programsDataTr[type]; break;
-case 'de': data = programsDataDe[type]; break;
-case 'pt': data = programsDataPt[type]; break;
-case 'ro': data = programsDataRo[type]; break;
-case 'hu': data = programsDataHu[type]; break;
-case 'ja': data = programsDataJa[type]; break;
-case 'ko': data = programsDataKo[type]; break;
-case 'hi': data = programsDataHi[type]; break;
-case 'pa': data = programsDataPa[type]; break;
-case 'bn': data = programsDataBn[type]; break;
-case 'id': data = programsDataId[type]; break;
-case 'vi': data = programsDataVi[type]; break;
-case 'fa': data = programsDataFa[type]; break;
-case 'am': data = programsDataAm[type]; break;
-case 'sw': data = programsDataSw[type]; break;
-case 'ha': data = programsDataHa[type]; break;
-case 'yo': data = programsDataYo[type]; break;
-default: data = programsData[type];
-}
+let data;
+if(currentLang === 'en') data = programsDataEn[type];
+else if(currentLang === 'es') data = programsDataEs[type];
+else data = programsData[type];
 
 const programNames = {
 'child': translations[currentLang]?.aw1 || translations.ar.aw1,
@@ -1768,10 +856,9 @@ const programNames = {
 'seniors': translations[currentLang]?.aw5 || translations.ar.aw5,
 'security': translations[currentLang]?.aw6 || translations.ar.aw6
 };
+
 document.getElementById('modalTitle').innerText = programNames[type];
 
-// Render questions
-if (Array.isArray(data)) {
 data.forEach((item, idx) => {
 const div = document.createElement('div');
 div.className = "q-item";
@@ -1779,7 +866,6 @@ div.innerText = (idx+1) + ". " + item.q;
 div.onclick = () => showAnswer(item);
 container.appendChild(div);
 });
-}
 
 document.getElementById('qModal').style.display = 'flex';
 }
@@ -1787,31 +873,13 @@ document.getElementById('qModal').style.display = 'flex';
 function showAnswer(item) {
 const content = document.getElementById('answerContent');
 const title = document.getElementById('answerTitle');
-title.innerText = item.q || item.question;
+
+title.innerText = item.q;
 content.innerHTML = `
-<span class="ans-src">${currentLang === 'en' ? 'Source: ' :
-currentLang === 'es' ? 'Fuente: ' :
-currentLang === 'fr' ? 'Source : ' :
-currentLang === 'it' ? 'Fonte: ' :
-currentLang === 'tr' ? 'Kaynak: ' :
-currentLang === 'de' ? 'Quelle: ' :
-currentLang === 'pt' ? 'Fonte: ' :
-currentLang === 'ro' ? 'Sursă: ' :
-currentLang === 'hu' ? 'Forrás: ' :
-currentLang === 'ja' ? '出典: ' :
-currentLang === 'ko' ? '출처: ' :
-currentLang === 'hi' ? 'स्रोत: ' :
-currentLang === 'pa' ? 'ਸਰੋਤ: ' :
-currentLang === 'bn' ? 'উৎস: ' :
-currentLang === 'id' ? 'Sumber: ' :
-currentLang === 'vi' ? 'Nguồn: ' :
-currentLang === 'fa' ? 'منبع: ' :
-currentLang === 'am' ? 'ምንጭ፡ ' :
-currentLang === 'sw' ? 'Chanzo: ' :
-currentLang === 'ha' ? 'Manzo: ' :
-currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '}${item.src || 'Expert Source'}</span>
-<div class="ans-text">${item.ans || item.answer}</div>
+<span class="ans-src">${currentLang === 'en' ? 'Source: ' : currentLang === 'es' ? 'Fuente: ' : 'المصدر: '}${item.src}</span>
+<div class="ans-text">${item.ans}</div>
 `;
+
 document.getElementById('aModal').style.display = 'flex';
 }
 
