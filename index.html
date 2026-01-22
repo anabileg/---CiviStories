@@ -185,6 +185,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+
 <!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
@@ -196,6 +197,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </div>
+
 <!-- Modal for Answers -->
 <div id="aModal" class="modal-overlay">
 <div class="modal-container">
@@ -208,15 +210,18 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </div>
+
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
 <img id="lightbox-img" src="">
 </div>
 </div>
+
 <a href="https://wa.me/201009995015" class="whatsapp-float" target="_blank">
 <i class="fab fa-whatsapp"></i>
 </a>
+
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
@@ -249,7 +254,9 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </nav>
+
 <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
+
 <section class="hero" id="home">
 <h1 class="main-alert-title" id="main-hero-title">
 <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: صرخة مصر لتحذير العالم</span> <br>
@@ -265,10 +272,12 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </section>
+
 <section id="about" class="vision-section">
 <h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤيتنا الاستراتيجية</h2>
 <p id="vis-desc">نهدف من خلال مبادرة قصص الحضارات إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.</p>
 </section>
+
 <section id="inst" class="section">
 <div class="glass-box">
 <h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
@@ -294,12 +303,15 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </section>
+
 <div style="text-align:center; margin-top:40px;">
 <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
 </div>
+
 <section id="media-sec" class="carousel-wide">
 <div class="track animate-media" id="track-imgs"></div>
 </section>
+
 <section id="stats" class="section">
 <div class="glass-box">
 <h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
@@ -322,6 +334,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </section>
+
 <section id="losses" class="section">
 <div class="glass-box" style="border-color: var(--red-num);">
 <h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
@@ -344,6 +357,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </section>
+
 <section id="awareness-sec" class="section">
 <div class="glass-box">
 <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
@@ -357,8 +371,20 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </section>
+
 <script>
+// ===========================================
+// START OF FULL JAVASCRIPT IMPLEMENTATION
+// ===========================================
+
+// Current language state
 let currentLang = 'ar';
+
+// Logging utility for debugging (optional, safe to keep)
+function logLanguageChange(langCode) {
+    console.log(`[DEBUG] Language changed to: ${langCode}`);
+}
+
 // === Full translations for all supported languages ===
 const translations = {
 ar: {
@@ -414,6 +440,7 @@ sources: [
 "Source: Ministry of Endowments"
 ]
 },
+// ... (بقية اللغات كما هي في الملف الأصلي – تم الحفاظ عليها كاملة)
 es: {
 heroTitle: '<span class="highlight">Tsunami</span> <span class="gold-text">de la Ilusión Digital: La llamada de alerta de Egipto al mundo</span> <br> <span class="gold-text">Estadísticas egipcias impactantes</span>',
 nav: ["Nuestra Visión", "Socios", "Medios", "Estadísticas", "Pérdidas", "Concienciación", "Tu opinión nos importa"],
@@ -975,6 +1002,7 @@ sources: [
 ]
 }
 };
+
 // Arabic programsData (original)
 const programsData = {
 child: [
@@ -1074,7 +1102,7 @@ security: [
 { q: "ما هي الخطوات القانونية الرسمية للإبلاغ عن جريمة إلكترونية في بلدي؟", src: "مستشار قانوني رقمي", ans: ".   <strong>تجميع الأدلة:</strong> حفظ صور الشاشة، وتسجيل أسماء الحسابات، وأرقام الهواتف، والبريد الإلكتروني المستخدم في الابتزاز.<br>.   <strong>التوجه للجهة المختصة:</strong> زيارة موقع <strong>النيابة العامة</strong> أو <strong>وزارة الداخلية</strong> في بلدك للوصول لقسم \"الجرائم الإلكترونية\".<br>.   <strong>تقديم البلاغ رقمياً أو شخصياً:</strong> معظم الدول توفر منصة إلكترونية لتقديم البلاغات (مثل \"أمن\" في السعودية)، أو يمكن التوجه لأقرب مركز شرطة.<br>.   <strong>تسليم الأدلة:</strong> تقديم جميع الأدلة التي جمعتها للسلطات.<br>.   <strong>المتابعة:</strong> الحصول على رقم البلاغ ومتابعته، والاستجابة لأي طلبات إضافية من الجهات المختصة." },
 { q: "كيف أحمي حساباتي من الاختراق باستخدام ميزة \"المصادقة الثنائية\" (2FA)?", src: "خبير أمن معلومات", ans: ".   <strong>تفعيلها على جميع الحسابات الحيوية:</strong> البريد الإلكتروني، والحسابات البنكية، وتطبيقات التواصل، ووسائل التواصل الاجتماعي.<br>.   <strong>استخدام تطبيق المصادقة:</strong> مثل (Google Authenticator، Microsoft Authenticator) بدلاً من الاعتماد على الرسائل النصية (SMS) فقط.<br>.   <strong>حفظ رموز الاستعادة:</strong> قم بحفظ رموز الاستعادة (Backup Codes) التي تقدمها المنصات في مكان آمن، فهي مفتاحك الوحيد إذا فقدت هاتفك.<br>.   <strong>استخدام مفتاح أمني:</strong> للأهمية القصوى، يمكن استخدام مفتاح أمني مادي (مثل YubiKey) للمصادقة.<br>.   <strong>لا تشارك رموز المصادقة:</strong> هذه الرموز هي كلمة المرور المؤقتة الخاصة بك، لا تطلبها منك أي مؤسسة رسمية أبداً." },
 { q: "هل يمكن للمبتز أن ينفذ تهديده فعلياً إذا قمت بحظره (Block) مباشرة؟", src: "خبير جرائم إلكترونية", ans: ".   <strong>نعم، قد يحاول.</strong> الحظر يمنع التواصل المباشر، لكن لا يمحو المعلومات التي بحوزته.<br>.   <strong>الخطر الأكبر هو قبل الحظر:</strong> إذا كان قد حصل على بيانات أو صور حساسة بالفعل، فقد يستخدمها حتى بعد الحظر.<br>.   <strong>الحظر خطوة ضرورية لكنها ليست كافية:</strong> يجب أن تقترن بالإبلاغ الفوري وجمع الأدلة وعدم الاستسلام للتهديد.<br>.   <strong>التوثيق قبل الحظر:</strong> تأكد من أخذ لقطات شاشة كاملة لكل التهديدات قبل حظر الشخص.<br>.   <strong>حذر من حسابات جديدة:</strong> قد يحاول المبتز إنشاء حسابات جديدة للتواصل مجدداً." },
-{ q: "ما هي مخاطر استخدام شبكات \"الواي فاي\" العامة في الكافيهات والمطارات على بياناتي البنكية؟", src: "خبير أمن شبكات", ans: ".   <strong>التنصت على البيانات:</strong> يمكن للمخترق المتصل بنفس الشبكة اعتراض البيانات غير المشفرة التي ترسلها.<br>.   <strong>التصيد عبر الشبكة:</strong> قد يتم توجيهك لمواقع وهمية تشبه مواقعك المفضلة لسرقة بيانات الدخول.<br>.   <strong>نقاط الوصول المزيفة:</strong> قد ينشئ مخترق شبكة واي فاي تحمل اسماً مشابهاً للشبكة الحقيقية لخداع الضحايا.<br>.   <strong>القاعدة الذهبية:</strong> <strong>لا تقم أبداً بإجراء معاملات بنكية أو إدخال كلمات مرور مهمة أثناء الاتصال بشبكة واي فاي عامة.</strong><br>.   <strong>استخدم VPN موثوقاً:</strong> إذا اضطررت للاتصال، استخدم شبكة افتراضية خاصة (VPN) مشفرة لتأمين اتصالك." },
+{ q: "ما هي مخاطر استخدام شبكات \"الواي فاي\" العامة في الكافيهات والمطارات على بياناتي البنكية؟", src: "خبير أمن شبكات", ans: ".   <strong>التنصت على البيانات:</strong> يمكن للمخترق المتصل بنفس الشبكة اعتراض البيانات غير المشفرة التي ترسلها.<br>.   <strong>التصيد عبر الشبكة:</strong> قد يتم توجيهك لمواقع وهمية تشبه مواقعك المفضلة لسرقة بيانات الدخول.<br>.   <strong>نقاط الوصول المزيفة:</strong> قد ينشئ مخترق شبكة واي فاي تحمل اسماً مشابهاً للشبكة الحقيقية لخداع الضحايا.<br>.   <strong>القاعدة الذهبية:</strong> <strong>لا تقم أبداً بإجراء معاملات بنكية أو إدخال كلمات مرور مهمة أثناء الاتصال بشبكة واي فاي عامة.</strong><br>.   <<strong>استخدم VPN موثوقاً:</strong> إذا اضطررت للاتصال، استخدم شبكة افتراضية خاصة (VPN) مشفرة لتأمين اتصالك." },
 { q: "كيف أكتشف وجود برامج تجسس أو تطبيقات مراقبة مخفية على هاتفي الشخصي؟", src: "خبير أمن أجهزة", ans: ".   <strong>استهلاك غير طبيعي للبطارية والبيانات:</strong> قد تشير التطبيقات الخبيثة إلى نشاط خفي مكثف.<br>.   <strong>أداء الجهاز البطيء:</strong> أو ارتفاع درجة حرارته دون سبب واضح.<br>.   <strong>ظهور تطبيقات غريبة:</strong> افحص قائمة التطبيقات بحثاً عن تطبيقات لا تتذكر تحميلها.<br>.   <strong>سلوك غريب:</strong> مثل إضاءة الشاشة من تلقاء نفسها، أو سماع أصوات غريبة أثناء المكالمات.<br>.   <strong>الحل:</strong> تشغيل فحص بواسطة برنامج مكافحة فيروسات موثوق، وإذا استمر الشك، إعادة ضبط المصنع بعد نسخ بياناتك المهمة." },
 { q: "ماذا أفعل إذا تم اختراق حسابي على واتساب أو فيسبوك وإرسال رسائل مسيئة باسمي؟", src: "خبير استعادة الحسابات", ans: ".   <strong>حاول استعادة الحساب فوراً:</strong> استخدم خيار \"نسيت كلمة المرور\" على المنصة للبدء بعملية الاستعادة عبر البريد الإلكتروني أو رقم الهاتف.<br>.   <strong>أبلغ جميع جهات اتصالك:</strong> حذر أصدقاءك وعائلتك عبر أي وسيلة أخرى متاحة (مكالمة، منصة أخرى) أن حسابك تم اختراقه ولا تفتح أي روابط يرسلها.<br>.   <strong>أبلغ المنصة:</strong> استخدم نماذج الإبلاغ عن الحساب المخترق الموجودة في صفحات المساعدة الخاصة بـ فيسبوك أو واتساب.<br>.   <strong>غير جميع كلمات المرور:</strong> خاصة كلمة مرور البريد الإلكتروني المرتبط بالحساب المخترق.<br>.   <strong>افحص جهازك:</strong> قد يكون الاختراق بسبب وجود برمجية خبيثة على هاتفك." },
 { q: "كيف أحمي صوري وملفاتي الخاصة من الوصول إليها في حال ضياع الهاتف أو سرقته؟", src: "خبير أمن بيانات شخصية", ans: ".   <strong>التشفير والتأمين بكلمة مرور:</strong> تأكد من تفعيل قفل الشاشة بقوة (رقم سري معقد، أو بصمة، أو تعرف الوجه).<br>.   <strong>النسخ الاحتياطي في السحابة:</strong> قم برفع ملفاتك المهمة إلى خدمة سحابية موثوقة (مثل iCloud، Google Photos) وحذفها من ذاكرة الهاتف إذا كانت حساسة جداً.<br>.   <strong>استخدام تطبيقات الخزنة الآمنة:</strong> هناك تطبيقات توفر مساحة مشفرة بكلمة مرور منفصلة داخل هاتفك.<br>.   <strong>تفعيل خاصية \"ابحث عن هاتفي\":</strong> مثل (Find My iPhone) أو (Find My Device) على أندرويد، لمسح البيانات عن بُعد في حال الضياع.<br>.   <strong>تجنب حفظ الصور الحساسة:</strong> الفكرة الأكثر أماناً هي عدم التقاط أو حفظ أي شيء لا تريد أن يراه أحد على هاتفك أساساً." },
@@ -1086,6 +1114,7 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
+
 // === START OF ENGLISH CULTURAL TRANSLATION FOR AWARENESS PROGRAMS ===
 const programsDataEn = {
 child: {
@@ -1510,6 +1539,7 @@ answer: "Psychologically: be skeptical of unsolicited offers. Technically: use u
 }
 };
 // === END OF ENGLISH TRANSLATION ===
+
 // Spanish programs data
 const programsDataEs = JSON.parse(JSON.stringify(programsData));
 const programsDataFr = JSON.parse(JSON.stringify(programsData));
@@ -1531,335 +1561,409 @@ const programsDataAm = JSON.parse(JSON.stringify(programsData));
 const programsDataSw = JSON.parse(JSON.stringify(programsData));
 const programsDataHa = JSON.parse(JSON.stringify(programsData));
 const programsDataYo = JSON.parse(JSON.stringify(programsData));
+
+/**
+ * Initializes the page on load.
+ * Sets up scroll, ticker, media, language dropdown, and counters.
+ */
 function initPage() {
-scrollToSec('home');
-updateTicker();
-loadMedia();
-renderLanguageDropdown();
-setupLanguageToggle();
-initCountersObserver();
+    console.log("[INFO] Initializing page...");
+    scrollToSec('home');
+    updateTicker();
+    loadMedia();
+    renderLanguageDropdown();
+    setupLanguageToggle();
+    initCountersObserver();
 }
+
+/**
+ * Initializes observer for animated counters.
+ */
 function initCountersObserver() {
-const counters = document.querySelectorAll('.counter');
-counters.forEach(c => c.innerText = '0');
-const observer = new IntersectionObserver(entries => {
-entries.forEach(entry => {
-if(entry.isIntersecting) {
-const el = entry.target;
-const target = parseFloat(el.getAttribute('data-target'));
-let start = 0;
-const duration = 2000;
-const step = target / (duration / 30);
-const timer = setInterval(() => {
-start += step;
-if(start >= target) {
-el.innerText = target;
-clearInterval(timer);
-} else {
-el.innerText = start.toFixed(1).replace('.0','');
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(c => c.innerText = '0');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseFloat(el.getAttribute('data-target'));
+                let start = 0;
+                const duration = 2000;
+                const step = target / (duration / 30);
+                const timer = setInterval(() => {
+                    start += step;
+                    if(start >= target) {
+                        el.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        el.innerText = start.toFixed(1).replace('.0','');
+                    }
+                }, 30);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
+        observer.observe(c);
+    });
 }
-}, 30);
-observer.unobserve(el);
-}
-});
-}, { threshold: 0.3 });
-document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
-observer.observe(c);
-});
-}
+
+/**
+ * Updates the news ticker with current language news.
+ */
 function updateTicker() {
-const track = document.getElementById('tickerTrack');
-const list = translations[currentLang]?.news || translations.ar.news;
-track.innerHTML = "";
-[...list, ...list].forEach(txt => {
-const s = document.createElement('span');
-s.innerText = txt;
-track.appendChild(s);
-});
+    const track = document.getElementById('tickerTrack');
+    const list = translations[currentLang]?.news || translations.ar.news;
+    track.innerHTML = "";
+    [...list, ...list].forEach(txt => {
+        const s = document.createElement('span');
+        s.innerText = txt;
+        track.appendChild(s);
+    });
 }
+
+/**
+ * Loads media carousel images.
+ */
 function loadMedia() {
-const track = document.getElementById('track-imgs');
-track.innerHTML = "";
-const imgs = [];
-for(let i=101; i<=124; i++) { imgs.push(i + ".jpg"); }
-[...imgs, ...imgs].forEach(src => {
-const img = document.createElement('img');
-img.src = src;
-img.onclick = () => openImage(src);
-track.appendChild(img);
-});
+    const track = document.getElementById('track-imgs');
+    track.innerHTML = "";
+    const imgs = [];
+    for(let i=101; i<=124; i++) { imgs.push(i + ".jpg"); }
+    [...imgs, ...imgs].forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.onclick = () => openImage(src);
+        track.appendChild(img);
+    });
 }
+
+/**
+ * Opens lightbox with selected image.
+ */
 function openImage(src) {
-document.getElementById('lightbox-img').src = src;
-document.getElementById('lightbox').style.display = 'flex';
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
 }
-function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
+
+/**
+ * Closes the lightbox.
+ */
+function closeImage() { 
+    document.getElementById('lightbox').style.display = 'none'; 
+}
+
+/**
+ * Smooth scrolls to a section.
+ */
 function scrollToSec(id) {
-const el = document.getElementById(id);
-if(el) {
-const offset = 100;
-const pos = el.offsetTop - offset;
-window.scrollTo({ top: pos, behavior: 'smooth' });
+    const el = document.getElementById(id);
+    if(el) {
+        const offset = 100;
+        const pos = el.offsetTop - offset;
+        window.scrollTo({ top: pos, behavior: 'smooth' });
+    }
 }
-}
+
+/**
+ * Renders language dropdown options.
+ */
 function renderLanguageDropdown() {
-const dropdown = document.getElementById('langDropdown');
-dropdown.innerHTML = '';
-const languages = [
-{ code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
-{ code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
-{ code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
-{ code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
-{ code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
-{ code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
-{ code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
-{ code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
-{ code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
-{ code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
-{ code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
-{ code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
-{ code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'pa', name: 'ਪੰਜਾਬੀ', flag: 'https://flagcdn.com/w80/pk.png' },
-{ code: 'bn', name: 'বাংলা', flag: 'https://flagcdn.com/w80/bd.png' },
-{ code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
-{ code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
-{ code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
-{ code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w80/et.png' },
-{ code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/tz.png' },
-{ code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ne.png' },
-{ code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w80/ng.png' },
-// --- اللغات الجديدة المطلوبة ---
-{ code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w80/gr.png' },
-{ code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w80/nl.png' },
-{ code: 'pl', name: 'Polski', flag: 'https://flagcdn.com/w80/pl.png' },
-{ code: 'fi', name: 'Suomi', flag: 'https://flagcdn.com/w80/fi.png' },
-{ code: 'da', name: 'Dansk', flag: 'https://flagcdn.com/w80/dk.png' },
-{ code: 'no', name: 'Norsk', flag: 'https://flagcdn.com/w80/no.png' },
-{ code: 'sk', name: 'Slovenčina', flag: 'https://flagcdn.com/w80/sk.png' },
-{ code: 'hr', name: 'Hrvatski', flag: 'https://flagcdn.com/w80/hr.png' },
-{ code: 'sl', name: 'Slovenščina', flag: 'https://flagcdn.com/w80/si.png' },
-{ code: 'bg', name: 'Български', flag: 'https://flagcdn.com/w80/bg.png' },
-{ code: 'sr', name: 'Српски', flag: 'https://flagcdn.com/w80/rs.png' },
-{ code: 'cs', name: 'Čeština', flag: 'https://flagcdn.com/w80/cz.png' },
-{ code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
-{ code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' },
-{ code: 'zh-CN', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
-{ code: 'zh-TW', name: '廣東話', flag: 'https://flagcdn.com/w80/hk.png' },
-{ code: 'te', name: 'తెలుగు', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'mr', name: 'मराठी', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'ta', name: 'தமிழ்', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
-{ code: 'gu', name: 'ગુજરાતી', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'kn', name: 'ಕನ್ನಡ', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'ml', name: 'മലയാളം', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'or', name: 'ଓଡ଼ିଆ', flag: 'https://flagcdn.com/w80/in.png' },
-{ code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w80/pk.png' },
-{ code: 'ps', name: 'پښتو', flag: 'https://flagcdn.com/w80/af.png' },
-{ code: 'bal', name: 'بلوچی', flag: 'https://flagcdn.com/w80/pk.png' },
-{ code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w80/lk.png' },
-{ code: 'my', name: 'ဗမာစာ', flag: 'https://flagcdn.com/w80/mm.png' },
-{ code: 'kar', name: 'ကရင်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
-{ code: 'rhg', name: 'ရခိုင်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
-{ code: 'mn', name: 'မွန်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
-{ code: 'shn', name: 'ရှမ်းစာ', flag: 'https://flagcdn.com/w80/mm.png' },
-{ code: 'fil', name: 'Filipino', flag: 'https://flagcdn.com/w80/ph.png' },
-{ code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
-{ code: 'ms', name: 'Bahasa Melayu', flag: 'https://flagcdn.com/w80/sg.png' },
-{ code: 'jv', name: 'Jawa', flag: 'https://flagcdn.com/w80/id.png' },
-{ code: 'su', name: 'Sunda', flag: 'https://flagcdn.com/w80/id.png' },
-{ code: 'bbc', name: 'Batak', flag: 'https://flagcdn.com/w80/id.png' },
-{ code: 'lg', name: 'Luganda', flag: 'https://flagcdn.com/w80/ug.png' },
-{ code: 'ak', name: 'Akan', flag: 'https://flagcdn.com/w80/gh.png' },
-{ code: 'ff', name: 'Fula', flag: 'https://flagcdn.com/w80/cm.png' },
-{ code: 'dyu', name: 'Dioula', flag: 'https://flagcdn.com/w80/ci.png' },
-{ code: 'mg', name: 'Malagasy', flag: 'https://flagcdn.com/w80/mg.png' },
-{ code: 'din', name: 'Dinka', flag: 'https://flagcdn.com/w80/ss.png' },
-{ code: 'srr', name: 'Sara', flag: 'https://flagcdn.com/w80/td.png' },
-{ code: 'so', name: 'Soomaali', flag: 'https://flagcdn.com/w80/so.png' },
-{ code: 'sn', name: 'Shona', flag: 'https://flagcdn.com/w80/zw.png' },
-{ code: 'bem', name: 'Bemba', flag: 'https://flagcdn.com/w80/zm.png' },
-{ code: 'ny', name: 'Chichewa', flag: 'https://flagcdn.com/w80/mw.png' },
-{ code: 'wo', name: 'Wolof', flag: 'https://flagcdn.com/w80/sn.png' },
-{ code: 'bm', name: 'Bambara', flag: 'https://flagcdn.com/w80/ml.png' },
-{ code: 'ha-ne', name: 'Hausa (Niger)', flag: 'https://flagcdn.com/w80/ne.png' },
-{ code: 'mos', name: 'Mossi', flag: 'https://flagcdn.com/w80/bf.png' },
-{ code: 'rw', name: 'Kinyarwanda', flag: 'https://flagcdn.com/w80/rw.png' },
-{ code: 'rn', name: 'Kirundi', flag: 'https://flagcdn.com/w80/bi.png' },
-{ code: 'ln', name: 'Lingála', flag: 'https://flagcdn.com/w80/cd.png' },
-{ code: 'zu', name: 'isiZulu', flag: 'https://flagcdn.com/w80/za.png' }
-];
-languages.forEach(lang => {
-const div = document.createElement('a');
-div.href = '#';
-div.className = 'lang-option';
-div.dataset.lang = lang.code;
-div.innerHTML = `<img src="${lang.flag}" alt="${lang.name}"> ${lang.name}`;
-div.onclick = (e) => {
-e.preventDefault();
-selectLanguage(lang.code, lang.flag);
-document.getElementById('langDropdown').classList.remove('show');
-};
-dropdown.appendChild(div);
-});
+    const dropdown = document.getElementById('langDropdown');
+    dropdown.innerHTML = '';
+    const languages = [
+        { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
+        { code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
+        { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
+        { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
+        { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
+        { code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
+        { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
+        { code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
+        { code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
+        { code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
+        { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
+        { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
+        { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'pa', name: 'ਪੰਜਾਬੀ', flag: 'https://flagcdn.com/w80/pk.png' },
+        { code: 'bn', name: 'বাংলা', flag: 'https://flagcdn.com/w80/bd.png' },
+        { code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
+        { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
+        { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
+        { code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w80/et.png' },
+        { code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/tz.png' },
+        { code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ne.png' },
+        { code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w80/ng.png' },
+        // --- اللغات الجديدة المطلوبة ---
+        { code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w80/gr.png' },
+        { code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w80/nl.png' },
+        { code: 'pl', name: 'Polski', flag: 'https://flagcdn.com/w80/pl.png' },
+        { code: 'fi', name: 'Suomi', flag: 'https://flagcdn.com/w80/fi.png' },
+        { code: 'da', name: 'Dansk', flag: 'https://flagcdn.com/w80/dk.png' },
+        { code: 'no', name: 'Norsk', flag: 'https://flagcdn.com/w80/no.png' },
+        { code: 'sk', name: 'Slovenčina', flag: 'https://flagcdn.com/w80/sk.png' },
+        { code: 'hr', name: 'Hrvatski', flag: 'https://flagcdn.com/w80/hr.png' },
+        { code: 'sl', name: 'Slovenščina', flag: 'https://flagcdn.com/w80/si.png' },
+        { code: 'bg', name: 'Български', flag: 'https://flagcdn.com/w80/bg.png' },
+        { code: 'sr', name: 'Српски', flag: 'https://flagcdn.com/w80/rs.png' },
+        { code: 'cs', name: 'Čeština', flag: 'https://flagcdn.com/w80/cz.png' },
+        { code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
+        { code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' },
+        { code: 'zh-CN', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
+        { code: 'zh-TW', name: '廣東話', flag: 'https://flagcdn.com/w80/hk.png' },
+        { code: 'te', name: 'తెలుగు', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'mr', name: 'मराठी', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'ta', name: 'தமிழ்', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
+        { code: 'gu', name: 'ગુજરાતી', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'kn', name: 'ಕನ್ನಡ', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'ml', name: 'മലയാളം', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'or', name: 'ଓଡ଼ିଆ', flag: 'https://flagcdn.com/w80/in.png' },
+        { code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w80/pk.png' },
+        { code: 'ps', name: 'پښتو', flag: 'https://flagcdn.com/w80/af.png' },
+        { code: 'bal', name: 'بلوچی', flag: 'https://flagcdn.com/w80/pk.png' },
+        { code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w80/lk.png' },
+        { code: 'my', name: 'ဗမာစာ', flag: 'https://flagcdn.com/w80/mm.png' },
+        { code: 'kar', name: 'ကရင်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
+        { code: 'rhg', name: 'ရခိုင်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
+        { code: 'mn', name: 'မွန်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
+        { code: 'shn', name: 'ရှမ်းစာ', flag: 'https://flagcdn.com/w80/mm.png' },
+        { code: 'fil', name: 'Filipino', flag: 'https://flagcdn.com/w80/ph.png' },
+        { code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
+        { code: 'ms', name: 'Bahasa Melayu', flag: 'https://flagcdn.com/w80/sg.png' },
+        { code: 'jv', name: 'Jawa', flag: 'https://flagcdn.com/w80/id.png' },
+        { code: 'su', name: 'Sunda', flag: 'https://flagcdn.com/w80/id.png' },
+        { code: 'bbc', name: 'Batak', flag: 'https://flagcdn.com/w80/id.png' },
+        { code: 'lg', name: 'Luganda', flag: 'https://flagcdn.com/w80/ug.png' },
+        { code: 'ak', name: 'Akan', flag: 'https://flagcdn.com/w80/gh.png' },
+        { code: 'ff', name: 'Fula', flag: 'https://flagcdn.com/w80/cm.png' },
+        { code: 'dyu', name: 'Dioula', flag: 'https://flagcdn.com/w80/ci.png' },
+        { code: 'mg', name: 'Malagasy', flag: 'https://flagcdn.com/w80/mg.png' },
+        { code: 'din', name: 'Dinka', flag: 'https://flagcdn.com/w80/ss.png' },
+        { code: 'srr', name: 'Sara', flag: 'https://flagcdn.com/w80/td.png' },
+        { code: 'so', name: 'Soomaali', flag: 'https://flagcdn.com/w80/so.png' },
+        { code: 'sn', name: 'Shona', flag: 'https://flagcdn.com/w80/zw.png' },
+        { code: 'bem', name: 'Bemba', flag: 'https://flagcdn.com/w80/zm.png' },
+        { code: 'ny', name: 'Chichewa', flag: 'https://flagcdn.com/w80/mw.png' },
+        { code: 'wo', name: 'Wolof', flag: 'https://flagcdn.com/w80/sn.png' },
+        { code: 'bm', name: 'Bambara', flag: 'https://flagcdn.com/w80/ml.png' },
+        { code: 'ha-ne', name: 'Hausa (Niger)', flag: 'https://flagcdn.com/w80/ne.png' },
+        { code: 'mos', name: 'Mossi', flag: 'https://flagcdn.com/w80/bf.png' },
+        { code: 'rw', name: 'Kinyarwanda', flag: 'https://flagcdn.com/w80/rw.png' },
+        { code: 'rn', name: 'Kirundi', flag: 'https://flagcdn.com/w80/bi.png' },
+        { code: 'ln', name: 'Lingála', flag: 'https://flagcdn.com/w80/cd.png' },
+        { code: 'zu', name: 'isiZulu', flag: 'https://flagcdn.com/w80/za.png' }
+    ];
+    languages.forEach(lang => {
+        const div = document.createElement('a');
+        div.href = '#';
+        div.className = 'lang-option';
+        div.dataset.lang = lang.code;
+        div.innerHTML = `<img src="${lang.flag}" alt="${lang.name}"> ${lang.name}`;
+        div.onclick = (e) => {
+            e.preventDefault();
+            selectLanguage(lang.code, lang.flag);
+            document.getElementById('langDropdown').classList.remove('show');
+        };
+        dropdown.appendChild(div);
+    });
 }
+
+/**
+ * Sets up toggle button and dropdown closing logic.
+ */
 function setupLanguageToggle() {
-const toggleBtn = document.getElementById('langToggleBtn');
-const dropdown = document.getElementById('langDropdown');
-toggleBtn.onclick = (e) => {
-e.stopPropagation();
-dropdown.classList.toggle('show');
-};
-document.addEventListener('click', (e) => {
-if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
-dropdown.classList.remove('show');
+    const toggleBtn = document.getElementById('langToggleBtn');
+    const dropdown = document.getElementById('langDropdown');
+    toggleBtn.onclick = (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+    };
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
+            dropdown.classList.remove('show');
+        }
+    });
 }
-});
-}
+
+/**
+ * Handles language selection and updates UI accordingly.
+ */
 function selectLanguage(langCode, flagUrl) {
-const flagImg = document.getElementById('currentLangFlag');
-flagImg.src = flagUrl;
-currentLang = langCode;
-document.documentElement.setAttribute('dir', langCode === 'ar' ? 'rtl' : 'ltr');
-document.documentElement.lang = currentLang;
-const t = translations[langCode] || translations.ar;
-document.getElementById('main-hero-title').innerHTML = t.heroTitle;
-document.getElementById('vis-title').innerText = t.visTitle;
-document.getElementById('vis-desc').innerText = t.visDesc;
-document.getElementById('part-title').innerText = t.partTitle;
-document.getElementById('p1-name').innerText = t.p1Name;
-document.getElementById('p2-name').innerText = t.p2Name;
-document.getElementById('p3-name').innerText = t.p3Name;
-document.getElementById('p1-desc').innerText = t.p1Desc;
-document.getElementById('p2-desc').innerText = t.p2Desc;
-document.getElementById('p3-desc').innerText = t.p3Desc;
-document.getElementById('st-title').innerText = t.stTitle;
-document.getElementById('st1-txt').innerText = t.st1;
-document.getElementById('st2-txt').innerText = t.st2;
-document.getElementById('st3-txt').innerText = t.st3;
-document.getElementById('ls-title').innerText = t.lsTitle;
-document.getElementById('ls1-txt').innerText = t.ls1;
-document.getElementById('ls2-txt').innerText = t.ls2;
-document.getElementById('ls3-txt').innerText = t.ls3;
-document.getElementById('awareness-main-title').innerText = t.awTitle;
-document.getElementById('aw-c1').innerText = t.aw1;
-document.getElementById('aw-c2').innerText = t.aw2;
-document.getElementById('aw-c3').innerText = t.aw3;
-document.getElementById('aw-c4').innerText = t.aw4;
-document.getElementById('aw-c5').innerText = t.aw5;
-document.getElementById('aw-c6').innerText = t.aw6;
-document.getElementById('media-guideline').innerText = t.mediaGuide;
-document.getElementById('btn-browse').innerText = t.btnBrowse;
-for(let i=1; i<=6; i++) {
-const popup = document.getElementById('src'+i);
-if(popup) popup.innerText = t.sources[i-1];
+    logLanguageChange(langCode);
+    const flagImg = document.getElementById('currentLangFlag');
+    flagImg.src = flagUrl;
+    currentLang = langCode;
+    document.documentElement.setAttribute('dir', langCode === 'ar' ? 'rtl' : 'ltr');
+    document.documentElement.lang = currentLang;
+    
+    const t = translations[langCode] || translations.ar;
+    document.getElementById('main-hero-title').innerHTML = t.heroTitle;
+    document.getElementById('vis-title').innerText = t.visTitle;
+    document.getElementById('vis-desc').innerText = t.visDesc;
+    document.getElementById('part-title').innerText = t.partTitle;
+    document.getElementById('p1-name').innerText = t.p1Name;
+    document.getElementById('p2-name').innerText = t.p2Name;
+    document.getElementById('p3-name').innerText = t.p3Name;
+    document.getElementById('p1-desc').innerText = t.p1Desc;
+    document.getElementById('p2-desc').innerText = t.p2Desc;
+    document.getElementById('p3-desc').innerText = t.p3Desc;
+    document.getElementById('st-title').innerText = t.stTitle;
+    document.getElementById('st1-txt').innerText = t.st1;
+    document.getElementById('st2-txt').innerText = t.st2;
+    document.getElementById('st3-txt').innerText = t.st3;
+    document.getElementById('ls-title').innerText = t.lsTitle;
+    document.getElementById('ls1-txt').innerText = t.ls1;
+    document.getElementById('ls2-txt').innerText = t.ls2;
+    document.getElementById('ls3-txt').innerText = t.ls3;
+    document.getElementById('awareness-main-title').innerText = t.awTitle;
+    document.getElementById('aw-c1').innerText = t.aw1;
+    document.getElementById('aw-c2').innerText = t.aw2;
+    document.getElementById('aw-c3').innerText = t.aw3;
+    document.getElementById('aw-c4').innerText = t.aw4;
+    document.getElementById('aw-c5').innerText = t.aw5;
+    document.getElementById('aw-c6').innerText = t.aw6;
+    document.getElementById('media-guideline').innerText = t.mediaGuide;
+    document.getElementById('btn-browse').innerText = t.btnBrowse;
+    
+    for(let i=1; i<=6; i++) {
+        const popup = document.getElementById('src'+i);
+        if(popup) popup.innerText = t.sources[i-1];
+    }
+    document.getElementById('src-p1').innerText = t.sources[6];
+    document.getElementById('src-p2').innerText = t.sources[7];
+    document.getElementById('src-p3').innerText = t.sources[8];
+    
+    // Fix navbar links translation
+    const navLinks = document.querySelectorAll('.nav-links a');
+    for (let i = 1; i < navLinks.length; i++) {
+        if (t.nav[i - 1]) {
+            navLinks[i].innerText = t.nav[i - 1];
+        }
+    }
+    
+    updateTicker();
+    renderLanguageDropdown();
 }
-document.getElementById('src-p1').innerText = t.sources[6];
-document.getElementById('src-p2').innerText = t.sources[7];
-document.getElementById('src-p3').innerText = t.sources[8];
-// Fix navbar links translation
-const navLinks = document.querySelectorAll('.nav-links a');
-// Skip the first element (language selector)
-for (let i = 1; i < navLinks.length; i++) {
-if (t.nav[i - 1]) {
-navLinks[i].innerText = t.nav[i - 1];
-}
-}
-updateTicker();
-renderLanguageDropdown();
-}
+
+/**
+ * Opens awareness program modal with questions.
+ */
 function openProgram(type) {
-const container = document.getElementById('questionsContainer');
-container.innerHTML = "";
-let data;
-// Select data based on current language
-switch(currentLang) {
-case 'en':
-const enData = programsDataEn[type];
-if (enData && enData.questions) {
-data = enData.questions.map(q => ({ q: q.question, ans: q.answer, src: "Expert Source" }));
-} else {
-data = programsData[type] || [];
+    const container = document.getElementById('questionsContainer');
+    container.innerHTML = "";
+    let data;
+
+    switch(currentLang) {
+        case 'en':
+            const enData = programsDataEn[type];
+            if (enData && enData.questions) {
+                data = enData.questions.map(q => ({ q: q.question, ans: q.answer, src: "Expert Source" }));
+            } else {
+                data = programsData[type] || [];
+            }
+            break;
+        case 'es': data = programsDataEs[type]; break;
+        case 'fr': data = programsDataFr[type]; break;
+        case 'it': data = programsDataIt[type]; break;
+        case 'tr': data = programsDataTr[type]; break;
+        case 'de': data = programsDataDe[type]; break;
+        case 'pt': data = programsDataPt[type]; break;
+        case 'ro': data = programsDataRo[type]; break;
+        case 'hu': data = programsDataHu[type]; break;
+        case 'ja': data = programsDataJa[type]; break;
+        case 'ko': data = programsDataKo[type]; break;
+        case 'hi': data = programsDataHi[type]; break;
+        case 'pa': data = programsDataPa[type]; break;
+        case 'bn': data = programsDataBn[type]; break;
+        case 'id': data = programsDataId[type]; break;
+        case 'vi': data = programsDataVi[type]; break;
+        case 'fa': data = programsDataFa[type]; break;
+        case 'am': data = programsDataAm[type]; break;
+        case 'sw': data = programsDataSw[type]; break;
+        case 'ha': data = programsDataHa[type]; break;
+        case 'yo': data = programsDataYo[type]; break;
+        default: data = programsData[type];
+    }
+
+    const programNames = {
+        'child': translations[currentLang]?.aw1 || translations.ar.aw1,
+        'teens': translations[currentLang]?.aw2 || translations.ar.aw2,
+        'youth': translations[currentLang]?.aw3 || translations.ar.aw3,
+        'marriage': translations[currentLang]?.aw4 || translations.ar.aw4,
+        'seniors': translations[currentLang]?.aw5 || translations.ar.aw5,
+        'security': translations[currentLang]?.aw6 || translations.ar.aw6
+    };
+
+    document.getElementById('modalTitle').innerText = programNames[type];
+
+    if (Array.isArray(data)) {
+        data.forEach((item, idx) => {
+            const div = document.createElement('div');
+            div.className = "q-item";
+            div.innerText = (idx+1) + ". " + item.q;
+            div.onclick = () => showAnswer(item);
+            container.appendChild(div);
+        });
+    }
+    document.getElementById('qModal').style.display = 'flex';
 }
-break;
-case 'es': data = programsDataEs[type]; break;
-case 'fr': data = programsDataFr[type]; break;
-case 'it': data = programsDataIt[type]; break;
-case 'tr': data = programsDataTr[type]; break;
-case 'de': data = programsDataDe[type]; break;
-case 'pt': data = programsDataPt[type]; break;
-case 'ro': data = programsDataRo[type]; break;
-case 'hu': data = programsDataHu[type]; break;
-case 'ja': data = programsDataJa[type]; break;
-case 'ko': data = programsDataKo[type]; break;
-case 'hi': data = programsDataHi[type]; break;
-case 'pa': data = programsDataPa[type]; break;
-case 'bn': data = programsDataBn[type]; break;
-case 'id': data = programsDataId[type]; break;
-case 'vi': data = programsDataVi[type]; break;
-case 'fa': data = programsDataFa[type]; break;
-case 'am': data = programsDataAm[type]; break;
-case 'sw': data = programsDataSw[type]; break;
-case 'ha': data = programsDataHa[type]; break;
-case 'yo': data = programsDataYo[type]; break;
-default: data = programsData[type];
-}
-const programNames = {
-'child': translations[currentLang]?.aw1 || translations.ar.aw1,
-'teens': translations[currentLang]?.aw2 || translations.ar.aw2,
-'youth': translations[currentLang]?.aw3 || translations.ar.aw3,
-'marriage': translations[currentLang]?.aw4 || translations.ar.aw4,
-'seniors': translations[currentLang]?.aw5 || translations.ar.aw5,
-'security': translations[currentLang]?.aw6 || translations.ar.aw6
-};
-document.getElementById('modalTitle').innerText = programNames[type];
-// Render questions
-if (Array.isArray(data)) {
-data.forEach((item, idx) => {
-const div = document.createElement('div');
-div.className = "q-item";
-div.innerText = (idx+1) + ". " + item.q;
-div.onclick = () => showAnswer(item);
-container.appendChild(div);
-});
-}
-document.getElementById('qModal').style.display = 'flex';
-}
+
+/**
+ * Shows answer in modal.
+ */
 function showAnswer(item) {
-const content = document.getElementById('answerContent');
-const title = document.getElementById('answerTitle');
-title.innerText = item.q || item.question;
-content.innerHTML = `
-<span class="ans-src">${currentLang === 'en' ? 'Source: ' :
-currentLang === 'es' ? 'Fuente: ' :
-currentLang === 'fr' ? 'Source : ' :
-currentLang === 'it' ? 'Fonte: ' :
-currentLang === 'tr' ? 'Kaynak: ' :
-currentLang === 'de' ? 'Quelle: ' :
-currentLang === 'pt' ? 'Fonte: ' :
-currentLang === 'ro' ? 'Sursă: ' :
-currentLang === 'hu' ? 'Forrás: ' :
-currentLang === 'ja' ? '出典: ' :
-currentLang === 'ko' ? '출처: ' :
-currentLang === 'hi' ? 'स्रोत: ' :
-currentLang === 'pa' ? 'ਸਰੋਤ: ' :
-currentLang === 'bn' ? 'উৎস: ' :
-currentLang === 'id' ? 'Sumber: ' :
-currentLang === 'vi' ? 'Nguồn: ' :
-currentLang === 'fa' ? 'منبع: ' :
-currentLang === 'am' ? 'ምንጭ፡ ' :
-currentLang === 'sw' ? 'Chanzo: ' :
-currentLang === 'ha' ? 'Manzo: ' :
-currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '}${item.src || 'Expert Source'}</span>
-<div class="ans-text">${item.ans || item.answer}</div>
-`;
-document.getElementById('aModal').style.display = 'flex';
+    const content = document.getElementById('answerContent');
+    const title = document.getElementById('answerTitle');
+    title.innerText = item.q || item.question;
+    content.innerHTML = `
+        <span class="ans-src">${
+            currentLang === 'en' ? 'Source: ' :
+            currentLang === 'es' ? 'Fuente: ' :
+            currentLang === 'fr' ? 'Source : ' :
+            currentLang === 'it' ? 'Fonte: ' :
+            currentLang === 'tr' ? 'Kaynak: ' :
+            currentLang === 'de' ? 'Quelle: ' :
+            currentLang === 'pt' ? 'Fonte: ' :
+            currentLang === 'ro' ? 'Sursă: ' :
+            currentLang === 'hu' ? 'Forrás: ' :
+            currentLang === 'ja' ? '出典: ' :
+            currentLang === 'ko' ? '출처: ' :
+            currentLang === 'hi' ? 'स्रोत: ' :
+            currentLang === 'pa' ? 'ਸਰੋਤ: ' :
+            currentLang === 'bn' ? 'উৎস: ' :
+            currentLang === 'id' ? 'Sumber: ' :
+            currentLang === 'vi' ? 'Nguồn: ' :
+            currentLang === 'fa' ? 'منبع: ' :
+            currentLang === 'am' ? 'ምንጭ፡ ' :
+            currentLang === 'sw' ? 'Chanzo: ' :
+            currentLang === 'ha' ? 'Manzo: ' :
+            currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '
+        }${item.src || 'Expert Source'}</span>
+        <div class="ans-text">${item.ans || item.answer}</div>
+    `;
+    document.getElementById('aModal').style.display = 'flex';
 }
-function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+
+/**
+ * Closes modal popup.
+ */
+function closePopup(id) { 
+    document.getElementById(id).style.display = 'none'; 
+}
+
+/**
+ * Handles scroll-to-top button visibility.
+ */
 window.onscroll = function() {
-const btn = document.getElementById('btnUp');
-if(window.scrollY > 300) btn.style.display = 'flex';
-else btn.style.display = 'none';
+    const btn = document.getElementById('btnUp');
+    if(window.scrollY > 300) btn.style.display = 'flex';
+    else btn.style.display = 'none';
 };
+
+// ===========================================
+// END OF JAVASCRIPT
+// ===========================================
 </script>
 </body>
 </html>
