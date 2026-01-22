@@ -33,26 +33,9 @@ display: flex; align-items: center; justify-content: center;
 .nav-logo-img { height: 65px; }
 .social-icons { display: flex; gap: 12px; align-items: center; }
 .social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  /* لضمان بقاء اللغة في اليمين دائمًا */
-  flex-direction: row-reverse;
-}
-.lang-selector {
-  order: -1; /* لدفعه لأقصى اليمين دائمًا */
-}
-.nav-links a:not(.lang-selector) {
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 1.1rem;
-  white-space: nowrap;
-}
-.nav-links a:not(.lang-selector):hover { color: #fff; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+.nav-links a:hover { color: #fff; }
 .ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
 .lang-selector {
 position: relative;
@@ -1774,10 +1757,11 @@ document.getElementById('src-p1').innerText = t.sources[6];
 document.getElementById('src-p2').innerText = t.sources[7];
 document.getElementById('src-p3').innerText = t.sources[8];
 // Fix navbar links translation
-const navLinks = document.querySelectorAll('.nav-links a:not(.lang-selector)');
-for (let i = 0; i < navLinks.length; i++) {
-if (t.nav[i]) {
-navLinks[i].innerText = t.nav[i];
+const navLinks = document.querySelectorAll('.nav-links a');
+// Skip the first element (language selector)
+for (let i = 1; i < navLinks.length; i++) {
+if (t.nav[i - 1]) {
+navLinks[i].innerText = t.nav[i - 1];
 }
 }
 updateTicker();
@@ -1788,16 +1772,36 @@ const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
 let data;
 // Select data based on current language
-if (currentLang === 'en') {
+switch(currentLang) {
+case 'en':
 const enData = programsDataEn[type];
 if (enData && enData.questions) {
 data = enData.questions.map(q => ({ q: q.question, ans: q.answer, src: "Expert Source" }));
 } else {
 data = programsData[type] || [];
 }
-} else {
-// For all other languages, use Arabic content for awareness programs
-data = programsData[type] || [];
+break;
+case 'es': data = programsDataEs[type]; break;
+case 'fr': data = programsDataFr[type]; break;
+case 'it': data = programsDataIt[type]; break;
+case 'tr': data = programsDataTr[type]; break;
+case 'de': data = programsDataDe[type]; break;
+case 'pt': data = programsDataPt[type]; break;
+case 'ro': data = programsDataRo[type]; break;
+case 'hu': data = programsDataHu[type]; break;
+case 'ja': data = programsDataJa[type]; break;
+case 'ko': data = programsDataKo[type]; break;
+case 'hi': data = programsDataHi[type]; break;
+case 'pa': data = programsDataPa[type]; break;
+case 'bn': data = programsDataBn[type]; break;
+case 'id': data = programsDataId[type]; break;
+case 'vi': data = programsDataVi[type]; break;
+case 'fa': data = programsDataFa[type]; break;
+case 'am': data = programsDataAm[type]; break;
+case 'sw': data = programsDataSw[type]; break;
+case 'ha': data = programsDataHa[type]; break;
+case 'yo': data = programsDataYo[type]; break;
+default: data = programsData[type];
 }
 const programNames = {
 'child': translations[currentLang]?.aw1 || translations.ar.aw1,
