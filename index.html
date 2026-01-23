@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>CiviStories | Digital Illusion Tsunami</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ربط خطوط عربية -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
 --gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
@@ -165,9 +167,55 @@ margin-bottom: 15px;
 text-align: center;
 display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإجابة === */
 }
-#btnUp { position: fixed; bottom: 100px; left: 20px; background: var(--gold); width: 45px; height: 45px; border-radius: 50%; display: none; align-items: center; justify-content: center; color: #000; cursor: pointer; z-index: 10002; transition: 0.3s; }
-.whatsapp-float { position: fixed; bottom: 30px; left: 20px; background-color: var(--wa-color); color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 15px rgba(0,0,0,0.5); z-index: 10002; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; text-decoration: none; animation: pulse-wa 2s infinite; }
-@keyframes pulse-wa { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+
+/* === Modal جديد لـ "رسالاتنا" === */
+#messages-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 60000;
+  justify-content: center;
+  align-items: center;
+}
+#messages-modal .modal-content {
+  background: var(--cream-bg);
+  border: 2px solid var(--gold);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 700px;
+  padding: 30px;
+  max-height: 85vh;
+  overflow-y: auto;
+  font-family: 'Tajawal', 'Cairo', sans-serif;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: #000;
+  direction: rtl;
+}
+#messages-modal .close-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #ff0000;
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 60001;
+}
+
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
 .news-ticker { top: 160px; }
@@ -177,6 +225,10 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 .awareness-grid { grid-template-columns: repeat(2, 1fr); }
 .section-main-title { font-size: 2rem; }
 .close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
+#messages-modal .modal-content {
+  padding: 20px;
+  font-size: 17px;
+}
 }
 .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
 .btn-action:hover { background: #fff; transform: scale(1.05);}
@@ -208,6 +260,46 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 </div>
 </div>
+<!-- Modal جديد لـ "رسالاتنا" -->
+<div id="messages-modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeMessagesModal()">×</span>
+    <div>
+      🌍 قصص الحضارات: صرخة عالمية للرحمة الرقمية<br><br>
+
+من قلب مصر، حيث تُسجّل ألف حالة طلاق سنويًّا بسبب سوء استخدام الشاشات.<br>
+وحيث تُهدر مليارات الجنيهات بين خسائر إنتاجية، نصب إلكتروني، وعلاج نفسي.<br>  
+نرفع صوتنا ليس كمصرين فقط بل كبشر يرون أن الإنسانية تتعرض لاختبارٍ جديد.<br><br>
+
+ليس الهدف من هذه المنصة اتهام التكنولوجيا، بل إنقاذ العلاقة الإنسانية منها.<br><br>
+
+نحن لا نطلب حظر الهواتف، بل ندعو إلى استخدامها بضمير.<br><br>  
+
+كل طفل في طوكيو أو طرابلس، في ساو باولو أو سيول يستحق أن ينظر في عيني أمه دون شاشة تفصل بينهما.<br>  
+كل شاب في كيب تاون أو كوالالمبور يستحق أن يبني هويته من واقعه، لا من وهم الخوارزميات.<br><br>
+
+السوشيال ميديا ليست شرًّا لكنها ليست محايدة فهي مرآةٌ لنيّاتِ مَن يُوجّهها.<br>  
+هي اليوم إن لم تُوجَّه بالرحمة قد تصبح أسرع طريقٍ لتفكيك الأسر، زرع اليأس، ودفع البعض إلى الانتحار.<br><br>
+
+لهذا، تطلق قصص الحضارات:<br>  
+نداءً إنسانيًّا مفتوحًا لكل حكومة، مؤسسة دينية، ثقافية، أو مدنية للمشاركة في بناء فضاء رقمي يحمي الكرامة، لا يهددها.<br><br>
+
+بدأنا بمصر — لأن الصدق يبدأ من البيت.<br>  
+لكن رسالتنا ليست لمصر وحدها بل للعالم أجمع.<br><br>
+
+✨ ما نطلبه اليوم:<br>
+- من الآباء: أن يعودوا ليكونوا أول "فلتر" لأبنائهم.<br>
+- من الحكومات: أن تضع سياسات تحمي الأطفال من الإدمان الرقمي.<br>
+- من المنصات: أن تختار الإنسان على حساب الربح.<br>
+- من المؤسسات الروحية والثقافية: أن تُرشد الضمير لا أن تصمت.<br>
+- كل مرجعية في العالم — دينية، فلسفية، أو إنسانية —<br>  
+  أن تنضم إلى هذه الصيحة، بلغتها وقيمها ورؤيتها.<br><br>
+
+> شاركنا رسالتنا وانقذ من تحب احمِ الإنسانية قبل أن تصبح ذكرى رقمية.<br>
+> لا تدع الشاشة تسرق منك طفولة طفلك، سلام بيتك، أو رجاءك في الحياة.
+    </div>
+  </div>
+</div>
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
@@ -228,7 +320,8 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <div class="lang-dropdown" id="langDropdown"></div>
 </div>
 <a onclick="scrollToSec('about')">أهدافنا</a>
-<a onclick="scrollToSec('messages')">رسالاتنا</a>
+<!-- ✅ تم تعديل هذا الرابط ليعرض modal بدلاً من التنقل -->
+<a onclick="openMessagesModal()">رسالاتنا</a>
 <a onclick="scrollToSec('inst')">الشركاء</a>
 <a onclick="scrollToSec('media-sec')">ميديا</a>
 <a onclick="scrollToSec('stats')">إحصائيات</a>
@@ -270,7 +363,7 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 <h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">أهدافنا الاستراتيجية</h2>
 <p id="vis-desc">نهدف من خلال مبادرة "قصص الحضارات" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.<br>بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.</p>
 </section>
-<!-- قسم جديد: رسالاتنا -->
+<!-- القسم "رسالاتنا" موجود في HTML لكن لن يتم الوصول إليه بالتمرير لأنه مُعطّل عمليًا -->
 <section id="messages" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رسالاتنا</h2>
@@ -735,7 +828,7 @@ p2Desc: "परामर्श कार्यक्रमों के मा�
 p3Desc: "विवाहित जोड़ों को प्रौद्योगिकी के उनके मनोवैज्ञानिक कल्याण पर प्रभाव के जोखिमों के बारे में शिक्षित करने के लिए 'सकन व मवद्दत (शांति और स्नेह)' पहल।",
 stTitle: "मुख्य आँकड़े", st1: "प्रति वर्ष 3.11 लाख तलाक", st2: "10.4 करोड़ मोबाइल फोन", st3: "बच्चों के लिए प्रतिदिन 5.7 घंटे स्क्रीन समय",
 lsTitle: "सामाजिक नुकसान", ls1: "प्रति वर्ष 15 अरब मिस्री पाउंड उत्पादकता का नुकसान", ls2: "4.5 अरब मिस्री पाउंड मानसिक स्वास्थ्य उपचार लागत", ls3: "2.1 अरब मिस्री पाउंड साइबर धोखाधड़ी का नुकसान",
-awTitle: "जागरूकता कार्यक्रम", aw1: "डिजिटल बचपन", aw2: "किशोरों की दुनिया", aw3: "युवा और उत्पादकता", aw4: "स्वस्थ विवाह", aw5: "वरिष्ठ नागरिक", aw6: "साइबर सुरक्षा और गोपनीयता",
+awTitle: "जागरूकता कार्यक्रम", aw1: "डिजिटल बचपन", aw2: "किशोरों की दुनीया", aw3: "युवा और उत्पादकता", aw4: "स्वस्थ विवाह", aw5: "वरिष्ठ नागरिक", aw6: "साइबर सुरक्षा और गोपनीयता",
 mediaGuide: "हमारा संदेश प्राप्त करने के लिए छवि पर क्लिक करें", btnBrowse: "पुस्तक ब्राउज़ करें",
 news: ["अल-अजहर: डिजिटल नशे के कारण हर 2.5 मिनट में एक तलाक", "धार्मिक संपत्ति: फोन पारिवारिक मौन का प्रमुख कारण हैं", "चेतावनी: डिजिटल टुकड़े राष्ट्रीय स्थिरता को खतरे में डालते हैं"],
 sources: [
@@ -1102,7 +1195,7 @@ security: [
 { q: "ما هي الخطوات القانونية الرسمية للإبلاغ عن جريمة إلكترونية في بلدي؟", src: "مستشار قانوني رقمي", ans: ".   <strong>تجميع الأدلة:</strong> حفظ صور الشاشة، وتسجيل أسماء الحسابات، وأرقام الهواتف، والبريد الإلكتروني المستخدم في الابتزاز.<br>.   <strong>التوجه للجهة المختصة:</strong> زيارة موقع <strong>النيابة العامة</strong> أو <strong>وزارة الداخلية</strong> في بلدك للوصول لقسم \"الجرائم الإلكترونية\".<br>.   <strong>تقديم البلاغ رقمياً أو شخصياً:</strong> معظم الدول توفر منصة إلكترونية لتقديم البلاغات (مثل \"أمن\" في السعودية)، أو يمكن التوجه لأقرب مركز شرطة.<br>.   <strong>تسليم الأدلة:</strong> تقديم جميع الأدلة التي جمعتها للسلطات.<br>.   <strong>المتابعة:</strong> الحصول على رقم البلاغ ومتابعته، والاستجابة لأي طلبات إضافية من الجهات المختصة." },
 { q: "كيف أحمي حساباتي من الاختراق باستخدام ميزة \"المصادقة الثنائية\" (2FA)?", src: "خبير أمن معلومات", ans: ".   <strong>تفعيلها على جميع الحسابات الحيوية:</strong> البريد الإلكتروني، والحسابات البنكية، وتطبيقات التواصل، ووسائل التواصل الاجتماعي.<br>.   <strong>استخدام تطبيق المصادقة:</strong> مثل (Google Authenticator، Microsoft Authenticator) بدلاً من الاعتماد على الرسائل النصية (SMS) فقط.<br>.   <strong>حفظ رموز الاستعادة:</strong> قم بحفظ رموز الاستعادة (Backup Codes) التي تقدمها المنصات في مكان آمن، فهي مفتاحك الوحيد إذا فقدت هاتفك.<br>.   <strong>استخدام مفتاح أمني:</strong> للأهمية القصوى، يمكن استخدام مفتاح أمني مادي (مثل YubiKey) للمصادقة.<br>.   <strong>لا تشارك رموز المصادقة:</strong> هذه الرموز هي كلمة المرور المؤقتة الخاصة بك، لا تطلبها منك أي مؤسسة رسمية أبداً." },
 { q: "هل يمكن للمبتز أن ينفذ تهديده فعلياً إذا قمت بحظره (Block) مباشرة؟", src: "خبير جرائم إلكترونية", ans: ".   <strong>نعم، قد يحاول.</strong> الحظر يمنع التواصل المباشر، لكن لا يمحو المعلومات التي بحوزته.<br>.   <strong>الخطر الأكبر هو قبل الحظر:</strong> إذا كان قد حصل على بيانات أو صور حساسة بالفعل، فقد يستخدمها حتى بعد الحظر.<br>.   <strong>الحظر خطوة ضرورية لكنها ليست كافية:</strong> يجب أن تقترن بالإبلاغ الفوري وجمع الأدلة وعدم الاستسلام للتهديد.<br>.   <strong>التوثيق قبل الحظر:</strong> تأكد من أخذ لقطات شاشة كاملة لكل التهديدات قبل حظر الشخص.<br>.   <strong>حذر من حسابات جديدة:</strong> قد يحاول المبتز إنشاء حسابات جديدة للتواصل مجدداً." },
-{ q: "ما هي مخاطر استخدام شبكات \"الواي فاي\" العامة في الكافيهات والمطارات على بياناتي البنكية؟", src: "خبير أمن شبكات", ans: ".   <strong>التنصت على البيانات:</strong> يمكن للمخترق المتصل بنفس الشبكة اعتراض البيانات غير المشفرة التي ترسلها.<br>.   <strong>التصيد عبر الشبكة:</strong> قد يتم توجيهك لمواقع وهمية تشبه مواقعك المفضلة لسرقة بيانات الدخول.<br>.   <strong>نقاط الوصول المزيفة:</strong> قد ينشئ مخترق شبكة واي فاي تحمل اسماً مشابهاً للشبكة الحقيقية لخداع الضحايا.<br>.   <strong>القاعدة الذهبية:</strong> <strong>لا تقم أبداً بإجراء معاملات بنكية أو إدخال كلمات مرور مهمة أثناء الاتصال بشبكة واي فاي عامة.</strong><br>.   <strong>استخدم VPN موثوقاً:</strong> إذا اضطررت للاتصال، استخدم شبكة افتراضية خاصة (VPN) مشفرة لتأمين اتصالك." },
+{ q: "ما هي مخاطر استخدام شبكات \"الواي فاي\" العامة في الكافيهات والمطارات على بياناتي البنكية؟", src: "خبير أمن شبكات", ans: ".   <strong>التنصت على البيانات:</strong> يمكن للمخترق المتصل بنفس الشبكة اعتراض البيانات غير المشفرة التي ترسلها.<br>.   <strong>التصيد عبر الشبكة:</strong> قد يتم توجيهك لمواقع وهمية تشبه مواقعك المفضلة لسرقة بيانات الدخول.<br>.   <strong>نقاط الوصول المزيفة:</strong> قد ينشئ مخترق شبكة واي فاي تحمل اسماً مشابهاً للشبكة الحقيقية لخداع الضحايا.<br>.   <strong>القاعدة الذهبية:</strong> <strong>لا تقم أبداً بإجراء معاملات بنكية أو إدخال كلمات مرور مهمة أثناء الاتصال بشبكة واي فاي عامة.</strong><br>.   <<strong>استخدم VPN موثوقاً:</strong> إذا اضطررت للاتصال، استخدم شبكة افتراضية خاصة (VPN) مشفرة لتأمين اتصالك." },
 { q: "كيف أكتشف وجود برامج تجسس أو تطبيقات مراقبة مخفية على هاتفي الشخصي؟", src: "خبير أمن أجهزة", ans: ".   <strong>استهلاك غير طبيعي للبطارية والبيانات:</strong> قد تشير التطبيقات الخبيثة إلى نشاط خفي مكثف.<br>.   <strong>أداء الجهاز البطيء:</strong> أو ارتفاع درجة حرارته دون سبب واضح.<br>.   <strong>ظهور تطبيقات غريبة:</strong> افحص قائمة التطبيقات بحثاً عن تطبيقات لا تتذكر تحميلها.<br>.   <strong>سلوك غريب:</strong> مثل إضاءة الشاشة من تلقاء نفسها، أو سماع أصوات غريبة أثناء المكالمات.<br>.   <strong>الحل:</strong> تشغيل فحص بواسطة برنامج مكافحة فيروسات موثوق، وإذا استمر الشك، إعادة ضبط المصنع بعد نسخ بياناتك المهمة." },
 { q: "ماذا أفعل إذا تم اختراق حسابي على واتساب أو فيسبوك وإرسال رسائل مسيئة باسمي؟", src: "خبير استعادة الحسابات", ans: ".   <strong>حاول استعادة الحساب فوراً:</strong> استخدم خيار \"نسيت كلمة المرور\" على المنصة للبدء بعملية الاستعادة عبر البريد الإلكتروني أو رقم الهاتف.<br>.   <strong>أبلغ جميع جهات اتصالك:</strong> حذر أصدقاءك وعائلتك عبر أي وسيلة أخرى متاحة (مكالمة، منصة أخرى) أن حسابك تم اختراقه ولا تفتح أي روابط يرسلها.<br>.   <strong>أبلغ المنصة:</strong> استخدم نماذج الإبلاغ عن الحساب المخترق الموجودة في صفحات المساعدة الخاصة بـ فيسبوك أو واتساب.<br>.   <strong>غير جميع كلمات المرور:</strong> خاصة كلمة مرور البريد الإلكتروني المرتبط بالحساب المخترق.<br>.   <strong>افحص جهازك:</strong> قد يكون الاختراق بسبب وجود برمجية خبيثة على هاتفك." },
 { q: "كيف أحمي صوري وملفاتي الخاصة من الوصول إليها في حال ضياع الهاتف أو سرقته؟", src: "خبير أمن بيانات شخصية", ans: ".   <strong>التشفير والتأمين بكلمة مرور:</strong> تأكد من تفعيل قفل الشاشة بقوة (رقم سري معقد، أو بصمة، أو تعرف الوجه).<br>.   <strong>النسخ الاحتياطي في السحابة:</strong> قم برفع ملفاتك المهمة إلى خدمة سحابية موثوقة (مثل iCloud، Google Photos) وحذفها من ذاكرة الهاتف إذا كانت حساسة جداً.<br>.   <strong>استخدام تطبيقات الخزنة الآمنة:</strong> هناك تطبيقات توفر مساحة مشفرة بكلمة مرور منفصلة داخل هاتفك.<br>.   <strong>تفعيل خاصية \"ابحث عن هاتفي\":</strong> مثل (Find My iPhone) أو (Find My Device) على أندرويد، لمسح البيانات عن بُعد في حال الضياع.<br>.   <strong>تجنب حفظ الصور الحساسة:</strong> الفكرة الأكثر أماناً هي عدم التقاط أو حفظ أي شيء لا تريد أن يراه أحد على هاتفك أساساً." },
@@ -1743,19 +1836,15 @@ dropdown.classList.remove('show');
 }
 });
 }
-
 // ✅ التعديل الوحيد في دالة selectLanguage: إزالة تغيير الاتجاه (dir)
 function selectLanguage(langCode, flagUrl) {
 const flagImg = document.getElementById('currentLangFlag');
 flagImg.src = flagUrl;
 currentLang = langCode;
-
 // ❌ إزالة هذا السطر تمامًا (كان يغيّر الاتجاه):
 // document.documentElement.setAttribute('dir', langCode === 'ar' ? 'rtl' : 'ltr');
-
 // ✅ بقاء اللغة دائمًا RTL (كما في HTML الأصلي)
 document.documentElement.lang = currentLang;
-
 const t = translations[langCode] || translations.ar;
 document.getElementById('main-hero-title').innerHTML = t.heroTitle;
 document.getElementById('vis-title').innerText = t.visTitle;
@@ -1791,7 +1880,6 @@ if(popup) popup.innerText = t.sources[i-1];
 document.getElementById('src-p1').innerText = t.sources[6];
 document.getElementById('src-p2').innerText = t.sources[7];
 document.getElementById('src-p3').innerText = t.sources[8];
-
 // ✅ تعديل الروابط في الشريط العلوي فقط (الترجمة فقط)
 const navLinks = document.querySelectorAll('.nav-links a');
 // تجاوز زر اللغة (العنصر الأول)
@@ -1800,11 +1888,9 @@ if (t.nav && t.nav[i - 1]) {
 navLinks[i].innerText = t.nav[i - 1];
 }
 }
-
 updateTicker();
 renderLanguageDropdown();
 }
-
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
@@ -1893,6 +1979,15 @@ currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '}${item.src || 'E
 document.getElementById('aModal').style.display = 'flex';
 }
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+
+// === New functions for Messages Modal ===
+function openMessagesModal() {
+  document.getElementById('messages-modal').style.display = 'flex';
+}
+function closeMessagesModal() {
+  document.getElementById('messages-modal').style.display = 'none';
+}
+
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
