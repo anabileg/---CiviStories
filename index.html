@@ -167,55 +167,56 @@ margin-bottom: 15px;
 text-align: center;
 display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإجابة === */
 }
-
 /* === Modal جديد لـ "رسالاتنا" === */
 #messages-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 60000;
-  justify-content: center;
-  align-items: center;
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.85);
+z-index: 60000;
+justify-content: center;
+align-items: center;
 }
 #messages-modal .modal-content {
-  background: var(--cream-bg);
-  border: 2px solid var(--gold);
-  border-radius: 20px;
-  width: 90%;
-  max-width: 700px;
-  padding: 30px;
-  max-height: 85vh;
-  overflow-y: auto;
-  font-family: 'Tajawal', 'Cairo', sans-serif;
-  font-size: 19px;
-  font-weight: 500;
-  line-height: 1.7;
-  color: #000;
-  direction: rtl;
+background: var(--cream-bg);
+border: 2px solid var(--gold);
+border-radius: 20px;
+width: 90%;
+max-width: 700px;
+padding: 30px;
+max-height: 85vh;
+overflow-y: auto;
+font-family: 'Tajawal', 'Cairo', sans-serif;
+font-size: 19px;
+font-weight: 500;
+line-height: 1.7;
+color: #000;
+direction: rtl;
+position: relative;
 }
+/* ✅ زر الإغلاق الجديد: في أقصى اليسار أعلى محتوى الرسالة */
 #messages-modal .close-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #fff;
-  border: 2px solid #ff0000;
-  color: #ff0000;
-  font-weight: bold;
-  font-size: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 60001;
+position: absolute;
+top: 10px;
+left: auto;
+right: 10px; /* ← هذا يجعله في اليسار لأن الاتجاه RTL */
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: #fff;
+border: 2px solid #ff0000;
+color: #ff0000;
+font-weight: bold;
+font-size: 24px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+z-index: 60001;
 }
-
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
 .news-ticker { top: 160px; }
@@ -226,8 +227,8 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 .section-main-title { font-size: 2rem; }
 .close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
 #messages-modal .modal-content {
-  padding: 20px;
-  font-size: 17px;
+padding: 20px;
+font-size: 17px;
 }
 }
 .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -262,43 +263,34 @@ display: none; /* === تعديل 2: إخفاء الجملة من صفحة الإ
 </div>
 <!-- Modal جديد لـ "رسالاتنا" -->
 <div id="messages-modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeMessagesModal()">×</span>
-    <div>
-      🌍 قصص الحضارات: صرخة عالمية للرحمة الرقمية<br><br>
-
+<div class="modal-content">
+<span class="close-btn" onclick="closeMessagesModal()">×</span>
+<div>
+🌍 قصص الحضارات: صرخة عالمية للرحمة الرقمية<br><br>
 من قلب مصر، حيث تُسجّل ألف حالة طلاق سنويًّا بسبب سوء استخدام الشاشات.<br>
-وحيث تُهدر مليارات الجنيهات بين خسائر إنتاجية، نصب إلكتروني، وعلاج نفسي.<br>  
+وحيث تُهدر مليارات الجنيهات بين خسائر إنتاجية، نصب إلكتروني، وعلاج نفسي.<br>
 نرفع صوتنا ليس كمصرين فقط بل كبشر يرون أن الإنسانية تتعرض لاختبارٍ جديد.<br><br>
-
 ليس الهدف من هذه المنصة اتهام التكنولوجيا، بل إنقاذ العلاقة الإنسانية منها.<br><br>
-
-نحن لا نطلب حظر الهواتف، بل ندعو إلى استخدامها بضمير.<br><br>  
-
-كل طفل في طوكيو أو طرابلس، في ساو باولو أو سيول يستحق أن ينظر في عيني أمه دون شاشة تفصل بينهما.<br>  
+نحن لا نطلب حظر الهواتف، بل ندعو إلى استخدامها بضمير.<br><br>
+كل طفل في طوكيو أو طرابلس، في ساو باولو أو سيول يستحق أن ينظر في عيني أمه دون شاشة تفصل بينهما.<br>
 كل شاب في كيب تاون أو كوالالمبور يستحق أن يبني هويته من واقعه، لا من وهم الخوارزميات.<br><br>
-
-السوشيال ميديا ليست شرًّا لكنها ليست محايدة فهي مرآةٌ لنيّاتِ مَن يُوجّهها.<br>  
+السوشيال ميديا ليست شرًّا لكنها ليست محايدة فهي مرآةٌ لنيّاتِ مَن يُوجّهها.<br>
 هي اليوم إن لم تُوجَّه بالرحمة قد تصبح أسرع طريقٍ لتفكيك الأسر، زرع اليأس، ودفع البعض إلى الانتحار.<br><br>
-
-لهذا، تطلق قصص الحضارات:<br>  
+لهذا، تطلق قصص الحضارات:<br>
 نداءً إنسانيًّا مفتوحًا لكل حكومة، مؤسسة دينية، ثقافية، أو مدنية للمشاركة في بناء فضاء رقمي يحمي الكرامة، لا يهددها.<br><br>
-
-بدأنا بمصر — لأن الصدق يبدأ من البيت.<br>  
+بدأنا بمصر — لأن الصدق يبدأ من البيت.<br>
 لكن رسالتنا ليست لمصر وحدها بل للعالم أجمع.<br><br>
-
 ✨ ما نطلبه اليوم:<br>
 - من الآباء: أن يعودوا ليكونوا أول "فلتر" لأبنائهم.<br>
 - من الحكومات: أن تضع سياسات تحمي الأطفال من الإدمان الرقمي.<br>
 - من المنصات: أن تختار الإنسان على حساب الربح.<br>
 - من المؤسسات الروحية والثقافية: أن تُرشد الضمير لا أن تصمت.<br>
-- كل مرجعية في العالم — دينية، فلسفية، أو إنسانية —<br>  
-  أن تنضم إلى هذه الصيحة، بلغتها وقيمها ورؤيتها.<br><br>
-
+- كل مرجعية في العالم — دينية، فلسفية، أو إنسانية —<br>
+أن تنضم إلى هذه الصيحة، بلغتها وقيمها ورؤيتها.<br><br>
 > شاركنا رسالتنا وانقذ من تحب احمِ الإنسانية قبل أن تصبح ذكرى رقمية.<br>
 > لا تدع الشاشة تسرق منك طفولة طفلك، سلام بيتك، أو رجاءك في الحياة.
-    </div>
-  </div>
+</div>
+</div>
 </div>
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
@@ -1144,7 +1136,7 @@ youth: [
 { q: "ما هو التأثير الحقيقي \"لتعدد المهام\" على جودة عملي، وكيف أدرب نفسي على التركيز الكامل في مهمة واحدة؟", src: "عالم أعصاب رقمي", ans: ".   <strong>التأثير:</strong> انخفاض جودة المخرجات، زيادة الأخطاء، استنزاف أسرع للطاقة العقلية<br>.   إغلاق جميع علامات التبويب والنوافذ والتطبيقات غير المتعلقة بالمهمة الحالية<br>.   استخدام قائمة مهام يومية واضحة مرتبة حسب الأولوية وليس الرغبة<br>.   إدارة الانقطاعات بوضع علامة \"مشغول\" والرد في وقت مخصص للمراجعة<br>.   تدريب الدماغ على رفض التبديل عبر التدرج بزيادة فترات التركيز المتواصل" },
 { q: "كيف أتعامل مع ضغط \"المثالية الرقمية\" وسعار المقارنة عند رؤية إنجازات الآخرين على منصات مثل لينكدإن؟", src: "أخصائي نفسي رقمي", ans: ".   تذكر أن منصات التواصل المهني هي \"معرض للإنجازات\" وليست سيرة ذاتية كاملة<br>.   تحديد معايير النجاح الشخصية الخاصة بك بناءً على أهدافك وقيمتك وليس مقارنة بالآخرين<br>.   تحويل المشاعر السلبية إلى فضول: \"ماذا يمكنني أن أتعلم من تجربته؟\"<br>.   تقليل الوقت المخصص للتصفح السلبي واستبداله بفترات محددة للتفاعل الهادف<br>.   تدوين وتوثيق إنجازاتك وتقدمك الشخصي في دفتر خاص للرجوع إليه" },
 { q: "ما هي أفضل الأدوات والتطبيقات لتنظيم وإدارة المشاريع الشخصية والمهنية بشكل احترافي وبسيط؟", src: "خبير أدوات رقمية", ans: ".   <strong>للمهام الشخصية:</strong> Todoist، Microsoft To Do، Google Tasks<br>.   <strong>للمشاريع المتوسطة:</strong> Trello (لوحات كانبان)، Asana، ClickUp<br>.   <strong>للملاحظات:</strong> Notion، Evernote، Obsidian<br>.   <strong>لتنظيم الوقت:</strong> Google Calendar، Apple Calendar، Calendly<br>.   <strong>للتعاون:</strong> Google Workspace، Microsoft 365" },
-{ q: "كيف أستخدم الذكاء الاصطناعي كشريك إبداعي ومساعد شخصي يضاعف إنتاجيتي، مع الحفاظ على تميزي البشري؟", src: "خبير ذكاء اصطناعي تطبيقي", ans: ".   استخدامه لتوليد الأفكار الأولية، ومسودات النصوص، والعناوين، والهياكل<br>.   الاستفادة منه في تلخيص المستندات الطويلة، وتنظيم البيانات، والبحث الذكي<br>.   الاعتماد عليه لمراجعة النصوص وتحسين الصياغة والأخطاء اللغوية<br>.   <strong>الحفاظ على التميز البشري</strong> بإضافة السياق الشخصي، والتحرير النقدي، والعاطفة<br>.   اعتباره \"مساعداً ذكياً\" تطرح عليه الأسئلة وتدقق مخرجاته، وليس \"بديلاً\"" },
+{ q: "كيف أستخدم الذكاء الاصطناعي كشريك إبداعي ومساعد شخصي يضاعف إنتاجيتي، مع الحفاظ على تميزي البشري؟", src: "خبير ذكاء اصطناعي تطبيقي", ans: ".   استخدامه لتوليد الأفكار الأولية، ومسودات النصوص، والعناوين، والهياكل<br>.   الاستفادة منه في تلخيص المستندات الطويلة، وتنظيم البيانات، والبحث الذكي<br>.   الاعتماد عليه لمراجعة النصوص وتحسين الصياغة والأخطاء اللغوية<br>.   <strong>الحفاظ على التميز البشري</strong> بإضافة السياق الشخصي، والتحرير النقدي، والعاطفة<br>.   اعتباره \"مساعداً ذكياً\" تطرح عليه الأسئلة وتدقق مخرجاته، وليس \"بديلا\"" },
 { q: "كيف أبني \"نظام تعلم ذاتي\" عبر الإنترنت يضمن لي تحديث مهاراتي باستمرار ومواكبة تطورات سوق العمل؟", src: "خبير تعلم رقمي", ans: ".   تحديد مسار تعلم واضح يركز على المهارات الأكثر طلباً في مجالك وأهدافك<br>.   تخصيص وقت أسبوعي ثابت وغير قابل للمساومة للتعلم (ساعة يومياً أو نصف يوم أسبوعياً)<br>.   الاشتراك في منصات التعلم الإلكتروني الموجهة (Coursera، edX، Udemy)<br>.   تطبيق المعرفة فوراً من خلال مشاريع مصغرة أو تطبيقها في العمل الحالي<br>.   قياس التقدم بالحصول على شهادات أو بناء محفظة أعمال أو مشاركة ما تتعلمه" },
 { q: "ما هي خطوات تحويل مهاراتي الرقمية إلى مصدر دخل إضافي عبر العمل الحر، وكيف أبدأ بطريقة فعالة ومنظمة؟", src: "خبير عمل حر رقمي", ans: ".   اختيار مهارة واحدة محددة وقابلة للتسويق وتمتلك فيها مستوى جيد<br>.   بناء محفظة أعمال (Portfolio) تحتوي على 2-3 مشاريع نموذجية تظهر أفضل ما لديك<br>.   البحث عن الأسعار السوقية وتحديد عروض أسعار تنافسية في البداية لجذب العملاء الأولى<br>.   إنشاء ملف احترافي على منصات العمل الحر (مثل Upwork، خمسات، مستقل) وشبكة لينكدإن<br>.   البدء بعروض الخدمة لشبكة معارفك، واستخدام عقود بسيطة، وتنظيم الفواتير والضرائب" },
 { q: "كيف أطور \"علامتي التجارية الشخصية\" على الإنترنت لجذب الفرص المهنية المناسبة وبناء شبكة علاقات مؤثرة؟", src: "خبير تسويق رقمي شخصي", ans: ".   تحديد نطاق تخصصي وشخصيتي المهنية الفريدة والقيمة المميزة التي تقدمها<br>.   تحسين ملف LinkedIn بالكامل: صورة محترفة، عنوان جذاب، ملخص قوي، تفاصيل الخبرات<br>.   نشر محتوى ذو قيمة بشكل منتظم (مقالات، منشورات، تعليقات ثاقبة) في مجالك<br>.   التفاعل البناء مع محتوى الآخرين من خبراء ومؤثرين في مجال اهتمامك<br>.   الحفاظ على اتساق الصورة والرسالة عبر جميع المنصات" },
@@ -1979,15 +1971,13 @@ currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '}${item.src || 'E
 document.getElementById('aModal').style.display = 'flex';
 }
 function closePopup(id) { document.getElementById(id).style.display = 'none'; }
-
 // === New functions for Messages Modal ===
 function openMessagesModal() {
-  document.getElementById('messages-modal').style.display = 'flex';
+document.getElementById('messages-modal').style.display = 'flex';
 }
 function closeMessagesModal() {
-  document.getElementById('messages-modal').style.display = 'none';
+document.getElementById('messages-modal').style.display = 'none';
 }
-
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
