@@ -217,6 +217,29 @@ justify-content: center;
 cursor: pointer;
 z-index: 60001;
 }
+
+/* === نمط المربع الجديد للمعتقدات === */
+.beliefs-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 15px;
+margin-top: 30px;
+}
+.belief-card {
+background: rgba(0,0,0,0.5);
+border: 1px solid var(--gold);
+border-radius: 15px;
+padding: 15px;
+font-weight: bold;
+font-size: 1.1rem;
+text-align: center;
+transition: 0.3s;
+}
+.belief-card:hover {
+background: rgba(212, 175, 55, 0.15);
+transform: translateY(-3px);
+}
+
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
 .news-ticker { top: 160px; }
@@ -225,6 +248,7 @@ z-index: 60001;
 .video-container-box { width: 100%; height: 250px; }
 .awareness-grid { grid-template-columns: repeat(2, 1fr); }
 .section-main-title { font-size: 2rem; }
+.beliefs-grid { grid-template-columns: repeat(2, 1fr); }
 .close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
 #messages-modal .modal-content {
 padding: 20px;
@@ -470,6 +494,28 @@ font-size: 17px;
 </p>
 </div>
 </section>
+
+<!-- ✅ المربع الجديد المطلوب: تحت "رؤية إنسانية" مباشرة -->
+<section class="section">
+<div class="glass-box">
+<h2 class="section-main-title" style="font-size: 2.5rem; font-weight: bold;">مرجعياتنا الإنسانية</h2>
+<div class="beliefs-grid">
+<div class="belief-card">الإسلام</div>
+<div class="belief-card">المسيحية</div>
+<div class="belief-card">اليهودية</div>
+<div class="belief-card">البوذية</div>
+<div class="belief-card">الهندوسية</div>
+<div class="belief-card">الكونفوشيوسية</div>
+<div class="belief-card">الشنتو</div>
+<div class="belief-card">الطاوية</div>
+<div class="belief-card">الجاينية</div>
+<div class="belief-card">الزرادشتية</div>
+<div class="belief-card">الفلسفة الأفريقية</div>
+<div class="belief-card">الأخلاق الإنسانية</div>
+</div>
+</div>
+</section>
+
 <script>
 let currentLang = 'ar';
 // === Full translations for all supported languages ===
