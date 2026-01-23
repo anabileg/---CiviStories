@@ -217,6 +217,7 @@ justify-content: center;
 cursor: pointer;
 z-index: 60001;
 }
+
 /* === نمط المربع الجديد للمعتقدات === */
 .beliefs-grid {
 display: grid;
@@ -233,11 +234,60 @@ font-weight: bold;
 font-size: 1.1rem;
 text-align: center;
 transition: 0.3s;
+cursor: pointer;
 }
 .belief-card:hover {
 background: rgba(212, 175, 55, 0.15);
 transform: translateY(-3px);
 }
+
+/* === نافذة الإسلام المنبثقة === */
+#islam-popup {
+display: none;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 90%;
+max-width: 700px;
+background-color: var(--cream-bg);
+border-radius: 20px;
+padding: 30px;
+z-index: 70000;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+font-family: 'Tajawal', 'Cairo', sans-serif;
+color: #000;
+line-height: 1.8;
+direction: rtl;
+}
+#islam-popup h2 {
+text-align: center;
+color: #b30000;
+font-size: 1.8rem;
+margin-bottom: 20px;
+}
+#islam-popup .close-islam {
+position: absolute;
+top: 10px;
+left: 10px;
+width: 36px;
+height: 36px;
+border-radius: 50%;
+background-color: #ffcccc;
+color: #b30000;
+font-weight: bold;
+font-size: 22px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+border: 1px solid #ff9999;
+}
+#islam-popup p {
+margin-bottom: 16px;
+font-size: 1.15rem;
+}
+
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
 .news-ticker { top: 160px; }
@@ -251,6 +301,15 @@ transform: translateY(-3px);
 #messages-modal .modal-content {
 padding: 20px;
 font-size: 17px;
+}
+#islam-popup {
+padding: 20px;
+}
+#islam-popup h2 {
+font-size: 1.5rem;
+}
+#islam-popup p {
+font-size: 1rem;
 }
 }
 .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -277,10 +336,8 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 </head>
 <body onload="initPage()">
 <div class="site-bg"></div>
-
 <!-- ✅ زر العودة للأعلى (تمت إعادته) -->
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
 <!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
@@ -335,13 +392,28 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 </div>
 </div>
 </div>
+
+<!-- === نافذة الإسلام المنبثقة === -->
+<div id="islam-popup">
+<span class="close-islam" onclick="closeIslamPopup()">×</span>
+<h2>إماطة الأذى في العصر الرقمي: رؤية إسلامية لحماية المسيرة الإنسانية</h2>
+<p>الإسلام دين الرحمة والبناء، يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.</p>
+<p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.</p>
+<p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:<br>- الكلمة الجارحة<br>- النظرات المحرّمة<br>- الدعوات المضلّلة<br>- السلوك الذي يُربك الناس أو يُقلقهم<br>قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول».<br>المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.</p>
+<p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (البخاري).<br>كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟<br>من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.</p>
+<p><strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري.<br>العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» [الإسراء: 36].<br>من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.</p>
+<p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا.<br>واستخدامها الخاطئ أدّى إلى:<br>- قطع الأرحام<br>- تحريض على الانتقام<br>- دفع البعض إلى الانتحار<br>وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي.<br>ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».</p>
+<p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ.<br>هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا.<br>لذا، على المسلم أن:<br>- يُراقب مصادره<br>- يختار محتواه بوعي<br>- يُدرّب نفسه على التمييز لا على الانجراف</p>
+<p><strong>خاتمة وتوصيات</strong><br>1. الدعوة إلى تبني خطاب توعوي إسلامي يُبيّن خطر الأذى الرقمي كأحد أشكال الإيذاء المحرّم.<br>2. دعم برامج توعوية غير ربحية تُعزّز القيم، لا الرغبات.<br>3. تأهيل الأسر والمربين لفهم آليات المنصات وكيفية حماية الأبناء منها.<br>4. التأكيد على أن النية ليست كافية، بل يجب أن يكون المحتوى أيضًا نافعًا.<br>5. اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</p>
+<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» [المائدة: 32]<br>العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.</p>
+</div>
+
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
 <img id="lightbox-img" src="">
 </div>
 </div>
-
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
@@ -520,7 +592,7 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 2.5rem; font-weight: bold;">مرجعياتنا الإنسانية</h2>
 <div class="beliefs-grid">
-<div class="belief-card">الإسلام</div>
+<div class="belief-card" onclick="openIslamPopup()">الإسلام</div>
 <div class="belief-card">المسيحية</div>
 <div class="belief-card">اليهودية</div>
 <div class="belief-card">البوذية</div>
@@ -2043,6 +2115,15 @@ document.getElementById('messages-modal').style.display = 'flex';
 function closeMessagesModal() {
 document.getElementById('messages-modal').style.display = 'none';
 }
+
+// === Functions for Islam Popup ===
+function openIslamPopup() {
+document.getElementById('islam-popup').style.display = 'block';
+}
+function closeIslamPopup() {
+document.getElementById('islam-popup').style.display = 'none';
+}
+
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
