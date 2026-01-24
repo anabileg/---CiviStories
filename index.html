@@ -218,6 +218,55 @@ cursor: pointer;
 z-index: 60001;
 }
 
+/* === نافذة الإسلام المنبثقة === */
+#islam-modal {
+display: none;
+position: fixed;
+top: 20%;
+left: 50%;
+transform: translateX(-50%);
+width: 90%;
+max-width: 700px;
+background: var(--cream-bg);
+border-radius: 15px;
+padding: 25px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+z-index: 70000;
+font-family: 'Tajawal', 'Cairo', sans-serif;
+color: #000;
+line-height: 1.8;
+direction: rtl;
+}
+#islam-modal .close-islam {
+position: absolute;
+top: 10px;
+left: 10px;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+background: #ffcccc;
+color: #cc0000;
+font-weight: bold;
+font-size: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+border: 1px solid #ff6666;
+}
+#islam-modal h2 {
+text-align: center;
+color: #b30000;
+font-size: 1.6rem;
+margin-bottom: 20px;
+font-weight: bold;
+}
+#islam-modal p {
+margin-bottom: 15px;
+font-size: 1.1rem;
+font-weight: 500;
+}
+
 /* === نمط المربع الجديد للمعتقدات === */
 .beliefs-grid {
 display: grid;
@@ -240,54 +289,6 @@ cursor: pointer;
 background: rgba(212, 175, 55, 0.15);
 transform: translateY(-3px);
 }
-
-/* === النافذة المنبثقة الجديدة للإسلام === */
-#islam-modal {
-display: none;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-width: 90%;
-max-width: 800px;
-max-height: 80vh;
-background-color: #fdf9f3; /* كريمي ناعم */
-border-radius: 20px;
-padding: 30px;
-z-index: 70000;
-overflow-y: auto;
-font-family: 'Tajawal', 'Cairo', sans-serif;
-font-size: 18px;
-line-height: 1.8;
-color: #333; /* أسود ناعم */
-direction: rtl;
-box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-#islam-modal .close-islam {
-position: absolute;
-top: 10px;
-left: 10px;
-width: 32px;
-height: 32px;
-border-radius: 50%;
-background-color: #ffcccc; /* أحمر فاتح */
-color: #cc0000;
-font-weight: bold;
-font-size: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-border: none;
-}
-#islam-modal h2 {
-text-align: center;
-color: #b30000; /* أحمر */
-font-size: 24px;
-margin-bottom: 20px;
-font-weight: bold;
-}
-
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
 .news-ticker { top: 160px; }
@@ -301,16 +302,6 @@ font-weight: bold;
 #messages-modal .modal-content {
 padding: 20px;
 font-size: 17px;
-}
-#islam-modal {
-width: 95%;
-padding: 20px;
-font-size: 16px;
-}
-#islam-modal .close-islam {
-width: 28px;
-height: 28px;
-font-size: 18px;
 }
 }
 .btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
@@ -394,60 +385,19 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 </div>
 </div>
 
-<!-- === النافذة المنبثقة الجديدة للإسلام === -->
+<!-- ✅ نافذة الإسلام المنبثقة -->
 <div id="islam-modal">
-<button class="close-islam" onclick="closeIslamModal()">×</button>
+<span class="close-islam" onclick="closeIslamModal()">×</span>
 <h2>إماطة الأذى في العصر الرقمي: رؤية إسلامية لحماية المسيرة الإنسانية</h2>
 <p>الإسلام دين الرحمة والبناء، يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.</p>
-
-<p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>
-لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.</p>
-
-<p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>
-الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:<br>
-- الكلمة الجارحة<br>
-- النظرات المحرّمة<br>
-- الدعوات المضلّلة<br>
-- السلوك الذي يُربك الناس أو يُقلقهم<br>
-قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول».<br>
-المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.</p>
-
-<p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>
-الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (البخاري).<br>
-كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟<br>
-من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.</p>
-
-<p><strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>
-ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري.<br>
-العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» [الإسراء: 36].<br>
-من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.</p>
-
-<p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>
-منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا.<br>
-واستخدامها الخاطئ أدّى إلى:<br>
-- قطع الأرحام<br>
-- تحريض على الانتقام<br>
-- دفع البعض إلى الانتحار<br>
-وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي.<br>
-ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».</p>
-
-<p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>
-الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ.<br>
-هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا.<br>
-لذا، على المسلم أن:<br>
-- يُراقب مصادره<br>
-- يختار محتواه بوعي<br>
-- يُدرّب نفسه على التمييز لا على الانجراف</p>
-
-<p><strong>خاتمة وتوصيات</strong><br>
-1. الدعوة إلى تبني خطاب توعوي إسلامي يُبيّن خطر الأذى الرقمي كأحد أشكال الإيذاء المحرّم.<br>
-2. دعم برامج توعوية غير ربحية تُعزّز القيم، لا الرغبات.<br>
-3. تأهيل الأسر والمربين لفهم آليات المنصات وكيفية حماية الأبناء منها.<br>
-4. التأكيد على أن النية ليست كافية، بل يجب أن يكون المحتوى أيضًا نافعًا.<br>
-5. اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</p>
-
-<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» [المائدة: 32]<br>
-العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.</p>
+<p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.</p>
+<p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:<br>- الكلمة الجارحة<br>- النظرات المحرّمة<br>- الدعوات المضلّلة<br>- السلوك الذي يُربك الناس أو يُقلقهم<br>قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول». المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.</p>
+<p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (البخاري). كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟ من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.</p>
+<p><strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري. العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» [الإسراء: 36]. من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.</p>
+<p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا. واستخدامها الخاطئ أدّى إلى:<br>- قطع الأرحام<br>- تحريض على الانتقام<br>- دفع البعض إلى الانتحار<br>وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي. ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».</p>
+<p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ. هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا. لذا، على المسلم أن:<br>- يُراقب مصادره<br>- يختار محتواه بوعي<br>- يُدرّب نفسه على التمييز لا على الانجراف</p>
+<p><strong>خاتمة وتوصيات</strong><br>1. الدعوة إلى تبني خطاب توعوي إسلامي يُبيّن خطر الأذى الرقمي كأحد أشكال الإيذاء المحرّم.<br>2. دعم برامج توعوية غير ربحية تُعزّز القيم، لا الرغبات.<br>3. تأهيل الأسر والمربين لفهم آليات المنصات وكيفية حماية الأبناء منها.<br>4. التأكيد على أن النية ليست كافية، بل يجب أن يكون المحتوى أيضًا نافعًا.<br>5. اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</p>
+<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» [المائدة: 32]<br>العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.</p>
 </div>
 
 <div id="lightbox" class="lightbox">
@@ -1364,357 +1314,813 @@ security: [
 { q: "ماذا أفعل في اللحظات الأولى عند اكتشافي أنني أتعرض لعملية ابتزاز إلكتروني؟", src: "خبير أمن سيبراني", ans: ".   <strong>أهم قاعدة: لا تستسلم ولا تدفع أي مال.</strong> الدفع يشجع المبتز ويزيد من مطالبه.<br>.   <strong>لا تحذف الأدلة.</strong> احتفظ بجميع المحادثات، والرسائل، والصور، والتسجيلات.<br>.   <strong>اقطع التواصل فوراً.</strong> لا ترد على التهديدات أو تتواصل مع المبتز.<br>.   <strong>لا تتفاعل عاطفياً.</strong> الهدف هو إخافتك لاتخاذ قرارات خاطئة، حافظ على هدوئك قدر الإمكان.<br>.   <strong>ابحث عن الدعم فوراً.</strong> أخبر شخصاً تثق به (صديق، قريب) واتصل بالسلطات المختصة." },
 { q: "كيف أميز بين البريد الإلكتروني الحقيقي ورسائل \"التصيد الاحتيالي\" التي تهدف لسرقة بياناتي؟", src: "خبير أمن رقمي", ans: ".   <strong>افحص عنوان المرسل بعناية:</strong> ابحث عن أخطاء إملائية طفيفة أو اختلافات في اسم الموقع (مثال: amaz0n.com بدلاً من amazon.com).<br>.   <strong>احذر الرسائل العاجلة والمهددة:</strong> التي تخبرك بأن حسابك سيُغلق أو أن هناك مشكلة أمنية وتطلب بياناتك فوراً.<br>.   <strong>لا تضغط على الروابط:</strong> ضع مؤشر الفأرة فوق الرابط (دون النقر) لرؤية عنوان URL الحقيقي، وإذا شككت، ادخل للموقع مباشرة عبر متصفحك.<br>.   <strong>لن تطلب منك المؤسسة الرسمية</strong> كلمة المرور أو الرقم السري للبطاقة عبر البريد.<br>.   <strong>الأخطاء اللغوية:</strong> غالباً تحتوي رسائل التصيد على أخطاء في اللغة أو التنسيق." },
 { q: "ما هي الخطوات القانونية الرسمية للإبلاغ عن جريمة إلكترونية في بلدي؟", src: "مستشار قانوني رقمي", ans: ".   <strong>تجميع الأدلة:</strong> حفظ صور الشاشة، وتسجيل أسماء الحسابات، وأرقام الهواتف، والبريد الإلكتروني المستخدم في الابتزاز.<br>.   <strong>التوجه للجهة المختصة:</strong> زيارة موقع <strong>النيابة العامة</strong> أو <strong>وزارة الداخلية</strong> في بلدك للوصول لقسم \"الجرائم الإلكترونية\".<br>.   <strong>تقديم البلاغ رقمياً أو شخصياً:</strong> معظم الدول توفر منصة إلكترونية لتقديم البلاغات (مثل \"أمن\" في السعودية)، أو يمكن التوجه لأقرب مركز شرطة.<br>.   <strong>تسليم الأدلة:</strong> تقديم جميع الأدلة التي جمعتها للسلطات.<br>.   <strong>المتابعة:</strong> الحصول على رقم البلاغ ومتابعته، والاستجابة لأي طلبات إضافية من الجهات المختصة." },
-{ q: "كيف أحمي حساباتي من الاختراق باستخدام ميزة \"المصادقة الثنائية\" (2FA)?", src: "خبير أمن معلومات", ans: ".   <strong>تفعيلها على جميع الحسابات الحيوية:</strong> البريد الإلكتروني، والحسابات البنكية، وتطبيقات التواصل، ووسائل التواصل الاجتماعي.<br>.   <strong>استخدام تطبيق المصادقة:</strong> مثل (Google Authenticator، Microsoft Authenticator) بدلاً من الرسائل النصية.<br>.   <strong>لا تشارك رمز المصادقة مع أحد:</strong> حتى لو ادّعى أنه من الدعم الفني.<br>.   <strong>إعداد مفتاح أمان مادي:</strong> مثل مفتاح USB FIDO2 لحماية إضافية.<br>.   <strong>مراجعة الأجهزة الموثوقة:</strong> بشكل دوري وحذف أي جهاز غير معروف." },
-{ q: "ما هي أفضل الممارسات لاختيار كلمات مرور قوية وآمنة؟", src: "خبير أمن سيبراني", ans: ".   <strong>استخدم عبارات مرور:</strong> مكونة من 4-5 كلمات عشوائية (مثل: قهوة_نمر_سماء_كتاب).<br>.   <strong>تجنب المعلومات الشخصية:</strong> مثل أسماء العائلة، تواريخ الميلاد، أو أرقام الهاتف.<br>.   <strong>استخدم مدير كلمات المرور:</strong> مثل Bitwarden أو 1Password لتوليد وتخزين كلمات المرور.<br>.   <strong>لا تستخدم نفس كلمة المرور:</strong> لأكثر من حساب واحد.<br>.   <<strong>غير كلمات المرور:</strong> بشكل دوري، خاصة بعد أي خرق أمني معروف." },
-{ q: "كيف أحمي نفسي من هجمات \"الهندسة الاجتماعية\" التي تستغل الثقة لسرقة المعلومات؟", src: "خبير أمن رقمي", ans: ".   <strong>كن متشككاً:</strong> خاصة مع الطلبات العاجلة أو العروض المغرية جداً.<br>.   <strong>تحقق من الهوية:</strong> عبر قناة اتصال مستقلة (مثل الاتصال بالشركة مباشرة).<br>.   <strong>لا تكشف معلوماتك:</strong> حتى لو بدا الطرف الآخر موثوقاً أو يعرف بعض التفاصيل.<br>.   <strong>تعلم أساليب الاحتيال الشائعة:</strong> مثل مكالمات الدعم المزيف أو رسائل \"المساعدة العاجلة\".<br>.   <strong>درّب نفسك على الرفض:</strong> لا بأس أن تقول لا أو أن تطلب وقتاً للتفكير." },
-{ q: "ما هي إعدادات الخصوصية الأساسية التي يجب تفعيلها على فيسبوك وإنستغرام؟", src: "خبير خصوصية رقمية", ans: ".   <strong>حدد جمهور المنشورات:</strong> على \"الأصدقاء\" فقط، وليس \"العامة\".<br>.   <strong>عطل التعرف على الوجه:</strong> في إعدادات الخصوصية.<br>.   <strong>راجع التطبيقات المرتبطة:</strong> وأزل أي تطبيق لا تستخدمه.<br>.   <strong>عطل الموقع الجغرافي:</strong> في المنشورات إلا عند الضرورة.<br>.   <strong>استخدم وضع \"الحساب المقيد\":</strong> لتصفية طلبات الصداقة والرسائل من الغرباء." },
-{ q: "كيف أحمي طفلي من المحتوى الضار على الإنترنت؟", src: "خبير أمن عائلي", ans: ".   <strong>استخدم أدوات الرقابة الأبوية:</strong> مثل Google Family Link أو Qustodio.<br>.   <strong>فعّل البحث الآمن:</strong> في متصفحات الأطفال.<br>.   <strong>ضع قواعد استخدام واضحة:</strong> معاقبة وتشجيع.<br>.   <strong>تحدث مع طفلك:</strong> عن المخاطر وكيف يبلغك إذا رأى شيئاً مريباً.<br>.   <strong>اجعل استخدام الإنترنت:</strong> في أماكن عامة من المنزل، وليس في غرف مغلقة." },
-{ q: "ما هي علامات اختراق حسابي الإلكتروني وكيف أتصرف؟", src: "خبير أمن معلومات", ans: ".   <strong>علامات الاختراق:</strong> رسائل مرسلة دون علمك، تغييرات في الإعدادات، أو طلبات صداقة غريبة.<br>.   <strong>افعل فوراً:</strong> غيّر كلمة المرور فوراً.<br>.   <strong>افحص الأجهزة:</strong> المسجلة دخولها وافصل أي جهاز غير معروف.<br>.   <strong>أبلغ جهات الاتصال:</strong> أن حسابك كان مخترقاً لتجنب الوقوع في فخ الاحتيال.<br>.   <strong>راقب الحسابات المرتبطة:</strong> خاصة البنكية منها." },
-{ q: "كيف أحمي نفسي عند استخدام شبكات الواي فاي العامة؟", src: "خبير أمن شبكي", ans: ".   <strong>لا تستخدم شبكات عامة:</strong> للوصول إلى حسابات حساسة (بريد، بنك).<br>.   <strong>استخدم VPN:</strong> لتأمين اتصالك وتشفير البيانات.<br>.   <strong>عطل مشاركة الملفات:</strong> في إعدادات الشبكة.<br>.   <strong>تأكد من أن الموقع:</strong> يستخدم بروتوكول HTTPS (القفل الأخضر).<br>.   <strong>افصل عن الشبكة:</strong> فور الانتهاء من استخدامها." },
-{ q: "ما هي أفضل طريقة لحذف حسابي من موقع أو تطبيق لا أستخدمه؟", src: "خبير خصوصية رقمية", ans: ".   <strong>ابحث عن صفحة \"حذف الحساب\":</strong> عادة في إعدادات الخصوصية.<br>.   <strong>احذف البيانات يدوياً:</strong> قبل طلب الحذف إن أمكن.<br>.   <strong>استخدم خدمات مثل:</strong> JustDeleteMe أو AccountKiller للإرشاد.<br>.   <strong>تأكد من استلام:</strong> رسالة تأكيد الحذف.<br>.   <strong>احذف التطبيق:</strong> من جهازك بعد التأكد من الحذف." },
-{ q: "كيف أحمي هاتفي من البرمجيات الخبيثة؟", src: "خبير أمن موبايل", ans: ".   <strong>لا تثبت تطبيقات:</strong> من مصادر غير موثوقة.<br>.   <strong>حدّث نظام التشغيل:</strong> والتطبيقات باستمرار.<br>.   <strong>اقرأ أذونات التطبيقات:</strong> قبل التثبيت.<br>.   <strong>استخدم برنامج مكافحة فيروسات:</strong> موثوق.<br>.   <strong>لا تنقر على روابط:</strong> في رسائل نصية أو بريد غير معروف." },
-{ q: "ما هي حقوق الضحية في جرائم الابتزاز الإلكتروني في بلدي؟", src: "مستشار قانوني", ans: ".   <strong>الحق في الإبلاغ:</strong> دون خوف من التجريم.<br>.   <strong>الحق في الحماية:</strong> من الجهات الأمنية.<br>.   <strong>الحق في الدعم النفسي:</strong> من مراكز متخصصة.<br>.   <strong>الحق في محو المحتوى:</strong> من المنصات الإلكترونية.<br>.   <strong>الحق في التعويض:</strong> في حالات الضرر المادي أو المعنوي." },
-{ q: "كيف أحمي بياناتي عند بيع هاتفي القديم؟", src: "خبير أمن رقمي", ans: ".   <strong>انسخ بياناتك:</strong> إلى جهاز جديد أو سحابة.<br>.   <strong>افصل الحسابات:</strong> مثل Google وApple.<br>.   <strong>امسح التخزين:</strong> باستخدام خيار \"إعادة ضبط المصنع\".<br>.   <strong>أزل بطاقة SIM:</strong> وبطاقة الذاكرة الخارجية.<br>.   <strong>تأكد من الحذف:</strong> بأن الهاتف يطلب إعداداً جديداً عند التشغيل." },
-{ q: "ما هي أفضل الممارسات للأمان الرقمي في بيئة العمل؟", src: "خبير أمن مؤسسي", ans: ".   <strong>لا تستخدم أجهزة العمل:</strong> لأغراض شخصية.<br>.   <strong>استخدم كلمات مرور:</strong> قوية ومختلفة لكل نظام.<br>.   <strong>لا تفتح مرفقات:</strong> من مصادر غير معروفة.<br>.   <strong>أبلغ فوراً:</strong> عن أي نشاط مشبوه لفريق تكنولوجيا المعلومات.<br>.   <strong>احضر دورات تدريبية:</strong> منتظمة حول الأمن السيبراني." }
+{ q: "كيف أحمي حساباتي من الاختراق باستخدام ميزة \"المصادقة الثنائية\" (2FA)?", src: "خبير أمن معلومات", ans: ".   <strong>تفعيلها على جميع الحسابات الحيوية:</strong> البريد الإلكتروني، والحسابات البنكية، وتطبيقات التواصل، ووسائل التواصل الاجتماعي.<br>.   <strong>استخدام تطبيق المصادقة:</strong> مثل (Google Authenticator، Microsoft Authenticator) بدلاً من الاعتماد على الرسائل النصية (SMS) فقط.<br>.   <strong>حفظ رموز الاستعادة:</strong> قم بحفظ رموز الاستعادة (Backup Codes) التي تقدمها المنصات في مكان آمن، فهي مفتاحك الوحيد إذا فقدت هاتفك.<br>.   <strong>استخدام مفتاح أمني:</strong> للأهمية القصوى، يمكن استخدام مفتاح أمني مادي (مثل YubiKey) للمصادقة.<br>.   <strong>لا تشارك رموز المصادقة:</strong> هذه الرموز هي كلمة المرور المؤقتة الخاصة بك، لا تطلبها منك أي مؤسسة رسمية أبداً." },
+{ q: "هل يمكن للمبتز أن ينفذ تهديده فعلياً إذا قمت بحظره (Block) مباشرة؟", src: "خبير جرائم إلكترونية", ans: ".   <strong>نعم، قد يحاول.</strong> الحظر يمنع التواصل المباشر، لكن لا يمحو المعلومات التي بحوزته.<br>.   <strong>الخطر الأكبر هو قبل الحظر:</strong> إذا كان قد حصل على بيانات أو صور حساسة بالفعل، فقد يستخدمها حتى بعد الحظر.<br>.   <strong>الحظر خطوة ضرورية لكنها ليست كافية:</strong> يجب أن تقترن بالإبلاغ الفوري وجمع الأدلة وعدم الاستسلام للتهديد.<br>.   <strong>التوثيق قبل الحظر:</strong> تأكد من أخذ لقطات شاشة كاملة لكل التهديدات قبل حظر الشخص.<br>.   <strong>حذر من حسابات جديدة:</strong> قد يحاول المبتز إنشاء حسابات جديدة للتواصل مجدداً." },
+{ q: "ما هي مخاطر استخدام شبكات \"الواي فاي\" العامة في الكافيهات والمطارات على بياناتي البنكية؟", src: "خبير أمن شبكات", ans: ".   <strong>التنصت على البيانات:</strong> يمكن للمخترق المتصل بنفس الشبكة اعتراض البيانات غير المشفرة التي ترسلها.<br>.   <strong>التصيد عبر الشبكة:</strong> قد يتم توجيهك لمواقع وهمية تشبه مواقعك المفضلة لسرقة بيانات الدخول.<br>.   <strong>نقاط الوصول المزيفة:</strong> قد ينشئ مخترق شبكة واي فاي تحمل اسماً مشابهاً للشبكة الحقيقية لخداع الضحايا.<br>.   <strong>القاعدة الذهبية:</strong> <strong>لا تقم أبداً بإجراء معاملات بنكية أو إدخال كلمات مرور مهمة أثناء الاتصال بشبكة واي فاي عامة.</strong><br>.   <<strong>استخدم VPN موثوقاً:</strong> إذا اضطررت للاتصال، استخدم شبكة افتراضية خاصة (VPN) مشفرة لتأمين اتصالك." },
+{ q: "كيف أكتشف وجود برامج تجسس أو تطبيقات مراقبة مخفية على هاتفي الشخصي؟", src: "خبير أمن أجهزة", ans: ".   <strong>استهلاك غير طبيعي للبطارية والبيانات:</strong> قد تشير التطبيقات الخبيثة إلى نشاط خفي مكثف.<br>.   <strong>أداء الجهاز البطيء:</strong> أو ارتفاع درجة حرارته دون سبب واضح.<br>.   <strong>ظهور تطبيقات غريبة:</strong> افحص قائمة التطبيقات بحثاً عن تطبيقات لا تتذكر تحميلها.<br>.   <strong>سلوك غريب:</strong> مثل إضاءة الشاشة من تلقاء نفسها، أو سماع أصوات غريبة أثناء المكالمات.<br>.   <strong>الحل:</strong> تشغيل فحص بواسطة برنامج مكافحة فيروسات موثوق، وإذا استمر الشك، إعادة ضبط المصنع بعد نسخ بياناتك المهمة." },
+{ q: "ماذا أفعل إذا تم اختراق حسابي على واتساب أو فيسبوك وإرسال رسائل مسيئة باسمي؟", src: "خبير استعادة الحسابات", ans: ".   <strong>حاول استعادة الحساب فوراً:</strong> استخدم خيار \"نسيت كلمة المرور\" على المنصة للبدء بعملية الاستعادة عبر البريد الإلكتروني أو رقم الهاتف.<br>.   <strong>أبلغ جميع جهات اتصالك:</strong> حذر أصدقاءك وعائلتك عبر أي وسيلة أخرى متاحة (مكالمة، منصة أخرى) أن حسابك تم اختراقه ولا تفتح أي روابط يرسلها.<br>.   <strong>أبلغ المنصة:</strong> استخدم نماذج الإبلاغ عن الحساب المخترق الموجودة في صفحات المساعدة الخاصة بـ فيسبوك أو واتساب.<br>.   <strong>غير جميع كلمات المرور:</strong> خاصة كلمة مرور البريد الإلكتروني المرتبط بالحساب المخترق.<br>.   <strong>افحص جهازك:</strong> قد يكون الاختراق بسبب وجود برمجية خبيثة على هاتفك." },
+{ q: "كيف أحمي صوري وملفاتي الخاصة من الوصول إليها في حال ضياع الهاتف أو سرقته؟", src: "خبير أمن بيانات شخصية", ans: ".   <strong>التشفير والتأمين بكلمة مرور:</strong> تأكد من تفعيل قفل الشاشة بقوة (رقم سري معقد، أو بصمة، أو تعرف الوجه).<br>.   <strong>النسخ الاحتياطي في السحابة:</strong> قم برفع ملفاتك المهمة إلى خدمة سحابية موثوقة (مثل iCloud، Google Photos) وحذفها من ذاكرة الهاتف إذا كانت حساسة جداً.<br>.   <strong>استخدام تطبيقات الخزنة الآمنة:</strong> هناك تطبيقات توفر مساحة مشفرة بكلمة مرور منفصلة داخل هاتفك.<br>.   <strong>تفعيل خاصية \"ابحث عن هاتفي\":</strong> مثل (Find My iPhone) أو (Find My Device) على أندرويد، لمسح البيانات عن بُعد في حال الضياع.<br>.   <strong>تجنب حفظ الصور الحساسة:</strong> الفكرة الأكثر أماناً هي عدم التقاط أو حفظ أي شيء لا تريد أن يراه أحد على هاتفك أساساً." },
+{ q: "ما هو الفرق بين التحرش الإلكتروني والابتزاز، وكيف يضع القانون حداً لكل منهما؟", src: "خبير قانون رقمي", ans: ".   <strong>التحرش:</strong> سلوك متكرر يهدف للإزعاج، والإهانة، والتسبب بالقلق النفسي (مثل الرسائل المسيئة، المطاردة).<br>.   <strong>الابتزاز:</strong> تهديد بنشر معلومات أو صور أو أفعال لإجبار الضحية على فعل شيء (كدفع المال، أو تقديم خدمات) مقابل السكوت.<br>.   <strong>الابتزاز جريمة أشد:</strong> لأنه يجمع بين التهديد والإكراه للحصول على منفعة.<br>.   <strong>كيف يواجههما القانون:</strong> يعاقب القانون على كليهما، ولكن عقوبة الابتزاز أقسى عادةً. يجب الإبلاغ فوراً في الحالتين مع تقديم الأدلة الكاملة." },
+{ q: "كيف أتعامل مع روابط \"الجوائز الوهمية\" ووظائف الربح السريع التي تستهدف سرقة الهوية؟", src: "خبير مكافحة الاحتيال", ans: ".   <strong>تذكر قاعدة أساسية:</strong> \"لا يوجد غداء مجاني\". عروض الثراء السريع هي فخ بنسبة 99.9%.<br>.   <strong>لا تضغط على الروابط أبداً:</strong> حتى بدعوى الفضول أو \"لنرى ماذا سيفعلون\".<br>.   <strong>لا تشارك أي معلومات شخصية:</strong> لا تعطي رقم هاتفك، أو بريدك الإلكتروني، أو صور وثائقك لهذه العروض.<br>.   <strong>ابحث عن اسم العرض:</strong> اكتب اسم الشركة أو العرض في محرك البحث مع كلمة \"احتيال\" لترى تجارب الآخرين.<br>.   <strong>بلغ عن الإعلان:</strong> معظم المنصات (فيسبوك، انستقرام) تتيح خاصية الإبلاغ عن الإعلان أو المنشور كاحتيال." },
+{ q: "ما هي الطريقة الآمنة لمسح كافة البيانات من الهاتف قبل بيعه لضمان عدم استرجاعها؟", src: "خبير أمن أجهزة", ans: ".   <strong>قم بنسخ احتياطي كامل</strong> لبياناتك المهمة على كمبيوتر أو خدمة سحابية.<br>.   <strong>قم بتسجيل الخروج من جميع الحسابات</strong> المرتبطة بالجهاز (Google، Apple، Samsung، التطبيقات).<br>.   <strong>قم بإجراء \"إعادة ضبط المصنع\" (Factory Reset)</strong> من خلال إعدادات الجهاز.<br>.   <strong>بعد الإعادة، لا تكتفِ بذلك:</strong> املأ الذاكرة ببيانات عشوائية غير مهمة (مثل تسجيل فيديو طويل) ثم أعد ضبط المصنع مرة أخرى. هذا يجعل استعادة البيانات القديمة أصعب.<br>.   <strong>أخرج بطاقة SIM وبطاقة الذاكرة الخارجية (إذا وجدت)</strong> واحتفظ بها." },
+{ q: "كيف أحمي أطفالي من \"المستدرجين\" (Online Grooming) في غرف الدردشة والألعاب؟", src: "خبير حماية الطفل الرقمي", ans: ".   <strong>التواصل المفتوح:</strong> تحدث مع أطفالك عن مخاطر التحدث مع الغرباء على الإنترنت، دون تخويف.<br>.   <strong>تعيين إعدادات الخصوصية:</strong> تأكد من ضبط خصوصية حساباتهم على \"خاص\" ومراقبة طلبات الصداقة.<br>.   <strong>المشاركة والمراقبة:</strong> اجعل أجهزة الكمبيوتر والألعاب في مكان مشترك، واطلع بين الحين والآخر على نشاطهم.<br>.   <strong>علمهم علامات الخطر:</strong> مثل من يطلب معلومات شخصية، أو صوراً، أو يريد الانتقال للتحدث على تطبيق آخر، أو يطلب اللقاء.<br>.   <strong>شجعهم على الإخبار:</strong> أكد لهم أن بإمكانهم إخبارك بأي شيء يزعجهم دون عقاب، وأنك ستحميهم." },
+{ q: "هل تصفح المواقع المشبوهة يمكن أن يصيب جهازي بفيروسات الفدية (Ransomware)?", src: "خبير أمن برمجيات", ans: ".   <strong>نعم، بشدة.</strong> هذه هي الطريقة الرئيسية لانتشار فيروسات الفدية.<br>.   <strong>المواقع الإباحية، ومواقع التنزيل غير القانونية، ومواقع \"الكورسات المجانية\" المقرصنة</strong> هي بيئة خصبة لهذه الهجمات.<br>.   <strong>النوافذ المنبثقة والإعلانات الخبيثة (Malvertising):</strong> مجرد النقر على إعلان زائف على موقع مشبوه يمكن أن يبدأ عملية التنزيل والتثبيت الخفي للفيروس.<br>.   <strong>الوقاية:</strong> استخدم برنامج مكافحة فيروسات قوي، واحتفظ بنسخ احتياطية منتظمة لملفاتك المهمة على جهاز منفصل، وتجنب زيارة هذه المواقع تماماً." },
+{ q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
-
+// === START OF ENGLISH CULTURAL TRANSLATION FOR AWARENESS PROGRAMS ===
+const programsDataEn = {
+child: {
+title: "Digital Childhood: Nurturing Healthy Tech Habits from the Start",
+description: "Guidance for parents on raising digitally balanced children in a screen-saturated world.",
+questions: [
+{
+question: "At what age is it developmentally appropriate to introduce screen time for children?",
+answer: "The American Academy of Pediatrics (AAP) recommends avoiding screen time for children under 18–24 months, except for video chatting. For ages 2–5, limit high-quality programming to 1 hour per day, always with adult co-viewing and discussion."
+},
+{
+question: "How can I ensure my child’s screen time is educational and not just passive consumption?",
+answer: "Choose interactive, age-appropriate apps that encourage creativity, problem-solving, or storytelling. Avoid fast-paced or violent content. Always engage with your child during screen use—ask questions, discuss characters, and connect digital experiences to real life."
+},
+{
+question: "What are the signs of unhealthy screen dependency in young children?",
+answer: "Watch for tantrums when devices are removed, loss of interest in non-screen activities (like playing outside or drawing), sleep disruption, or difficulty focusing on face-to-face interactions. These may signal overuse."
+},
+{
+question: "Should I allow screens during meals or bedtime?",
+answer: "No. Screens during meals reduce family connection and mindful eating. Before bed, blue light from devices suppresses melatonin, disrupting sleep. Establish screen-free zones and routines—especially during meals and 1 hour before bedtime."
+},
+{
+question: "How do I model healthy digital behavior for my child?",
+answer: "Children learn by watching you. Put your phone away during playtime, avoid checking emails constantly, and prioritize eye contact and conversation. Your habits set the standard for their future relationship with technology."
+},
+{
+question: "Are educational apps truly beneficial for toddlers?",
+answer: "Most 'educational' apps for under-2s lack scientific backing. Real learning happens through hands-on play, sensory exploration, and human interaction—not swiping. Save apps for ages 3+ and choose those reviewed by experts like Common Sense Media."
+},
+{
+question: "What’s the best way to introduce digital safety to a young child?",
+answer: "Start simple: 'We only watch shows Mommy/Daddy picks.' Teach them to never share their name, school, or photos online. Use parental controls, but remember—your presence and guidance are the most powerful filters."
+},
+{
+question: "Can too much screen time affect my child’s language development?",
+answer: "Yes. Studies show excessive screen exposure in early childhood correlates with delayed speech and reduced vocabulary. Real conversations—with pauses, facial expressions, and back-and-forth—are irreplaceable for language growth."
+},
+{
+question: "How do I balance screen time with other essential activities?",
+answer: "Follow the AAP’s 'Family Media Plan': prioritize sleep, physical activity, homework, and family time first. Screen time should be a small, intentional part of the day—not the default activity."
+},
+{
+question: "Is it okay to use screens as a calming tool during tantrums?",
+answer: "Occasionally, yes—but don’t make it a habit. Relying on screens to soothe teaches kids to outsource emotional regulation. Instead, offer hugs, deep breaths, or a quiet space to calm down together."
+},
+{
+question: "What screen-free alternatives can keep my child engaged?",
+answer: "Simple toys (blocks, puzzles, art supplies), outdoor play, storytelling, cooking together, or even helping with chores build creativity, motor skills, and confidence far more than any app."
+},
+{
+question: "How do I handle screen time when we’re traveling or in waiting rooms?",
+answer: "Bring non-digital distractions: books, coloring kits, or small toys. If you must use a device, choose one shared video (not endless scrolling) and discuss it afterward to make it interactive."
+},
+{
+question: "Should I monitor what my child watches, even on 'kids’ platforms'?",
+answer: "Absolutely. Algorithms can recommend inappropriate content. Always preview shows, use curated services like PBS Kids, and stay nearby during viewing to answer questions and redirect if needed."
+},
+{
+question: "How does screen time impact my child’s attention span?",
+answer: "Fast-paced, overstimulating content can condition young brains to expect constant novelty, making slower-paced real-world tasks (like reading or listening) feel boring. Choose calm, narrative-driven media."
+},
+{
+question: "What’s the role of co-viewing in healthy digital development?",
+answer: "Co-viewing turns passive watching into active learning. By asking 'What do you think will happen next?' or 'How would you help that character?', you build critical thinking and empathy—skills no app can teach alone."
+},
+{
+question: "How can I implement a 'digital detox' at home?",
+answer: "Designate one screen-free day per week. Create daily tech-free zones (e.g., meals, bedrooms). Replace digital time with board games, family walks, or shared reading. Celebrate your family’s success to strengthen bonds."
+}
+]
+},
+teens: {
+title: "Teen World: Navigating Digital Identity and Relationships",
+description: "Empowering teens and parents to build resilience against online pressures and foster authentic connections.",
+questions: [
+{
+question: "How do I respect my teen’s need for privacy while ensuring their digital safety?",
+answer: "Shift from surveillance to 'guided supervision.' Agree on boundaries (e.g., no phones in bedrooms at night). Explain your role is protection—not control—and build trust through open dialogue."
+},
+{
+question: "What are the warning signs my teen is being cyberbullied or groomed?",
+answer: "Sudden withdrawal, anxiety when receiving notifications, hiding their screen, or declining grades/mood. Respond calmly: reassure them they’re not alone, preserve evidence, and report to authorities immediately."
+},
+{
+question: "How can I help my teen resist comparing themselves to 'perfect' social media influencers?",
+answer: "Teach 'critical literacy': remind them curated feeds are highlight reels, not reality. Discuss how filters and editing create illusions. Encourage following accounts that inspire real-world goals (sports, science, arts)."
+},
+{
+question: "My teen follows extremist content online—how should I respond?",
+answer: "Avoid shaming—it fuels rebellion. Start with curiosity: 'What drew you to this?' Offer alternative perspectives calmly. Seek help from a counselor to address underlying identity or belonging needs."
+},
+{
+question: "Why does my teen’s digital footprint matter for their future?",
+answer: "Colleges and employers routinely review applicants’ online history. Teach them: 'Never post anything you wouldn’t want a future boss to see.' Their digital footprint is their permanent resume."
+},
+{
+question: "How can gaming be managed without constant battles?",
+answer: "Make gaming a privilege tied to responsibilities (homework, chores). Use parental controls to enforce time limits. Encourage multiplayer games that build teamwork—and balance with offline hobbies."
+},
+{
+question: "Are anonymous chat apps safe for teens?",
+answer: "They’re high-risk environments for predators, bullying, and scams. Stress that anonymity removes accountability. Encourage using verified platforms with strong privacy settings instead."
+},
+{
+question: "How do I negotiate screen time limits without conflict?",
+answer: "Create a 'digital contract' together. When teens help set rules, they’re more invested in following them. Frame limits as health guidelines (like nutrition)—not punishments."
+},
+{
+question: "What if my teen is the cyberbully—not the victim?",
+answer: "Address it firmly but compassionately. Help them understand the real harm caused. Require apologies and restitution. Work with school counselors to rebuild empathy and accountability."
+},
+{
+question: "How can I protect my teen from dangerous TikTok challenges?",
+answer: "Discuss the psychology behind viral trends: 'Likes' trigger dopamine hits that override safety instincts. Empower them to ask: 'Would I do this offline?' Encourage creating positive challenges instead."
+},
+{
+question: "How can my teen build a professional online presence?",
+answer: "Guide them to showcase achievements: school projects, volunteer work, or creative portfolios. Use LinkedIn early to network. Transform their profile from passive consumer to active creator."
+},
+{
+question: "Can AI tools help my teen learn effectively?",
+answer: "Yes—as a tutor, not a crutch. Teach them to prompt AI critically ('Explain quantum physics simply'), verify facts, and always add their own analysis. AI augments thinking; it doesn’t replace it."
+},
+{
+question: "My teen loves gaming—how can I channel this into a career?",
+answer: "Frame coding or game design as the ultimate gamer challenge. Enroll them in beginner courses (Roblox Studio, Unity). Highlight lucrative paths in esports, streaming, or development."
+},
+{
+question: "How can teens become positive digital leaders?",
+answer: "Encourage them to stand up against online hate, share credible info, and organize awareness campaigns. True influence isn’t follower count—it’s impact."
+},
+{
+question: "How can teens manage money responsibly with digital payments?",
+answer: "Start with a prepaid teen card. Teach them to track spending via apps, avoid impulse buys from targeted ads, and save for goals. Financial literacy is a core life skill."
+}
+]
+},
+youth: {
+title: "Youth & Productivity: Thriving in the Digital Workplace",
+description: "Strategies for young professionals to harness technology for focus, growth, and work-life harmony.",
+questions: [
+{
+question: "How do I reclaim deep focus in an age of constant notifications?",
+answer: "Silence non-essential alerts. Schedule 'focus blocks' using the Pomodoro Technique (25-min work / 5-min break). Use apps like Freedom to block distractions. Train your brain like a muscle—start small."
+},
+{
+question: "What’s the most effective digital time-management system?",
+answer: "Combine Time Blocking (scheduling tasks like appointments) with the 'Eat That Frog' method (tackle your hardest task first). Tools like Todoist or Google Calendar turn intentions into action."
+},
+{
+question: "How do I stop drowning in 'fake work' (emails, meetings) and focus on real output?",
+answer: "Define your 1–3 Most Important Tasks (MITs) daily. Batch email/meeting checks to 2–3 slots. Ask: 'Does this directly advance my core goals?' If not, delegate or delete."
+},
+{
+question: "How can I protect my eyes and posture during long screen sessions?",
+answer: "Follow the 20-20-20 rule: every 20 mins, look 20 feet away for 20 seconds. Use blue-light filters, ergonomic chairs, and standing desks. Move hourly—your body isn’t designed for stillness."
+},
+{
+question: "Why do I procrastinate on important work for social media?",
+answer: "Digital procrastination stems from task aversion. Trick your brain: commit to just 5 minutes of work. Often, starting is the hardest part. Reward completion—not avoidance."
+},
+{
+question: "How do I set firm digital boundaries to prevent burnout?",
+answer: "Create 'shutdown rituals': close tabs, write tomorrow’s plan, then physically step away. Use separate devices/accounts for work vs. personal life. Protect weekends as sacred recovery time."
+},
+{
+question: "How can I declutter my digital workspace for mental clarity?",
+answer: "Apply the OHIO rule: Only Handle It Once. File documents immediately. Keep desktop clean. Use cloud storage with clear folder hierarchies. A tidy digital space = a focused mind."
+},
+{
+question: "Does multitasking actually harm my productivity?",
+answer: "Yes. Task-switching drains mental energy and increases errors. Close unrelated tabs/apps. Single-tasking with full attention yields higher-quality work in less time."
+},
+{
+question: "How do I cope with 'digital perfectionism' on LinkedIn?",
+answer: "Remember: LinkedIn is a highlight reel. Define success by your values—not others’ metrics. Track your own progress in a journal. Comparison steals joy; contribution builds it."
+},
+{
+question: "What are the best tools for managing personal and professional projects?",
+answer: "For simple tasks: Todoist or Microsoft To Do. For complex projects: Trello (Kanban boards) or ClickUp. For notes: Notion or Obsidian. Sync calendars across devices for seamless coordination."
+},
+{
+question: "How can I leverage AI without losing my human edge?",
+answer: "Use AI for ideation, research, and drafting—but always add your unique perspective, ethics and emotional intelligence. AI is a collaborator, not a replacement for human judgment."
+},
+{
+question: "How do I build a self-directed learning system online?",
+answer: "Audit your skills gaps quarterly. Dedicate 5 hours/week to courses (Coursera, edX). Apply learnings immediately through micro-projects. Share insights publicly to reinforce knowledge."
+},
+{
+question: "How can I monetize my digital skills through freelancing?",
+answer: "Start niche: master one marketable skill (e.g., copywriting, UX design). Build a portfolio with 3 sample projects. Set competitive rates on Upwork/Fiverr. Treat clients like partners—not transactions."
+},
+{
+question: "How do I craft a compelling personal brand online?",
+answer: "Define your niche and value proposition. Optimize LinkedIn: professional photo, keyword-rich headline, detailed experience. Share original insights weekly. Engage authentically—don’t just broadcast."
+},
+{
+question: "How can I turn my phone from a distraction into a growth tool?",
+answer: "Delete addictive apps or move them to a hidden folder. Install learning apps (Duolingo, Blinkist). Use voice memos for ideas. Make your lock screen a reminder of your top goal."
+},
+{
+question: "How do I avoid 'information overload' in my field?",
+answer: "Curate ruthlessly: follow only 3–5 trusted experts. Use RSS feeds (Feedly) or newsletters. Schedule 'learning hours' weekly—then disconnect. Depth beats breadth in expertise."
+},
+{
+question: "What’s an ideal digital wind-down routine for better sleep?",
+answer: "Power down screens 60+ mins before bed. Enable Night Shift mode. Charge devices outside the bedroom. Replace scrolling with reading, journaling, or meditation. Darkness = melatonin."
+},
+{
+question: "How can I build trust in remote/hybrid teams?",
+answer: "Schedule short daily check-ins. Use video for complex discussions. Create virtual 'watercooler' channels for casual chats. Over-communicate context—assume positive intent."
+},
+{
+question: "How do I maintain critical thinking amid shallow online content?",
+answer: "Schedule 'deep work' blocks without screens. Read long-form articles/books. Practice writing analyses. Question everything: 'Who benefits from this narrative?' Slow thinking is your superpower."
+},
+{
+question: "Which human skills will AI never replace?",
+answer: "Empathy, ethical judgment, creative storytelling, and cross-cultural negotiation. Double down on these: volunteer, join debate clubs, or mentor others. Humanity is your competitive advantage."
+}
+]
+},
+marriage: {
+title: "Healthy Marriage: Reconnecting in a Distracted World",
+description: "Tools for couples to strengthen intimacy, communication, and trust in the digital age.",
+questions: [
+{
+question: "How does 'phubbing' (phone snubbing) damage our relationship?",
+answer: "It signals: 'This device matters more than you.' Over time, it erodes emotional intimacy, breeds resentment, and kills spontaneous connection. Prioritize eye contact and presence."
+},
+{
+question: "Is it ever okay to check my partner’s phone?",
+answer: "Trust is foundational. Secret snooping indicates deeper issues. Instead, discuss fears openly ('I’ve been feeling insecure—can we talk?'). Transparency builds security; surveillance destroys it."
+},
+{
+question: "How do we avoid comparing our marriage to 'perfect' influencer couples?",
+answer: "Remember: social media shows staged moments, not messy realities. Focus on your unique journey. Celebrate small wins offline—your story doesn’t need an audience to matter."
+},
+{
+question: "Can pornography addiction impact our intimacy?",
+answer: "Yes. It distorts expectations of sex and bodies, reduces desire for real partners, and creates secrecy. Recovery requires honesty, professional support, and rebuilding trust slowly."
+},
+{
+question: "What are healthy 'digital boundaries' for our home?",
+answer: "Create tech-free zones: meals, bedrooms, and date nights. Charge phones outside the bedroom. Agree: no phones during meaningful conversations. Protect your couple bubble."
+},
+{
+question: "How do we resolve fights sparked by misunderstood texts?",
+answer: "Never debate sensitive topics over text. Switch to voice/video immediately. Assume good intent: 'I think I misread your tone—can we clarify?' Text lacks nuance; voice carries care."
+},
+{
+question: "Are online friendships with the opposite gender risky?",
+answer: "Emotional affairs often start innocently. Maintain transparency: share interactions with your partner. Redirect energy into your primary relationship—it deserves your best attention."
+},
+{
+question: "How does late-night screen use affect our sleep as a couple?",
+answer: "Blue light delays melatonin, fragmenting sleep. One partner’s screen disrupts both. Solution: read physical books together or listen to a podcast—shared wind-down rituals deepen connection."
+},
+{
+question: "We sit together but scroll separately—how do we reconnect?",
+answer: "Implement a 'digital sunset': power down devices 1 hour before bed. Play a board game, cook together, or share 'highs and lows' of your day. Presence > proximity."
+},
+{
+question: "My partner overshhares our private life online—what now?",
+answer: "Express feelings using 'I' statements: 'I feel exposed when our arguments go public.' Co-create sharing guidelines. Privacy isn’t secrecy—it’s mutual respect."
+},
+{
+question: "How can shared digital tools reduce household stress?",
+answer: "Use a joint calendar (Google Calendar) for appointments and a task app (Todoist) for chores. Schedule recurring 'us time' like doctor’s appointments—non-negotiable and protected."
+},
+{
+question: "How can tech strengthen our bond during long-distance periods?",
+answer: "Schedule short video dates. Watch movies simultaneously via Teleparty. Send surprise food deliveries via apps. Small, consistent gestures say: 'You’re on my mind.'"
+},
+{
+question: "How can we use online resources to improve our communication?",
+answer: "Take a couples’ course on Coursera. Listen to relationship podcasts during drives. Practice active listening exercises from apps like Lasting. Growth is a team sport."
+},
+{
+question: "How do we turn shared hobbies into quality time?",
+answer: "Try co-op video games (Stardew Valley), start a joint YouTube channel, or take online cooking classes. Shared creation builds camaraderie beyond consumption."
+},
+{
+question: "How can we manage finances transparently with digital tools?",
+answer: "Use shared budgeting apps (Mint, YNAB). Set joint savings goals (vacation, emergency fund). Hold monthly 'money dates' to review spending—without blame, just planning."
+}
+]
+},
+seniors: {
+title: "Senior Citizens: Embracing Technology with Confidence and Safety",
+description: "Empowering older adults to connect, learn, and protect themselves online.",
+questions: [
+{
+question: "How can I avoid phone scams targeting seniors?",
+answer: "Never share personal info (SSN, bank details) over calls. Hang up on 'urgent' requests. Verify callers: call back via official numbers. When in doubt, consult a family member first."
+},
+{
+question: "What’s the easiest way to learn video calling with grandkids?",
+answer: "Start with one app (WhatsApp or FaceTime). Practice with a patient helper. Use large-font guides taped to your device. Remember: seeing smiles is worth the learning curve!"
+},
+{
+question: "How do I adjust my phone for aging eyes and hearing?",
+answer: "Enable Accessibility: increase font size, use high-contrast mode, turn on captions, and activate voice assistants (Siri/Google) for hands-free help. Your phone can adapt to you."
+},
+{
+question: "Why shouldn’t I forward health 'tips' from WhatsApp groups?",
+answer: "Misinformation spreads faster than facts. Forwarding unverified claims can harm others and damage your credibility. Check sources like WHO or CDC before sharing."
+},
+{
+question: "How can tech help me remember medications?",
+answer: "Use pill reminder apps (Medisafe) with loud alarms. Smart pill dispensers alert caregivers if doses are missed. Sync schedules with family via shared calendars."
+},
+{
+question: "I’m overwhelmed by negative news online—what can I do?",
+answer: "Limit news to 15 minutes/day from trusted sources. Curate your feed: follow uplifting accounts (nature, music). Replace doomscrolling with audiobooks or video calls."
+},
+{
+question: "Is GPS tracking useful for seniors with memory concerns?",
+answer: "Yes. Wearables (Apple Watch, medical alert pendants) let families locate you if you wander. It’s not surveillance—it’s peace of mind for independence."
+},
+{
+question: "How do I protect my privacy from data-hungry apps?",
+answer: "Review app permissions monthly. Deny access to contacts/photos unless essential. Download only from official stores (App Store, Google Play). When asked for data, ask: 'Why do you need this?'"
+},
+{
+question: "Can brain-training games really help prevent dementia?",
+answer: "They support cognitive health—but aren’t magic bullets. Combine them with social interaction, physical activity, and new learning (language, instrument). Variety is key."
+},
+{
+question: "How can I do banking safely from home?",
+answer: "Use your bank’s official app—not links from emails. Never use public Wi-Fi for transactions. Enable transaction alerts. Bookmark login pages to avoid phishing sites."
+},
+{
+question: "How can YouTube reignite my old hobbies?",
+answer: "Search '[hobby] for beginners' (e.g., 'knitting for seniors'). Subscribe to patient teachers. Connect your tablet to a TV for larger viewing. Share creations with online communities."
+},
+{
+question: "What tech helps monitor my health remotely?",
+answer: "Smartwatches track heart rate/sleep. Bluetooth blood pressure cuffs sync to apps. Fall-detection sensors alert emergency contacts. Tech extends independent living."
+},
+{
+question: "How can I preserve my life stories for future generations?",
+answer: "Record voice memos of memories. Scan old photos into Google Photos with captions. Write short memoirs using dictation apps. Create a digital family tree on Ancestry.com."
+},
+{
+question: "How do I find meaningful online communities?",
+answer: "Join Facebook groups for your interests (gardening, history). Participate in library-hosted Zoom book clubs. Reconnect with hometown groups. Shared passions bridge generations."
+},
+{
+question: "How can I verify if online information is trustworthy?",
+answer: "Check the source: Is it a government (.gov) or educational (.edu) site? Reverse-search images. Ask: 'Does this seem too good to be true?' When unsure, ask a tech-savvy friend."
+}
+]
+},
+security: {
+title: "Cyber Safety & Privacy: Protecting Yourself in a Connected World",
+description: "Essential practices to safeguard your data, identity and peace of mind online.",
+questions: [
+{
+question: "What should I do immediately if I’m being blackmailed online?",
+answer: "DO NOT PAY. Preserve all evidence (screenshots, messages). Block the perpetrator. Contact law enforcement and a trusted support person. You’re not alone—help exists."
+},
+{
+question: "How can I spot a phishing email?",
+answer: "Check sender addresses for misspellings (e.g., amaz0n.com). Hover over links to see real URLs. Legitimate companies never ask for passwords via email. When in doubt, log in directly—not via links."
+},
+{
+question: "Where do I report cybercrime in my country?",
+answer: "Contact your national cybercrime unit (e.g., IC3 in the US, Action Fraud in the UK). Provide evidence: screenshots, account names, transaction IDs. Get a case number for follow-up."
+},
+{
+question: "Why is two-factor authentication (2FA) essential?",
+answer: "Passwords alone are easily stolen. 2FA adds a second layer: a code from an authenticator app (Google/Microsoft) or security key (YubiKey). Never share 2FA codes—they’re your digital keys."
+},
+{
+question: "If I block a blackmailer, can they still harm me?",
+answer: "Blocking stops direct contact but not threats using existing data. Document everything BEFORE blocking. Report to authorities immediately—don’t wait. Your safety is paramount."
+},
+{
+question: "Are public Wi-Fi networks safe for banking?",
+answer: "Never access financial accounts on public Wi-Fi. Hackers can intercept data. Use a trusted VPN if essential. Better yet: wait until you’re on a secure home network."
+},
+{
+question: "How do I detect spyware on my phone?",
+answer: "Watch for rapid battery drain, overheating, or strange background noises. Run antivirus scans (Malwarebytes). If suspicious, factory reset after backing up essential data."
+},
+{
+question: "My social media was hacked—what now?",
+answer: "Immediately reset passwords and enable 2FA. Warn contacts not to click links from your account. Report the hack to the platform. Audit connected apps—remove unknown ones."
+},
+{
+question: "How can I protect private photos if my phone is lost?",
+answer: "Use strong passcodes (not simple PINs). Enable 'Find My Device' to wipe remotely. Store sensitive photos in encrypted vaults (Google Photos Locked Folder). Better yet: don’t store them at all."
+},
+{
+question: "What’s the difference between cyberbullying and blackmail?",
+answer: "Bullying aims to humiliate; blackmail uses threats to extort money/actions. Both are crimes. Document everything and report—legal systems have tools to stop both."
+},
+{
+question: "How do I avoid 'too-good-to-be-true' online offers?",
+answer: "If it promises easy money or prizes, it’s likely a scam. Never click pop-ups. Search '[offer name] + scam' to check reviews. Legitimate companies don’t operate this way."
+},
+{
+question: "How do I permanently erase data before selling my phone?",
+answer: "Back up essentials. Sign out of all accounts. Perform a factory reset. For extra security, fill storage with dummy files, then reset again. Remove SIM/memory cards."
+},
+{
+question: "How can I protect my child from online groomers?",
+answer: "Teach them: never share personal details or meet online friends. Keep devices in common areas. Use parental controls. Most importantly: create a safe space where they’ll tell you if something feels wrong."
+},
+{
+question: "Can sketchy websites infect my device with ransomware?",
+answer: "Yes. Pirated content and adult sites are common vectors. Malvertising (malicious ads) can infect you just by loading a page. Use ad blockers, keep software updated, and avoid risky sites."
+},
+{
+question: "How do I build a personal 'firewall' against hackers?",
+answer: "Psychologically: be skeptical of unsolicited offers. Technically: use unique passwords (via a manager like Bitwarden), enable 2FA everywhere, update software, and run antivirus scans monthly."
+}
+]
+}
+};
+// === END OF ENGLISH TRANSLATION ===
+// Spanish programs data
+const programsDataEs = JSON.parse(JSON.stringify(programsData));
+const programsDataFr = JSON.parse(JSON.stringify(programsData));
+const programsDataIt = JSON.parse(JSON.stringify(programsData));
+const programsDataTr = JSON.parse(JSON.stringify(programsData));
+const programsDataDe = JSON.parse(JSON.stringify(programsData));
+const programsDataPt = JSON.parse(JSON.stringify(programsData));
+const programsDataRo = JSON.parse(JSON.stringify(programsData));
+const programsDataHu = JSON.parse(JSON.stringify(programsData));
+const programsDataJa = JSON.parse(JSON.stringify(programsData));
+const programsDataKo = JSON.parse(JSON.stringify(programsData));
+const programsDataHi = JSON.parse(JSON.stringify(programsData));
+const programsDataPa = JSON.parse(JSON.stringify(programsData));
+const programsDataBn = JSON.parse(JSON.stringify(programsData));
+const programsDataId = JSON.parse(JSON.stringify(programsData));
+const programsDataVi = JSON.parse(JSON.stringify(programsData));
+const programsDataFa = JSON.parse(JSON.stringify(programsData));
+const programsDataAm = JSON.parse(JSON.stringify(programsData));
+const programsDataSw = JSON.parse(JSON.stringify(programsData));
+const programsDataHa = JSON.parse(JSON.stringify(programsData));
+const programsDataYo = JSON.parse(JSON.stringify(programsData));
 function initPage() {
-    loadLanguage(currentLang);
-    setupLanguageSelector();
-    loadTicker();
-    loadImages();
-    startCounters();
-    window.addEventListener('scroll', handleScroll);
+scrollToSec('home');
+updateTicker();
+loadMedia();
+renderLanguageDropdown();
+setupLanguageToggle();
+initCountersObserver();
 }
-
-function setupLanguageSelector() {
-    const toggleBtn = document.getElementById('langToggleBtn');
-    const dropdown = document.getElementById('langDropdown');
-    
-    toggleBtn.addEventListener('click', () => {
-        dropdown.classList.toggle('show');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!toggleBtn.contains(e.target) && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('show');
-        }
-    });
-
-    // Populate language options
-    const languages = [
-        { code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
-        { code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/us.png' },
-        { code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
-        { code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
-        { code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
-        { code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
-        { code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
-        { code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
-        { code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
-        { code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
-        { code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
-        { code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
-        { code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
-        { code: 'pa', name: 'ਪੰਜਾਬੀ', flag: 'https://flagcdn.com/w80/in.png' },
-        { code: 'bn', name: 'বাংলা', flag: 'https://flagcdn.com/w80/bd.png' },
-        { code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
-        { code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
-        { code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
-        { code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w80/et.png' },
-        { code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/ke.png' },
-        { code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ng.png' },
-        { code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w80/ng.png' }
-    ];
-
-    dropdown.innerHTML = '';
-    languages.forEach(lang => {
-        const option = document.createElement('a');
-        option.href = '#';
-        option.className = 'lang-option';
-        option.innerHTML = `<img src="${lang.flag}" alt="${lang.name}">${lang.name}`;
-        option.onclick = (e) => {
-            e.preventDefault();
-            changeLanguage(lang.code);
-            dropdown.classList.remove('show');
-        };
-        dropdown.appendChild(option);
-    });
+function initCountersObserver() {
+const counters = document.querySelectorAll('.counter');
+counters.forEach(c => c.innerText = '0');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting) {
+const el = entry.target;
+const target = parseFloat(el.getAttribute('data-target'));
+let start = 0;
+const duration = 2000;
+const step = target / (duration / 30);
+const timer = setInterval(() => {
+start += step;
+if(start >= target) {
+el.innerText = target;
+clearInterval(timer);
+} else {
+el.innerText = start.toFixed(1).replace('.0','');
 }
-
-function changeLanguage(langCode) {
-    if (translations[langCode]) {
-        currentLang = langCode;
-        loadLanguage(langCode);
-        document.getElementById('currentLangFlag').src = 
-            langCode === 'ar' ? 'https://flagcdn.com/w80/eg.png' :
-            langCode === 'en' ? 'https://flagcdn.com/w80/us.png' :
-            langCode === 'es' ? 'https://flagcdn.com/w80/es.png' :
-            langCode === 'fr' ? 'https://flagcdn.com/w80/fr.png' :
-            langCode === 'it' ? 'https://flagcdn.com/w80/it.png' :
-            langCode === 'tr' ? 'https://flagcdn.com/w80/tr.png' :
-            langCode === 'de' ? 'https://flagcdn.com/w80/de.png' :
-            langCode === 'pt' ? 'https://flagcdn.com/w80/pt.png' :
-            langCode === 'ro' ? 'https://flagcdn.com/w80/ro.png' :
-            langCode === 'hu' ? 'https://flagcdn.com/w80/hu.png' :
-            langCode === 'ja' ? 'https://flagcdn.com/w80/jp.png' :
-            langCode === 'ko' ? 'https://flagcdn.com/w80/kr.png' :
-            langCode === 'hi' ? 'https://flagcdn.com/w80/in.png' :
-            langCode === 'pa' ? 'https://flagcdn.com/w80/in.png' :
-            langCode === 'bn' ? 'https://flagcdn.com/w80/bd.png' :
-            langCode === 'id' ? 'https://flagcdn.com/w80/id.png' :
-            langCode === 'vi' ? 'https://flagcdn.com/w80/vn.png' :
-            langCode === 'fa' ? 'https://flagcdn.com/w80/ir.png' :
-            langCode === 'am' ? 'https://flagcdn.com/w80/et.png' :
-            langCode === 'sw' ? 'https://flagcdn.com/w80/ke.png' :
-            langCode === 'ha' ? 'https://flagcdn.com/w80/ng.png' :
-            langCode === 'yo' ? 'https://flagcdn.com/w80/ng.png' :
-            'https://flagcdn.com/w80/eg.png';
-    }
+}, 30);
+observer.unobserve(el);
 }
-
-function loadLanguage(lang) {
-    const t = translations[lang];
-    if (!t) return;
-
-    // Update page title
-    document.title = lang === 'ar' ? 'CiviStories | Digital Illusion Tsunami' : 'CiviStories | Digital Illusion Tsunami';
-
-    // Update hero title
-    document.getElementById('main-hero-title').innerHTML = t.heroTitle;
-
-    // Update navigation
-    const navLinks = document.querySelectorAll('.nav-links a:not(.lang-selector)');
-    navLinks.forEach((link, index) => {
-        if (index < t.nav.length) {
-            link.textContent = t.nav[index];
-        }
-    });
-
-    // Update sections
-    document.getElementById('vis-title').textContent = t.visTitle;
-    document.getElementById('vis-desc').innerHTML = t.visDesc;
-    document.getElementById('part-title').textContent = t.partTitle;
-    document.getElementById('p1-name').textContent = t.p1Name;
-    document.getElementById('p2-name').textContent = t.p2Name;
-    document.getElementById('p3-name').textContent = t.p3Name;
-    document.getElementById('p1-desc').textContent = t.p1Desc;
-    document.getElementById('p2-desc').textContent = t.p2Desc;
-    document.getElementById('p3-desc').textContent = t.p3Desc;
-    document.getElementById('st-title').textContent = t.stTitle;
-    document.getElementById('st1-txt').textContent = t.st1;
-    document.getElementById('st2-txt').textContent = t.st2;
-    document.getElementById('st3-txt').textContent = t.st3;
-    document.getElementById('ls-title').textContent = t.lsTitle;
-    document.getElementById('ls1-txt').textContent = t.ls1;
-    document.getElementById('ls2-txt').textContent = t.ls2;
-    document.getElementById('ls3-txt').textContent = t.ls3;
-    document.getElementById('awareness-main-title').textContent = t.awTitle;
-    document.getElementById('aw-c1').textContent = t.aw1;
-    document.getElementById('aw-c2').textContent = t.aw2;
-    document.getElementById('aw-c3').textContent = t.aw3;
-    document.getElementById('aw-c4').textContent = t.aw4;
-    document.getElementById('aw-c5').textContent = t.aw5;
-    document.getElementById('aw-c6').textContent = t.aw6;
-    document.getElementById('media-guideline').textContent = t.mediaGuide;
-    document.getElementById('btn-browse').textContent = t.btnBrowse;
-
-    // Update ticker
-    const newsItems = t.news || [
-        "الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي",
-        "الأوقاف: الهواتف سبب رئيسي للخرس الزوجي",
-        "إنذار: التفكك الرقمي يهدد استقرار مصر"
-    ];
-    let tickerHTML = '';
-    for (let i = 0; i < 5; i++) {
-        newsItems.forEach(item => {
-            tickerHTML += `<span>${item}</span>`;
-        });
-    }
-    document.getElementById('tickerTrack').innerHTML = tickerHTML;
-
-    // Update sources
-    const sources = t.sources || [
-        "المصدر: الجهاز المركزي للتعبئة العامة والإحصاء",
-        "المصدر: وزارة الاتصالات وتكنولوجيا المعلومات",
-        "المصدر: وزارة التضامن الاجتماعي",
-        "المصدر: دراسات الجدوى الاقتصادية",
-        "المصدر: تقارير الصحة النفسية",
-        "المصدر: تقارير الأمن السيبراني",
-        "المصدر: مركز الفتوى بالأزهر",
-        "المصدر: تقارير المشورة بالكنيسة",
-        "المصدر: وزارة الأوقاف"
-    ];
-    document.getElementById('src1').textContent = sources[0] || "";
-    document.getElementById('src2').textContent = sources[1] || "";
-    document.getElementById('src3').textContent = sources[2] || "";
-    document.getElementById('src4').textContent = sources[3] || "";
-    document.getElementById('src5').textContent = sources[4] || "";
-    document.getElementById('src6').textContent = sources[5] || "";
-    document.getElementById('src-p1').textContent = sources[6] || "";
-    document.getElementById('src-p2').textContent = sources[7] || "";
-    document.getElementById('src-p3').textContent = sources[8] || "";
+});
+}, { threshold: 0.3 });
+document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
+observer.observe(c);
+});
 }
-
-function loadTicker() {
-    const langData = translations[currentLang];
-    const newsItems = langData?.news || [
-        "الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي",
-        "الأوقاف: الهواتف سبب رئيسي للخرس الزوجي",
-        "إنذار: التفكك الرقمي يهدد استقرار مصر"
-    ];
-    let tickerHTML = '';
-    for (let i = 0; i < 5; i++) {
-        newsItems.forEach(item => {
-            tickerHTML += `<span>${item}</span>`;
-        });
-    }
-    document.getElementById('tickerTrack').innerHTML = tickerHTML;
+function updateTicker() {
+const track = document.getElementById('tickerTrack');
+const list = translations[currentLang]?.news || translations.ar.news;
+track.innerHTML = "";
+[...list, ...list].forEach(txt => {
+const s = document.createElement('span');
+s.innerText = txt;
+track.appendChild(s);
+});
 }
-
-function loadImages() {
-    const track = document.getElementById('track-imgs');
-    const images = [
-        '1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg',
-        '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg'
-    ];
-    let trackHTML = '';
-    for (let i = 0; i < 3; i++) {
-        images.forEach(img => {
-            trackHTML += `<img src="${img}" alt="Media ${img}" onclick="openImage('${img}')">`;
-        });
-    }
-    track.innerHTML = trackHTML;
+function loadMedia() {
+const track = document.getElementById('track-imgs');
+track.innerHTML = "";
+const imgs = [];
+for(let i=101; i<=124; i++) { imgs.push(i + ".jpg"); }
+[...imgs, ...imgs].forEach(src => {
+const img = document.createElement('img');
+img.src = src;
+img.onclick = () => openImage(src);
+track.appendChild(img);
+});
 }
-
 function openImage(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').style.display = 'flex';
+document.getElementById('lightbox-img').src = src;
+document.getElementById('lightbox').style.display = 'flex';
 }
-
-function closeImage() {
-    document.getElementById('lightbox').style.display = 'none';
-}
-
+function closeImage() { document.getElementById('lightbox').style.display = 'none'; }
 function scrollToSec(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+const el = document.getElementById(id);
+if(el) {
+const offset = 100;
+const pos = el.offsetTop - offset;
+window.scrollTo({ top: pos, behavior: 'smooth' });
 }
-
-function openProgram(program) {
-    const data = programsData[program];
-    if (!data) return;
-
-    const container = document.getElementById('questionsContainer');
-    container.innerHTML = '';
-
-    data.forEach((item, index) => {
-        const qDiv = document.createElement('div');
-        qDiv.className = 'q-item';
-        qDiv.innerHTML = `<span class="ans-q">${index + 1}. ${item.q}</span><span class="ans-src">${item.src}</span>`;
-        qDiv.onclick = () => showAnswer(item);
-        container.appendChild(qDiv);
-    });
-
-    document.getElementById('modalTitle').textContent = 
-        program === 'child' ? 'الطفولة الرقمية' :
-        program === 'teens' ? 'عالم المراهقين' :
-        program === 'youth' ? 'الإنتاج والشباب' :
-        program === 'marriage' ? 'الزواج السعيد' :
-        program === 'seniors' ? 'كبار السن' :
-        'الأمان والخصوصية';
-
-    document.getElementById('qModal').style.display = 'flex';
 }
-
+function renderLanguageDropdown() {
+const dropdown = document.getElementById('langDropdown');
+dropdown.innerHTML = '';
+const languages = [
+{ code: 'ar', name: 'العربية', flag: 'https://flagcdn.com/w80/eg.png' },
+{ code: 'en', name: 'English', flag: 'https://flagcdn.com/w80/gb.png' },
+{ code: 'fr', name: 'Français', flag: 'https://flagcdn.com/w80/fr.png' },
+{ code: 'es', name: 'Español', flag: 'https://flagcdn.com/w80/es.png' },
+{ code: 'it', name: 'Italiano', flag: 'https://flagcdn.com/w80/it.png' },
+{ code: 'tr', name: 'Türkçe', flag: 'https://flagcdn.com/w80/tr.png' },
+{ code: 'de', name: 'Deutsch', flag: 'https://flagcdn.com/w80/de.png' },
+{ code: 'pt', name: 'Português', flag: 'https://flagcdn.com/w80/pt.png' },
+{ code: 'ro', name: 'Română', flag: 'https://flagcdn.com/w80/ro.png' },
+{ code: 'hu', name: 'Magyar', flag: 'https://flagcdn.com/w80/hu.png' },
+{ code: 'ja', name: '日本語', flag: 'https://flagcdn.com/w80/jp.png' },
+{ code: 'ko', name: '한국어', flag: 'https://flagcdn.com/w80/kr.png' },
+{ code: 'hi', name: 'हिन्दी', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'pa', name: 'ਪੰਜਾਬੀ', flag: 'https://flagcdn.com/w80/pk.png' },
+{ code: 'bn', name: 'বাংলা', flag: 'https://flagcdn.com/w80/bd.png' },
+{ code: 'id', name: 'Bahasa Indonesia', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'vi', name: 'Tiếng Việt', flag: 'https://flagcdn.com/w80/vn.png' },
+{ code: 'fa', name: 'فارسی', flag: 'https://flagcdn.com/w80/ir.png' },
+{ code: 'am', name: 'አማርኛ', flag: 'https://flagcdn.com/w80/et.png' },
+{ code: 'sw', name: 'Kiswahili', flag: 'https://flagcdn.com/w80/tz.png' },
+{ code: 'ha', name: 'Hausa', flag: 'https://flagcdn.com/w80/ne.png' },
+{ code: 'yo', name: 'Yorùbá', flag: 'https://flagcdn.com/w80/ng.png' },
+// --- اللغات الجديدة المطلوبة ---
+{ code: 'el', name: 'Ελληνικά', flag: 'https://flagcdn.com/w80/gr.png' },
+{ code: 'nl', name: 'Nederlands', flag: 'https://flagcdn.com/w80/nl.png' },
+{ code: 'pl', name: 'Polski', flag: 'https://flagcdn.com/w80/pl.png' },
+{ code: 'fi', name: 'Suomi', flag: 'https://flagcdn.com/w80/fi.png' },
+{ code: 'da', name: 'Dansk', flag: 'https://flagcdn.com/w80/dk.png' },
+{ code: 'no', name: 'Norsk', flag: 'https://flagcdn.com/w80/no.png' },
+{ code: 'sk', name: 'Slovenčina', flag: 'https://flagcdn.com/w80/sk.png' },
+{ code: 'hr', name: 'Hrvatski', flag: 'https://flagcdn.com/w80/hr.png' },
+{ code: 'sl', name: 'Slovenščina', flag: 'https://flagcdn.com/w80/si.png' },
+{ code: 'bg', name: 'Български', flag: 'https://flagcdn.com/w80/bg.png' },
+{ code: 'sr', name: 'Српски', flag: 'https://flagcdn.com/w80/rs.png' },
+{ code: 'cs', name: 'Čeština', flag: 'https://flagcdn.com/w80/cz.png' },
+{ code: 'ru', name: 'Русский', flag: 'https://flagcdn.com/w80/ru.png' },
+{ code: 'uk', name: 'Українська', flag: 'https://flagcdn.com/w80/ua.png' },
+{ code: 'zh-CN', name: '中文 (普通话)', flag: 'https://flagcdn.com/w80/cn.png' },
+{ code: 'zh-TW', name: '廣東話', flag: 'https://flagcdn.com/w80/hk.png' },
+{ code: 'te', name: 'తెలుగు', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'mr', name: 'मराठी', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'ta', name: 'தமிழ்', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'ur', name: 'اردو', flag: 'https://flagcdn.com/w80/pk.png' },
+{ code: 'gu', name: 'ગુજરાતી', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'kn', name: 'ಕನ್ನಡ', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'ml', name: 'മലയാളം', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'or', name: 'ଓଡ଼ିଆ', flag: 'https://flagcdn.com/w80/in.png' },
+{ code: 'sd', name: 'سنڌي', flag: 'https://flagcdn.com/w80/pk.png' },
+{ code: 'ps', name: 'پښتو', flag: 'https://flagcdn.com/w80/af.png' },
+{ code: 'bal', name: 'بلوچی', flag: 'https://flagcdn.com/w80/pk.png' },
+{ code: 'si', name: 'සිංහල', flag: 'https://flagcdn.com/w80/lk.png' },
+{ code: 'my', name: 'ဗမာစာ', flag: 'https://flagcdn.com/w80/mm.png' },
+{ code: 'kar', name: 'ကရင်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
+{ code: 'rhg', name: 'রোহিঙ্গা', flag: 'https://flagcdn.com/w80/mm.png' },
+{ code: 'mn', name: 'မွန်စာ', flag: 'https://flagcdn.com/w80/mm.png' },
+{ code: 'shn', name: 'ရှမ်းစာ', flag: 'https://flagcdn.com/w80/mm.png' },
+{ code: 'fil', name: 'Filipino', flag: 'https://flagcdn.com/w80/ph.png' },
+{ code: 'th', name: 'ไทย', flag: 'https://flagcdn.com/w80/th.png' },
+{ code: 'ms', name: 'Bahasa Melayu', flag: 'https://flagcdn.com/w80/sg.png' },
+{ code: 'jv', name: 'Jawa', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'su', name: 'Sunda', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'bbc', name: 'Batak', flag: 'https://flagcdn.com/w80/id.png' },
+{ code: 'lg', name: 'Luganda', flag: 'https://flagcdn.com/w80/ug.png' },
+{ code: 'ak', name: 'Akan', flag: 'https://flagcdn.com/w80/gh.png' },
+{ code: 'ff', name: 'Fula', flag: 'https://flagcdn.com/w80/cm.png' },
+{ code: 'dyu', name: 'Dioula', flag: 'https://flagcdn.com/w80/ci.png' },
+{ code: 'mg', name: 'Malagasy', flag: 'https://flagcdn.com/w80/mg.png' },
+{ code: 'din', name: 'Dinka', flag: 'https://flagcdn.com/w80/ss.png' },
+{ code: 'srr', name: 'Sara', flag: 'https://flagcdn.com/w80/td.png' },
+{ code: 'so', name: 'Soomaali', flag: 'https://flagcdn.com/w80/so.png' },
+{ code: 'sn', name: 'Shona', flag: 'https://flagcdn.com/w80/zw.png' },
+{ code: 'bem', name: 'Bemba', flag: 'https://flagcdn.com/w80/zm.png' },
+{ code: 'ny', name: 'Chichewa', flag: 'https://flagcdn.com/w80/mw.png' },
+{ code: 'wo', name: 'Wolof', flag: 'https://flagcdn.com/w80/sn.png' },
+{ code: 'bm', name: 'Bambara', flag: 'https://flagcdn.com/w80/ml.png' },
+{ code: 'ha-ne', name: 'Hausa (Niger)', flag: 'https://flagcdn.com/w80/ne.png' },
+{ code: 'mos', name: 'Mossi', flag: 'https://flagcdn.com/w80/bf.png' },
+{ code: 'rw', name: 'Kinyarwanda', flag: 'https://flagcdn.com/w80/rw.png' },
+{ code: 'rn', name: 'Kirundi', flag: 'https://flagcdn.com/w80/bi.png' },
+{ code: 'ln', name: 'Lingála', flag: 'https://flagcdn.com/w80/cd.png' },
+{ code: 'zu', name: 'isiZulu', flag: 'https://flagcdn.com/w80/za.png' }
+];
+languages.forEach(lang => {
+const div = document.createElement('a');
+div.href = '#';
+div.className = 'lang-option';
+div.dataset.lang = lang.code;
+div.innerHTML = `<img src="${lang.flag}" alt="${lang.name}"> ${lang.name}`;
+div.onclick = (e) => {
+e.preventDefault();
+selectLanguage(lang.code, lang.flag);
+document.getElementById('langDropdown').classList.remove('show');
+};
+dropdown.appendChild(div);
+});
+}
+function setupLanguageToggle() {
+const toggleBtn = document.getElementById('langToggleBtn');
+const dropdown = document.getElementById('langDropdown');
+toggleBtn.onclick = (e) => {
+e.stopPropagation();
+dropdown.classList.toggle('show');
+};
+document.addEventListener('click', (e) => {
+if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
+dropdown.classList.remove('show');
+}
+});
+}
+// ✅ التعديل الوحيد في دالة selectLanguage: إزالة تغيير الاتجاه (dir)
+function selectLanguage(langCode, flagUrl) {
+const flagImg = document.getElementById('currentLangFlag');
+flagImg.src = flagUrl;
+currentLang = langCode;
+// ❌ إزالة هذا السطر تمامًا (كان يغيّر الاتجاه):
+// document.documentElement.setAttribute('dir', langCode === 'ar' ? 'rtl' : 'ltr');
+// ✅ بقاء اللغة دائمًا RTL (كما في HTML الأصلي)
+document.documentElement.lang = currentLang;
+const t = translations[langCode] || translations.ar;
+document.getElementById('main-hero-title').innerHTML = t.heroTitle;
+document.getElementById('vis-title').innerText = t.visTitle;
+document.getElementById('vis-desc').innerHTML = t.visDesc;
+document.getElementById('part-title').innerText = t.partTitle;
+document.getElementById('p1-name').innerText = t.p1Name;
+document.getElementById('p2-name').innerText = t.p2Name;
+document.getElementById('p3-name').innerText = t.p3Name;
+document.getElementById('p1-desc').innerText = t.p1Desc;
+document.getElementById('p2-desc').innerText = t.p2Desc;
+document.getElementById('p3-desc').innerText = t.p3Desc;
+document.getElementById('st-title').innerText = t.stTitle;
+document.getElementById('st1-txt').innerText = t.st1;
+document.getElementById('st2-txt').innerText = t.st2;
+document.getElementById('st3-txt').innerText = t.st3;
+document.getElementById('ls-title').innerText = t.lsTitle;
+document.getElementById('ls1-txt').innerText = t.ls1;
+document.getElementById('ls2-txt').innerText = t.ls2;
+document.getElementById('ls3-txt').innerText = t.ls3;
+document.getElementById('awareness-main-title').innerText = t.awTitle;
+document.getElementById('aw-c1').innerText = t.aw1;
+document.getElementById('aw-c2').innerText = t.aw2;
+document.getElementById('aw-c3').innerText = t.aw3;
+document.getElementById('aw-c4').innerText = t.aw4;
+document.getElementById('aw-c5').innerText = t.aw5;
+document.getElementById('aw-c6').innerText = t.aw6;
+document.getElementById('media-guideline').innerText = t.mediaGuide;
+document.getElementById('btn-browse').innerText = t.btnBrowse;
+for(let i=1; i<=6; i++) {
+const popup = document.getElementById('src'+i);
+if(popup) popup.innerText = t.sources[i-1];
+}
+document.getElementById('src-p1').innerText = t.sources[6];
+document.getElementById('src-p2').innerText = t.sources[7];
+document.getElementById('src-p3').innerText = t.sources[8];
+// ✅ تعديل الروابط في الشريط العلوي فقط (الترجمة فقط)
+const navLinks = document.querySelectorAll('.nav-links a');
+// تجاوز زر اللغة (العنصر الأول)
+for (let i = 1; i < navLinks.length; i++) {
+if (t.nav && t.nav[i - 1]) {
+navLinks[i].innerText = t.nav[i - 1];
+}
+}
+updateTicker();
+renderLanguageDropdown();
+}
+function openProgram(type) {
+const container = document.getElementById('questionsContainer');
+container.innerHTML = "";
+let data;
+// Select data based on current language
+switch(currentLang) {
+case 'en':
+const enData = programsDataEn[type];
+if (enData && enData.questions) {
+data = enData.questions.map(q => ({ q: q.question, ans: q.answer, src: "Expert Source" }));
+} else {
+data = programsData[type] || [];
+}
+break;
+case 'es': data = programsDataEs[type]; break;
+case 'fr': data = programsDataFr[type]; break;
+case 'it': data = programsDataIt[type]; break;
+case 'tr': data = programsDataTr[type]; break;
+case 'de': data = programsDataDe[type]; break;
+case 'pt': data = programsDataPt[type]; break;
+case 'ro': data = programsDataRo[type]; break;
+case 'hu': data = programsDataHu[type]; break;
+case 'ja': data = programsDataJa[type]; break;
+case 'ko': data = programsDataKo[type]; break;
+case 'hi': data = programsDataHi[type]; break;
+case 'pa': data = programsDataPa[type]; break;
+case 'bn': data = programsDataBn[type]; break;
+case 'id': data = programsDataId[type]; break;
+case 'vi': data = programsDataVi[type]; break;
+case 'fa': data = programsDataFa[type]; break;
+case 'am': data = programsDataAm[type]; break;
+case 'sw': data = programsDataSw[type]; break;
+case 'ha': data = programsDataHa[type]; break;
+case 'yo': data = programsDataYo[type]; break;
+default: data = programsData[type];
+}
+const programNames = {
+'child': translations[currentLang]?.aw1 || translations.ar.aw1,
+'teens': translations[currentLang]?.aw2 || translations.ar.aw2,
+'youth': translations[currentLang]?.aw3 || translations.ar.aw3,
+'marriage': translations[currentLang]?.aw4 || translations.ar.aw4,
+'seniors': translations[currentLang]?.aw5 || translations.ar.aw5,
+'security': translations[currentLang]?.aw6 || translations.ar.aw6
+};
+document.getElementById('modalTitle').innerText = programNames[type];
+// Render questions
+if (Array.isArray(data)) {
+data.forEach((item, idx) => {
+const div = document.createElement('div');
+div.className = "q-item";
+div.innerText = (idx+1) + ". " + item.q;
+div.onclick = () => showAnswer(item);
+container.appendChild(div);
+});
+}
+document.getElementById('qModal').style.display = 'flex';
+}
 function showAnswer(item) {
-    document.getElementById('answerContent').innerHTML = 
-        `<span class="ans-q">${item.q}</span>` +
-        `<span class="ans-src">${item.src}</span>` +
-        `<div class="ans-text">${item.ans}</div>`;
-
-    document.getElementById('answerTitle').textContent = 
-        document.getElementById('modalTitle').textContent;
-
-    document.getElementById('qModal').style.display = 'none';
-    document.getElementById('aModal').style.display = 'flex';
+const content = document.getElementById('answerContent');
+const title = document.getElementById('answerTitle');
+title.innerText = item.q || item.question;
+content.innerHTML = `
+<span class="ans-src">${currentLang === 'en' ? 'Source: ' :
+currentLang === 'es' ? 'Fuente: ' :
+currentLang === 'fr' ? 'Source : ' :
+currentLang === 'it' ? 'Fonte: ' :
+currentLang === 'tr' ? 'Kaynak: ' :
+currentLang === 'de' ? 'Quelle: ' :
+currentLang === 'pt' ? 'Fonte: ' :
+currentLang === 'ro' ? 'Sursă: ' :
+currentLang === 'hu' ? 'Forrás: ' :
+currentLang === 'ja' ? '出典: ' :
+currentLang === 'ko' ? '출처: ' :
+currentLang === 'hi' ? 'स्रोत: ' :
+currentLang === 'pa' ? 'ਸਰੋਤ: ' :
+currentLang === 'bn' ? 'উৎস: ' :
+currentLang === 'id' ? 'Sumber: ' :
+currentLang === 'vi' ? 'Nguồn: ' :
+currentLang === 'fa' ? 'منبع: ' :
+currentLang === 'am' ? 'ምንጭ፡ ' :
+currentLang === 'sw' ? 'Chanzo: ' :
+currentLang === 'ha' ? 'Manzo: ' :
+currentLang === 'yo' ? 'Oríṣìrìṣì: ' : 'المصدر: '}${item.src || 'Expert Source'}</span>
+<div class="ans-text">${item.ans || item.answer}</div>
+`;
+document.getElementById('aModal').style.display = 'flex';
 }
-
-function closePopup(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-}
-
+function closePopup(id) { document.getElementById(id).style.display = 'none'; }
+// === New functions for Messages Modal ===
 function openMessagesModal() {
-    document.getElementById('messages-modal').style.display = 'flex';
+document.getElementById('messages-modal').style.display = 'flex';
 }
-
 function closeMessagesModal() {
-    document.getElementById('messages-modal').style.display = 'none';
+document.getElementById('messages-modal').style.display = 'none';
 }
 
-// === الدوال الجديدة للنافذة المنبثقة للإسلام ===
+// === دوال نافذة الإسلام ===
 function openIslamModal() {
-    document.getElementById('islam-modal').style.display = 'block';
+document.getElementById('islam-modal').style.display = 'block';
 }
-
 function closeIslamModal() {
-    document.getElementById('islam-modal').style.display = 'none';
+document.getElementById('islam-modal').style.display = 'none';
 }
 
-function startCounters() {
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-        const target = parseFloat(counter.getAttribute('data-target'));
-        const duration = 2000;
-        const startTime = performance.now();
-        
-        function updateCounter(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const currentValue = target * progress;
-            
-            if (target > 100) {
-                counter.textContent = Math.floor(currentValue);
-            } else {
-                counter.textContent = currentValue.toFixed(1);
-            }
-            
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            }
-        }
-        
-        requestAnimationFrame(updateCounter);
-    });
-}
-
-function handleScroll() {
-    const btnUp = document.getElementById('btnUp');
-    if (window.scrollY > 300) {
-        btnUp.style.display = 'flex';
-    } else {
-        btnUp.style.display = 'none';
-    }
-}
-
-// Close modals when pressing Escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closePopup('qModal');
-        closePopup('aModal');
-        closeMessagesModal();
-        closeIslamModal();
-        closeImage();
-    }
-});
-
-// Prevent right-click context menu on images
-document.addEventListener('contextmenu', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-    }
-});
+window.onscroll = function() {
+const btn = document.getElementById('btnUp');
+if(window.scrollY > 300) btn.style.display = 'flex';
+else btn.style.display = 'none';
+};
 </script>
 </body>
 </html>
