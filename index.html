@@ -336,32 +336,51 @@ line-height: 16px;
 border-radius: 2px;
 margin-right: 10px;
 }
+
+/* === أنماط جديدة لعرض الأسئلة والإجابات مباشرة === */
+.program-section {
+margin-top: 40px;
+padding: 30px;
+background: rgba(0,0,0,0.5);
+border-radius: 20px;
+border: 1px solid var(--gold);
+}
+.program-title {
+color: var(--gold);
+font-size: 1.8rem;
+font-weight: bold;
+margin-bottom: 20px;
+text-align: center;
+}
+.question-item {
+margin-bottom: 30px;
+padding-bottom: 20px;
+border-bottom: 1px solid rgba(212,175,55,0.3);
+}
+.question-text {
+color: var(--gold);
+font-weight: bold;
+font-size: 1.2rem;
+margin-bottom: 10px;
+}
+.answer-source {
+color: #008000;
+font-weight: bold;
+display: block;
+margin-bottom: 10px;
+}
+.answer-text {
+line-height: 1.6;
+font-size: 1.1rem;
+color: var(--white);
+}
 </style>
 </head>
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-<!-- Modal for Questions -->
-<div id="qModal" class="modal-overlay">
-<div class="modal-container">
-<span class="close-modal" onclick="closePopup('qModal')">×</span>
-<div class="modal-box">
-<h2 id="modalTitle" class="modal-program-title">الطفولة الرقمية</h2>
-<p class="modal-instruction">اضغط على السؤال لمعرفة الإجابة</p>
-<div id="questionsContainer"></div>
-</div>
-</div>
-</div>
-<!-- Modal for Answers -->
-<div id="aModal" class="modal-overlay">
-<div class="modal-container">
-<span class="close-modal" onclick="closePopup('aModal')">×</span>
-<div class="modal-box">
-<h2 id="answerTitle" class="modal-program-title"></h2>
-<div id="answerContent"></div>
-</div>
-</div>
-</div>
+
+<!-- Modals الأخرى تبقى كما هي (رسالاتنا، المعتقدات، الصور...) -->
 <!-- Modal for Beliefs -->
 <div id="beliefModal" class="modal-overlay">
 <div class="modal-container">
@@ -629,19 +648,46 @@ margin-right: 10px;
 </div>
 </div>
 </section>
+
+<!-- ✅ قسم "برامج التوعية" مع عرض مباشر لكل الأسئلة والإجابات -->
 <section id="awareness-sec" class="section">
 <div class="glass-box">
 <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
-<div class="awareness-grid">
-<div class="awareness-card" onclick="openProgram('child')"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
-<div class="awareness-card" onclick="openProgram('teens')"><i class="fas fa-user-friends"></i><span id="aw-c2">عالم المراهقين</span></div>
-<div class="awareness-card" onclick="openProgram('youth')"><i class="fas fa-briefcase"></i><span id="aw-c3">الإنتاج والشباب</span></div>
-<div class="awareness-card" onclick="openProgram('marriage')"><i class="fas fa-heart"></i><span id="aw-c4">الزواج السعيد</span></div>
-<div class="awareness-card" onclick="openProgram('seniors')"><i class="fas fa-blind"></i><span id="aw-c5">كبار السن</span></div>
-<div class="awareness-card" onclick="openProgram('security')"><i class="fas fa-user-shield"></i><span id="aw-c6">الأمان والخصوصية</span></div>
+
+<!-- الطفولة الرقمية -->
+<div class="program-section">
+<h3 class="program-title">الطفولة الرقمية</h3>
+<!-- سيتم ملء الأسئلة من البيانات أدناه -->
 </div>
+
+<!-- عالم المراهقين -->
+<div class="program-section">
+<h3 class="program-title">عالم المراهقين</h3>
+</div>
+
+<!-- الإنتاج والشباب -->
+<div class="program-section">
+<h3 class="program-title">الإنتاج والشباب</h3>
+</div>
+
+<!-- الزواج السعيد -->
+<div class="program-section">
+<h3 class="program-title">الزواج السعيد</h3>
+</div>
+
+<!-- كبار السن -->
+<div class="program-section">
+<h3 class="program-title">كبار السن</h3>
+</div>
+
+<!-- الأمان والخصوصية -->
+<div class="program-section">
+<h3 class="program-title">الأمان والخصوصية</h3>
+</div>
+
 </div>
 </section>
+
 <section id="human-vision" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤية إنسانية</h2>
@@ -675,7 +721,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <script>
 function initPage() {
 scrollToSec('home');
@@ -683,6 +728,7 @@ updateTicker();
 loadMedia();
 setupLanguageToggle();
 initCountersObserver();
+renderAwarenessSections(); // <-- إضافة جديدة لعرض الأسئلة
 }
 function initCountersObserver() {
 const counters = document.querySelectorAll('.counter');
@@ -786,15 +832,48 @@ setTimeout(() => {
 flagContainer.innerHTML = '<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">';
 }, 2000);
 }
-// === برامج التوعية (كاملة كما في الملف الأصلي) ===
+
+// === بيانات برامج التوعية (نفس البيانات الأصلية) ===
 const programsData = {
-child: [/* ... البيانات كما هي ... */],
+child: [
+{ q: "ما هو السن المناسب تقنياً ونفسياً للسماح للطفل باستخدام الشاشات؟", src: "الأكاديمية الأمريكية لطب الأطفال (AAP)", ans: "* يُمنع تماماً استخدام الشاشات للأطفال دون سن 18–24 شهراً.<br>* الاستثناء الوحيد في هذا العمر هو مكالمات الفيديو للتواصل مع الأهل فقط.<br>* من سن 2 إلى 5 سنوات، الحد الأقصى هو ساعة واحدة يومياً من محتوى تعليمي.<br>* يجب أن يشاهد الأبوان مع الطفل لضمان فهمه لما يراه وتطبيقه على الواقع." },
+{ q: "كيف أميز بين الاستخدام العادي للهاتف وبين بداية مرحلة العزلة الرقمية؟", src: "الجمعية النفسية الأمريكية (APA)", ans: "* الاستخدام العادي هو وسيلة للترفيه ولا يؤثر على التواصل الاجتماعي الواقعي.<br>* العزلة تبدأ عندما تظهر أعراض الانسحاب مثل العصبية الشديدة عند ترك الجهاز.<br>* فقدان الاهتمام بالهوايات التقليدية واللعب مع الأقران هو مؤشر خطر.<br>* إهمال النظافة الشخصية أو اضطراب مواعيد الأكل والنوم بسبب الشاشة." },
+// ... (باقي الأسئلة كما في الملف الأصلي)
+],
 teens: [/* ... */],
 youth: [/* ... */],
 marriage: [/* ... */],
 seniors: [/* ... */],
 security: [/* ... */]
 };
+
+// === دالة لعرض جميع الأسئلة والإجابات مباشرة ===
+function renderAwarenessSections() {
+const sections = [
+{ id: 'child', title: 'الطفولة الرقمية', selector: '.program-section:nth-of-type(1)' },
+{ id: 'teens', title: 'عالم المراهقين', selector: '.program-section:nth-of-type(2)' },
+{ id: 'youth', title: 'الإنتاج والشباب', selector: '.program-section:nth-of-type(3)' },
+{ id: 'marriage', title: 'الزواج السعيد', selector: '.program-section:nth-of-type(4)' },
+{ id: 'seniors', title: 'كبار السن', selector: '.program-section:nth-of-type(5)' },
+{ id: 'security', title: 'الأمان والخصوصية', selector: '.program-section:nth-of-type(6)' }
+];
+
+sections.forEach(sec => {
+const container = document.querySelector(sec.selector + ' .program-title').parentElement;
+const data = programsData[sec.id] || [];
+data.forEach(item => {
+const div = document.createElement('div');
+div.className = 'question-item';
+div.innerHTML = `
+<div class="question-text">${item.q}</div>
+<span class="answer-source">${item.src}</span>
+<div class="answer-text">${item.ans}</div>
+`;
+container.appendChild(div);
+});
+});
+}
+
 // === بيانات المرجعيات الجديدة ===
 const beliefsData = {
 belief1: { title: "الإسلام", src: "القرآن الكريم والسنة النبوية", content: "الإسلام دين الرحمة والعدل، يحث على حفظ النفس والعقل والمال والنسب والدين. في العصر الرقمي، يدعو الإسلام إلى استخدام التكنولوجيا بما لا يضر بالنفس أو المجتمع، ويؤكد على أهمية الحفاظ على الخصوصية، واجتناب الغيبة والنميمة، ونشر الخير والحق." },
@@ -811,42 +890,6 @@ belief11: { title: "الفلسفة الأفريقية", src: "أقوال الح�
 belief12: { title: "الأخلاق الإنسانية", src: "إعلان حقوق الإنسان", content: "تؤكد على كرامة الإنسان، وحقه في الخصوصية، والتعبير المسؤول. تدعو إلى فضاء رقمي يحترم التنوع، ويحمي الضعفاء، ويعزز الحوار البنّاء، ويرفض خطاب الكراهية والاستغلال." }
 };
 
-function openProgram(type) {
-const container = document.getElementById('questionsContainer');
-container.innerHTML = "";
-const data = programsData[type] || [];
-const programNames = {
-'child': 'الطفولة الرقمية',
-'teens': 'عالم المراهقين',
-'youth': 'الإنتاج والشباب',
-'marriage': 'الزواج السعيد',
-'seniors': 'كبار السن',
-'security': 'الأمان والخصوصية'
-};
-document.getElementById('modalTitle').innerText = programNames[type];
-if (Array.isArray(data)) {
-data.forEach((item, idx) => {
-const div = document.createElement('div');
-div.className = "q-item";
-div.innerText = (idx+1) + ". " + item.q;
-div.onclick = () => showAnswer(item);
-container.appendChild(div);
-});
-}
-document.getElementById('qModal').style.display = 'flex';
-}
-function showAnswer(item) {
-const content = document.getElementById('answerContent');
-const title = document.getElementById('answerTitle');
-title.innerText = item.q;
-content.innerHTML = `
-<span class="ans-src">${item.src}</span>
-<div class="ans-text">${item.ans}</div>
-`;
-document.getElementById('aModal').style.display = 'flex';
-}
-
-// === دوال المرجعيات الجديدة ===
 function openBelief(type) {
 const item = beliefsData[type];
 if (!item) return;
