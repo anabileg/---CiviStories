@@ -350,6 +350,54 @@ line-height: 16px;
 border-radius: 2px;
 margin-right: 10px;
 }
+
+/* === نافذة جديدة لجميع المرجعيات === */
+.belief-modal {
+display: none;
+position: fixed;
+top: 20%;
+left: 50%;
+transform: translateX(-50%);
+width: 90%;
+max-width: 700px;
+background: #fdf9f3;
+border-radius: 15px;
+padding: 25px;
+box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+z-index: 70000;
+font-family: 'Tajawal', 'Cairo', sans-serif;
+color: #333333;
+line-height: 1.8;
+direction: rtl;
+}
+.belief-modal .close-belief {
+position: absolute;
+top: 10px;
+left: 10px;
+width: 32px;
+height: 32px;
+border-radius: 50%;
+background: #ffcccc;
+color: #cc0000;
+font-weight: bold;
+font-size: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+border: 1px solid #ff6666;
+}
+.belief-modal h2 {
+text-align: center;
+color: #b30000;
+font-size: 1.7rem;
+margin-bottom: 20px;
+font-weight: bold;
+}
+.belief-modal .content {
+font-size: 1.1rem;
+font-weight: 500;
+}
 </style>
 </head>
 <body onload="initPage()">
@@ -413,273 +461,97 @@ margin-right: 10px;
 <img id="lightbox-img" src="">
 </div>
 </div>
-<nav class="navbar">
-<div class="nav-container">
-<div class="nav-links">
-<div class="lang-selector">
-<button class="lang-toggle-btn" id="langToggleBtn">
-<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
-</button>
-<div class="lang-dropdown" id="langDropdown">
-<a href="#" class="lang-option arabic-flag" data-lang="ar"><img src="https://flagcdn.com/w80/eg.png" alt="العربية"> العربية</a>
-<a href="#" class="lang-option" data-lang="en"><img src="https://flagcdn.com/w80/gb.png" alt="English"> English</a>
-<a href="#" class="lang-option" data-lang="fr"><img src="https://flagcdn.com/w80/fr.png" alt="Français"> Français</a>
-<a href="#" class="lang-option" data-lang="es"><img src="https://flagcdn.com/w80/es.png" alt="Español"> Español</a>
-<a href="#" class="lang-option" data-lang="pt"><img src="https://flagcdn.com/w80/pt.png" alt="Português"> Português</a>
-<a href="#" class="lang-option" data-lang="ru"><img src="https://flagcdn.com/w80/ru.png" alt="Русский"> Русский</a>
-<a href="#" class="lang-option" data-lang="zh-CN"><img src="https://flagcdn.com/w80/cn.png" alt="中文"> 中文 (普通话)</a>
-<a href="#" class="lang-option" data-lang="ja"><img src="https://flagcdn.com/w80/jp.png" alt="日本語"> 日本語</a>
-<a href="#" class="lang-option" data-lang="ko"><img src="https://flagcdn.com/w80/kr.png" alt="한국어"> 한국어</a>
-<a href="#" class="lang-option" data-lang="de"><img src="https://flagcdn.com/w80/de.png" alt="Deutsch"> Deutsch</a>
-<a href="#" class="lang-option" data-lang="it"><img src="https://flagcdn.com/w80/it.png" alt="Italiano"> Italiano</a>
-<a href="#" class="lang-option" data-lang="tr"><img src="https://flagcdn.com/w80/tr.png" alt="Türkçe"> Türkçe</a>
-<a href="#" class="lang-option" data-lang="fa"><img src="https://flagcdn.com/w80/ir.png" alt="فارسی"> فارسی</a>
-<a href="#" class="lang-option" data-lang="hi"><img src="https://flagcdn.com/w80/in.png" alt="हिन्दी"> हिन्दी</a>
-<a href="#" class="lang-option" data-lang="id"><img src="https://flagcdn.com/w80/id.png" alt="Bahasa Indonesia"> Bahasa Indonesia</a>
-<a href="#" class="lang-option" data-lang="vi"><img src="https://flagcdn.com/w80/vn.png" alt="Tiếng Việt"> Tiếng Việt</a>
-<a href="#" class="lang-option" data-lang="el"><img src="https://flagcdn.com/w80/gr.png" alt="Ελληνικά"> Ελληνικά</a>
-<a href="#" class="lang-option" data-lang="nl"><img src="https://flagcdn.com/w80/nl.png" alt="Nederlands"> Nederlands</a>
-<a href="#" class="lang-option" data-lang="pl"><img src="https://flagcdn.com/w80/pl.png" alt="Polski"> Polski</a>
-<a href="#" class="lang-option" data-lang="fi"><img src="https://flagcdn.com/w80/fi.png" alt="Suomi"> Suomi</a>
-<a href="#" class="lang-option" data-lang="da"><img src="https://flagcdn.com/w80/dk.png" alt="Dansk"> Dansk</a>
-<a href="#" class="lang-option" data-lang="no"><img src="https://flagcdn.com/w80/no.png" alt="Norsk"> Norsk</a>
-<a href="#" class="lang-option" data-lang="sk"><img src="https://flagcdn.com/w80/sk.png" alt="Slovenčina"> Slovenčina</a>
-<a href="#" class="lang-option" data-lang="hr"><img src="https://flagcdn.com/w80/hr.png" alt="Hrvatski"> Hrvatski</a>
-<a href="#" class="lang-option" data-lang="sl"><img src="https://flagcdn.com/w80/si.png" alt="Slovenščina"> Slovenščina</a>
-<a href="#" class="lang-option" data-lang="bg"><img src="https://flagcdn.com/w80/bg.png" alt="Български"> Български</a>
-<a href="#" class="lang-option" data-lang="sr"><img src="https://flagcdn.com/w80/rs.png" alt="Српски"> Српски</a>
-<a href="#" class="lang-option" data-lang="cs"><img src="https://flagcdn.com/w80/cz.png" alt="Čeština"> Čeština</a>
-<a href="#" class="lang-option" data-lang="uk"><img src="https://flagcdn.com/w80/ua.png" alt="Українська"> Українська</a>
-<a href="#" class="lang-option" data-lang="zh-TW"><img src="https://flagcdn.com/w80/hk.png" alt="廣東話"> 廣東話</a>
-<a href="#" class="lang-option" data-lang="te"><img src="https://flagcdn.com/w80/in.png" alt="తెలుగు"> తెలుగు</a>
-<a href="#" class="lang-option" data-lang="mr"><img src="https://flagcdn.com/w80/in.png" alt="मराठी"> मराठी</a>
-<a href="#" class="lang-option" data-lang="ta"><img src="https://flagcdn.com/w80/in.png" alt="தமிழ்"> தமிழ்</a>
-<a href="#" class="lang-option" data-lang="ur"><img src="https://flagcdn.com/w80/pk.png" alt="اردو"> اردو</a>
-<a href="#" class="lang-option" data-lang="gu"><img src="https://flagcdn.com/w80/in.png" alt="ગુજરાતી"> ગુજરાતી</a>
-<a href="#" class="lang-option" data-lang="kn"><img src="https://flagcdn.com/w80/in.png" alt="ಕನ್ನಡ"> ಕನ್ನಡ</a>
-<a href="#" class="lang-option" data-lang="ml"><img src="https://flagcdn.com/w80/in.png" alt="മലയാളം"> മലയാളം</a>
-<a href="#" class="lang-option" data-lang="or"><img src="https://flagcdn.com/w80/in.png" alt="ଓଡ଼ିଆ"> ଓଡ଼ିଆ</a>
-<a href="#" class="lang-option" data-lang="sd"><img src="https://flagcdn.com/w80/pk.png" alt="سنڌي"> سنڌي</a>
-<a href="#" class="lang-option" data-lang="ps"><img src="https://flagcdn.com/w80/af.png" alt="پښتو"> پښتو</a>
-<a href="#" class="lang-option" data-lang="bal"><img src="https://flagcdn.com/w80/pk.png" alt="بلوچی"> بلوچی</a>
-<a href="#" class="lang-option" data-lang="si"><img src="https://flagcdn.com/w80/lk.png" alt="සිංහල"> සිංහල</a>
-<a href="#" class="lang-option" data-lang="my"><img src="https://flagcdn.com/w80/mm.png" alt="ဗမာစာ"> ဗမာစာ</a>
-<a href="#" class="lang-option" data-lang="kar"><img src="https://flagcdn.com/w80/mm.png" alt="ကရင်စာ"> ကရင်စာ</a>
-<a href="#" class="lang-option" data-lang="rhg"><img src="https://flagcdn.com/w80/mm.png" alt="রোহিঙ্গা"> রোহিঙ্গা</a>
-<a href="#" class="lang-option" data-lang="mn"><img src="https://flagcdn.com/w80/mm.png" alt="မွန်စာ"> မွန်စာ</a>
-<a href="#" class="lang-option" data-lang="shn"><img src="https://flagcdn.com/w80/mm.png" alt="ရှမ်းစာ"> ရှမ်းစာ</a>
-<a href="#" class="lang-option" data-lang="fil"><img src="https://flagcdn.com/w80/ph.png" alt="Filipino"> Filipino</a>
-<a href="#" class="lang-option" data-lang="th"><img src="https://flagcdn.com/w80/th.png" alt="ไทย"> ไทย</a>
-<a href="#" class="lang-option" data-lang="ms"><img src="https://flagcdn.com/w80/sg.png" alt="Bahasa Melayu"> Bahasa Melayu</a>
-<a href="#" class="lang-option" data-lang="jv"><img src="https://flagcdn.com/w80/id.png" alt="Jawa"> Jawa</a>
-<a href="#" class="lang-option" data-lang="su"><img src="https://flagcdn.com/w80/id.png" alt="Sunda"> Sunda</a>
-<a href="#" class="lang-option" data-lang="bbc"><img src="https://flagcdn.com/w80/id.png" alt="Batak"> Batak</a>
-<a href="#" class="lang-option" data-lang="lg"><img src="https://flagcdn.com/w80/ug.png" alt="Luganda"> Luganda</a>
-<a href="#" class="lang-option" data-lang="ak"><img src="https://flagcdn.com/w80/gh.png" alt="Akan"> Akan</a>
-<a href="#" class="lang-option" data-lang="ff"><img src="https://flagcdn.com/w80/cm.png" alt="Fula"> Fula</a>
-<a href="#" class="lang-option" data-lang="dyu"><img src="https://flagcdn.com/w80/ci.png" alt="Dioula"> Dioula</a>
-<a href="#" class="lang-option" data-lang="mg"><img src="https://flagcdn.com/w80/mg.png" alt="Malagasy"> Malagasy</a>
-<a href="#" class="lang-option" data-lang="din"><img src="https://flagcdn.com/w80/ss.png" alt="Dinka"> Dinka</a>
-<a href="#" class="lang-option" data-lang="srr"><img src="https://flagcdn.com/w80/td.png" alt="Sara"> Sara</a>
-<a href="#" class="lang-option" data-lang="so"><img src="https://flagcdn.com/w80/so.png" alt="Soomaali"> Soomaali</a>
-<a href="#" class="lang-option" data-lang="sn"><img src="https://flagcdn.com/w80/zw.png" alt="Shona"> Shona</a>
-<a href="#" class="lang-option" data-lang="bem"><img src="https://flagcdn.com/w80/zm.png" alt="Bemba"> Bemba</a>
-<a href="#" class="lang-option" data-lang="ny"><img src="https://flagcdn.com/w80/mw.png" alt="Chichewa"> Chichewa</a>
-<a href="#" class="lang-option" data-lang="wo"><img src="https://flagcdn.com/w80/sn.png" alt="Wolof"> Wolof</a>
-<a href="#" class="lang-option" data-lang="bm"><img src="https://flagcdn.com/w80/ml.png" alt="Bambara"> Bambara</a>
-<a href="#" class="lang-option" data-lang="ha-ne"><img src="https://flagcdn.com/w80/ne.png" alt="Hausa (Niger)"> Hausa (Niger)</a>
-<a href="#" class="lang-option" data-lang="mos"><img src="https://flagcdn.com/w80/bf.png" alt="Mossi"> Mossi</a>
-<a href="#" class="lang-option" data-lang="rw"><img src="https://flagcdn.com/w80/rw.png" alt="Kinyarwanda"> Kinyarwanda</a>
-<a href="#" class="lang-option" data-lang="rn"><img src="https://flagcdn.com/w80/bi.png" alt="Kirundi"> Kirundi</a>
-<a href="#" class="lang-option" data-lang="ln"><img src="https://flagcdn.com/w80/cd.png" alt="Lingála"> Lingála</a>
-<a href="#" class="lang-option" data-lang="zu"><img src="https://flagcdn.com/w80/za.png" alt="isiZulu"> isiZulu</a>
-<a href="#" class="lang-option" data-lang="pa"><img src="https://flagcdn.com/w80/pk.png" alt="ਪੰਜਾਬੀ"> ਪੰਜਾਬੀ</a>
-<a href="#" class="lang-option" data-lang="bn"><img src="https://flagcdn.com/w80/bd.png" alt="বাংলা"> বাংলা</a>
-<a href="#" class="lang-option" data-lang="am"><img src="https://flagcdn.com/w80/et.png" alt="አማርኛ"> አማርኛ</a>
-<a href="#" class="lang-option" data-lang="sw"><img src="https://flagcdn.com/w80/tz.png" alt="Kiswahili"> Kiswahili</a>
-<a href="#" class="lang-option" data-lang="ha"><img src="https://flagcdn.com/w80/ne.png" alt="Hausa"> Hausa</a>
-<a href="#" class="lang-option" data-lang="yo"><img src="https://flagcdn.com/w80/ng.png" alt="Yorùbá"> Yorùbá</a>
-</div>
-</div>
-<a onclick="scrollToSec('about')">أهدافنا</a>
-<a onclick="openMessagesModal()">رسالاتنا</a>
-<a onclick="scrollToSec('inst')">الشركاء</a>
-<a onclick="scrollToSec('media-sec')">ميديا</a>
-<a onclick="scrollToSec('stats')">إحصائيات</a>
-<a onclick="scrollToSec('losses')">خسائر</a>
-<a onclick="scrollToSec('awareness-sec')">وعي</a>
-<a onclick="scrollToSec('human-vision')">رؤية إنسانية</a>
-<a onclick="scrollToSec('beliefs-section')">مرجعياتنا الإنسانية</a>
-<a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank">رأيك يهمنا</a>
-</div>
-<div class="nav-right-group">
-<div class="social-icons">
-<a href="https://wa.me/201009995015" target="_blank" style="color: var(--wa-color);"><i class="fab fa-whatsapp"></i></a>
-<a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
-<a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
-<a href="https://www.instagram.com/civi.stories" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
-<a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fa-brands fa-x-twitter"></i></a>
-<a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
-<a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
-<a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
-</div>
-<img src="logo.png" class="nav-logo-img" alt="Logo">
-</div>
-</div>
-</nav>
-<div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
-<section class="hero" id="home">
-<h1 class="main-alert-title" id="main-hero-title">
-<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>
-</h1>
-<div class="hero-container">
-<div class="book-static">
-<div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book Cover"></div>
-<a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" class="btn-action">تصفح الكتاب</a>
-</div>
-<div class="video-container-box">
-<iframe src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&controls=1&rel=0" allowfullscreen></iframe>
-</div>
-</div>
-</section>
-<section id="about" class="vision-section">
-<h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">أهدافنا الاستراتيجية</h2>
-<p id="vis-desc">نهدف من خلال مبادرة "قصص الحضارات" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.<br>بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.</p>
-</section>
-<section id="messages" class="section">
-<div class="glass-box">
-<h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رسالاتنا</h2>
-<p style="font-size: 1.4rem; font-weight: bold; line-height: 1.6; color: var(--white);">
-من قلب الحضارة المصرية، نطلق رسائلنا إلى العالم:<br>
-• التكنولوجيا أداة، وليس بديلاً عن الإنسانية.<br>
-• الأسرة هي الحصن الأول ضد الانهيار الرقمي.<br>
-• الوعي الرقمي حقٌّ لكل فرد، وواجبٌ على كل مجتمع.<br>
-• لا مستقبل آمن دون توازن بين التقدم الرقمي والقيم الإنسانية.
-</p>
-</div>
-</section>
-<section id="inst" class="section">
-<div class="glass-box">
-<h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
-<div class="grid">
-<div class="card">
-<div class="info-popup" id="src-p1">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر</div>
-<img src="100.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-<h3 id="p1-name">الأزهر الشريف</h3>
-<p id="p1-desc">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
-</div>
-<div class="card">
-<div class="info-popup" id="src-p2">المصدر: تقارير المشورة الأسرية بالكنيسة</div>
-<img src="300.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-<h3 id="p2-name">الكنيسة المصرية</h3>
-<p id="p2-desc">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
-</div>
-<div class="card">
-<div class="info-popup" id="src-p3">المصدر: وزارة الأوقاف المصرية</div>
-<img src="200.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
-<h3 id="p3-name">وزارة الأوقاف</h3>
-<p id="p3-desc">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.</p>
-</div>
-</div>
-</div>
-</section>
-<div style="text-align:center; margin-top:40px;">
-<h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
-</div>
-<section id="media-sec" class="carousel-wide">
-<div class="track animate-media" id="track-imgs"></div>
-</section>
-<section id="stats" class="section">
-<div class="glass-box">
-<h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
-<div class="grid">
-<div class="card">
-<div class="info-popup" id="src1">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء</div>
-<span class="stat-num counter" id="cnt1" data-target="311">0</span>
-<p id="st1-txt">ألف حالة طلاق سنوياً</p>
-</div>
-<div class="card">
-<div class="info-popup" id="src2">المصدر: وزارة الاتصالات وتكنولوجيا المعلومات</div>
-<span class="stat-num counter" id="cnt2" data-target="104">0</span>
-<p id="st2-txt">مليون هاتف محمول</p>
-</div>
-<div class="card">
-<div class="info-popup" id="src3">المصدر: وزارة التضامن الاجتماعي</div>
-<span class="stat-num counter" id="cnt3" data-target="5.7">0</span>
-<p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
-</div>
-</div>
-</div>
-</section>
-<section id="losses" class="section">
-<div class="glass-box" style="border-color: var(--red-num);">
-<h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
-<div class="grid">
-<div class="card" style="border-bottom-color: var(--red-num);">
-<div class="info-popup" id="src4">المصدر: دراسات الجدوى الاقتصادية</div>
-<span class="stat-num loss-num counter" id="cnt4" data-target="15">0</span>
-<p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
-</div>
-<div class="card" style="border-bottom-color: var(--red-num);">
-<div class="info-popup" id="src5">المصدر: تقارير الصحة النفسية</div>
-<span class="stat-num loss-num counter" id="cnt5" data-target="4.5">0</span>
-<p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
-</div>
-<div class="card" style="border-bottom-color: var(--red-num);">
-<div class="info-popup" id="src6">المصدر: تقارير الأمن السيبراني</div>
-<span class="stat-num loss-num counter" id="cnt6" data-target="2.1">0</span>
-<p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
-</div>
-</div>
-</div>
-</section>
-<section id="awareness-sec" class="section">
-<div class="glass-box">
-<h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
-<div class="awareness-grid">
-<div class="awareness-card" onclick="openProgram('child')"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
-<div class="awareness-card" onclick="openProgram('teens')"><i class="fas fa-user-friends"></i><span id="aw-c2">عالم المراهقين</span></div>
-<div class="awareness-card" onclick="openProgram('youth')"><i class="fas fa-briefcase"></i><span id="aw-c3">الإنتاج والشباب</span></div>
-<div class="awareness-card" onclick="openProgram('marriage')"><i class="fas fa-heart"></i><span id="aw-c4">الزواج السعيد</span></div>
-<div class="awareness-card" onclick="openProgram('seniors')"><i class="fas fa-blind"></i><span id="aw-c5">كبار السن</span></div>
-<div class="awareness-card" onclick="openProgram('security')"><i class="fas fa-user-shield"></i><span id="aw-c6">الأمان والخصوصية</span></div>
-</div>
-</div>
-</section>
-<section id="human-vision" class="section">
-<div class="glass-box">
-<h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤية إنسانية</h2>
-<p style="font-size: 1.4rem; font-weight: bold; line-height: 1.6; color: var(--white);">
-في عالم يتسارع نحو الرقمنة بلا حدود، ندعو إلى:<br>
-• إعادة الإنسان إلى مركز الاهتمام.<br>
-• بناء جسور بين الحضارات عبر القيم المشتركة.<br>
-• تحويل التكنولوجيا من مصدر للعزلة إلى أداة للتواصل والتفاهم.<br>
-• غرس روح المسؤولية الرقمية في نفوس الأجيال القادمة.<br>
-لأن الحضارة الحقيقية لا تقاس بالشاشات، بل بالإنسان.
-</p>
-</div>
-</section>
-<section id="beliefs-section" class="section">
-<div class="glass-box">
-<h2 class="section-main-title" style="font-size: 2.5rem; font-weight: bold;">مرجعياتنا الإنسانية</h2>
-<div class="beliefs-grid">
-<div class="belief-card" onclick="openIslamModal()">الإسلام</div>
-<div class="belief-card">المسيحية</div>
-<div class="belief-card">اليهودية</div>
-<div class="belief-card">البوذية</div>
-<div class="belief-card">الهندوسية</div>
-<div class="belief-card">الكونفوشيوسية</div>
-<div class="belief-card">الشنتو</div>
-<div class="belief-card">الطاوية</div>
-<div class="belief-card">الجاينية</div>
-<div class="belief-card">الزرادشتية</div>
-<div class="belief-card">الفلسفة الأفريقية</div>
-<div class="belief-card">الأخلاق الإنسانية</div>
-</div>
-</div>
-</section>
 
-<!-- ✅ نافذة الإسلام تم نقلها هنا خارج جميع الأقسام -->
+<!-- === نوافذ منبثقة جديدة لكل مرجعية === -->
+<div id="christianity-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('christianity')">×</span>
+<h2>المرجعية المسيحية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة المسيحية هنا لاحقًا)
+</div>
+</div>
+
+<div id="judaism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('judaism')">×</span>
+<h2>المرجعية اليهودية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة اليهودية هنا لاحقًا)
+</div>
+</div>
+
+<div id="buddhism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('buddhism')">×</span>
+<h2>المرجعية البوذية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة البوذية هنا لاحقًا)
+</div>
+</div>
+
+<div id="hinduism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('hinduism')">×</span>
+<h2>المرجعية الهندوسية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الهندوسية هنا لاحقًا)
+</div>
+</div>
+
+<div id="confucianism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('confucianism')">×</span>
+<h2>المرجعية الكونفوشيوسية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الكونفوشيوسية هنا لاحقًا)
+</div>
+</div>
+
+<div id="shinto-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('shinto')">×</span>
+<h2>المرجعية الشنتوية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الشنتوية هنا لاحقًا)
+</div>
+</div>
+
+<div id="taoism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('taoism')">×</span>
+<h2>المرجعية الطاوية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الطاوية هنا لاحقًا)
+</div>
+</div>
+
+<div id="jainism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('jainism')">×</span>
+<h2>المرجعية الجاينية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الجاينية هنا لاحقًا)
+</div>
+</div>
+
+<div id="zoroastrianism-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('zoroastrianism')">×</span>
+<h2>المرجعية الزرادشتية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الزرادشتية هنا لاحقًا)
+</div>
+</div>
+
+<div id="african-philosophy-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('african-philosophy')">×</span>
+<h2>الفلسفة الأفريقية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الأفريقية هنا لاحقًا)
+</div>
+</div>
+
+<div id="human-ethics-modal" class="belief-modal">
+<span class="close-belief" onclick="closeBeliefModal('human-ethics')">×</span>
+<h2>الأخلاق الإنسانية</h2>
+<div class="content">
+(يمكنك إدخال محتوى الرسالة الإنسانية هنا لاحقًا)
+</div>
+</div>
+
+<!-- ✅ نافذة الإسلام تبقى كما هي -->
 <div id="islam-modal">
 <span class="close-islam" onclick="closeIslamModal()">×</span>
 <h2>إماطة الأذى في العصر الرقمي رؤية لحماية المسيرة الإنسانية</h2>
@@ -744,7 +616,6 @@ margin-right: 10px;
 العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.
 </p>
 </div>
-
 <script>
 function initPage() {
 scrollToSec('home');
@@ -1015,11 +886,292 @@ document.getElementById('islam-modal').style.display = 'block';
 function closeIslamModal() {
 document.getElementById('islam-modal').style.display = 'none';
 }
+
+// === دوال جديدة لمرجعياتنا الإنسانية ===
+function openBeliefModal(type) {
+const modal = document.getElementById(type + '-modal');
+if (modal) {
+modal.style.display = 'block';
+}
+}
+function closeBeliefModal(type) {
+const modal = document.getElementById(type + '-modal');
+if (modal) {
+modal.style.display = 'none';
+}
+}
+
 window.onscroll = function() {
 const btn = document.getElementById('btnUp');
 if(window.scrollY > 300) btn.style.display = 'flex';
 else btn.style.display = 'none';
 };
 </script>
+
+<nav class="navbar">
+<div class="nav-container">
+<div class="nav-links">
+<div class="lang-selector">
+<button class="lang-toggle-btn" id="langToggleBtn">
+<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
+</button>
+<div class="lang-dropdown" id="langDropdown">
+<a href="#" class="lang-option arabic-flag" data-lang="ar"><img src="https://flagcdn.com/w80/eg.png" alt="العربية"> العربية</a>
+<a href="#" class="lang-option" data-lang="en"><img src="https://flagcdn.com/w80/gb.png" alt="English"> English</a>
+<a href="#" class="lang-option" data-lang="fr"><img src="https://flagcdn.com/w80/fr.png" alt="Français"> Français</a>
+<a href="#" class="lang-option" data-lang="es"><img src="https://flagcdn.com/w80/es.png" alt="Español"> Español</a>
+<a href="#" class="lang-option" data-lang="pt"><img src="https://flagcdn.com/w80/pt.png" alt="Português"> Português</a>
+<a href="#" class="lang-option" data-lang="ru"><img src="https://flagcdn.com/w80/ru.png" alt="Русский"> Русский</a>
+<a href="#" class="lang-option" data-lang="zh-CN"><img src="https://flagcdn.com/w80/cn.png" alt="中文"> 中文 (普通话)</a>
+<a href="#" class="lang-option" data-lang="ja"><img src="https://flagcdn.com/w80/jp.png" alt="日本語"> 日本語</a>
+<a href="#" class="lang-option" data-lang="ko"><img src="https://flagcdn.com/w80/kr.png" alt="한국어"> 한국어</a>
+<a href="#" class="lang-option" data-lang="de"><img src="https://flagcdn.com/w80/de.png" alt="Deutsch"> Deutsch</a>
+<a href="#" class="lang-option" data-lang="it"><img src="https://flagcdn.com/w80/it.png" alt="Italiano"> Italiano</a>
+<a href="#" class="lang-option" data-lang="tr"><img src="https://flagcdn.com/w80/tr.png" alt="Türkçe"> Türkçe</a>
+<a href="#" class="lang-option" data-lang="fa"><img src="https://flagcdn.com/w80/ir.png" alt="فارسی"> فارسی</a>
+<a href="#" class="lang-option" data-lang="hi"><img src="https://flagcdn.com/w80/in.png" alt="हिन्दी"> हिन्दी</a>
+<a href="#" class="lang-option" data-lang="id"><img src="https://flagcdn.com/w80/id.png" alt="Bahasa Indonesia"> Bahasa Indonesia</a>
+<a href="#" class="lang-option" data-lang="vi"><img src="https://flagcdn.com/w80/vn.png" alt="Tiếng Việt"> Tiếng Việt</a>
+<a href="#" class="lang-option" data-lang="el"><img src="https://flagcdn.com/w80/gr.png" alt="Ελληνικά"> Ελληνικά</a>
+<a href="#" class="lang-option" data-lang="nl"><img src="https://flagcdn.com/w80/nl.png" alt="Nederlands"> Nederlands</a>
+<a href="#" class="lang-option" data-lang="pl"><img src="https://flagcdn.com/w80/pl.png" alt="Polski"> Polski</a>
+<a href="#" class="lang-option" data-lang="fi"><img src="https://flagcdn.com/w80/fi.png" alt="Suomi"> Suomi</a>
+<a href="#" class="lang-option" data-lang="da"><img src="https://flagcdn.com/w80/dk.png" alt="Dansk"> Dansk</a>
+<a href="#" class="lang-option" data-lang="no"><img src="https://flagcdn.com/w80/no.png" alt="Norsk"> Norsk</a>
+<a href="#" class="lang-option" data-lang="sk"><img src="https://flagcdn.com/w80/sk.png" alt="Slovenčina"> Slovenčina</a>
+<a href="#" class="lang-option" data-lang="hr"><img src="https://flagcdn.com/w80/hr.png" alt="Hrvatski"> Hrvatski</a>
+<a href="#" class="lang-option" data-lang="sl"><img src="https://flagcdn.com/w80/si.png" alt="Slovenščina"> Slovenščina</a>
+<a href="#" class="lang-option" data-lang="bg"><img src="https://flagcdn.com/w80/bg.png" alt="Български"> Български</a>
+<a href="#" class="lang-option" data-lang="sr"><img src="https://flagcdn.com/w80/rs.png" alt="Српски"> Српски</a>
+<a href="#" class="lang-option" data-lang="cs"><img src="https://flagcdn.com/w80/cz.png" alt="Čeština"> Čeština</a>
+<a href="#" class="lang-option" data-lang="uk"><img src="https://flagcdn.com/w80/ua.png" alt="Українська"> Українська</a>
+<a href="#" class="lang-option" data-lang="zh-TW"><img src="https://flagcdn.com/w80/hk.png" alt="廣東話"> 廣東話</a>
+<a href="#" class="lang-option" data-lang="te"><img src="https://flagcdn.com/w80/in.png" alt="తెలుగు"> తెలుగు</a>
+<a href="#" class="lang-option" data-lang="mr"><img src="https://flagcdn.com/w80/in.png" alt="मराठी"> मराठी</a>
+<a href="#" class="lang-option" data-lang="ta"><img src="https://flagcdn.com/w80/in.png" alt="தமிழ்"> தமிழ்</a>
+<a href="#" class="lang-option" data-lang="ur"><img src="https://flagcdn.com/w80/pk.png" alt="اردو"> اردو</a>
+<a href="#" class="lang-option" data-lang="gu"><img src="https://flagcdn.com/w80/in.png" alt="ગુજરાતી"> ગુજરાતી</a>
+<a href="#" class="lang-option" data-lang="kn"><img src="https://flagcdn.com/w80/in.png" alt="ಕನ್ನಡ"> ಕನ್ನಡ</a>
+<a href="#" class="lang-option" data-lang="ml"><img src="https://flagcdn.com/w80/in.png" alt="മലയാളം"> മലയാളം</a>
+<a href="#" class="lang-option" data-lang="or"><img src="https://flagcdn.com/w80/in.png" alt="ଓଡ଼ିଆ"> ଓଡ଼ିଆ</a>
+<a href="#" class="lang-option" data-lang="sd"><img src="https://flagcdn.com/w80/pk.png" alt="سنڌي"> سنڌي</a>
+<a href="#" class="lang-option" data-lang="ps"><img src="https://flagcdn.com/w80/af.png" alt="پښتو"> پښتو</a>
+<a href="#" class="lang-option" data-lang="bal"><img src="https://flagcdn.com/w80/pk.png" alt="بلوچی"> بلوچی</a>
+<a href="#" class="lang-option" data-lang="si"><img src="https://flagcdn.com/w80/lk.png" alt="සිංහල"> සිංහල</a>
+<a href="#" class="lang-option" data-lang="my"><img src="https://flagcdn.com/w80/mm.png" alt="ဗမာစာ"> ဗမာစာ</a>
+<a href="#" class="lang-option" data-lang="kar"><img src="https://flagcdn.com/w80/mm.png" alt="ကရင်စာ"> ကရင်စာ</a>
+<a href="#" class="lang-option" data-lang="rhg"><img src="https://flagcdn.com/w80/mm.png" alt="রোহিঙ্গা"> রোহিঙ্গা</a>
+<a href="#" class="lang-option" data-lang="mn"><img src="https://flagcdn.com/w80/mm.png" alt="မွန်စာ"> မွန်စာ</a>
+<a href="#" class="lang-option" data-lang="shn"><img src="https://flagcdn.com/w80/mm.png" alt="ရှမ်းစာ"> ရှမ်းစာ</a>
+<a href="#" class="lang-option" data-lang="fil"><img src="https://flagcdn.com/w80/ph.png" alt="Filipino"> Filipino</a>
+<a href="#" class="lang-option" data-lang="th"><img src="https://flagcdn.com/w80/th.png" alt="ไทย"> ไทย</a>
+<a href="#" class="lang-option" data-lang="ms"><img src="https://flagcdn.com/w80/sg.png" alt="Bahasa Melayu"> Bahasa Melayu</a>
+<a href="#" class="lang-option" data-lang="jv"><img src="https://flagcdn.com/w80/id.png" alt="Jawa"> Jawa</a>
+<a href="#" class="lang-option" data-lang="su"><img src="https://flagcdn.com/w80/id.png" alt="Sunda"> Sunda</a>
+<a href="#" class="lang-option" data-lang="bbc"><img src="https://flagcdn.com/w80/id.png" alt="Batak"> Batak</a>
+<a href="#" class="lang-option" data-lang="lg"><img src="https://flagcdn.com/w80/ug.png" alt="Luganda"> Luganda</a>
+<a href="#" class="lang-option" data-lang="ak"><img src="https://flagcdn.com/w80/gh.png" alt="Akan"> Akan</a>
+<a href="#" class="lang-option" data-lang="ff"><img src="https://flagcdn.com/w80/cm.png" alt="Fula"> Fula</a>
+<a href="#" class="lang-option" data-lang="dyu"><img src="https://flagcdn.com/w80/ci.png" alt="Dioula"> Dioula</a>
+<a href="#" class="lang-option" data-lang="mg"><img src="https://flagcdn.com/w80/mg.png" alt="Malagasy"> Malagasy</a>
+<a href="#" class="lang-option" data-lang="din"><img src="https://flagcdn.com/w80/ss.png" alt="Dinka"> Dinka</a>
+<a href="#" class="lang-option" data-lang="srr"><img src="https://flagcdn.com/w80/td.png" alt="Sara"> Sara</a>
+<a href="#" class="lang-option" data-lang="so"><img src="https://flagcdn.com/w80/so.png" alt="Soomaali"> Soomaali</a>
+<a href="#" class="lang-option" data-lang="sn"><img src="https://flagcdn.com/w80/zw.png" alt="Shona"> Shona</a>
+<a href="#" class="lang-option" data-lang="bem"><img src="https://flagcdn.com/w80/zm.png" alt="Bemba"> Bemba</a>
+<a href="#" class="lang-option" data-lang="ny"><img src="https://flagcdn.com/w80/mw.png" alt="Chichewa"> Chichewa</a>
+<a href="#" class="lang-option" data-lang="wo"><img src="https://flagcdn.com/w80/sn.png" alt="Wolof"> Wolof</a>
+<a href="#" class="lang-option" data-lang="bm"><img src="https://flagcdn.com/w80/ml.png" alt="Bambara"> Bambara</a>
+<a href="#" class="lang-option" data-lang="ha-ne"><img src="https://flagcdn.com/w80/ne.png" alt="Hausa (Niger)"> Hausa (Niger)</a>
+<a href="#" class="lang-option" data-lang="mos"><img src="https://flagcdn.com/w80/bf.png" alt="Mossi"> Mossi</a>
+<a href="#" class="lang-option" data-lang="rw"><img src="https://flagcdn.com/w80/rw.png" alt="Kinyarwanda"> Kinyarwanda</a>
+<a href="#" class="lang-option" data-lang="rn"><img src="https://flagcdn.com/w80/bi.png" alt="Kirundi"> Kirundi</a>
+<a href="#" class="lang-option" data-lang="ln"><img src="https://flagcdn.com/w80/cd.png" alt="Lingála"> Lingála</a>
+<a href="#" class="lang-option" data-lang="zu"><img src="https://flagcdn.com/w80/za.png" alt="isiZulu"> isiZulu</a>
+<a href="#" class="lang-option" data-lang="pa"><img src="https://flagcdn.com/w80/pk.png" alt="ਪੰਜਾਬੀ"> ਪੰਜਾਬੀ</a>
+<a href="#" class="lang-option" data-lang="bn"><img src="https://flagcdn.com/w80/bd.png" alt="বাংলা"> বাংলা</a>
+<a href="#" class="lang-option" data-lang="am"><img src="https://flagcdn.com/w80/et.png" alt="አማርኛ"> አማርኛ</a>
+<a href="#" class="lang-option" data-lang="sw"><img src="https://flagcdn.com/w80/tz.png" alt="Kiswahili"> Kiswahili</a>
+<a href="#" class="lang-option" data-lang="ha"><img src="https://flagcdn.com/w80/ne.png" alt="Hausa"> Hausa</a>
+<a href="#" class="lang-option" data-lang="yo"><img src="https://flagcdn.com/w80/ng.png" alt="Yorùbá"> Yorùbá</a>
+</div>
+</div>
+<a onclick="scrollToSec('about')">أهدافنا</a>
+<a onclick="openMessagesModal()">رسالاتنا</a>
+<a onclick="scrollToSec('inst')">الشركاء</a>
+<a onclick="scrollToSec('media-sec')">ميديا</a>
+<a onclick="scrollToSec('stats')">إحصائيات</a>
+<a onclick="scrollToSec('losses')">خسائر</a>
+<a onclick="scrollToSec('awareness-sec')">وعي</a>
+<a onclick="scrollToSec('human-vision')">رؤية إنسانية</a>
+<a onclick="scrollToSec('beliefs-section')">مرجعياتنا الإنسانية</a>
+<a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank">رأيك يهمنا</a>
+</div>
+<div class="nav-right-group">
+<div class="social-icons">
+<a href="https://wa.me/201009995015" target="_blank" style="color: var(--wa-color);"><i class="fab fa-whatsapp"></i></a>
+<a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+<a href="https://www.pinterest.com/civi.stories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
+<a href="https://www.instagram.com/civi.stories" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
+<a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fa-brands fa-x-twitter"></i></a>
+<a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
+<a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+<a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+</div>
+<img src="logo.png" class="nav-logo-img" alt="Logo">
+</div>
+</div>
+</nav>
+<div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
+<section class="hero" id="home">
+<h1 class="main-alert-title" id="main-hero-title">
+<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>
+</h1>
+<div class="hero-container">
+<div class="book-static">
+<div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book Cover"></div>
+<a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" class="btn-action">تصفح الكتاب</a>
+</div>
+<div class="video-container-box">
+<iframe src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&controls=1&rel=0" allowfullscreen></iframe>
+</div>
+</div>
+</section>
+<section id="about" class="vision-section">
+<h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">أهدافنا الاستراتيجية</h2>
+<p id="vis-desc">نهدف من خلال مبادرة "قصص الحضارات" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.<br>بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.</p>
+</section>
+<section id="messages" class="section">
+<div class="glass-box">
+<h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رسالاتنا</h2>
+<p style="font-size: 1.4rem; font-weight: bold; line-height: 1.6; color: var(--white);">
+من قلب الحضارة المصرية، نطلق رسائلنا إلى العالم:<br>
+• التكنولوجيا أداة، وليس بديلاً عن الإنسانية.<br>
+• الأسرة هي الحصن الأول ضد الانهيار الرقمي.<br>
+• الوعي الرقمي حقٌّ لكل فرد، وواجبٌ على كل مجتمع.<br>
+• لا مستقبل آمن دون توازن بين التقدم الرقمي والقيم الإنسانية.
+</p>
+</div>
+</section>
+<section id="inst" class="section">
+<div class="glass-box">
+<h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
+<div class="grid">
+<div class="card">
+<div class="info-popup" id="src-p1">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر</div>
+<img src="100.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
+<h3 id="p1-name">الأزهر الشريف</h3>
+<p id="p1-desc">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src-p2">المصدر: تقارير المشورة الأسرية بالكنيسة</div>
+<img src="300.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
+<h3 id="p2-name">الكنيسة المصرية</h3>
+<p id="p2-desc">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src-p3">المصدر: وزارة الأوقاف المصرية</div>
+<img src="200.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
+<h3 id="p3-name">وزارة الأوقاف</h3>
+<p id="p3-desc">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.</p>
+</div>
+</div>
+</div>
+</section>
+<div style="text-align:center; margin-top:40px;">
+<h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
+</div>
+<section id="media-sec" class="carousel-wide">
+<div class="track animate-media" id="track-imgs"></div>
+</section>
+<section id="stats" class="section">
+<div class="glass-box">
+<h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
+<div class="grid">
+<div class="card">
+<div class="info-popup" id="src1">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء</div>
+<span class="stat-num counter" id="cnt1" data-target="311">0</span>
+<p id="st1-txt">ألف حالة طلاق سنوياً</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src2">المصدر: وزارة الاتصالات وتكنولوجيا المعلومات</div>
+<span class="stat-num counter" id="cnt2" data-target="104">0</span>
+<p id="st2-txt">مليون هاتف محمول</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src3">المصدر: وزارة التضامن الاجتماعي</div>
+<span class="stat-num counter" id="cnt3" data-target="5.7">0</span>
+<p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
+</div>
+</div>
+</div>
+</section>
+<section id="losses" class="section">
+<div class="glass-box" style="border-color: var(--red-num);">
+<h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
+<div class="grid">
+<div class="card" style="border-bottom-color: var(--red-num);">
+<div class="info-popup" id="src4">المصدر: دراسات الجدوى الاقتصادية</div>
+<span class="stat-num loss-num counter" id="cnt4" data-target="15">0</span>
+<p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
+</div>
+<div class="card" style="border-bottom-color: var(--red-num);">
+<div class="info-popup" id="src5">المصدر: تقارير الصحة النفسية</div>
+<span class="stat-num loss-num counter" id="cnt5" data-target="4.5">0</span>
+<p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
+</div>
+<div class="card" style="border-bottom-color: var(--red-num);">
+<div class="info-popup" id="src6">المصدر: تقارير الأمن السيبراني</div>
+<span class="stat-num loss-num counter" id="cnt6" data-target="2.1">0</span>
+<p id="ls3-txt">مليار جنيه خسائر النصب الإلكتروني</p>
+</div>
+</div>
+</div>
+</section>
+<section id="awareness-sec" class="section">
+<div class="glass-box">
+<h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
+<div class="awareness-grid">
+<div class="awareness-card" onclick="openProgram('child')"><i class="fas fa-child"></i><span id="aw-c1">الطفولة الرقمية</span></div>
+<div class="awareness-card" onclick="openProgram('teens')"><i class="fas fa-user-friends"></i><span id="aw-c2">عالم المراهقين</span></div>
+<div class="awareness-card" onclick="openProgram('youth')"><i class="fas fa-briefcase"></i><span id="aw-c3">الإنتاج والشباب</span></div>
+<div class="awareness-card" onclick="openProgram('marriage')"><i class="fas fa-heart"></i><span id="aw-c4">الزواج السعيد</span></div>
+<div class="awareness-card" onclick="openProgram('seniors')"><i class="fas fa-blind"></i><span id="aw-c5">كبار السن</span></div>
+<div class="awareness-card" onclick="openProgram('security')"><i class="fas fa-user-shield"></i><span id="aw-c6">الأمان والخصوصية</span></div>
+</div>
+</div>
+</section>
+<section id="human-vision" class="section">
+<div class="glass-box">
+<h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤية إنسانية</h2>
+<p style="font-size: 1.4rem; font-weight: bold; line-height: 1.6; color: var(--white);">
+في عالم يتسارع نحو الرقمنة بلا حدود، ندعو إلى:<br>
+• إعادة الإنسان إلى مركز الاهتمام.<br>
+• بناء جسور بين الحضارات عبر القيم المشتركة.<br>
+• تحويل التكنولوجيا من مصدر للعزلة إلى أداة للتواصل والتفاهم.<br>
+• غرس روح المسؤولية الرقمية في نفوس الأجيال القادمة.<br>
+لأن الحضارة الحقيقية لا تقاس بالشاشات، بل بالإنسان.
+</p>
+</div>
+</section>
+<section id="beliefs-section" class="section">
+<div class="glass-box">
+<h2 class="section-main-title" style="font-size: 2.5rem; font-weight: bold;">مرجعياتنا الإنسانية</h2>
+<div class="beliefs-grid">
+<div class="belief-card" onclick="openBeliefModal('islam')">الإسلام</div>
+<div class="belief-card" onclick="openBeliefModal('christianity')">المسيحية</div>
+<div class="belief-card" onclick="openBeliefModal('judaism')">اليهودية</div>
+<div class="belief-card" onclick="openBeliefModal('buddhism')">البوذية</div>
+<div class="belief-card" onclick="openBeliefModal('hinduism')">الهندوسية</div>
+<div class="belief-card" onclick="openBeliefModal('confucianism')">الكونفوشيوسية</div>
+<div class="belief-card" onclick="openBeliefModal('shinto')">الشنتو</div>
+<div class="belief-card" onclick="openBeliefModal('taoism')">الطاوية</div>
+<div class="belief-card" onclick="openBeliefModal('jainism')">الجاينية</div>
+<div class="belief-card" onclick="openBeliefModal('zoroastrianism')">الزرادشتية</div>
+<div class="belief-card" onclick="openBeliefModal('african-philosophy')">الفلسفة الأفريقية</div>
+<div class="belief-card" onclick="openBeliefModal('human-ethics')">الأخلاق الإنسانية</div>
+</div>
+</div>
+</section>
 </body>
 </html>
