@@ -221,7 +221,8 @@ justify-content: center;
 cursor: pointer;
 z-index: 60001;
 }
-/* === نافذة الإسلام المنبثقة === */
+
+/* === نافذة الإسلام المنبثقة - تم التعديل لتتوافق مع طلبك بالضبط === */
 #islam-modal {
 display: none;
 position: fixed;
@@ -230,13 +231,13 @@ left: 50%;
 transform: translateX(-50%);
 width: 90%;
 max-width: 700px;
-background: var(--cream-bg);
+background: #fdf9f3; /* لون كريمي ناعم */
 border-radius: 15px;
 padding: 25px;
 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 z-index: 70000;
 font-family: 'Tajawal', 'Cairo', sans-serif;
-color: #000;
+color: #333333; /* أسود ناعم */
 line-height: 1.8;
 direction: rtl;
 }
@@ -247,7 +248,7 @@ left: 10px;
 width: 32px;
 height: 32px;
 border-radius: 50%;
-background: #ffcccc;
+background: #ffcccc; /* أحمر فاتح */
 color: #cc0000;
 font-weight: bold;
 font-size: 20px;
@@ -259,16 +260,29 @@ border: 1px solid #ff6666;
 }
 #islam-modal h2 {
 text-align: center;
-color: #b30000;
-font-size: 1.6rem;
+color: #b30000; /* أحمر داكن */
+font-size: 1.7rem;
 margin-bottom: 20px;
 font-weight: bold;
 }
-#islam-modal p {
+#islam-modal p,
+#islam-modal ul,
+#islam-modal ol {
 margin-bottom: 15px;
 font-size: 1.1rem;
 font-weight: 500;
 }
+#islam-modal ul,
+#islam-modal ol {
+margin-right: 20px;
+}
+#islam-modal li {
+margin-bottom: 8px;
+}
+#islam-modal strong {
+font-weight: bold;
+}
+
 .beliefs-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
@@ -343,7 +357,6 @@ margin-right: 10px;
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
 <!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
@@ -355,7 +368,6 @@ margin-right: 10px;
 </div>
 </div>
 </div>
-
 <!-- Modal for Answers -->
 <div id="aModal" class="modal-overlay">
 <div class="modal-container">
@@ -366,7 +378,6 @@ margin-right: 10px;
 </div>
 </div>
 </div>
-
 <!-- Modal جديد لـ "رسالاتنا" -->
 <div id="messages-modal">
 <div class="modal-content">
@@ -398,20 +409,70 @@ margin-right: 10px;
 </div>
 </div>
 </div>
-
-<!-- نافذة الإسلام المنبثقة -->
+<!-- نافذة الإسلام المنبثقة - المحتوى الكامل كما طلبت -->
 <div id="islam-modal">
 <span class="close-islam" onclick="closeIslamModal()">×</span>
-<h2>إماطة الأذى في العصر الرقمي: رؤية إسلامية لحماية المسيرة الإنسانية</h2>
-<p>الإسلام دين الرحمة والبناء، يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.</p>
-<p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.</p>
-<p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:<br>- الكلمة الجارحة<br>- النظرات المحرّمة<br>- الدعوات المضلّلة<br>- السلوك الذي يُربك الناس أو يُقلقهم<br>قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول». المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.</p>
-<p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (البخاري). كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟ من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.</p>
-<p><strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري. العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» [الإسراء: 36]. من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.</p>
-<p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا. واستخدامها الخاطئ أدّى إلى:<br>- قطع الأرحام<br>- تحريض على الانتقام<br>- دفع البعض إلى الانتحار<br>وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي. ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».</p>
-<p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ. هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا. لذا، على المسلم أن:<br>- يُراقب مصادره<br>- يختار محتواه بوعي<br>- يُدرّب نفسه على التمييز لا على الانجراف</p>
-<p><strong>خاتمة وتوصيات</strong><br>1. الدعوة إلى تبني خطاب توعوي إسلامي يُبيّن خطر الأذى الرقمي كأحد أشكال الإيذاء المحرّم.<br>2. دعم برامج توعوية غير ربحية تُعزّز القيم، لا الرغبات.<br>3. تأهيل الأسر والمربين لفهم آليات المنصات وكيفية حماية الأبناء منها.<br>4. التأكيد على أن النية ليست كافية، بل يجب أن يكون المحتوى أيضًا نافعًا.<br>5. اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</p>
-<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» [المائدة: 32]<br>العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.</p>
+<h2>إماطة الأذى في العصر الرقمي رؤية لحماية المسيرة الإنسانية</h2>
+<p>
+الإسلام دين الرحمة والبناء، يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.
+</p>
+<p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>
+لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.
+</p>
+<p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>
+الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:  
+<ul>
+<li>الكلمة الجارحة</li>
+<li>النظرات المحرّمة</li>
+<li>الدعوات المضلّلة</li>
+<li>السلوك الذي يُربك الناس أو يُقلقهم</li>
+</ul>
+قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول».  
+المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.
+</p>
+<p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>
+الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (البخاري).  
+كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟  
+من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.
+</p>
+<p><<strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>
+ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري.  
+العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» [الإسراء: 36].  
+من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.
+</p>
+<p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>
+منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا.  
+واستخدامها الخاطئ أدّى إلى:  
+<ul>
+<li>قطع الأرحام</li>
+<li>تحريض على الانتقام</li>
+<li>دفع البعض إلى الانتحار</li>
+</ul>
+وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي.  
+ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».
+</p>
+<p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>
+الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ.  
+هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا.  
+لذا، على المسلم أن:  
+<ul>
+<li>يُراقب مصادره</li>
+<li>يختار محتواه بوعي</li>
+<li>يُدرّب نفسه على التمييز لا على الانجراف</li>
+</ul>
+</p>
+<p><strong>خاتمة وتوصيات</strong><br>
+<ol>
+<li>الدعوة إلى تبني خطاب توعوي إسلامي يُبيّن خطر الأذى الرقمي كأحد أشكال الإيذاء المحرّم.</li>
+<li>دعم برامج توعوية غير ربحية تُعزّز القيم، لا الرغبات.</li>
+<li>تأهيل الأسر والمربين لفهم آليات المنصات وكيفية حماية الأبناء منها.</li>
+<li>التأكيد على أن النية ليست كافية، بل يجب أن يكون المحتوى أيضًا نافعًا.</li>
+<li>اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</li>
+</ol>
+</p>
+<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» [المائدة: 32]<br>
+العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.
+</p>
 </div>
 
 <div id="lightbox" class="lightbox">
@@ -420,7 +481,6 @@ margin-right: 10px;
 <img id="lightbox-img" src="">
 </div>
 </div>
-
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
@@ -535,9 +595,7 @@ margin-right: 10px;
 </div>
 </div>
 </nav>
-
 <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
-
 <section class="hero" id="home">
 <h1 class="main-alert-title" id="main-hero-title">
 <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>
@@ -552,12 +610,10 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="about" class="vision-section">
 <h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">أهدافنا الاستراتيجية</h2>
 <p id="vis-desc">نهدف من خلال مبادرة "قصص الحضارات" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.<br>بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.</p>
 </section>
-
 <section id="messages" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رسالاتنا</h2>
@@ -570,7 +626,6 @@ margin-right: 10px;
 </p>
 </div>
 </section>
-
 <section id="inst" class="section">
 <div class="glass-box">
 <h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
@@ -596,15 +651,12 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <div style="text-align:center; margin-top:40px;">
 <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
 </div>
-
 <section id="media-sec" class="carousel-wide">
 <div class="track animate-media" id="track-imgs"></div>
 </section>
-
 <section id="stats" class="section">
 <div class="glass-box">
 <h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
@@ -627,7 +679,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="losses" class="section">
 <div class="glass-box" style="border-color: var(--red-num);">
 <h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
@@ -650,7 +701,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="awareness-sec" class="section">
 <div class="glass-box">
 <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
@@ -664,7 +714,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="human-vision" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤية إنسانية</h2>
@@ -678,7 +727,6 @@ margin-right: 10px;
 </p>
 </div>
 </section>
-
 <section id="beliefs-section" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 2.5rem; font-weight: bold;">مرجعياتنا الإنسانية</h2>
@@ -698,127 +746,116 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <script>
 function initPage() {
-  scrollToSec('home');
-  updateTicker();
-  loadMedia();
-  setupLanguageToggle();
-  initCountersObserver();
+scrollToSec('home');
+updateTicker();
+loadMedia();
+setupLanguageToggle();
+initCountersObserver();
 }
-
 function initCountersObserver() {
-  const counters = document.querySelectorAll('.counter');
-  counters.forEach(c => c.innerText = '0');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        const el = entry.target;
-        const target = parseFloat(el.getAttribute('data-target'));
-        let start = 0;
-        const duration = 2000;
-        const step = target / (duration / 30);
-        const timer = setInterval(() => {
-          start += step;
-          if(start >= target) {
-            el.innerText = target;
-            clearInterval(timer);
-          } else {
-            el.innerText = start.toFixed(1).replace('.0','');
-          }
-        }, 30);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
-    observer.observe(c);
-  });
+const counters = document.querySelectorAll('.counter');
+counters.forEach(c => c.innerText = '0');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting) {
+const el = entry.target;
+const target = parseFloat(el.getAttribute('data-target'));
+let start = 0;
+const duration = 2000;
+const step = target / (duration / 30);
+const timer = setInterval(() => {
+start += step;
+if(start >= target) {
+el.innerText = target;
+clearInterval(timer);
+} else {
+el.innerText = start.toFixed(1).replace('.0','');
 }
-
+}, 30);
+observer.unobserve(el);
+}
+});
+}, { threshold: 0.3 });
+document.querySelectorAll('#stats .counter, #losses .counter').forEach(c => {
+observer.observe(c);
+});
+}
 function updateTicker() {
-  const track = document.getElementById('tickerTrack');
-  const list = [
-    "الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي",
-    "الأوقاف: الهواتف سبب رئيسي للخرس الزوجي",
-    "إنذار: التفكك الرقمي يهدد استقرار مصر"
-  ];
-  track.innerHTML = "";
-  [...list, ...list].forEach(txt => {
-    const s = document.createElement('span');
-    s.innerText = txt;
-    track.appendChild(s);
-  });
+const track = document.getElementById('tickerTrack');
+const list = [
+"الأزهر: حالة طلاق كل 2.5 دقيقة بسبب الإدمان الرقمي",
+"الأوقاف: الهواتف سبب رئيسي للخرس الزوجي",
+"إنذار: التفكك الرقمي يهدد استقرار مصر"
+];
+track.innerHTML = "";
+[...list, ...list].forEach(txt => {
+const s = document.createElement('span');
+s.innerText = txt;
+track.appendChild(s);
+});
 }
-
 function loadMedia() {
-  const track = document.getElementById('track-imgs');
-  track.innerHTML = "";
-  const imgs = [];
-  for(let i=101; i<=124; i++) { imgs.push(i + ".jpg"); }
-  [...imgs, ...imgs].forEach(src => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.onclick = () => openImage(src);
-    track.appendChild(img);
-  });
+const track = document.getElementById('track-imgs');
+track.innerHTML = "";
+const imgs = [];
+for(let i=101; i<=124; i++) { imgs.push(i + ".jpg"); }
+[...imgs, ...imgs].forEach(src => {
+const img = document.createElement('img');
+img.src = src;
+img.onclick = () => openImage(src);
+track.appendChild(img);
+});
 }
-
 function openImage(src) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').style.display = 'flex';
+document.getElementById('lightbox-img').src = src;
+document.getElementById('lightbox').style.display = 'flex';
 }
-
-function closeImage() { 
-  document.getElementById('lightbox').style.display = 'none'; 
+function closeImage() {
+document.getElementById('lightbox').style.display = 'none';
 }
-
 function scrollToSec(id) {
-  const el = document.getElementById(id);
-  if(el) {
-    const offset = 100;
-    const pos = el.offsetTop - offset;
-    window.scrollTo({ top: pos, behavior: 'smooth' });
-  }
+const el = document.getElementById(id);
+if(el) {
+const offset = 100;
+const pos = el.offsetTop - offset;
+window.scrollTo({ top: pos, behavior: 'smooth' });
 }
-
+}
 function setupLanguageToggle() {
-  const toggleBtn = document.getElementById('langToggleBtn');
-  const dropdown = document.getElementById('langDropdown');
-  toggleBtn.onclick = (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('show');
-  };
-  document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
-      dropdown.classList.remove('show');
-    }
-  });
-
-  // ربط الضغط على كل لغة
-  document.querySelectorAll('.lang-option').forEach(option => {
-    option.onclick = function(e) {
-      e.preventDefault();
-      const langCode = this.dataset.lang;
-      if (langCode === 'ar') {
-        return;
-      } else {
-        showSoonPlaceholder();
-        dropdown.classList.remove('show');
-      }
-    };
-  });
+const toggleBtn = document.getElementById('langToggleBtn');
+const dropdown = document.getElementById('langDropdown');
+toggleBtn.onclick = (e) => {
+e.stopPropagation();
+dropdown.classList.toggle('show');
+};
+document.addEventListener('click', (e) => {
+if (!dropdown.contains(e.target) && e.target !== toggleBtn) {
+dropdown.classList.remove('show');
 }
-
+});
+// ربط الضغط على كل لغة
+document.querySelectorAll('.lang-option').forEach(option => {
+option.onclick = function(e) {
+e.preventDefault();
+const langCode = this.dataset.lang;
+if (langCode === 'ar') {
+return;
+} else {
+showSoonPlaceholder();
+dropdown.classList.remove('show');
+}
+};
+});
+}
 function showSoonPlaceholder() {
-  const flagContainer = document.querySelector('.lang-toggle-btn');
-  flagContainer.innerHTML = '<span class="soon-placeholder">Soon</span>';
-  setTimeout(() => {
-    flagContainer.innerHTML = '<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">';
-  }, 2000);
+const flagContainer = document.querySelector('.lang-toggle-btn');
+flagContainer.innerHTML = '<span class="soon-placeholder">Soon</span>';
+setTimeout(() => {
+flagContainer.innerHTML = '<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">';
+}, 2000);
 }
-
 // === برامج التوعية (كاملة كما في الملف الأصلي) ===
 const programsData = {
 child: [
@@ -930,67 +967,59 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
-
 function openProgram(type) {
-  const container = document.getElementById('questionsContainer');
-  container.innerHTML = "";
-  const data = programsData[type] || [];
-  const programNames = {
-    'child': 'الطفولة الرقمية',
-    'teens': 'عالم المراهقين',
-    'youth': 'الإنتاج والشباب',
-    'marriage': 'الزواج السعيد',
-    'seniors': 'كبار السن',
-    'security': 'الأمان والخصوصية'
-  };
-  document.getElementById('modalTitle').innerText = programNames[type];
-  if (Array.isArray(data)) {
-    data.forEach((item, idx) => {
-      const div = document.createElement('div');
-      div.className = "q-item";
-      div.innerText = (idx+1) + ". " + item.q;
-      div.onclick = () => showAnswer(item);
-      container.appendChild(div);
-    });
-  }
-  document.getElementById('qModal').style.display = 'flex';
+const container = document.getElementById('questionsContainer');
+container.innerHTML = "";
+const data = programsData[type] || [];
+const programNames = {
+'child': 'الطفولة الرقمية',
+'teens': 'عالم المراهقين',
+'youth': 'الإنتاج والشباب',
+'marriage': 'الزواج السعيد',
+'seniors': 'كبار السن',
+'security': 'الأمان والخصوصية'
+};
+document.getElementById('modalTitle').innerText = programNames[type];
+if (Array.isArray(data)) {
+data.forEach((item, idx) => {
+const div = document.createElement('div');
+div.className = "q-item";
+div.innerText = (idx+1) + ". " + item.q;
+div.onclick = () => showAnswer(item);
+container.appendChild(div);
+});
 }
-
+document.getElementById('qModal').style.display = 'flex';
+}
 function showAnswer(item) {
-  const content = document.getElementById('answerContent');
-  const title = document.getElementById('answerTitle');
-  title.innerText = item.q;
-  content.innerHTML = `
-    <span class="ans-src">${item.src}</span>
-    <div class="ans-text">${item.ans}</div>
-  `;
-  document.getElementById('aModal').style.display = 'flex';
+const content = document.getElementById('answerContent');
+const title = document.getElementById('answerTitle');
+title.innerText = item.q;
+content.innerHTML = `
+<span class="ans-src">${item.src}</span>
+<div class="ans-text">${item.ans}</div>
+`;
+document.getElementById('aModal').style.display = 'flex';
 }
-
-function closePopup(id) { 
-  document.getElementById(id).style.display = 'none'; 
+function closePopup(id) {
+document.getElementById(id).style.display = 'none';
 }
-
 function openMessagesModal() {
-  document.getElementById('messages-modal').style.display = 'flex';
+document.getElementById('messages-modal').style.display = 'flex';
 }
-
 function closeMessagesModal() {
-  document.getElementById('messages-modal').style.display = 'none';
+document.getElementById('messages-modal').style.display = 'none';
 }
-
 function openIslamModal() {
-  document.getElementById('islam-modal').style.display = 'block';
+document.getElementById('islam-modal').style.display = 'block';
 }
-
 function closeIslamModal() {
-  document.getElementById('islam-modal').style.display = 'none';
+document.getElementById('islam-modal').style.display = 'none';
 }
-
 window.onscroll = function() {
-  const btn = document.getElementById('btnUp');
-  if(window.scrollY > 300) btn.style.display = 'flex';
-  else btn.style.display = 'none';
+const btn = document.getElementById('btnUp');
+if(window.scrollY > 300) btn.style.display = 'flex';
+else btn.style.display = 'none';
 };
 </script>
 </body>
