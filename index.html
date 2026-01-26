@@ -16,7 +16,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
-body { color: var(--white); font-family: 'Segoe UI', Tahoma, sans-serif; background: #000; overflow-x: hidden; width: 100%; }
+body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
 .section-main-title { text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; font-weight: bold; }
 .awareness-card, .awareness-card span, #awareness-main-title { user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none; }
 .site-bg {
@@ -223,37 +223,49 @@ z-index: 60001;
 #islam-modal {
 display: none;
 position: fixed;
-top: 20%;
-left: 50%;
-transform: translateX(-50%);
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.85);
+z-index: 70000;
+justify-content: center;
+align-items: center;
+}
+#islam-modal .modal-content {
+background: #fdf9f3;
+border: 2px solid var(--gold);
+border-radius: 20px;
 width: 90%;
 max-width: 700px;
-background: #fdf9f3;
-border-radius: 15px;
-padding: 25px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-z-index: 70000;
+padding: 30px;
+max-height: 85vh;
+overflow-y: auto;
 font-family: 'Tajawal', 'Cairo', sans-serif;
+font-size: 19px;
+font-weight: 500;
+line-height: 1.7;
 color: #333333;
-line-height: 1.8;
 direction: rtl;
+position: relative;
 }
 #islam-modal .close-islam {
 position: absolute;
 top: 10px;
 left: 10px;
-width: 32px;
-height: 32px;
+width: 40px;
+height: 40px;
 border-radius: 50%;
 background: #ffcccc;
 color: #cc0000;
 font-weight: bold;
-font-size: 20px;
+font-size: 24px;
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
-border: 1px solid #ff6666;
+border: 2px solid #ff6666;
+z-index: 70001;
 }
 #islam-modal h2 {
 text-align: center;
@@ -386,7 +398,8 @@ line-height: 1.3;
 .references-grid { grid-template-columns: repeat(2, 1fr); }
 .section-main-title { font-size: 2rem; }
 .close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
-#messages-modal .modal-content {
+#messages-modal .modal-content,
+#islam-modal .modal-content {
 padding: 20px;
 font-size: 17px;
 }
@@ -428,7 +441,6 @@ margin-right: 10px;
 <body onload="initPage()">
 <div class="site-bg"></div>
 <div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
-
 <!-- Modal for Questions -->
 <div id="qModal" class="modal-overlay">
 <div class="modal-container">
@@ -440,7 +452,6 @@ margin-right: 10px;
 </div>
 </div>
 </div>
-
 <!-- Modal for Answers -->
 <div id="aModal" class="modal-overlay">
 <div class="modal-container">
@@ -451,7 +462,6 @@ margin-right: 10px;
 </div>
 </div>
 </div>
-
 <!-- Modal رسالاتنا -->
 <div id="messages-modal">
 <div class="modal-content">
@@ -483,7 +493,6 @@ margin-right: 10px;
 </div>
 </div>
 </div>
-
 <!-- نوافذ مرجعيتنا الإنسانية -->
 <div id="reference-buddhism" class="reference-modal">
 <span class="close-reference" onclick="closeReferenceModal('reference-buddhism')">×</span>
@@ -496,10 +505,6 @@ margin-right: 10px;
 <div id="reference-christianity" class="reference-modal">
 <span class="close-reference" onclick="closeReferenceModal('reference-christianity')">×</span>
 <h2>المسيحية</h2>
-</div>
-<div id="reference-islam" class="reference-modal">
-<span class="close-reference" onclick="closeReferenceModal('reference-islam')">×</span>
-<h2>الإسلام</h2>
 </div>
 <div id="reference-taoism" class="reference-modal">
 <span class="close-reference" onclick="closeReferenceModal('reference-taoism')">×</span>
@@ -533,14 +538,12 @@ margin-right: 10px;
 <span class="close-reference" onclick="closeReferenceModal('reference-eastern')">×</span>
 <h2>الجاينية</h2>
 </div>
-
 <div id="lightbox" class="lightbox">
 <div class="lightbox-container">
 <button class="close-lightbox" onclick="closeImage()">X</button>
 <img id="lightbox-img" src="">
 </div>
 </div>
-
 <nav class="navbar">
 <div class="nav-container">
 <div class="nav-links">
@@ -655,9 +658,7 @@ margin-right: 10px;
 </div>
 </div>
 </nav>
-
 <div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
-
 <section class="hero" id="home">
 <h1 class="main-alert-title" id="main-hero-title">
 <span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>
@@ -672,12 +673,10 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="about" class="vision-section">
 <h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">أهدافنا الاستراتيجية</h2>
 <p id="vis-desc">نهدف من خلال مبادرة "قصص الحضارات" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.<br>بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.</p>
 </section>
-
 <section id="messages" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رسالاتنا</h2>
@@ -690,7 +689,6 @@ margin-right: 10px;
 </p>
 </div>
 </section>
-
 <section id="inst" class="section">
 <div class="glass-box">
 <h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
@@ -716,14 +714,12 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <div style="text-align:center; margin-top:40px;">
 <h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
 </div>
 <section id="media-sec" class="carousel-wide">
 <div class="track animate-media" id="track-imgs"></div>
 </section>
-
 <section id="stats" class="section">
 <div class="glass-box">
 <h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
@@ -746,7 +742,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="losses" class="section">
 <div class="glass-box" style="border-color: var(--red-num);">
 <h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
@@ -769,7 +764,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="awareness-sec" class="section">
 <div class="glass-box">
 <h2 id="awareness-main-title" class="section-main-title">برامج التوعية</h2>
@@ -783,7 +777,6 @@ margin-right: 10px;
 </div>
 </div>
 </section>
-
 <section id="human-vision" class="section">
 <div class="glass-box">
 <h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رؤية إنسانية</h2>
@@ -797,7 +790,6 @@ margin-right: 10px;
 </p>
 </div>
 </section>
-
 <!-- قسم مرجعيتنا الإنسانية -->
 <section id="references" class="references-section">
 <h2 class="section-main-title">مرجعياتنا الإنسانية</h2>
@@ -805,7 +797,7 @@ margin-right: 10px;
 <div class="reference-card" onclick="openReferenceModal('reference-buddhism')"><span>البوذية</span></div>
 <div class="reference-card" onclick="openReferenceModal('reference-judaism')"><span>اليهودية</span></div>
 <div class="reference-card" onclick="openReferenceModal('reference-christianity')"><span>المسيحية</span></div>
-<div class="reference-card" onclick="openReferenceModal('reference-islam')"><span>الإسلام</span></div>
+<div class="reference-card" onclick="openIslamModal()"><span>الإسلام</span></div>
 <div class="reference-card" onclick="openReferenceModal('reference-taoism')"><span>الطاوية</span></div>
 <div class="reference-card" onclick="openReferenceModal('reference-shinto')"><span>الشنتو</span></div>
 <div class="reference-card" onclick="openReferenceModal('reference-confucianism')"><span>الكونفوشيوسية</span></div>
@@ -816,53 +808,53 @@ margin-right: 10px;
 <div class="reference-card" onclick="openReferenceModal('reference-eastern')"><span>الجاينية</span></div>
 </div>
 </section>
-
 <!-- نافذة الإسلام -->
 <div id="islam-modal">
+<div class="modal-content">
 <span class="close-islam" onclick="closeIslamModal()">×</span>
-<h2>إماطة الأذى في العصر الرقمي رؤية لحماية المسيرة الإنسانية</h2>
+<h2>إماطة الأذى في العصر الرقمي: رؤية إسلامية لحماية المسيرة الإنسانية</h2>
 <p>
-الإسلام دين الرحمة والبناء، يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.
+الإسلام دين الرحمة والبناء يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.
 </p>
 <p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>
-لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.
+لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (رواه مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.
 </p>
 <p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>
-الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:
+الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:  
 <ul>
 <li>الكلمة الجارحة</li>
 <li>النظرات المحرّمة</li>
 <li>الدعوات المضلّلة</li>
 <li>السلوك الذي يُربك الناس أو يُقلقهم</li>
 </ul>
-قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول».
+قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول».  
 المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.
 </p>
 <p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>
-الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (البخاري).
-كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟
+الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (رواه البخاري).  
+كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟  
 من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.
 </p>
 <p><strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>
-ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري.
-العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» [الإسراء: 36].
+ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري.  
+العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» (سورة الإسراء: 36).  
 من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.
 </p>
 <p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>
-منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا.
-واستخدامها الخاطئ أدّى إلى:
+منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا.  
+واستخدامها الخاطئ أدّى إلى:  
 <ul>
 <li>قطع الأرحام</li>
 <li>تحريض على الانتقام</li>
 <li>دفع البعض إلى الانتحار</li>
 </ul>
-وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي.
+وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي.  
 ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».
 </p>
 <p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>
-الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ.
-هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا.
-لذا، على المسلم أن:
+الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ.  
+هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا.  
+لذا، على المسلم أن:  
 <ul>
 <li>يُراقب مصادره</li>
 <li>يختار محتواه بوعي</li>
@@ -878,11 +870,11 @@ margin-right: 10px;
 <li>اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</li>
 </ol>
 </p>
-<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» [المائدة: 32]<br>
+<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» (سورة المائدة: 32)<br>
 العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.
 </p>
 </div>
-
+</div>
 <script>
 function initPage() {
 scrollToSec('home');
@@ -992,7 +984,6 @@ setTimeout(() => {
 flagContainer.innerHTML = '<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">';
 }, 2000);
 }
-
 // === برامج التوعية الكاملة ===
 const programsData = {
 child: [
@@ -1104,7 +1095,6 @@ security: [
 { q: "كيف أبني \"جدار حماية\" نفسي وتقني يمنع المتسللين من استغلال ثغراتي الشخصية؟", src: "خبير أمن شامل", ans: ".   <strong>جدار الحماية النفسي:</strong><br>        -   <strong>الوعي:</strong> اعرف قيمتك ولا تستخف بمعلوماتك الشخصية.<br>        -   <strong>التشكك الدائم:</strong> لا تثق بسهولة في العروض أو الأشخاص عبر الإنترنت.<br>        -   <strong>الخصوصية:</strong> لا تشارك تفاصيل حياتك اليومية أو مشاكلك الشخصية مع عامة الناس.<br>.   <strong>جدار الحماية التقني:</strong><br>        -   <strong>كلمات مرور قوية وفريدة</strong> لكل حساب، باستخدام مدير كلمات المرور.<br>        -   <strong>تفعيل المصادقة الثنائية (2FA)</strong> على جميع الحسابات المهمة.<br>        -   <strong>تحديث جميع البرامج وأنظمة التشغيل</strong> باستمرار لإغلاق الثغرات الأمنية.<br>        -   <strong>استخدام برامج مكافحة فيروسات</strong> موثوقة وتشغيل فحوصات دورية." }
 ]
 };
-
 function openProgram(type) {
 const container = document.getElementById('questionsContainer');
 container.innerHTML = "";
@@ -1149,7 +1139,7 @@ function closeMessagesModal() {
 document.getElementById('messages-modal').style.display = 'none';
 }
 function openIslamModal() {
-document.getElementById('islam-modal').style.display = 'block';
+document.getElementById('islam-modal').style.display = 'flex';
 }
 function closeIslamModal() {
 document.getElementById('islam-modal').style.display = 'none';
