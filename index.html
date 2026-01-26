@@ -276,7 +276,8 @@ font-weight: bold;
 }
 .reference-modal p,
 .reference-modal ul,
-.reference-modal ol {
+.reference-modal ol,
+.reference-modal table {
 margin-bottom: 15px;
 font-size: 1.1rem;
 font-weight: 500;
@@ -291,59 +292,19 @@ margin-bottom: 8px;
 .reference-modal strong {
 font-weight: bold;
 }
-/* === قسم مرجعيتنا الإنسانية === */
-.references-section {
-text-align: center;
-border: 4px solid var(--gold);
-border-radius: 40px;
-padding: 60px 5%;
-margin: 40px 0;
-background-image: url('image_3a7328.jpg');
-background-size: cover;
-background-position: center;
-position: relative;
-overflow: hidden;
-}
-.references-section::before {
-content: "";
-position: absolute;
-top: 0;
-left: 0;
+.reference-modal table {
 width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.3);
-z-index: 0;
+border-collapse: collapse;
+margin: 15px 0;
 }
-.references-section h2,
-.references-section .references-grid {
-position: relative;
-z-index: 1;
+.reference-modal th,
+.reference-modal td {
+border: 1px solid #ccc;
+padding: 8px;
+text-align: right;
 }
-.references-grid {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 20px;
-margin-top: 30px;
-}
-.reference-card {
-background: rgba(0,0,0,0.5);
-border: 1px solid var(--gold);
-border-radius: 20px;
-padding: 25px 10px;
-cursor: pointer;
-transition: 0.3s;
-text-align: center;
-position: relative;
-}
-.reference-card:hover {
-background: rgba(212, 175, 55, 0.1);
-transform: translateY(-5px);
-}
-.reference-card span {
-font-weight: bold;
-font-size: 1.1rem;
-display: block;
-line-height: 1.3;
+.reference-modal th {
+background-color: #f0f0f0;
 }
 @media (max-width: 992px) {
 .nav-container { flex-direction: column; gap: 15px; }
@@ -651,6 +612,126 @@ margin-right: 10px;
 </p>
 </div>
 </div>
+<div id="reference-secular" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-secular')">×</span>
+<h2>إزالة الأذى في العصر الرقمي: رؤية أخلاقية إنسانية لحماية المسيرة الإنسانية</h2>
+<p>
+تنطلق الرؤية الأخلاقية الإنسانية من مبدأين أساسيين: كرامة الإنسان المتأصلة والمسؤولية العقلانية تجاه البشرية جمعاء. 
+في العصر الرقمي حيث تحول الفضاء الافتراضي إلى بيئة وجودية جديدة تظهر حاجة ملحة لتطبيق التفكير الأخلاقي العقلاني لحماية الإنسانية من أذى قد يكون غير مسبوق في تاريخها.
+</p>
+<p><strong>الأول: العقلانية الأخلاقية كمنطلق</strong><br>
+"يجب أن نتعامل مع الإنسانية سواء في شخصنا أو في شخص الآخرين دائماً كغاية في حد ذاتها وليس مجرد وسيلة"<br>
+إيمانويل كانط (الصيغة الإنسانية للأمر القاطع)
+</p>
+<p>
+الفضاء الرقمي يُختبر من خلال معيارين إنسانيين أساسيين:<br>
+1. الاحترام المتساوي لكرامة كل إنسان بغض النظر عن وجوده رقمياً أو مادياً<br>
+2. الالتزام بالحقيقة والعقلانية كأساس للتواصل البشري
+</p>
+<p><strong>الثاني: أنواع الأذى الرقمي من منظور إنساني</strong></p>
+<table>
+<tr><th>نوع الأذى</th><th>أسبابه الرقمية</th><th>انتهاكه للمبادئ الإنسانية</th></tr>
+<tr><td>الأذى المعرفي</td><td>المعلومات المضللة، الأخبار المزيفة</td><td>يهدم أساس المجتمع العقلاني: المعرفة الموثوقة</td></tr>
+<tr><td>الأذى النفسي</td><td>التنمر، خطاب الكراهية، الترهيب</td><td>ينتهك الكرامة الإنسانية والصحة النفسية</td></tr>
+<tr><td>الأذى الاجتماعي</td><td>التمييز الرقمي، الفقاعات المعرفية</td><td>يُضعف التضامن الإنساني والعدالة الاجتماعية</td></tr>
+<tr><td>الأذى الوجودي</td><td>الإدمان الرقمي، تشتيت الانتباه المستمر</td><td>يعيق تحقيق الإمكانات البشرية الكاملة</td></tr>
+</table>
+<p><strong>الثالث: المبادئ الإنسانية السبعة للسلوك الرقمي</strong></p>
+<ol>
+<li><strong>مبدأ الكرامة الإنسانية:</strong><br>
+   - معاملة كل مستخدم كإنسان ذي قيمة متأصلة<br>
+   - رفض أي تجريد للبشرية أو تشييء للآخرين</li>
+<li><strong>مبدأ الحقيقة والعقلانية:</strong><br>
+   - السعي للدقة والتحقق قبل المشاركة<br>
+   - التصحيح العلني للأخطاء<br>
+   - تقديم الأدلة والحجج العقلانية</li>
+<li><strong>مبدأ العدالة الرقمية:</strong><br>
+   - تكافؤ الفرص في الوصول للمعلومات<br>
+   - محاربة التمييز الخوارزمي<br>
+   - ضمان تمثيل الأصوات المهمشة</li>
+<li><strong>مبدأ المسؤولية:</strong><br>
+   - تحمل تبعات أفعالنا الرقمية<br>
+   - اعتبار التأثيرات البعيدة لأفعالنا القريبة<br>
+   - الموازنة بين الحرية الفردية والمسؤولية المجتمعية</li>
+<li><<strong>مبدأ التضامن الإنساني:</strong><br>
+   - استخدام التقنية لربط لا لفصل البشرية<br>
+   - التعاطف مع المعاناة أينما وجدت<br>
+   - بناء تحالفات عابرة للحدود الرقمية</li>
+<li><strong>مبدأ الاستقلالية الواعية:</strong><br>
+   - حماية حرية التفكير من التلاعب<br>
+   - تنمية النقد الذاتي والوعي النقدي<br>
+   - مقاومة التلقين والإملاء الفكري</li>
+<li><strong>مبدأ الاستدامة الوجودية:</strong><br>
+   - حماية التوازن بين العالم الرقمي والمادي<br>
+   - الحفاظ على العمق الفكري في عصر السطحية<br>
+   - ضمان استمرارية القيم الإنسانية عبر الأجيال</li>
+</ol>
+<p><strong>الرابع: العقد الاجتماعي الرقمي الجديد</strong><br>
+"الحقوق تقابلها مسؤوليات" مفهوم إنساني أساسي<br>
+فالمستخدم الرقمي في الرؤية الإنسانية ليس مستهلكاً سلبيًا بل مواطن رقمي بكل ما تحمله الكلمة من حقوق وواجبات:</p>
+<table>
+<tr><th>حقوق المواطن الرقمي</th><th>واجبات المواطن الرقمي</th></tr>
+<tr><td>الخصوصية والبيانات الآمنة</td><td>احترام خصوصية الآخرين</td></tr>
+<tr><td>الوصول للمعلومات الموثوقة</td><td>التحقق والمشاركة المسؤولة</td></tr>
+<tr><td>حرية التعبير البناء</td><td>تجنب الخطاب المؤذي</td></tr>
+<tr><td>المشاركة في تشكيل البيئة الرقمية</td><td>المساهمة في تحسينها للأجيال القادمة</td></tr>
+</table>
+<p><strong>الخامس: العقلانية النقدية ضد الخوارزميات الانفعالية</strong><br>
+الخطر الأكبر: تحويل البشر إلى كائنات رد فعل بدلاً من كائنات تفكر. 
+الممارسة الإنسانية:</p>
+<ol>
+<li><strong>تثقيف النقد الذاتي:</strong><br>
+   - لماذا أشعر بهذا الشعور بعد مشاهدة هذا المحتوى؟<br>
+   - ما المصالح التي تخدمها هذه المعلومة؟<br>
+   - كيف أعرف أن ما أراه حقيقي؟</li>
+<li><strong>ممارسة التأجيل الحكمي:</strong><br>
+   - عدم الرد الانفعالي الفوري<br>
+   - إعطاء الوقت للتفكير والتأمل<br>
+   - التمييز بين الرأي الشخصي والحقيقة الموضوعية</li>
+<li><strong>تنمية الفضول البنّاء:</strong><br>
+   - البحث عن وجهات النظر المخالفة<br>
+   - استكشاف المصادر الأولية<br>
+   - السعي لفهم السياقات الكاملة</li>
+</ol>
+<p><strong>التوصيات العملية من منظور إنساني</strong></p>
+<ol>
+<li><strong>برامج التربية الرقمية الإنسانية:</strong><br>
+   - دمج التفكير النقدي في مناهج التعليم الرقمي<br>
+   - تعليم تاريخ الأفكار والأخلاق مع التقنية<br>
+   - تدريب على الحوار العقلاني البناء</li>
+<li><strong>مؤسسات الرقابة المدنية:</strong><br>
+   - هيئات مستقلة لمراقبة الخوارزميات<br>
+   - منظمات للتحقق من المعلومات بمعايير إنسانية<br>
+   - مراصد لحماية الحقوق الرقمية</li>
+<li><strong>ممارسات الفرد الواعي:</strong><br>
+   - الفحص الثلاثي قبل النشر: هل هذا صحيح؟ هل هذا ضروري؟ هل هذا محترم؟<br>
+   - الصيام الرقمي التفكري: أيام بدون أجهزة للتفكير العميق<br>
+   - القراءة المعاكسة: متابعة من يخالفون رأيك لفهم أوسع</li>
+<li><strong>تصميم أنظمة إنسانية:</strong><br>
+   - خوارزميات تعزز المحتوى البنّاء لا الانفعالي<br>
+   - واجهات تشجع على التأمل لا الاندفاع<br>
+   - أنظمة تحمي الضعفاء وتكافح التمييز</li>
+<li><strong>حوار إنساني عابر للثقافات:</strong><br>
+   - منصات للحوار بين مختلف التوجهات الفكرية<br>
+   - مشاريع ترجمة للمعارف الإنسانية العالمية<br>
+   - تحالفات للقضايا الإنسانية المشتركة</li>
+</ol>
+<p><strong>الخاتمة: الإنسانية في مواجهة نفسها رقمياً</strong><br>
+ما لا يمكن قياسه ليس أقل واقعية وما لا يمكن رقمنته ليس أقل إنسانية.</p>
+<p>
+التحدي الأخلاقي الأعظم في العصر الرقمي: أن نبقى بشراً في عالم يحاول أحياناً تجاوز إنسانيتنا. 
+إزالة الأذى الرقمي ليست مهمة تقنية فحسب بل هي مشروع إنساني وجودي لحماية جوهرنا المشترك.
+</p>
+<p>
+الرؤية الإنسانية تذكرنا: التقنية تخدم الإنسانية عندما تُستخدم لتعزيز كرامتنا، حريتنا الواعية، تضامننا، وعقلانيتنا. 
+عندما تُستخدم ضد هذه القيم يجب أن نعيد توجيهها أو نرفضها.
+</p>
+<p>
+الاختبار النهائي: أي فعل رقمي أي منصة أي خوارزمية هل تزيد من إنسانيتنا المشتركة أم تنقص منها؟ الجواب على هذا السؤال هو بوصلة أخلاقيتنا في العصر الرقمي.
+</p>
+</div>
+</div>
 <div id="reference-taoism" class="reference-modal">
 <div class="modal-content">
 <span class="close-reference" onclick="closeReferenceModal('reference-taoism')">×</span>
@@ -687,10 +768,1017 @@ margin-right: 10px;
 <h2>الزرادشتية</h2>
 </div>
 </div>
+<div id="reference-eastern" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-eastern')">×</span>
+<h2>الجاينية</h2>
+</div>
+</div>
+<div id="lightbox" class="lightbox">
+<div class="lightbox-container">
+<button class="close-lightbox" onclick="closeImage()">X</button>
+<img id="lightbox-img" src="">
+</div>
+</div>
+<nav class="navbar">
+<div class="nav-container">
+<div class="nav-links">
+<div class="lang-selector">
+<button class="lang-toggle-btn" id="langToggleBtn">
+<img src="https://flagcdn.com/w80/eg.png" alt="العربية" id="currentLangFlag">
+</button>
+<div class="lang-dropdown" id="langDropdown">
+<a href="#" class="lang-option arabic-flag" data-lang="ar"><img src="https://flagcdn.com/w80/eg.png" alt="العربية"> العربية</a>
+<a href="#" class="lang-option" data-lang="en"><img src="https://flagcdn.com/w80/gb.png" alt="English"> English</a>
+<a href="#" class="lang-option" data-lang="fr"><img src="https://flagcdn.com/w80/fr.png" alt="Français"> Français</a>
+<a href="#" class="lang-option" data-lang="es"><img src="https://flagcdn.com/w80/es.png" alt="Español"> Español</a>
+<a href="#" class="lang-option" data-lang="pt"><img src="https://flagcdn.com/w80/pt.png" alt="Português"> Português</a>
+<a href="#" class="lang-option" data-lang="ru"><img src="https://flagcdn.com/w80/ru.png" alt="Русский"> Русский</a>
+<a href="#" class="lang-option" data-lang="zh-CN"><img src="https://flagcdn.com/w80/cn.png" alt="中文"> 中文 (普通话)</a>
+<a href="#" class="lang-option" data-lang="ja"><img src="https://flagcdn.com/w80/jp.png" alt="日本語"> 日本語</a>
+<a href="#" class="lang-option" data-lang="ko"><img src="https://flagcdn.com/w80/kr.png" alt="한국어"> 한국어</a>
+<a href="#" class="lang-option" data-lang="de"><img src="https://flagcdn.com/w80/de.png" alt="Deutsch"> Deutsch</a>
+<a href="#" class="lang-option" data-lang="it"><img src="https://flagcdn.com/w80/it.png" alt="Italiano"> Italiano</a>
+<a href="#" class="lang-option" data-lang="tr"><img src="https://flagcdn.com/w80/tr.png" alt="Türkçe"> Türkçe</a>
+<a href="#" class="lang-option" data-lang="fa"><img src="https://flagcdn.com/w80/ir.png" alt="فارسی"> فارسی</a>
+<a href="#" class="lang-option" data-lang="hi"><img src="https://flagcdn.com/w80/in.png" alt="हिन्दी"> हिन्दी</a>
+<a href="#" class="lang-option" data-lang="id"><img src="https://flagcdn.com/w80/id.png" alt="Bahasa Indonesia"> Bahasa Indonesia</a>
+<a href="#" class="lang-option" data-lang="vi"><img src="https://flagcdn.com/w80/vn.png" alt="Tiếng Việt"> Tiếng Việt</a>
+<a href="#" class="lang-option" data-lang="el"><img src="https://flagcdn.com/w80/gr.png" alt="Ελληνικά"> Ελληνικά</a>
+<a href="#" class="lang-option" data-lang="nl"><img src="https://flagcdn.com/w80/nl.png" alt="Nederlands"> Nederlands</a>
+<a href="#" class="lang-option" data-lang="pl"><img src="https://flagcdn.com/w80/pl.png" alt="Polski"> Polski</a>
+<a href="#" class="lang-option" data-lang="fi"><img src="https://flagcdn.com/w80/fi.png" alt="Suomi"> Suomi</a>
+<a href="#" class="lang-option" data-lang="da"><img src="https://flagcdn.com/w80/dk.png" alt="Dansk"> Dansk</a>
+<a href="#" class="lang-option" data-lang="no"><img src="https://flagcdn.com/w80/no.png" alt="Norsk"> Norsk</a>
+<a href="#" class="lang-option" data-lang="sk"><img src="https://flagcdn.com/w80/sk.png" alt="Slovenčina"> Slovenčina</a>
+<a href="#" class="lang-option" data-lang="hr"><img src="https://flagcdn.com/w80/hr.png" alt="Hrvatski"> Hrvatski</a>
+<a href="#" class="lang-option" data-lang="sl"><img src="https://flagcdn.com/w80/si.png" alt="Slovenščina"> Slovenščina</a>
+<a href="#" class="lang-option" data-lang="bg"><img src="https://flagcdn.com/w80/bg.png" alt="Български"> Български</a>
+<a href="#" class="lang-option" data-lang="sr"><img src="https://flagcdn.com/w80/rs.png" alt="Српски"> Српски</a>
+<a href="#" class="lang-option" data-lang="cs"><img src="https://flagcdn.com/w80/cz.png" alt="Čeština"> Čeština</a>
+<a href="#" class="lang-option" data-lang="uk"><img src="https://flagcdn.com/w80/ua.png" alt="Українська"> Українська</a>
+<a href="#" class="lang-option" data-lang="zh-TW"><img src="https://flagcdn.com/w80/hk.png" alt="廣東話"> 廣東話</a>
+<a href="#" class="lang-option" data-lang="te"><img src="https://flagcdn.com/w80/in.png" alt="తెలుగు"> తెలుగు</a>
+<a href="#" class="lang-option" data-lang="mr"><img src="https://flagcdn.com/w80/in.png" alt="मराठी"> मराठी</a>
+<a href="#" class="lang-option" data-lang="ta"><img src="https://flagcdn.com/w80/in.png" alt="தமிழ்"> தமிழ்</a>
+<a href="#" class="lang-option" data-lang="ur"><img src="https://flagcdn.com/w80/pk.png" alt="اردو"> اردو</a>
+<a href="#" class="lang-option" data-lang="gu"><img src="https://flagcdn.com/w80/in.png" alt="ગુજરાતી"> ગુજરાતી</a>
+<a href="#" class="lang-option" data-lang="kn"><img src="https://flagcdn.com/w80/in.png" alt="ಕನ್ನಡ"> ಕನ್ನಡ</a>
+<a href="#" class="lang-option" data-lang="ml"><img src="https://flagcdn.com/w80/in.png" alt="മലയാളം"> മലയാളം</a>
+<a href="#" class="lang-option" data-lang="or"><img src="https://flagcdn.com/w80/in.png" alt="ଓଡ଼ିଆ"> ଓଡ଼ିଆ</a>
+<a href="#" class="lang-option" data-lang="sd"><img src="https://flagcdn.com/w80/pk.png" alt="سنڌي"> سنڌي</a>
+<a href="#" class="lang-option" data-lang="ps"><img src="https://flagcdn.com/w80/af.png" alt="پښتو"> پښتو</a>
+<a href="#" class="lang-option" data-lang="bal"><img src="https://flagcdn.com/w80/pk.png" alt="بلوچی"> بلوچی</a>
+<a href="#" class="lang-option" data-lang="si"><img src="https://flagcdn.com/w80/lk.png" alt="සිංහල"> සිංහල</a>
+<a href="#" class="lang-option" data-lang="my"><img src="https://flagcdn.com/w80/mm.png" alt="ဗမာစာ"> ဗမာစာ</a>
+<a href="#" class="lang-option" data-lang="kar"><img src="https://flagcdn.com/w80/mm.png" alt="ကရင်စာ"> ကရင်စာ</a>
+<a href="#" class="lang-option" data-lang="rhg"><img src="https://flagcdn.com/w80/mm.png" alt="রোহিঙ্গা"> রোহিঙ্গা</a>
+<a href="#" class="lang-option" data-lang="mn"><img src="https://flagcdn.com/w80/mm.png" alt="မွန်စာ"> မွန်စာ</a>
+<a href="#" class="lang-option" data-lang="shn"><img src="https://flagcdn.com/w80/mm.png" alt="ရှမ်းစာ"> ရှမ်းစာ</a>
+<a href="#" class="lang-option" data-lang="fil"><img src="https://flagcdn.com/w80/ph.png" alt="Filipino"> Filipino</a>
+<a href="#" class="lang-option" data-lang="th"><img src="https://flagcdn.com/w80/th.png" alt="ไทย"> ไทย</a>
+<a href="#" class="lang-option" data-lang="ms"><img src="https://flagcdn.com/w80/sg.png" alt="Bahasa Melayu"> Bahasa Melayu</a>
+<a href="#" class="lang-option" data-lang="jv"><img src="https://flagcdn.com/w80/id.png" alt="Jawa"> Jawa</a>
+<a href="#" class="lang-option" data-lang="su"><img src="https://flagcdn.com/w80/id.png" alt="Sunda"> Sunda</a>
+<a href="#" class="lang-option" data-lang="bbc"><img src="https://flagcdn.com/w80/id.png" alt="Batak"> Batak</a>
+<a href="#" class="lang-option" data-lang="lg"><img src="https://flagcdn.com/w80/ug.png" alt="Luganda"> Luganda</a>
+<a href="#" class="lang-option" data-lang="ak"><img src="https://flagcdn.com/w80/gh.png" alt="Akan"> Akan</a>
+<a href="#" class="lang-option" data-lang="ff"><img src="https://flagcdn.com/w80/cm.png" alt="Fula"> Fula</a>
+<a href="#" class="lang-option" data-lang="dyu"><img src="https://flagcdn.com/w80/ci.png" alt="Dioula"> Dioula</a>
+<a href="#" class="lang-option" data-lang="mg"><img src="https://flagcdn.com/w80/mg.png" alt="Malagasy"> Malagasy</a>
+<a href="#" class="lang-option" data-lang="din"><img src="https://flagcdn.com/w80/ss.png" alt="Dinka"> Dinka</a>
+<a href="#" class="lang-option" data-lang="srr"><img src="https://flagcdn.com/w80/td.png" alt="Sara"> Sara</a>
+<a href="#" class="lang-option" data-lang="so"><img src="https://flagcdn.com/w80/so.png" alt="Soomaali"> Soomaali</a>
+<a href="#" class="lang-option" data-lang="sn"><img src="https://flagcdn.com/w80/zw.png" alt="Shona"> Shona</a>
+<a href="#" class="lang-option" data-lang="bem"><img src="https://flagcdn.com/w80/zm.png" alt="Bemba"> Bemba</a>
+<a href="#" class="lang-option" data-lang="ny"><img src="https://flagcdn.com/w80/mw.png" alt="Chichewa"> Chichewa</a>
+<a href="#" class="lang-option" data-lang="wo"><img src="https://flagcdn.com/w80/sn.png" alt="Wolof"> Wolof</a>
+<a href="#" class="lang-option" data-lang="bm"><img src="https://flagcdn.com/w80/ml.png" alt="Bambara"> Bambara</a>
+<a href="#" class="lang-option" data-lang="ha-ne"><img src="https://flagcdn.com/w80/ne.png" alt="Hausa (Niger)"> Hausa (Niger)</a>
+<a href="#" class="lang-option" data-lang="mos"><img src="https://flagcdn.com/w80/bf.png" alt="Mossi"> Mossi</a>
+<a href="#" class="lang-option" data-lang="rw"><img src="https://flagcdn.com/w80/rw.png" alt="Kinyarwanda"> Kinyarwanda</a>
+<a href="#" class="lang-option" data-lang="rn"><img src="https://flagcdn.com/w80/bi.png" alt="Kirundi"> Kirundi</a>
+<a href="#" class="lang-option" data-lang="ln"><img src="https://flagcdn.com/w80/cd.png" alt="Lingála"> Lingála</a>
+<a href="#" class="lang-option" data-lang="zu"><img src="https://flagcdn.com/w80/za.png" alt="isiZulu"> isiZulu</a>
+<a href="#" class="lang-option" data-lang="pa"><img src="https://flagcdn.com/w80/pk.png" alt="ਪੰਜਾਬੀ"> ਪੰਜਾਬੀ</a>
+<a href="#" class="lang-option" data-lang="bn"><img src="https://flagcdn.com/w80/bd.png" alt="বাংলা"> বাংলা</a>
+<a href="#" class="lang-option" data-lang="am"><img src="https://flagcdn.com/w80/et.png" alt="አማርኛ"> አማርኛ</a>
+<a href="#" class="lang-option" data-lang="sw"><img src="https://flagcdn.com/w80/tz.png" alt="Kiswahili"> Kiswahili</a>
+<a href="#" class="lang-option" data-lang="ha"><img src="https://flagcdn.com/w80/ne.png" alt="Hausa"> Hausa</a>
+<a href="#" class="lang-option" data-lang="yo"><img src="https://flagcdn.com/w80/ng.png" alt="Yorùbá"> Yorùbá</a>
+</div>
+</div>
+<a onclick="scrollToSec('about')">أهدافنا</a>
+<a onclick="openMessagesModal()">رسالاتنا</a>
+<a onclick="scrollToSec('inst')">الشركاء</a>
+<a onclick="scrollToSec('media-sec')">ميديا</a>
+<a onclick="scrollToSec('stats')">إحصائيات</a>
+<a onclick="scrollToSec('losses')">خسائر</a>
+<a onclick="scrollToSec('awareness-sec')">وعي</a>
+<a onclick="scrollToSec('human-vision')">رؤية إنسانية</a>
+<a onclick="scrollToSec('references')">مرجعياتنا الإنسانية</a>
+<a href="https://forms.gle/1Ua2keC6kUvTbivK6" target="_blank">رأيك يهمنا</a>
+</div>
+<div class="nav-right-group">
+<div class="social-icons">
+<a href="https://wa.me/201009995015" target="_blank" style="color: var(--wa-color);"><i class="fab fa-whatsapp"></i></a>
+<a href="https://www.linkedin.com/in/%D9%82%D8%B5%D8%B5-%D8%A7%D9%84%D8%AD%D8%B6%D8%A7%D8%B1%D8%A7%D8%AA-0a8917277/" target="_blank" class="ic-in"><i class="fab fa-linkedin"></i></a>
+<a href="https://www.pinterest.com/civistories/" target="_blank" class="ic-pr"><i class="fab fa-pinterest"></i></a>
+<a href="https://www.instagram.com/civi.stories" target="_blank" class="ic-ig"><i class="fab fa-instagram"></i></a>
+<a href="https://x.com/civistories" target="_blank" class="ic-tw"><i class="fa-brands fa-x-twitter"></i></a>
+<a href="https://www.tiktok.com/@civistoriesarabic" target="_blank" class="ic-tk"><i class="fab fa-tiktok"></i></a>
+<a href="https://www.facebook.com/profile.php?id=100093677167187" target="_blank" class="ic-fb"><i class="fab fa-facebook"></i></a>
+<a href="https://www.youtube.com/@CiviStories" target="_blank" class="ic-yt"><i class="fab fa-youtube"></i></a>
+</div>
+<img src="logo.png" class="nav-logo-img" alt="Logo">
+</div>
+</div>
+</nav>
+<div class="news-ticker"><div class="ticker-track animate-news" id="tickerTrack"></div></div>
+<section class="hero" id="home">
+<h1 class="main-alert-title" id="main-hero-title">
+<span class="highlight">تسونامي</span> <span class="gold-text">الوهم الرقمي: من مهد الحضارة مصر إلى العالم... صرخة لإنقاذ الإنسانية</span>
+</h1>
+<div class="hero-container">
+<div class="book-static">
+<div class="book-wrapper"><img src="CIVISTORIES Book.png" alt="Book Cover"></div>
+<a href="https://heyzine.com/flip-book/48ab3792ec.html" target="_blank" id="btn-browse" class="btn-action">تصفح الكتاب</a>
+</div>
+<div class="video-container-box">
+<iframe src="https://www.youtube.com/embed/ite_9cHeOO4?autoplay=1&mute=1&loop=1&playlist=ite_9cHeOO4&controls=1&rel=0" allowfullscreen></iframe>
+</div>
+</div>
+</section>
+<section id="about" class="vision-section">
+<h2 id="vis-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">أهدافنا الاستراتيجية</h2>
+<p id="vis-desc">نهدف من خلال مبادرة "قصص الحضارات" إلى حماية النسيج المجتمعي المصري من مخاطر التفكك الإلكتروني، عبر تمكين الأسرة واستعادة التوازن النفسي والاجتماعي.<br>بدأنا من مصر، حيث يهدد الوهم الرقمي استقرار الأسرة والمجتمع، ونطمح إلى إطلاق صرخة عالمية لحماية الإنسانية من مخاطر الإدمان الرقمي — عبر تمكين الأسرة، واستعادة التوازن النفسي، وبناء فضاء رقمي إنساني.</p>
+</section>
+<section id="messages" class="section">
+<div class="glass-box">
+<h2 class="section-main-title" style="font-size: 3rem; font-weight: 900;">رسالاتنا</h2>
+<p style="font-size: 1.4rem; font-weight: bold; line-height: 1.6; color: var(--white);">
+من قلب الحضارة المصرية، نطلق رسائلنا إلى العالم:<br>
+• التكنولوجيا أداة، وليس بديلاً عن الإنسانية.<br>
+• الأسرة هي الحصن الأول ضد الانهيار الرقمي.<br>
+• الوعي الرقمي حقٌّ لكل فرد، وواجبٌ على كل مجتمع.<br>
+• لا مستقبل آمن دون توازن بين التقدم الرقمي والقيم الإنسانية.
+</p>
+</div>
+</section>
+<section id="inst" class="section">
+<div class="glass-box">
+<h2 id="part-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">شركاء الوعي الوطني</h2>
+<div class="grid">
+<div class="card">
+<div class="info-popup" id="src-p1">المصدر: إحصائيات مركز الفتوى الإلكترونية بالأزهر</div>
+<img src="100.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
+<h3 id="p1-name">الأزهر الشريف</h3>
+<p id="p1-desc">رصد ومعالجة حالات التفكك الأسري الناتج عن الإدمان الرقمي عبر لجان الفتوى المتخصصة.</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src-p2">المصدر: تقارير المشورة الأسرية بالكنيسة</div>
+<img src="300.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
+<h3 id="p2-name">الكنيسة المصرية</h3>
+<p id="p2-desc">العمل على استقرار الأسرة ومواجهة الانعزال الرقمي داخل البيت الواحد عبر برامج المشورة.</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src-p3">المصدر: وزارة الأوقاف المصرية</div>
+<img src="200.png" style="width:110px; border-radius:50%; border:3px solid var(--gold); background:#fff; margin-bottom:20px;">
+<h3 id="p3-name">وزارة الأوقاف</h3>
+<p id="p3-desc">مبادرة سكن ومودة لتثقيف المتزوجين بمخاطر التكنولوجيا على استقرارهم النفسي.</p>
+</div>
+</div>
+</div>
+</section>
+<div style="text-align:center; margin-top:40px;">
+<h2 id="media-guideline" class="section-main-title">اضغط على الصورة لتصلك رسالتنا</h2>
+</div>
+<section id="media-sec" class="carousel-wide">
+<div class="track animate-media" id="track-imgs"></div>
+</section>
+<section id="stats" class="section">
+<div class="glass-box">
+<h2 id="st-title" class="section-main-title" style="font-size: 3rem; font-weight: 900;">إحصائيات</h2>
+<div class="grid">
+<div class="card">
+<div class="info-popup" id="src1">المصدر: الجهاز المركزي للتعبئة العامة والإحصاء</div>
+<span class="stat-num counter" id="cnt1" data-target="311">0</span>
+<p id="st1-txt">ألف حالة طلاق سنوياً</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src2">المصدر: وزارة الاتصالات وتكنولوجيا المعلومات</div>
+<span class="stat-num counter" id="cnt2" data-target="104">0</span>
+<p id="st2-txt">مليون هاتف محمول</p>
+</div>
+<div class="card">
+<div class="info-popup" id="src3">المصدر: وزارة التضامن الاجتماعي</div>
+<span class="stat-num counter" id="cnt3" data-target="5.7">0</span>
+<p id="st3-txt">ساعات يومية أمام الشاشات للأطفال</p>
+</div>
+</div>
+</div>
+</section>
+<section id="losses" class="section">
+<div class="glass-box" style="border-color: var(--red-num);">
+<h2 id="ls-title" class="section-main-title" style="color: var(--red-num); font-size: 3rem; font-weight: 900;">الخسائر</h2>
+<div class="grid">
+<div class="card" style="border-bottom-color: var(--red-num);">
+<div class="info-popup" id="src4">المصدر: دراسات الجدوى الاقتصادية</div>
+<span class="stat-num loss-num counter" id="cnt4" data-target="15">0</span>
+<p id="ls1-txt">مليار جنيه خسائر إنتاجية سنوياً</p>
+</div>
+<div class="card" style="border-bottom-color: var(--red-num);">
+<div class="info-popup" id="src5">المصدر: تقارير الصحة النفسية</div>
+<span class="stat-num loss-num counter" id="cnt5" data-target="4.5">0</span>
+<p id="ls2-txt">مليار جنيه تكلفة العلاج النفسي</p>
+</div>
+<div class="card" style="border-bottom-color: var(--red-num);">
+<div class="info-popup" id="src6">المصدر: تقارير الأمن السيبراني</div>
+<span class="stat-num loss-num counter" id="cnt6" data-target="2.1">0</span>
+<p id="ls3-txt">مليبالتأكيد، باريت. بما أنك لست مبرمجًا، فقد قمت بإعداد **الكود الكامل** جاهزًا للنسخ واللصق، مع إضافة **"الرؤية الأخلاقية الإنسانية"** بنفس الأسلوب والتصميم المستخدم للإسلام والمسيحية واليهودية.
+
+---
+
+### ✅ ما تم تنفيذه:
+- إنشاء نافذة منبثقة جديدة بعنوان **"الأخلاق الإنسانية"**.
+- وضع النص الذي كتبته **كاملًا دون أي تغيير**.
+- ربط زر "الأخلاق الإنسانية" في قسم "مرجعياتنا الإنسانية" بفتح هذه النافذة.
+- الحفاظ على نفس التصميم: خلفية كريمية، خطوط عربية واضحة، شريط تمرير عند الحاجة، زر إغلاق واضح.
+- جعل كل النصوص في الصفحة **سميكة وواضحة** كما طلبت.
+
+---
+
+### ✅ الكود الكامل جاهز للاستخدام:
+
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CiviStories | Digital Illusion Tsunami</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<!-- ربط خطوط عربية -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+--gold: #d4af37; --white: #ffffff; --red-news: #b30000; --red-num: #ff0000;
+--yt: #FF0000; --fb: #1877F2; --tw: #ffffff; --ig: #E4405F; --tk: #ffffff; --pr: #BD081C; --in: #0077B5;
+--wa-color: #25D366;
+--cream-bg: #fdf9f3;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body { color: var(--white); font-family: 'Tajawal', 'Cairo', sans-serif; background: #000; overflow-x: hidden; width: 100%; font-weight: bold; font-size: 1rem; }
+.section-main-title { text-align: center; color: var(--gold); font-size: 2.5rem; margin-bottom: 25px; font-weight: bold; }
+.awareness-card, .awareness-card span, #awareness-main-title { user-select: none; -webkit-user-select: none; -ms-user-select: none; outline: none; }
+.site-bg {
+position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+background-image: url('image_390e08.jpg'); background-position: center; background-size: cover; z-index: -1;
+animation: kenBurns 35s ease-in-out infinite alternate;
+}
+@keyframes kenBurns { 0% { transform: scale(1); filter: brightness(0.35);} 100% { transform: scale(1.18); filter: brightness(0.55);} }
+.navbar {
+min-height: 90px; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+position: fixed; top: 0; width: 100%; z-index: 10001; border-bottom: 2px solid var(--gold);
+display: flex; align-items: center; justify-content: center;
+}
+.nav-container { width: 95%; max-width: 1400px; display: flex; flex-direction: row; justify-content: space-between; align-items: center; }
+.nav-right-group { display: flex; align-items: center; gap: 20px; position: relative; }
+.nav-logo-img { height: 65px; }
+.social-icons { display: flex; gap: 12px; align-items: center; }
+.social-icons a { font-size: 1.2rem; transition: 0.3s; text-decoration: none; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+.nav-links a:hover { color: #fff; }
+.ic-yt { color: var(--yt); } .ic-fb { color: var(--fb); } .ic-tw { color: var(--tw); } .ic-ig { color: var(--ig); } .ic-tk { color: var(--tk); } .ic-pr { color: var(--pr); } .ic-in { color: var(--in); }
+.lang-selector {
+position: relative;
+display: inline-block;
+}
+.lang-toggle-btn {
+background: none; border: none; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s;
+}
+.lang-toggle-btn img {
+width: 40px; height: auto; border-radius: 4px; display: block; filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
+}
+.lang-dropdown {
+position: absolute;
+top: 100%;
+right: 0;
+background: #000;
+border: 1px solid var(--gold);
+border-radius: 8px;
+z-index: 10002;
+display: none;
+min-width: 200px;
+max-height: 300px;
+overflow-y: auto;
+}
+.lang-dropdown.show {
+display: block;
+}
+.lang-option {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 15px;
+cursor: pointer;
+color: var(--white);
+text-decoration: none;
+}
+.lang-option:hover {
+background: rgba(212, 175, 55, 0.2);
+}
+.lang-option img {
+width: 24px;
+height: 16px;
+object-fit: contain;
+border-radius: 2px;
+filter: grayscale(100%);
+}
+.lang-option.arabic-flag img,
+#currentLangFlag {
+filter: grayscale(0%) !important;
+}
+.news-ticker { background: var(--red-news); color: white; height: 45px; position: fixed; top: 90px; width: 100%; z-index: 1000; display: flex; align-items: center; overflow: hidden; }
+.ticker-track { display: flex; white-space: nowrap; width: max-content; }
+.ticker-track span { padding: 0 50px; font-weight: bold; font-size: 1.1rem; }
+.animate-news { animation: marqueeNews 150s linear infinite; }
+@keyframes marqueeNews { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
+[dir="rtl"] .animate-news { animation: marqueeNewsRtl 150s linear infinite; }
+@keyframes marqueeNewsRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 160px 5% 60px; }
+.main-alert-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; line-height: 1.4; color: var(--white); max-width: 100%; }
+.main-alert-title span.highlight { color: var(--red-num); font-weight: 900; }
+.main-alert-title span.gold-text { color: var(--gold); font-weight: 900; }
+.hero-container { display: flex; gap: 40px; width: 100%; align-items: stretch; justify-content: center; }
+.book-static { flex: 0 0 320px; display: flex; flex-direction: column; justify-content: space-between; height: 450px; }
+.book-wrapper { height: calc(100% - 70px); display: flex; align-items: center; justify-content: center; }
+.book-wrapper img { max-height: 100%; width: auto; border-radius: 15px; border: 2px solid var(--gold); box-shadow: 0 10px 30px rgba(212,175,55,0.3); animation: bookFloat 3s ease-in-out infinite; }
+@keyframes bookFloat { 0%, 100% { transform: translateY(0) rotate(0);} 50% { transform: translateY(-15px) rotate(2deg); } }
+.video-container-box { flex: 1; max-width: 800px; height: 450px; border: 2px solid var(--gold); border-radius: 20px; overflow: hidden; box-shadow: 0 0 25px rgba(212,175,55,0.2);}
+.video-container-box iframe { width: 100%; height: 100%; border: none; }
+.awareness-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px; }
+.awareness-card { background: rgba(0,0,0,0.6); border: 1px solid var(--gold); border-radius: 20px; padding: 25px 10px; cursor: pointer; transition: 0.3s; text-align: center; position: relative; }
+.awareness-card:hover { background: rgba(212, 175, 55, 0.1); transform: translateY(-5px); }
+.awareness-card i { font-size: 2.2rem; margin-bottom: 12px; display: block; color: var(--gold); }
+.awareness-card span { font-weight: bold; font-size: 1.1rem; display: block; line-height: 1.3; }
+.carousel-wide { width: 90%; max-width: 1200px; margin: 40px auto; height: 350px; border: 2px solid var(--gold); border-radius: 25px; position: relative; overflow: hidden; background: #000; }
+.track { display: flex; width: max-content; }
+.track img { height: 350px; width: 300px; object-fit: cover; cursor: zoom-in; border-right: 2px solid var(--gold); filter: grayscale(100%); transition: filter 0.3s; flex-shrink: 0; }
+.track img:hover { filter: grayscale(0%);}
+.animate-media { animation: mediaScroll 250s linear infinite; }
+@keyframes mediaScroll { 0% { transform: translateX(0);} 100% { transform: translateX(-50%);} }
+[dir="rtl"] .animate-media { animation: mediaScrollRtl 250s linear infinite; }
+@keyframes mediaScrollRtl { 0% { transform: translateX(0);} 100% { transform: translateX(50%);} }
+.lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); display: none; justify-content: center; align-items: center; z-index: 20000; }
+.lightbox-container { position: relative; max-width: 90%; max-height: 90vh; }
+.lightbox img { max-width: 100%; max-height: 90vh; border: 3px solid var(--gold); border-radius: 10px; }
+.close-lightbox { position: absolute; top: -20px; left: -20px; color: #ff0000; font-size: 30px; cursor: pointer; background: #000; border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; z-index: 20001; }
+.vision-section, .glass-box { text-align: center; border: 4px solid var(--gold); border-radius: 40px; padding: 60px 5%; margin: 40px 0; background-image: url('image_3a7328.jpg'); background-size: cover; background-position: center; position: relative; overflow: hidden; }
+.vision-section::before, .glass-box::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 0; }
+.vision-section h2, .vision-section p, .glass-box h2, .glass-box .grid, .glass-box .awareness-grid { position: relative; z-index: 1; }
+.section { padding: 40px 5%; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.card { text-align: center; padding: 40px 25px; background: rgba(0,0,0,0.5); border-radius: 25px; border-bottom: 5px solid var(--gold); position: relative; transition: 0.4s; }
+.info-popup { visibility: hidden; width: 280px; background: var(--gold); color: #000; padding: 15px; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); opacity: 0; transition: 0.3s; border-radius: 12px; font-weight: bold; box-shadow: 0 10px 30px #000; z-index: 100; text-align: center; }
+.card:hover .info-popup { visibility: visible; opacity: 1; bottom: 115%; }
+.stat-num { font-size: 3.5rem; font-weight: bold; color: var(--gold); display: block; }
+.loss-num { color: var(--red-num) !important; }
+#vis-desc {
+font-size: 1.4rem;
+font-weight: bold;
+line-height: 1.6;
+}
+.card p {
+font-weight: bold !important;
+font-size: 1.15rem;
+}
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 50000; }
+.modal-container { position: relative; width: 90%; max-width: 600px; }
+.modal-box { background: var(--cream-bg); border: 3px solid #000; width: 100%; border-radius: 20px; padding: 30px; color: #000; max-height: 80vh; overflow-y: auto; }
+.close-modal {
+position: absolute; top: -20px; left: -20px; font-size: 30px; cursor: pointer;
+color: #ff0000; font-weight: bold; z-index: 50001; background: #000;
+border: 2px solid #ff0000; border-radius: 50%; width: 45px; height: 45px;
+display: flex; align-items: center; justify-content: center;
+}
+.q-item { padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.1); cursor: pointer; transition: 0.2s; font-weight: bold; color: #000; }
+.q-item:hover { background: rgba(0,0,0,0.05);}
+.ans-q { color: #ff0000; font-weight: bold; font-size: 1.3rem; margin-bottom: 10px; display: block; text-align: center; }
+.ans-src { color: #008000; font-weight: bold; margin-bottom: 15px; display: block; text-align: center; border-bottom: 1px solid #000; padding-bottom: 5px; }
+.ans-text { line-height: 1.6; font-size: 1.1rem; }
+.modal-program-title {
+color: #ff0000;
+font-weight: bold;
+font-size: 1.4rem;
+margin-bottom: 10px;
+text-align: center;
+}
+.modal-instruction {
+color: #0000ff;
+font-weight: bold;
+font-size: 1.1rem;
+margin-bottom: 15px;
+text-align: center;
+display: none;
+}
+/* === Modal جديد لـ "رسالاتنا" === */
+#messages-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.85);
+z-index: 60000;
+justify-content: center;
+align-items: center;
+}
+#messages-modal .modal-content {
+background: var(--cream-bg);
+border: 2px solid var(--gold);
+border-radius: 20px;
+width: 90%;
+max-width: 700px;
+padding: 30px;
+max-height: 85vh;
+overflow-y: auto;
+font-family: 'Tajawal', 'Cairo', sans-serif;
+font-size: 19px;
+font-weight: 500;
+line-height: 1.7;
+color: #000;
+direction: rtl;
+position: relative;
+}
+#messages-modal .close-btn {
+position: absolute;
+top: 10px;
+left: 10px;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: #fff;
+border: 2px solid #ff0000;
+color: #ff0000;
+font-weight: bold;
+font-size: 24px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+z-index: 60001;
+}
+/* === نوافذ مرجعية عامة === */
+.reference-modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.85);
+z-index: 70000;
+justify-content: center;
+align-items: center;
+}
+.reference-modal .modal-content {
+background: #fdf9f3;
+border: 2px solid var(--gold);
+border-radius: 20px;
+width: 90%;
+max-width: 700px;
+padding: 30px;
+max-height: 85vh;
+overflow-y: auto;
+font-family: 'Tajawal', 'Cairo', sans-serif;
+font-size: 19px;
+font-weight: 500;
+line-height: 1.7;
+color: #333333;
+direction: rtl;
+position: relative;
+}
+.reference-modal .close-reference {
+position: absolute;
+top: 10px;
+left: 10px;
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background: #ffcccc;
+color: #cc0000;
+font-weight: bold;
+font-size: 24px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+border: 2px solid #ff6666;
+z-index: 70001;
+}
+.reference-modal h2 {
+text-align: center;
+color: #b30000;
+font-size: 1.7rem;
+margin-bottom: 20px;
+font-weight: bold;
+}
+.reference-modal p,
+.reference-modal ul,
+.reference-modal ol,
+.reference-modal table {
+margin-bottom: 15px;
+font-size: 1.1rem;
+font-weight: 500;
+}
+.reference-modal ul,
+.reference-modal ol {
+margin-right: 20px;
+}
+.reference-modal li {
+margin-bottom: 8px;
+}
+.reference-modal strong {
+font-weight: bold;
+}
+.reference-modal table {
+width: 100%;
+border-collapse: collapse;
+margin: 15px 0;
+}
+.reference-modal th,
+.reference-modal td {
+border: 1px solid #ccc;
+padding: 8px;
+text-align: right;
+}
+.reference-modal th {
+background-color: #f0f0f0;
+}
+@media (max-width: 992px) {
+.nav-container { flex-direction: column; gap: 15px; }
+.news-ticker { top: 160px; }
+.hero { padding-top: 240px; }
+.hero-container { flex-direction: column; align-items: center; }
+.video-container-box { width: 100%; height: 250px; }
+.awareness-grid { grid-template-columns: repeat(2, 1fr); }
+.references-grid { grid-template-columns: repeat(2, 1fr); }
+.section-main-title { font-size: 2rem; }
+.close-modal { top: -15px; left: -15px; width: 35px; height: 35px; font-size: 22px; }
+#messages-modal .modal-content,
+.reference-modal .modal-content {
+padding: 20px;
+font-size: 17px;
+}
+}
+.btn-action { text-align:center; text-decoration:none; color:#000; background:var(--gold); padding:15px; display:block; margin-top:20px; border-radius:10px; font-weight:bold; transition: 0.3s; cursor: pointer; }
+.btn-action:hover { background: #fff; transform: scale(1.05);}
+#btnUp {
+position: fixed;
+bottom: 30px;
+left: 30px;
+width: 50px;
+height: 50px;
+background: var(--gold);
+color: #000;
+border-radius: 50%;
+display: none;
+justify-content: center;
+align-items: center;
+font-size: 24px;
+cursor: pointer;
+z-index: 9999;
+box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.soon-placeholder {
+display: inline-block;
+width: 24px;
+height: 16px;
+background: #b30000;
+color: white;
+font-size: 10px;
+font-weight: bold;
+text-align: center;
+line-height: 16px;
+border-radius: 2px;
+margin-right: 10px;
+}
+</style>
+</head>
+<body onload="initPage()">
+<div class="site-bg"></div>
+<div id="btnUp" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+<!-- Modal for Questions -->
+<div id="qModal" class="modal-overlay">
+<div class="modal-container">
+<span class="close-modal" onclick="closePopup('qModal')">×</span>
+<div class="modal-box">
+<h2 id="modalTitle" class="modal-program-title">الطفولة الرقمية</h2>
+<p class="modal-instruction">اضغط على السؤال لمعرفة الإجابة</p>
+<div id="questionsContainer"></div>
+</div>
+</div>
+</div>
+<!-- Modal for Answers -->
+<div id="aModal" class="modal-overlay">
+<div class="modal-container">
+<span class="close-modal" onclick="closePopup('aModal')">×</span>
+<div class="modal-box">
+<h2 id="answerTitle" class="modal-program-title"></h2>
+<div id="answerContent"></div>
+</div>
+</div>
+</div>
+<!-- Modal رسالاتنا -->
+<div id="messages-modal">
+<div class="modal-content">
+<span class="close-btn" onclick="closeMessagesModal()">×</span>
+<div>
+🌍 قصص الحضارات: صرخة عالمية للرحمة الرقمية<br><br>
+من قلب مصر، حيث تُسجّل ألف حالة طلاق سنويًّا بسبب سوء استخدام الشاشات.<br>
+وحيث تُهدر مليارات الجنيهات بين خسائر إنتاجية، نصب إلكتروني، وعلاج نفسي.<br>
+نرفع صوتنا ليس كمصرين فقط بل كبشر يرون أن الإنسانية تتعرض لاختبارٍ جديد.<br><br>
+ليس الهدف من هذه المنصة اتهام التكنولوجيا، بل إنقاذ العلاقة الإنسانية منها.<br><br>
+نحن لا نطلب حظر الهواتف، بل ندعو إلى استخدامها بضمير.<br><br>
+كل طفل في طوكيو أو طرابلس، في ساو باولو أو سيول يستحق أن ينظر في عيني أمه دون شاشة تفصل بينهما.<br>
+كل شاب في كيب تاون أو كوالالمبور يستحق أن يبني هويته من واقعه، لا من وهم الخوارزميات.<br><br>
+السوشيال ميديا ليست شرًّا لكنها ليست محايدة فهي مرآةٌ لنيّاتِ مَن يُوجّهها.<br>
+هي اليوم إن لم تُوجَّه بالرحمة قد تصبح أسرع طريقٍ لتفكيك الأسر، زرع اليأس، ودفع البعض إلى الانتحار.<br><br>
+لهذا، تطلق قصص الحضارات:<br>
+نداءً إنسانيًّا مفتوحًا لكل حكومة، مؤسسة دينية، ثقافية، أو مدنية للمشاركة في بناء فضاء رقمي يحمي الكرامة، لا يهددها.<br><br>
+بدأنا بمصر — لأن الصدق يبدأ من البيت.<br>
+لكن رسالتنا ليست لمصر وحدها بل للعالم أجمع.<br><br>
+✨ ما نطلبه اليوم:<br>
+- من الآباء: أن يعودوا ليكونوا أول "فلتر" لأبنائهم.<br>
+- من الحكومات: أن تضع سياسات تحمي الأطفال من الإدمان الرقمي.<br>
+- من المنصات: أن تختار الإنسان على حساب الربح.<br>
+- من المؤسسات الروحية والثقافية: أن تُرشد الضمير لا أن تصمت.<br>
+- كل مرجعية في العالم — دينية، فلسفية، أو إنسانية —<br>
+أن تنضم إلى هذه الصيحة، بلغتها وقيمها ورؤيتها.<br><br>
+> شاركنا رسالتنا وانقذ من تحب احمِ الإنسانية قبل أن تصبح ذكرى رقمية.<br>
+> لا تدع الشاشة تسرق منك طفولة طفلك، سلام بيتك، أو رجاءك في الحياة.
+</div>
+</div>
+</div>
+<!-- نوافذ مرجعيتنا الإنسانية -->
+<div id="reference-buddhism" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-buddhism')">×</span>
+<h2>البوذية</h2>
+</div>
+</div>
+<div id="reference-judaism" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-judaism')">×</span>
+<h2>إزالة الأذى في العصر الرقمي: رؤية اليهودية لحماية المسيرة الإنسانية</h2>
+<p>
+تستند اليهودية إلى مبادئ الرحمة والبناء وتأمر بفعل "التِكّوم" (إزالة العثرة من الطريق) ليس كواجب فردي فحسب بل كمنهج أخلاقي شامل. 
+في عصر وسائل التواصل الاجتماعي، تحول الطريق من مسار مادي إلى فضاء رقمي يسلكه الإنسان يومياً وقد يتعرض فيه لما قد يضر بعقله وقلبه وعلاقاته من هنا تنبع الحاجة لفهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة اليهودية (הלכה) وقيمها الأخلاقية (מוסר).
+</p>
+<p><strong>أولاً: إزالة الأذى واجب إنساني عام</strong><br>
+لم تحدد التعاليم اليهودية هذا الواجب بأتباع الديانة اليهودية فقط. ففي سفر التثنية (22: 4) يُؤمر المرء بمساعدة من سقط حِمله حتى لو كان من خصومه. 
+أن مبدأ "לֹא תַעֲמֹד עַל דַּם רֵעֶךָ" (لا تقف مكتوف الأيدي على دم قريبك سفر اللاويين 19:16) يشمل منع كل ضرر محتمل. 
+الحكمة اليهودية ترى في حفظ الحياة والرفق بالآخرين ("פיקוח נפש" و"דרכי שלום") قيماً عليا تشمل الجميع دون تمييز.
+</p>
+<p><strong>ثانياً: الأذى يتجاوز المادي إلى المعنوي والأخلاقي</strong><br>
+الأذى المراد إزالته لا يقتصر على الحجارة أو العوائق الملموسة بل يشمل:
+<ul>
+<li>الكلام المؤذي أو البغيض (לשון הרע - نميمة وكلام السوء).</li>
+<li>الخداع والتضليل (גניבת דעת - سرقة الفكر أو خداع العقل).</li>
+<li>السلوك الذي يسبب الألم النفسي أو الارتباك للآخرين.</li>
+</ul>
+حكماء التلمود أكدوا أن "العار أقسى من الموت"، وأن الأذى النفسي والمعنوي قد يكون أكثر فتكاً من الجسدي.
+</p>
+<p><strong>ثالثاً: الحياة رحلة أخلاقية مستمرة</strong><br>
+تنظر اليهودية إلى الحياة الدنيا كمسيرة ("דרך") يختبر فيها الإنسان ويبني عالمه "في كل الطرق اَعرفوه" (משלי ג:ו) دعوة للوعي الأخلاقي في كل مسار كل لحظة هي فرصة لاختيار: هل نساهم في تسهيل طريق الآخرين وبناء مجتمع ("תיקון עולם") أم نضع فيه العوائق وننشر الفساد?
+</p>
+<p><strong>رابعاً: تدمير الفكر والعقل من أشد الأذى</strong><br>
+ما يضعف عقل الإنسان أو يدفعه للخطأ كبث الشكوك الهدامة أو نشر اليأس القاتل أو التحريض على الكراهية غير المبررة هو أذى خطير. العقل هو أداة فهم الإرادة الإلهية وتطبيق الشرعة ومسؤولية حمايته عظيمة. 
+من ينشر ما يفسد الأفكار ويشوه الحقيقة كمن يسمم بئر ماء يشرب منه الجميع.
+</p>
+<p><strong>خامساً: وسائل التواصل الاجتماعي: الطريق الرقمي للأذى المعاصر</strong><br>
+أصبحت المنصات الرقمية طريقاً افتراضياً يسلكه الملايين وقد أدى سوء استخدامها إلى:
+<ul>
+<li>تمزيق أواصر العائلة والمجتمع (השכנת שלום - إحلال السلام هو فضيلة عليا).</li>
+<li>التحريض على العنف والانتقام (הקמת חמה - إثارة الغضب الباطل مرفوض).</li>
+<li>التسبب في أزمات نفسية حادة.</li>
+</ul>
+هذا أذى مركب يجمع بين الإيذاء النفسي والاجتماعي والروحي. من يساهم في جعل هذا الطريق ساماً، فإنه ينتهك مبدأ "לא תשים דמים בביתך" (لا تجعل في بيتك سبباً لسفك الدماء، تثنية 22:8 بمفهوم موسع).
+</p>
+<p><strong>سادساً: الخوارزميات ليست محايدة، بل توجهها الربحية</strong><br>
+معظم خوارزميات المنصات لا تميز بين الحق والباطل بل بين ما يدر ربحاً وما لا يدر. 
+هي تغذي المستخدم بما يلبي ميوله حتى لو كان ذلك يدمره نفسياً أو أخلاقياً. لذلك على الإنسان الواعي أن:
+<ul>
+<li>يتحرى عن مصادره ("דע מה שתשיב" - اعرف كيف تجيب، أي كن مستعداً).</li>
+<li>يختار محتواه بوعي وبمسؤولية.</li>
+<li>يدرب نفسه على التمييز والنقد البناء، لا على الانجراف السلبي.</li>
+</ul>
+</p>
+<p><strong>خاتمة وتوصيات في ضوء الرؤية اليهودية:</strong><br>
+<ol>
+<li>الدعوة إلى خطاب توعوي يستند إلى القيم اليهودية الأصيلة ("ואהבת לרעך כמוך" - أحب لغيرك كما تحب لنفسك، سفر اللاويين 19:18) لإيضاح خطر الأذى الرقمي.</li>
+<li>دعم مبادرات ومحتوى غير ربحي يعزز القيم الإنسانية والأخلاقية ويساهم في إصلاح العالم ("תיקון עולם").</li>
+<li>تأهيل الأسر والمعلمين لفهم آليات العالم الرقمي وكيفية تربية الأبناء على الاستخدام الحكيم والآمن مع التركيز على مسؤولية الكلام ("משמרת הלשון").</li>
+<li>التأكيد على أن النية الحسنة لا تكفي بل يجب أن يقترن العمل والمحتوى بالفائدة الحقيقية والبعد عن الضرر.</li>
+<li>اعتبار حماية العقل والنفس الإنسانية من الأولويات المجتمعية كما تحمى الأجساد من الأوبئة، فهذا من أعلى درجات حفظ الحياة ("פיקוח נפש").</li>
+</ol>
+</p>
+<p>"مَنْ أَهْلَكَ نَفْسًا وَاحِدَةً، فَكَأَنَّمَا أَهْلَكَ عَالَمًا كَامِلًا، وَمَنْ أَحْيَا نَفْسًا وَاحِدَةً، فَكَأَنَّمَا أَحْيَا عَالَمًا كَامِلًا" (المشناه، سنهدرين 4:5).<br>
+العقل والروح هما عالم الإنسان الكامل وحمايتهما من الشرور الرقمية هي من أعظم صور إحياء النفس والإسهام في بناء عالم أكثر أماناً وكرامة.
+</p>
+</div>
+</div>
+<div id="reference-christianity" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-christianity')">×</span>
+<h2>إزالة الأذى في العصر الرقمي: رؤية مسيحية لحماية المسيرة الإنسانية</h2>
+<p>
+تقوم المسيحية على محبة الله ومحبة القريب، وتدعو إلى إزالة كل ما يعترض طريق الخير والسلام. 
+في عصر الوسائط الرقمية، حيث أصبح العالم الافتراضي طريقاً يسلكه الملايين يومياً تبرز الحاجة إلى فهم أعمق لدعوتنا كتلاميذ للمسيح في هذا المجال الجديد.
+</p>
+<p><strong>أولاً: خدمة القريب في الفضاء الرقمي</strong><br>
+لم يحدد السيد المسيح وصية محبة القريب (مرقس ١٢:٣١) بحدود الجغرافيا أو الوسيط بل شملت كل إنسان نلتقيه. 
+يقول القديس بولس: "احملوا بعضكم أثقالاً وهكذا تمموا ناموس المسيح" (غلاطية ٦:٢). 
+إزالة الأذى الرقمي - سواء بالكلمة أو الصورة أو المعلومة - هي شكل حديث من أشكال حمل أثقال القريب، خاصة في عالم يعاني من العزلة والقلق.
+</p>
+<p><strong>ثانيًا: الأذى الجديد لأخوة المسيح</strong><br>
+يحذر الكتاب المقدس من قوة الكلام: "الموت والحياة في يد اللسان" (أمثال ١٨:٢١). 
+في عصرنا امتد هذا اللسان إلى منصات التواصل الأذى الرقمي يشمل:
+<ul>
+<li>الكلام البذيء والإساءة (أفسس ٤:٢٩)</li>
+<li>الشائعات والافتراء (٢ كورنثوس ١٢:٢٠)</li>
+<li>إثارة الفتنة والانقسام (غلاطية ٥:١٩-٢١)</li>
+<li>الإغراء والخطية (متى ١٨:٦)</li>
+</ul>
+كل هذا ينتهك وصية "أحبب قريبك كنفسك" ويكون خطية ضد جسد المسيح الواحد.
+</p>
+<p><strong>ثالثاً: الحياة رحلة نحو الملكوت</strong><br>
+يرى المسيحيون الحياة كرحلة حج نحو ملكوت الله الفضاء الرقمي أصبح جزءاً من هذه الرحلة. 
+السؤال الذي يوجه ضمير المؤمن: هل أستخدم هذه الوسائل لخدمة إخوتي في الرحلة، أم أضع عثرات في طريقهم؟ (رومية ١٤:١٣). الدعوة هي أن نكون "ملحاً ونوراً" حتى في العالم الرقمي (متى ٥:١٣-١٦).
+</p>
+<p><strong>رابعاً: تجديد الذهن أمام التحدي الرقمي</strong><br>
+يؤكد القديس بولس: "لا تشاكلوا هذا الدهر، بل تغيروا عن شكلكم بتجديد أذهانكم" (رومية ١٢:٢). 
+الخطر الأكبر في العصر الرقمي هو تشكيل أذهاننا وفقاً لقيم العالم لا لكلمة الله. 
+المحتوى الذي يشكك في الكرامة الإنسانية أو يبشر بالعنف أو يستغل الضعفاء هو أذى روحي يهدد خلاص النفوس.
+</p>
+<p><strong>خامساً: المسؤولية تجاه الضعفاء</strong><br>
+يحمل المسيحيون مسؤولية خاصة تجاه "هؤلاء الصغار" (متى ١٨:٦). 
+المنصات الرقمية تعرض الصغار - سواء في السن أو في الإيمان - لمخاطر جسيمة:
+<ul>
+<li>التنمر والاستغلال</li>
+<li>التضليل والهرطقات</li>
+<li>الإدمان والعزلة</li>
+</ul>
+من يساهم في هذه الأضعة يكون كمن أعثر أحد هؤلاء الصغار (متى ١٨:٦).
+</p>
+<p><strong>سادساً: الحرية المسؤولة في عالم الخوارزميات</strong><br>
+تدعو المسيحية إلى الحرية، ولكن "لا تتخذوا الحرية ذريعة للجسد" (غلاطية ٥:١٣). 
+الخوارزميات التي تغذي الشهوات والغضب تناقض دعوتنا للفضيلة وضبط النفس. على المؤمن أن:
+<ul>
+<li>يفحص كل شيء، ويتمسك بالحسن (١ تسالونيكي ٥:٢١)</li>
+<li>يزرع للروح لا للجسد (غلاطية ٦:٨)</li>
+<li>يكون سيد التكنولوجيا لا عبداً لها</li>
+</ul>
+</p>
+<p><strong>خاتمة وتوصيات من منظور مسيحي:</strong><br>
+<ol>
+<li>تطبيق وصايا المحبة رقمياً: تطوير لاهوت رعوي رقمي يترجم وصايا المحبة والعدل إلى سلوك عملي في الفضاء الافتراضي.</li>
+<li>مجتمعات رقمية مسيحية: بناء مجتمعات ومواقع رقمية تقدم محتوى بنّاءً، تشجع على المصالحة، وتقدم الرجاء في عالم يفتقدهما.</li>
+<li>تربية رقمية مسيحية: إدراج التربية على الاستخدام المسيحي للتقنية في برامج التربية الدينية والتربية الأسَرية، مع التركيز على حماية الصغار.</li>
+<li>الشهادة الرقمية: تشجيع المؤمنين على أن يكونوا شهوداً للمسيح في العالم الرقمي من خلال المحبة والاحترام والحوار البناء، وليس من خلال الجدال والانقسام.</li>
+<li>الصلاة واليقظة: تذكير المؤمنين بضرورة الصلاة من أجل الحكمة في استخدام التقنية، واليقظة الروحية ضد إغراءات العالم الرقمي.</li>
+</ol>
+</p>
+<p>"كل ما تريدون أن يفعل الناس بكم افعلوا هكذا أنتم بهم" (متى ٧:١٢)<br>
+هذه القاعدة الذهبية هي المفتاح لتعامل مسيحي أخلاقي في العصر الرقمي. 
+عندما نتعامل مع الآخرين عبر الشاشات علينا أن نتذكر أننا نتعامل مع أنفس مخلوقة على صورة الله ودُعينا لنكون حراساً لإخوتنا ساعين لبناء ملكوت المحبة حتى في أصغر تفاعلاتنا الرقمية.
+</p>
+</div>
+</div>
+<div id="reference-islam" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-islam')">×</span>
+<h2>إماطة الأذى في العصر الرقمي: رؤية إسلامية لحماية المسيرة الإنسانية</h2>
+<p>
+الإسلام دين الرحمة والبناء يأمر بإماطة الأذى عن الطريق، لا فقط كفعل فردي، بل كمنهج حضاري شامل. وفي عصر السوشيال ميديا، تحوّل الطريق من مسار مادي إلى فضاء رقمي يمشيه الإنسان يوميًّا، ويُعرض فيه على ما قد يُهلك فكره، قلبه، وعلاقاته. من هنا تبرز الحاجة إلى فهم أعمق لمفهوم الأذى والطريق في ضوء مقاصد الشريعة.
+</p>
+<p><strong>أولًا: إماطة الأذى ليست حكرًا على المسلمين</strong><br>
+لم يُقيّد النبي ﷺ إماطة الأذى بالمسلمين فقط، بل جعلها من شُعَب الإيمان العامّة. قال ﷺ: «الإيمانُ بضعٌ وسبعون شُعبة... وأدناها إماطةُ الأذى عن الطريق» (رواه مسلم). وهذا يشمل كل من يسلك الطريق مسلمًا كان أو غيره، لأن مقصد الشريعة حفظ الكلّ من الضرر دون تمييز بينهم.
+</p>
+<p><strong>ثانيًا: الأذى ليس ماديًّا فحسب، بل معنويٌّ أخطر</strong><br>
+الأذى المراد إزالته لا يقتصر على الحجارة أو الشوك، بل يشمل:  
+<ul>
+<li>الكلمة الجارحة</li>
+<li>النظرات المحرّمة</li>
+<li>الدعوات المضلّلة</li>
+<li>السلوك الذي يُربك الناس أو يُقلقهم</li>
+</ul>
+قال ابن القيم: «أعظم الأذى ما أفسد القلوب والعقول».  
+المقصود أن كل ما يُشوّش على الإنسان في مسيرته هو أذىٌ يجب إماطته.
+</p>
+<p><strong>ثالثًا: الحياة طريقٌ من المهد إلى اللحد</strong><br>
+الحياة الدنيا مسيرة مؤقتة، قال ﷺ: «كُن في الدنيا كأنك غريبٌ أو عابرُ سبيلٍ» (رواه البخاري).  
+كل لحظة فيها اختبار: هل نُسهّل الطريق للناس؟ أم نضع فيه ما يُعثّرهم؟  
+من هنا فإن الطريق في الحديث النبوي ليس مكانًا جغرافيًّا، بل رحلة وجودية.
+</p>
+<p><strong>رابعًا: تدمير الفكر أذىٌ من أخطر الأذى</strong><br>
+ما يُضعف عقل الإنسان أو يدفعه لقرار خاطئ كالتشكيك في القيم أو نشر اليأس أو التحريض على الغضب هو أذىٌ روحي وفكري.  
+العقل محلّ التكليف، قال تعالى: «إِنَّ السَّمْعَ وَالْبَصَرَ وَالْفُؤَادَ كُلُّ أُولَٰئِكَ كَانَ عَنْهُ مَسْئُولًا» (سورة الإسراء: 36).  
+من ينشر ما يُفسد الأفكار كمن ينشر السمّ في الطعام.
+</p>
+<p><strong>خامسًا: السوشيال ميديا طريقٌ جديدٌ للأذى الحديث</strong><br>
+منصات التواصل أصبحت طريقًا افتراضيًّا يمشيه الملايين يوميًّا.  
+واستخدامها الخاطئ أدّى إلى:  
+<ul>
+<li>قطع الأرحام</li>
+<li>تحريض على الانتقام</li>
+<li>دفع البعض إلى الانتحار</li>
+</ul>
+وهذا أذىٌ مركّب يجمع بين الإيذاء النفسي، الاجتماعي، والروحي.  
+ومن سلك هذا الطريق المليء بالسموم، فقد خان الأمانة وخالف قوله ﷺ: «لا ضرر ولا ضرار».
+</p>
+<p><strong>سادسًا: البرامج ليست محايدة، بل تُدار بالربح لا بالهداية</strong><br>
+الغالب من خوارزميات السوشيال ميديا لا تميّز بين الحق والباطل، بل بين ما يُدرّ ربحًا وما لا يُدرّ.  
+هي تُغذّيك بما تفضّله نفسيًّا حتى لو كان يُدمّرك روحيًّا.  
+لذا، على المسلم أن:  
+<ul>
+<li>يُراقب مصادره</li>
+<li>يختار محتواه بوعي</li>
+<li>يُدرّب نفسه على التمييز لا على الانجراف</li>
+</ul>
+</p>
+<p><strong>خاتمة وتوصيات</strong><br>
+<ol>
+<li>الدعوة إلى تبني خطاب توعوي إسلامي يُبيّن خطر الأذى الرقمي كأحد أشكال الإيذاء المحرّم.</li>
+<li>دعم برامج توعوية غير ربحية تُعزّز القيم، لا الرغبات.</li>
+<li>تأهيل الأسر والمربين لفهم آليات المنصات وكيفية حماية الأبناء منها.</li>
+<li>التأكيد على أن النية ليست كافية، بل يجب أن يكون المحتوى أيضًا نافعًا.</li>
+<li>اعتبار حماية العقول من أولويات العمل الدعوي والاجتماعي، كحماية الأجساد من الأوبئة.</li>
+</ol>
+</p>
+<p>«وَمَنْ أَحْيَاهَا فَكَأَنَّمَا أَحْيَا النَّاسَ جَمِيعًا» (سورة المائدة: 32)<br>
+العقل سِرّ الحياة، وحمايته من أعظم أبواب الإحياء.
+</p>
+</div>
+</div>
 <div id="reference-secular" class="reference-modal">
 <div class="modal-content">
 <span class="close-reference" onclick="closeReferenceModal('reference-secular')">×</span>
-<h2>الأخلاق الإنسانية</h2>
+<h2>إزالة الأذى في العصر الرقمي: رؤية أخلاقية إنسانية لحماية المسيرة الإنسانية</h2>
+<p>
+تنطلق الرؤية الأخلاقية الإنسانية من مبدأين أساسيين: كرامة الإنسان المتأصلة والمسؤولية العقلانية تجاه البشرية جمعاء. 
+في العصر الرقمي حيث تحول الفضاء الافتراضي إلى بيئة وجودية جديدة تظهر حاجة ملحة لتطبيق التفكير الأخلاقي العقلاني لحماية الإنسانية من أذى قد يكون غير مسبوق في تاريخها.
+</p>
+<p><strong>الأول: العقلانية الأخلاقية كمنطلق</strong><br>
+"يجب أن نتعامل مع الإنسانية سواء في شخصنا أو في شخص الآخرين دائماً كغاية في حد ذاتها وليس مجرد وسيلة"<br>
+إيمانويل كانط (الصيغة الإنسانية للأمر القاطع)
+</p>
+<p>
+الفضاء الرقمي يُختبر من خلال معيارين إنسانيين أساسيين:<br>
+1. الاحترام المتساوي لكرامة كل إنسان بغض النظر عن وجوده رقمياً أو مادياً<br>
+2. الالتزام بالحقيقة والعقلانية كأساس للتواصل البشري
+</p>
+<p><strong>الثاني: أنواع الأذى الرقمي من منظور إنساني</strong></p>
+<table>
+<tr><th>نوع الأذى</th><th>أسبابه الرقمية</th><th>انتهاكه للمبادئ الإنسانية</th></tr>
+<tr><td>الأذى المعرفي</td><td>المعلومات المضللة، الأخبار المزيفة</td><td>يهدم أساس المجتمع العقلاني: المعرفة الموثوقة</td></tr>
+<tr><td>الأذى النفسي</td><td>التنمر، خطاب الكراهية، الترهيب</td><td>ينتهك الكرامة الإنسانية والصحة النفسية</td></tr>
+<tr><td>الأذى الاجتماعي</td><td>التمييز الرقمي، الفقاعات المعرفية</td><td>يُضعف التضامن الإنساني والعدالة الاجتماعية</td></tr>
+<tr><td>الأذى الوجودي</td><td>الإدمان الرقمي، تشتيت الانتباه المستمر</td><td>يعيق تحقيق الإمكانات البشرية الكاملة</td></tr>
+</table>
+<p><strong>الثالث: المبادئ الإنسانية السبعة للسلوك الرقمي</strong></p>
+<ol>
+<li><strong>مبدأ الكرامة الإنسانية:</strong><br>
+   - معاملة كل مستخدم كإنسان ذي قيمة متأصلة<br>
+   - رفض أي تجريد للبشرية أو تشييء للآخرين</li>
+<li><strong>مبدأ الحقيقة والعقلانية:</strong><br>
+   - السعي للدقة والتحقق قبل المشاركة<br>
+   - التصحيح العلني للأخطاء<br>
+   - تقديم الأدلة والحجج العقلانية</li>
+<li><strong>مبدأ العدالة الرقمية:</strong><br>
+   - تكافؤ الفرص في الوصول للمعلومات<br>
+   - محاربة التمييز الخوارزمي<br>
+   - ضمان تمثيل الأصوات المهمشة</li>
+<li><strong>مبدأ المسؤولية:</strong><br>
+   - تحمل تبعات أفعالنا الرقمية<br>
+   - اعتبار التأثيرات البعيدة لأفعالنا القريبة<br>
+   - الموازنة بين الحرية الفردية والمسؤولية المجتمعية</li>
+<li><strong>مبدأ التضامن الإنساني:</strong><br>
+   - استخدام التقنية لربط لا لفصل البشرية<br>
+   - التعاطف مع المعاناة أينما وجدت<br>
+   - بناء تحالفات عابرة للحدود الرقمية</li>
+<li><strong>مبدأ الاستقلالية الواعية:</strong><br>
+   - حماية حرية التفكير من التلاعب<br>
+   - تنمية النقد الذاتي والوعي النقدي<br>
+   - مقاومة التلقين والإملاء الفكري</li>
+<li><strong>مبدأ الاستدامة الوجودية:</strong><br>
+   - حماية التوازن بين العالم الرقمي والمادي<br>
+   - الحفاظ على العمق الفكري في عصر السطحية<br>
+   - ضمان استمرارية القيم الإنسانية عبر الأجيال</li>
+</ol>
+<p><strong>الرابع: العقد الاجتماعي الرقمي الجديد</strong><br>
+"الحقوق تقابلها مسؤوليات" مفهوم إنساني أساسي<br>
+فالمستخدم الرقمي في الرؤية الإنسانية ليس مستهلكاً سلبيًا بل مواطن رقمي بكل ما تحمله الكلمة من حقوق وواجبات:</p>
+<table>
+<tr><th>حقوق المواطن الرقمي</th><th>واجبات المواطن الرقمي</th></tr>
+<tr><td>الخصوصية والبيانات الآمنة</td><td>احترام خصوصية الآخرين</td></tr>
+<tr><td>الوصول للمعلومات الموثوقة</td><td>التحقق والمشاركة المسؤولة</td></tr>
+<tr><td>حرية التعبير البناء</td><td>تجنب الخطاب المؤذي</td></tr>
+<tr><td>المشاركة في تشكيل البيئة الرقمية</td><td>المساهمة في تحسينها للأجيال القادمة</td></tr>
+</table>
+<p><strong>الخامس: العقلانية النقدية ضد الخوارزميات الانفعالية</strong><br>
+الخطر الأكبر: تحويل البشر إلى كائنات رد فعل بدلاً من كائنات تفكر. 
+الممارسة الإنسانية:</p>
+<ol>
+<li><strong>تثقيف النقد الذاتي:</strong><br>
+   - لماذا أشعر بهذا الشعور بعد مشاهدة هذا المحتوى؟<br>
+   - ما المصالح التي تخدمها هذه المعلومة؟<br>
+   - كيف أعرف أن ما أراه حقيقي؟</li>
+<li><strong>ممارسة التأجيل الحكمي:</strong><br>
+   - عدم الرد الانفعالي الفوري<br>
+   - إعطاء الوقت للتفكير والتأمل<br>
+   - التمييز بين الرأي الشخصي والحقيقة الموضوعية</li>
+<li><strong>تنمية الفضول البنّاء:</strong><br>
+   - البحث عن وجهات النظر المخالفة<br>
+   - استكشاف المصادر الأولية<br>
+   - السعي لفهم السياقات الكاملة</li>
+</ol>
+<p><strong>التوصيات العملية من منظور إنساني</strong></p>
+<ol>
+<li><strong>برامج التربية الرقمية الإنسانية:</strong><br>
+   - دمج التفكير النقدي في مناهج التعليم الرقمي<br>
+   - تعليم تاريخ الأفكار والأخلاق مع التقنية<br>
+   - تدريب على الحوار العقلاني البناء</li>
+<li><strong>مؤسسات الرقابة المدنية:</strong><br>
+   - هيئات مستقلة لمراقبة الخوارزميات<br>
+   - منظمات للتحقق من المعلومات بمعايير إنسانية<br>
+   - مراصد لحماية الحقوق الرقمية</li>
+<li><strong>ممارسات الفرد الواعي:</strong><br>
+   - الفحص الثلاثي قبل النشر: هل هذا صحيح؟ هل هذا ضروري؟ هل هذا محترم؟<br>
+   - الصيام الرقمي التفكري: أيام بدون أجهزة للتفكير العميق<br>
+   - القراءة المعاكسة: متابعة من يخالفون رأيك لفهم أوسع</li>
+<li><strong>تصميم أنظمة إنسانية:</strong><br>
+   - خوارزميات تعزز المحتوى البنّاء لا الانفعالي<br>
+   - واجهات تشجع على التأمل لا الاندفاع<br>
+   - أنظمة تحمي الضعفاء وتكافح التمييز</li>
+<li><strong>حوار إنساني عابر للثقافات:</strong><br>
+   - منصات للحوار بين مختلف التوجهات الفكرية<br>
+   - مشاريع ترجمة للمعارف الإنسانية العالمية<br>
+   - تحالفات للقضايا الإنسانية المشتركة</li>
+</ol>
+<p><strong>الخاتمة: الإنسانية في مواجهة نفسها رقمياً</strong><br>
+ما لا يمكن قياسه ليس أقل واقعية وما لا يمكن رقمنته ليس أقل إنسانية.</p>
+<p>
+التحدي الأخلاقي الأعظم في العصر الرقمي: أن نبقى بشراً في عالم يحاول أحياناً تجاوز إنسانيتنا. 
+إزالة الأذى الرقمي ليست مهمة تقنية فحسب بل هي مشروع إنساني وجودي لحماية جوهرنا المشترك.
+</p>
+<p>
+الرؤية الإنسانية تذكرنا: التقنية تخدم الإنسانية عندما تُستخدم لتعزيز كرامتنا، حريتنا الواعية، تضامننا، وعقلانيتنا. 
+عندما تُستخدم ضد هذه القيم يجب أن نعيد توجيهها أو نرفضها.
+</p>
+<p>
+الاختبار النهائي: أي فعل رقمي أي منصة أي خوارزمية هل تزيد من إنسانيتنا المشتركة أم تنقص منها؟ الجواب على هذا السؤال هو بوصلة أخلاقيتنا في العصر الرقمي.
+</p>
+</div>
+</div>
+<div id="reference-taoism" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-taoism')">×</span>
+<h2>الطاوية</h2>
+</div>
+</div>
+<div id="reference-shinto" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-shinto')">×</span>
+<h2>الشنتو</h2>
+</div>
+</div>
+<div id="reference-confucianism" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-confucianism')">×</span>
+<h2>الكونفوشيوسية</h2>
+</div>
+</div>
+<div id="reference-hinduism" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-hinduism')">×</span>
+<h2>الهندوسية</h2>
+</div>
+</div>
+<div id="reference-african" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-african')">×</span>
+<h2>الفلسفة الأفريقية</h2>
+</div>
+</div>
+<div id="reference-indigenous" class="reference-modal">
+<div class="modal-content">
+<span class="close-reference" onclick="closeReferenceModal('reference-indigenous')">×</span>
+<h2>الزرادشتية</h2>
 </div>
 </div>
 <div id="reference-eastern" class="reference-modal">
